@@ -1,2 +1,7 @@
 # The pool of tears
 
+```{r}
+height = c(71,77,70,73,66,69,73,73,75,76)
+sum(height)
+```
+
