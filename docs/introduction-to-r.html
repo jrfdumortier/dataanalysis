@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Data Analysis for Public Affairs</title>
-  <meta name="description" content="Data Analysis for Public Affairs" />
+  <title>3 Introduction to R | Data Analysis for Public Affairs</title>
+  <meta name="description" content="3 Introduction to R | Data Analysis for Public Affairs" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Data Analysis for Public Affairs" />
+  <meta property="og:title" content="3 Introduction to R | Data Analysis for Public Affairs" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Data Analysis for Public Affairs" />
+  <meta name="twitter:title" content="3 Introduction to R | Data Analysis for Public Affairs" />
   
   
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="topics-overview.html"/>
+<link rel="prev" href="topics-overview.html"/>
+<link rel="next" href="binary-choice.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -170,29 +170,145 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Data Analysis for Public Affairs</h1>
-<p class="author"><em>Jerome Dumortier</em></p>
-<p class="date"><em>2021-02-15</em></p>
+<div id="introduction-to-r" class="section level1">
+<h1><span class="header-section-number">3</span> Introduction to R</h1>
+<p>Topics covered in this lecture</p>
+<ul>
+<li>Introduction to R and RStudio</li>
+<li>Data Management</li>
+<li>Plotting and Graphs with R</li>
+<li>Basic Statistics</li>
+</ul>
+<p>In-class exercises will be conducted throughout the Lecture.</p>
+<div id="online-resources-and-help" class="section level2">
+<h2><span class="header-section-number">3.1</span> Online Resources and Help</h2>
+<p>Very large user community for R. Google search for ``Some topic R’’ usually leads quickly to the desired help.
+Here are the links to a few online tutorials</p>
+<ul>
+<li><a href="http://stats.idre.ucla.edu/r/">UCLA Institute for Digital Research and Education</a></li>
+<li><a href="https://www.statmethods.net/">StatMethods</a></li>
+<li><a href="http://www.sthda.com/english/">Statistical tools for high-throughput data analysis</a></li>
+</ul>
+<p>Two online resources will provide you the solution to the vast majority of your R questions. Getting on those websites is usually the result of a Google search.</p>
+<ul>
+<li><a href="https://stat.ethz.ch/R-manual/">Statistical Data Analysis R</a>: This resource contains the function manual for R/RStudio including all packages. Example for a function <a href="https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/boxplot.html">boxplot</a>. The most helpful part are the examples at the bottom of the page.</li>
+<li>Stack Overflow: Resources for developers. For example, a Google search for “r ggplot two y axis” may give you the following <a href="https://stackoverflow.com/questions/3099219/plot-with-2-y-axes-one-y-axis-on-the-left-and-another-y-axis-on-the-right">result</a> Note that all questions on Stack Overflow have to be accompanied by a re-creatable dataset.</li>
+</ul>
+<p>Besides many online resources, there are also two useful textbooks</p>
+<ul>
+<li><a href="https://link.springer.com/book/10.1007/978-0-387-77318-6">Applied Econometrics with R</a> by Christian Kleiber and Achim Zeileis.</li>
+<li><a href="https://link.springer.com/book/10.1007/978-0-387-79054-1%5D">Introductory Statistics with R</a> by Peter Dalgaard.</li>
+</ul>
+<p>An additional online tutorial is <a href="https://cran.r-project.org/doc/contrib/Verzani-SimpleR.pdf%5D">Using R for Introductory Statistics</a> by John Verzani.</p>
 </div>
-<div id="introduction" class="section level1">
-<h1><span class="header-section-number">1</span> Introduction</h1>
-<p>This book serves as an introduction to data analysis with R and RStudio. It can be subdivided into four main parts.</p>
+<div id="opening-rstudio" class="section level2">
+<h2><span class="header-section-number">3.2</span> Opening RStudio</h2>
+<p>Work in RStudio is done in four windows:</p>
 <ol style="list-style-type: decimal">
-<li>Probability</li>
-<li>Statistics</li>
-<li>Regression</li>
-<li>Advanced Regression</li>
+<li>Script Window
+<ul>
+<li>This is were you type your R Script (.R) and where you execute commands.</li>
+<li>Comparable to do-file/editor in Stata.</li>
+<li>This window needs to be opened by File <span class="math inline">\(\Rightarrow\)</span> New File <span class="math inline">\(\Rightarrow\)</span> R Script.</li>
+</ul></li>
+<li>Console window
+<ul>
+<li>Use of R interactively. Should only be used for quick calculations and not part of an analysis.</li>
+</ul></li>
+<li>Environment
+<ul>
+<li>Lists all the variables, data frames, and user-created functions.</li>
+<li>It is tempting to use the ``Import Dataset’’ function Don’t.</li>
+</ul></li>
+<li>Plots/Packages/Help</li>
 </ol>
+<p>There is a base version of R that allows doing many calculations but the power of R comes through its packages. To use functions associated with a particular package, click ``Install’’ in the packages window of RStudio and type in the name of the package. Or alternatively, use</p>
+<ul>
+<li><code>install.packages("ggplot2")</code></li>
+</ul>
+<p>To use a package, you have to activate it by either checking the box in the window “Packages” or by including <code>library(packagename)</code>. Those packages are updated on a regular basis by users.</p>
+<p>The <code>\#</code> allows you to include comments in your script file that are not read by R. It is good practice to start any new script with clearing the memory using the command <code>rm(list=ls())</code>. Use the command <code>get()</code> to determine the current working directory or set the new working directory with the command <code>setwd()</code>, e.g., <code>setwd("E:/")</code>. For file paths, replace <span class="math inline">\(\backslash\)</span> with <span class="math inline">\(/\)</span>. Next, you want to load all libraries necessary for your entire script file with the command <code>library()</code>. It is also good practice to save your R-script on a regular basis. The frontmatter, i.e., the top of a R-script file, could look as follows</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="introduction-to-r.html#cb3-1"></a><span class="kw">rm</span>(<span class="dt">list=</span><span class="kw">ls</span>())</span>
+<span id="cb3-2"><a href="introduction-to-r.html#cb3-2"></a><span class="kw">load</span>(<span class="st">&quot;DataAnalysisPAData.RData&quot;</span>)</span>
+<span id="cb3-3"><a href="introduction-to-r.html#cb3-3"></a><span class="kw">library</span>(openxlsx)</span></code></pre></div>
+<div id="in-class-exercise-1" class="section level3">
+<h3><span class="header-section-number">3.2.1</span> In-class Exercise 1</h3>
+<p>Create a R-script file with the following components:</p>
+<ol style="list-style-type: decimal">
+<li>Two lines for the title and the date (use #)</li>
+<li>Clearing all current contents</li>
+<li>Setting the correct working directory
+<ul>
+<li>This should be a folder to which you have downloaded all materials.</li>
+</ul></li>
+<li>Installing and loading the package <code>openxlsx</code>.</li>
+</ol>
+</div>
+</div>
+<div id="functions" class="section level2">
+<h2><span class="header-section-number">3.3</span> Functions</h2>
+<p>At the core of R are functions that “do things” based on your input. The basic structure is</p>
+<ul>
+<li><code>object = functionname(argument1=value,argument2=value,...)</code></li>
+</ul>
+<p>The structure has the following components</p>
+<ul>
+<li><code>object</code>: Output of the function will be assigned to object.</li>
+<li><code>functionname</code>: Name of the system function. You can also create and use your own functions. More about this later.</li>
+<li><code>argument</code>: Arguments are function specific.</li>
+<li><code>value</code>: The value you want a particular argument to take.</li>
+</ul>
+<p>If a function is executed without an specific assignment, the output will be displayed in the console window. Before using a function, read the documentation. Many functions have default settings. Be aware of default values. In most cases, those defaults are set to values that satisfy most uses. For example, consider the help file for the function <a href="https://stat.ethz.ch/R-manual/R-devel/library/stats/html/t.test.html">t.test</a>.</p>
+<p>-<code>t.test(x,y=NULL,...,mu=0,conf.level=0.95,...)</code></p>
+<p>For this function we have the following default values</p>
+<ul>
+<li><code>y=NULL</code></li>
+<li><code>mu=0</code></li>
+<li><code>conf.level=0.95</code></li>
+</ul>
+</div>
+<div id="data-management" class="section level2">
+<h2><span class="header-section-number">3.4</span> Data Management</h2>
+<div id="data-in-r" class="section level3">
+<h3><span class="header-section-number">3.4.1</span> Data in R</h3>
+<p>The main data types which can appear in the Environment window of R are:</p>
+<ul>
+<li>Vectors
+<ul>
+<li><code>preselection = seq(1788,2016,4)</code></li>
+<li><code>midterm = seq(by=4,to=2018,from=1790)</code></li>
+</ul></li>
+<li>Matrix
+<ul>
+<li><code>somematrix = matrix(8,10,4)</code></li>
+<li>Only numerical values are allowed.</li>
+</ul></li>
+<li>Data frames
+<ul>
+<li>By far, the most common data type in R.</li>
+<li>Comparable to an Excel sheet.</li>
+<li>More on this later.</li>
+</ul></li>
+<li>Lists
+<ul>
+<li>Collection of objects from of various types.</li>
+<li><code>myfirstlist = list(preselection,midterm,somematrix)</code></li>
+</ul></li>
+</ul>
+</div>
+<div id="data-in-r-1" class="section level3">
+<h3><span class="header-section-number">3.4.2</span> Data in R</h3>
 
+</div>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="topics-overview.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="topics-overview.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="binary-choice.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -223,7 +339,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/jrfdumortier/dataanalysis/edit/master/index.Rmd",
+"link": "https://github.com/jrfdumortier/dataanalysis/edit/master/introductiontor.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -231,7 +347,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/jrfdumortier/dataanalysis/blob/master/index.Rmd",
+"link": "https://github.com/jrfdumortier/dataanalysis/blob/master/introductiontor.Rmd",
 "text": null
 },
 "download": ["bookdownproj.pdf"],

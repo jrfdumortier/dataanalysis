@@ -1,3 +1,13 @@
-down-the-rabbit-hole
-the-pool-of-tears
-a-caucus-race-and-a-long-tale
+introduction
+topics-overview
+introduction-to-r
+online-resources-and-help
+opening-rstudio
+in-class-exercise-1
+functions
+data-management
+data-in-r
+data-in-r-1
+binary-choice
+stuff
+including-plots

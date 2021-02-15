@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>4 A caucus-race and a long tale | Data Analysis for Public Affairs</title>
-  <meta name="description" content="4 A caucus-race and a long tale | Data Analysis for Public Affairs" />
+  <title>4 Binary Choice | Data Analysis for Public Affairs</title>
+  <meta name="description" content="4 Binary Choice | Data Analysis for Public Affairs" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="4 A caucus-race and a long tale | Data Analysis for Public Affairs" />
+  <meta property="og:title" content="4 Binary Choice | Data Analysis for Public Affairs" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="4 A caucus-race and a long tale | Data Analysis for Public Affairs" />
+  <meta name="twitter:title" content="4 Binary Choice | Data Analysis for Public Affairs" />
   
   
   
@@ -31,7 +31,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="binary-choice.html"/>
+<link rel="prev" href="introduction-to-r.html"/>
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -136,11 +136,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
 <li class="chapter" data-level="2" data-path="topics-overview.html"><a href="topics-overview.html"><i class="fa fa-check"></i><b>2</b> Topics Overview</a></li>
-<li class="chapter" data-level="3" data-path="binary-choice.html"><a href="binary-choice.html"><i class="fa fa-check"></i><b>3</b> Binary Choice</a><ul>
-<li class="chapter" data-level="3.1" data-path="binary-choice.html"><a href="binary-choice.html#stuff"><i class="fa fa-check"></i><b>3.1</b> Stuff</a></li>
-<li class="chapter" data-level="3.2" data-path="binary-choice.html"><a href="binary-choice.html#including-plots"><i class="fa fa-check"></i><b>3.2</b> Including Plots</a></li>
+<li class="chapter" data-level="3" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>3</b> Introduction to R</a><ul>
+<li class="chapter" data-level="3.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#online-resources-and-help"><i class="fa fa-check"></i><b>3.1</b> Online Resources and Help</a></li>
+<li class="chapter" data-level="3.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#opening-rstudio"><i class="fa fa-check"></i><b>3.2</b> Opening RStudio</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#in-class-exercise-1"><i class="fa fa-check"></i><b>3.2.1</b> In-class Exercise 1</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="a-caucus-race-and-a-long-tale.html"><a href="a-caucus-race-and-a-long-tale.html"><i class="fa fa-check"></i><b>4</b> A caucus-race and a long tale</a></li>
+<li class="chapter" data-level="3.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#functions"><i class="fa fa-check"></i><b>3.3</b> Functions</a></li>
+<li class="chapter" data-level="3.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#data-management"><i class="fa fa-check"></i><b>3.4</b> Data Management</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#data-in-r"><i class="fa fa-check"></i><b>3.4.1</b> Data in R</a></li>
+<li class="chapter" data-level="3.4.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#data-in-r-1"><i class="fa fa-check"></i><b>3.4.2</b> Data in R</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="binary-choice.html"><a href="binary-choice.html"><i class="fa fa-check"></i><b>4</b> Binary Choice</a><ul>
+<li class="chapter" data-level="4.1" data-path="binary-choice.html"><a href="binary-choice.html#stuff"><i class="fa fa-check"></i><b>4.1</b> Stuff</a></li>
+<li class="chapter" data-level="4.2" data-path="binary-choice.html"><a href="binary-choice.html#including-plots"><i class="fa fa-check"></i><b>4.2</b> Including Plots</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 </ul>
@@ -160,16 +170,77 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="a-caucus-race-and-a-long-tale" class="section level1">
-<h1><span class="header-section-number">4</span> A caucus-race and a long tale</h1>
+<div id="binary-choice" class="section level1">
+<h1><span class="header-section-number">4</span> Binary Choice</h1>
+<p>Binary choice models (<span class="math inline">\(y\)</span> takes two values: 0 or 1)</p>
+<ul>
+<li>Did you vote during the last election?</li>
+<li>Does an individual recidivate after being released from prison?</li>
+<li>Participation in the labor market</li>
+<li>Purchasing a home</li>
+<li>Model: <span class="math inline">\(Pr(y=1|x)\)</span></li>
+</ul>
+<p>Categorical dependent variable but naturally ordered</p>
+<ul>
+<li>What is your level of happiness? E.g., very happy, happy, ok, sad.</li>
+</ul>
+<p>Categorical dependent variable but no ordering</p>
+<ul>
+<li>How do you commute to campus?</li>
+<li>Did you vote for the democratic, republican, or independent candidate during the last election?</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="binary-choice.html#cb4-1"></a>bhat_logit =<span class="st"> </span><span class="kw">glm</span>(buying<span class="op">~</span>income,<span class="dt">family=</span><span class="kw">binomial</span>(<span class="dt">link=</span><span class="st">&quot;logit&quot;</span>),<span class="dt">data=</span>organic)</span>
+<span id="cb4-2"><a href="binary-choice.html#cb4-2"></a><span class="kw">summary</span>(bhat_logit)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## glm(formula = buying ~ income, family = binomial(link = &quot;logit&quot;), 
+##     data = organic)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -1.8451  -0.5293  -0.1423   0.4093   1.9154  
+## 
+## Coefficients:
+##             Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept) -5.87557    1.13842  -5.161 2.45e-07 ***
+## income       0.11709    0.02247   5.211 1.87e-07 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 138.469  on 99  degrees of freedom
+## Residual deviance:  70.931  on 98  degrees of freedom
+## AIC: 74.931
+## 
+## Number of Fisher Scoring iterations: 6</code></pre>
+<div id="stuff" class="section level2">
+<h2><span class="header-section-number">4.1</span> Stuff</h2>
+<p>This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <a href="http://rmarkdown.rstudio.com" class="uri">http://rmarkdown.rstudio.com</a>.</p>
+<p>When you click the <strong>Knit</strong> button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="binary-choice.html#cb6-1"></a><span class="kw">summary</span>(cars)</span></code></pre></div>
+<pre><code>##      speed           dist       
+##  Min.   : 4.0   Min.   :  2.00  
+##  1st Qu.:12.0   1st Qu.: 26.00  
+##  Median :15.0   Median : 36.00  
+##  Mean   :15.4   Mean   : 42.98  
+##  3rd Qu.:19.0   3rd Qu.: 56.00  
+##  Max.   :25.0   Max.   :120.00</code></pre>
+</div>
+<div id="including-plots" class="section level2">
+<h2><span class="header-section-number">4.2</span> Including Plots</h2>
+<p>You can also embed plots, for example:</p>
+<p><img src="bookdownproj_files/figure-html/pressure-1.png" width="672" /></p>
+<p>Note that the <code>echo = FALSE</code> parameter was added to the code chunk to prevent printing of the R code that generated the plot.</p>
 
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="binary-choice.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="introduction-to-r.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
     </div>
   </div>
@@ -201,7 +272,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/jrfdumortier/dataanalysis/edit/master/probability.RmD",
+"link": "https://github.com/jrfdumortier/dataanalysis/edit/master/binarychoice.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -209,7 +280,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/jrfdumortier/dataanalysis/blob/master/probability.RmD",
+"link": "https://github.com/jrfdumortier/dataanalysis/blob/master/binarychoice.Rmd",
 "text": null
 },
 "download": ["bookdownproj.pdf"],
