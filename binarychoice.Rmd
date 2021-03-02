@@ -32,7 +32,8 @@ Categorical dependent variable but no ordering
 bhat_logit = glm(buying~income,family=binomial(link="logit"),data=organic)
 summary(bhat_logit)
 ```
-        
+       
+This is a test.
  
 ## Stuff     
 This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
