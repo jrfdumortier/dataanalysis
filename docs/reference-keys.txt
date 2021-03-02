@@ -7,7 +7,9 @@ in-class-exercise-1
 functions
 data-management
 data-in-r
-data-in-r-1
+using-r-as-a-calculator
+creating-a-data-frame-from-scratch
+in-class-exercise-2
 binary-choice
 stuff
 including-plots

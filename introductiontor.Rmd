@@ -107,6 +107,55 @@ The main data types which can appear in the Environment window of R are:
      - Collection of objects from of various types.
      - `myfirstlist = list(preselection,midterm,somematrix)`
 
-### Data in R
+### Using R as a Calculator
 
+Entering heights of people and storing it in a vector named \emph{height}:
 
+```{r}
+height = c(71,77,70,73,66,69,73,73,75,76)
+```
+
+Calculating the sum, product, natural log, mean, and (element-wise) squaring is done with the following commands:
+
+- `sum(height)`
+- `prod(height)`
+- `log(height)` # Default is the natural log
+- `meanheight = mean(height)`
+- `heightsq = height^2`
+
+Removing (i.e., deleting) unused elements: `rm(heightsq,meanheight)`
+
+### Creating a Data Frame from Scratch
+Data frames are the most commonly used tables in R/RStudio. They are similar to an Excel sheet.
+
+- Column names represent the variables and rows represent observations.
+- Column names must be unique and without spaces.
+
+Suggestion: Use only lower-case variable names and objects.
+
+```{r}
+studentid       = 1:10
+studentnames    = c("Andrew","Linda","William","Daniel","Gina",
+                    "Mick","Sonny","Wilbur","Elisabeth","James")
+students        = data.frame(studentid,studentnames,height)
+rm(studentid,height,studentnames)
+```
+
+### In-class Exercise 2
+Create a data frame called `students` containing the following information:
+
+```{r inclassex2, echo=FALSE}
+Name = c("Mindy","Gregory","Shubra","Keith","Louisa")
+Economics = c(80,60,95,77.5,97.5)
+English = c(52.5,60,77.5,30,95)
+student = data.frame(Name,Economics,English)
+```
+
+```{r, echo=FALSE}
+knitr::kable(head(student,booktabs=TRUE))
+```
+
+Notes:
+
+- Use \emph{name} as the column header for the students' names.
+- Once you have created the data frame, remove the unused vectors.
