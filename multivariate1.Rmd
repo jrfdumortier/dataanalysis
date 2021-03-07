@@ -1,0 +1,46 @@
+# Basic Multivariate Regression
+Extension of the bivariate model to multivariate regression
+
+- One dependent variable but multiple independent variables
+
+Topics associated with multivariate regression models covered in this lecture:
+
+- Multicollinearity
+- Dummy Variables
+- Natural logarithm
+- Functional forms
+- Interaction Terms
+
+Bivariate regression model (one independent and one dependent variable)
+        \begin{equation*}
+            y = \beta_0 + \beta_1 x_1 + \epsilon
+        \end{equation*}
+    Multivariate linear regression model (multiple independent variables)
+        \begin{equation*}
+            y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \dots + \beta_k x_k + \epsilon
+        \end{equation*}
+    Whether we consider the univariate or multivariate regression model, the objective is always to minimize the sum of squared errors, hence the name ordinary least square (OLS) model. The equation of a line can be determined using slope and intercept, we can write:
+        \begin{equation*}
+            E(y|x) = \beta_0 + \beta_1 x
+        \end{equation*}
+    A model with two independent variables (predictors) describes a plane.
+
+## Dummy Variables
+Dummy variables represent a single qualitative characteristic such as religion, gender, or nationality. Dummy variables are independent variables coded as either 0 or 1. For example, consider 
+
+Example: Price ($Y_i$) of a car depending on miles ($X_i$) and AWD ($D_i$)
+                \begin{equation*}
+                    Y_i = \beta_0 + \beta_1 X_i + \beta_2 D_i + \epsilon_i
+                \end{equation*}
+            with $D_i = 1$ if AWD and $D_i = 0$  if RWD.
+        \end{itemize}
+    This regression can theoretically be separated into two single equations:
+        \begin{enumerate}
+            \item RWD: $Y_i = \beta_0 + \beta_1 X_i + \epsilon_i$
+            \item AWD: $Y_i = (\beta_0 + \beta_2 )+ \beta_1 X_i + \epsilon_i$
+        \end{enumerate}
+    Interpretation:
+        \begin{itemize}
+            \item Knowledge on how the dummy-variable was coded.
+            \item If the coefficient of the dummy-variable ``adds'' (or ``subtracts'' if sign is negative) compared to the 0-group.
+        \end{itemize}

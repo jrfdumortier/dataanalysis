@@ -1,0 +1,282 @@
+# Violating Assumptions
+This chapter introduces the detection and correction of problems with the estimation procedure due to the violation of the key assumptions necessary for the OLS model to work. The following R packages are needed for this chapter: `car`, `lmtest`, `orcutt`, and `sandwich`.
+
+## Heteroscedasticity
+A key assumption of the OLS model is homoscedasticity error terms. That is, the error variance is constant:
+$$Var(\epsilon_i) = \sigma^2$$
+With heteroscedasticity, the variance of the error term is not constant:
+$$Var(\epsilon_i) = \sigma_i^2$$
+For a bivariate regression model with heteroscedastic data, it can be shown that
+$$Var(\hat{\beta_1}) = \frac{\sum x_i^2 \sigma_i^2}{(\sum x_i^2)^2}$$
+This is different from the variance of the coefficient estimate under homoscedasticity:
+$$Var(\hat{\beta_1}) = \frac{\sigma^2}{\sum x_i^2}$$
+Unbiasedness of the OLS estimator is not affected but the variance of $\beta_1$ will be larger compared to other estimators. Note that the measure of $R^2$ is unaffected by heteroscedasticity. Homoscedasticity is needed to justify the t-test, F-test, and confidence intervals. The F-statistic does no longer have an F-distribution. In short, hypothesis tests on the $\beta$-coefficients are no longer valid.
+
+If $\sigma_i^2$ was known, the use of a Generalized Least Squares (GLS) model would be appropriate:
+$$y_i = \beta_0 + \beta_1 \cdot x_i + \epsilon_i$$
+Dividing both sides by the known variance:
+$$\frac{y_i}{\sigma_i}=\beta_0 \cdot \frac{1}{\sigma_i}+\beta_1 \frac{x_i}{\sigma_i}+\frac{\epsilon_i}{\sigma_i}$$
+If $\epsilon^*_i = \epsilon_i / \sigma_i$, then it can be shown that $Var(\epsilon^*_i)=1$, i.e., constant. Under the usual OLS model:
+$$\sum_{i=1}^N e_i^2=\sum_{i=1}^N \left(y_i-\hat{\beta}_0+\hat{\beta}_1 \cdot x_i \right)^2$$
+Under GLS model:
+$$\sum_{i=1}^N w_i e_i^2= \sum_{i=1}^N w_i \left(y_i-\hat{\beta}_0+\hat{\beta}_1 \cdot x_i \right)^2$$
+That is, GLS minimizes the weighted sum of the residual squares. Since in reality, the variance of $\sigma^2$ is not known, other techniques have to be employed to obtain so-called heteroscedasticity-consistent (HC) standard errors. But first, two tests are introduced to detect heteroscedasticity.
+
+### Detecting Heteroscedasticity
+Two test are presented to detect heteroscedasticity:
+
+- Goldfeld-Quandt Test (1965)
+- Breusch-Pagan-Godfrey Test (1979)
+
+The steps necessary for the **Goldfeld-Quandt Test** are as follows:
+
+1. Sort observations by ascending order of the dependent variable.
+2. Pick *C* as the number of central observations to drop in the middle of the dependent variable.
+3. Run two separate regression equations, i.e., with the "lower" and "upper" part.
+4. Compute 
+    $$\lambda = \frac{RSS_2/df}{RSS_1/df}$$
+5. $\lambda$ follows an F-distribution.
+
+The Goldfeld-Quandt Test can be illustrated with `gqtestdata`. In a first step, the data is separated into two groups with $C=6$. In a second step, both groups are used to run a regression. And lastly, $\lambda$ is calculated.
+```{r gqtest1,results=FALSE}
+gqtestdata1         = gqtestdata[1:22,]
+gqtestdata2         = gqtestdata[29:50,]
+bhat1               = lm(price_r~sqft_r,data=gqtestdata1)
+bhat2               = lm(price_r~sqft_r,data=gqtestdata2)
+lambda              = sum(bhat2$residuals^2)/sum(bhat1$residuals^2)
+```
+Of course, there is also a function in R called gqtest which simplifies the procedure.
+```{r gqtest2}
+library(lmtest)
+bhat                = lm(price~sqft,data=gqtestdata)
+gqtest(bhat,fraction = 6)
+```
+
+In any case, the hypothesis of homoscedasticity is rejected for `gqtestdata`.
+
+The **Breusch-Pagan-Godfrey Test** is an alternative and does not rely on choosing *C* as the number of central observations to be dropped. The steps include the following:
+
+1. Run a regular OLS model and obtain the residuals.
+2. Calculate
+    $$\hat{\sigma}^2 = \frac{\sum_{i=1}^N e^2_i}{N}$$
+3. Construct the variable $p_i$ as follows: $p_i = e^2_i / \hat{\sigma}^2$
+4. Regress $p_i$ on the X's as follows
+    $$p_i = \alpha_0 + \alpha_1 \cdot x_{i1}+\alpha_2 \cdot x_{i2} + \dots$$
+5. Obtain the explained sum of squares (ESS) and define $\Theta = 0.5 \cdot ESS$. Then $\Theta \sim \chi^2_{m-1}$.
+
+The much simpler procedure is to use the function `bptest()` in R.
+```{r bptest}
+library(lmtest)
+bhat                = lm(price~sqft,data=gqtestdata)
+bptest(bhat)
+```
+
+### Correcting Heteroscedasticity
+To correct for heteroscedasticity, robust standard errors must be obtained. 
+```{r robusterrors,results=FALSE}
+bhat = lm(price~sqft,data=gqtestdata)
+summary(bhat)
+vcov = vcovHC(bhat)
+coeftest(bhat,vcov.=vcov)
+```
+Note that there are multiple variations to calculate the standard error and thus, it is possible for slight variations among the results from different packages.
+$$Var(\hat{\beta}_1) = \frac{\sum_{i=1}^N (x_i-\bar{x})^2 e_i^2}{\sum_{i=1}^N (x_i-\bar{x})^2}$$
+The square root of the following equation is called heteroscedastic robust standard error:
+$$\widehat{Var}(\hat{\beta}_j) = \frac{\sum_{i=1}^N \hat{r}^2_{ij} e_i^2}{\sum_{i=1}^N (x_i-\bar{x})^2}$$
+Standard errors can be either larger or smaller. Note that in this example, we do not know whether heteroscedasticity is present or not.
+
+## Multicollinearity
+Multicollinearity describes the situation in which two or more independent variables are linearly related. Under perfect multicollinearity:
+$$\lambda_1 x_1 + \lambda_2 x_2 + \dots +\lambda_k x_k = 0$$
+where $\lambda_i$ are constants that are not all zero simultaneously. For example, consider $x_1=\{8,12,15,17\}$, $x_2=\{24,36,45,51\}$, and $x_3=\{2,3,3.75,4.25\}$. In this case, $\lambda_1=1$, $\lambda_2=-1/5$, and $\lambda_3=2$. Note, multicollinearity refers to linear relationships! Including a squared or cubed term is not an issue of multicollinearity. It can be shown that the variance of the estimator increases in the presence of multicollinearity. There are various indications that the data suffers from multicollinearity:
+
+- High $R^2$ but few significant variables
+- Fail to reject the hypothesis for H$_0$: $\beta_i=0$ based on t-values but rejection all slopes being simultaneously zero based on F-test.
+- High correlation among explanatory variables
+- Variation of statistically significant variables between models.
+
+### Variance Inflated Factors (VIF)
+Identifies possible correlation among multiple independent variables and not just two as in the case of a simple correlation coefficient. Consider the model:
+$$y_i = \beta_0 + \beta_k x_{ik} + \epsilon_i$$
+The estimated variances of the coefficient $\beta_k$ is written as
+$$Var(\beta_k)^* = \frac{\sigma^2}{\sum_{i=1}^N (x_{ik}-\bar{x}_k)^2}$$
+Without any multicollinearity, this variance is minimized. If some some independent variables are correlated with the independent variable $k$, then
+$$Var(\beta_k) = \frac{\sigma^2}{\sum_{i=1}^N (x_{ik}-\bar{x}_k)^2} \cdot \frac{1}{1-R^2_k}$$
+where $R^2_k$ is the $R^2$ if variable $x_k$ is taken as the dependent variable. The VIF can be written as
+$$\frac{Var(\beta_k)}{Var(\beta_k)^*}=\frac{1}{1-R^2_k}$$
+If $VIF=1$, then there is no relationship between the variable $x_k$ and the remaining independent variables. Otherwise, $VIF>1$. In general, the interpretation is as follows:
+
+- VIF of 4 warrants attention
+- VIF of 10 indicates a serious problem.
+
+### Examples
+To illustrate the concept of multicollinearity, the data set from `nfl` is used ([Berri et al. (2011)](http://dx.doi.org/10.1016/j.econlet.2011.02.018)). The first model includes total salary as the dependent variable and the following independent variables: prior season passing yards, pass attempts, experience (squared) in the league, draft round pick, veteran (more than 3 years in the league), pro bowl appearance, and facial symmetry.  
+```{r ,results=FALSE}
+bhat = lm(log(total)~yards+att+exp+exp2+draft1+draft2+veteran+
+        changeteam+pbowlever+symm,data=nfl)
+summary(bhat)
+```
+After estimating the results, the function `vif()` from the package `car` is used:
+```{r}
+vif(bhat)
+```
+The results indicate multicollinearity for *yards*, *att*, and experience. Passings yards and attempts may be correlated and thus, one of them (*att*) is dropped.
+```{r ,results=FALSE}
+bhat = lm(log(total)~yards+exp+exp2+draft1+draft2+veteran+
+        changeteam+pbowlever+symm,data=nfl)
+summary(bhat)
+```
+
+```{r}
+vif(bhat)
+```
+This improves the estimation but experience (and its squared term) are still problematic. The last estimation removes experience and the VIF terms are now in the acceptable range.
+```{r ,results=FALSE}
+bhat = lm(log(total)~yards+draft1+draft2+veteran+
+        changeteam+pbowlever+symm,data=nfl)
+summary(bhat)
+```
+
+```{r}
+vif(bhat)
+```
+The important part is that the conclsion of the paper has not changed with regard to facial symmetry. 
+
+## Autocorrelation
+The correlation of error terms is called autocorrelation. The issue usually arises if there is a time component in the data. Recall the main types of data available for research:
+
+- Cross-sectional data (multiple observations at same time point)
+- Time series data (one variable observed over time)
+- Pooled data (multiple observations at different time points) 
+- Panel data (same observations at different time points)
+
+There is a distinction between serial correlation and autocorrelation
+
+- Serial correlation: Correlation between two series
+- Autocorrelation: Correlation with lagged variables
+
+The  OLS estimator is still unbiased but there is no longer minimum variance since $E(\epsilon_i \epsilon_j) \neq 0$. Unlikely autocorrelation for cross-sectional data except in the case of spatial auto-correlation. One cause of autocorrelation could be inertia in economic variables. For example, variables such as income, production, or employment increase after a recession. But there are a number of other reasons for autocorrelation. 
+
+Autocorrelation could be due to specification bias due to excluded variables or incorrect functional forms. In the case of excluded variables, assume that the correct equation is 
+
+$$q_{beef}=\beta_0+\beta_1 \cdot p_{beef}+\beta_2 \cdot p_{income} + \beta_3 \cdot p_{pork}+\epsilon_t$$
+The estimated equation is:
+$$q_{beef}=\beta_0+\beta_1 \cdot p_{beef}+\beta_2 \cdot p_{income}+\upsilon_t$$
+
+This results in a systematic patters of $\upsilon_t$:
+$$\upsilon_t= \beta_3 \cdot p_{pork}+\epsilon_t$$
+Incorrect functional form
+        \begin{itemize}
+            \item Correct equation
+                \begin{equation*}
+                    y_i = \beta_0 +\beta_1 x_i +\beta_2 x_i^2 +\epsilon_i
+                \end{equation*}
+            \item Estimated equation
+                \begin{equation*}
+                    y_i = \beta_0 +\beta_1 x_i +\epsilon_i
+                \end{equation*}
+        \end{itemize}
+    Cobweb phenomenon
+        \begin{equation*}
+            supply_t = \beta_0 + \beta_1 \cdot p_{t-1}
+        \end{equation*}
+    Lags
+        \begin{equation*}
+            consumption_t = \beta_0 + \beta_1 \cdot income_t+\beta_3 \cdot consumption_{t-1}+\epsilon_t
+        \end{equation*} 
+        
+First-order Autoregressive Scheme
+    Consider the model:
+    $$y_t=\beta_0+\beta_1 x_t + \upsilon_t$$
+
+Assume the following form of $\upsilon$:
+        $$\upsilon_t = \rho \upsilon_{t-1} + \epsilon_t$$
+
+    This is called a first-order autoregressive AR(1) scheme. An AR(2) would be written as
+        \begin{equation*}
+            \upsilon_t = \rho_1 \upsilon_{t-1} + \rho_2 \upsilon_{t-2} + \epsilon_t
+        \end{equation*}
+
+This can be illustrated with simulated data. Consider the following model:
+    $$y_t=1+0.8 \cdot x_t + \upsilon_t$$
+Assume the following form of $\upsilon$:
+    $$\upsilon_t = 0.7 \cdot \upsilon_{t-1} + \epsilon_t$$
+Procedure
+
+1. Simulate the above model 100 times
+2. Compare variance of coefficients under different two different methods: (1) OLS and (2) Cochrane-Orcutt
+
+
+### Durbin Watson d-Test
+The test statistic of the Durbin-Watson test is written as:
+    $$d=\frac{\sum_{t=2}^N (e_t-e_{t-1})^2}{\sum_{t=1}^N e_t^2}$$
+Assumptions underlying the test are
+
+- No intercept
+- AR(1) process, i.e., $\upsilon_t = \rho \upsilon_{t-1} + \epsilon_t$
+- No lagged independent variables
+
+Original papers derive lower ($d_L$) and upper ($d_U$) bounds, i.e., critical values, that depend on $N$ and $k$ only.
+
+- $d \approx 2 \cdot (1-\rho)$ and since $-1 \leq \rho \leq 1$, we have $0 \leq d \leq 4$.
+
+Rule of thumb indicates that $d=2$ signals no problems.
+
+### Breusch-Godfrey Test
+Consider the following model $y_t = \beta_0 + \beta_1 x_t + \upsilon_t$ with the following error term structure:
+$$\upsilon_t = \rho_1 \upsilon_{t-1} + \rho_2 \upsilon_{t-2} + \dots + \rho_p \upsilon_{t-p} + \epsilon_t$$
+The null hypothesis for the test is expressed as follows:
+
+- $H_0$: $\rho_1 = \rho_2 = \dots = \rho_p =0$
+
+When the following regression is executed:
+
+$$\hat{\upsilon}_t = \alpha_0 + \alpha_1 x_t + \hat{\rho}_1 \hat{\upsilon}_{t-1} + \hat{\rho}_2 \hat{\upsilon}_{t-2} + \dots + \hat{\rho}_p \hat{\upsilon}_{t-p} + \epsilon_t$$
+Then
+$$(n-p)R^2 \sim \chi^2_p$$
+
+\begin{frame}{Wages and Productivity in the United States 1959-1998}
+    Consider the data in \emph{business.csv} and do the following:
+        \begin{enumerate}
+            \item Plot the data in a scatter plot
+            \item Run the regression in level form as well as log format
+            \item Plot the diagnostic plots.
+            \item Run the Durbin-Watson test and the Breusch-Godfrey test. What do you conclude?
+            \item Run the regression by (1) including a trend variable and (2) a squared term but no trend.
+        \end{enumerate}
+\end{frame}
+
+## Other Issues and Problems with Data
+More serious problems than heteroscedasticity:
+
+- Functional form mis-specification
+- Measurement error
+- Missing data: Estimating a standard regression model is not possible with missing values. All statistical software packages ignore missing data. Missing data is a minor problem if it is due to random error. Missing data can be problematic if it is systematically missing, e.g., missing education data for people with lower education
+- Non-random samples
+- Outliers
+
+## Exercises
+
+1. *WDI and Heteroscedasticity*: Using the data in `wdi`, estimate the following equation for the year 2018 and report the results:
+\begin{equation*}
+fertrate = \beta_0 + \beta_1 \cdot gdp+ \beta_2 \cdot litrate
+\end{equation*}
+The variable \emph{fertrate} represents fertility rate (birth per woman), \emph{gdp} represents the GDP per capita in in real terms, and \emph{litrate} is the literacy rate.  
+
+2. *Indy Homes*: The data `indyhomes` contains home values of two ZIP codes in Indianapolis. The model estimates the home value (dependent variable) based on a set of independent variables. The variables *levels* and *garage* refers to the number of stories and garage spots, respectively. The remaining variables are self-explanatory.
+
+    a. Create a dummy variable called *northwest* for the 46268 ZIP code.
+    b. Report and interpret the results of the following regression equation:
+$$\ln(price)=\beta_0+\beta_1 \cdot \ln(sqft)+\beta_2 \cdot northwest+\beta_3 \cdot \ln(lot)+\beta_4 \cdot bed+\beta_5 \cdot garage+\beta_6 \cdot levels+\beta_7 \cdot northwest \cdot levels$$
+    c. What is the expected home value of a house in the 46228 ZIP code area with the following characteristics: 1900 sqft, 0.65 acres lot, 3 bedrooms, 3 bathrooms, 2 garage spots, and 2 story.
+    d. Conduct a Breusch-Pagan-Godfrey test for heteroscedasticity. What do you conclude?
+    e. Estimate the above model with heteroscedasticity-consistent (HC) standard errors. What changes compared to the model from Part b? 
+
+3. *WDI and Multicollinearity*: Use the command `subset()` on the WDI data and to select the variables *fertrate*, *gdp*, *litrate*, *lifeexp*, and *mortrate* for the year 2015. Estimate the following model
+$$fertrate=\beta_0+\beta_1 \cdot gdp+\beta_2 \cdot litrate+\beta_3 \cdot lifeexp+\beta_4 \cdot mortrate$$
+Interpret the results. What do you conclude in terms of statistical significance and the value of $R^2$? Use the function `vif` from the package `car`. What can you say about the issue of multicollinearity in this case? Correct the issue of multicollinearity by adjusting your model. 
+
+\item \emph{Pork Demand:} In this exercise, you will estimate the per-capita pork demand as a function of pork prices and the prices of substitutes (beef and chicken) as well as real disposable income. Estimate the following equation and interpret the coefficients. Are the signs of the coefficients what you would expect?
+\begin{equation*}
+\ln(q_{pork}) = \beta_0 + \beta_1 \cdot \ln(p_{pork}) + \beta_2 \cdot \ln(p_{chicken}) + \beta_3 \cdot \ln(p_{beef}) + \beta_4 \cdot \ln(rdi)
+\end{equation*}
