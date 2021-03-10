@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2 Topics Overview | Data Analysis for Public Affairs</title>
-  <meta name="description" content="2 Topics Overview | Data Analysis for Public Affairs" />
+  <title>6.5 Exercises | Data Analysis for Public Affairs</title>
+  <meta name="description" content="6.5 Exercises | Data Analysis for Public Affairs" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2 Topics Overview | Data Analysis for Public Affairs" />
+  <meta property="og:title" content="6.5 Exercises | Data Analysis for Public Affairs" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2 Topics Overview | Data Analysis for Public Affairs" />
+  <meta name="twitter:title" content="6.5 Exercises | Data Analysis for Public Affairs" />
   
   
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="introduction-to-r.html"/>
+<link rel="prev" href="autocorrelation.html"/>
+<link rel="next" href="binary-choice.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -194,21 +194,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="topics-overview" class="section level1">
-<h1><span class="header-section-number">2</span> Topics Overview</h1>
-<p>This is my first tex code: <span class="math inline">\(CO_2\)</span> emissions.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="topics-overview.html#cb1-1"></a>height =<span class="st"> </span><span class="kw">c</span>(<span class="dv">71</span>,<span class="dv">77</span>,<span class="dv">70</span>,<span class="dv">73</span>,<span class="dv">66</span>,<span class="dv">69</span>,<span class="dv">73</span>,<span class="dv">73</span>,<span class="dv">75</span>,<span class="dv">76</span>)</span>
-<span id="cb1-2"><a href="topics-overview.html#cb1-2"></a><span class="kw">sum</span>(height)</span></code></pre></div>
-<pre><code>## [1] 723</code></pre>
+<div id="exercises-1" class="section level2">
+<h2><span class="header-section-number">6.5</span> Exercises</h2>
+<ol style="list-style-type: decimal">
+<li><p><em>WDI and Heteroscedasticity</em>: Using the data in <code>wdi</code>, estimate the following equation for the year 2018 and report the results:
+<span class="math display">\[\begin{equation*}
+fertrate = \beta_0 + \beta_1 \cdot gdp+ \beta_2 \cdot litrate
+\end{equation*}\]</span>
+The variable  represents fertility rate (birth per woman),  represents the GDP per capita in in real terms, and  is the literacy rate.</p></li>
+<li><p><em>Indy Homes</em>: The data <code>indyhomes</code> contains home values of two ZIP codes in Indianapolis. The model estimates the home value (dependent variable) based on a set of independent variables. The variables <em>levels</em> and <em>garage</em> refers to the number of stories and garage spots, respectively. The remaining variables are self-explanatory.</p>
+<ol style="list-style-type: lower-alpha">
+<li>Create a dummy variable called <em>northwest</em> for the 46268 ZIP code.</li>
+<li>Report and interpret the results of the following regression equation:
+<span class="math display">\[\ln(price)=\beta_0+\beta_1 \cdot \ln(sqft)+\beta_2 \cdot northwest+\beta_3 \cdot \ln(lot)+\beta_4 \cdot bed+\beta_5 \cdot garage+\beta_6 \cdot levels+\beta_7 \cdot northwest \cdot levels\]</span></li>
+<li>What is the expected home value of a house in the 46228 ZIP code area with the following characteristics: 1900 sqft, 0.65 acres lot, 3 bedrooms, 3 bathrooms, 2 garage spots, and 2 story.</li>
+<li>Conduct a Breusch-Pagan-Godfrey test for heteroscedasticity. What do you conclude?</li>
+<li>Estimate the above model with heteroscedasticity-consistent (HC) standard errors. What changes compared to the model from Part b?</li>
+</ol></li>
+<li><p><em>WDI and Multicollinearity</em>: Use the command <code>subset()</code> on the WDI data and to select the variables <em>fertrate</em>, <em>gdp</em>, <em>litrate</em>, <em>lifeexp</em>, and <em>mortrate</em> for the year 2015. Estimate the following model
+<span class="math display">\[fertrate=\beta_0+\beta_1 \cdot gdp+\beta_2 \cdot litrate+\beta_3 \cdot lifeexp+\beta_4 \cdot mortrate\]</span>
+Interpret the results. What do you conclude in terms of statistical significance and the value of <span class="math inline">\(R^2\)</span>? Use the function <code>vif</code> from the package <code>car</code>. What can you say about the issue of multicollinearity in this case? Correct the issue of multicollinearity by adjusting your model.</p></li>
+</ol>
+
+<p> In this exercise, you will estimate the per-capita pork demand as a function of pork prices and the prices of substitutes (beef and chicken) as well as real disposable income. Estimate the following equation and interpret the coefficients. Are the signs of the coefficients what you would expect?
+<span class="math display">\[\begin{equation*}
+\ln(q_{pork}) = \beta_0 + \beta_1 \cdot \ln(p_{pork}) + \beta_2 \cdot \ln(p_{chicken}) + \beta_3 \cdot \ln(p_{beef}) + \beta_4 \cdot \ln(rdi)
+\end{equation*}\]</span></p>
 
 </div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="introduction-to-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="autocorrelation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="binary-choice.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -239,7 +260,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/jrfdumortier/dataanalysis/edit/master/introduction.Rmd",
+"link": "https://github.com/jrfdumortier/dataanalysis/edit/master/violatingassumptions.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -247,7 +268,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/jrfdumortier/dataanalysis/blob/master/introduction.Rmd",
+"link": "https://github.com/jrfdumortier/dataanalysis/blob/master/violatingassumptions.Rmd",
 "text": null
 },
 "download": ["bookdownproj.pdf"],

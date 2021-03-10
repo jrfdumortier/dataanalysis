@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2 Topics Overview | Data Analysis for Public Affairs</title>
-  <meta name="description" content="2 Topics Overview | Data Analysis for Public Affairs" />
+  <title>3.2 Opening RStudio | Data Analysis for Public Affairs</title>
+  <meta name="description" content="3.2 Opening RStudio | Data Analysis for Public Affairs" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2 Topics Overview | Data Analysis for Public Affairs" />
+  <meta property="og:title" content="3.2 Opening RStudio | Data Analysis for Public Affairs" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2 Topics Overview | Data Analysis for Public Affairs" />
+  <meta name="twitter:title" content="3.2 Opening RStudio | Data Analysis for Public Affairs" />
   
   
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="introduction-to-r.html"/>
+<link rel="prev" href="online-resources-and-help.html"/>
+<link rel="next" href="functions.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -194,21 +194,57 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="topics-overview" class="section level1">
-<h1><span class="header-section-number">2</span> Topics Overview</h1>
-<p>This is my first tex code: <span class="math inline">\(CO_2\)</span> emissions.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="topics-overview.html#cb1-1"></a>height =<span class="st"> </span><span class="kw">c</span>(<span class="dv">71</span>,<span class="dv">77</span>,<span class="dv">70</span>,<span class="dv">73</span>,<span class="dv">66</span>,<span class="dv">69</span>,<span class="dv">73</span>,<span class="dv">73</span>,<span class="dv">75</span>,<span class="dv">76</span>)</span>
-<span id="cb1-2"><a href="topics-overview.html#cb1-2"></a><span class="kw">sum</span>(height)</span></code></pre></div>
-<pre><code>## [1] 723</code></pre>
-
+<div id="opening-rstudio" class="section level2">
+<h2><span class="header-section-number">3.2</span> Opening RStudio</h2>
+<p>Work in RStudio is done in four windows:</p>
+<ol style="list-style-type: decimal">
+<li>Script Window
+<ul>
+<li>This is were you type your R Script (.R) and where you execute commands.</li>
+<li>Comparable to do-file/editor in Stata.</li>
+<li>This window needs to be opened by File <span class="math inline">\(\Rightarrow\)</span> New File <span class="math inline">\(\Rightarrow\)</span> R Script.</li>
+</ul></li>
+<li>Console window
+<ul>
+<li>Use of R interactively. Should only be used for quick calculations and not part of an analysis.</li>
+</ul></li>
+<li>Environment
+<ul>
+<li>Lists all the variables, data frames, and user-created functions.</li>
+<li>It is tempting to use the ``Import Dataset’’ function Don’t.</li>
+</ul></li>
+<li>Plots/Packages/Help</li>
+</ol>
+<p>There is a base version of R that allows doing many calculations but the power of R comes through its packages. To use functions associated with a particular package, click ``Install’’ in the packages window of RStudio and type in the name of the package. Or alternatively, use</p>
+<ul>
+<li><code>install.packages("ggplot2")</code></li>
+</ul>
+<p>To use a package, you have to activate it by either checking the box in the window “Packages” or by including <code>library(packagename)</code>. Those packages are updated on a regular basis by users.</p>
+<p>The <code>\#</code> allows you to include comments in your script file that are not read by R. It is good practice to start any new script with clearing the memory using the command <code>rm(list=ls())</code>. Use the command <code>get()</code> to determine the current working directory or set the new working directory with the command <code>setwd()</code>, e.g., <code>setwd("E:/")</code>. For file paths, replace <span class="math inline">\(\backslash\)</span> with <span class="math inline">\(/\)</span>. Next, you want to load all libraries necessary for your entire script file with the command <code>library()</code>. It is also good practice to save your R-script on a regular basis. The frontmatter, i.e., the top of a R-script file, could look as follows</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="opening-rstudio.html#cb3-1"></a><span class="kw">rm</span>(<span class="dt">list=</span><span class="kw">ls</span>())</span>
+<span id="cb3-2"><a href="opening-rstudio.html#cb3-2"></a><span class="kw">load</span>(<span class="st">&quot;DataAnalysisPAData.RData&quot;</span>)</span>
+<span id="cb3-3"><a href="opening-rstudio.html#cb3-3"></a><span class="kw">library</span>(openxlsx)</span></code></pre></div>
+<div id="in-class-exercise-1" class="section level3">
+<h3><span class="header-section-number">3.2.1</span> In-class Exercise 1</h3>
+<p>Create a R-script file with the following components:</p>
+<ol style="list-style-type: decimal">
+<li>Two lines for the title and the date (use #)</li>
+<li>Clearing all current contents</li>
+<li>Setting the correct working directory
+<ul>
+<li>This should be a folder to which you have downloaded all materials.</li>
+</ul></li>
+<li>Installing and loading the package <code>openxlsx</code>.</li>
+</ol>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="introduction-to-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="online-resources-and-help.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="functions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -239,7 +275,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/jrfdumortier/dataanalysis/edit/master/introduction.Rmd",
+"link": "https://github.com/jrfdumortier/dataanalysis/edit/master/introductiontor.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -247,7 +283,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/jrfdumortier/dataanalysis/blob/master/introduction.Rmd",
+"link": "https://github.com/jrfdumortier/dataanalysis/blob/master/introductiontor.Rmd",
 "text": null
 },
 "download": ["bookdownproj.pdf"],

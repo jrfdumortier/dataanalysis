@@ -74,6 +74,7 @@ bptest(bhat)
 ### Correcting Heteroscedasticity
 To correct for heteroscedasticity, robust standard errors must be obtained. 
 ```{r robusterrors,results=FALSE}
+library(sandwich)
 bhat = lm(price~sqft,data=gqtestdata)
 summary(bhat)
 vcov = vcovHC(bhat)
@@ -112,18 +113,17 @@ If $VIF=1$, then there is no relationship between the variable $x_k$ and the rem
 ### Examples
 To illustrate the concept of multicollinearity, the data set from `nfl` is used ([Berri et al. (2011)](http://dx.doi.org/10.1016/j.econlet.2011.02.018)). The first model includes total salary as the dependent variable and the following independent variables: prior season passing yards, pass attempts, experience (squared) in the league, draft round pick, veteran (more than 3 years in the league), pro bowl appearance, and facial symmetry.  
 ```{r ,results=FALSE}
-bhat = lm(log(total)~yards+att+exp+exp2+draft1+draft2+veteran+
-        changeteam+pbowlever+symm,data=nfl)
+bhat = lm(log(total)~yards+att+exp+exp2+draft1+draft2+veteran+changeteam+pbowlever+symm,data=nfl)
 summary(bhat)
 ```
 After estimating the results, the function `vif()` from the package `car` is used:
 ```{r}
+library(car)
 vif(bhat)
 ```
 The results indicate multicollinearity for *yards*, *att*, and experience. Passings yards and attempts may be correlated and thus, one of them (*att*) is dropped.
 ```{r ,results=FALSE}
-bhat = lm(log(total)~yards+exp+exp2+draft1+draft2+veteran+
-        changeteam+pbowlever+symm,data=nfl)
+bhat = lm(log(total)~yards+exp+exp2+draft1+draft2+veteran+changeteam+pbowlever+symm,data=nfl)
 summary(bhat)
 ```
 
@@ -132,15 +132,23 @@ vif(bhat)
 ```
 This improves the estimation but experience (and its squared term) are still problematic. The last estimation removes experience and the VIF terms are now in the acceptable range.
 ```{r ,results=FALSE}
-bhat = lm(log(total)~yards+draft1+draft2+veteran+
-        changeteam+pbowlever+symm,data=nfl)
+bhat = lm(log(total)~yards+draft1+draft2+veteran+changeteam+pbowlever+symm,data=nfl)
 summary(bhat)
 ```
 
 ```{r}
 vif(bhat)
 ```
-The important part is that the conclsion of the paper has not changed with regard to facial symmetry. 
+The important part is that the conclusion of the paper has not changed with regard to facial symmetry. 
+
+## Other Issues and Problems with Data
+More serious problems than heteroscedasticity:
+
+- Functional form mis-specification
+- Measurement error
+- Missing data: Estimating a standard regression model is not possible with missing values. All statistical software packages ignore missing data. Missing data is a minor problem if it is due to random error. Missing data can be problematic if it is systematically missing, e.g., missing education data for people with lower education
+- Non-random samples
+- Outliers
 
 ## Autocorrelation
 The correlation of error terms is called autocorrelation. The issue usually arises if there is a time component in the data. Recall the main types of data available for research:
@@ -246,14 +254,7 @@ $$(n-p)R^2 \sim \chi^2_p$$
         \end{enumerate}
 \end{frame}
 
-## Other Issues and Problems with Data
-More serious problems than heteroscedasticity:
 
-- Functional form mis-specification
-- Measurement error
-- Missing data: Estimating a standard regression model is not possible with missing values. All statistical software packages ignore missing data. Missing data is a minor problem if it is due to random error. Missing data can be problematic if it is systematically missing, e.g., missing education data for people with lower education
-- Non-random samples
-- Outliers
 
 ## Exercises
 
@@ -274,9 +275,10 @@ $$\ln(price)=\beta_0+\beta_1 \cdot \ln(sqft)+\beta_2 \cdot northwest+\beta_3 \cd
 
 3. *WDI and Multicollinearity*: Use the command `subset()` on the WDI data and to select the variables *fertrate*, *gdp*, *litrate*, *lifeexp*, and *mortrate* for the year 2015. Estimate the following model
 $$fertrate=\beta_0+\beta_1 \cdot gdp+\beta_2 \cdot litrate+\beta_3 \cdot lifeexp+\beta_4 \cdot mortrate$$
-Interpret the results. What do you conclude in terms of statistical significance and the value of $R^2$? Use the function `vif` from the package `car`. What can you say about the issue of multicollinearity in this case? Correct the issue of multicollinearity by adjusting your model. 
+Interpret the results. What do you conclude in terms of statistical significance and the value of $R^2$? Use the function `vif` from the package `car`. What can you say about the issue of multicollinearity in this case? Correct the issue of multicollinearity by adjusting your model.
 
 \item \emph{Pork Demand:} In this exercise, you will estimate the per-capita pork demand as a function of pork prices and the prices of substitutes (beef and chicken) as well as real disposable income. Estimate the following equation and interpret the coefficients. Are the signs of the coefficients what you would expect?
 \begin{equation*}
 \ln(q_{pork}) = \beta_0 + \beta_1 \cdot \ln(p_{pork}) + \beta_2 \cdot \ln(p_{chicken}) + \beta_3 \cdot \ln(p_{beef}) + \beta_4 \cdot \ln(rdi)
 \end{equation*}
+

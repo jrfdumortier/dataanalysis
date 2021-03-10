@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2 Topics Overview | Data Analysis for Public Affairs</title>
-  <meta name="description" content="2 Topics Overview | Data Analysis for Public Affairs" />
+  <title>5.1 Exercises | Data Analysis for Public Affairs</title>
+  <meta name="description" content="5.1 Exercises | Data Analysis for Public Affairs" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2 Topics Overview | Data Analysis for Public Affairs" />
+  <meta property="og:title" content="5.1 Exercises | Data Analysis for Public Affairs" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2 Topics Overview | Data Analysis for Public Affairs" />
+  <meta name="twitter:title" content="5.1 Exercises | Data Analysis for Public Affairs" />
   
   
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="introduction-to-r.html"/>
+<link rel="prev" href="anova.html"/>
+<link rel="next" href="violating-assumptions.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -194,21 +194,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="topics-overview" class="section level1">
-<h1><span class="header-section-number">2</span> Topics Overview</h1>
-<p>This is my first tex code: <span class="math inline">\(CO_2\)</span> emissions.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="topics-overview.html#cb1-1"></a>height =<span class="st"> </span><span class="kw">c</span>(<span class="dv">71</span>,<span class="dv">77</span>,<span class="dv">70</span>,<span class="dv">73</span>,<span class="dv">66</span>,<span class="dv">69</span>,<span class="dv">73</span>,<span class="dv">73</span>,<span class="dv">75</span>,<span class="dv">76</span>)</span>
-<span id="cb1-2"><a href="topics-overview.html#cb1-2"></a><span class="kw">sum</span>(height)</span></code></pre></div>
-<pre><code>## [1] 723</code></pre>
+<div id="exercises" class="section level2">
+<h2><span class="header-section-number">5.1</span> Exercises</h2>
+<ol style="list-style-type: decimal">
+<li>Consider the data in <code>indyhomes</code>. A real estate agent once mentioned that homes built in the eighties are of lower quality and thus, are cheaper. One possibility to asses this claim is with an ANOVA model. Add three new dummy variables to the data frame: eighties (equal to 1 if the home was built in any year between 1980 to 1989), northwest (equal to 1 if the home is in the 46268 ZIP code), and singlestory (equal to 1 if the home has one story). Estimate the following ANOVA model:
+<span class="math display">\[price = \beta_0+\beta_1 \cdot d_{80s}+\beta_2 \cdot d_{northwest} + \beta_3 \cdot d_{single}\]</span>
+What do you conclude? Next, add square footage to the model. What has changed in terms of coefficicents? How do you interpret that change?</li>
+</ol>
 
 </div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="introduction-to-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="anova.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="violating-assumptions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -239,7 +241,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/jrfdumortier/dataanalysis/edit/master/introduction.Rmd",
+"link": "https://github.com/jrfdumortier/dataanalysis/edit/master/anova.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -247,7 +249,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/jrfdumortier/dataanalysis/blob/master/introduction.Rmd",
+"link": "https://github.com/jrfdumortier/dataanalysis/blob/master/anova.Rmd",
 "text": null
 },
 "download": ["bookdownproj.pdf"],

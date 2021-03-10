@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2 Topics Overview | Data Analysis for Public Affairs</title>
-  <meta name="description" content="2 Topics Overview | Data Analysis for Public Affairs" />
+  <title>5 ANOVA | Data Analysis for Public Affairs</title>
+  <meta name="description" content="5 ANOVA | Data Analysis for Public Affairs" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2 Topics Overview | Data Analysis for Public Affairs" />
+  <meta property="og:title" content="5 ANOVA | Data Analysis for Public Affairs" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2 Topics Overview | Data Analysis for Public Affairs" />
+  <meta name="twitter:title" content="5 ANOVA | Data Analysis for Public Affairs" />
   
   
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="introduction-to-r.html"/>
+<link rel="prev" href="dummy-variables.html"/>
+<link rel="next" href="exercises.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -194,21 +194,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="topics-overview" class="section level1">
-<h1><span class="header-section-number">2</span> Topics Overview</h1>
-<p>This is my first tex code: <span class="math inline">\(CO_2\)</span> emissions.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="topics-overview.html#cb1-1"></a>height =<span class="st"> </span><span class="kw">c</span>(<span class="dv">71</span>,<span class="dv">77</span>,<span class="dv">70</span>,<span class="dv">73</span>,<span class="dv">66</span>,<span class="dv">69</span>,<span class="dv">73</span>,<span class="dv">73</span>,<span class="dv">75</span>,<span class="dv">76</span>)</span>
-<span id="cb1-2"><a href="topics-overview.html#cb1-2"></a><span class="kw">sum</span>(height)</span></code></pre></div>
-<pre><code>## [1] 723</code></pre>
-
+<div id="anova" class="section level1">
+<h1><span class="header-section-number">5</span> ANOVA</h1>
+<p>Analysis of Variance (ANOVA) models (also know as Dummy Variable Regression models) are regressions with only dummy variables. An ANOVA model with two independent variables can be written as follows:
+<span class="math display">\[y_i = \beta_0 + \beta_1 \cdot d_1 + \beta_2 \cdot d_2\]</span>
+where <span class="math inline">\(d_1\)</span> and <span class="math inline">\(d_2\)</span> are dummy variables. Consider the following model using the <code>gss2018</code> data:
+<span class="math display">\[income = \beta_0 + \beta_1 \cdot fulltime + \beta_2 \cdot government\]</span>
+where <em>fulltime</em> and <em>government</em> are dummy variables. That is, if <span class="math inline">\(fulltime=1\)</span>, then the person has a fulltime job. If <span class="math inline">\(government=1\)</span>, then the respondent works for the government. To distinguish <em>j</em> categories only <em>j-1</em> dummy variables are needed. Otherwise, we have perfect multicollinearity. The category without a dummy variable is the base category.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="anova.html#cb6-1"></a>bhat =<span class="st"> </span><span class="kw">lm</span>(income<span class="op">~</span>fulltime<span class="op">+</span>government,<span class="dt">data=</span>gss2018)</span>
+<span id="cb6-2"><a href="anova.html#cb6-2"></a><span class="kw">summary</span>(bhat)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = income ~ fulltime + government, data = gss2018)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -51074 -23574  -6074  16426 152479 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)    17521       3377   5.189 2.71e-07 ***
+## fulltime       33553       3691   9.091  &lt; 2e-16 ***
+## government     -6840       3640  -1.879   0.0606 .  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 39230 on 769 degrees of freedom
+## Multiple R-squared:  0.099,  Adjusted R-squared:  0.09665 
+## F-statistic: 42.25 on 2 and 769 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>The income for a person who is working neither for the government nor has a full time job makes on average $17,521. A person not working for the government but with a full time job is earning $17,521+$33,553=$51,074. Note that both dummy variables are statistically significant. Note that the R-squared is very low.</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="introduction-to-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="dummy-variables.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="exercises.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -239,7 +261,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/jrfdumortier/dataanalysis/edit/master/introduction.Rmd",
+"link": "https://github.com/jrfdumortier/dataanalysis/edit/master/anova.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -247,7 +269,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/jrfdumortier/dataanalysis/blob/master/introduction.Rmd",
+"link": "https://github.com/jrfdumortier/dataanalysis/blob/master/anova.Rmd",
 "text": null
 },
 "download": ["bookdownproj.pdf"],

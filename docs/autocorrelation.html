@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2 Topics Overview | Data Analysis for Public Affairs</title>
-  <meta name="description" content="2 Topics Overview | Data Analysis for Public Affairs" />
+  <title>6.4 Autocorrelation | Data Analysis for Public Affairs</title>
+  <meta name="description" content="6.4 Autocorrelation | Data Analysis for Public Affairs" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2 Topics Overview | Data Analysis for Public Affairs" />
+  <meta property="og:title" content="6.4 Autocorrelation | Data Analysis for Public Affairs" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2 Topics Overview | Data Analysis for Public Affairs" />
+  <meta name="twitter:title" content="6.4 Autocorrelation | Data Analysis for Public Affairs" />
   
   
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="introduction-to-r.html"/>
+<link rel="prev" href="other-issues-and-problems-with-data.html"/>
+<link rel="next" href="exercises-1.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -194,21 +194,93 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="topics-overview" class="section level1">
-<h1><span class="header-section-number">2</span> Topics Overview</h1>
-<p>This is my first tex code: <span class="math inline">\(CO_2\)</span> emissions.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="topics-overview.html#cb1-1"></a>height =<span class="st"> </span><span class="kw">c</span>(<span class="dv">71</span>,<span class="dv">77</span>,<span class="dv">70</span>,<span class="dv">73</span>,<span class="dv">66</span>,<span class="dv">69</span>,<span class="dv">73</span>,<span class="dv">73</span>,<span class="dv">75</span>,<span class="dv">76</span>)</span>
-<span id="cb1-2"><a href="topics-overview.html#cb1-2"></a><span class="kw">sum</span>(height)</span></code></pre></div>
-<pre><code>## [1] 723</code></pre>
+<div id="autocorrelation" class="section level2">
+<h2><span class="header-section-number">6.4</span> Autocorrelation</h2>
+<p>The correlation of error terms is called autocorrelation. The issue usually arises if there is a time component in the data. Recall the main types of data available for research:</p>
+<ul>
+<li>Cross-sectional data (multiple observations at same time point)</li>
+<li>Time series data (one variable observed over time)</li>
+<li>Pooled data (multiple observations at different time points)</li>
+<li>Panel data (same observations at different time points)</li>
+</ul>
+<p>There is a distinction between serial correlation and autocorrelation</p>
+<ul>
+<li>Serial correlation: Correlation between two series</li>
+<li>Autocorrelation: Correlation with lagged variables</li>
+</ul>
+<p>The OLS estimator is still unbiased but there is no longer minimum variance since <span class="math inline">\(E(\epsilon_i \epsilon_j) \neq 0\)</span>. Unlikely autocorrelation for cross-sectional data except in the case of spatial auto-correlation. One cause of autocorrelation could be inertia in economic variables. For example, variables such as income, production, or employment increase after a recession. But there are a number of other reasons for autocorrelation.</p>
+<p>Autocorrelation could be due to specification bias due to excluded variables or incorrect functional forms. In the case of excluded variables, assume that the correct equation is</p>
+<p><span class="math display">\[q_{beef}=\beta_0+\beta_1 \cdot p_{beef}+\beta_2 \cdot p_{income} + \beta_3 \cdot p_{pork}+\epsilon_t\]</span>
+The estimated equation is:
+<span class="math display">\[q_{beef}=\beta_0+\beta_1 \cdot p_{beef}+\beta_2 \cdot p_{income}+\upsilon_t\]</span></p>
+This results in a systematic patters of <span class="math inline">\(\upsilon_t\)</span>:
+<span class="math display">\[\upsilon_t= \beta_3 \cdot p_{pork}+\epsilon_t\]</span>
+Incorrect functional form
 
+<p>Cobweb phenomenon
+<span class="math display">\[\begin{equation*}
+            supply_t = \beta_0 + \beta_1 \cdot p_{t-1}
+        \end{equation*}\]</span>
+Lags
+<span class="math display">\[\begin{equation*}
+            consumption_t = \beta_0 + \beta_1 \cdot income_t+\beta_3 \cdot consumption_{t-1}+\epsilon_t
+        \end{equation*}\]</span></p>
+<p>First-order Autoregressive Scheme
+Consider the model:
+<span class="math display">\[y_t=\beta_0+\beta_1 x_t + \upsilon_t\]</span></p>
+<p>Assume the following form of <span class="math inline">\(\upsilon\)</span>:
+<span class="math display">\[\upsilon_t = \rho \upsilon_{t-1} + \epsilon_t\]</span></p>
+<pre><code>This is called a first-order autoregressive AR(1) scheme. An AR(2) would be written as
+    \begin{equation*}
+        \upsilon_t = \rho_1 \upsilon_{t-1} + \rho_2 \upsilon_{t-2} + \epsilon_t
+    \end{equation*}</code></pre>
+<p>This can be illustrated with simulated data. Consider the following model:
+<span class="math display">\[y_t=1+0.8 \cdot x_t + \upsilon_t\]</span>
+Assume the following form of <span class="math inline">\(\upsilon\)</span>:
+<span class="math display">\[\upsilon_t = 0.7 \cdot \upsilon_{t-1} + \epsilon_t\]</span>
+Procedure</p>
+<ol style="list-style-type: decimal">
+<li>Simulate the above model 100 times</li>
+<li>Compare variance of coefficients under different two different methods: (1) OLS and (2) Cochrane-Orcutt</li>
+</ol>
+<div id="durbin-watson-d-test" class="section level3">
+<h3><span class="header-section-number">6.4.1</span> Durbin Watson d-Test</h3>
+<p>The test statistic of the Durbin-Watson test is written as:
+<span class="math display">\[d=\frac{\sum_{t=2}^N (e_t-e_{t-1})^2}{\sum_{t=1}^N e_t^2}\]</span>
+Assumptions underlying the test are</p>
+<ul>
+<li>No intercept</li>
+<li>AR(1) process, i.e., <span class="math inline">\(\upsilon_t = \rho \upsilon_{t-1} + \epsilon_t\)</span></li>
+<li>No lagged independent variables</li>
+</ul>
+<p>Original papers derive lower (<span class="math inline">\(d_L\)</span>) and upper (<span class="math inline">\(d_U\)</span>) bounds, i.e., critical values, that depend on <span class="math inline">\(N\)</span> and <span class="math inline">\(k\)</span> only.</p>
+<ul>
+<li><span class="math inline">\(d \approx 2 \cdot (1-\rho)\)</span> and since <span class="math inline">\(-1 \leq \rho \leq 1\)</span>, we have <span class="math inline">\(0 \leq d \leq 4\)</span>.</li>
+</ul>
+<p>Rule of thumb indicates that <span class="math inline">\(d=2\)</span> signals no problems.</p>
+</div>
+<div id="breusch-godfrey-test" class="section level3">
+<h3><span class="header-section-number">6.4.2</span> Breusch-Godfrey Test</h3>
+<p>Consider the following model <span class="math inline">\(y_t = \beta_0 + \beta_1 x_t + \upsilon_t\)</span> with the following error term structure:
+<span class="math display">\[\upsilon_t = \rho_1 \upsilon_{t-1} + \rho_2 \upsilon_{t-2} + \dots + \rho_p \upsilon_{t-p} + \epsilon_t\]</span>
+The null hypothesis for the test is expressed as follows:</p>
+<ul>
+<li><span class="math inline">\(H_0\)</span>: <span class="math inline">\(\rho_1 = \rho_2 = \dots = \rho_p =0\)</span></li>
+</ul>
+<p>When the following regression is executed:</p>
+<p><span class="math display">\[\hat{\upsilon}_t = \alpha_0 + \alpha_1 x_t + \hat{\rho}_1 \hat{\upsilon}_{t-1} + \hat{\rho}_2 \hat{\upsilon}_{t-2} + \dots + \hat{\rho}_p \hat{\upsilon}_{t-p} + \epsilon_t\]</span>
+Then
+<span class="math display">\[(n-p)R^2 \sim \chi^2_p\]</span></p>
+
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="introduction-to-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="other-issues-and-problems-with-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="exercises-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -239,7 +311,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/jrfdumortier/dataanalysis/edit/master/introduction.Rmd",
+"link": "https://github.com/jrfdumortier/dataanalysis/edit/master/violatingassumptions.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -247,7 +319,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/jrfdumortier/dataanalysis/blob/master/introduction.Rmd",
+"link": "https://github.com/jrfdumortier/dataanalysis/blob/master/violatingassumptions.Rmd",
 "text": null
 },
 "download": ["bookdownproj.pdf"],

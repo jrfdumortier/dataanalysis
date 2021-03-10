@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2 Topics Overview | Data Analysis for Public Affairs</title>
-  <meta name="description" content="2 Topics Overview | Data Analysis for Public Affairs" />
+  <title>6.1 Heteroscedasticity | Data Analysis for Public Affairs</title>
+  <meta name="description" content="6.1 Heteroscedasticity | Data Analysis for Public Affairs" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2 Topics Overview | Data Analysis for Public Affairs" />
+  <meta property="og:title" content="6.1 Heteroscedasticity | Data Analysis for Public Affairs" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2 Topics Overview | Data Analysis for Public Affairs" />
+  <meta name="twitter:title" content="6.1 Heteroscedasticity | Data Analysis for Public Affairs" />
   
   
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="introduction-to-r.html"/>
+<link rel="prev" href="violating-assumptions.html"/>
+<link rel="next" href="multicollinearity.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -194,21 +194,101 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="topics-overview" class="section level1">
-<h1><span class="header-section-number">2</span> Topics Overview</h1>
-<p>This is my first tex code: <span class="math inline">\(CO_2\)</span> emissions.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="topics-overview.html#cb1-1"></a>height =<span class="st"> </span><span class="kw">c</span>(<span class="dv">71</span>,<span class="dv">77</span>,<span class="dv">70</span>,<span class="dv">73</span>,<span class="dv">66</span>,<span class="dv">69</span>,<span class="dv">73</span>,<span class="dv">73</span>,<span class="dv">75</span>,<span class="dv">76</span>)</span>
-<span id="cb1-2"><a href="topics-overview.html#cb1-2"></a><span class="kw">sum</span>(height)</span></code></pre></div>
-<pre><code>## [1] 723</code></pre>
-
+<div id="heteroscedasticity" class="section level2">
+<h2><span class="header-section-number">6.1</span> Heteroscedasticity</h2>
+<p>A key assumption of the OLS model is homoscedasticity error terms. That is, the error variance is constant:
+<span class="math display">\[Var(\epsilon_i) = \sigma^2\]</span>
+With heteroscedasticity, the variance of the error term is not constant:
+<span class="math display">\[Var(\epsilon_i) = \sigma_i^2\]</span>
+For a bivariate regression model with heteroscedastic data, it can be shown that
+<span class="math display">\[Var(\hat{\beta_1}) = \frac{\sum x_i^2 \sigma_i^2}{(\sum x_i^2)^2}\]</span>
+This is different from the variance of the coefficient estimate under homoscedasticity:
+<span class="math display">\[Var(\hat{\beta_1}) = \frac{\sigma^2}{\sum x_i^2}\]</span>
+Unbiasedness of the OLS estimator is not affected but the variance of <span class="math inline">\(\beta_1\)</span> will be larger compared to other estimators. Note that the measure of <span class="math inline">\(R^2\)</span> is unaffected by heteroscedasticity. Homoscedasticity is needed to justify the t-test, F-test, and confidence intervals. The F-statistic does no longer have an F-distribution. In short, hypothesis tests on the <span class="math inline">\(\beta\)</span>-coefficients are no longer valid.</p>
+<p>If <span class="math inline">\(\sigma_i^2\)</span> was known, the use of a Generalized Least Squares (GLS) model would be appropriate:
+<span class="math display">\[y_i = \beta_0 + \beta_1 \cdot x_i + \epsilon_i\]</span>
+Dividing both sides by the known variance:
+<span class="math display">\[\frac{y_i}{\sigma_i}=\beta_0 \cdot \frac{1}{\sigma_i}+\beta_1 \frac{x_i}{\sigma_i}+\frac{\epsilon_i}{\sigma_i}\]</span>
+If <span class="math inline">\(\epsilon^*_i = \epsilon_i / \sigma_i\)</span>, then it can be shown that <span class="math inline">\(Var(\epsilon^*_i)=1\)</span>, i.e., constant. Under the usual OLS model:
+<span class="math display">\[\sum_{i=1}^N e_i^2=\sum_{i=1}^N \left(y_i-\hat{\beta}_0+\hat{\beta}_1 \cdot x_i \right)^2\]</span>
+Under GLS model:
+<span class="math display">\[\sum_{i=1}^N w_i e_i^2= \sum_{i=1}^N w_i \left(y_i-\hat{\beta}_0+\hat{\beta}_1 \cdot x_i \right)^2\]</span>
+That is, GLS minimizes the weighted sum of the residual squares. Since in reality, the variance of <span class="math inline">\(\sigma^2\)</span> is not known, other techniques have to be employed to obtain so-called heteroscedasticity-consistent (HC) standard errors. But first, two tests are introduced to detect heteroscedasticity.</p>
+<div id="detecting-heteroscedasticity" class="section level3">
+<h3><span class="header-section-number">6.1.1</span> Detecting Heteroscedasticity</h3>
+<p>Two test are presented to detect heteroscedasticity:</p>
+<ul>
+<li>Goldfeld-Quandt Test (1965)</li>
+<li>Breusch-Pagan-Godfrey Test (1979)</li>
+</ul>
+<p>The steps necessary for the <strong>Goldfeld-Quandt Test</strong> are as follows:</p>
+<ol style="list-style-type: decimal">
+<li>Sort observations by ascending order of the dependent variable.</li>
+<li>Pick <em>C</em> as the number of central observations to drop in the middle of the dependent variable.</li>
+<li>Run two separate regression equations, i.e., with the “lower” and “upper” part.</li>
+<li>Compute
+<span class="math display">\[\lambda = \frac{RSS_2/df}{RSS_1/df}\]</span></li>
+<li><span class="math inline">\(\lambda\)</span> follows an F-distribution.</li>
+</ol>
+<p>The Goldfeld-Quandt Test can be illustrated with <code>gqtestdata</code>. In a first step, the data is separated into two groups with <span class="math inline">\(C=6\)</span>. In a second step, both groups are used to run a regression. And lastly, <span class="math inline">\(\lambda\)</span> is calculated.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="heteroscedasticity.html#cb8-1"></a>gqtestdata1         =<span class="st"> </span>gqtestdata[<span class="dv">1</span><span class="op">:</span><span class="dv">22</span>,]</span>
+<span id="cb8-2"><a href="heteroscedasticity.html#cb8-2"></a>gqtestdata2         =<span class="st"> </span>gqtestdata[<span class="dv">29</span><span class="op">:</span><span class="dv">50</span>,]</span>
+<span id="cb8-3"><a href="heteroscedasticity.html#cb8-3"></a>bhat1               =<span class="st"> </span><span class="kw">lm</span>(price_r<span class="op">~</span>sqft_r,<span class="dt">data=</span>gqtestdata1)</span>
+<span id="cb8-4"><a href="heteroscedasticity.html#cb8-4"></a>bhat2               =<span class="st"> </span><span class="kw">lm</span>(price_r<span class="op">~</span>sqft_r,<span class="dt">data=</span>gqtestdata2)</span>
+<span id="cb8-5"><a href="heteroscedasticity.html#cb8-5"></a>lambda              =<span class="st"> </span><span class="kw">sum</span>(bhat2<span class="op">$</span>residuals<span class="op">^</span><span class="dv">2</span>)<span class="op">/</span><span class="kw">sum</span>(bhat1<span class="op">$</span>residuals<span class="op">^</span><span class="dv">2</span>)</span></code></pre></div>
+<p>Of course, there is also a function in R called gqtest which simplifies the procedure.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="heteroscedasticity.html#cb9-1"></a><span class="kw">library</span>(lmtest)</span>
+<span id="cb9-2"><a href="heteroscedasticity.html#cb9-2"></a>bhat                =<span class="st"> </span><span class="kw">lm</span>(price<span class="op">~</span>sqft,<span class="dt">data=</span>gqtestdata)</span>
+<span id="cb9-3"><a href="heteroscedasticity.html#cb9-3"></a><span class="kw">gqtest</span>(bhat,<span class="dt">fraction =</span> <span class="dv">6</span>)</span></code></pre></div>
+<pre><code>## 
+##  Goldfeld-Quandt test
+## 
+## data:  bhat
+## GQ = 4.8709, df1 = 20, df2 = 20, p-value = 0.0004223
+## alternative hypothesis: variance increases from segment 1 to 2</code></pre>
+<p>In any case, the hypothesis of homoscedasticity is rejected for <code>gqtestdata</code>.</p>
+<p>The <strong>Breusch-Pagan-Godfrey Test</strong> is an alternative and does not rely on choosing <em>C</em> as the number of central observations to be dropped. The steps include the following:</p>
+<ol style="list-style-type: decimal">
+<li>Run a regular OLS model and obtain the residuals.</li>
+<li>Calculate
+<span class="math display">\[\hat{\sigma}^2 = \frac{\sum_{i=1}^N e^2_i}{N}\]</span></li>
+<li>Construct the variable <span class="math inline">\(p_i\)</span> as follows: <span class="math inline">\(p_i = e^2_i / \hat{\sigma}^2\)</span></li>
+<li>Regress <span class="math inline">\(p_i\)</span> on the X’s as follows
+<span class="math display">\[p_i = \alpha_0 + \alpha_1 \cdot x_{i1}+\alpha_2 \cdot x_{i2} + \dots\]</span></li>
+<li>Obtain the explained sum of squares (ESS) and define <span class="math inline">\(\Theta = 0.5 \cdot ESS\)</span>. Then <span class="math inline">\(\Theta \sim \chi^2_{m-1}\)</span>.</li>
+</ol>
+<p>The much simpler procedure is to use the function <code>bptest()</code> in R.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="heteroscedasticity.html#cb11-1"></a><span class="kw">library</span>(lmtest)</span>
+<span id="cb11-2"><a href="heteroscedasticity.html#cb11-2"></a>bhat                =<span class="st"> </span><span class="kw">lm</span>(price<span class="op">~</span>sqft,<span class="dt">data=</span>gqtestdata)</span>
+<span id="cb11-3"><a href="heteroscedasticity.html#cb11-3"></a><span class="kw">bptest</span>(bhat)</span></code></pre></div>
+<pre><code>## 
+##  studentized Breusch-Pagan test
+## 
+## data:  bhat
+## BP = 8.2672, df = 1, p-value = 0.004037</code></pre>
+</div>
+<div id="correcting-heteroscedasticity" class="section level3">
+<h3><span class="header-section-number">6.1.2</span> Correcting Heteroscedasticity</h3>
+<p>To correct for heteroscedasticity, robust standard errors must be obtained.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="heteroscedasticity.html#cb13-1"></a><span class="kw">library</span>(sandwich)</span>
+<span id="cb13-2"><a href="heteroscedasticity.html#cb13-2"></a>bhat =<span class="st"> </span><span class="kw">lm</span>(price<span class="op">~</span>sqft,<span class="dt">data=</span>gqtestdata)</span>
+<span id="cb13-3"><a href="heteroscedasticity.html#cb13-3"></a><span class="kw">summary</span>(bhat)</span>
+<span id="cb13-4"><a href="heteroscedasticity.html#cb13-4"></a>vcov =<span class="st"> </span><span class="kw">vcovHC</span>(bhat)</span>
+<span id="cb13-5"><a href="heteroscedasticity.html#cb13-5"></a><span class="kw">coeftest</span>(bhat,<span class="dt">vcov.=</span>vcov)</span></code></pre></div>
+<p>Note that there are multiple variations to calculate the standard error and thus, it is possible for slight variations among the results from different packages.
+<span class="math display">\[Var(\hat{\beta}_1) = \frac{\sum_{i=1}^N (x_i-\bar{x})^2 e_i^2}{\sum_{i=1}^N (x_i-\bar{x})^2}\]</span>
+The square root of the following equation is called heteroscedastic robust standard error:
+<span class="math display">\[\widehat{Var}(\hat{\beta}_j) = \frac{\sum_{i=1}^N \hat{r}^2_{ij} e_i^2}{\sum_{i=1}^N (x_i-\bar{x})^2}\]</span>
+Standard errors can be either larger or smaller. Note that in this example, we do not know whether heteroscedasticity is present or not.</p>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="introduction-to-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="violating-assumptions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="multicollinearity.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -239,7 +319,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/jrfdumortier/dataanalysis/edit/master/introduction.Rmd",
+"link": "https://github.com/jrfdumortier/dataanalysis/edit/master/violatingassumptions.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -247,7 +327,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/jrfdumortier/dataanalysis/blob/master/introduction.Rmd",
+"link": "https://github.com/jrfdumortier/dataanalysis/blob/master/violatingassumptions.Rmd",
 "text": null
 },
 "download": ["bookdownproj.pdf"],

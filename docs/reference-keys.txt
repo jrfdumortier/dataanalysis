@@ -12,9 +12,8 @@ creating-a-data-frame-from-scratch
 in-class-exercise-2
 basic-multivariate-regression
 dummy-variables
-binary-choice
-stuff
-including-plots
+anova
+exercises
 violating-assumptions
 heteroscedasticity
 detecting-heteroscedasticity
@@ -22,8 +21,11 @@ correcting-heteroscedasticity
 multicollinearity
 variance-inflated-factors-vif
 examples
+other-issues-and-problems-with-data
 autocorrelation
 durbin-watson-d-test
 breusch-godfrey-test
-other-issues-and-problems-with-data
-exercises
+exercises-1
+binary-choice
+stuff
+including-plots

@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2 Topics Overview | Data Analysis for Public Affairs</title>
-  <meta name="description" content="2 Topics Overview | Data Analysis for Public Affairs" />
+  <title>3.4 Data Management | Data Analysis for Public Affairs</title>
+  <meta name="description" content="3.4 Data Management | Data Analysis for Public Affairs" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2 Topics Overview | Data Analysis for Public Affairs" />
+  <meta property="og:title" content="3.4 Data Management | Data Analysis for Public Affairs" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2 Topics Overview | Data Analysis for Public Affairs" />
+  <meta name="twitter:title" content="3.4 Data Management | Data Analysis for Public Affairs" />
   
   
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="introduction-to-r.html"/>
+<link rel="prev" href="functions.html"/>
+<link rel="next" href="basic-multivariate-regression.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -194,21 +194,118 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="topics-overview" class="section level1">
-<h1><span class="header-section-number">2</span> Topics Overview</h1>
-<p>This is my first tex code: <span class="math inline">\(CO_2\)</span> emissions.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="topics-overview.html#cb1-1"></a>height =<span class="st"> </span><span class="kw">c</span>(<span class="dv">71</span>,<span class="dv">77</span>,<span class="dv">70</span>,<span class="dv">73</span>,<span class="dv">66</span>,<span class="dv">69</span>,<span class="dv">73</span>,<span class="dv">73</span>,<span class="dv">75</span>,<span class="dv">76</span>)</span>
-<span id="cb1-2"><a href="topics-overview.html#cb1-2"></a><span class="kw">sum</span>(height)</span></code></pre></div>
-<pre><code>## [1] 723</code></pre>
+<div id="data-management" class="section level2">
+<h2><span class="header-section-number">3.4</span> Data Management</h2>
+<div id="data-in-r" class="section level3">
+<h3><span class="header-section-number">3.4.1</span> Data in R</h3>
+<p>The main data types which can appear in the Environment window of R are:</p>
+<ul>
+<li>Vectors
+<ul>
+<li><code>preselection = seq(1788,2016,4)</code></li>
+<li><code>midterm = seq(by=4,to=2018,from=1790)</code></li>
+</ul></li>
+<li>Matrix
+<ul>
+<li><code>somematrix = matrix(8,10,4)</code></li>
+<li>Only numerical values are allowed.</li>
+</ul></li>
+<li>Data frames
+<ul>
+<li>By far, the most common data type in R.</li>
+<li>Comparable to an Excel sheet.</li>
+<li>More on this later.</li>
+</ul></li>
+<li>Lists
+<ul>
+<li>Collection of objects from of various types.</li>
+<li><code>myfirstlist = list(preselection,midterm,somematrix)</code></li>
+</ul></li>
+</ul>
+</div>
+<div id="using-r-as-a-calculator" class="section level3">
+<h3><span class="header-section-number">3.4.2</span> Using R as a Calculator</h3>
+<p>Entering heights of people and storing it in a vector named :</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="data-management.html#cb4-1"></a>height =<span class="st"> </span><span class="kw">c</span>(<span class="dv">71</span>,<span class="dv">77</span>,<span class="dv">70</span>,<span class="dv">73</span>,<span class="dv">66</span>,<span class="dv">69</span>,<span class="dv">73</span>,<span class="dv">73</span>,<span class="dv">75</span>,<span class="dv">76</span>)</span></code></pre></div>
+<p>Calculating the sum, product, natural log, mean, and (element-wise) squaring is done with the following commands:</p>
+<ul>
+<li><code>sum(height)</code></li>
+<li><code>prod(height)</code></li>
+<li><code>log(height)</code> # Default is the natural log</li>
+<li><code>meanheight = mean(height)</code></li>
+<li><code>heightsq = height^2</code></li>
+</ul>
+<p>Removing (i.e., deleting) unused elements: <code>rm(heightsq,meanheight)</code></p>
+</div>
+<div id="creating-a-data-frame-from-scratch" class="section level3">
+<h3><span class="header-section-number">3.4.3</span> Creating a Data Frame from Scratch</h3>
+<p>Data frames are the most commonly used tables in R/RStudio. They are similar to an Excel sheet.</p>
+<ul>
+<li>Column names represent the variables and rows represent observations.</li>
+<li>Column names must be unique and without spaces.</li>
+</ul>
+<p>Suggestion: Use only lower-case variable names and objects.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="data-management.html#cb5-1"></a>studentid       =<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></span>
+<span id="cb5-2"><a href="data-management.html#cb5-2"></a>studentnames    =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Andrew&quot;</span>,<span class="st">&quot;Linda&quot;</span>,<span class="st">&quot;William&quot;</span>,<span class="st">&quot;Daniel&quot;</span>,<span class="st">&quot;Gina&quot;</span>,</span>
+<span id="cb5-3"><a href="data-management.html#cb5-3"></a>                    <span class="st">&quot;Mick&quot;</span>,<span class="st">&quot;Sonny&quot;</span>,<span class="st">&quot;Wilbur&quot;</span>,<span class="st">&quot;Elisabeth&quot;</span>,<span class="st">&quot;James&quot;</span>)</span>
+<span id="cb5-4"><a href="data-management.html#cb5-4"></a>students        =<span class="st"> </span><span class="kw">data.frame</span>(studentid,studentnames,height)</span>
+<span id="cb5-5"><a href="data-management.html#cb5-5"></a><span class="kw">rm</span>(studentid,height,studentnames)</span></code></pre></div>
+</div>
+<div id="in-class-exercise-2" class="section level3">
+<h3><span class="header-section-number">3.4.4</span> In-class Exercise 2</h3>
+<p>Create a data frame called <code>students</code> containing the following information:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Name</th>
+<th align="right">Economics</th>
+<th align="right">English</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Mindy</td>
+<td align="right">80.0</td>
+<td align="right">52.5</td>
+</tr>
+<tr class="even">
+<td align="left">Gregory</td>
+<td align="right">60.0</td>
+<td align="right">60.0</td>
+</tr>
+<tr class="odd">
+<td align="left">Shubra</td>
+<td align="right">95.0</td>
+<td align="right">77.5</td>
+</tr>
+<tr class="even">
+<td align="left">Keith</td>
+<td align="right">77.5</td>
+<td align="right">30.0</td>
+</tr>
+<tr class="odd">
+<td align="left">Louisa</td>
+<td align="right">97.5</td>
+<td align="right">95.0</td>
+</tr>
+</tbody>
+</table>
+<p>Notes:</p>
+<ul>
+<li>Use  as the column header for the students’ names.</li>
+<li>Once you have created the data frame, remove the unused vectors.</li>
+</ul>
 
 </div>
+</div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="introduction-to-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="functions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="basic-multivariate-regression.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -239,7 +336,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/jrfdumortier/dataanalysis/edit/master/introduction.Rmd",
+"link": "https://github.com/jrfdumortier/dataanalysis/edit/master/introductiontor.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -247,7 +344,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/jrfdumortier/dataanalysis/blob/master/introduction.Rmd",
+"link": "https://github.com/jrfdumortier/dataanalysis/blob/master/introductiontor.Rmd",
 "text": null
 },
 "download": ["bookdownproj.pdf"],
