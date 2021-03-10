@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>5.1 Exercises | Data Analysis for Public Affairs</title>
-  <meta name="description" content="5.1 Exercises | Data Analysis for Public Affairs" />
+  <title>7.2 Additional Examples and Probit Model | Data Analysis for Public Affairs</title>
+  <meta name="description" content="7.2 Additional Examples and Probit Model | Data Analysis for Public Affairs" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="5.1 Exercises | Data Analysis for Public Affairs" />
+  <meta property="og:title" content="7.2 Additional Examples and Probit Model | Data Analysis for Public Affairs" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="5.1 Exercises | Data Analysis for Public Affairs" />
+  <meta name="twitter:title" content="7.2 Additional Examples and Probit Model | Data Analysis for Public Affairs" />
   
   
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="anova.html"/>
-<link rel="next" href="violating-assumptions.html"/>
+<link rel="prev" href="binary-choice-estimation-in-r.html"/>
+<link rel="next" href="exercises-2.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -198,23 +198,198 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="exercises" class="section level2">
-<h2><span class="header-section-number">5.1</span> Exercises</h2>
-<ol style="list-style-type: decimal">
-<li>Consider the data in <code>indyhomes</code>. A real estate agent once mentioned that homes built in the eighties are of lower quality and thus, are cheaper. One possibility to asses this claim is with an ANOVA model. Add three new dummy variables to the data frame: eighties (equal to 1 if the home was built in any year between 1980 to 1989), northwest (equal to 1 if the home is in the 46268 ZIP code), and singlestory (equal to 1 if the home has one story). Estimate the following ANOVA model:
-<span class="math display">\[price = \beta_0+\beta_1 \cdot d_{80s}+\beta_2 \cdot d_{northwest} + \beta_3 \cdot d_{single}\]</span>
-What do you conclude? Next, add square footage to the model. What has changed in terms of coefficicents? How do you interpret that change?</li>
-</ol>
-
+<div id="additional-examples-and-probit-model" class="section level2">
+<h2><span class="header-section-number">7.2</span> Additional Examples and Probit Model</h2>
+<p>Here are two additional examples on working full-time and voting behavior. Both examples use the <code>gss2018</code> data. Note that the previous chapter have introduced the logit model. To estimate a Probit model, the term “logit” has to be replaced with “probit.” The results are almost identical.</p>
+<div id="full-time-work" class="section level3">
+<h3><span class="header-section-number">7.2.1</span> Full-Time Work</h3>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="additional-examples-and-probit-model.html#cb29-1"></a>equation =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;fulltime~age+childs+government+education+married&quot;</span>)</span>
+<span id="cb29-2"><a href="additional-examples-and-probit-model.html#cb29-2"></a>bhat_glm =<span class="st"> </span><span class="kw">glm</span>(equation,<span class="dt">family=</span><span class="kw">binomial</span>(<span class="dt">link=</span><span class="st">&quot;logit&quot;</span>),<span class="dt">data=</span>gss2018)</span>
+<span id="cb29-3"><a href="additional-examples-and-probit-model.html#cb29-3"></a><span class="kw">summary</span>(bhat_glm)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## glm(formula = equation, family = binomial(link = &quot;logit&quot;), data = gss2018)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -2.3019   0.4298   0.5638   0.6692   0.9954  
+## 
+## Coefficients:
+##              Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)  1.877519   0.335655   5.594 2.22e-08 ***
+## age         -0.021941   0.006985  -3.141  0.00168 ** 
+## childs      -0.015773   0.063675  -0.248  0.80435    
+## government   0.323365   0.272825   1.185  0.23592    
+## education    0.264400   0.086471   3.058  0.00223 ** 
+## married      0.353223   0.205331   1.720  0.08539 .  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 724.91  on 771  degrees of freedom
+## Residual deviance: 699.31  on 766  degrees of freedom
+## AIC: 711.31
+## 
+## Number of Fisher Scoring iterations: 4</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="additional-examples-and-probit-model.html#cb31-1"></a>bhat =<span class="st"> </span><span class="kw">logitmfx</span>(equation,<span class="dt">data=</span>gss2018)</span>
+<span id="cb31-2"><a href="additional-examples-and-probit-model.html#cb31-2"></a><span class="kw">summary</span>(bhat<span class="op">$</span>fit)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## glm(formula = formula, family = binomial(link = &quot;logit&quot;), data = data, 
+##     start = start, control = control, x = T)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -2.3019   0.4298   0.5638   0.6692   0.9954  
+## 
+## Coefficients:
+##              Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)  1.877519   0.335655   5.594 2.22e-08 ***
+## age         -0.021941   0.006985  -3.141  0.00168 ** 
+## childs      -0.015773   0.063675  -0.248  0.80435    
+## government   0.323365   0.272825   1.185  0.23592    
+## education    0.264400   0.086471   3.058  0.00223 ** 
+## married      0.353223   0.205331   1.720  0.08539 .  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 724.91  on 771  degrees of freedom
+## Residual deviance: 699.31  on 766  degrees of freedom
+## AIC: 711.31
+## 
+## Number of Fisher Scoring iterations: 4</code></pre>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="additional-examples-and-probit-model.html#cb33-1"></a>bhat_glm =<span class="st"> </span><span class="kw">glm</span>(equation,<span class="dt">family=</span><span class="kw">binomial</span>(<span class="dt">link=</span><span class="st">&quot;probit&quot;</span>),<span class="dt">data=</span>gss2018)</span>
+<span id="cb33-2"><a href="additional-examples-and-probit-model.html#cb33-2"></a><span class="kw">summary</span>(bhat_glm)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## glm(formula = equation, family = binomial(link = &quot;probit&quot;), data = gss2018)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -2.3240   0.4189   0.5671   0.6720   0.9792  
+## 
+## Coefficients:
+##              Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)  1.087820   0.187423   5.804 6.47e-09 ***
+## age         -0.011979   0.003992  -3.001  0.00269 ** 
+## childs      -0.008966   0.036310  -0.247  0.80496    
+## government   0.172189   0.148316   1.161  0.24566    
+## education    0.154238   0.047653   3.237  0.00121 ** 
+## married      0.196650   0.114850   1.712  0.08686 .  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 724.91  on 771  degrees of freedom
+## Residual deviance: 699.29  on 766  degrees of freedom
+## AIC: 711.29
+## 
+## Number of Fisher Scoring iterations: 5</code></pre>
 </div>
-<!-- </div> -->
+<div id="voting-behavior" class="section level3">
+<h3><span class="header-section-number">7.2.2</span> Voting Behavior</h3>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="additional-examples-and-probit-model.html#cb35-1"></a>equation =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;vote~age+childs+government+education+married+income&quot;</span>)</span>
+<span id="cb35-2"><a href="additional-examples-and-probit-model.html#cb35-2"></a>bhat_glm =<span class="st"> </span><span class="kw">glm</span>(equation,<span class="dt">family=</span><span class="kw">binomial</span>(<span class="dt">link=</span><span class="st">&quot;logit&quot;</span>),<span class="dt">data=</span>gss2018)</span>
+<span id="cb35-3"><a href="additional-examples-and-probit-model.html#cb35-3"></a><span class="kw">summary</span>(bhat_glm)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## glm(formula = equation, family = binomial(link = &quot;logit&quot;), data = gss2018)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -2.3291  -1.0702   0.5551   0.8683   1.6618  
+## 
+## Coefficients:
+##               Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept) -1.924e+00  2.983e-01  -6.449 1.13e-10 ***
+## age          4.145e-02  6.944e-03   5.970 2.37e-09 ***
+## childs      -7.944e-02  5.677e-02  -1.399    0.162    
+## government   4.536e-01  2.325e-01   1.951    0.051 .  
+## education    4.923e-01  8.326e-02   5.913 3.36e-09 ***
+## married      1.282e-01  1.779e-01   0.721    0.471    
+## income       2.039e-06  2.470e-06   0.826    0.409    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 978.09  on 771  degrees of freedom
+## Residual deviance: 858.90  on 765  degrees of freedom
+## AIC: 872.9
+## 
+## Number of Fisher Scoring iterations: 4</code></pre>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="additional-examples-and-probit-model.html#cb37-1"></a>bhat =<span class="st"> </span><span class="kw">logitmfx</span>(equation,<span class="dt">data=</span>gss2018)</span>
+<span id="cb37-2"><a href="additional-examples-and-probit-model.html#cb37-2"></a><span class="kw">summary</span>(bhat<span class="op">$</span>fit)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## glm(formula = formula, family = binomial(link = &quot;logit&quot;), data = data, 
+##     start = start, control = control, x = T)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -2.3291  -1.0702   0.5551   0.8683   1.6618  
+## 
+## Coefficients:
+##               Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept) -1.924e+00  2.983e-01  -6.449 1.13e-10 ***
+## age          4.145e-02  6.944e-03   5.970 2.37e-09 ***
+## childs      -7.944e-02  5.677e-02  -1.399    0.162    
+## government   4.536e-01  2.325e-01   1.951    0.051 .  
+## education    4.923e-01  8.326e-02   5.913 3.36e-09 ***
+## married      1.282e-01  1.779e-01   0.721    0.471    
+## income       2.039e-06  2.470e-06   0.826    0.409    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 978.09  on 771  degrees of freedom
+## Residual deviance: 858.90  on 765  degrees of freedom
+## AIC: 872.9
+## 
+## Number of Fisher Scoring iterations: 4</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="additional-examples-and-probit-model.html#cb39-1"></a>bhat_glm =<span class="st"> </span><span class="kw">glm</span>(equation,<span class="dt">family=</span><span class="kw">binomial</span>(<span class="dt">link=</span><span class="st">&quot;probit&quot;</span>),<span class="dt">data=</span>gss2018)</span>
+<span id="cb39-2"><a href="additional-examples-and-probit-model.html#cb39-2"></a><span class="kw">summary</span>(bhat_glm)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## glm(formula = equation, family = binomial(link = &quot;probit&quot;), data = gss2018)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -2.3910  -1.0777   0.5492   0.8754   1.6541  
+## 
+## Coefficients:
+##               Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept) -1.167e+00  1.771e-01  -6.589 4.43e-11 ***
+## age          2.527e-02  4.055e-03   6.232 4.60e-10 ***
+## childs      -4.884e-02  3.411e-02  -1.432   0.1522    
+## government   2.722e-01  1.359e-01   2.003   0.0452 *  
+## education    2.949e-01  4.830e-02   6.106 1.02e-09 ***
+## married      8.745e-02  1.062e-01   0.824   0.4101    
+## income       1.132e-06  1.435e-06   0.789   0.4302    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 978.09  on 771  degrees of freedom
+## Residual deviance: 857.62  on 765  degrees of freedom
+## AIC: 871.62
+## 
+## Number of Fisher Scoring iterations: 4</code></pre>
+</div>
+</div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="anova.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="violating-assumptions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="binary-choice-estimation-in-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="exercises-2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -245,7 +420,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/jrfdumortier/dataanalysis/edit/master/anova.Rmd",
+"link": "https://github.com/jrfdumortier/dataanalysis/edit/master/binarychoice.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -253,7 +428,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/jrfdumortier/dataanalysis/blob/master/anova.Rmd",
+"link": "https://github.com/jrfdumortier/dataanalysis/blob/master/binarychoice.Rmd",
 "text": null
 },
 "download": ["bookdownproj.pdf"],

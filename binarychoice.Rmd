@@ -1,55 +1,139 @@
----
-title: "Binary Choice"
-author: "Jerome Dumortier"
-date: "2/6/2021"
-output: html_document
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
 # Binary Choice
 
-Binary choice models ($y$ takes two values: 0 or 1)
+Binary choice models are part of a large class of so-called qualitative choice models which are used for qualitative dependent variables. Consider the following outcomes of interest:
 
+- Is a person in the labor force?
+- Will an individual vote yes on a particular issue? 
+- Did a person watch the last Super Bowl? 
+- Have you purchased a new car in the past year 
+- Did you do any charitable contributions in the past year? 
 - Did you vote during the last election?
 - Does an individual recidivate after being released from prison?
-- Participation in the labor market
-- Purchasing a home
-- Model: $Pr(y=1|x)$
 
-Categorical dependent variable but naturally ordered
+For those questions, the dependent variable is either 0 ("no") or 1 ("yes"). For binary choice models, the outcome is interpreted as a probability, i.e., what is the probability of a person to answer "yes" to those questions. 
 
-- What is your level of happiness? E.g., very happy, happy, ok, sad.
+In the next chapter, the model is expanded to consider more than binary outcomes. Those models include categorical dependent variable that are either naturally ordered or have no ordering. Examples of naturally ordered categorical variables are: 
 
-Categorical dependent variable but no ordering
+- Level of happiness: Very happy, happy, ok, or sad.
+- Intention to get a COIVID-19 vaccine: Definitely yes, probably yes, probably no, or definitely no
 
-- How do you commute to campus?
-- Did you vote for the democratic, republican, or independent candidate during the last election?
+Two examples about categorical dependent variable which have no ordering are:
 
-```{r organic_logit}
-bhat_logit = glm(buying~income,family=binomial(link="logit"),data=organic)
-summary(bhat_logit)
+- Commute to campus: Bike, car, walk, or bus
+- Voter registration: Democrat, Republican, or independent
+
+For all those models, the outcome of interest is the probability to fall into a particular category. For binary choice models which are considered in this chapter, the outcome of interest is the probability to fall into the 1 ("yes") category. For binary choice models, *y* takes one of two values: 0 or 1. And the model will specify $Pr(y=1|x)$ where *x* are the independent variables.   
+
+Consider the decision to purchase organic food. Assume that you have data about the income of respondents as well as information if they purchase organic food. The purchase decision ("yes" or "no") is on the vertical axis and the income is on the horizontal axis.
+
+```{r bcm_comparison, echo=FALSE}
+income     = seq(0,100,0.1)
+bhat       = glm(buying~income,family=binomial(link="probit"),data=organic)
+bhat_ols   = lm(buying~income,data=organic)
+z          = bhat$coefficients[1]+bhat$coefficients[2]*income
+logit_cdf  = exp(z)/(1+exp(z))
+plot(organic,xlim=c(0,100))
+     abline(bhat_ols)
+     lines(income,logit_cdf,type="l")
+```
+
+Remember that the probability has be bounded between 0 and 1. Hence, we need to find a function $G(z)$ such that $0 \leq G(z) \leq 1$ for all values of $z$ and $P(y=1|x)=G(z)$. Popular choices for $G(z)$ are the cumulative normal distribution function ("Probit Model") and the logistic function ("Logit Model"). For what follows, let $z=\beta_0+\beta_1 \cdot x_1 + \cdots + \beta_k \cdot x_k$. For the probit model, $G(z)$ is written as
+$$Pr(y = 1) = G(z)=\Phi(z)$$
+where $\Phi$ represents the cumulative normal. And for the logit model, $G(z)$ is written as
+$$Pr(y = 1) = G(z)=\frac{e^z}{1+e^z}=\frac{1}{1+e^{-z}}$$
+The interpretation of the logit and probit estimates is not as straightforward as in the multivariate regression case. In general, we care about the effect of $x$ on $P(y=1|x)$. The sign of the coefficient shows the direction of the change in probability. The approximation to the marginal effect if $x$ is roughly continuous:
+$$\Delta P(y=1|x) \approx g(\hat{\beta}_0 + x \cdot \hat{\beta}) \cdot \beta_j \cdot \Delta x_j$$
+To obtain the marginal effects in R, an additional step is necessary. Let us illustrate the binary choice model using the data set `organic` and a logit model. The results of interest for the binary choice model are the (1) coefficient estimates, (2) marginal effects, and (3) predicted probabilities.
+
+## Binary Choice Estimation in R
+There are (at least) two possibilities to obtain the coefficient estimates in R. The first is using the built in R command `glm()`: 
+
+```{r organic_glm_logit}
+bhat_glm_logit = glm(buying~income,family=binomial(link="logit"),data=organic)
+summary(bhat_glm_logit)
 ```
        
-This is a test.
- 
-## Stuff     
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+Note that interpretation of the coefficients is slightly different from the regular linear model. The sign of the coefficient estimate for income is interpreted as the direction in which the probability changes. In this case, the coefficient is positive and thus, an increase (decrease) in income leads to an increase (decrease) in the probability of purchasing organic food. In addition, the coefficients are statistically significant. As aforementioned, the coefficients do not indicate the marginal effects though. To calculate the marginal effects, a slightly different approach is necessary. Let us first look at the second approach of obtaining the coefficient estimates and the R package [mfx](https://cran.r-project.org/web/packages/mfx/index.html) is required to do so. 
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
+```{r, echo=FALSE, results=FALSE}
+library(mfx)
 ```
 
-## Including Plots
 
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
+```{r organic_mfx_logit}
+bhat = logitmfx(buying~income,data=organic)
+summary(bhat$fit)
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+The results are identical as before using the \texttt{glm()} but the command \texttt{logitmfx()} allows for the calculation of the marginal effects as well. This is done with the command the `bhat\$mfxest`.
+
+```{r}
+bhat$mfxest
+```
+
+It is important to note that the marginal effects are taken at the mean of the independent variables. To calculate the marginal effects at specific points, the command `margins()` must be used. Before, we used the command `glm()` to calculate the logit coefficients. The reason for using the `glm()` is that it allows us to calculate the predicted probabilities. Consider the example to purchase organic food and assume that there are three new respondents with income levels \$25,000, \$50,000, and \$75,000. To predict the probability of those individuals purchasing organic food, the following functions can be used:  
+
+```{r}
+datablock = data.frame(income=c(25,50,75))
+predict(bhat_glm_logit,newdata=datablock,type="response")
+```
+
+## Additional Examples and Probit Model
+Here are two additional examples on working full-time and voting behavior. Both examples use the `gss2018` data. Note that the previous chapter have introduced the logit model. To estimate a Probit model, the term "logit" has to be replaced with "probit." The results are almost identical. 
+
+### Full-Time Work
+
+```{r}
+equation = c("fulltime~age+childs+government+education+married")
+bhat_glm = glm(equation,family=binomial(link="logit"),data=gss2018)
+summary(bhat_glm)
+```
+
+```{r}
+bhat = logitmfx(equation,data=gss2018)
+summary(bhat$fit)
+```
+
+```{r}
+bhat_glm = glm(equation,family=binomial(link="probit"),data=gss2018)
+summary(bhat_glm)
+```
+
+### Voting Behavior
+
+```{r}
+equation = c("vote~age+childs+government+education+married+income")
+bhat_glm = glm(equation,family=binomial(link="logit"),data=gss2018)
+summary(bhat_glm)
+```
+
+```{r}
+bhat = logitmfx(equation,data=gss2018)
+summary(bhat$fit)
+```
+
+```{r}
+bhat_glm = glm(equation,family=binomial(link="probit"),data=gss2018)
+summary(bhat_glm)
+```
+
+## Exercises
+
+1. Consider the problem of choosing whether or not to purchase a hybrid vehicle (e.g., the Toyota Prius, Honda Civic Hybrid, Ford Escape). As an analyst, you assume that whether or not an individual purchases a hybrid depends upon the current price of gasoline (*gas*), the difference in purchase price of a hybrid vehicle compared to a comparably equipped vehicle (*increment*), college education which is represented by a dummy variable that equals 1 if individual has completed college and equals 0 otherwise ($college$), and a dummy variable that equals 1 if the individual is a member of an environmental organization, e.g., Nature Conservancy, National Audubon Society, (*env*). Answer the following questions contained in `hybrid`:
+
+     a. Provide summary statistics (i.e., mean, minimum, and maximum) for each variables.
+     b. Estimate a regression model that allows to calculate the probability that a person would buy a hybrid.
+     c. Using your parameter estimates, compute the probability that the following ``types'' of individuals will buy a hybrid:
+
+          - Type I: gasoline price = 2.50; difference in purchase price = 1,500; college = 0; and member of an environmental organization = 0
+          - Type II: gasoline price = 3.50; difference in purchase price = 500; college = 1; and member of an environmental organization = 1
+          - Type III: gasoline price = 3.00; difference in purchase price = 1,000; college = 1; and member of an environmental organization = 0
+
+     d. Given the above probabilities, calculate the marginal effect that gasoline prices have on the probability that each of the three ``types'' of individuals will purchase a hybrid vehicle.
+     e. Given the above probabilities, calculate the marginal effect that joining an environmental group on Type I and Type III individuals.
+
+2. *EV Data*: Using the \texttt{evdata}, estimate a logit model which calculates the probability that a consumer would purchase a hybrid (choice=2), plug-in hybrid (choice=3), or electric vehicle (choice=4) as opposed to a gasoline car (choice=1). In a first step, you should create a new variable that is equal to 0 if the person purchases a gasoline vehicle and is equal to 1 for everything else. Include the following independent variables in your model: $age$, $numcars$, $politics$, $female$, $edu$, and $income$. 
+
+3. We are interested in the determinants of voting based on data from the General Social Survey (GSS). The following variables are hypothesized to be a determinant of voting behavior: $age$, $income$, $gun ownership$ (yes=1), $stance on death penalty$ (in favor=1), and $education level$ (higher number is associated with a higher education level). Run a probit and logit model and report the results. Calculate the marginal probabilities.   
+
+\end{enumerate}

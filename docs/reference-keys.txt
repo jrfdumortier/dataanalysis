@@ -27,5 +27,8 @@ durbin-watson-d-test
 breusch-godfrey-test
 exercises-1
 binary-choice
-stuff
-including-plots
+binary-choice-estimation-in-r
+additional-examples-and-probit-model
+full-time-work
+voting-behavior
+exercises-2

@@ -7,9 +7,4 @@ site: bookdown::bookdown_site
 
 # Introduction
 
-This book serves as an introduction to data analysis with R and RStudio. It can be subdivided into four main parts.
-
-1. Probability
-2. Statistics
-3. Regression
-4. Advanced Regression
+This book serves as an introduction to data analysis with R and RStudio. Most examples are drawn from public affairs and economics.  

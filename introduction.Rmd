@@ -1,14 +1,1 @@
----
-output:
-  pdf_document: default
-  html_document: default
----
 # Topics Overview
-
-This is my first tex code: $CO_2$ emissions. 
-
-```{r}
-height = c(71,77,70,73,66,69,73,73,75,76)
-sum(height)
-```
-

@@ -24,7 +24,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2021-03-09" />
+<meta name="date" content="2021-03-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -172,8 +172,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.5" data-path="exercises-1.html"><a href="exercises-1.html"><i class="fa fa-check"></i><b>6.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="binary-choice.html"><a href="binary-choice.html"><i class="fa fa-check"></i><b>7</b> Binary Choice</a><ul>
-<li class="chapter" data-level="7.1" data-path="stuff.html"><a href="stuff.html"><i class="fa fa-check"></i><b>7.1</b> Stuff</a></li>
-<li class="chapter" data-level="7.2" data-path="including-plots.html"><a href="including-plots.html"><i class="fa fa-check"></i><b>7.2</b> Including Plots</a></li>
+<li class="chapter" data-level="7.1" data-path="binary-choice-estimation-in-r.html"><a href="binary-choice-estimation-in-r.html"><i class="fa fa-check"></i><b>7.1</b> Binary Choice Estimation in R</a></li>
+<li class="chapter" data-level="7.2" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html"><i class="fa fa-check"></i><b>7.2</b> Additional Examples and Probit Model</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html#full-time-work"><i class="fa fa-check"></i><b>7.2.1</b> Full-Time Work</a></li>
+<li class="chapter" data-level="7.2.2" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html#voting-behavior"><i class="fa fa-check"></i><b>7.2.2</b> Voting Behavior</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="exercises-2.html"><a href="exercises-2.html"><i class="fa fa-check"></i><b>7.3</b> Exercises</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -203,51 +207,41 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Pooled data (multiple observations at different time points)</li>
 <li>Panel data (same observations at different time points)</li>
 </ul>
-<p>There is a distinction between serial correlation and autocorrelation</p>
+<p>There is a distinction between serial correlation and autocorrelation:</p>
 <ul>
 <li>Serial correlation: Correlation between two series</li>
 <li>Autocorrelation: Correlation with lagged variables</li>
 </ul>
-<p>The OLS estimator is still unbiased but there is no longer minimum variance since <span class="math inline">\(E(\epsilon_i \epsilon_j) \neq 0\)</span>. Unlikely autocorrelation for cross-sectional data except in the case of spatial auto-correlation. One cause of autocorrelation could be inertia in economic variables. For example, variables such as income, production, or employment increase after a recession. But there are a number of other reasons for autocorrelation.</p>
-<p>Autocorrelation could be due to specification bias due to excluded variables or incorrect functional forms. In the case of excluded variables, assume that the correct equation is</p>
+<p>The OLS estimator is still unbiased but there is no longer minimum variance since <span class="math inline">\(E(\epsilon_i \epsilon_j) \neq 0\)</span>. Autocorrelation is unlikely for cross-sectional data except in the case of spatial auto-correlation. One cause of autocorrelation could be inertia in economic variables. For example, variables such as income, production, or employment increase after a recession. But there are a number of other reasons for autocorrelation.</p>
+<p>Autocorrelation could be caused by specification bias due to excluded variables or incorrect functional forms. For example, assume that the correct equation is</p>
 <p><span class="math display">\[q_{beef}=\beta_0+\beta_1 \cdot p_{beef}+\beta_2 \cdot p_{income} + \beta_3 \cdot p_{pork}+\epsilon_t\]</span>
 The estimated equation is:
 <span class="math display">\[q_{beef}=\beta_0+\beta_1 \cdot p_{beef}+\beta_2 \cdot p_{income}+\upsilon_t\]</span></p>
-This results in a systematic patters of <span class="math inline">\(\upsilon_t\)</span>:
+<p>The error terms in both equations are denoted <span class="math inline">\(\epsilon_t\)</span> and <span class="math inline">\(\upsilon_t\)</span>, respectively. This results in a systematic patters of <span class="math inline">\(\upsilon_t\)</span>:
 <span class="math display">\[\upsilon_t= \beta_3 \cdot p_{pork}+\epsilon_t\]</span>
-Incorrect functional form
-
-<p>Cobweb phenomenon
-<span class="math display">\[\begin{equation*}
-            supply_t = \beta_0 + \beta_1 \cdot p_{t-1}
-        \end{equation*}\]</span>
-Lags
-<span class="math display">\[\begin{equation*}
-            consumption_t = \beta_0 + \beta_1 \cdot income_t+\beta_3 \cdot consumption_{t-1}+\epsilon_t
-        \end{equation*}\]</span></p>
-<p>First-order Autoregressive Scheme
-Consider the model:
-<span class="math display">\[y_t=\beta_0+\beta_1 x_t + \upsilon_t\]</span></p>
-<p>Assume the following form of <span class="math inline">\(\upsilon\)</span>:
-<span class="math display">\[\upsilon_t = \rho \upsilon_{t-1} + \epsilon_t\]</span></p>
-<pre><code>This is called a first-order autoregressive AR(1) scheme. An AR(2) would be written as
-    \begin{equation*}
-        \upsilon_t = \rho_1 \upsilon_{t-1} + \rho_2 \upsilon_{t-2} + \epsilon_t
-    \end{equation*}</code></pre>
-<p>This can be illustrated with simulated data. Consider the following model:
-<span class="math display">\[y_t=1+0.8 \cdot x_t + \upsilon_t\]</span>
+Correlation between the error terms can also be caused by specifying an incorrect functional form. Assume that the correct equation is written as follows:
+<span class="math display">\[y_i = \beta_0 +\beta_1 \cdot x_i +\beta_2 \cdot x_i^2 +\epsilon_i\]</span>
+But the estimated equation is
+<span class="math display">\[y_i = \beta_0 +\beta_1 x_i +\epsilon_i\]</span>
+Serial correlation is caused by lagged terms in the regression equation:
+<span class="math display">\[consumption_t = \beta_0 + \beta_1 \cdot income_t+\beta_3 \cdot consumption_{t-1}+\epsilon_t\]</span>
+The issues of lagged terms will be covered in the part on dynamic regression and time series and this section serves only as an introduction to first-order autoregressive schemes. Consider the model:
+<span class="math display">\[y_t=\beta_0+\beta_1 \cdot x_t + \upsilon_t\]</span>
 Assume the following form of <span class="math inline">\(\upsilon\)</span>:
+<span class="math display">\[\upsilon_t = \rho \cdot  \upsilon_{t-1} + \epsilon_t\]</span>
+his is called a first-order autoregressive AR(1) scheme. An AR(2) would be written as
+<span class="math display">\[\upsilon_t = \rho_1 \cdot \upsilon_{t-1} + \rho_2 \cdot \upsilon_{t-2} + \epsilon_t\]</span>
+This can be illustrated with simulated data. Consider the following model:
+<span class="math display">\[y_t=1+0.8 \cdot x_t + \upsilon_t\]</span>
+and assume the following form of <span class="math inline">\(\upsilon\)</span>:
 <span class="math display">\[\upsilon_t = 0.7 \cdot \upsilon_{t-1} + \epsilon_t\]</span>
-Procedure</p>
-<ol style="list-style-type: decimal">
-<li>Simulate the above model 100 times</li>
-<li>Compare variance of coefficients under different two different methods: (1) OLS and (2) Cochrane-Orcutt</li>
-</ol>
+1. Simulate the above model 100 times
+2. Compare variance of coefficients under different two different methods: (1) OLS and (2) Cochrane-Orcutt</p>
 <div id="durbin-watson-d-test" class="section level3">
 <h3><span class="header-section-number">6.4.1</span> Durbin Watson d-Test</h3>
 <p>The test statistic of the Durbin-Watson test is written as:
-<span class="math display">\[d=\frac{\sum_{t=2}^N (e_t-e_{t-1})^2}{\sum_{t=1}^N e_t^2}\]</span>
-Assumptions underlying the test are</p>
+<span class="math display">\[d=\frac{\sum_{t=2}^N (e_t-e_{t-1})^2}{\sum_{t=1}^N e_t^2}\]</span></p>
+<p>Assumptions underlying the test are</p>
 <ul>
 <li>No intercept</li>
 <li>AR(1) process, i.e., <span class="math inline">\(\upsilon_t = \rho \upsilon_{t-1} + \epsilon_t\)</span></li>
@@ -268,9 +262,9 @@ The null hypothesis for the test is expressed as follows:</p>
 <li><span class="math inline">\(H_0\)</span>: <span class="math inline">\(\rho_1 = \rho_2 = \dots = \rho_p =0\)</span></li>
 </ul>
 <p>When the following regression is executed:</p>
-<p><span class="math display">\[\hat{\upsilon}_t = \alpha_0 + \alpha_1 x_t + \hat{\rho}_1 \hat{\upsilon}_{t-1} + \hat{\rho}_2 \hat{\upsilon}_{t-2} + \dots + \hat{\rho}_p \hat{\upsilon}_{t-p} + \epsilon_t\]</span>
+<p><span class="math display">\[\hat{\upsilon}_t = \alpha_0 + \alpha_1 \cdot x_t + \hat{\rho}_1 \cdot \hat{\upsilon}_{t-1} + \hat{\rho}_2 \cdot \hat{\upsilon}_{t-2} + \dots + \hat{\rho}_p \cdot \hat{\upsilon}_{t-p} + \epsilon_t\]</span>
 Then
-<span class="math display">\[(n-p)R^2 \sim \chi^2_p\]</span></p>
+<span class="math display">\[(n-p) \cdot R^2 \sim \chi^2_p\]</span></p>
 
 </div>
 </div>

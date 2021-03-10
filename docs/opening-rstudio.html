@@ -24,7 +24,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2021-03-09" />
+<meta name="date" content="2021-03-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -172,8 +172,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.5" data-path="exercises-1.html"><a href="exercises-1.html"><i class="fa fa-check"></i><b>6.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="binary-choice.html"><a href="binary-choice.html"><i class="fa fa-check"></i><b>7</b> Binary Choice</a><ul>
-<li class="chapter" data-level="7.1" data-path="stuff.html"><a href="stuff.html"><i class="fa fa-check"></i><b>7.1</b> Stuff</a></li>
-<li class="chapter" data-level="7.2" data-path="including-plots.html"><a href="including-plots.html"><i class="fa fa-check"></i><b>7.2</b> Including Plots</a></li>
+<li class="chapter" data-level="7.1" data-path="binary-choice-estimation-in-r.html"><a href="binary-choice-estimation-in-r.html"><i class="fa fa-check"></i><b>7.1</b> Binary Choice Estimation in R</a></li>
+<li class="chapter" data-level="7.2" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html"><i class="fa fa-check"></i><b>7.2</b> Additional Examples and Probit Model</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html#full-time-work"><i class="fa fa-check"></i><b>7.2.1</b> Full-Time Work</a></li>
+<li class="chapter" data-level="7.2.2" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html#voting-behavior"><i class="fa fa-check"></i><b>7.2.2</b> Voting Behavior</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="exercises-2.html"><a href="exercises-2.html"><i class="fa fa-check"></i><b>7.3</b> Exercises</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -221,9 +225,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>To use a package, you have to activate it by either checking the box in the window “Packages” or by including <code>library(packagename)</code>. Those packages are updated on a regular basis by users.</p>
 <p>The <code>\#</code> allows you to include comments in your script file that are not read by R. It is good practice to start any new script with clearing the memory using the command <code>rm(list=ls())</code>. Use the command <code>get()</code> to determine the current working directory or set the new working directory with the command <code>setwd()</code>, e.g., <code>setwd("E:/")</code>. For file paths, replace <span class="math inline">\(\backslash\)</span> with <span class="math inline">\(/\)</span>. Next, you want to load all libraries necessary for your entire script file with the command <code>library()</code>. It is also good practice to save your R-script on a regular basis. The frontmatter, i.e., the top of a R-script file, could look as follows</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="opening-rstudio.html#cb3-1"></a><span class="kw">rm</span>(<span class="dt">list=</span><span class="kw">ls</span>())</span>
-<span id="cb3-2"><a href="opening-rstudio.html#cb3-2"></a><span class="kw">load</span>(<span class="st">&quot;DataAnalysisPAData.RData&quot;</span>)</span>
-<span id="cb3-3"><a href="opening-rstudio.html#cb3-3"></a><span class="kw">library</span>(openxlsx)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="opening-rstudio.html#cb1-1"></a><span class="kw">rm</span>(<span class="dt">list=</span><span class="kw">ls</span>())</span>
+<span id="cb1-2"><a href="opening-rstudio.html#cb1-2"></a><span class="kw">load</span>(<span class="st">&quot;DataAnalysisPAData.RData&quot;</span>)</span>
+<span id="cb1-3"><a href="opening-rstudio.html#cb1-3"></a><span class="kw">library</span>(openxlsx)</span></code></pre></div>
 <div id="in-class-exercise-1" class="section level3">
 <h3><span class="header-section-number">3.2.1</span> In-class Exercise 1</h3>
 <p>Create a R-script file with the following components:</p>

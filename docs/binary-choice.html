@@ -24,7 +24,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2021-03-09" />
+<meta name="date" content="2021-03-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="exercises-1.html"/>
-<link rel="next" href="stuff.html"/>
+<link rel="next" href="binary-choice-estimation-in-r.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -172,8 +172,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.5" data-path="exercises-1.html"><a href="exercises-1.html"><i class="fa fa-check"></i><b>6.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="binary-choice.html"><a href="binary-choice.html"><i class="fa fa-check"></i><b>7</b> Binary Choice</a><ul>
-<li class="chapter" data-level="7.1" data-path="stuff.html"><a href="stuff.html"><i class="fa fa-check"></i><b>7.1</b> Stuff</a></li>
-<li class="chapter" data-level="7.2" data-path="including-plots.html"><a href="including-plots.html"><i class="fa fa-check"></i><b>7.2</b> Including Plots</a></li>
+<li class="chapter" data-level="7.1" data-path="binary-choice-estimation-in-r.html"><a href="binary-choice-estimation-in-r.html"><i class="fa fa-check"></i><b>7.1</b> Binary Choice Estimation in R</a></li>
+<li class="chapter" data-level="7.2" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html"><i class="fa fa-check"></i><b>7.2</b> Additional Examples and Probit Model</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html#full-time-work"><i class="fa fa-check"></i><b>7.2.1</b> Full-Time Work</a></li>
+<li class="chapter" data-level="7.2.2" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html#voting-behavior"><i class="fa fa-check"></i><b>7.2.2</b> Voting Behavior</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="exercises-2.html"><a href="exercises-2.html"><i class="fa fa-check"></i><b>7.3</b> Exercises</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -196,49 +200,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="binary-choice" class="section level1">
 <h1><span class="header-section-number">7</span> Binary Choice</h1>
-<p>Binary choice models (<span class="math inline">\(y\)</span> takes two values: 0 or 1)</p>
+<p>Binary choice models are part of a large class of so-called qualitative choice models which are used for qualitative dependent variables. Consider the following outcomes of interest:</p>
 <ul>
+<li>Is a person in the labor force?</li>
+<li>Will an individual vote yes on a particular issue?</li>
+<li>Did a person watch the last Super Bowl?</li>
+<li>Have you purchased a new car in the past year</li>
+<li>Did you do any charitable contributions in the past year?</li>
 <li>Did you vote during the last election?</li>
 <li>Does an individual recidivate after being released from prison?</li>
-<li>Participation in the labor market</li>
-<li>Purchasing a home</li>
-<li>Model: <span class="math inline">\(Pr(y=1|x)\)</span></li>
 </ul>
-<p>Categorical dependent variable but naturally ordered</p>
+<p>For those questions, the dependent variable is either 0 (“no”) or 1 (“yes”). For binary choice models, the outcome is interpreted as a probability, i.e., what is the probability of a person to answer “yes” to those questions.</p>
+<p>In the next chapter, the model is expanded to consider more than binary outcomes. Those models include categorical dependent variable that are either naturally ordered or have no ordering. Examples of naturally ordered categorical variables are:</p>
 <ul>
-<li>What is your level of happiness? E.g., very happy, happy, ok, sad.</li>
+<li>Level of happiness: Very happy, happy, ok, or sad.</li>
+<li>Intention to get a COIVID-19 vaccine: Definitely yes, probably yes, probably no, or definitely no</li>
 </ul>
-<p>Categorical dependent variable but no ordering</p>
+<p>Two examples about categorical dependent variable which have no ordering are:</p>
 <ul>
-<li>How do you commute to campus?</li>
-<li>Did you vote for the democratic, republican, or independent candidate during the last election?</li>
+<li>Commute to campus: Bike, car, walk, or bus</li>
+<li>Voter registration: Democrat, Republican, or independent</li>
 </ul>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="binary-choice.html#cb24-1"></a>bhat_logit =<span class="st"> </span><span class="kw">glm</span>(buying<span class="op">~</span>income,<span class="dt">family=</span><span class="kw">binomial</span>(<span class="dt">link=</span><span class="st">&quot;logit&quot;</span>),<span class="dt">data=</span>organic)</span>
-<span id="cb24-2"><a href="binary-choice.html#cb24-2"></a><span class="kw">summary</span>(bhat_logit)</span></code></pre></div>
-<pre><code>## 
-## Call:
-## glm(formula = buying ~ income, family = binomial(link = &quot;logit&quot;), 
-##     data = organic)
-## 
-## Deviance Residuals: 
-##     Min       1Q   Median       3Q      Max  
-## -1.8451  -0.5293  -0.1423   0.4093   1.9154  
-## 
-## Coefficients:
-##             Estimate Std. Error z value Pr(&gt;|z|)    
-## (Intercept) -5.87557    1.13842  -5.161 2.45e-07 ***
-## income       0.11709    0.02247   5.211 1.87e-07 ***
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## (Dispersion parameter for binomial family taken to be 1)
-## 
-##     Null deviance: 138.469  on 99  degrees of freedom
-## Residual deviance:  70.931  on 98  degrees of freedom
-## AIC: 74.931
-## 
-## Number of Fisher Scoring iterations: 6</code></pre>
-<p>This is a test.</p>
+<p>For all those models, the outcome of interest is the probability to fall into a particular category. For binary choice models which are considered in this chapter, the outcome of interest is the probability to fall into the 1 (“yes”) category. For binary choice models, <em>y</em> takes one of two values: 0 or 1. And the model will specify <span class="math inline">\(Pr(y=1|x)\)</span> where <em>x</em> are the independent variables.</p>
+<p>Consider the decision to purchase organic food. Assume that you have data about the income of respondents as well as information if they purchase organic food. The purchase decision (“yes” or “no”) is on the vertical axis and the income is on the horizontal axis.</p>
+<p><img src="bookdownproj_files/figure-html/bcm_comparison-1.png" width="672" /></p>
+<p>Remember that the probability has be bounded between 0 and 1. Hence, we need to find a function <span class="math inline">\(G(z)\)</span> such that <span class="math inline">\(0 \leq G(z) \leq 1\)</span> for all values of <span class="math inline">\(z\)</span> and <span class="math inline">\(P(y=1|x)=G(z)\)</span>. Popular choices for <span class="math inline">\(G(z)\)</span> are the cumulative normal distribution function (“Probit Model”) and the logistic function (“Logit Model”). For what follows, let <span class="math inline">\(z=\beta_0+\beta_1 \cdot x_1 + \cdots + \beta_k \cdot x_k\)</span>. For the probit model, <span class="math inline">\(G(z)\)</span> is written as
+<span class="math display">\[Pr(y = 1) = G(z)=\Phi(z)\]</span>
+where <span class="math inline">\(\Phi\)</span> represents the cumulative normal. And for the logit model, <span class="math inline">\(G(z)\)</span> is written as
+<span class="math display">\[Pr(y = 1) = G(z)=\frac{e^z}{1+e^z}=\frac{1}{1+e^{-z}}\]</span>
+The interpretation of the logit and probit estimates is not as straightforward as in the multivariate regression case. In general, we care about the effect of <span class="math inline">\(x\)</span> on <span class="math inline">\(P(y=1|x)\)</span>. The sign of the coefficient shows the direction of the change in probability. The approximation to the marginal effect if <span class="math inline">\(x\)</span> is roughly continuous:
+<span class="math display">\[\Delta P(y=1|x) \approx g(\hat{\beta}_0 + x \cdot \hat{\beta}) \cdot \beta_j \cdot \Delta x_j\]</span>
+To obtain the marginal effects in R, an additional step is necessary. Let us illustrate the binary choice model using the data set <code>organic</code> and a logit model. The results of interest for the binary choice model are the (1) coefficient estimates, (2) marginal effects, and (3) predicted probabilities.</p>
 </div>
             </section>
 
@@ -246,7 +238,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="exercises-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="stuff.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="binary-choice-estimation-in-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

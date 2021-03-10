@@ -158,66 +158,44 @@ The correlation of error terms is called autocorrelation. The issue usually aris
 - Pooled data (multiple observations at different time points) 
 - Panel data (same observations at different time points)
 
-There is a distinction between serial correlation and autocorrelation
+There is a distinction between serial correlation and autocorrelation:
 
 - Serial correlation: Correlation between two series
 - Autocorrelation: Correlation with lagged variables
 
-The  OLS estimator is still unbiased but there is no longer minimum variance since $E(\epsilon_i \epsilon_j) \neq 0$. Unlikely autocorrelation for cross-sectional data except in the case of spatial auto-correlation. One cause of autocorrelation could be inertia in economic variables. For example, variables such as income, production, or employment increase after a recession. But there are a number of other reasons for autocorrelation. 
+The  OLS estimator is still unbiased but there is no longer minimum variance since $E(\epsilon_i \epsilon_j) \neq 0$. Autocorrelation is unlikely for cross-sectional data except in the case of spatial auto-correlation. One cause of autocorrelation could be inertia in economic variables. For example, variables such as income, production, or employment increase after a recession. But there are a number of other reasons for autocorrelation. 
 
-Autocorrelation could be due to specification bias due to excluded variables or incorrect functional forms. In the case of excluded variables, assume that the correct equation is 
+Autocorrelation could be caused by specification bias due to excluded variables or incorrect functional forms. For example, assume that the correct equation is 
 
 $$q_{beef}=\beta_0+\beta_1 \cdot p_{beef}+\beta_2 \cdot p_{income} + \beta_3 \cdot p_{pork}+\epsilon_t$$
 The estimated equation is:
 $$q_{beef}=\beta_0+\beta_1 \cdot p_{beef}+\beta_2 \cdot p_{income}+\upsilon_t$$
 
-This results in a systematic patters of $\upsilon_t$:
+The error terms in both equations are denoted $\epsilon_t$ and $\upsilon_t$, respectively. This results in a systematic patters of $\upsilon_t$:
 $$\upsilon_t= \beta_3 \cdot p_{pork}+\epsilon_t$$
-Incorrect functional form
-        \begin{itemize}
-            \item Correct equation
-                \begin{equation*}
-                    y_i = \beta_0 +\beta_1 x_i +\beta_2 x_i^2 +\epsilon_i
-                \end{equation*}
-            \item Estimated equation
-                \begin{equation*}
-                    y_i = \beta_0 +\beta_1 x_i +\epsilon_i
-                \end{equation*}
-        \end{itemize}
-    Cobweb phenomenon
-        \begin{equation*}
-            supply_t = \beta_0 + \beta_1 \cdot p_{t-1}
-        \end{equation*}
-    Lags
-        \begin{equation*}
-            consumption_t = \beta_0 + \beta_1 \cdot income_t+\beta_3 \cdot consumption_{t-1}+\epsilon_t
-        \end{equation*} 
-        
-First-order Autoregressive Scheme
-    Consider the model:
-    $$y_t=\beta_0+\beta_1 x_t + \upsilon_t$$
-
+Correlation between the error terms can also be caused by specifying an incorrect functional form. Assume that the correct equation is written as follows:
+$$y_i = \beta_0 +\beta_1 \cdot x_i +\beta_2 \cdot x_i^2 +\epsilon_i$$
+But the estimated equation is
+$$y_i = \beta_0 +\beta_1 x_i +\epsilon_i$$
+Serial correlation is caused by lagged terms in the regression equation:
+$$consumption_t = \beta_0 + \beta_1 \cdot income_t+\beta_3 \cdot consumption_{t-1}+\epsilon_t$$
+The issues of lagged terms will be covered in the part on dynamic regression and time series and this section serves only as an introduction to first-order autoregressive schemes. Consider the model:
+$$y_t=\beta_0+\beta_1 \cdot x_t + \upsilon_t$$
 Assume the following form of $\upsilon$:
-        $$\upsilon_t = \rho \upsilon_{t-1} + \epsilon_t$$
-
-    This is called a first-order autoregressive AR(1) scheme. An AR(2) would be written as
-        \begin{equation*}
-            \upsilon_t = \rho_1 \upsilon_{t-1} + \rho_2 \upsilon_{t-2} + \epsilon_t
-        \end{equation*}
-
+$$\upsilon_t = \rho \cdot  \upsilon_{t-1} + \epsilon_t$$
+his is called a first-order autoregressive AR(1) scheme. An AR(2) would be written as
+$$\upsilon_t = \rho_1 \cdot \upsilon_{t-1} + \rho_2 \cdot \upsilon_{t-2} + \epsilon_t$$
 This can be illustrated with simulated data. Consider the following model:
-    $$y_t=1+0.8 \cdot x_t + \upsilon_t$$
-Assume the following form of $\upsilon$:
-    $$\upsilon_t = 0.7 \cdot \upsilon_{t-1} + \epsilon_t$$
-Procedure
-
+$$y_t=1+0.8 \cdot x_t + \upsilon_t$$
+and assume the following form of $\upsilon$:
+$$\upsilon_t = 0.7 \cdot \upsilon_{t-1} + \epsilon_t$$
 1. Simulate the above model 100 times
 2. Compare variance of coefficients under different two different methods: (1) OLS and (2) Cochrane-Orcutt
 
-
 ### Durbin Watson d-Test
 The test statistic of the Durbin-Watson test is written as:
-    $$d=\frac{\sum_{t=2}^N (e_t-e_{t-1})^2}{\sum_{t=1}^N e_t^2}$$
+$$d=\frac{\sum_{t=2}^N (e_t-e_{t-1})^2}{\sum_{t=1}^N e_t^2}$$
+
 Assumptions underlying the test are
 
 - No intercept
@@ -239,9 +217,9 @@ The null hypothesis for the test is expressed as follows:
 
 When the following regression is executed:
 
-$$\hat{\upsilon}_t = \alpha_0 + \alpha_1 x_t + \hat{\rho}_1 \hat{\upsilon}_{t-1} + \hat{\rho}_2 \hat{\upsilon}_{t-2} + \dots + \hat{\rho}_p \hat{\upsilon}_{t-p} + \epsilon_t$$
+$$\hat{\upsilon}_t = \alpha_0 + \alpha_1 \cdot x_t + \hat{\rho}_1 \cdot \hat{\upsilon}_{t-1} + \hat{\rho}_2 \cdot \hat{\upsilon}_{t-2} + \dots + \hat{\rho}_p \cdot \hat{\upsilon}_{t-p} + \epsilon_t$$
 Then
-$$(n-p)R^2 \sim \chi^2_p$$
+$$(n-p) \cdot R^2 \sim \chi^2_p$$
 
 \begin{frame}{Wages and Productivity in the United States 1959-1998}
     Consider the data in \emph{business.csv} and do the following:
@@ -253,8 +231,6 @@ $$(n-p)R^2 \sim \chi^2_p$$
             \item Run the regression by (1) including a trend variable and (2) a squared term but no trend.
         \end{enumerate}
 \end{frame}
-
-
 
 ## Exercises
 
