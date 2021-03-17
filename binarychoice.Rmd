@@ -79,7 +79,13 @@ predict(bhat_glm_logit,newdata=datablock,type="response")
 ```
 
 ## Additional Examples and Probit Model
-Here are two additional examples on working full-time and voting behavior. Both examples use the `gss2018` data. Note that the previous chapter have introduced the logit model. To estimate a Probit model, the term "logit" has to be replaced with "probit." The results are almost identical. 
+Here are two additional examples on working full-time and voting behavior. Both examples use the `gss2018` data. Note that the previous chapter have introduced the logit model. To estimate a Probit model, the term "logit" has to be replaced with "probit." The results are almost identical. The variables are defined as follows:
+
+- $fulltime$: Does the respondent work full time.
+- $government$: Does the respondent work for the government
+- $education$: Less than high school (0), high school (1), associate/junior college (2), bachelor (3), and graduate (4)
+- $vote$: Voted in the 2016 election
+- $married$, $age$, $childs$, and $income$ are self-explanatory. Income is for 2016.
 
 ### Full-Time Work
 

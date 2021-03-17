@@ -1,1 +1,11 @@
-# Topics Overview
+# Introduction
+
+```{r loading_packages,echo=FALSE,results=FALSE}
+library(mlogit)
+library(erer)
+library(MASS)
+library(AER)
+library(glmmML)
+library(nnet)
+```
+

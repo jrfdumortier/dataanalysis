@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>8.2 Multinomial Logit and Multinomial Probit Models | Data Analysis for Public Affairs with R</title>
+  <meta name="description" content="8.2 Multinomial Logit and Multinomial Probit Models | Data Analysis for Public Affairs with R" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="8.2 Multinomial Logit and Multinomial Probit Models | Data Analysis for Public Affairs with R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="8.2 Multinomial Logit and Multinomial Probit Models | Data Analysis for Public Affairs with R" />
+  
+  
+  
+
+<meta name="author" content="Jerome Dumortier" />
+
+
+<meta name="date" content="2021-03-17" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="ordered-logit-model.html"/>
+<link rel="next" href="limited-dependent-variable-models.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Data Analysis</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Preface</a></li>
+<li class="chapter" data-level="2" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>2</b> Introduction</a></li>
+<li class="chapter" data-level="3" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>3</b> Introduction to R</a><ul>
+<li class="chapter" data-level="3.1" data-path="online-resources-and-help.html"><a href="online-resources-and-help.html"><i class="fa fa-check"></i><b>3.1</b> Online Resources and Help</a></li>
+<li class="chapter" data-level="3.2" data-path="opening-rstudio.html"><a href="opening-rstudio.html"><i class="fa fa-check"></i><b>3.2</b> Opening RStudio</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="opening-rstudio.html"><a href="opening-rstudio.html#in-class-exercise-1"><i class="fa fa-check"></i><b>3.2.1</b> In-class Exercise 1</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>3.3</b> Functions</a></li>
+<li class="chapter" data-level="3.4" data-path="data-management.html"><a href="data-management.html"><i class="fa fa-check"></i><b>3.4</b> Data Management</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="data-management.html"><a href="data-management.html#data-in-r"><i class="fa fa-check"></i><b>3.4.1</b> Data in R</a></li>
+<li class="chapter" data-level="3.4.2" data-path="data-management.html"><a href="data-management.html#using-r-as-a-calculator"><i class="fa fa-check"></i><b>3.4.2</b> Using R as a Calculator</a></li>
+<li class="chapter" data-level="3.4.3" data-path="data-management.html"><a href="data-management.html#creating-a-data-frame-from-scratch"><i class="fa fa-check"></i><b>3.4.3</b> Creating a Data Frame from Scratch</a></li>
+<li class="chapter" data-level="3.4.4" data-path="data-management.html"><a href="data-management.html#in-class-exercise-2"><i class="fa fa-check"></i><b>3.4.4</b> In-class Exercise 2</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="basic-multivariate-regression.html"><a href="basic-multivariate-regression.html"><i class="fa fa-check"></i><b>4</b> Basic Multivariate Regression</a><ul>
+<li class="chapter" data-level="4.1" data-path="dummy-variables.html"><a href="dummy-variables.html"><i class="fa fa-check"></i><b>4.1</b> Dummy Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="anova.html"><a href="anova.html"><i class="fa fa-check"></i><b>5</b> ANOVA</a><ul>
+<li class="chapter" data-level="5.1" data-path="exercises.html"><a href="exercises.html"><i class="fa fa-check"></i><b>5.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="violating-assumptions.html"><a href="violating-assumptions.html"><i class="fa fa-check"></i><b>6</b> Violating Assumptions</a><ul>
+<li class="chapter" data-level="6.1" data-path="heteroscedasticity.html"><a href="heteroscedasticity.html"><i class="fa fa-check"></i><b>6.1</b> Heteroscedasticity</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="heteroscedasticity.html"><a href="heteroscedasticity.html#detecting-heteroscedasticity"><i class="fa fa-check"></i><b>6.1.1</b> Detecting Heteroscedasticity</a></li>
+<li class="chapter" data-level="6.1.2" data-path="heteroscedasticity.html"><a href="heteroscedasticity.html#correcting-heteroscedasticity"><i class="fa fa-check"></i><b>6.1.2</b> Correcting Heteroscedasticity</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="multicollinearity.html"><a href="multicollinearity.html"><i class="fa fa-check"></i><b>6.2</b> Multicollinearity</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="multicollinearity.html"><a href="multicollinearity.html#variance-inflated-factors-vif"><i class="fa fa-check"></i><b>6.2.1</b> Variance Inflated Factors (VIF)</a></li>
+<li class="chapter" data-level="6.2.2" data-path="multicollinearity.html"><a href="multicollinearity.html#examples"><i class="fa fa-check"></i><b>6.2.2</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="other-issues-and-problems-with-data.html"><a href="other-issues-and-problems-with-data.html"><i class="fa fa-check"></i><b>6.3</b> Other Issues and Problems with Data</a></li>
+<li class="chapter" data-level="6.4" data-path="autocorrelation.html"><a href="autocorrelation.html"><i class="fa fa-check"></i><b>6.4</b> Autocorrelation</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="autocorrelation.html"><a href="autocorrelation.html#durbin-watson-d-test"><i class="fa fa-check"></i><b>6.4.1</b> Durbin Watson d-Test</a></li>
+<li class="chapter" data-level="6.4.2" data-path="autocorrelation.html"><a href="autocorrelation.html#breusch-godfrey-test"><i class="fa fa-check"></i><b>6.4.2</b> Breusch-Godfrey Test</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="exercises-1.html"><a href="exercises-1.html"><i class="fa fa-check"></i><b>6.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="binary-choice.html"><a href="binary-choice.html"><i class="fa fa-check"></i><b>7</b> Binary Choice</a><ul>
+<li class="chapter" data-level="7.1" data-path="binary-choice-estimation-in-r.html"><a href="binary-choice-estimation-in-r.html"><i class="fa fa-check"></i><b>7.1</b> Binary Choice Estimation in R</a></li>
+<li class="chapter" data-level="7.2" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html"><i class="fa fa-check"></i><b>7.2</b> Additional Examples and Probit Model</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html#full-time-work"><i class="fa fa-check"></i><b>7.2.1</b> Full-Time Work</a></li>
+<li class="chapter" data-level="7.2.2" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html#voting-behavior"><i class="fa fa-check"></i><b>7.2.2</b> Voting Behavior</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="exercises-2.html"><a href="exercises-2.html"><i class="fa fa-check"></i><b>7.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="qualitative-choice-models.html"><a href="qualitative-choice-models.html"><i class="fa fa-check"></i><b>8</b> Qualitative Choice Models</a><ul>
+<li class="chapter" data-level="8.1" data-path="ordered-logit-model.html"><a href="ordered-logit-model.html"><i class="fa fa-check"></i><b>8.1</b> Ordered Logit Model</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="ordered-logit-model.html"><a href="ordered-logit-model.html#theoretical-aspects"><i class="fa fa-check"></i><b>8.1.1</b> Theoretical Aspects</a></li>
+<li class="chapter" data-level="8.1.2" data-path="ordered-logit-model.html"><a href="ordered-logit-model.html#ordered-logit-example-organic-food-purchase"><i class="fa fa-check"></i><b>8.1.2</b> Ordered Logit Example: Organic Food Purchase</a></li>
+<li class="chapter" data-level="8.1.3" data-path="ordered-logit-model.html"><a href="ordered-logit-model.html#predicted-probability-and-marginal-effects"><i class="fa fa-check"></i><b>8.1.3</b> Predicted Probability and Marginal Effects</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html"><i class="fa fa-check"></i><b>8.2</b> Multinomial Logit and Multinomial Probit Models</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#theoretical-aspects-1"><i class="fa fa-check"></i><b>8.2.1</b> Theoretical Aspects</a></li>
+<li class="chapter" data-level="8.2.2" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#data-managment"><i class="fa fa-check"></i><b>8.2.2</b> Data Managment</a></li>
+<li class="chapter" data-level="8.2.3" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#fishing-data"><i class="fa fa-check"></i><b>8.2.3</b> Fishing Data</a></li>
+<li class="chapter" data-level="8.2.4" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#travel-data"><i class="fa fa-check"></i><b>8.2.4</b> Travel Data</a></li>
+<li class="chapter" data-level="8.2.5" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#electric-vehicle-data"><i class="fa fa-check"></i><b>8.2.5</b> Electric Vehicle Data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="limited-dependent-variable-models.html"><a href="limited-dependent-variable-models.html"><i class="fa fa-check"></i><b>9</b> Limited Dependent Variable Models</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Analysis for Public Affairs with R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="multinomial-logit-and-multinomial-probit-models" class="section level2">
+<h2><span class="header-section-number">8.2</span> Multinomial Logit and Multinomial Probit Models</h2>
+<p>Revealed preferences:</p>
+<ul>
+<li>Observed choices of individuals</li>
+</ul>
+<p>Stated preference</p>
+<ul>
+<li>Hypothetical choice situations</li>
+</ul>
+<p>Economists’ modeling of choice</p>
+<ul>
+<li>Utility/happiness/satisfaction associated with multiple choice situations</li>
+</ul>
+<div id="theoretical-aspects-1" class="section level3">
+<h3><span class="header-section-number">8.2.1</span> Theoretical Aspects</h3>
+<p>Travel choice model dependent on cost (<span class="math inline">\(x\)</span>) and time (<span class="math inline">\(z\)</span>):
+<span class="math display">\[V_j = \alpha_j + \beta_1 \cdot x_j + \beta_2 \cdot z_j\]</span>
+Probability of choosing alternative <span class="math inline">\(j\)</span> (assuming three choices)
+<span class="math display">\[\begin{align*}
+    P(1) &amp;= \frac{e^{V_1}}{e^{V_1}+e^{V_2}+e^{V_3}}\\
+    P(2) &amp;= \frac{e^{V_2}}{e^{V_1}+e^{V_2}+e^{V_3}}\\
+    P(3) &amp;= \frac{e^{V_3}}{e^{V_1}+e^{V_2}+e^{V_3}}
+\end{align*}\]</span>
+Note that <span class="math inline">\(P(1)+P(2)+P(3) = 1\)</span></p>
+</div>
+<div id="data-managment" class="section level3">
+<h3><span class="header-section-number">8.2.2</span> Data Managment</h3>
+<p>Long shape</p>
+<ul>
+<li>One row for each alternative</li>
+</ul>
+<p>Wide shape</p>
+<ul>
+<li>One row for each choice situation</li>
+</ul>
+<p>There are some very good resources on data management and the package in general:</p>
+<ul>
+<li><a href="http://dx.doi.org/10.18637/jss.v095.i11">Estimation of Random Utility Models in R: The mlogit Package</a></li>
+</ul>
+<p>Fishing (wide format)</p>
+<ul>
+<li>Fishing modes: beach, pier, private, and charter</li>
+<li>Alternative-specific variables: price and catch</li>
+<li>Individual-specific variables: income</li>
+<li>Suitability of the ``wide’’ format to store individual-specific variables</li>
+<li>The R parameter <code>varying</code> designates alternative specific variables</li>
+</ul>
+<p>Travel Mode (long format)</p>
+<ul>
+<li><a href="https://rdrr.io/cran/AER/man/TravelMode.html">Travel Mode Choice Data</a></li>
+<li><code>mlogit.data(travelmode,choice="choice",shape="long", alt.levels=c("air","train","bus","car"))</code></li>
+</ul>
+</div>
+<div id="fishing-data" class="section level3">
+<h3><span class="header-section-number">8.2.3</span> Fishing Data</h3>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="multinomial-logit-and-multinomial-probit-models.html#cb63-1"></a><span class="kw">data</span>(<span class="st">&quot;Fishing&quot;</span>,<span class="dt">package=</span><span class="st">&quot;mlogit&quot;</span>)</span>
+<span id="cb63-2"><a href="multinomial-logit-and-multinomial-probit-models.html#cb63-2"></a>fishing             =<span class="st"> </span><span class="kw">mlogit.data</span>(Fishing,<span class="dt">shape=</span><span class="st">&quot;wide&quot;</span>,<span class="dt">varying=</span><span class="dv">2</span><span class="op">:</span><span class="dv">9</span>,<span class="dt">choice=</span><span class="st">&quot;mode&quot;</span>)</span>
+<span id="cb63-3"><a href="multinomial-logit-and-multinomial-probit-models.html#cb63-3"></a>bhat                =<span class="st"> </span><span class="kw">mlogit</span>(mode<span class="op">~</span><span class="dv">0</span><span class="op">|</span>income,fishing)</span>
+<span id="cb63-4"><a href="multinomial-logit-and-multinomial-probit-models.html#cb63-4"></a><span class="kw">summary</span>(bhat)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## mlogit(formula = mode ~ 0 | income, data = fishing, method = &quot;nr&quot;)
+## 
+## Frequencies of alternatives:choice
+##   beach    boat charter    pier 
+## 0.11337 0.35364 0.38240 0.15059 
+## 
+## nr method
+## 4 iterations, 0h:0m:0s 
+## g&#39;(-H)^-1g = 8.32E-07 
+## gradient close to zero 
+## 
+## Coefficients :
+##                        Estimate  Std. Error z-value  Pr(&gt;|z|)    
+## (Intercept):boat     7.3892e-01  1.9673e-01  3.7560 0.0001727 ***
+## (Intercept):charter  1.3413e+00  1.9452e-01  6.8955 5.367e-12 ***
+## (Intercept):pier     8.1415e-01  2.2863e-01  3.5610 0.0003695 ***
+## income:boat          9.1906e-05  4.0664e-05  2.2602 0.0238116 *  
+## income:charter      -3.1640e-05  4.1846e-05 -0.7561 0.4495908    
+## income:pier         -1.4340e-04  5.3288e-05 -2.6911 0.0071223 ** 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Log-Likelihood: -1477.2
+## McFadden R^2:  0.013736 
+## Likelihood ratio test : chisq = 41.145 (p.value = 6.0931e-09)</code></pre>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="multinomial-logit-and-multinomial-probit-models.html#cb65-1"></a>fishing.fitted      =<span class="st"> </span><span class="kw">fitted</span>(bhat,<span class="dt">outcome=</span><span class="ot">FALSE</span>)</span>
+<span id="cb65-2"><a href="multinomial-logit-and-multinomial-probit-models.html#cb65-2"></a><span class="kw">effects</span>(bhat,<span class="dt">covariate =</span><span class="st">&quot;income&quot;</span>)</span></code></pre></div>
+<pre><code>##         beach          boat       charter          pier 
+##  7.496226e-08  3.259851e-05 -1.201366e-05 -2.065981e-05</code></pre>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="multinomial-logit-and-multinomial-probit-models.html#cb67-1"></a>bhat                =<span class="st"> </span><span class="kw">mlogit</span>(mode<span class="op">~</span>catch<span class="op">+</span>price<span class="op">|</span>income,<span class="dt">data=</span>fishing)</span>
+<span id="cb67-2"><a href="multinomial-logit-and-multinomial-probit-models.html#cb67-2"></a><span class="kw">summary</span>(bhat)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## mlogit(formula = mode ~ catch + price | income, data = fishing, 
+##     method = &quot;nr&quot;)
+## 
+## Frequencies of alternatives:choice
+##   beach    boat charter    pier 
+## 0.11337 0.35364 0.38240 0.15059 
+## 
+## nr method
+## 7 iterations, 0h:0m:0s 
+## g&#39;(-H)^-1g = 1.37E-05 
+## successive function values within tolerance limits 
+## 
+## Coefficients :
+##                        Estimate  Std. Error  z-value  Pr(&gt;|z|)    
+## (Intercept):boat     5.2728e-01  2.2279e-01   2.3667 0.0179485 *  
+## (Intercept):charter  1.6944e+00  2.2405e-01   7.5624 3.952e-14 ***
+## (Intercept):pier     7.7796e-01  2.2049e-01   3.5283 0.0004183 ***
+## catch                3.5778e-01  1.0977e-01   3.2593 0.0011170 ** 
+## price               -2.5117e-02  1.7317e-03 -14.5042 &lt; 2.2e-16 ***
+## income:boat          8.9440e-05  5.0067e-05   1.7864 0.0740345 .  
+## income:charter      -3.3292e-05  5.0341e-05  -0.6613 0.5084031    
+## income:pier         -1.2758e-04  5.0640e-05  -2.5193 0.0117582 *  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Log-Likelihood: -1215.1
+## McFadden R^2:  0.18868 
+## Likelihood ratio test : chisq = 565.17 (p.value = &lt; 2.22e-16)</code></pre>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="multinomial-logit-and-multinomial-probit-models.html#cb69-1"></a>fishing.fitted      =<span class="st"> </span><span class="kw">fitted</span>(bhat,<span class="dt">outcome=</span><span class="ot">FALSE</span>)</span>
+<span id="cb69-2"><a href="multinomial-logit-and-multinomial-probit-models.html#cb69-2"></a><span class="kw">effects</span>(bhat,<span class="dt">covariate=</span><span class="st">&quot;income&quot;</span>)</span></code></pre></div>
+<pre><code>##         beach          boat       charter          pier 
+## -7.214167e-07  3.176132e-05 -2.173392e-05 -9.305980e-06</code></pre>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="multinomial-logit-and-multinomial-probit-models.html#cb71-1"></a><span class="kw">rm</span>(bhat,Fishing,fishing,fishing.fitted)</span></code></pre></div>
+</div>
+<div id="travel-data" class="section level3">
+<h3><span class="header-section-number">8.2.4</span> Travel Data</h3>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="multinomial-logit-and-multinomial-probit-models.html#cb72-1"></a><span class="kw">data</span>(<span class="st">&quot;TravelMode&quot;</span>,<span class="dt">package=</span><span class="st">&quot;AER&quot;</span>)</span>
+<span id="cb72-2"><a href="multinomial-logit-and-multinomial-probit-models.html#cb72-2"></a>travelmode     =<span class="st"> </span><span class="kw">mlogit.data</span>(TravelMode,<span class="dt">choice=</span><span class="st">&quot;choice&quot;</span>,<span class="dt">shape=</span><span class="st">&quot;long&quot;</span>,<span class="dt">alt.var=</span><span class="st">&quot;mode&quot;</span>)</span>
+<span id="cb72-3"><a href="multinomial-logit-and-multinomial-probit-models.html#cb72-3"></a>bhat           =<span class="st"> </span><span class="kw">mlogit</span>(choice<span class="op">~</span>gcost<span class="op">+</span>wait<span class="op">|</span>income<span class="op">+</span>size,<span class="dt">data=</span>travelmode,<span class="dt">reflevel=</span><span class="st">&quot;car&quot;</span>)</span>
+<span id="cb72-4"><a href="multinomial-logit-and-multinomial-probit-models.html#cb72-4"></a><span class="kw">summary</span>(bhat)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## mlogit(formula = choice ~ gcost + wait | income + size, data = travelmode, 
+##     reflevel = &quot;car&quot;, method = &quot;nr&quot;)
+## 
+## Frequencies of alternatives:choice
+##     car     air   train     bus 
+## 0.28095 0.27619 0.30000 0.14286 
+## 
+## nr method
+## 5 iterations, 0h:0m:0s 
+## g&#39;(-H)^-1g = 1.66E-07 
+## gradient close to zero 
+## 
+## Coefficients :
+##                     Estimate Std. Error z-value  Pr(&gt;|z|)    
+## (Intercept):air    7.8736084  0.9868475  7.9785 1.554e-15 ***
+## (Intercept):train  5.5592051  0.6991387  7.9515 1.776e-15 ***
+## (Intercept):bus    4.4331916  0.7783339  5.6957 1.228e-08 ***
+## gcost             -0.0196850  0.0054015 -3.6444 0.0002680 ***
+## wait              -0.1015659  0.0112306 -9.0436 &lt; 2.2e-16 ***
+## income:air         0.0040710  0.0127247  0.3199 0.7490196    
+## income:train      -0.0551849  0.0144824 -3.8105 0.0001387 ***
+## income:bus        -0.0233237  0.0162973 -1.4311 0.1523914    
+## size:air          -1.0274229  0.2656569 -3.8675 0.0001100 ***
+## size:train         0.3023954  0.2256155  1.3403 0.1801437    
+## size:bus          -0.0300096  0.3339774 -0.0899 0.9284023    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Log-Likelihood: -177.45
+## McFadden R^2:  0.37463 
+## Likelihood ratio test : chisq = 212.61 (p.value = &lt; 2.22e-16)</code></pre>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="multinomial-logit-and-multinomial-probit-models.html#cb74-1"></a>tavel.fitted =<span class="st"> </span><span class="kw">fitted</span>(bhat,<span class="dt">outcome=</span><span class="ot">FALSE</span>)</span></code></pre></div>
+</div>
+<div id="electric-vehicle-data" class="section level3">
+<h3><span class="header-section-number">8.2.5</span> Electric Vehicle Data</h3>
+<ul>
+<li><code>spendongas</code> (Gasoline expenditure per month in $): 0-74 (1), 75-149 (2), 150-249 (3), 250-349 (4), 350-449 (5), 450-599 (6), and above 600 (7)</li>
+<li><code>politics</code> (Political position): Extremely liberal (1), liberal (2), slightly liberal (3), moderate (4), slightly conservative (5), conservative (6), and extremely conservative (7)</li>
+<li><code>Education</code>: Less than HS (1), HS/GED (2), some college (3), 2-year college degree (4), 4-year college degree (5), or graduate school (6)</li>
+<li><code>Income (1,000 \$)</code>: Under 15 (1), 15 <span class="math inline">\(&lt;\)</span> 25 (2), 25 <span class="math inline">\(&lt;\)</span> 35 (3), 35 <span class="math inline">\(&lt;\)</span> 50 (4), 50 <span class="math inline">\(&lt;\)</span> 75 (5), 75 <span class="math inline">\(&lt;\)</span> 100 (6), 100 <span class="math inline">\(&lt;\)</span> 150 (7), 150 <span class="math inline">\(&lt;\)</span> 200 (8), 200 <span class="math inline">\(&lt;\)</span> 250 (9), <span class="math inline">\(&gt;\)</span> 250 (10)</li>
+</ul>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="multinomial-logit-and-multinomial-probit-models.html#cb75-1"></a>evdata =<span class="st"> </span><span class="kw">mlogit.data</span>(evdata,<span class="dt">shape=</span><span class="st">&quot;wide&quot;</span>,<span class="dt">choice=</span><span class="st">&quot;choice&quot;</span>)</span>
+<span id="cb75-2"><a href="multinomial-logit-and-multinomial-probit-models.html#cb75-2"></a>bhat =<span class="st"> </span><span class="kw">mlogit</span>(choice<span class="op">~</span><span class="dv">0</span><span class="op">|</span>age<span class="op">+</span>female<span class="op">+</span>level2<span class="op">+</span>numcars<span class="op">+</span>edu<span class="op">+</span>income<span class="op">+</span>politics,<span class="dt">data=</span>evdata)</span>
+<span id="cb75-3"><a href="multinomial-logit-and-multinomial-probit-models.html#cb75-3"></a><span class="kw">summary</span>(bhat)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## mlogit(formula = choice ~ 0 | age + female + level2 + numcars + 
+##     edu + income + politics, data = evdata, method = &quot;nr&quot;)
+## 
+## Frequencies of alternatives:choice
+##        1        2        3        4 
+## 0.419355 0.265233 0.225806 0.089606 
+## 
+## nr method
+## 5 iterations, 0h:0m:0s 
+## g&#39;(-H)^-1g = 0.000603 
+## successive function values within tolerance limits 
+## 
+## Coefficients :
+##                  Estimate  Std. Error z-value  Pr(&gt;|z|)    
+## (Intercept):2  0.11810109  0.60622429  0.1948 0.8455384    
+## (Intercept):3  0.90653782  0.63856959  1.4196 0.1557130    
+## (Intercept):4  0.34528552  0.84542368  0.4084 0.6829675    
+## age:2         -0.01298148  0.00731409 -1.7749 0.0759210 .  
+## age:3         -0.04216613  0.00867889 -4.8585 1.183e-06 ***
+## age:4         -0.02314160  0.01139425 -2.0310 0.0422561 *  
+## female:2       0.17935742  0.21591603  0.8307 0.4061537    
+## female:3      -0.02781447  0.23732560 -0.1172 0.9067019    
+## female:4       0.00019196  0.32364088  0.0006 0.9995267    
+## level2:2       0.13808856  0.25338230  0.5450 0.5857665    
+## level2:3       0.87829370  0.25462065  3.4494 0.0005618 ***
+## level2:4       1.14103750  0.33905869  3.3653 0.0007646 ***
+## numcars:2      0.08340570  0.10845229  0.7691 0.4418611    
+## numcars:3      0.02412224  0.11385000  0.2119 0.8322027    
+## numcars:4     -0.35470532  0.15922101 -2.2278 0.0258969 *  
+## edu:2          0.09033371  0.08476675  1.0657 0.2865711    
+## edu:3          0.21765011  0.09487551  2.2941 0.0217871 *  
+## edu:4         -0.00475892  0.12980749 -0.0367 0.9707550    
+## income:2      -0.01070840  0.07000961 -0.1530 0.8784328    
+## income:3      -0.04329121  0.07768626 -0.5573 0.5773519    
+## income:4      -0.01112286  0.10371253 -0.1072 0.9145930    
+## politics:2    -0.15253774  0.05211226 -2.9271 0.0034214 ** 
+## politics:3    -0.19656259  0.05687906 -3.4558 0.0005487 ***
+## politics:4    -0.07567912  0.07405617 -1.0219 0.3068211    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Log-Likelihood: -663.51
+## McFadden R^2:  0.062686 
+## Likelihood ratio test : chisq = 88.75 (p.value = 2.6494e-10)</code></pre>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="multinomial-logit-and-multinomial-probit-models.html#cb77-1"></a>evdata.fitted =<span class="st"> </span><span class="kw">fitted</span>(bhat,<span class="dt">outcome=</span><span class="ot">FALSE</span>)</span>
+<span id="cb77-2"><a href="multinomial-logit-and-multinomial-probit-models.html#cb77-2"></a><span class="kw">rm</span>(bhat,evdata,evdata.fitted)</span></code></pre></div>
+
+
+</div>
+</div>
+<!-- </div> -->
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="ordered-logit-model.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="limited-dependent-variable-models.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/jrfdumortier/dataanalysis/edit/master/qualitativechoice.rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/jrfdumortier/dataanalysis/blob/master/qualitativechoice.rmd",
+"text": null
+},
+"download": ["bookdownproj.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

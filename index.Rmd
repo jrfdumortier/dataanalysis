@@ -1,10 +1,11 @@
 --- 
-title: "Data Analysis for Public Affairs"
+title: "Data Analysis for Public Affairs with R"
 author: "Jerome Dumortier"
 date: "`r Sys.Date()`"
+output: pdf_document
 site: bookdown::bookdown_site
 ---
 
-# Introduction
+# Preface
 
-This book serves as an introduction to data analysis with R and RStudio. Most examples are drawn from public affairs and economics.  
+This book serves as an introduction to data analysis for public affairs with R and RStudio. Most examples are drawn from public affairs and economics.

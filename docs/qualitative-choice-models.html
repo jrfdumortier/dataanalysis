@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>6.2 Multicollinearity | Data Analysis for Public Affairs with R</title>
-  <meta name="description" content="6.2 Multicollinearity | Data Analysis for Public Affairs with R" />
+  <title>8 Qualitative Choice Models | Data Analysis for Public Affairs with R</title>
+  <meta name="description" content="8 Qualitative Choice Models | Data Analysis for Public Affairs with R" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="6.2 Multicollinearity | Data Analysis for Public Affairs with R" />
+  <meta property="og:title" content="8 Qualitative Choice Models | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="6.2 Multicollinearity | Data Analysis for Public Affairs with R" />
+  <meta name="twitter:title" content="8 Qualitative Choice Models | Data Analysis for Public Affairs with R" />
   
   
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="heteroscedasticity.html"/>
-<link rel="next" href="other-issues-and-problems-with-data.html"/>
+<link rel="prev" href="exercises-2.html"/>
+<link rel="next" href="ordered-logit-model.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -213,65 +213,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="multicollinearity" class="section level2">
-<h2><span class="header-section-number">6.2</span> Multicollinearity</h2>
-<p>Multicollinearity describes the situation in which two or more independent variables are linearly related. Under perfect multicollinearity:
-<span class="math display">\[\lambda_1 x_1 + \lambda_2 x_2 + \dots +\lambda_k x_k = 0\]</span>
-where <span class="math inline">\(\lambda_i\)</span> are constants that are not all zero simultaneously. For example, consider <span class="math inline">\(x_1=\{8,12,15,17\}\)</span>, <span class="math inline">\(x_2=\{24,36,45,51\}\)</span>, and <span class="math inline">\(x_3=\{2,3,3.75,4.25\}\)</span>. In this case, <span class="math inline">\(\lambda_1=1\)</span>, <span class="math inline">\(\lambda_2=-1/5\)</span>, and <span class="math inline">\(\lambda_3=2\)</span>. Note, multicollinearity refers to linear relationships! Including a squared or cubed term is not an issue of multicollinearity. It can be shown that the variance of the estimator increases in the presence of multicollinearity. There are various indications that the data suffers from multicollinearity:</p>
+<div id="qualitative-choice-models" class="section level1">
+<h1><span class="header-section-number">8</span> Qualitative Choice Models</h1>
+<p>The packages required for this section are <code>mlogit</code>, <code>erer</code>, <code>MASS</code>, <code>AER</code>, <code>glmmML</code>, and <code>nnet</code>. The files required are <code>fpdata</code> and <code>evdata</code>. Additional files that are required are part of the packages <a href="https://cran.r-project.org/web/packages/mlogit/index.html">mlogit</a> and <a href="https://cran.r-project.org/web/packages/AER/index.html">AER</a>. Those datasets are called <code>Fishing</code> and <code>TravelMode</code>. You can lode them into R with the following commands:</p>
 <ul>
-<li>High <span class="math inline">\(R^2\)</span> but few significant variables</li>
-<li>Fail to reject the hypothesis for H<span class="math inline">\(_0\)</span>: <span class="math inline">\(\beta_i=0\)</span> based on t-values but rejection all slopes being simultaneously zero based on F-test.</li>
-<li>High correlation among explanatory variables</li>
-<li>Variation of statistically significant variables between models.</li>
+<li><code>data("Fishing",package="mlogit")</code></li>
+<li><code>data("TravelMode",package="AER")</code></li>
 </ul>
-<div id="variance-inflated-factors-vif" class="section level3">
-<h3><span class="header-section-number">6.2.1</span> Variance Inflated Factors (VIF)</h3>
-<p>Identifies possible correlation among multiple independent variables and not just two as in the case of a simple correlation coefficient. Consider the model:
-<span class="math display">\[y_i = \beta_0 + \beta_k x_{ik} + \epsilon_i\]</span>
-The estimated variances of the coefficient <span class="math inline">\(\beta_k\)</span> is written as
-<span class="math display">\[Var(\beta_k)^* = \frac{\sigma^2}{\sum_{i=1}^N (x_{ik}-\bar{x}_k)^2}\]</span>
-Without any multicollinearity, this variance is minimized. If some some independent variables are correlated with the independent variable <span class="math inline">\(k\)</span>, then
-<span class="math display">\[Var(\beta_k) = \frac{\sigma^2}{\sum_{i=1}^N (x_{ik}-\bar{x}_k)^2} \cdot \frac{1}{1-R^2_k}\]</span>
-where <span class="math inline">\(R^2_k\)</span> is the <span class="math inline">\(R^2\)</span> if variable <span class="math inline">\(x_k\)</span> is taken as the dependent variable. The VIF can be written as
-<span class="math display">\[\frac{Var(\beta_k)}{Var(\beta_k)^*}=\frac{1}{1-R^2_k}\]</span>
-If <span class="math inline">\(VIF=1\)</span>, then there is no relationship between the variable <span class="math inline">\(x_k\)</span> and the remaining independent variables. Otherwise, <span class="math inline">\(VIF&gt;1\)</span>. In general, the interpretation is as follows:</p>
+<p>There is also a <a href="https://youtu.be/xLUIil1sGW4">YouTube Video</a> associated with this chapter.</p>
+<p>The last chapter has introduced binary choice models that answer questions such as:</p>
 <ul>
-<li>VIF of 4 warrants attention</li>
-<li>VIF of 10 indicates a serious problem.</li>
+<li>Did you vote during the last election?</li>
+<li>Does an individual recidivate after being released from prison?</li>
 </ul>
-</div>
-<div id="examples" class="section level3">
-<h3><span class="header-section-number">6.2.2</span> Examples</h3>
-<p>To illustrate the concept of multicollinearity, the data set from <code>nfl</code> is used (<a href="http://dx.doi.org/10.1016/j.econlet.2011.02.018">Berri et al. (2011)</a>). The first model includes total salary as the dependent variable and the following independent variables: prior season passing yards, pass attempts, experience (squared) in the league, draft round pick, veteran (more than 3 years in the league), pro bowl appearance, and facial symmetry.</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="multicollinearity.html#cb27-1"></a>bhat =<span class="st"> </span><span class="kw">lm</span>(<span class="kw">log</span>(total)<span class="op">~</span>yards<span class="op">+</span>att<span class="op">+</span>exp<span class="op">+</span>exp2<span class="op">+</span>draft1<span class="op">+</span>draft2<span class="op">+</span>veteran<span class="op">+</span>changeteam<span class="op">+</span>pbowlever<span class="op">+</span>symm,<span class="dt">data=</span>nfl)</span>
-<span id="cb27-2"><a href="multicollinearity.html#cb27-2"></a><span class="kw">summary</span>(bhat)</span></code></pre></div>
-<p>After estimating the results, the function <code>vif()</code> from the package <code>car</code> is used:</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="multicollinearity.html#cb28-1"></a><span class="kw">library</span>(car)</span>
-<span id="cb28-2"><a href="multicollinearity.html#cb28-2"></a><span class="kw">vif</span>(bhat)</span></code></pre></div>
-<pre><code>##      yards        att        exp       exp2     draft1     draft2    veteran changeteam  pbowlever       symm 
-##  32.547700  30.920282  39.889877  26.715342   1.621048   1.228091   5.253525   1.194254   1.581753   1.056661</code></pre>
-<p>The results indicate multicollinearity for <em>yards</em>, <em>att</em>, and experience. Passings yards and attempts may be correlated and thus, one of them (<em>att</em>) is dropped.</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="multicollinearity.html#cb30-1"></a>bhat =<span class="st"> </span><span class="kw">lm</span>(<span class="kw">log</span>(total)<span class="op">~</span>yards<span class="op">+</span>exp<span class="op">+</span>exp2<span class="op">+</span>draft1<span class="op">+</span>draft2<span class="op">+</span>veteran<span class="op">+</span>changeteam<span class="op">+</span>pbowlever<span class="op">+</span>symm,<span class="dt">data=</span>nfl)</span>
-<span id="cb30-2"><a href="multicollinearity.html#cb30-2"></a><span class="kw">summary</span>(bhat)</span></code></pre></div>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="multicollinearity.html#cb31-1"></a><span class="kw">vif</span>(bhat)</span></code></pre></div>
-<pre><code>##      yards        exp       exp2     draft1     draft2    veteran changeteam  pbowlever       symm 
-##   1.460849  39.339639  26.162804   1.616171   1.227479   5.253502   1.141435   1.569621   1.052906</code></pre>
-<p>This improves the estimation but experience (and its squared term) are still problematic. The last estimation removes experience and the VIF terms are now in the acceptable range.</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="multicollinearity.html#cb33-1"></a>bhat =<span class="st"> </span><span class="kw">lm</span>(<span class="kw">log</span>(total)<span class="op">~</span>yards<span class="op">+</span>draft1<span class="op">+</span>draft2<span class="op">+</span>veteran<span class="op">+</span>changeteam<span class="op">+</span>pbowlever<span class="op">+</span>symm,<span class="dt">data=</span>nfl)</span>
-<span id="cb33-2"><a href="multicollinearity.html#cb33-2"></a><span class="kw">summary</span>(bhat)</span></code></pre></div>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="multicollinearity.html#cb34-1"></a><span class="kw">vif</span>(bhat)</span></code></pre></div>
-<pre><code>##      yards     draft1     draft2    veteran changeteam  pbowlever       symm 
-##   1.406241   1.653634   1.229459   1.976506   1.101988   1.406095   1.010855</code></pre>
-<p>The important part is that the conclusion of the paper has not changed with regard to facial symmetry.</p>
-</div>
+<p>In this chapter, cases of dependent variables with more than two categories are considered. The categorical dependent variables can be with or without natural ordering. Here are some examples of natural ordering:</p>
+<ul>
+<li>Level of happiness: Very happy, happy, okay, or sad</li>
+<li>Intent to get vaccinated: Definitely yes, probably yes, probably no, definitely no</li>
+</ul>
+<p>Examples without natural ordering:</p>
+<ul>
+<li>Type of car to purchase: Passenger car, Pick-up truck, van, convertible</li>
+</ul>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="heteroscedasticity.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="other-issues-and-problems-with-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="exercises-2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="ordered-logit-model.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -302,7 +273,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/jrfdumortier/dataanalysis/edit/master/violatingassumptions.Rmd",
+"link": "https://github.com/jrfdumortier/dataanalysis/edit/master/qualitativechoice.rmd",
 "text": "Edit"
 },
 "history": {
@@ -310,7 +281,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/jrfdumortier/dataanalysis/blob/master/violatingassumptions.Rmd",
+"link": "https://github.com/jrfdumortier/dataanalysis/blob/master/qualitativechoice.rmd",
 "text": null
 },
 "download": ["bookdownproj.pdf"],

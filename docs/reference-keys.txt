@@ -1,5 +1,5 @@
+preface
 introduction
-topics-overview
 introduction-to-r
 online-resources-and-help
 opening-rstudio
@@ -32,3 +32,15 @@ additional-examples-and-probit-model
 full-time-work
 voting-behavior
 exercises-2
+qualitative-choice-models
+ordered-logit-model
+theoretical-aspects
+ordered-logit-example-organic-food-purchase
+predicted-probability-and-marginal-effects
+multinomial-logit-and-multinomial-probit-models
+theoretical-aspects-1
+data-managment
+fishing-data
+travel-data
+electric-vehicle-data
+limited-dependent-variable-models

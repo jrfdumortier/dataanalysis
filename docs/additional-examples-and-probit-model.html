@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>7.2 Additional Examples and Probit Model | Data Analysis for Public Affairs</title>
-  <meta name="description" content="7.2 Additional Examples and Probit Model | Data Analysis for Public Affairs" />
+  <title>7.2 Additional Examples and Probit Model | Data Analysis for Public Affairs with R</title>
+  <meta name="description" content="7.2 Additional Examples and Probit Model | Data Analysis for Public Affairs with R" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="7.2 Additional Examples and Probit Model | Data Analysis for Public Affairs" />
+  <meta property="og:title" content="7.2 Additional Examples and Probit Model | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="7.2 Additional Examples and Probit Model | Data Analysis for Public Affairs" />
+  <meta name="twitter:title" content="7.2 Additional Examples and Probit Model | Data Analysis for Public Affairs with R" />
   
   
   
@@ -24,7 +24,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2021-03-10" />
+<meta name="date" content="2021-03-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -134,8 +134,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Data Analysis</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
-<li class="chapter" data-level="2" data-path="topics-overview.html"><a href="topics-overview.html"><i class="fa fa-check"></i><b>2</b> Topics Overview</a></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Preface</a></li>
+<li class="chapter" data-level="2" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>2</b> Introduction</a></li>
 <li class="chapter" data-level="3" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>3</b> Introduction to R</a><ul>
 <li class="chapter" data-level="3.1" data-path="online-resources-and-help.html"><a href="online-resources-and-help.html"><i class="fa fa-check"></i><b>3.1</b> Online Resources and Help</a></li>
 <li class="chapter" data-level="3.2" data-path="opening-rstudio.html"><a href="opening-rstudio.html"><i class="fa fa-check"></i><b>3.2</b> Opening RStudio</a><ul>
@@ -179,6 +179,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="7.3" data-path="exercises-2.html"><a href="exercises-2.html"><i class="fa fa-check"></i><b>7.3</b> Exercises</a></li>
 </ul></li>
+<li class="chapter" data-level="8" data-path="qualitative-choice-models.html"><a href="qualitative-choice-models.html"><i class="fa fa-check"></i><b>8</b> Qualitative Choice Models</a><ul>
+<li class="chapter" data-level="8.1" data-path="ordered-logit-model.html"><a href="ordered-logit-model.html"><i class="fa fa-check"></i><b>8.1</b> Ordered Logit Model</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="ordered-logit-model.html"><a href="ordered-logit-model.html#theoretical-aspects"><i class="fa fa-check"></i><b>8.1.1</b> Theoretical Aspects</a></li>
+<li class="chapter" data-level="8.1.2" data-path="ordered-logit-model.html"><a href="ordered-logit-model.html#ordered-logit-example-organic-food-purchase"><i class="fa fa-check"></i><b>8.1.2</b> Ordered Logit Example: Organic Food Purchase</a></li>
+<li class="chapter" data-level="8.1.3" data-path="ordered-logit-model.html"><a href="ordered-logit-model.html#predicted-probability-and-marginal-effects"><i class="fa fa-check"></i><b>8.1.3</b> Predicted Probability and Marginal Effects</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html"><i class="fa fa-check"></i><b>8.2</b> Multinomial Logit and Multinomial Probit Models</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#theoretical-aspects-1"><i class="fa fa-check"></i><b>8.2.1</b> Theoretical Aspects</a></li>
+<li class="chapter" data-level="8.2.2" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#data-managment"><i class="fa fa-check"></i><b>8.2.2</b> Data Managment</a></li>
+<li class="chapter" data-level="8.2.3" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#fishing-data"><i class="fa fa-check"></i><b>8.2.3</b> Fishing Data</a></li>
+<li class="chapter" data-level="8.2.4" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#travel-data"><i class="fa fa-check"></i><b>8.2.4</b> Travel Data</a></li>
+<li class="chapter" data-level="8.2.5" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#electric-vehicle-data"><i class="fa fa-check"></i><b>8.2.5</b> Electric Vehicle Data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="limited-dependent-variable-models.html"><a href="limited-dependent-variable-models.html"><i class="fa fa-check"></i><b>9</b> Limited Dependent Variable Models</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 </ul>
@@ -190,7 +205,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Analysis for Public Affairs</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Analysis for Public Affairs with R</a>
           </h1>
         </div>
 
@@ -200,12 +215,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="additional-examples-and-probit-model" class="section level2">
 <h2><span class="header-section-number">7.2</span> Additional Examples and Probit Model</h2>
-<p>Here are two additional examples on working full-time and voting behavior. Both examples use the <code>gss2018</code> data. Note that the previous chapter have introduced the logit model. To estimate a Probit model, the term “logit” has to be replaced with “probit.” The results are almost identical.</p>
+<p>Here are two additional examples on working full-time and voting behavior. Both examples use the <code>gss2018</code> data. Note that the previous chapter have introduced the logit model. To estimate a Probit model, the term “logit” has to be replaced with “probit.” The results are almost identical. The variables are defined as follows:</p>
+<ul>
+<li><span class="math inline">\(fulltime\)</span>: Does the respondent work full time.</li>
+<li><span class="math inline">\(government\)</span>: Does the respondent work for the government</li>
+<li><span class="math inline">\(education\)</span>: Less than high school (0), high school (1), associate/junior college (2), bachelor (3), and graduate (4)</li>
+<li><span class="math inline">\(vote\)</span>: Voted in the 2016 election</li>
+<li><span class="math inline">\(married\)</span>, <span class="math inline">\(age\)</span>, <span class="math inline">\(childs\)</span>, and <span class="math inline">\(income\)</span> are self-explanatory. Income is for 2016.</li>
+</ul>
 <div id="full-time-work" class="section level3">
 <h3><span class="header-section-number">7.2.1</span> Full-Time Work</h3>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="additional-examples-and-probit-model.html#cb29-1"></a>equation =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;fulltime~age+childs+government+education+married&quot;</span>)</span>
-<span id="cb29-2"><a href="additional-examples-and-probit-model.html#cb29-2"></a>bhat_glm =<span class="st"> </span><span class="kw">glm</span>(equation,<span class="dt">family=</span><span class="kw">binomial</span>(<span class="dt">link=</span><span class="st">&quot;logit&quot;</span>),<span class="dt">data=</span>gss2018)</span>
-<span id="cb29-3"><a href="additional-examples-and-probit-model.html#cb29-3"></a><span class="kw">summary</span>(bhat_glm)</span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="additional-examples-and-probit-model.html#cb45-1"></a>equation =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;fulltime~age+childs+government+education+married&quot;</span>)</span>
+<span id="cb45-2"><a href="additional-examples-and-probit-model.html#cb45-2"></a>bhat_glm =<span class="st"> </span><span class="kw">glm</span>(equation,<span class="dt">family=</span><span class="kw">binomial</span>(<span class="dt">link=</span><span class="st">&quot;logit&quot;</span>),<span class="dt">data=</span>gss2018)</span>
+<span id="cb45-3"><a href="additional-examples-and-probit-model.html#cb45-3"></a><span class="kw">summary</span>(bhat_glm)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = equation, family = binomial(link = &quot;logit&quot;), data = gss2018)
@@ -232,8 +254,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## AIC: 711.31
 ## 
 ## Number of Fisher Scoring iterations: 4</code></pre>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="additional-examples-and-probit-model.html#cb31-1"></a>bhat =<span class="st"> </span><span class="kw">logitmfx</span>(equation,<span class="dt">data=</span>gss2018)</span>
-<span id="cb31-2"><a href="additional-examples-and-probit-model.html#cb31-2"></a><span class="kw">summary</span>(bhat<span class="op">$</span>fit)</span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="additional-examples-and-probit-model.html#cb47-1"></a>bhat =<span class="st"> </span><span class="kw">logitmfx</span>(equation,<span class="dt">data=</span>gss2018)</span>
+<span id="cb47-2"><a href="additional-examples-and-probit-model.html#cb47-2"></a><span class="kw">summary</span>(bhat<span class="op">$</span>fit)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = formula, family = binomial(link = &quot;logit&quot;), data = data, 
@@ -261,8 +283,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## AIC: 711.31
 ## 
 ## Number of Fisher Scoring iterations: 4</code></pre>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="additional-examples-and-probit-model.html#cb33-1"></a>bhat_glm =<span class="st"> </span><span class="kw">glm</span>(equation,<span class="dt">family=</span><span class="kw">binomial</span>(<span class="dt">link=</span><span class="st">&quot;probit&quot;</span>),<span class="dt">data=</span>gss2018)</span>
-<span id="cb33-2"><a href="additional-examples-and-probit-model.html#cb33-2"></a><span class="kw">summary</span>(bhat_glm)</span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="additional-examples-and-probit-model.html#cb49-1"></a>bhat_glm =<span class="st"> </span><span class="kw">glm</span>(equation,<span class="dt">family=</span><span class="kw">binomial</span>(<span class="dt">link=</span><span class="st">&quot;probit&quot;</span>),<span class="dt">data=</span>gss2018)</span>
+<span id="cb49-2"><a href="additional-examples-and-probit-model.html#cb49-2"></a><span class="kw">summary</span>(bhat_glm)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = equation, family = binomial(link = &quot;probit&quot;), data = gss2018)
@@ -292,9 +314,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="voting-behavior" class="section level3">
 <h3><span class="header-section-number">7.2.2</span> Voting Behavior</h3>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="additional-examples-and-probit-model.html#cb35-1"></a>equation =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;vote~age+childs+government+education+married+income&quot;</span>)</span>
-<span id="cb35-2"><a href="additional-examples-and-probit-model.html#cb35-2"></a>bhat_glm =<span class="st"> </span><span class="kw">glm</span>(equation,<span class="dt">family=</span><span class="kw">binomial</span>(<span class="dt">link=</span><span class="st">&quot;logit&quot;</span>),<span class="dt">data=</span>gss2018)</span>
-<span id="cb35-3"><a href="additional-examples-and-probit-model.html#cb35-3"></a><span class="kw">summary</span>(bhat_glm)</span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="additional-examples-and-probit-model.html#cb51-1"></a>equation =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;vote~age+childs+government+education+married+income&quot;</span>)</span>
+<span id="cb51-2"><a href="additional-examples-and-probit-model.html#cb51-2"></a>bhat_glm =<span class="st"> </span><span class="kw">glm</span>(equation,<span class="dt">family=</span><span class="kw">binomial</span>(<span class="dt">link=</span><span class="st">&quot;logit&quot;</span>),<span class="dt">data=</span>gss2018)</span>
+<span id="cb51-3"><a href="additional-examples-and-probit-model.html#cb51-3"></a><span class="kw">summary</span>(bhat_glm)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = equation, family = binomial(link = &quot;logit&quot;), data = gss2018)
@@ -322,8 +344,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## AIC: 872.9
 ## 
 ## Number of Fisher Scoring iterations: 4</code></pre>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="additional-examples-and-probit-model.html#cb37-1"></a>bhat =<span class="st"> </span><span class="kw">logitmfx</span>(equation,<span class="dt">data=</span>gss2018)</span>
-<span id="cb37-2"><a href="additional-examples-and-probit-model.html#cb37-2"></a><span class="kw">summary</span>(bhat<span class="op">$</span>fit)</span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="additional-examples-and-probit-model.html#cb53-1"></a>bhat =<span class="st"> </span><span class="kw">logitmfx</span>(equation,<span class="dt">data=</span>gss2018)</span>
+<span id="cb53-2"><a href="additional-examples-and-probit-model.html#cb53-2"></a><span class="kw">summary</span>(bhat<span class="op">$</span>fit)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = formula, family = binomial(link = &quot;logit&quot;), data = data, 
@@ -352,8 +374,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## AIC: 872.9
 ## 
 ## Number of Fisher Scoring iterations: 4</code></pre>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="additional-examples-and-probit-model.html#cb39-1"></a>bhat_glm =<span class="st"> </span><span class="kw">glm</span>(equation,<span class="dt">family=</span><span class="kw">binomial</span>(<span class="dt">link=</span><span class="st">&quot;probit&quot;</span>),<span class="dt">data=</span>gss2018)</span>
-<span id="cb39-2"><a href="additional-examples-and-probit-model.html#cb39-2"></a><span class="kw">summary</span>(bhat_glm)</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="additional-examples-and-probit-model.html#cb55-1"></a>bhat_glm =<span class="st"> </span><span class="kw">glm</span>(equation,<span class="dt">family=</span><span class="kw">binomial</span>(<span class="dt">link=</span><span class="st">&quot;probit&quot;</span>),<span class="dt">data=</span>gss2018)</span>
+<span id="cb55-2"><a href="additional-examples-and-probit-model.html#cb55-2"></a><span class="kw">summary</span>(bhat_glm)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = equation, family = binomial(link = &quot;probit&quot;), data = gss2018)
