@@ -130,13 +130,13 @@ nb.3_1 = glm.nb(tot.protests~log(TotalPop)+log(pop.density)+Per_Black+BlackPover
 summary(nb.3_1) 
 ```
 
-# MODEL 2: Adding black deaths
+MODEL 2: Adding black deaths
 ```{r}
 nb.3_2 = glm.nb(tot.protests~log(TotalPop)+log(pop.density)+Per_Black+BlackPovertyRate+I(BlackPovertyRate^2)+per_ba+collegeenrollpc+dem_share+deaths_black_pc,data=blm,link=log)
 summary(nb.3_2) 
 ```
 
-# MODEL 3: Using all police-caused deaths instead (victims of any race)
+MODEL 3: Using all police-caused deaths instead (victims of any race)
 ```{r}
 nb.3_3 = glm.nb(tot.protests ~ log(TotalPop) + log(pop.density) + Per_Black + BlackPovertyRate + I(BlackPovertyRate^2) + per_ba + collegeenrollpc + dem_share + deaths_pc, data=blm, link=log)
 summary(nb.3_3) 
