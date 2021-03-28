@@ -24,7 +24,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2021-03-27" />
+<meta name="date" content="2021-03-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -230,7 +230,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In the case of truncation, a certain part of the data is not observed. In the graph below, the true parameters are <span class="math inline">\(\beta_0=-2\)</span> and <span class="math inline">\(\beta_1=0.5\)</span>. Values <span class="math inline">\(y&lt;0\)</span> are not reported in the data. The green regression line is “correct” whereas the “red” is the line obtained from a regression model which ignores the truncation.</p>
 <p><img src="bookdownproj_files/figure-html/truncationplot-1.png" width="672" />
 If all the data was observed, the correct regression model would give the following results:</p>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="truncation.html#cb62-1"></a><span class="kw">summary</span>(bhat_real)</span></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="truncation.html#cb91-1"></a><span class="kw">summary</span>(bhat_real)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = y_real ~ x, data = truncation)
@@ -250,7 +250,7 @@ If all the data was observed, the correct regression model would give the follow
 ## Multiple R-squared:  0.7267, Adjusted R-squared:  0.721 
 ## F-statistic: 127.6 on 1 and 48 DF,  p-value: 4.025e-15</code></pre>
 <p>The estimates are biased if truncation is ignored:</p>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="truncation.html#cb64-1"></a><span class="kw">summary</span>(bhat_truncated)</span></code></pre></div>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="truncation.html#cb93-1"></a><span class="kw">summary</span>(bhat_truncated)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = y_obs ~ x, data = truncation)
@@ -271,8 +271,8 @@ If all the data was observed, the correct regression model would give the follow
 ## Multiple R-squared:  0.5718, Adjusted R-squared:  0.5524 
 ## F-statistic: 29.38 on 1 and 22 DF,  p-value: 1.916e-05</code></pre>
 <p>To correct for the truncation, use the functions from the package <a href="https://cran.r-project.org/web/packages/truncreg/index.html">truncreg</a> which allows to reduce the bias of the coefficients:</p>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="truncation.html#cb66-1"></a>bhat_correct =<span class="st"> </span><span class="kw">truncreg</span>(y_obs<span class="op">~</span>x,<span class="dt">data=</span>truncation)</span>
-<span id="cb66-2"><a href="truncation.html#cb66-2"></a><span class="kw">summary</span>(bhat_correct)</span></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="truncation.html#cb95-1"></a>bhat_correct =<span class="st"> </span><span class="kw">truncreg</span>(y_obs<span class="op">~</span>x,<span class="dt">data=</span>truncation)</span>
+<span id="cb95-2"><a href="truncation.html#cb95-2"></a><span class="kw">summary</span>(bhat_correct)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## truncreg(formula = y_obs ~ x, data = truncation)

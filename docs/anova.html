@@ -24,7 +24,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2021-03-27" />
+<meta name="date" content="2021-03-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -232,8 +232,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 where <span class="math inline">\(d_1\)</span> and <span class="math inline">\(d_2\)</span> are dummy variables. Consider the following model using the <code>gss2018</code> data:
 <span class="math display">\[income = \beta_0 + \beta_1 \cdot fulltime + \beta_2 \cdot government\]</span>
 where <em>fulltime</em> and <em>government</em> are dummy variables. That is, if <span class="math inline">\(fulltime=1\)</span>, then the person has a fulltime job. If <span class="math inline">\(government=1\)</span>, then the respondent works for the government. To distinguish <em>j</em> categories only <em>j-1</em> dummy variables are needed. Otherwise, we have perfect multicollinearity. The category without a dummy variable is the base category.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="anova.html#cb4-1"></a>bhat =<span class="st"> </span><span class="kw">lm</span>(income<span class="op">~</span>fulltime<span class="op">+</span>government,<span class="dt">data=</span>gss2018)</span>
-<span id="cb4-2"><a href="anova.html#cb4-2"></a><span class="kw">summary</span>(bhat)</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="anova.html#cb31-1"></a>bhat =<span class="st"> </span><span class="kw">lm</span>(income<span class="op">~</span>fulltime<span class="op">+</span>government,<span class="dt">data=</span>gss2018)</span>
+<span id="cb31-2"><a href="anova.html#cb31-2"></a><span class="kw">summary</span>(bhat)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = income ~ fulltime + government, data = gss2018)

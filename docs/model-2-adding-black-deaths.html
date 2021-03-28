@@ -24,7 +24,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2021-03-27" />
+<meta name="date" content="2021-03-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -227,8 +227,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="model-2-adding-black-deaths" class="section level1">
 <h1><span class="header-section-number">10</span> MODEL 2: Adding black deaths</h1>
-<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="model-2-adding-black-deaths.html#cb84-1"></a>nb<span class="fl">.3</span>_<span class="dv">2</span> =<span class="st"> </span><span class="kw">glm.nb</span>(tot.protests<span class="op">~</span><span class="kw">log</span>(TotalPop)<span class="op">+</span><span class="kw">log</span>(pop.density)<span class="op">+</span>Per_Black<span class="op">+</span>BlackPovertyRate<span class="op">+</span><span class="kw">I</span>(BlackPovertyRate<span class="op">^</span><span class="dv">2</span>)<span class="op">+</span>per_ba<span class="op">+</span>collegeenrollpc<span class="op">+</span>dem_share<span class="op">+</span>deaths_black_pc,<span class="dt">data=</span>blm,<span class="dt">link=</span>log)</span>
-<span id="cb84-2"><a href="model-2-adding-black-deaths.html#cb84-2"></a><span class="kw">summary</span>(nb<span class="fl">.3</span>_<span class="dv">2</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="model-2-adding-black-deaths.html#cb113-1"></a>nb<span class="fl">.3</span>_<span class="dv">2</span> =<span class="st"> </span><span class="kw">glm.nb</span>(tot.protests<span class="op">~</span><span class="kw">log</span>(TotalPop)<span class="op">+</span><span class="kw">log</span>(pop.density)<span class="op">+</span>Per_Black<span class="op">+</span>BlackPovertyRate<span class="op">+</span><span class="kw">I</span>(BlackPovertyRate<span class="op">^</span><span class="dv">2</span>)<span class="op">+</span>per_ba<span class="op">+</span>collegeenrollpc<span class="op">+</span>dem_share<span class="op">+</span>deaths_black_pc,<span class="dt">data=</span>blm,<span class="dt">link=</span>log)</span>
+<span id="cb113-2"><a href="model-2-adding-black-deaths.html#cb113-2"></a><span class="kw">summary</span>(nb<span class="fl">.3</span>_<span class="dv">2</span>) </span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm.nb(formula = tot.protests ~ log(TotalPop) + log(pop.density) + 

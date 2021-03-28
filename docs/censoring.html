@@ -24,7 +24,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2021-03-27" />
+<meta name="date" content="2021-03-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -228,15 +228,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="censoring" class="section level2">
 <h2><span class="header-section-number">9.2</span> Censoring</h2>
 <p>In the case of censoring, the values of the dependent variable are reported at a certain point if they are above or below a certain value.</p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="censoring.html#cb68-1"></a>bhat_real =<span class="st"> </span><span class="kw">lm</span>(y_real<span class="op">~</span>x,<span class="dt">data=</span>censoring)</span>
-<span id="cb68-2"><a href="censoring.html#cb68-2"></a>bhat_censored =<span class="st"> </span><span class="kw">lm</span>(y_obs<span class="op">~</span>x,<span class="dt">data=</span>censoring)</span>
-<span id="cb68-3"><a href="censoring.html#cb68-3"></a><span class="kw">plot</span>(censoring<span class="op">$</span>x,censoring<span class="op">$</span>y_real)</span>
-<span id="cb68-4"><a href="censoring.html#cb68-4"></a>     <span class="kw">points</span>(censoring<span class="op">$</span>x,censoring<span class="op">$</span>y_obs,<span class="dt">pch=</span><span class="dv">19</span>)</span>
-<span id="cb68-5"><a href="censoring.html#cb68-5"></a>     <span class="kw">abline</span>(bhat_real,<span class="dt">col=</span><span class="kw">c</span>(<span class="st">&quot;darkgreen&quot;</span>))</span>
-<span id="cb68-6"><a href="censoring.html#cb68-6"></a>     <span class="kw">abline</span>(bhat_censored,<span class="dt">col=</span><span class="kw">c</span>(<span class="st">&quot;red&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="censoring.html#cb97-1"></a>bhat_real =<span class="st"> </span><span class="kw">lm</span>(y_real<span class="op">~</span>x,<span class="dt">data=</span>censoring)</span>
+<span id="cb97-2"><a href="censoring.html#cb97-2"></a>bhat_censored =<span class="st"> </span><span class="kw">lm</span>(y_obs<span class="op">~</span>x,<span class="dt">data=</span>censoring)</span>
+<span id="cb97-3"><a href="censoring.html#cb97-3"></a><span class="kw">plot</span>(censoring<span class="op">$</span>x,censoring<span class="op">$</span>y_real)</span>
+<span id="cb97-4"><a href="censoring.html#cb97-4"></a>     <span class="kw">points</span>(censoring<span class="op">$</span>x,censoring<span class="op">$</span>y_obs,<span class="dt">pch=</span><span class="dv">19</span>)</span>
+<span id="cb97-5"><a href="censoring.html#cb97-5"></a>     <span class="kw">abline</span>(bhat_real,<span class="dt">col=</span><span class="kw">c</span>(<span class="st">&quot;darkgreen&quot;</span>))</span>
+<span id="cb97-6"><a href="censoring.html#cb97-6"></a>     <span class="kw">abline</span>(bhat_censored,<span class="dt">col=</span><span class="kw">c</span>(<span class="st">&quot;red&quot;</span>))</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
 <p>If all data was reported at the correct value, the following following regression model could be executed:</p>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="censoring.html#cb69-1"></a><span class="kw">summary</span>(bhat_real)</span></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="censoring.html#cb98-1"></a><span class="kw">summary</span>(bhat_real)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = y_real ~ x, data = censoring)
@@ -256,7 +256,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Multiple R-squared:  0.6158, Adjusted R-squared:  0.6078 
 ## F-statistic: 76.94 on 1 and 48 DF,  p-value: 1.542e-11</code></pre>
 <p>Ignoring censoring leads to biased results:</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="censoring.html#cb71-1"></a><span class="kw">summary</span>(bhat_censored)</span></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="censoring.html#cb100-1"></a><span class="kw">summary</span>(bhat_censored)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = y_obs ~ x, data = censoring)
@@ -276,8 +276,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Multiple R-squared:  0.5292, Adjusted R-squared:  0.5194 
 ## F-statistic: 53.95 on 1 and 48 DF,  p-value: 2.18e-09</code></pre>
 <p>Using the R package <a href="https://cran.r-project.org/web/packages/censReg/index.html">censReg</a>) allows for the reduction of the bias:</p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="censoring.html#cb73-1"></a>b_correct =<span class="st"> </span><span class="kw">censReg</span>(y_obs<span class="op">~</span>x,<span class="dt">data=</span>censoring)</span>
-<span id="cb73-2"><a href="censoring.html#cb73-2"></a><span class="kw">summary</span>(b_correct)</span></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="censoring.html#cb102-1"></a>b_correct =<span class="st"> </span><span class="kw">censReg</span>(y_obs<span class="op">~</span>x,<span class="dt">data=</span>censoring)</span>
+<span id="cb102-2"><a href="censoring.html#cb102-2"></a><span class="kw">summary</span>(b_correct)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## censReg(formula = y_obs ~ x, data = censoring)
