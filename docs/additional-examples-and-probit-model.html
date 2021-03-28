@@ -234,9 +234,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <div id="full-time-work" class="section level3">
 <h3><span class="header-section-number">7.2.1</span> Full-Time Work</h3>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="additional-examples-and-probit-model.html#cb58-1"></a>equation =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;fulltime~age+childs+government+education+married&quot;</span>)</span>
-<span id="cb58-2"><a href="additional-examples-and-probit-model.html#cb58-2"></a>bhat_glm =<span class="st"> </span><span class="kw">glm</span>(equation,<span class="dt">family=</span><span class="kw">binomial</span>(<span class="dt">link=</span><span class="st">&quot;logit&quot;</span>),<span class="dt">data=</span>gss2018)</span>
-<span id="cb58-3"><a href="additional-examples-and-probit-model.html#cb58-3"></a><span class="kw">summary</span>(bhat_glm)</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="additional-examples-and-probit-model.html#cb29-1"></a>equation =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;fulltime~age+childs+government+education+married&quot;</span>)</span>
+<span id="cb29-2"><a href="additional-examples-and-probit-model.html#cb29-2"></a>bhat_glm =<span class="st"> </span><span class="kw">glm</span>(equation,<span class="dt">family=</span><span class="kw">binomial</span>(<span class="dt">link=</span><span class="st">&quot;logit&quot;</span>),<span class="dt">data=</span>gss2018)</span>
+<span id="cb29-3"><a href="additional-examples-and-probit-model.html#cb29-3"></a><span class="kw">summary</span>(bhat_glm)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = equation, family = binomial(link = &quot;logit&quot;), data = gss2018)
@@ -263,8 +263,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## AIC: 711.31
 ## 
 ## Number of Fisher Scoring iterations: 4</code></pre>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="additional-examples-and-probit-model.html#cb60-1"></a>bhat =<span class="st"> </span><span class="kw">logitmfx</span>(equation,<span class="dt">data=</span>gss2018)</span>
-<span id="cb60-2"><a href="additional-examples-and-probit-model.html#cb60-2"></a><span class="kw">summary</span>(bhat<span class="op">$</span>fit)</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="additional-examples-and-probit-model.html#cb31-1"></a>bhat =<span class="st"> </span><span class="kw">logitmfx</span>(equation,<span class="dt">data=</span>gss2018)</span>
+<span id="cb31-2"><a href="additional-examples-and-probit-model.html#cb31-2"></a><span class="kw">summary</span>(bhat<span class="op">$</span>fit)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = formula, family = binomial(link = &quot;logit&quot;), data = data, 
@@ -292,8 +292,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## AIC: 711.31
 ## 
 ## Number of Fisher Scoring iterations: 4</code></pre>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="additional-examples-and-probit-model.html#cb62-1"></a>bhat_glm =<span class="st"> </span><span class="kw">glm</span>(equation,<span class="dt">family=</span><span class="kw">binomial</span>(<span class="dt">link=</span><span class="st">&quot;probit&quot;</span>),<span class="dt">data=</span>gss2018)</span>
-<span id="cb62-2"><a href="additional-examples-and-probit-model.html#cb62-2"></a><span class="kw">summary</span>(bhat_glm)</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="additional-examples-and-probit-model.html#cb33-1"></a>bhat_glm =<span class="st"> </span><span class="kw">glm</span>(equation,<span class="dt">family=</span><span class="kw">binomial</span>(<span class="dt">link=</span><span class="st">&quot;probit&quot;</span>),<span class="dt">data=</span>gss2018)</span>
+<span id="cb33-2"><a href="additional-examples-and-probit-model.html#cb33-2"></a><span class="kw">summary</span>(bhat_glm)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = equation, family = binomial(link = &quot;probit&quot;), data = gss2018)
@@ -323,9 +323,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="voting-behavior" class="section level3">
 <h3><span class="header-section-number">7.2.2</span> Voting Behavior</h3>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="additional-examples-and-probit-model.html#cb64-1"></a>equation =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;vote~age+childs+government+education+married+income&quot;</span>)</span>
-<span id="cb64-2"><a href="additional-examples-and-probit-model.html#cb64-2"></a>bhat_glm =<span class="st"> </span><span class="kw">glm</span>(equation,<span class="dt">family=</span><span class="kw">binomial</span>(<span class="dt">link=</span><span class="st">&quot;logit&quot;</span>),<span class="dt">data=</span>gss2018)</span>
-<span id="cb64-3"><a href="additional-examples-and-probit-model.html#cb64-3"></a><span class="kw">summary</span>(bhat_glm)</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="additional-examples-and-probit-model.html#cb35-1"></a>equation =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;vote~age+childs+government+education+married+income&quot;</span>)</span>
+<span id="cb35-2"><a href="additional-examples-and-probit-model.html#cb35-2"></a>bhat_glm =<span class="st"> </span><span class="kw">glm</span>(equation,<span class="dt">family=</span><span class="kw">binomial</span>(<span class="dt">link=</span><span class="st">&quot;logit&quot;</span>),<span class="dt">data=</span>gss2018)</span>
+<span id="cb35-3"><a href="additional-examples-and-probit-model.html#cb35-3"></a><span class="kw">summary</span>(bhat_glm)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = equation, family = binomial(link = &quot;logit&quot;), data = gss2018)
@@ -353,8 +353,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## AIC: 872.9
 ## 
 ## Number of Fisher Scoring iterations: 4</code></pre>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="additional-examples-and-probit-model.html#cb66-1"></a>bhat =<span class="st"> </span><span class="kw">logitmfx</span>(equation,<span class="dt">data=</span>gss2018)</span>
-<span id="cb66-2"><a href="additional-examples-and-probit-model.html#cb66-2"></a><span class="kw">summary</span>(bhat<span class="op">$</span>fit)</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="additional-examples-and-probit-model.html#cb37-1"></a>bhat =<span class="st"> </span><span class="kw">logitmfx</span>(equation,<span class="dt">data=</span>gss2018)</span>
+<span id="cb37-2"><a href="additional-examples-and-probit-model.html#cb37-2"></a><span class="kw">summary</span>(bhat<span class="op">$</span>fit)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = formula, family = binomial(link = &quot;logit&quot;), data = data, 
@@ -383,8 +383,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## AIC: 872.9
 ## 
 ## Number of Fisher Scoring iterations: 4</code></pre>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="additional-examples-and-probit-model.html#cb68-1"></a>bhat_glm =<span class="st"> </span><span class="kw">glm</span>(equation,<span class="dt">family=</span><span class="kw">binomial</span>(<span class="dt">link=</span><span class="st">&quot;probit&quot;</span>),<span class="dt">data=</span>gss2018)</span>
-<span id="cb68-2"><a href="additional-examples-and-probit-model.html#cb68-2"></a><span class="kw">summary</span>(bhat_glm)</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="additional-examples-and-probit-model.html#cb39-1"></a>bhat_glm =<span class="st"> </span><span class="kw">glm</span>(equation,<span class="dt">family=</span><span class="kw">binomial</span>(<span class="dt">link=</span><span class="st">&quot;probit&quot;</span>),<span class="dt">data=</span>gss2018)</span>
+<span id="cb39-2"><a href="additional-examples-and-probit-model.html#cb39-2"></a><span class="kw">summary</span>(bhat_glm)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = equation, family = binomial(link = &quot;probit&quot;), data = gss2018)
