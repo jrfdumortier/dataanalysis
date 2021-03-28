@@ -130,13 +130,13 @@ nb.3_1 = glm.nb(tot.protests~log(TotalPop)+log(pop.density)+Per_Black+BlackPover
 summary(nb.3_1) 
 ```
 
-# MODEL 2: Adding black deaths
+MODEL 2: Adding black deaths
 ```{r}
 nb.3_2 = glm.nb(tot.protests~log(TotalPop)+log(pop.density)+Per_Black+BlackPovertyRate+I(BlackPovertyRate^2)+per_ba+collegeenrollpc+dem_share+deaths_black_pc,data=blm,link=log)
 summary(nb.3_2) 
 ```
 
-# MODEL 3: Using all police-caused deaths instead (victims of any race)
+MODEL 3: Using all police-caused deaths instead (victims of any race)
 ```{r}
 nb.3_3 = glm.nb(tot.protests ~ log(TotalPop) + log(pop.density) + Per_Black + BlackPovertyRate + I(BlackPovertyRate^2) + per_ba + collegeenrollpc + dem_share + deaths_pc, data=blm, link=log)
 summary(nb.3_3) 
@@ -144,6 +144,6 @@ summary(nb.3_3)
 
 ## Exercises
 
-1. `Apptitude Tobit Model`: Consider the censored data set in `tobit`. The apptitude score is limited at 800. Estimate an appropriate model with $apt$ as the dependent variable and $read$, $math$, and program as the independent variables. Make sure to convert $prog$ into dummy variables first.
+1. `Aptitude Tobit Model`: Consider the censored data set in `tobit`. The aptitude score is limited at 800. Estimate an appropriate model with $apt$ as the dependent variable and $read$, $math$, and program as the independent variables. Make sure to convert $prog$ into dummy variables first.
 
 2. `Chicago Grocery Stores`: One subdivision of Chicago are so-called Chicago Community Areas (CCA). The data in `chicagogrocery` includes data about the number of grocery stores ($stores$) in each CCA as well as demographic information. Estimate a Poisson and Negative Binomial Regression Model with $stores$ as the dependent variable and the following independent variables: $income$, $pop$, unemployment rate ($unemployed/laborforce$) and percentage of blacks ($black/pop$). What do you conclude? Are the results what you would expect?

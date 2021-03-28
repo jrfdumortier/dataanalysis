@@ -200,12 +200,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.3.1" data-path="count-regression-models.html"><a href="count-regression-models.html#poisson-regression-model"><i class="fa fa-check"></i><b>9.3.1</b> Poisson Regression Model</a></li>
 <li class="chapter" data-level="9.3.2" data-path="count-regression-models.html"><a href="count-regression-models.html#negative-binomial-model"><i class="fa fa-check"></i><b>9.3.2</b> Negative-Binomial Model</a></li>
 </ul></li>
+<li class="chapter" data-level="9.4" data-path="exercises-4.html"><a href="exercises-4.html"><i class="fa fa-check"></i><b>9.4</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="model-2-adding-black-deaths.html"><a href="model-2-adding-black-deaths.html"><i class="fa fa-check"></i><b>10</b> MODEL 2: Adding black deaths</a></li>
-<li class="chapter" data-level="11" data-path="model-3-using-all-police-caused-deaths-instead-victims-of-any-race.html"><a href="model-3-using-all-police-caused-deaths-instead-victims-of-any-race.html"><i class="fa fa-check"></i><b>11</b> MODEL 3: Using all police-caused deaths instead (victims of any race)</a><ul>
-<li class="chapter" data-level="11.1" data-path="exercises-4.html"><a href="exercises-4.html"><i class="fa fa-check"></i><b>11.1</b> Exercises</a></li>
-</ul></li>
-<li class="chapter" data-level="12" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>12</b> Data Sources</a></li>
+<li class="chapter" data-level="10" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>10</b> Data Sources</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 </ul>
@@ -228,8 +225,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="binary-choice-estimation-in-r" class="section level2">
 <h2><span class="header-section-number">7.1</span> Binary Choice Estimation in R</h2>
 <p>There are (at least) two possibilities to obtain the coefficient estimates in R. The first is using the built in R command <code>glm()</code>:</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="binary-choice-estimation-in-r.html#cb48-1"></a>bhat_glm_logit =<span class="st"> </span><span class="kw">glm</span>(buying<span class="op">~</span>income,<span class="dt">family=</span><span class="kw">binomial</span>(<span class="dt">link=</span><span class="st">&quot;logit&quot;</span>),<span class="dt">data=</span>organic)</span>
-<span id="cb48-2"><a href="binary-choice-estimation-in-r.html#cb48-2"></a><span class="kw">summary</span>(bhat_glm_logit)</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="binary-choice-estimation-in-r.html#cb21-1"></a>bhat_glm_logit =<span class="st"> </span><span class="kw">glm</span>(buying<span class="op">~</span>income,<span class="dt">family=</span><span class="kw">binomial</span>(<span class="dt">link=</span><span class="st">&quot;logit&quot;</span>),<span class="dt">data=</span>organic)</span>
+<span id="cb21-2"><a href="binary-choice-estimation-in-r.html#cb21-2"></a><span class="kw">summary</span>(bhat_glm_logit)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = buying ~ income, family = binomial(link = &quot;logit&quot;), 
@@ -254,10 +251,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Number of Fisher Scoring iterations: 6</code></pre>
 <p>Note that interpretation of the coefficients is slightly different from the regular linear model. The sign of the coefficient estimate for income is interpreted as the direction in which the probability changes. In this case, the coefficient is positive and thus, an increase (decrease) in income leads to an increase (decrease) in the probability of purchasing organic food. In addition, the coefficients are statistically significant. As aforementioned, the coefficients do not indicate the marginal effects though. To calculate the marginal effects, a slightly different approach is necessary. Let us first look at the second approach of obtaining the coefficient estimates and the R package <a href="https://cran.r-project.org/web/packages/mfx/index.html">mfx</a> is required to do so.</p>
-<pre><code>## Loading required package: betareg</code></pre>
-<pre><code>## Warning: package &#39;betareg&#39; was built under R version 4.0.4</code></pre>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="binary-choice-estimation-in-r.html#cb52-1"></a>bhat =<span class="st"> </span><span class="kw">logitmfx</span>(buying<span class="op">~</span>income,<span class="dt">data=</span>organic)</span>
-<span id="cb52-2"><a href="binary-choice-estimation-in-r.html#cb52-2"></a><span class="kw">summary</span>(bhat<span class="op">$</span>fit)</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="binary-choice-estimation-in-r.html#cb23-1"></a>bhat =<span class="st"> </span><span class="kw">logitmfx</span>(buying<span class="op">~</span>income,<span class="dt">data=</span>organic)</span>
+<span id="cb23-2"><a href="binary-choice-estimation-in-r.html#cb23-2"></a><span class="kw">summary</span>(bhat<span class="op">$</span>fit)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = formula, family = binomial(link = &quot;logit&quot;), data = data, 
@@ -282,12 +277,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Number of Fisher Scoring iterations: 6</code></pre>
 <p>The results are identical as before using the  but the command  allows for the calculation of the marginal effects as well. This is done with the command the <code>bhat\$mfxest</code>.</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="binary-choice-estimation-in-r.html#cb54-1"></a>bhat<span class="op">$</span>mfxest</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="binary-choice-estimation-in-r.html#cb25-1"></a>bhat<span class="op">$</span>mfxest</span></code></pre></div>
 <pre><code>##             dF/dx   Std. Err.        z        P&gt;|z|
 ## income 0.02919553 0.005634262 5.181785 2.197728e-07</code></pre>
 <p>It is important to note that the marginal effects are taken at the mean of the independent variables. To calculate the marginal effects at specific points, the command <code>margins()</code> must be used. Before, we used the command <code>glm()</code> to calculate the logit coefficients. The reason for using the <code>glm()</code> is that it allows us to calculate the predicted probabilities. Consider the example to purchase organic food and assume that there are three new respondents with income levels $25,000, $50,000, and $75,000. To predict the probability of those individuals purchasing organic food, the following functions can be used:</p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="binary-choice-estimation-in-r.html#cb56-1"></a>datablock =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">income=</span><span class="kw">c</span>(<span class="dv">25</span>,<span class="dv">50</span>,<span class="dv">75</span>))</span>
-<span id="cb56-2"><a href="binary-choice-estimation-in-r.html#cb56-2"></a><span class="kw">predict</span>(bhat_glm_logit,<span class="dt">newdata=</span>datablock,<span class="dt">type=</span><span class="st">&quot;response&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="binary-choice-estimation-in-r.html#cb27-1"></a>datablock =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">income=</span><span class="kw">c</span>(<span class="dv">25</span>,<span class="dv">50</span>,<span class="dv">75</span>))</span>
+<span id="cb27-2"><a href="binary-choice-estimation-in-r.html#cb27-2"></a><span class="kw">predict</span>(bhat_glm_logit,<span class="dt">newdata=</span>datablock,<span class="dt">type=</span><span class="st">&quot;response&quot;</span>)</span></code></pre></div>
 <pre><code>##         1         2         3 
 ## 0.0498116 0.4946870 0.9481377</code></pre>
 </div>

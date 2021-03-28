@@ -49,7 +49,5 @@ censoring
 count-regression-models
 poisson-regression-model
 negative-binomial-model
-model-2-adding-black-deaths
-model-3-using-all-police-caused-deaths-instead-victims-of-any-race
 exercises-4
 data-sources
