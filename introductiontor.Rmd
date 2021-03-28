@@ -157,5 +157,5 @@ knitr::kable(head(student,booktabs=TRUE))
 
 Notes:
 
-- Use \emph{name} as the column header for the students' names.
+- Use $name$ as the column header for the students' names.
 - Once you have created the data frame, remove the unused vectors.

@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>9.3 Count Regression Models | Data Analysis for Public Affairs with R</title>
+  <meta name="description" content="9.3 Count Regression Models | Data Analysis for Public Affairs with R" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="9.3 Count Regression Models | Data Analysis for Public Affairs with R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="9.3 Count Regression Models | Data Analysis for Public Affairs with R" />
+  
+  
+  
+
+<meta name="author" content="Jerome Dumortier" />
+
+
+<meta name="date" content="2021-03-27" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="censoring.html"/>
+<link rel="next" href="model-2-adding-black-deaths.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Data Analysis</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Preface</a></li>
+<li class="chapter" data-level="2" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>2</b> Introduction</a></li>
+<li class="chapter" data-level="3" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>3</b> Introduction to R</a><ul>
+<li class="chapter" data-level="3.1" data-path="online-resources-and-help.html"><a href="online-resources-and-help.html"><i class="fa fa-check"></i><b>3.1</b> Online Resources and Help</a></li>
+<li class="chapter" data-level="3.2" data-path="opening-rstudio.html"><a href="opening-rstudio.html"><i class="fa fa-check"></i><b>3.2</b> Opening RStudio</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="opening-rstudio.html"><a href="opening-rstudio.html#in-class-exercise-1"><i class="fa fa-check"></i><b>3.2.1</b> In-class Exercise 1</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>3.3</b> Functions</a></li>
+<li class="chapter" data-level="3.4" data-path="data-management.html"><a href="data-management.html"><i class="fa fa-check"></i><b>3.4</b> Data Management</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="data-management.html"><a href="data-management.html#data-in-r"><i class="fa fa-check"></i><b>3.4.1</b> Data in R</a></li>
+<li class="chapter" data-level="3.4.2" data-path="data-management.html"><a href="data-management.html#using-r-as-a-calculator"><i class="fa fa-check"></i><b>3.4.2</b> Using R as a Calculator</a></li>
+<li class="chapter" data-level="3.4.3" data-path="data-management.html"><a href="data-management.html#creating-a-data-frame-from-scratch"><i class="fa fa-check"></i><b>3.4.3</b> Creating a Data Frame from Scratch</a></li>
+<li class="chapter" data-level="3.4.4" data-path="data-management.html"><a href="data-management.html#in-class-exercise-2"><i class="fa fa-check"></i><b>3.4.4</b> In-class Exercise 2</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="basic-multivariate-regression.html"><a href="basic-multivariate-regression.html"><i class="fa fa-check"></i><b>4</b> Basic Multivariate Regression</a><ul>
+<li class="chapter" data-level="4.1" data-path="dummy-variables.html"><a href="dummy-variables.html"><i class="fa fa-check"></i><b>4.1</b> Dummy Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="anova.html"><a href="anova.html"><i class="fa fa-check"></i><b>5</b> ANOVA</a><ul>
+<li class="chapter" data-level="5.1" data-path="exercises.html"><a href="exercises.html"><i class="fa fa-check"></i><b>5.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="violating-assumptions.html"><a href="violating-assumptions.html"><i class="fa fa-check"></i><b>6</b> Violating Assumptions</a><ul>
+<li class="chapter" data-level="6.1" data-path="heteroscedasticity.html"><a href="heteroscedasticity.html"><i class="fa fa-check"></i><b>6.1</b> Heteroscedasticity</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="heteroscedasticity.html"><a href="heteroscedasticity.html#detecting-heteroscedasticity"><i class="fa fa-check"></i><b>6.1.1</b> Detecting Heteroscedasticity</a></li>
+<li class="chapter" data-level="6.1.2" data-path="heteroscedasticity.html"><a href="heteroscedasticity.html#correcting-heteroscedasticity"><i class="fa fa-check"></i><b>6.1.2</b> Correcting Heteroscedasticity</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="multicollinearity.html"><a href="multicollinearity.html"><i class="fa fa-check"></i><b>6.2</b> Multicollinearity</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="multicollinearity.html"><a href="multicollinearity.html#variance-inflated-factors-vif"><i class="fa fa-check"></i><b>6.2.1</b> Variance Inflated Factors (VIF)</a></li>
+<li class="chapter" data-level="6.2.2" data-path="multicollinearity.html"><a href="multicollinearity.html#examples"><i class="fa fa-check"></i><b>6.2.2</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="other-issues-and-problems-with-data.html"><a href="other-issues-and-problems-with-data.html"><i class="fa fa-check"></i><b>6.3</b> Other Issues and Problems with Data</a></li>
+<li class="chapter" data-level="6.4" data-path="autocorrelation.html"><a href="autocorrelation.html"><i class="fa fa-check"></i><b>6.4</b> Autocorrelation</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="autocorrelation.html"><a href="autocorrelation.html#durbin-watson-d-test"><i class="fa fa-check"></i><b>6.4.1</b> Durbin Watson d-Test</a></li>
+<li class="chapter" data-level="6.4.2" data-path="autocorrelation.html"><a href="autocorrelation.html#breusch-godfrey-test"><i class="fa fa-check"></i><b>6.4.2</b> Breusch-Godfrey Test</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="exercises-1.html"><a href="exercises-1.html"><i class="fa fa-check"></i><b>6.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="binary-choice.html"><a href="binary-choice.html"><i class="fa fa-check"></i><b>7</b> Binary Choice</a><ul>
+<li class="chapter" data-level="7.1" data-path="binary-choice-estimation-in-r.html"><a href="binary-choice-estimation-in-r.html"><i class="fa fa-check"></i><b>7.1</b> Binary Choice Estimation in R</a></li>
+<li class="chapter" data-level="7.2" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html"><i class="fa fa-check"></i><b>7.2</b> Additional Examples and Probit Model</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html#full-time-work"><i class="fa fa-check"></i><b>7.2.1</b> Full-Time Work</a></li>
+<li class="chapter" data-level="7.2.2" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html#voting-behavior"><i class="fa fa-check"></i><b>7.2.2</b> Voting Behavior</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="exercises-2.html"><a href="exercises-2.html"><i class="fa fa-check"></i><b>7.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="qualitative-choice-models.html"><a href="qualitative-choice-models.html"><i class="fa fa-check"></i><b>8</b> Qualitative Choice Models</a><ul>
+<li class="chapter" data-level="8.1" data-path="ordered-logit-model.html"><a href="ordered-logit-model.html"><i class="fa fa-check"></i><b>8.1</b> Ordered Logit Model</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="ordered-logit-model.html"><a href="ordered-logit-model.html#ordered-logit-example-organic-food-purchase"><i class="fa fa-check"></i><b>8.1.1</b> Ordered Logit Example: Organic Food Purchase</a></li>
+<li class="chapter" data-level="8.1.2" data-path="ordered-logit-model.html"><a href="ordered-logit-model.html#predicted-probability-and-marginal-effects"><i class="fa fa-check"></i><b>8.1.2</b> Predicted Probability and Marginal Effects</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html"><i class="fa fa-check"></i><b>8.2</b> Multinomial Logit and Multinomial Probit Models</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#theoretical-aspects"><i class="fa fa-check"></i><b>8.2.1</b> Theoretical Aspects</a></li>
+<li class="chapter" data-level="8.2.2" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#data-managment"><i class="fa fa-check"></i><b>8.2.2</b> Data Managment</a></li>
+<li class="chapter" data-level="8.2.3" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#fishing-data"><i class="fa fa-check"></i><b>8.2.3</b> Fishing Data</a></li>
+<li class="chapter" data-level="8.2.4" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#travel-data"><i class="fa fa-check"></i><b>8.2.4</b> Travel Data</a></li>
+<li class="chapter" data-level="8.2.5" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#electric-vehicle-data"><i class="fa fa-check"></i><b>8.2.5</b> Electric Vehicle Data</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="exercises-3.html"><a href="exercises-3.html"><i class="fa fa-check"></i><b>8.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="limited-dependent-variable-models.html"><a href="limited-dependent-variable-models.html"><i class="fa fa-check"></i><b>9</b> Limited Dependent Variable Models</a><ul>
+<li class="chapter" data-level="9.1" data-path="truncation.html"><a href="truncation.html"><i class="fa fa-check"></i><b>9.1</b> Truncation</a></li>
+<li class="chapter" data-level="9.2" data-path="censoring.html"><a href="censoring.html"><i class="fa fa-check"></i><b>9.2</b> Censoring</a></li>
+<li class="chapter" data-level="9.3" data-path="count-regression-models.html"><a href="count-regression-models.html"><i class="fa fa-check"></i><b>9.3</b> Count Regression Models</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="count-regression-models.html"><a href="count-regression-models.html#poisson-regression-model"><i class="fa fa-check"></i><b>9.3.1</b> Poisson Regression Model</a></li>
+<li class="chapter" data-level="9.3.2" data-path="count-regression-models.html"><a href="count-regression-models.html#negative-binomial-model"><i class="fa fa-check"></i><b>9.3.2</b> Negative-Binomial Model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="model-2-adding-black-deaths.html"><a href="model-2-adding-black-deaths.html"><i class="fa fa-check"></i><b>10</b> MODEL 2: Adding black deaths</a></li>
+<li class="chapter" data-level="11" data-path="model-3-using-all-police-caused-deaths-instead-victims-of-any-race.html"><a href="model-3-using-all-police-caused-deaths-instead-victims-of-any-race.html"><i class="fa fa-check"></i><b>11</b> MODEL 3: Using all police-caused deaths instead (victims of any race)</a><ul>
+<li class="chapter" data-level="11.1" data-path="exercises-4.html"><a href="exercises-4.html"><i class="fa fa-check"></i><b>11.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>12</b> Data Sources</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Analysis for Public Affairs with R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="count-regression-models" class="section level2">
+<h2><span class="header-section-number">9.3</span> Count Regression Models</h2>
+<p>Count regression models apply to cases for which the dependent variable represents discrete, integer count data. The main package used is <a href="https://cran.r-project.org/web/packages/pscl/index.html">pscl</a>. There is also an additional resource with more theoretical details on the topic: <a href="http://dx.doi.org/10.18637/jss.v027.i08">Regression Models for Count Data in R</a>. A more up-to-date version of the document may be found with the <a href="https://cran.r-project.org/web/packages/pscl/index.html">pscl</a> package documentation. Here are some examples of count outcomes:</p>
+<ul>
+<li>What are the number of arrests for a person?</li>
+<li>What determines the number of credit cards a person owns?</li>
+</ul>
+<p>This section on count regression presents three models:</p>
+<ol style="list-style-type: decimal">
+<li>Poisson Regression: A condition to use this model is the absence of over- or underdispersion, i.e., the expected value of the dependent variable must be equal to the variance.</li>
+<li>Negative Binomial Regression</li>
+</ol>
+<div id="poisson-regression-model" class="section level3">
+<h3><span class="header-section-number">9.3.1</span> Poisson Regression Model</h3>
+<p>Recall that the Poisson distribution is written as:
+<span class="math display">\[Pr(Y=k)=\frac{e^{-\lambda} \cdot \lambda^k}{k!}\]</span>
+The important characteristics of the distribution is that the mean and variance are equal to <span class="math inline">\(\lambda\)</span>, i.e., <span class="math inline">\(E(Y)=\lambda\)</span> and <span class="math inline">\(Var(Y)=\lambda\)</span>, this is also known as the equidispersion property. The mean parameter is written as <span class="math inline">\(\lambda=exp(\beta_0+\beta_1 \cdot x_1+ \dots + \beta_k \cdot x_k)\)</span>.</p>
+<p>The first examples uses the 2017 <a href="https://nhts.ornl.gov/">NHTS</a> data contained in <code>hhpub</code>. In a first step, the data is prepared for the regression model, i.e., missing or unknown values are eliminated and income is measured in dollar terms:</p>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="count-regression-models.html#cb75-1"></a>hhpubdata =<span class="st"> </span><span class="kw">subset</span>(hhpub,HHFAMINC <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">11</span>) <span class="op">&amp;</span><span class="st"> </span>HOMEOWN <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>) <span class="op">&amp;</span><span class="st"> </span>URBRUR <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>) <span class="op">&amp;</span><span class="st"> </span>HHVEHCNT <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">12</span>))</span>
+<span id="cb75-2"><a href="count-regression-models.html#cb75-2"></a>HHFAMINC =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">11</span>)</span>
+<span id="cb75-3"><a href="count-regression-models.html#cb75-3"></a>INCOME =<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>,<span class="fl">12.5</span>,<span class="dv">20</span>,<span class="dv">30</span>,<span class="fl">42.5</span>,<span class="fl">57.5</span>,<span class="fl">82.5</span>,<span class="fl">112.5</span>,<span class="fl">137.5</span>,<span class="dv">175</span>,<span class="dv">200</span>)</span>
+<span id="cb75-4"><a href="count-regression-models.html#cb75-4"></a>INCOME =<span class="st"> </span><span class="kw">data.frame</span>(HHFAMINC,INCOME)</span>
+<span id="cb75-5"><a href="count-regression-models.html#cb75-5"></a>hhpubdata =<span class="st"> </span><span class="kw">merge</span>(hhpubdata,INCOME)</span>
+<span id="cb75-6"><a href="count-regression-models.html#cb75-6"></a>hhpubdata<span class="op">$</span>RURAL =<span class="st"> </span>hhpubdata<span class="op">$</span>URBRUR<span class="dv">-1</span></span>
+<span id="cb75-7"><a href="count-regression-models.html#cb75-7"></a>hhpubdata<span class="op">$</span>RENT =<span class="st"> </span>hhpubdata<span class="op">$</span>HOMEOWN<span class="dv">-1</span></span></code></pre></div>
+<p>The outcome of interest is the number of vehicles based on household income, home ownership, and urban/rural household location. Before executing the Poisson regression model, calculate the mean and variance of the outcome variable.</p>
+<pre><code>## [1] 1.974733</code></pre>
+<pre><code>## [1] 1.387272</code></pre>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="count-regression-models.html#cb78-1"></a>bhat_pois =<span class="st"> </span><span class="kw">glm</span>(HHVEHCNT<span class="op">~</span>INCOME<span class="op">+</span>RENT<span class="op">+</span>RURAL,<span class="dt">data=</span>hhpubdata,<span class="dt">family=</span>poisson)</span>
+<span id="cb78-2"><a href="count-regression-models.html#cb78-2"></a><span class="kw">summary</span>(bhat_pois)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## glm(formula = HHVEHCNT ~ INCOME + RENT + RURAL, family = poisson, 
+##     data = hhpubdata)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -1.5637  -0.5173  -0.1681   0.2847   5.2201  
+## 
+## Coefficients:
+##               Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)  5.163e-01  4.295e-03  120.20   &lt;2e-16 ***
+## INCOME       2.608e-03  3.632e-05   71.82   &lt;2e-16 ***
+## RENT        -2.466e-01  5.757e-03  -42.84   &lt;2e-16 ***
+## RURAL        2.049e-01  4.611e-03   44.44   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for poisson family taken to be 1)
+## 
+##     Null deviance: 62801  on 118559  degrees of freedom
+## Residual deviance: 51828  on 118556  degrees of freedom
+## AIC: 353456
+## 
+## Number of Fisher Scoring iterations: 4</code></pre>
+<p>The coefficient estimates are interpreted as follows:</p>
+<ul>
+<li><p><span class="math inline">\(\exp(\beta)\)</span> = with every unit increase in <span class="math inline">\(X\)</span>, the predictor variable has multiplicative effect of <span class="math inline">\(\exp(\beta)\)</span> on the mean of <span class="math inline">\(Y\)</span>, i.e., <span class="math inline">\(\lambda\)</span></p></li>
+<li><p>If <span class="math inline">\(\beta=0\)</span>, then <span class="math inline">\(\exp(\beta) = 1\)</span>, and the expected count <span class="math inline">\(\mu= E(y) = \exp(\alpha)\)</span>, and Y and X are not related.</p></li>
+<li><p>If <span class="math inline">\(\beta&gt;0\)</span>, then <span class="math inline">\(\exp(\beta) &gt; 1\)</span>, and the expected count <span class="math inline">\(E(y)\)</span> is <span class="math inline">\(\exp(\beta)\)</span> times larger than when <span class="math inline">\(X = 0\)</span></p></li>
+<li><p>If <span class="math inline">\(\beta&lt;0\)</span>, then <span class="math inline">\(\exp(\beta) &lt; 1\)</span>, and the expected count <span class="math inline">\(E(y)\)</span> is <span class="math inline">\(\exp(\beta)\)</span> times smaller than when <span class="math inline">\(X = 0\)</span></p></li>
+</ul>
+<p>To estimate a negative binomial model:</p>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="count-regression-models.html#cb80-1"></a>bhat_nb =<span class="st"> </span><span class="kw">glm</span>(HHVEHCNT<span class="op">~</span>INCOME<span class="op">+</span>RENT<span class="op">+</span>RURAL,<span class="dt">data=</span>hhpubdata)</span>
+<span id="cb80-2"><a href="count-regression-models.html#cb80-2"></a><span class="kw">summary</span>(bhat_nb)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## glm(formula = HHVEHCNT ~ INCOME + RENT + RURAL, data = hhpubdata)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -2.2407  -0.7306  -0.2535   0.4696  10.3238  
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  1.622e+00  6.263e-03  259.00   &lt;2e-16 ***
+## INCOME       5.830e-03  5.735e-05  101.66   &lt;2e-16 ***
+## RENT        -4.270e-01  7.656e-03  -55.77   &lt;2e-16 ***
+## RURAL        4.525e-01  7.212e-03   62.75   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for gaussian family taken to be 1.058507)
+## 
+##     Null deviance: 148367  on 118559  degrees of freedom
+## Residual deviance: 125492  on 118556  degrees of freedom
+## AIC: 343206
+## 
+## Number of Fisher Scoring iterations: 2</code></pre>
+</div>
+<div id="negative-binomial-model" class="section level3">
+<h3><span class="header-section-number">9.3.2</span> Negative-Binomial Model</h3>
+<p>MODEL 1: Basic model of resource mobilization and opportunity structure</p>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="count-regression-models.html#cb82-1"></a>nb<span class="fl">.3</span>_<span class="dv">1</span> =<span class="st"> </span><span class="kw">glm.nb</span>(tot.protests<span class="op">~</span><span class="kw">log</span>(TotalPop)<span class="op">+</span><span class="kw">log</span>(pop.density)<span class="op">+</span>Per_Black<span class="op">+</span>BlackPovertyRate<span class="op">+</span><span class="kw">I</span>(BlackPovertyRate<span class="op">^</span><span class="dv">2</span>)<span class="op">+</span>per_ba<span class="op">+</span>collegeenrollpc<span class="op">+</span>dem_share,<span class="dt">data=</span>blm,<span class="dt">link=</span>log)</span>
+<span id="cb82-2"><a href="count-regression-models.html#cb82-2"></a><span class="kw">summary</span>(nb<span class="fl">.3</span>_<span class="dv">1</span>) </span></code></pre></div>
+<pre><code>## 
+## Call:
+## glm.nb(formula = tot.protests ~ log(TotalPop) + log(pop.density) + 
+##     Per_Black + BlackPovertyRate + I(BlackPovertyRate^2) + per_ba + 
+##     collegeenrollpc + dem_share, data = blm, link = log, init.theta = 1.559078735)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -2.2523  -0.4543  -0.2673  -0.1506   5.7386  
+## 
+## Coefficients:
+##                         Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)           -2.090e+01  1.117e+00 -18.719  &lt; 2e-16 ***
+## log(TotalPop)          1.292e+00  7.159e-02  18.047  &lt; 2e-16 ***
+## log(pop.density)      -3.130e-01  1.328e-01  -2.356  0.01848 *  
+## Per_Black              2.249e-02  4.709e-03   4.777 1.78e-06 ***
+## BlackPovertyRate       1.319e-01  3.121e-02   4.227 2.37e-05 ***
+## I(BlackPovertyRate^2) -1.340e-03  4.768e-04  -2.810  0.00496 ** 
+## per_ba                 4.462e-02  5.465e-03   8.163 3.26e-16 ***
+## collegeenrollpc        1.051e-02  4.118e-03   2.553  0.01068 *  
+## dem_share              4.077e-02  7.292e-03   5.591 2.26e-08 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for Negative Binomial(1.5591) family taken to be 1)
+## 
+##     Null deviance: 1899.84  on 1225  degrees of freedom
+## Residual deviance:  501.15  on 1217  degrees of freedom
+##   (133 observations deleted due to missingness)
+## AIC: 1120.2
+## 
+## Number of Fisher Scoring iterations: 1
+## 
+## 
+##               Theta:  1.559 
+##           Std. Err.:  0.351 
+## 
+##  2 x log-likelihood:  -1100.187</code></pre>
+</div>
+</div>
+<!-- </div> -->
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="censoring.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="model-2-adding-black-deaths.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/jrfdumortier/dataanalysis/edit/master/limiteddepvar.rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/jrfdumortier/dataanalysis/blob/master/limiteddepvar.rmd",
+"text": null
+},
+"download": ["bookdownproj.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

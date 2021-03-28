@@ -1,12 +1,6 @@
 # Qualitative Choice Models
-The packages required for this section are `mlogit`, `erer`, `MASS`, `AER`, `glmmML`, and `nnet`. The files required are `fpdata` and `evdata`. Additional files that are required are part of the packages [mlogit](https://cran.r-project.org/web/packages/mlogit/index.html) and [AER](https://cran.r-project.org/web/packages/AER/index.html). Those datasets are called `Fishing` and `TravelMode`. You can lode them into R with the following commands:
 
-- `data("Fishing",package="mlogit")`
-- `data("TravelMode",package="AER")`
-
-There is also a [YouTube Video](https://youtu.be/xLUIil1sGW4) associated with this chapter. 
-
-The last chapter has introduced binary choice models that answer questions such as:
+The last chapter introduced binary choice models that answer questions such as:
 
 - Did you vote during the last election?
 - Does an individual recidivate after being released from prison?
@@ -20,42 +14,63 @@ Examples without natural ordering:
 
 - Type of car to purchase: Passenger car, Pick-up truck, van, convertible
 
-## Ordered Logit Model
+Those models are also known as Discrete Choice Models. The packages required for this section are [mlogit](https://cran.r-project.org/web/packages/mlogit/index.html), [erer](https://cran.r-project.org/web/packages/erer/index.html), [MASS](https://cran.r-project.org/web/packages/MASS/index.html), [AER](https://cran.r-project.org/web/packages/AER/index.html), [glmmML](https://cran.r-project.org/web/packages/glmmML/index.html), and [nnet](https://cran.r-project.org/web/packages/nnet/index.html). The data required are `fpdata` and `evdata` in addition to `Fishing` and `TravelMode` which are part of the packages [mlogit](https://cran.r-project.org/web/packages/mlogit/index.html) and [AER](https://cran.r-project.org/web/packages/AER/index.html). You can load them into R with the following commands:
 
-### Theoretical Aspects
-Assumption: Latent variable $y^*$ that is unobserved by the researcher:
+- `data("Fishing",package="mlogit")`
+- `data("TravelMode",package="AER")`
+
+There is also a [YouTube Video](https://youtu.be/xLUIil1sGW4) associated with this chapter. 
+
+## Ordered Logit Model
+Suppose that respondents are asked if they are going to get a COVID-19 vaccine. The choices are 
+
+- Definitely yes
+- Probably yes
+- Probably no
+- Definitely no
+
+The ordered logit model assumes the presence of a latent (unobserved by the researcher) variable $y^*$:
 $$y_i^* = \beta_0+\beta_1 \cdot x_i + \epsilon_i$$
-In the case of a health model, this may be a measure of healthiness. What the researcher does measure is an $m$-alternative ordered model:
+In the case of the vaccine model, this may be a measure of trust in vaccines. What the researcher does measure is an $m$-alternative ordered model:
 $$y_i = j \quad \text{if} \quad \alpha_{j-1} < y_i^* \leq \alpha_j \quad \text{for} \quad  j=1, \dots,m$$
 where $\alpha_0 = - \infty$ and $\alpha_m=\infty$. In this case, we have
 $$ \begin{align*}
-    Pr(y_1 = j) &=Pr(\alpha_{j-1} < y_i^* \leq \alpha_j)\\
-                &=Pr(\alpha_{j-1} < \beta_0+\beta_1 x_i + \epsilon_i \leq \alpha_j)\\
-                &=Pr(\alpha_{j-1}- \beta_0-\beta_1 x_i < \epsilon_i \leq \alpha_j - \beta_0-\beta_1 x_i)\\
-                        &=F(\alpha_j - \beta_0-\beta_1 x_i)-F(\alpha_{j-1} - \beta_0-\beta_1 x_i)
+    Pr(y = j) &=Pr(\alpha_{j-1} < y_i^* \leq \alpha_j)\\
+                &=Pr(\alpha_{j-1} < \beta_0+\beta_1 \cdot x_i + \epsilon_i \leq \alpha_j)\\
+                &=Pr(\alpha_{j-1}- \beta_0-\beta_1 \cdot x_i < \epsilon_i \leq \alpha_j - \beta_0-\beta_1 \cdot x_i)\\
+                        &=F(\alpha_j - \beta_0-\beta_1 \cdot x_i)-F(\alpha_{j-1} - \beta_0-\beta_1 \cdot x_i)
     \end{align*}$$
-For the ordered logit: $F(z)=exp(z)/(1+exp(z))$. Cut-off example points as $\alpha_0 = -\infty$, $\alpha_2 = -1.5$, $\alpha_3 = 2$, and $\alpha_4 = \infty$
+For the ordered logit: $F(z)=exp(z)/(1+exp(z))$. The cut-off example points for the graph below are $\alpha_0 = -\infty$, $\alpha_2 = -1.5$, $\alpha_3 = 2$, and $\alpha_4 = \infty$
+
+```{r ordered_logit_plot, echo=FALSE}
+logit_cdf           = function(z){exp(z)/(1+exp(z))}
+alpha1              = -1.5
+alpha2              = 2
+curve(logit_cdf,from=-5,to=5,yaxs="i",xaxs="i")
+segments(alpha1,0,alpha1,logit_cdf(alpha1),yaxs="i",xaxs="i",lty=2)
+segments(alpha2,0,alpha2,logit_cdf(alpha2),yaxs="i",xaxs="i",lty=2)
+```
 
 ### Ordered Logit Example: Organic Food Purchase
-Survey on the purchase frequency of organic tomatoes and organic strawberries `fpdata.csv`:
+The order logit model is illustrated with a survey on the purchase frequency of organic tomatoes and organic strawberries `fpdata`:
 
 - Never (1), rarely (2), once per month (3), every 2 weeks (4), 1-2 times a week (5), almost daily (6)
 
-Independent variables are
+The independent variables included in the model are
 
--Age and female
+- Age and female
 - Education: High school (1), some college (2), bachelor (3), master (4), technical school diploma (5), doctorate (6)
 
 ```{r}
 fpdata$strawberries_org = as.factor(fpdata$strawberries_org)
-strawdata  = fpdata[c("strawberries_org","age","education","female","kidsunder12")]
-strawdata  = na.omit(strawdata)
+strawdata = fpdata[c("strawberries_org","age","education","female","kidsunder12")]
+strawdata = na.omit(strawdata)
 bhat = polr(strawberries_org~age+education+female+kidsunder12,data=strawdata,Hess=TRUE)
 summary(bhat)
 ```
-For the organic purchases data, the cuts are under "Intercepts" and thus, we have (rounded coefficients):
+For the organic purchases data, the cut-off points are under "Intercepts" and thus, we have (rounded coefficients):
 $$z =  -0.020 \cdot age  +0.0160 \cdot education -0.415 \cdot female +0.286 \cdot kidsunder12$$
-The cutoff points can be interpreted as follows:
+The cut-off points can be interpreted as follows:
 $$\begin{align*}
     Pr(y=1) &= P(z+\epsilon_i \leq -1.4958)\\
     Pr(y=2) &= P(-1.4958 < z+\epsilon_i \leq -0.4381)\\
@@ -68,15 +83,15 @@ In order to get the $p$-values displayed in the output, you have to execute two 
 
 ```{r}
 bhat.coef = data.frame(coef(summary(bhat)))
-bhat.coef$pval = round((pnorm(abs(bhat.coef$t.value), lower.tail = FALSE) * 2),2)
+bhat.coef$pval = round((pnorm(abs(bhat.coef$t.value),lower.tail=FALSE)*2),2)
 bhat.coef
 ```
 
 ### Predicted Probability and Marginal Effects
-The predicted probability for each observation can be obtained using the command `predict(bhat,type="probs")` assuming that the output of the `polr` command is stored in *bhat*.
+The predicted probability for each observation can be obtained as well assuming that the output of the `polr` command is stored in $bhat$.
 
 ```{r}
-bhat.pred = predict(bhat, type="probs")
+bhat.pred = predict(bhat,type="probs")
 x = ocME(bhat)
 x$out$ME.all
 ```
@@ -97,7 +112,7 @@ Economists' modeling of choice
 ### Theoretical Aspects
 Travel choice model dependent on cost ($x$) and time ($z$):
 $$V_j = \alpha_j + \beta_1 \cdot x_j + \beta_2 \cdot z_j$$
-Probability of choosing alternative $j$ (assuming three choices)
+Probability of choosing alternative $j$ (assuming three choices):
 $$\begin{align*}
     P(1) &= \frac{e^{V_1}}{e^{V_1}+e^{V_2}+e^{V_3}}\\
     P(2) &= \frac{e^{V_2}}{e^{V_1}+e^{V_2}+e^{V_3}}\\
@@ -118,27 +133,34 @@ There are some very good resources on data management and the package in general
 
 - [Estimation of Random Utility Models in R: The mlogit Package](http://dx.doi.org/10.18637/jss.v095.i11)
 
-Fishing (wide format)
+Travel Mode (long format)
+
+- [Travel Mode Choice Data](https://rdrr.io/cran/AER/man/TravelMode.html)
+- `mlogit.data(travelmode,choice="choice",shape="long",alt.levels=c("air","train","bus","car"))`
+
+### Fishing Data
+The data is in wide format:
 
 - Fishing modes: beach, pier, private, and charter
 - Alternative-specific variables: price and catch
 - Individual-specific variables: income
-- Suitability of the ``wide'' format to store individual-specific variables
+- Suitability of the "wide" format to store individual-specific variables
 - The R parameter `varying` designates alternative specific variables
 
-Travel Mode (long format)
+In a first step, the model is only estimated using the individual-specific variable $income$:
 
-- [Travel Mode Choice Data](https://rdrr.io/cran/AER/man/TravelMode.html)
-- `mlogit.data(travelmode,choice="choice",shape="long", alt.levels=c("air","train","bus","car"))`
-
-### Fishing Data
 ```{r}
 data("Fishing",package="mlogit")
-fishing             = mlogit.data(Fishing,shape="wide",varying=2:9,choice="mode")
-bhat                = mlogit(mode~0|income,fishing)
+fishing = mlogit.data(Fishing,shape="wide",varying=2:9,choice="mode")
+bhat = mlogit(mode~0|income,fishing)
 summary(bhat)
 fishing.fitted      = fitted(bhat,outcome=FALSE)
 effects(bhat,covariate ="income")
+```
+
+In a second step, alternative-specific variables are added:
+
+```{r}
 bhat                = mlogit(mode~catch+price|income,data=fishing)
 summary(bhat)
 fishing.fitted      = fitted(bhat,outcome=FALSE)
@@ -149,19 +171,13 @@ rm(bhat,Fishing,fishing,fishing.fitted)
 ### Travel Data
 ```{r}
 data("TravelMode",package="AER")
-travelmode     = mlogit.data(TravelMode,choice="choice",shape="long",alt.var="mode")
-bhat           = mlogit(choice~gcost+wait|income+size,data=travelmode,reflevel="car")
+travelmode = mlogit.data(TravelMode,choice="choice",shape="long",alt.var="mode")
+bhat = mlogit(choice~gcost+wait|income+size,data=travelmode,reflevel="car")
 summary(bhat)
 tavel.fitted = fitted(bhat,outcome=FALSE)
 ```
 
 ### Electric Vehicle Data
-
-- `spendongas` (Gasoline expenditure per month in \$): 0-74 (1), 75-149 (2), 150-249 (3), 250-349 (4), 350-449 (5), 450-599 (6), and above 600 (7)
-- `politics` (Political position): Extremely liberal (1), liberal (2), slightly liberal  (3), moderate (4), slightly conservative (5), conservative (6), and extremely conservative (7)
-- `Education`: Less than HS (1), HS/GED (2), some college (3), 2-year college degree (4), 4-year college degree (5), or graduate school (6)
-- `Income (1,000 \$)`: Under 15 (1), 15 $<$ 25 (2), 25 $<$ 35 (3), 35 $<$ 50 (4), 50 $<$ 75 (5), 75 $<$ 100 (6), 100 $<$ 150 (7), 150 $<$ 200 (8), 200 $<$ 250 (9), $>$ 250 (10)
-
 ```{r}
 evdata = mlogit.data(evdata,shape="wide",choice="choice")
 bhat = mlogit(choice~0|age+female+level2+numcars+edu+income+politics,data=evdata)
@@ -170,63 +186,36 @@ evdata.fitted = fitted(bhat,outcome=FALSE)
 rm(bhat,evdata,evdata.fitted)
 ```
 
-\subsection{Exercises}
-\begin{enumerate}
+## Exercises
 
-\item Using the data set \emph{happy.csv}, generate an ordered logit regression model that regresses the dependent variable \emph{happiness} on those variables that have the strongest potential causal relationship (see below). For your model, interpret the R output and indicate why each independent variable that is included in the model would contribute to better or worse health. Speak to the possible multicollinearity in the variables.
+1. *Happiness*: Using the data set `happy`, generate an ordered logit regression model that regresses the dependent variable $happiness$ on those variables that have the strongest potential causal relationship. For your model, interpret the R output and indicate why each independent variable that is included in the model would contribute to higher or lower happiness. Speak to the possibility of multicollinearity in the independent variables.
 
-\begin{itemize}
-\item \emph{sexfreq}: Frequency of sex during last year
-\item \emph{gun}: Have gun in home
-\item \emph{sclass}: Subjective class identification
-\item \emph{health1}: Condition of health
-\item \emph{happiness}: General happiness
-\item \emph{party}: Political party affiliation. You may want to combine the ``Ind, near democrat'' and ``Not str democrat'' into the same category, e.g., ``lean democrat''. Do the same for republicans.
-\item \emph{education}: Highest year of school completed
-\item \emph{age}: Age of respondent
-\end{itemize}
-
-\item 
-    
-The file \emph{evs.csv} contains data about the choice of consumers with respect to alternative fuel vehicles. The variable ``choices'' represents the choice by the consumer for gasoline vehicles (choice = 1), conventional hybrids (choice = 2), plug-in hybrids (choice = 3), and electric vehicles (choice = 4). For each consumer, you have the following variables: \emph{age}, \emph{suv} (whether they are interested in buying a SUV), \emph{level2} (indicating whether people have a fast charger for electric cars in their community), \emph{own \dots} (indicating whether the respondent currently has a gas, hybrid, plug- in hybrid, or battery electric vehicle), \emph{gender} (1=female) and \emph{numcars} (number of cars). The variables \emph{politics}, \emph{edu}, and \emph{income} are coded as follows:
-    \begin{itemize}
-        \item Income
-            \begin{itemize}
-                \item Under \$15,000 (1)
-                \item \$15,000 to \$24, 999 (2)
-                \item \$25,000 to \$34, 999 (3)
-                \item \$35,000 to \$49,999 (4)
-                \item \$50,000 to \$74,999 (5)
-                \item \$75,000 to \$99,999 (6)
-                \item \$100,000 to \$149,999 (7)
-                \item \$150,000 to \$199,999 (8)
-                \item \$200,000 to \$249,000 (9)
-                \item above \$250,000 (10)
-            \end{itemize}
-        \item Education
-            \begin{itemize}
-                \item Less than High School (1)
-                \item High School / GED (2)
-                \item Some College (3)
-                \item 2-year College Degree (4)
-                \item 4-year College Degree (5)
-                \item Masters Degree (6)
-                \item Doctoral Degree (7)
-            \end{itemize}
-        \item Politics
-            \begin{itemize}
-                \item Extremely Liberal (1)
-                \item Liberal (2)
-                \item Slightly liberal  (3)
-                \item Moderate (4)
-                \item Slightly conservative (5)
-                \item Conservative (6)
-                \item Extremely conservative (7)
-                \item Other (8)
-                \item None (9)
-            \end{itemize}
-        \end{itemize}
+2. *Alternative Fuel Vehicle Choice*: The data `evdata` contains data about the choice of consumers with respect to alternative fuel vehicles. For each consumer, you have the following variables: $age$, $suv$ (whether they are interested in buying a SUV), $level2$ (indicating whether people have a fast charger for electric cars in their community), $own \dots$ (indicating whether the respondent currently has a gas, hybrid, plug- in hybrid, or battery electric vehicle), $gender$ (1=female) and $numcars$ (number of cars). The variables $politics$, $edu$, and $income$ are coded as follows:
 
 Estimate a multinomial logit model that estimates the probability of a consumer to purchase a gasoline, hybrid, plug-in hybrid, or battery electric vehicle. Calculate the marginal probabilities as well.
 
-\end{enumerate}
+3. *NHTS*: Consider the data set `hhpub` from the 2017 National Household Travel Survey (NHTS). The data contains information about household characteristics and some of their travel means. For this question, you will focus on the following variables: $BIKE$, $HBPPOPDN$, $HHFAMINC$, $HHVEHCNT$, $HOMEOWN$, and $URBRUR$. You must read the [codebook](https://nhts.ornl.gov/tables09/CodebookBrowser.aspx) for this question and learn how the variables are coded. Go to the [codebook](https://nhts.ornl.gov/tables09/CodebookBrowser.aspx) and pick “Household” as the dataset (drop down menu). Before conducting the analysis, delete all entries
+that are not complete (i.e., all the negative values). Once you have final data set, estimate
+an ordered logit model with $BIKE$ as the dependent variable and the other variables as the
+independent variables. What do you conclude from the model?
+
+4. *Home heating*: Consider the dataset `Heating` from the R package [mlogit](https://cran.r-project.org/web/packages/mlogit/index.html). You can load the data set into R by typing: `data("Heating",package="mlogit")`. The data contains the choice of heating systems in California homes. There are five types of heating systems:
+
+    - gas central ($gc$)
+    - gas room ($gr$)
+    - electric central ($ec$)
+    - electric room ($er$)
+    - heat pump ($hp$)
+
+    There are 900 observations with the following variables:
+
+    - $idcase$ gives the observation number (1-900),
+    - $depvar$ identifies the chosen alternative (gc, gr, ec, er, hp),
+    - $ic.alt$ is the installation cost for the 5 alternatives,
+    - $oc.alt$ is the annual operating cost for the 5 alternatives,
+    - $income$ is the annual income of the household,
+    - $agehed$ is the age of the household head,
+    - $rooms$ is the number of rooms in the house,
+    - $region$ a factor with levels $ncostl$ (northern coastal region), $scostl$ (southern coastal region), $mountn$ (mountain region), $valley$ (central valley region).
+    
+    Estimate a multinomial logit model with installation and operating cost as the alternative-specific variables and income, age, and number of rooms as the individual-specific variables.

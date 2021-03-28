@@ -7,5 +7,9 @@ site: bookdown::bookdown_site
 ---
 
 # Preface
+This book serves as an introduction to data analysis for public affairs with R and RStudio. Most examples are drawn from public affairs and economics. Throughout the book, the following notation is used
 
-This book serves as an introduction to data analysis for public affairs with R and RStudio. Most examples are drawn from public affairs and economics.
+- $variablename$: Variable names which represent the columns in a data frame.
+- `dataset`: Name of the data set in the file `DataAnalysisPAData.RData`.
+- *Exercise Name*: Title of the exercise in the various chapters. 
+- [package](https://cran.r-project.org/web/packages/plm/index.html): Link to the package documentation. The example link is associated with "Linear Models for Panel Data."

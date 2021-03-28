@@ -1,1 +1,149 @@
 # Limited Dependent Variable Models
+
+This chapter covers three regression models in which the dependent variable is somehow limited:
+
+1. Truncation: With truncated data, the researcher does not observe values past a particular point and those values are also not reported. Examples of truncation are low-income household studies, on-site visitation data, or time-of-use pricing experiments (excludes low-usage households). 
+
+2. Censoring: In the case of censoring, values that are above or below a certain value are replaced by that value. For example, the demand for a particular class is not fully observed (absence of a waiting list). This is also called a Tobit model. 
+
+3. Count dependent variable 
+
+The following packages are necessary for this section: [AER](https://cran.r-project.org/web/packages/AER/index.html) [truncreg](https://cran.r-project.org/web/packages/truncreg/index.html), [censReg](https://cran.r-project.org/web/packages/censReg/index.html), and [pscl](https://cran.r-project.org/web/packages/pscl/index.html).
+
+Truncation and censoring lead to a bias in the estimates. It is not always clear why or if the data is limited in its range. 
+
+## Truncation
+In the case of truncation, a certain part of the data is not observed. In the graph below, the true parameters are $\beta_0=-2$ and $\beta_1=0.5$. Values $y<0$ are not reported in the data. The green regression line is "correct" whereas the "red" is the line obtained from a regression model which ignores the truncation.  
+
+```{r truncationplot, echo=FALSE}
+bhat_real           = lm(y_real~x,data=truncation)
+bhat_truncated      = lm(y_obs~x,data=truncation)
+plot(truncation$x,truncation$y_obs,xlim=c(0,10),ylim=c(-3,5),pch=19,ylab="y",xlab="x")
+     points(truncation$x,truncation$y_real)
+     abline(bhat_real,col=c("darkgreen"))
+     abline(bhat_truncated,col=c("red"))
+```
+If all the data was observed, the correct regression model would give the following results:
+```{r truncation_bhat_real}
+summary(bhat_real)
+```
+
+The estimates are biased if truncation is ignored:
+```{r truncation_bhat_incorrect}
+summary(bhat_truncated)
+
+```
+
+To correct for the truncation, use the functions from the package [truncreg](https://cran.r-project.org/web/packages/truncreg/index.html) which allows to reduce the bias of the coefficients:
+
+```{r truncation_bhat_correct}
+bhat_correct = truncreg(y_obs~x,data=truncation)
+summary(bhat_correct)
+```
+
+## Censoring
+In the case of censoring, the values of the dependent variable are reported at a certain point if they are above or below a certain value.
+
+```{r}
+bhat_real = lm(y_real~x,data=censoring)
+bhat_censored = lm(y_obs~x,data=censoring)
+plot(censoring$x,censoring$y_real)
+     points(censoring$x,censoring$y_obs,pch=19)
+     abline(bhat_real,col=c("darkgreen"))
+     abline(bhat_censored,col=c("red"))
+```
+
+If all data was reported at the correct value, the following following regression model could be executed: 
+```{r}
+summary(bhat_real)
+```
+
+Ignoring censoring leads to biased results:
+```{r}
+summary(bhat_censored)
+```
+
+Using the R package [censReg](https://cran.r-project.org/web/packages/censReg/index.html)) allows for the reduction of the bias:
+```{r}
+b_correct = censReg(y_obs~x,data=censoring)
+summary(b_correct)
+```
+
+## Count Regression Models
+Count regression models apply to cases for which the dependent variable represents discrete, integer count data. The main package used is [pscl](https://cran.r-project.org/web/packages/pscl/index.html). There is also an additional resource with more theoretical details on the topic: [Regression Models for Count Data in R](http://dx.doi.org/10.18637/jss.v027.i08). A more up-to-date version of the document may be found with the [pscl](https://cran.r-project.org/web/packages/pscl/index.html) package documentation. Here are some examples of count outcomes:
+
+- What are the number of arrests for a person?
+- What determines the number of credit cards a person owns?
+
+This section on count regression presents three models:
+
+1. Poisson Regression: A condition to use this model is the absence of over- or underdispersion, i.e., the expected value of the dependent variable must be equal to the variance. 
+2. Negative Binomial Regression
+
+### Poisson Regression Model
+Recall that the Poisson distribution is written as:
+$$Pr(Y=k)=\frac{e^{-\lambda} \cdot \lambda^k}{k!}$$
+The important characteristics of the distribution is that the mean and variance are equal to $\lambda$, i.e., $E(Y)=\lambda$ and $Var(Y)=\lambda$, this is also known as the equidispersion property. The  mean parameter is written as $\lambda=exp(\beta_0+\beta_1 \cdot x_1+ \dots + \beta_k \cdot x_k)$.
+
+The first examples uses the 2017 [NHTS](https://nhts.ornl.gov/) data contained in `hhpub`. In a first step, the data is prepared for the regression model, i.e., missing or unknown values are eliminated and income is measured in dollar terms:
+
+```{r poissonregression_cleanhhpub,results=FALSE}
+hhpubdata = subset(hhpub,HHFAMINC %in% c(1:11) & HOMEOWN %in% c(1,2) & URBRUR %in% c(1,2) & HHVEHCNT %in% c(1:12))
+HHFAMINC = c(1:11)
+INCOME = c(10,12.5,20,30,42.5,57.5,82.5,112.5,137.5,175,200)
+INCOME = data.frame(HHFAMINC,INCOME)
+hhpubdata = merge(hhpubdata,INCOME)
+hhpubdata$RURAL = hhpubdata$URBRUR-1
+hhpubdata$RENT = hhpubdata$HOMEOWN-1
+```
+
+The outcome of interest is the number of vehicles based on household income, home ownership, and urban/rural household location. Before executing the Poisson regression model, calculate the mean and variance of the outcome variable.
+
+```{r, echo=FALSE}
+mean(hhpub$HHVEHCNT)
+var(hhpub$HHVEHCNT)
+```
+
+```{r }
+bhat_pois = glm(HHVEHCNT~INCOME+RENT+RURAL,data=hhpubdata,family=poisson)
+summary(bhat_pois)
+```
+
+The coefficient estimates are interpreted as follows:
+   
+- $\exp(\beta)$ = with every unit increase in $X$, the predictor variable has multiplicative effect of $\exp(\beta)$ on the mean of $Y$, i.e., $\lambda$
+
+- If $\beta=0$, then $\exp(\beta) = 1$, and the expected count $\mu= E(y) = \exp(\alpha)$, and Y and X are not related.
+- If $\beta>0$, then $\exp(\beta) > 1$, and the expected count $E(y)$ is $\exp(\beta)$ times larger than when $X = 0$
+- If $\beta<0$, then $\exp(\beta) < 1$, and the expected count $E(y)$ is $\exp(\beta)$ times smaller than when $X = 0$
+
+To estimate a negative binomial model:
+```{r}
+bhat_nb = glm(HHVEHCNT~INCOME+RENT+RURAL,data=hhpubdata)
+summary(bhat_nb)
+```
+
+### Negative-Binomial Model
+MODEL 1: Basic model of resource mobilization and opportunity structure
+```{r}
+nb.3_1 = glm.nb(tot.protests~log(TotalPop)+log(pop.density)+Per_Black+BlackPovertyRate+I(BlackPovertyRate^2)+per_ba+collegeenrollpc+dem_share,data=blm,link=log)
+summary(nb.3_1) 
+```
+
+# MODEL 2: Adding black deaths
+```{r}
+nb.3_2 = glm.nb(tot.protests~log(TotalPop)+log(pop.density)+Per_Black+BlackPovertyRate+I(BlackPovertyRate^2)+per_ba+collegeenrollpc+dem_share+deaths_black_pc,data=blm,link=log)
+summary(nb.3_2) 
+```
+
+# MODEL 3: Using all police-caused deaths instead (victims of any race)
+```{r}
+nb.3_3 = glm.nb(tot.protests ~ log(TotalPop) + log(pop.density) + Per_Black + BlackPovertyRate + I(BlackPovertyRate^2) + per_ba + collegeenrollpc + dem_share + deaths_pc, data=blm, link=log)
+summary(nb.3_3) 
+```
+
+## Exercises
+
+1. `Apptitude Tobit Model`: Consider the censored data set in `tobit`. The apptitude score is limited at 800. Estimate an appropriate model with $apt$ as the dependent variable and $read$, $math$, and program as the independent variables. Make sure to convert $prog$ into dummy variables first.
+
+2. `Chicago Grocery Stores`: One subdivision of Chicago are so-called Chicago Community Areas (CCA). The data in `chicagogrocery` includes data about the number of grocery stores ($stores$) in each CCA as well as demographic information. Estimate a Poisson and Negative Binomial Regression Model with $stores$ as the dependent variable and the following independent variables: $income$, $pop$, unemployment rate ($unemployed/laborforce$) and percentage of blacks ($black/pop$). What do you conclude? Are the results what you would expect?
