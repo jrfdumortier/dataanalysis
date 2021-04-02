@@ -8,6 +8,8 @@ This chapter describes the data sets associated with the lecture notes. Some dat
 
 - `anscombe` ($N=11$): Anscombe's Quartet where $y_i$ and $x_i$ represent dependent and independent variable of set $i$, respectively. This dataset is widely available and is also included in R.
 
+- `blm` ($N=1359$): 
+
 - `bmw` ($N=30$): Data on the prices and miles of a particular BMW 5-series model in the Indianapolis area. Some of the models have rear-wheel drive ($allwheeldrive=0$) whereas some have all-wheel drive ($allwheeldrive=1$).
 
 - `chicagogrocery`: The [https://datahub.cmap.illinois.gov/dataset/community-data-snapshots-raw-data](Community Data Snapshots Raw Data) from March 2014. 

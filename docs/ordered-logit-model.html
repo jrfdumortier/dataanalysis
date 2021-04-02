@@ -24,7 +24,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2021-03-28" />
+<meta name="date" content="2021-04-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -198,11 +198,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.2" data-path="censoring.html"><a href="censoring.html"><i class="fa fa-check"></i><b>9.2</b> Censoring</a></li>
 <li class="chapter" data-level="9.3" data-path="count-regression-models.html"><a href="count-regression-models.html"><i class="fa fa-check"></i><b>9.3</b> Count Regression Models</a><ul>
 <li class="chapter" data-level="9.3.1" data-path="count-regression-models.html"><a href="count-regression-models.html#poisson-regression-model"><i class="fa fa-check"></i><b>9.3.1</b> Poisson Regression Model</a></li>
-<li class="chapter" data-level="9.3.2" data-path="count-regression-models.html"><a href="count-regression-models.html#negative-binomial-model"><i class="fa fa-check"></i><b>9.3.2</b> Negative-Binomial Model</a></li>
+<li class="chapter" data-level="9.3.2" data-path="count-regression-models.html"><a href="count-regression-models.html#quasi-poisson-regression-model"><i class="fa fa-check"></i><b>9.3.2</b> Quasi-Poisson Regression Model</a></li>
+<li class="chapter" data-level="9.3.3" data-path="count-regression-models.html"><a href="count-regression-models.html#negative-binomial-regression-model"><i class="fa fa-check"></i><b>9.3.3</b> Negative Binomial Regression Model</a></li>
 </ul></li>
 <li class="chapter" data-level="9.4" data-path="exercises-4.html"><a href="exercises-4.html"><i class="fa fa-check"></i><b>9.4</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>10</b> Data Sources</a></li>
+<li class="chapter" data-level="10" data-path="simultanous-equation-models.html"><a href="simultanous-equation-models.html"><i class="fa fa-check"></i><b>10</b> Simultanous Equation Models</a></li>
+<li class="chapter" data-level="11" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>11</b> Data Sources</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 </ul>
@@ -255,11 +257,11 @@ For the ordered logit: <span class="math inline">\(F(z)=exp(z)/(1+exp(z))\)</spa
 <li>Age and female</li>
 <li>Education: High school (1), some college (2), bachelor (3), master (4), technical school diploma (5), doctorate (6)</li>
 </ul>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="ordered-logit-model.html#cb41-1"></a>fpdata<span class="op">$</span>strawberries_org =<span class="st"> </span><span class="kw">as.factor</span>(fpdata<span class="op">$</span>strawberries_org)</span>
-<span id="cb41-2"><a href="ordered-logit-model.html#cb41-2"></a>strawdata =<span class="st"> </span>fpdata[<span class="kw">c</span>(<span class="st">&quot;strawberries_org&quot;</span>,<span class="st">&quot;age&quot;</span>,<span class="st">&quot;education&quot;</span>,<span class="st">&quot;female&quot;</span>,<span class="st">&quot;kidsunder12&quot;</span>)]</span>
-<span id="cb41-3"><a href="ordered-logit-model.html#cb41-3"></a>strawdata =<span class="st"> </span><span class="kw">na.omit</span>(strawdata)</span>
-<span id="cb41-4"><a href="ordered-logit-model.html#cb41-4"></a>bhat =<span class="st"> </span><span class="kw">polr</span>(strawberries_org<span class="op">~</span>age<span class="op">+</span>education<span class="op">+</span>female<span class="op">+</span>kidsunder12,<span class="dt">data=</span>strawdata,<span class="dt">Hess=</span><span class="ot">TRUE</span>)</span>
-<span id="cb41-5"><a href="ordered-logit-model.html#cb41-5"></a><span class="kw">summary</span>(bhat)</span></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="ordered-logit-model.html#cb70-1"></a>fpdata<span class="op">$</span>strawberries_org =<span class="st"> </span><span class="kw">as.factor</span>(fpdata<span class="op">$</span>strawberries_org)</span>
+<span id="cb70-2"><a href="ordered-logit-model.html#cb70-2"></a>strawdata =<span class="st"> </span>fpdata[<span class="kw">c</span>(<span class="st">&quot;strawberries_org&quot;</span>,<span class="st">&quot;age&quot;</span>,<span class="st">&quot;education&quot;</span>,<span class="st">&quot;female&quot;</span>,<span class="st">&quot;kidsunder12&quot;</span>)]</span>
+<span id="cb70-3"><a href="ordered-logit-model.html#cb70-3"></a>strawdata =<span class="st"> </span><span class="kw">na.omit</span>(strawdata)</span>
+<span id="cb70-4"><a href="ordered-logit-model.html#cb70-4"></a>bhat =<span class="st"> </span><span class="kw">polr</span>(strawberries_org<span class="op">~</span>age<span class="op">+</span>education<span class="op">+</span>female<span class="op">+</span>kidsunder12,<span class="dt">data=</span>strawdata,<span class="dt">Hess=</span><span class="ot">TRUE</span>)</span>
+<span id="cb70-5"><a href="ordered-logit-model.html#cb70-5"></a><span class="kw">summary</span>(bhat)</span></code></pre></div>
 <pre><code>## Call:
 ## polr(formula = strawberries_org ~ age + education + female + 
 ##     kidsunder12, data = strawdata, Hess = TRUE)
@@ -293,9 +295,9 @@ The cut-off points can be interpreted as follows:
     Pr(y=6) &amp;= P(1.6314 \leq z+\epsilon_i )
 \end{align*}\]</span>
 In order to get the <span class="math inline">\(p\)</span>-values displayed in the output, you have to execute two additional steps:</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="ordered-logit-model.html#cb43-1"></a>bhat.coef =<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">coef</span>(<span class="kw">summary</span>(bhat)))</span>
-<span id="cb43-2"><a href="ordered-logit-model.html#cb43-2"></a>bhat.coef<span class="op">$</span>pval =<span class="st"> </span><span class="kw">round</span>((<span class="kw">pnorm</span>(<span class="kw">abs</span>(bhat.coef<span class="op">$</span>t.value),<span class="dt">lower.tail=</span><span class="ot">FALSE</span>)<span class="op">*</span><span class="dv">2</span>),<span class="dv">2</span>)</span>
-<span id="cb43-3"><a href="ordered-logit-model.html#cb43-3"></a>bhat.coef</span></code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="ordered-logit-model.html#cb72-1"></a>bhat.coef =<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">coef</span>(<span class="kw">summary</span>(bhat)))</span>
+<span id="cb72-2"><a href="ordered-logit-model.html#cb72-2"></a>bhat.coef<span class="op">$</span>pval =<span class="st"> </span><span class="kw">round</span>((<span class="kw">pnorm</span>(<span class="kw">abs</span>(bhat.coef<span class="op">$</span>t.value),<span class="dt">lower.tail=</span><span class="ot">FALSE</span>)<span class="op">*</span><span class="dv">2</span>),<span class="dv">2</span>)</span>
+<span id="cb72-3"><a href="ordered-logit-model.html#cb72-3"></a>bhat.coef</span></code></pre></div>
 <pre><code>##                   Value  Std..Error    t.value pval
 ## age         -0.02034185 0.009838336 -2.0676110 0.04
 ## education    0.01595914 0.112027882  0.1424569 0.89
@@ -310,9 +312,9 @@ In order to get the <span class="math inline">\(p\)</span>-values displayed in t
 <div id="predicted-probability-and-marginal-effects" class="section level3">
 <h3><span class="header-section-number">8.1.2</span> Predicted Probability and Marginal Effects</h3>
 <p>The predicted probability for each observation can be obtained as well assuming that the output of the <code>polr</code> command is stored in <span class="math inline">\(bhat\)</span>.</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="ordered-logit-model.html#cb45-1"></a>bhat.pred =<span class="st"> </span><span class="kw">predict</span>(bhat,<span class="dt">type=</span><span class="st">&quot;probs&quot;</span>)</span>
-<span id="cb45-2"><a href="ordered-logit-model.html#cb45-2"></a>x =<span class="st"> </span><span class="kw">ocME</span>(bhat)</span>
-<span id="cb45-3"><a href="ordered-logit-model.html#cb45-3"></a>x<span class="op">$</span>out<span class="op">$</span>ME.all</span></code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="ordered-logit-model.html#cb74-1"></a>bhat.pred =<span class="st"> </span><span class="kw">predict</span>(bhat,<span class="dt">type=</span><span class="st">&quot;probs&quot;</span>)</span>
+<span id="cb74-2"><a href="ordered-logit-model.html#cb74-2"></a>x =<span class="st"> </span><span class="kw">ocME</span>(bhat)</span>
+<span id="cb74-3"><a href="ordered-logit-model.html#cb74-3"></a>x<span class="op">$</span>out<span class="op">$</span>ME.all</span></code></pre></div>
 <pre><code>##             effect.0 effect.1 effect.2 effect.3 effect.4 effect.5
 ## age            0.005    0.000   -0.001   -0.001   -0.001   -0.001
 ## education     -0.004    0.000    0.001    0.001    0.001    0.001

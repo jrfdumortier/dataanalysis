@@ -24,7 +24,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2021-03-28" />
+<meta name="date" content="2021-04-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -198,11 +198,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.2" data-path="censoring.html"><a href="censoring.html"><i class="fa fa-check"></i><b>9.2</b> Censoring</a></li>
 <li class="chapter" data-level="9.3" data-path="count-regression-models.html"><a href="count-regression-models.html"><i class="fa fa-check"></i><b>9.3</b> Count Regression Models</a><ul>
 <li class="chapter" data-level="9.3.1" data-path="count-regression-models.html"><a href="count-regression-models.html#poisson-regression-model"><i class="fa fa-check"></i><b>9.3.1</b> Poisson Regression Model</a></li>
-<li class="chapter" data-level="9.3.2" data-path="count-regression-models.html"><a href="count-regression-models.html#negative-binomial-model"><i class="fa fa-check"></i><b>9.3.2</b> Negative-Binomial Model</a></li>
+<li class="chapter" data-level="9.3.2" data-path="count-regression-models.html"><a href="count-regression-models.html#quasi-poisson-regression-model"><i class="fa fa-check"></i><b>9.3.2</b> Quasi-Poisson Regression Model</a></li>
+<li class="chapter" data-level="9.3.3" data-path="count-regression-models.html"><a href="count-regression-models.html#negative-binomial-regression-model"><i class="fa fa-check"></i><b>9.3.3</b> Negative Binomial Regression Model</a></li>
 </ul></li>
 <li class="chapter" data-level="9.4" data-path="exercises-4.html"><a href="exercises-4.html"><i class="fa fa-check"></i><b>9.4</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>10</b> Data Sources</a></li>
+<li class="chapter" data-level="10" data-path="simultanous-equation-models.html"><a href="simultanous-equation-models.html"><i class="fa fa-check"></i><b>10</b> Simultanous Equation Models</a></li>
+<li class="chapter" data-level="11" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>11</b> Data Sources</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 </ul>
@@ -249,9 +251,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>To use a package, you have to activate it by either checking the box in the window “Packages” or by including <code>library(packagename)</code>. Those packages are updated on a regular basis by users.</p>
 <p>The <code>\#</code> allows you to include comments in your script file that are not read by R. It is good practice to start any new script with clearing the memory using the command <code>rm(list=ls())</code>. Use the command <code>get()</code> to determine the current working directory or set the new working directory with the command <code>setwd()</code>, e.g., <code>setwd("E:/")</code>. For file paths, replace <span class="math inline">\(\backslash\)</span> with <span class="math inline">\(/\)</span>. Next, you want to load all libraries necessary for your entire script file with the command <code>library()</code>. It is also good practice to save your R-script on a regular basis. The frontmatter, i.e., the top of a R-script file, could look as follows</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="opening-rstudio.html#cb1-1"></a><span class="kw">rm</span>(<span class="dt">list=</span><span class="kw">ls</span>())</span>
-<span id="cb1-2"><a href="opening-rstudio.html#cb1-2"></a><span class="kw">load</span>(<span class="st">&quot;DataAnalysisPAData.RData&quot;</span>)</span>
-<span id="cb1-3"><a href="opening-rstudio.html#cb1-3"></a><span class="kw">library</span>(openxlsx)</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="opening-rstudio.html#cb28-1"></a><span class="kw">rm</span>(<span class="dt">list=</span><span class="kw">ls</span>())</span>
+<span id="cb28-2"><a href="opening-rstudio.html#cb28-2"></a><span class="kw">load</span>(<span class="st">&quot;DataAnalysisPAData.RData&quot;</span>)</span>
+<span id="cb28-3"><a href="opening-rstudio.html#cb28-3"></a><span class="kw">library</span>(openxlsx)</span></code></pre></div>
 <div id="in-class-exercise-1" class="section level3">
 <h3><span class="header-section-number">3.2.1</span> In-class Exercise 1</h3>
 <p>Create a R-script file with the following components:</p>

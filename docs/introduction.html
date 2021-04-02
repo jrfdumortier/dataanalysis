@@ -24,7 +24,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2021-03-28" />
+<meta name="date" content="2021-04-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -198,11 +198,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.2" data-path="censoring.html"><a href="censoring.html"><i class="fa fa-check"></i><b>9.2</b> Censoring</a></li>
 <li class="chapter" data-level="9.3" data-path="count-regression-models.html"><a href="count-regression-models.html"><i class="fa fa-check"></i><b>9.3</b> Count Regression Models</a><ul>
 <li class="chapter" data-level="9.3.1" data-path="count-regression-models.html"><a href="count-regression-models.html#poisson-regression-model"><i class="fa fa-check"></i><b>9.3.1</b> Poisson Regression Model</a></li>
-<li class="chapter" data-level="9.3.2" data-path="count-regression-models.html"><a href="count-regression-models.html#negative-binomial-model"><i class="fa fa-check"></i><b>9.3.2</b> Negative-Binomial Model</a></li>
+<li class="chapter" data-level="9.3.2" data-path="count-regression-models.html"><a href="count-regression-models.html#quasi-poisson-regression-model"><i class="fa fa-check"></i><b>9.3.2</b> Quasi-Poisson Regression Model</a></li>
+<li class="chapter" data-level="9.3.3" data-path="count-regression-models.html"><a href="count-regression-models.html#negative-binomial-regression-model"><i class="fa fa-check"></i><b>9.3.3</b> Negative Binomial Regression Model</a></li>
 </ul></li>
 <li class="chapter" data-level="9.4" data-path="exercises-4.html"><a href="exercises-4.html"><i class="fa fa-check"></i><b>9.4</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>10</b> Data Sources</a></li>
+<li class="chapter" data-level="10" data-path="simultanous-equation-models.html"><a href="simultanous-equation-models.html"><i class="fa fa-check"></i><b>10</b> Simultanous Equation Models</a></li>
+<li class="chapter" data-level="11" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>11</b> Data Sources</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 </ul>
@@ -224,6 +226,54 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="introduction" class="section level1">
 <h1><span class="header-section-number">2</span> Introduction</h1>
+<pre><code>## Loading required package: dfidx</code></pre>
+<pre><code>## Warning: package &#39;dfidx&#39; was built under R version 4.0.4</code></pre>
+<pre><code>## 
+## Attaching package: &#39;dfidx&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:stats&#39;:
+## 
+##     filter</code></pre>
+<pre><code>## Loading required package: lmtest</code></pre>
+<pre><code>## Loading required package: zoo</code></pre>
+<pre><code>## Warning: package &#39;zoo&#39; was built under R version 4.0.4</code></pre>
+<pre><code>## 
+## Attaching package: &#39;zoo&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     as.Date, as.Date.numeric</code></pre>
+<pre><code>## Registered S3 method overwritten by &#39;quantmod&#39;:
+##   method            from
+##   as.zoo.data.frame zoo</code></pre>
+<pre><code>## Warning: package &#39;MASS&#39; was built under R version 4.0.4</code></pre>
+<pre><code>## 
+## Attaching package: &#39;MASS&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:dfidx&#39;:
+## 
+##     select</code></pre>
+<pre><code>## Loading required package: car</code></pre>
+<pre><code>## Loading required package: carData</code></pre>
+<pre><code>## Loading required package: sandwich</code></pre>
+<pre><code>## Loading required package: survival</code></pre>
+<pre><code>## Warning: package &#39;survival&#39; was built under R version 4.0.4</code></pre>
+<pre><code>## Warning: package &#39;glmmML&#39; was built under R version 4.0.4</code></pre>
+<pre><code>## Warning: package &#39;truncreg&#39; was built under R version 4.0.4</code></pre>
+<pre><code>## Loading required package: maxLik</code></pre>
+<pre><code>## Warning: package &#39;maxLik&#39; was built under R version 4.0.4</code></pre>
+<pre><code>## Loading required package: miscTools</code></pre>
+<pre><code>## Warning: package &#39;miscTools&#39; was built under R version 4.0.4</code></pre>
+<pre><code>## 
+## Please cite the &#39;maxLik&#39; package as:
+## Henningsen, Arne and Toomet, Ott (2011). maxLik: A package for maximum likelihood estimation in R. Computational Statistics 26(3), 443-458. DOI 10.1007/s00180-010-0217-1.
+## 
+## If you have questions, suggestions, or comments regarding the &#39;maxLik&#39; package, please use a forum or &#39;tracker&#39; at maxLik&#39;s R-Forge site:
+## https://r-forge.r-project.org/projects/maxlik/</code></pre>
+<pre><code>## Warning: package &#39;censReg&#39; was built under R version 4.0.4</code></pre>
+<pre><code>## 
+## Please cite the &#39;censReg&#39; package as:
+## Henningsen, Arne (2017). censReg: Censored Regression (Tobit) Models. R package version 0.5. http://CRAN.R-Project.org/package=censReg.
+## 
+## If you have questions, suggestions, or comments regarding the &#39;censReg&#39; package, please use a forum or &#39;tracker&#39; at the R-Forge site of the &#39;sampleSelection&#39; project:
+## https://r-forge.r-project.org/projects/sampleselection/</code></pre>
 
 </div>
             </section>

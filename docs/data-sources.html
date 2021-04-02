@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>10 Data Sources | Data Analysis for Public Affairs with R</title>
-  <meta name="description" content="10 Data Sources | Data Analysis for Public Affairs with R" />
+  <title>11 Data Sources | Data Analysis for Public Affairs with R</title>
+  <meta name="description" content="11 Data Sources | Data Analysis for Public Affairs with R" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="10 Data Sources | Data Analysis for Public Affairs with R" />
+  <meta property="og:title" content="11 Data Sources | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="10 Data Sources | Data Analysis for Public Affairs with R" />
+  <meta name="twitter:title" content="11 Data Sources | Data Analysis for Public Affairs with R" />
   
   
   
@@ -24,14 +24,14 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2021-03-28" />
+<meta name="date" content="2021-04-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="exercises-4.html"/>
+<link rel="prev" href="simultanous-equation-models.html"/>
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -198,11 +198,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.2" data-path="censoring.html"><a href="censoring.html"><i class="fa fa-check"></i><b>9.2</b> Censoring</a></li>
 <li class="chapter" data-level="9.3" data-path="count-regression-models.html"><a href="count-regression-models.html"><i class="fa fa-check"></i><b>9.3</b> Count Regression Models</a><ul>
 <li class="chapter" data-level="9.3.1" data-path="count-regression-models.html"><a href="count-regression-models.html#poisson-regression-model"><i class="fa fa-check"></i><b>9.3.1</b> Poisson Regression Model</a></li>
-<li class="chapter" data-level="9.3.2" data-path="count-regression-models.html"><a href="count-regression-models.html#negative-binomial-model"><i class="fa fa-check"></i><b>9.3.2</b> Negative-Binomial Model</a></li>
+<li class="chapter" data-level="9.3.2" data-path="count-regression-models.html"><a href="count-regression-models.html#quasi-poisson-regression-model"><i class="fa fa-check"></i><b>9.3.2</b> Quasi-Poisson Regression Model</a></li>
+<li class="chapter" data-level="9.3.3" data-path="count-regression-models.html"><a href="count-regression-models.html#negative-binomial-regression-model"><i class="fa fa-check"></i><b>9.3.3</b> Negative Binomial Regression Model</a></li>
 </ul></li>
 <li class="chapter" data-level="9.4" data-path="exercises-4.html"><a href="exercises-4.html"><i class="fa fa-check"></i><b>9.4</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>10</b> Data Sources</a></li>
+<li class="chapter" data-level="10" data-path="simultanous-equation-models.html"><a href="simultanous-equation-models.html"><i class="fa fa-check"></i><b>10</b> Simultanous Equation Models</a></li>
+<li class="chapter" data-level="11" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>11</b> Data Sources</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 </ul>
@@ -223,12 +225,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="data-sources" class="section level1">
-<h1><span class="header-section-number">10</span> Data Sources</h1>
+<h1><span class="header-section-number">11</span> Data Sources</h1>
 <p>This chapter describes the data sets associated with the lecture notes. Some data sets are generic, i.e., randomly generated, to highlight a particular concept while other are either based on public sources or are taken from academic papers. In any case, the source is clearly indicated. Sometimes modifications were made to the data sets for ease of use, e.g., removing missing values. All the data are contained in the file <a href="https://github.com/jrfdumortier/dataanalysis/blob/master/DataAnalysisPAData.RData">DataAnalysisPAData.RData</a>. Some of the data are also associated with specific R packages which is indicated.</p>
 <ul>
 <li><p><code>accidents</code> (<span class="math inline">\(N=30\)</span>): Generic data on the number of <span class="math inline">\(accidents\)</span> and the <span class="math inline">\(temperature\)</span> in Fahrenheit.</p></li>
 <li><p><code>airlines</code> (<span class="math inline">\(N=189496\)</span>): Data on airline on-time statistics and delay causes from the Bureau of Transportation Statistics from January 2004 to May 2020. The variable names are mostly self-explanatory. The variables <span class="math inline">\(arr\_flights\)</span> and <span class="math inline">\(arr\_del15\)</span> are the total number of arriving flights and the number of flight delayed at least 15 minutes. The original dataset is available <a href="https://www.transtats.bts.gov/ot_delay/ot_delaycause1.asp">here</a>.</p></li>
 <li><p><code>anscombe</code> (<span class="math inline">\(N=11\)</span>): Anscombe’s Quartet where <span class="math inline">\(y_i\)</span> and <span class="math inline">\(x_i\)</span> represent dependent and independent variable of set <span class="math inline">\(i\)</span>, respectively. This dataset is widely available and is also included in R.</p></li>
+<li><p><code>blm</code> (<span class="math inline">\(N=1359\)</span>):</p></li>
 <li><p><code>bmw</code> (<span class="math inline">\(N=30\)</span>): Data on the prices and miles of a particular BMW 5-series model in the Indianapolis area. Some of the models have rear-wheel drive (<span class="math inline">\(allwheeldrive=0\)</span>) whereas some have all-wheel drive (<span class="math inline">\(allwheeldrive=1\)</span>).</p></li>
 <li><p><code>chicagogrocery</code>: The <a href="Community%20Data%20Snapshots%20Raw%20Data">https://datahub.cmap.illinois.gov/dataset/community-data-snapshots-raw-data</a> from March 2014.</p></li>
 <li><p><code>coffee</code> (<span class="math inline">\(N=29\)</span>): Historical data about the coffee consumption in the United States. The variable <span class="math inline">\(consumption\)</span> is measured in thousand 60-kg bags. The variable  represents the retail price of roasted coffee in US Dollars per pound. Both time series are obtained from the International Coffee Association. The variables  and  represent real disposable income and the consumer price index, respectively. Those data series are obtained from the St. Louis FRED date base. The same is true for the varible . The variables  and  represent the real coffee prices and the per-capita consumption of coffee.</p></li>
@@ -308,7 +311,7 @@ you have the following variables: ,  (indicating whether people have a fast char
           </div>
         </div>
       </div>
-<a href="exercises-4.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="simultanous-equation-models.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
     </div>
   </div>

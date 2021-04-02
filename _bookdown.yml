@@ -4,7 +4,8 @@ delete_merged_file: true
 edit: https://github.com/jrfdumortier/dataanalysis/edit/master/%s
 view: https://github.com/jrfdumortier/dataanalysis/blob/master/%s
 rmd_files: ["index.Rmd","introduction.Rmd","introductiontor.Rmd","multivariate1.Rmd","anova.Rmd", 
-"violatingassumptions.Rmd","binarychoice.Rmd","qualitativechoice.rmd","limiteddepvar.rmd","datasources.Rmd"]
+"violatingassumptions.Rmd","binarychoice.Rmd","qualitativechoice.rmd","limiteddepvar.rmd",
+"simeqmodels.rmd","datasources.Rmd"]
 language:
   ui:
     chapter_name: 

@@ -24,7 +24,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2021-03-28" />
+<meta name="date" content="2021-04-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -198,11 +198,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.2" data-path="censoring.html"><a href="censoring.html"><i class="fa fa-check"></i><b>9.2</b> Censoring</a></li>
 <li class="chapter" data-level="9.3" data-path="count-regression-models.html"><a href="count-regression-models.html"><i class="fa fa-check"></i><b>9.3</b> Count Regression Models</a><ul>
 <li class="chapter" data-level="9.3.1" data-path="count-regression-models.html"><a href="count-regression-models.html#poisson-regression-model"><i class="fa fa-check"></i><b>9.3.1</b> Poisson Regression Model</a></li>
-<li class="chapter" data-level="9.3.2" data-path="count-regression-models.html"><a href="count-regression-models.html#negative-binomial-model"><i class="fa fa-check"></i><b>9.3.2</b> Negative-Binomial Model</a></li>
+<li class="chapter" data-level="9.3.2" data-path="count-regression-models.html"><a href="count-regression-models.html#quasi-poisson-regression-model"><i class="fa fa-check"></i><b>9.3.2</b> Quasi-Poisson Regression Model</a></li>
+<li class="chapter" data-level="9.3.3" data-path="count-regression-models.html"><a href="count-regression-models.html#negative-binomial-regression-model"><i class="fa fa-check"></i><b>9.3.3</b> Negative Binomial Regression Model</a></li>
 </ul></li>
 <li class="chapter" data-level="9.4" data-path="exercises-4.html"><a href="exercises-4.html"><i class="fa fa-check"></i><b>9.4</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>10</b> Data Sources</a></li>
+<li class="chapter" data-level="10" data-path="simultanous-equation-models.html"><a href="simultanous-equation-models.html"><i class="fa fa-check"></i><b>10</b> Simultanous Equation Models</a></li>
+<li class="chapter" data-level="11" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>11</b> Data Sources</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 </ul>
@@ -225,75 +227,69 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="censoring" class="section level2">
 <h2><span class="header-section-number">9.2</span> Censoring</h2>
 <p>In the case of censoring, the values of the dependent variable are reported at a certain point if they are above or below a certain value.</p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="censoring.html#cb68-1"></a>bhat_real =<span class="st"> </span><span class="kw">lm</span>(y_real<span class="op">~</span>x,<span class="dt">data=</span>censoring)</span>
-<span id="cb68-2"><a href="censoring.html#cb68-2"></a>bhat_censored =<span class="st"> </span><span class="kw">lm</span>(y_obs<span class="op">~</span>x,<span class="dt">data=</span>censoring)</span>
-<span id="cb68-3"><a href="censoring.html#cb68-3"></a><span class="kw">plot</span>(censoring<span class="op">$</span>x,censoring<span class="op">$</span>y_real)</span>
-<span id="cb68-4"><a href="censoring.html#cb68-4"></a>     <span class="kw">points</span>(censoring<span class="op">$</span>x,censoring<span class="op">$</span>y_obs,<span class="dt">pch=</span><span class="dv">19</span>)</span>
-<span id="cb68-5"><a href="censoring.html#cb68-5"></a>     <span class="kw">abline</span>(bhat_real,<span class="dt">col=</span><span class="kw">c</span>(<span class="st">&quot;darkgreen&quot;</span>))</span>
-<span id="cb68-6"><a href="censoring.html#cb68-6"></a>     <span class="kw">abline</span>(bhat_censored,<span class="dt">col=</span><span class="kw">c</span>(<span class="st">&quot;red&quot;</span>))</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
 <p>If all data was reported at the correct value, the following following regression model could be executed:</p>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="censoring.html#cb69-1"></a><span class="kw">summary</span>(bhat_real)</span></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="censoring.html#cb97-1"></a><span class="kw">summary</span>(bhat_real)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = y_real ~ x, data = censoring)
 ## 
 ## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -2.2931 -0.6692  0.1362  0.6193  3.5109 
+##      Min       1Q   Median       3Q      Max 
+## -2.22182 -0.55170  0.08971  0.48276  2.46812 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  -1.4382     0.2814  -5.111 5.52e-06 ***
-## x             0.4535     0.0517   8.771 1.54e-11 ***
+## (Intercept)  -2.3401     0.2895  -8.082 1.65e-10 ***
+## x             0.5137     0.0481  10.679 2.82e-14 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 1.086 on 48 degrees of freedom
-## Multiple R-squared:  0.6158, Adjusted R-squared:  0.6078 
-## F-statistic: 76.94 on 1 and 48 DF,  p-value: 1.542e-11</code></pre>
+## Residual standard error: 0.8993 on 48 degrees of freedom
+## Multiple R-squared:  0.7038, Adjusted R-squared:  0.6976 
+## F-statistic:   114 on 1 and 48 DF,  p-value: 2.823e-14</code></pre>
 <p>Ignoring censoring leads to biased results:</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="censoring.html#cb71-1"></a><span class="kw">summary</span>(bhat_censored)</span></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="censoring.html#cb99-1"></a><span class="kw">summary</span>(bhat_censored)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = y_obs ~ x, data = censoring)
 ## 
 ## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -2.0289 -0.3447 -0.0029  0.3112  3.7071 
+##      Min       1Q   Median       3Q      Max 
+## -1.39670 -0.44779 -0.03518  0.38205  2.77696 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) -0.37355    0.22851  -1.635    0.109    
-## x            0.30836    0.04198   7.345 2.18e-09 ***
+## (Intercept) -0.95421    0.23077  -4.135 0.000142 ***
+## x            0.33642    0.03834   8.774 1.53e-11 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 0.8816 on 48 degrees of freedom
-## Multiple R-squared:  0.5292, Adjusted R-squared:  0.5194 
-## F-statistic: 53.95 on 1 and 48 DF,  p-value: 2.18e-09</code></pre>
+## Residual standard error: 0.7168 on 48 degrees of freedom
+## Multiple R-squared:  0.616,  Adjusted R-squared:  0.608 
+## F-statistic: 76.99 on 1 and 48 DF,  p-value: 1.528e-11</code></pre>
 <p>Using the R package <a href="https://cran.r-project.org/web/packages/censReg/index.html">censReg</a>) allows for the reduction of the bias:</p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="censoring.html#cb73-1"></a>b_correct =<span class="st"> </span><span class="kw">censReg</span>(y_obs<span class="op">~</span>x,<span class="dt">data=</span>censoring)</span>
-<span id="cb73-2"><a href="censoring.html#cb73-2"></a><span class="kw">summary</span>(b_correct)</span></code></pre></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="censoring.html#cb101-1"></a>b_correct =<span class="st"> </span><span class="kw">censReg</span>(y_obs<span class="op">~</span>x,<span class="dt">data=</span>censoring)</span>
+<span id="cb101-2"><a href="censoring.html#cb101-2"></a><span class="kw">summary</span>(b_correct)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## censReg(formula = y_obs ~ x, data = censoring)
 ## 
 ## Observations:
 ##          Total  Left-censored     Uncensored Right-censored 
-##             50             17             33              0 
+##             50             22             28              0 
 ## 
 ## Coefficients:
 ##             Estimate Std. error t value  Pr(&gt; t)    
-## (Intercept) -1.41595    0.38219  -3.705 0.000212 ***
-## x            0.44988    0.06315   7.124 1.05e-12 ***
-## logSigma     0.07785    0.12548   0.620 0.534996    
+## (Intercept) -2.53519    0.45902  -5.523 3.33e-08 ***
+## x            0.53581    0.06711   7.984 1.41e-15 ***
+## logSigma    -0.09911    0.13899  -0.713    0.476    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Newton-Raphson maximisation, 5 iterations
+## Newton-Raphson maximisation, 6 iterations
 ## Return code 1: gradient close to zero (gradtol)
-## Log-likelihood: -58.03532 on 3 Df</code></pre>
+## Log-likelihood: -47.70054 on 3 Df</code></pre>
 </div>
             </section>
 

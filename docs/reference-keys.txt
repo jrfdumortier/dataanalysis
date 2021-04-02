@@ -48,6 +48,8 @@ truncation
 censoring
 count-regression-models
 poisson-regression-model
-negative-binomial-model
+quasi-poisson-regression-model
+negative-binomial-regression-model
 exercises-4
+simultanous-equation-models
 data-sources

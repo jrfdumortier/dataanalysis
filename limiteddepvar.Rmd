@@ -44,7 +44,7 @@ summary(bhat_correct)
 ## Censoring
 In the case of censoring, the values of the dependent variable are reported at a certain point if they are above or below a certain value.
 
-```{r}
+```{r, echo=FALSE}
 bhat_real = lm(y_real~x,data=censoring)
 bhat_censored = lm(y_obs~x,data=censoring)
 plot(censoring$x,censoring$y_real)
@@ -70,25 +70,28 @@ summary(b_correct)
 ```
 
 ## Count Regression Models
-Count regression models apply to cases for which the dependent variable represents discrete, integer count data. The main package used is [pscl](https://cran.r-project.org/web/packages/pscl/index.html). There is also an additional resource with more theoretical details on the topic: [Regression Models for Count Data in R](http://dx.doi.org/10.18637/jss.v027.i08). A more up-to-date version of the document may be found with the [pscl](https://cran.r-project.org/web/packages/pscl/index.html) package documentation. Here are some examples of count outcomes:
+Count regression models apply to cases in which the dependent variable represents discrete, integer count data. Here are some examples of count outcomes:
 
 - What are the number of arrests for a person?
-- What determines the number of credit cards a person owns?
+- What determines the number of credit cards a person owns? 
 
 This section on count regression presents three models:
 
-1. Poisson Regression: A condition to use this model is the absence of over- or underdispersion, i.e., the expected value of the dependent variable must be equal to the variance. 
-2. Negative Binomial Regression
+1. Poisson Regression Model: The condition to use this model is the absence of overdispersion, i.e., the expected value of the dependent variable is equal to the variance. 
+2. Quasi-Poisson Regression Model: Overdispersion occurs if the variance of the dependent variable is larger than its mean. In this case, the Poisson Regression Model leads to unreliable hypothesis tests regarding the coefficients. The Quasi-Poisson Model solves this issue.
+2. Negative Binomial Regression Model: The second possibility to deal with overdispersion is to use a Negative Binomial Regression Model. 
+
+The main package used is [pscl](https://cran.r-project.org/web/packages/pscl/index.html). There is also an additional resource with more theoretical details on the topic: [Regression Models for Count Data in R](http://dx.doi.org/10.18637/jss.v027.i08). A more up-to-date version of the document may be found with the [pscl](https://cran.r-project.org/web/packages/pscl/index.html) package documentation. 
 
 ### Poisson Regression Model
 Recall that the Poisson distribution is written as:
 $$Pr(Y=k)=\frac{e^{-\lambda} \cdot \lambda^k}{k!}$$
 The important characteristics of the distribution is that the mean and variance are equal to $\lambda$, i.e., $E(Y)=\lambda$ and $Var(Y)=\lambda$, this is also known as the equidispersion property. The  mean parameter is written as $\lambda=exp(\beta_0+\beta_1 \cdot x_1+ \dots + \beta_k \cdot x_k)$.
 
-The first examples uses the 2017 [NHTS](https://nhts.ornl.gov/) data contained in `hhpub`. In a first step, the data is prepared for the regression model, i.e., missing or unknown values are eliminated and income is measured in dollar terms:
+The first examples uses the 2017 [NHTS](https://nhts.ornl.gov/) data contained in `hhpub`. In a first step, the data is prepared for the regression model, i.e., missing or unknown values are eliminated and income is measured in (thousand) dollar terms:
 
 ```{r poissonregression_cleanhhpub,results=FALSE}
-hhpubdata = subset(hhpub,HHFAMINC %in% c(1:11) & HOMEOWN %in% c(1,2) & URBRUR %in% c(1,2) & HHVEHCNT %in% c(1:12))
+hhpubdata = subset(hhpub,HHFAMINC %in% c(1:11) & HOMEOWN %in% c(1,2) & URBRUR %in% c(1,2) & HHVEHCNT %in% c(0:12))
 HHFAMINC = c(1:11)
 INCOME = c(10,12.5,20,30,42.5,57.5,82.5,112.5,137.5,175,200)
 INCOME = data.frame(HHFAMINC,INCOME)
@@ -100,46 +103,77 @@ hhpubdata$RENT = hhpubdata$HOMEOWN-1
 The outcome of interest is the number of vehicles based on household income, home ownership, and urban/rural household location. Before executing the Poisson regression model, calculate the mean and variance of the outcome variable.
 
 ```{r, echo=FALSE}
-mean(hhpub$HHVEHCNT)
-var(hhpub$HHVEHCNT)
+mean(hhpubdata$HHVEHCNT)
+var(hhpubdata$HHVEHCNT)
 ```
+The mean and the variance are similar and thus, estimating a Poisson Regression Model is an appropriate first step. The package [AER](https://cran.r-project.org/web/packages/AER/index.html) also contains the function `dispersiontest()` which conducts a hypothesis test assuming no overdispersion. This test will be used after execution of the main regression. To estimate the model, the `glm()` function can be used by specifying `family=poisson`.
 
 ```{r }
 bhat_pois = glm(HHVEHCNT~INCOME+RENT+RURAL,data=hhpubdata,family=poisson)
 summary(bhat_pois)
 ```
 
-The coefficient estimates are interpreted as follows:
-   
-- $\exp(\beta)$ = with every unit increase in $X$, the predictor variable has multiplicative effect of $\exp(\beta)$ on the mean of $Y$, i.e., $\lambda$
+All coefficients are statistically significant. The signs associated with the coefficients indicates the direction of influence on the outcome variable, i.e., the number of cars. As expected, higher income is associated with a higher number of cars and so is living in a rural environment. Renting is associated with a lower number of vehicles. Note that income and renting is possibly correlated. In general, the coefficient estimates are interpreted using $\exp(\beta)$. That is, with every unit increase in $X$, the predictor variable has a multiplicative effect of $\exp(\beta)$ on the mean of $Y$, i.e., $\lambda$:
 
 - If $\beta=0$, then $\exp(\beta) = 1$, and the expected count $\mu= E(y) = \exp(\alpha)$, and Y and X are not related.
 - If $\beta>0$, then $\exp(\beta) > 1$, and the expected count $E(y)$ is $\exp(\beta)$ times larger than when $X = 0$
 - If $\beta<0$, then $\exp(\beta) < 1$, and the expected count $E(y)$ is $\exp(\beta)$ times smaller than when $X = 0$
 
-To estimate a negative binomial model:
+The function `overdispersion` tests the null hypothesis of equidispersion:
+
 ```{r}
-bhat_nb = glm(HHVEHCNT~INCOME+RENT+RURAL,data=hhpubdata)
-summary(bhat_nb)
+dispersiontest(bhat_pois)
 ```
 
-### Negative-Binomial Model
-MODEL 1: Basic model of resource mobilization and opportunity structure
+Given the *p*-value, the null hypothesis cannot be rejected. If the data suggests overdispersion, two alternative regression models can be used: (1) Quasi-Poisson and (2) Negative Binomial.
+
+### Quasi-Poisson Regression Model
+The dataset `blm` used in this section as well as the one describing the negative binomial model is associated with the article [Black Lives Matter: Evidence that Police-Caused Deaths Predict Protest Activity](https://doi.org/10.1017/S1537592717004273). Note that the paper includes a significant number of supplementary materials which allows for the replication of the results and much more.  
+
+The dependent variable is the total number of protests in a city. In a first step, the mean and variance of the variable $totalprotests$ are calclated:
+
 ```{r}
-nb.3_1 = glm.nb(tot.protests~log(TotalPop)+log(pop.density)+Per_Black+BlackPovertyRate+I(BlackPovertyRate^2)+per_ba+collegeenrollpc+dem_share,data=blm,link=log)
-summary(nb.3_1) 
+mean(blm$totprotests)
+var(blm$totprotests)
+```
+The variance is significantly higher than the mean which suggests overdispersion. In a first step, a regular Poisson model is estimated.
+
+```{r}
+eq1 = "totprotests~log(pop)+log(popdensity)+percentblack+blackpovertyrate+I(blackpovertyrate^2)+percentbachelor+collegeenrollpc+demshare"
+bhat1 = glm(eq1,data=blm,family=poisson)
+summary(bhat1)
+```
+Note that the signs and statistical significance correspond to Model 1 (Table 3) in the original paper. The coefficients are different because the paper only include negative binomial regression models. The reason for not using a Poisson regression model is the presence of overdispersion:
+```{r}
+dispersiontest(bhat1)
+```
+Note that the null hypothesis is rejected at the 10\% but not the 5\% significance level. The Quasi-Poisson Regression Model handles overdispersion by adjusting the stand-errors but leaving the coefficicent estimates the same.
+
+```{r}
+bhat2 = glm(eq1,data=blm,family=quasipoisson)
+summary(bhat2)
+```
+Note that in this case, the population density is not statistically significant anymore. 
+
+### Negative Binomial Regression Model
+The Negative Binomial Regression Model can be used in the presence of count data and overdispersion. Below, the results from the article [Black Lives Matter: Evidence that Police-Caused Deaths Predict Protest Activity](https://doi.org/10.1017/S1537592717004273) are recreated using the negative binomial models presented in the paper. The required package is [MASS](https://cran.r-project.org/web/packages/MASS/index.html)
+
+The first model is a basic model of resource mobilization and opportunity structure.
+```{r}
+bhat3 = glm.nb(eq1,data=blm,link=log)
+summary(bhat3) 
 ```
 
-MODEL 2: Adding black deaths
+In a second model, black deaths are added:
 ```{r}
-nb.3_2 = glm.nb(tot.protests~log(TotalPop)+log(pop.density)+Per_Black+BlackPovertyRate+I(BlackPovertyRate^2)+per_ba+collegeenrollpc+dem_share+deaths_black_pc,data=blm,link=log)
-summary(nb.3_2) 
+bhat4 = glm.nb(totprotests~log(pop)+log(popdensity)+percentblack+blackpovertyrate+I(blackpovertyrate^2)+percentbachelor+collegeenrollpc+demshare+deathsblackpc,data=blm,link=log)
+summary(bhat4) 
 ```
 
-MODEL 3: Using all police-caused deaths instead (victims of any race)
+And in the third model, the authors use all police-caused deaths instead (victims of any race):
 ```{r}
-nb.3_3 = glm.nb(tot.protests ~ log(TotalPop) + log(pop.density) + Per_Black + BlackPovertyRate + I(BlackPovertyRate^2) + per_ba + collegeenrollpc + dem_share + deaths_pc, data=blm, link=log)
-summary(nb.3_3) 
+bhat5 = glm.nb(totprotests~log(pop)+log(popdensity)+percentblack+blackpovertyrate+I(blackpovertyrate^2)+percentbachelor+collegeenrollpc+demshare+deathspc,data=blm,link=log)
+summary(bhat5) 
 ```
 
 ## Exercises
