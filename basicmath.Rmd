@@ -1,0 +1,47 @@
+# Basic Mathematical Tools
+
+\subsection{Basic Mathematical Tools}
+There are some basic mathematical tools that you will need to follow the material presented in class and in the book. The \emph{summation operator} is used to shorten the notation when several terms are added. The summation operator is defined as 
+  \begin{equation*}
+      \sum_{i=1}^{N} x_i = x_1 + x_2 + \dots +x_N
+  \end{equation*}
+where $i$ is a counter going from 1 to $N$. For example, if $x_1=2$, $x_2=-4$, and $x_3=5$ then we have
+     \begin{equation*}
+          \sum_{i=1}^3 x_i = 2 + (-4) + 5 = 3
+     \end{equation*}
+There are several important properties associated with the summation operator. For any constants $a$ and $b$, we have
+     \begin{gather*}
+          \sum_{i=1}^{N} a = a \cdot N \\
+          \sum_{i=1}^{N} a x_i = a \sum_{i=1}^{N} x_i
+     \end{gather*}
+If $x_i$ and $y_i$ are a set of $n$ pairs of numbers:
+   \begin{equation*}
+       \sum_{i=1}^{N} (ax_i+by_i) = a \sum_{i=1}^{N} x_i + b \sum_{i=1}^{N} y_i
+   \end{equation*}
+There are a few mathematical operations that you should not do with the summation operator. Assume that $x_1=10$, $x_2=4$, $y_1=5$, and $y_2=2$ and verify the following: 
+  \begin{gather*}
+      \sum_{i=1}^{N} \frac{x_i}{y_i}  \neq  \frac{\sum_{i=1}^{N} x_i}{\sum_{i=1}^{N} y_i} \\
+      \sum_{i=1}^{N} x_i^2  \neq  \left(\sum_{i=1}^{N} x_i\right)^2
+  \end{gather*}
+Especially during the regression part of this class, the \emph{linear function} will play an important role. A function is a rule that describes the relationship between two or more variables. A function is usually written as $y=f(x)$ where $y$ is the dependent variable and $x$ is the independent variable. A linear function, i.e., a straight line, can be written as $y = \alpha + \beta x$ where $\alpha$ is the intercept and $\beta$ is the slope. Examples of linear functions are $y = 20 + 5x$ or $y = 50-0.5 x$.
+  
+The \emph{natural logarithm} can be written as $y=\ln(x) \Leftrightarrow \ln(e^x)=x$ and is based on Euler's number $e$. You can think of Euler's number as a constant like $\pi$. Euler's number is defined as
+  \begin{equation*}
+    e = \sum_{n=0}^\infty \frac{1}{n!} = 1 + \frac{1}{1} + \frac{1}{2} + \frac{1}{6} + \cdots
+  \end{equation*}
+where $n!$ represents the factorial with $0!=1$. This leads to $e=2.71828$\dots. The natural logarithm function is defined for $x>0$. Useful properties (for any constant $c$) are:
+  \begin{align*}
+      \ln(1)      &= 0\\
+      \ln(xy)     &= \ln(x) + \ln(y)\\
+      \ln(x/y)    &= \ln(x)-\ln(y)\\
+      \ln(x^c)    &= c \ln(x)
+  \end{align*}
+For example, $\ln(10)=2.302585$ and thus, $e^{2.302585} = 10$. One of the important applications of the natural logarithm is in the context of interest rates. For example, assume that in $t=1$, you put \$100 into an interest-bearing bank account. The interest rate is 4\%. In period $t=2$, you will have \$104. If the interest is compounded twice a year, then we have 
+     \begin{equation*}   
+          \$100 \cdot \left( 1+\frac{0.04}{2} \right) \cdot \left(1+\frac{0.04}{2} \right) = \$100 \cdot  \left(1+\frac{0.04}{2} \right)^2 =\$104.04
+     \end{equation*}
+In more general terms, we have
+     \begin{equation*}
+          \lim_{n \rightarrow \infty} \left(1+\frac{r}{n} \right)^n = e^r
+     \end{equation*}
+This leads to the property that the percent change in prices can be expressed as $\ln(p_2)-\ln(p_1)=r$.

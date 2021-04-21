@@ -1,22 +1,33 @@
 # Data Sources
 
-This chapter describes the data sets associated with the lecture notes. Some data sets are generic, i.e., randomly generated, to highlight a particular concept while other are either based on public sources or are taken from academic papers. In any case, the source is clearly indicated. Sometimes modifications were made to the  data sets for ease of use, e.g., removing missing values. All the data are contained in the file [DataAnalysisPAData.RData](https://github.com/jrfdumortier/dataanalysis/blob/master/DataAnalysisPAData.RData). Some of the data are also associated with specific R packages which is indicated. 
+This chapter describes the data sets associated with the lecture notes. Some data sets are generic, i.e., randomly generated, to highlight a particular concept while other are either based on public sources or are taken from academic papers. In any case, the sources are clearly indicated. Sometimes modifications were made to the data for ease of use, e.g., removing missing values or unnecessary variables. All the data is contained in the file [DataAnalysisPAData.RData](https://github.com/jrfdumortier/dataanalysis/blob/master/DataAnalysisPAData.RData). Some of the data sets are also associated with specific R packages which is indicated. 
 
 - `accidents` ($N=30$): Generic data on the number of $accidents$ and the $temperature$ in Fahrenheit.
 
-- `airlines` ($N=189496$): Data on airline on-time statistics and delay causes from the Bureau of Transportation Statistics from January 2004 to May 2020. The variable names are mostly self-explanatory. The variables $arr\_flights$ and $arr\_del15$ are the total number of arriving flights and the number of flight delayed at least 15 minutes. The original dataset is available [here](https://www.transtats.bts.gov/ot_delay/ot_delaycause1.asp).   
+- `airlines` ($N=189496$): Data on airline on-time statistics and delay causes from the Bureau of Transportation Statistics from January 2004 to May 2020. The variable names are mostly self-explanatory. The variables $arr\_flights$ and $arr\_del15$ are the total number of arriving flights and the number of flight delayed at least 15 minutes. The original data is available [here](https://www.transtats.bts.gov/ot_delay/ot_delaycause1.asp).   
 
-- `anscombe` ($N=11$): Anscombe's Quartet where $y_i$ and $x_i$ represent dependent and independent variable of set $i$, respectively. This dataset is widely available and is also included in R.
+- `anscombe` ($N=11$): Anscombe's Quartet where $y_i$ and $x_i$ represent dependent and independent variable of set $i$, respectively. This data set is widely available and is also included in R.
 
-- `blm` ($N=1359$): 
+- `blm` ($N=1359$): The data is associated with the paper [Black Lives Matter: Evidence that Police-Caused Deaths Predict Protest Activity](https://doi.org/10.1017/S1537592717004273). The variables include city ($geography$), total protests ($totprotests$), population ($pop$), population density ($popdensity$), percent black ($percentblack$), black poverty rate ($blackpovertyrate$), percent college-educated ($percentbachelor$), college students as a percent of the population ($collegeenrollpc$), Democratic vote share ($demshare$), police-caused deaths per 10,000 ($deathspc$), and black police-caused deaths per 10,000 ($deathsblackpc$).
 
 - `bmw` ($N=30$): Data on the prices and miles of a particular BMW 5-series model in the Indianapolis area. Some of the models have rear-wheel drive ($allwheeldrive=0$) whereas some have all-wheel drive ($allwheeldrive=1$).
 
-- `chicagogrocery`: The [https://datahub.cmap.illinois.gov/dataset/community-data-snapshots-raw-data](Community Data Snapshots Raw Data) from March 2014. 
+- `chicagogrocery`: The data set was represents the information from [2013 grocery stores](https://github.com/Chicago/food-deserts) and [Community Data Snapshots Raw Data from March 2014](https://datahub.cmap.illinois.gov/dataset/community-data-snapshots-raw-data]. It includes the following variables:
+    - $cca$: Name of the Chicago Community Area
+    - $stores$: Number of grocery stores
+    - $sqft$: Sum of store square footage
+    - $income$: Median income
+    - $homevalue$: Median home value
+    - $pop$: Population
+    - $whitepop$: White population
+    - $laborforce$: Labor Force
+    - $unemployed$: Unemployed people
+    - $black$: Blac population
+    - $acres$: Area of the CCA
 
-- `coffee` ($N=29$): Historical data about the coffee consumption in the United States. The variable $consumption$ is measured in thousand 60-kg bags. The variable \emph{price} represents the retail price of roasted coffee in US Dollars per pound. Both time series are obtained from the International Coffee Association. The variables \emph{rdi} and \emph{cpi} represent real disposable income and the consumer price index, respectively. Those data series are obtained from the St. Louis FRED date base. The same is true for the varible \emph{population}. The variables \emph{rprice} and \emph{pcconsumption} represent the real coffee prices and the per-capita consumption of coffee. 
+- `coffee` ($N=29$): Historical data about the coffee consumption in the United States. The variable $consumption$ is measured in thousand 60-kg bags. The variable $price$ represents the retail price of roasted coffee in US Dollars per pound. Both time series are obtained from the International Coffee Association. The variables $rdi$ and $cpi$} represent real disposable income and the consumer price index, respectively. Those data series are obtained from the St. Louis FRED date base. The same is true for the varible $population$. The variables $rprice$ and $pcconsumption$ represent the real coffee prices and the per-capita consumption of coffee. 
 
-- `compactcars` ($N=78$): Fuel efficiency of compact cars in 1995 and 2015. The fuel efficiceny is expressed in miles per gallon in the columns \emph{Automatic} and \emph{Manual}, respectively. 
+- `compactcars` ($N=78$): Fuel efficiency of compact cars in 1995 and 2015. The fuel efficiency is expressed in miles per gallon in the columns \emph{Automatic} and \emph{Manual}, respectively. 
 
 - `discharge` ($N=7$): Generic data set of pollutant discharge into a river measured in gallons.
 
@@ -28,6 +39,18 @@ This chapter describes the data sets associated with the lecture notes. Some dat
 variable \emph{choice} represents the choice by the consumer for gasoline vehicles ($choice = 1$), conventional
 hybrids ($choice = 2$), plug-in hybrids ($choice = 3$), and electric vehicles ($choice = 4$). For each consumer,
 you have the following variables: \emph{age}, \emph{level2} (indicating whether people have a fast charger for electric cars in their community), \emph{female}, and \emph{numcars} (number of cars). The variable \emph{politics} is coded as follows: Under \$15,000 (1), \$15,000 to \$24,999 (2), \$25,000 to \$34, 999 (3), \$35,000 to \$49,999 (4), \$50,000 to \$74,999 (5), \$75,000 to \$99,999 (6), \$100,000 to \$149,999 (7), \$150,000 to \$199,999 (8), \$200,000 to \$249,000 (9), above \$250,000 (10). The variable \emph{edu} is coded as follows:  Less than High School (1), High School / GED (2), Some College (3), 2-year College Degree (4), 4-year College Degree (5), Masters Degree (6), Doctoral Degree (7). The variable politics is coded as follows: Extremely Liberal (1), Liberal (2), Slightly liberal (3), Moderate (4), Slightly conservative (5), Conservative (6), Extremely conservative (7), Other (8), None (9). See \citet{Dumortier:2014} for more details. 
+
+- `fertil1` ($N=1129$): Data from the General Social Survey. The data set is accompanying the book *Introductory Econometrics: A Modern Approach* by Jeffrey Wooldridge. The variables are as follows:  
+
+    - year: 72 to 84, even
+    - educ:  years of schooling
+    - meduc and feduc}: mother's and father's education
+    - kids: number children ever born
+    - east, \texttt{northcentral}, and \texttt{west}: 1 if lived in at 16
+    - farm: 1 if on farm at 16
+    - otherrural: 1 if other rural at 16
+    - town: 1 if lived in town at 16
+    - smallcity: 1 if in small city at 16
 
 - `fpdata` ($N=176$):
 
@@ -104,7 +127,22 @@ you have the following variables: \emph{age}, \emph{level2} (indicating whether 
 
 - `organic` ($N=100$): Randomly generated data on the purchase behavior of organic food (binary choice) as a function of income.
 
-- `retail} ($N=348$): \href{https://fred.stlouisfed.org/series/RSXFSN}{Advance Retail Sales: Retail (Excluding Food Services)} obtained from the St; Louis FRED.
+- `retail` ($N=348$): \href{https://fred.stlouisfed.org/series/RSXFSN}{Advance Retail Sales: Retail (Excluding Food Services)} obtained from the St. Louis FRED.
+
+- `rossi` ($N=432$):
+
+week: week of first arrest after release, or censoring time.
+arrest: the event indicator, equal to 1 for those arrested during the period of the study and 0 for those who were not arrested.
+fin: a factor, with levels yes if the individual received financial aid after release from prison, and no if he did not; financial aid was a randomly assigned factor manipulated by the researchers.
+age: in years at the time of release.
+race: a factor with levels black and other.
+wexp: a factor with levels yes if the individual had full-time work experience prior to incarceration and no if he did not.
+mar: a factor with levels married if the individual was married at the time of release and not married if he was not.
+paro: a factor coded yes if the individual was released on parole and no if he was not.
+prio: number of prior convictions.
+educ: education, a categorical variable coded numerically, with codes 2 (grade 6 or less), 3 (grades 6 through 9), 4 (grades 10 and 11), 5 (grade 12), or 6 (some post-secondary).
+emp1 – emp52: factors coded yes if the individual was employed in the corresponding week of the study and no otherwise.
+
 
 - `skewness` ($N=500$): Randomly generated data from a beta distribution:
 \begin{itemize}
@@ -125,35 +163,31 @@ you have the following variables: \emph{age}, \emph{level2} (indicating whether 
 
 - `vehicles` ($N=42702$): The data set contains data about the fuel efficiency of vehicles from model year 1984 to 2021 ($year$). It also includes $make$ and $model$ for the various manufacturers. The variable $displ$ refers to engine displacement in liters\footnote{\url{https://en.wikipedia.org/wiki/Engine_displacement}}, $VClass$ is the vehicle class, $ghgScore$ indicates the greenhouse gas (GHG) emissions, and $comb08U$ is unrounded combined MPG. The data is obtained from the U.S. Environmental Protection Agency' (EPA) \href{https://www.fueleconomy.gov/feg/download.shtml}{Fuel Economy Data} webpage.
 
-- `vehpub` ($N=256115$): The data contains vehicle data from the 2017 National Household Travel Survey (NHTS). I have deleted some columns but the detailed code book can be found \href{https://nhts.ornl.gov/tables09/CodebookBrowser.aspx}{here}. The variables included are:
-\begin{itemize}
-\item \emph{HOUSEID}: Household Identifier 
-\item \emph{VEHID}: Vehicle Identifier
-\item \emph{VEHYEAR}: Vehicle Year
-\item \emph{MAKE}: Vehicle Make
-\item \emph{FUELTYPE}: Fuel Type
-\item \emph{VEHTYPE}: Vehicle Type
-\item \emph{OD\_READ}: Odometer Reading
-\item \emph{HFUEL}: Type of Hybrid Vehicle
-\item \emph{HYBRID}: Hybrid vehicle
-\item \emph{HOMEOWN}: Home Ownership
-\item \emph{HHFAMINC}: Household income
-\item \emph{HHSTATE}: Household state
-\item \emph{URBRUR}: Household in urban/rural area
-\end{itemize}
+- `vehpub` ($N=256115$): The data contains vehicle data from the 2017 National Household Travel Survey (NHTS). Some columns were deleted but the detailed code book can be found [here](https://nhts.ornl.gov/tables09/CodebookBrowser.aspx). The variables included are:
+    - $HOUSEID$: Household Identifier 
+    - $VEHID$: Vehicle Identifier
+    - $VEHYEAR$: Vehicle Year
+    - $MAKE$: Vehicle Make
+    - $FUELTYPE$: Fuel Type
+    - $VEHTYPE$: Vehicle Type
+    - $OD\_READ$: Odometer Reading
+    - $HFUEL$: Type of Hybrid Vehicle
+    - $HYBRID$: Hybrid vehicle
+    - $HOMEOWN$: Home Ownership
+    - $HHFAMINC$: Household income
+    - $HHSTATE$: Household state
+    - $URBRUR$: Household in urban/rural area
 
-- `waterpressure` ($N=30$): Generated data on the water pressure in city's water lines.
+- `waterpressure` ($N=30$): Randomly generated data on the water pressure in a city's water lines.
 
 - `wdi` ($N=13237$): World Development Indicators (WDI) from the World Bank. The following variables are included in the data set. 
-
-\begin{itemize}
-\item \emph{iso2c}: Country code
-\item \emph{country}: Country name
-\item \emph{year}: Year
-\item \emph{gdp}: GDP per capita (constant 2010 US\$)
-\item \emph{lifeexp}: Life expectancy at birth, total (years)
-\item \emph{litrate}: Literacy rate, adult total (\% of people ages 15 and above)
-\item \emph{fertrate}: Fertility rate, total (births per woman)
-\item \emph{mortrate}: Mortality rate, under 5 (per 1,000 live births)
-\item \emph{region}: \href{https://datahelpdesk.worldbank.org/knowledgebase/articles/378834-how-does-the-world-bank-classify-countries}{Geographic regions}
-\item \emph{incomeLevel}: Income groupings are based on Gross National Income per capita
+    - $iso2c$: Country code
+    - $country$: Country name
+    - $year$: Year
+    - $gdp$: GDP per capita (constant 2010 US$)
+    - $lifeexp$: Life expectancy at birth, total (years)
+    - $litrate$: Literacy rate, adult total (\% of people ages 15 and above)
+    - $fertrate$: Fertility rate, total (births per woman)
+    - $mortrate$: Mortality rate, under 5 (per 1,000 live births)
+    - $region$: [Geographic region](https://datahelpdesk.worldbank.org/knowledgebase/articles/378834-how-does-the-world-bank-classify-countries)
+    - $incomeLevel$: Income groupings are based on Gross National Income per-capita

@@ -165,6 +165,15 @@ bhat                = mlogit(mode~catch+price|income,data=fishing)
 summary(bhat)
 fishing.fitted      = fitted(bhat,outcome=FALSE)
 effects(bhat,covariate="income")
+rm(bhat,Fishing,fishing.fitted)
+```
+
+The `mlogit` package also allows for the estimation of a multinomial probit model.
+```{r}
+bhat                = mlogit(mode~catch+price|income,data=fishing,probit=FALSE)
+summary(bhat)
+fishing.fitted      = fitted(bhat,outcome=FALSE)
+effects(bhat,covariate="income")
 rm(bhat,Fishing,fishing,fishing.fitted)
 ```
 

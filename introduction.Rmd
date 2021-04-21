@@ -1,14 +1,113 @@
 # Introduction
 
-```{r loading_packages,echo=FALSE,results=FALSE}
+```{r loading_packages,echo=FALSE,results=FALSE,warning=FALSE}
 load("DataAnalysisPAData.RData")
-library(mlogit)
-library(erer)
-library(MASS)
 library(AER)
-library(glmmML)
-library(nnet)
-library(truncreg)
 library(censReg)
+library(erer)
+library(forecast)
+library(glmmML)
+library(ggfortify)
+library(ggplot2)
+library(gmodels)
+library(Hmisc)
+library(margins)
+library(MASS)
+library(mlogit)
+library(quantmod)
+library(nnet)
+library(plm)
+library(pscl)
+library(survival)
+library(survminer)
+library(systemfit)
+library(timeSeries)
+library(truncreg)
+library(XML)
 ```
 
+The purpose of this chapter is to provide an introduction and overview about the various aspects of uncertainty:
+
+- Usefulness of learning about probability, statistics, and regression models
+- Installing R and RStudio
+
+## Overview
+We are surrounded by probability and statistics on a daily basis because the world around us is uncertain. The purpose of probability theory and statistics is to explain and model stochastic processes such that predictions can be made. Probability and the application of statistics occur basically everywhere. For example, if you order something online, other products are suggested to you. Those suggestions are not random but are based on how you compare to other shoppers interested in similar items. Consider the following examples:
+
+- **Grades**: If you take a university class then the grade you receive in the class is uncertain at the beginning of the semester. You may attach different probabilities associated with the various grades based on your knowledge about the material.
+- *911 calls*: While getting my graduate degree at Iowa State University, I was standing  at a red light one morning which had a fire station down the road. Two fire trucks with their sirens on arrived at the red light and departed in opposite directions. Thus, two 911 calls must have come in at the same time requiring two trucks from the same station. The fire station has three trucks and as a public safety manager, you may be interested in the probability of more than three trucks being requested.   
+- *Basketball free throws*: Just because there are two outcomes does not mean that the probability is 50%/50%. Stephen Curry is the career leader in terms of free throw percentage (90.56%). Either he scores or misses, and his success rate is far from 50%.
+- *Polls*: Especially before elections, polls are very popular to determine which candidate is favored. The polling results usually include a so-called margin of error which is an indicator of confidence in the results. The chapter on confidence intervals explains how the margin of error is calculated. 
+- *Hurricanes*: Projected pathways of Hurricanes, e.g., [Sandy in 2012](https://www.nhc.noaa.gov/archive/2012/graphics/al18/loop_5W.shtml), produced by the National Hurricane Center (NHC) include so-called cones of uncertainty. The NHC defines the cone of uncertainty as follows: *The cone represents the probable track of the center of a tropical cyclone, and is formed by enclosing the area swept out by a set of circles along the forecast track (at 12, 24, 36 hours, etc.). The size of each circle is set so that two-thirds of historical official forecast errors over a 5-year sample fall within the circle. Based on forecasts over the previous 5 years, the entire track of a tropical cyclone can be expected to remain within the cone roughly 60-70% of the time. It is important to note that the area affected by a tropical cyclone can extend well beyond the confines of the cone enclosing the most likely track area of the center.* 
+- *COVID-19*: A recent example is the [COVID-19 risk assessment chart](https://www.texmed.org/TexasMedicineDetail.aspx?id=54216) developed by the Texas Medical Association. The risk categories can be thought of as probabilities of contracting COVID-19 for the activities listed. They also updated their chart to account for [COVID Risks of Various Holiday Activities](https://www.texmed.org/Template.aspx?id=55193). 
+
+If you are working and receiving retirement benefits, you are likely investing those in mutual fund. The saying "do not put all your eggs in one basket" applies in this context. The figure below shows the evolution of Vanguard 500 Index Fund Investor Shares (VFINX) and the Fidelity Select Retailing Portfolio (FSRPX). Although not perfectly, the funds generally move in the same direction.  
+```{r,echo=FALSE,warning=FALSE}
+fund                = c("VFINX","FSRPX")
+funddata            = getSymbols(fund[1],src="yahoo",return.class='xts',auto.assign=FALSE,
+                                 from="2014-01-01",to=Sys.Date())
+colnames(funddata)  = c('Open','High','Low','Close','Volume',"value")
+funddata$return     = funddata$value/lag(funddata$value)-1
+funddata            = as.data.frame(funddata)
+funddata$Ticker     = fund[1]
+funddata$date       = as.Date(rownames(funddata))
+funddata$value      = funddata$value/funddata$value[1]
+temp                = getSymbols(fund[2],src="yahoo",return.class='xts',auto.assign=FALSE,
+                                 from="2014-01-01",to=Sys.Date())
+colnames(temp)      = c('Open','High','Low','Close','Volume',"value")
+temp$return         = temp$value/lag(temp$value)-1
+temp                = as.data.frame(temp)
+temp$Ticker         = fund[2]
+temp$date           = as.Date(rownames(temp))
+temp$value          = temp$value/temp$value[1]
+data1               = funddata[,c("date","return")]
+colnames(data1)     = c("date",fund[1])
+data2               = temp[,c("date","return")]
+colnames(data2)     = c("date",fund[2])
+returndata          = merge(data1,data2,by=c("date"))
+funddata            = rbind(funddata,temp)
+ggplot(data=funddata,aes(x=date,y=value,color=Ticker))+geom_line()+
+     theme_bw()+theme(legend.position="bottom")
+```
+Scatter plot and indication of frequency of the daily returns of VFINX and FSRPX. Both graphs indicate a certain degree of positive association between the returns, i.e., if one of the mutual funds increases, the other tends to increase as well (and vice versa).
+```{r,echo=FALSE,warning=FALSE}
+ggplot(returndata,aes(VFINX,FSRPX))+
+     geom_bin2d(binwidth=c(0.002,0.002))+
+     theme_bw()+theme(legend.position="bottom")
+```
+
+This course can be subdivided into three large topics: probability, statistics, and regression. The basics of probability provide means for modeling populations, experiments, and any other random phenomena. You will be introduced to probability distributions that allow you to model random outcomes. Probability theory is also the foundation for statistics. Statistics allows us to learn something about the population based on a sample. Sampling distributions, confidence intervals, and hypothesis testing will be important concepts. The last part will cover regression analysis which states mathematical relationships among variables. For example, the price of a used car can be expressed as a function of model, year, mileage, and cylinders. 
+
+To illustrate the difference between probability and statistics let us consider two buckets. The first bucket illustrates the concept of probability and the second bucket illustrates the concept of statistics. Suppose that in the first bucket, you have a bunch of balls of different colors: Green, black, and red. And you also know how many of each color are in the bucket. Probability theory tells you the expected number of green, red, and black balls in your hand after pulling out a bunch of balls from the bucket. It will tell you the likely distribution of colors in your hand.  
+
+Statistics is different. Again, you have a bucket but you do not know what is in the bucket. Think about the content of the bucket as your population with unknown characteristics. To learn about the characteristics of the population, you pull out a sample from the bucket. Based on the distribution of colored balls in your hand, you can use statistics to say something of the characteristics of your population, that is, the content of the bucket in this case. 
+
+## R and RStudio
+Throughout the semester, we are going to use the software \href{https://www.r-project.org}{R} to conduct statistical analysis. We will use RStudio to interact with R and you can think of RStudio as a graphical user interface for R. R/RStudio has a similar data setup to Excel but instead of seeing the spreadsheet all the time, the spreadsheet with your data is in the background. R/RStudio requires that your columns be the variables and that the rows are your observations. For convenience, we are going to use Excel for data setup. For R/RStudio, there are great online resources:
+\begin{itemize}
+\item \href{https://stat.ethz.ch/R-manual/R-devel/doc/html/}{ETH Zurich}: If you are looking for documentation about all the various functions in R, this is the website to check them. Note that in most cases, the result of a Google search leads to the ETHZ page.
+\item \href{https://www.statmethods.net/}{StatMethods}: This webpage contains a lot of tutorials and introduces you to the basic functionality of R.
+\item \href{http://www.sthda.com/english/}{Statistical tools for high-throughput data analysis (STHDA)}: If you are looking to learn how to do data visualization with the R package \texttt{ggplot2}, then this the web page to learn all about it.
+\end{itemize}
+R/RStudio has several advantages over Excel. 
+\begin{enumerate}
+\item R/RStudio is set up to do statistical analysis. Excel is easy to use but has very limited capabilities. 
+\item It is important for your future employer to know that you have been exposed to a modern statistical software besides Excel. You might be the one that introduces a specialized statistical software to your workplace. The advantage of R/RStudio is that it is a free and very powerful statistical software. R is a software that requires some programming and understanding of computer languages but there are almost no limits of what you can do.
+\item Getting a graduate degree should go beyond simple Excel job training and should expose you to something new. 
+\end{enumerate}
+
+### Preparation for R/RStudio
+The next lecture will introduce you to the use of R and RStudio. We will use RStudio to interact with R and you can think of RStudio as a graphical user interface for R. To focus on the use of R and RStudio during the lecture, some easy preparatory steps are necessary for you to perform before class. Those are mostly related to installing R and RStudio and to load sample data into the software. With this document, you should have downloaded the small dataset \texttt{honda.csv} and the R-script file \texttt{RLectureTemplate.R}. In preparation for the lecture, you will load \texttt{honda.csv} into R and RStudio. 
+
+### Installing R and RStudio
+You must first install R on your computer by doing the following:
+
+- Go to [The R Project for Statistical Computing](https://www.r-project.org/) and download the R version that is appropriate for your computer. This is either the "base" version if you have a Windows computer or the "Latest release" .pkg file if you are using Mac OS. Once you have downloaded the file, install R on your computer.
+- Go to [RStudio](https://www.rstudio.com/products/rstudio/download/) and download the RStudio version that is appropriate for your computer. Note that the various "Installers for Supported Platforms" are at the bottom of the page. Once you have downloaded the file, install RStudio on your computer.
+
+Note that we will only be using RStudio which runs R in the background. You cannot use RStudio without having R installed first. Throughout the lecture, I will be referring to R/RStudio.  
+
+### Locating Files on your Computer
+To import data into R/RStudio, you must know (1) where files are located on your computer and (2) what the current working directory of R/RStudio is. On a windows computer, the directory where files are stored is like `C:\Users\Jerome\Documents\R Lecture` and for Mac OS it is similar to `/Users/Jerome/R Lecture`
+
+Think of the working directory as the folder on your computer in which R/RStudio is looking for files by default. After opening R/RStudio, you can type `getwd()` in the console window and R/RStudio will return the current working directory. Usually, you have project specific working directories. For this class, create a directory on your computer in which you are going to store all the files associated with this class. You should download the dataset `honda.csv` into the directory you have created for this class. You can use the command `setwd()` to change the R/RStudio to the new working directory. Note - and this is an oddity with R/RStudio - you have to replace the ``\textbackslash'' with ``/'' if you are a Windows user, i.e., use \texttt{setwd("C:/Users/Jerome/Documents/R Lecture")}. Assuming the \texttt{honda.csv} file is in the directory you have set above, use \texttt{honda= read.csv("honda.csv")} to load the file into R/RStudio (see \texttt{RLectureTemplate.R}). The data should appear in the Environment tab on the right side in R/RStudio. It is important that you can do the steps described above before the lecture to alleviate any issues at the beginning.

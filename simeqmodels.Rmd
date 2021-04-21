@@ -1,2 +1,87 @@
 # Simultanous Equation Models
 
+The models presented in the previous chapters contained one dependent ($y$) and multiple independent variables ($x_k$). The relationship was such that variables $x_k$ influence $y$. 
+
+The package required for this chapter is called [systemfit](https://cran.r-project.org/web/packages/systemfit/index.html). 
+
+## Examples
+Consider the relationship between law enforcement size and crime. Often the relationship is considers to be as follows:
+$$crimerate = \beta_{1,0} + \beta_{1,1} \cdot le + \beta_{1,k} \cdot x_k$$
+But at the same time, it can be argued that the relationship is:
+$$le = \beta_{2,0} + \beta_{2,1} \cdot crimerate + \beta_{2,k} \cdot x_k$$
+
+In economics, the most well-known example is the joint determination of price and quantity in a supply and demand model. 
+
+Consider a simple supply and demand model which can be written as follows:
+
+$$ Q^D = \alpha_0 + \alpha_1 \cdot P + \alpha_2 \cdot I + \epsilon_D\\
+   Q^S = \beta_0 + \beta_1 \cdot P + \epsilon_S$$
+
+Only equilibrium values, i.e., $Q^D=Q^S$, are observed and thus, the equilibrium conditions are as follows:
+
+$$ Q = \frac{\alpha_1 \cdot \beta_0-\alpha_0 \cdot \beta_1}{\alpha_1-\beta_1}-\frac{\alpha_2 \cdot \beta_1}{\alpha_1 \cdot \beta_1} \cdot I + \frac{-\beta_1 \cdot \epsilon^D + \alpha_1 \cdot \epsilon^S}{\alpha_1-\beta_1}\\
+P=\frac{\beta_0-\alpha_0}{\alpha_1-\beta_1}-\frac{\alpha_2}{\alpha_1-\beta_1} \cdot I+\frac{\epsilon^S-\epsilon^d}{\alpha_1-\beta_1}$$
+
+The above equation is called a *reduced form* equation. Both equations are necessary to determine $P$ and $Q$. Moreover, both equations include the error term from the demand and supply equation. Use of the regular OLS Model yields biased results. 
+
+The supply and demand model consider above also reveals the problem of identification. Assume having data on $P$, $Q$, and $I$. And define $\gamma_i$ as follows:
+$$ \gamma_1 = \frac{\alpha_1 \cdot \beta_0-\alpha_0 \cdot \beta_1}{\alpha_1-\beta_1}\\
+\gamma_2 = \frac{\alpha_2 \cdot \beta_1}{\alpha_1 \cdot \beta_1}\\
+\gamma_3 = \frac{\beta_0-\alpha_0}{\alpha_1-\beta_1}\\
+\gamma_4 = \frac{\alpha_2}{\alpha_1-\beta_1}$$
+
+You can estimate the $\gamma_i$ coefficients but there are total of five unknowns. Thus, it is not possible to recover the coefficients from the original supply and demand model.  
+
+## Application in R
+The first application replicates a food market example found in [Elements of Econometrics](https://doi.org/10.3998/mpub.15701) by Jan Kmenta. The data is included in the package [systemfit](https://cran.r-project.org/web/packages/systemfit/index.html). The demand side of the model is written as:
+$$consump = \beta_{1,0} + \beta_{1,2} \cdot price + \beta_{1,3} \cdot income$$
+The supply side of the model is written as:
+$$consump = \beta_{2,0} + \beta_{2,2} \cdot price + \beta_{2,3} \cdot farmPrice + \beta_{2,4} \cdot trend$$
+
+```{r}
+data("Kmenta")
+eqDemand = consump~price+income
+eqSupply = consump~price+farmPrice+trend
+eqSystem = list(demand=eqDemand,supply=eqSupply)
+bhat_seq = systemfit(eqSystem,data=Kmenta,method="OLS")
+summary(bhat_seq)
+```
+
+
+### Klein's Model
+Consumption
+```{r}
+data("KleinI")
+eqConsump = consump~corpProf+corpProfLag+wages
+eqInvest = invest~corpProf+corpProfLag+capitalLag
+eqPrivWage = privWage~gnp+gnpLag+trend
+#inst =- ~ govExp + taxes + govWage + trend + capitalLag + corpProfLag + gnpLag
+system =list(Consumption=eqConsump,Investment=eqInvest,PrivateWages=eqPrivWage )
+```
+
+```{r}
+summary(systemfit(system,data=KleinI))
+
+```
+
+
+
+```{r}
+bhat = lm(C~I,data=simeqexample)
+summary(bhat)
+```
+
+```{r}
+demandeq = q~p+rdi
+supplyeq = q~p
+bhat = lm(demandeq,data=Book1)
+summary(bhat)
+bhat = lm(supplyeq,data=Book1)
+summary(bhat)
+eqSystem = list(demand=demandeq,supply=supplyeq)
+bhat_seq = systemfit(eqSystem,data=Book1,method="SUR")
+summary(bhat_seq)
+
+```
+
+

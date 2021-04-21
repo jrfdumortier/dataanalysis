@@ -41,8 +41,8 @@ The Goldfeld-Quandt Test can be illustrated with `gqtestdata`. In a first step, 
 ```{r gqtest1,results=FALSE}
 gqtestdata1         = gqtestdata[1:22,]
 gqtestdata2         = gqtestdata[29:50,]
-bhat1               = lm(price_r~sqft_r,data=gqtestdata1)
-bhat2               = lm(price_r~sqft_r,data=gqtestdata2)
+bhat1               = lm(price~sqft,data=gqtestdata1)
+bhat2               = lm(price~sqft,data=gqtestdata2)
 lambda              = sum(bhat2$residuals^2)/sum(bhat1$residuals^2)
 ```
 Of course, there is also a function in R called gqtest which simplifies the procedure.

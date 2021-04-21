@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>10.2 Pooled Ordinary Least Square model | Data Analysis for Public Affairs with R</title>
+  <meta name="description" content="10.2 Pooled Ordinary Least Square model | Data Analysis for Public Affairs with R" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="10.2 Pooled Ordinary Least Square model | Data Analysis for Public Affairs with R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="10.2 Pooled Ordinary Least Square model | Data Analysis for Public Affairs with R" />
+  
+  
+  
+
+<meta name="author" content="Jerome Dumortier" />
+
+
+<meta name="date" content="2021-04-21" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="overview-1.html"/>
+<link rel="next" href="fixed-effects-panel-data-model.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Data Analysis</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Preface</a></li>
+<li class="chapter" data-level="2" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>2</b> Introduction</a><ul>
+<li class="chapter" data-level="2.1" data-path="overview.html"><a href="overview.html"><i class="fa fa-check"></i><b>2.1</b> Overview</a></li>
+<li class="chapter" data-level="2.2" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html"><i class="fa fa-check"></i><b>2.2</b> R and RStudio</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#preparation-for-rrstudio"><i class="fa fa-check"></i><b>2.2.1</b> Preparation for R/RStudio</a></li>
+<li class="chapter" data-level="2.2.2" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#installing-r-and-rstudio"><i class="fa fa-check"></i><b>2.2.2</b> Installing R and RStudio</a></li>
+<li class="chapter" data-level="2.2.3" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#locating-files-on-your-computer"><i class="fa fa-check"></i><b>2.2.3</b> Locating Files on your Computer</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>3</b> Introduction to R</a><ul>
+<li class="chapter" data-level="3.1" data-path="online-resources-and-help.html"><a href="online-resources-and-help.html"><i class="fa fa-check"></i><b>3.1</b> Online Resources and Help</a></li>
+<li class="chapter" data-level="3.2" data-path="opening-rstudio.html"><a href="opening-rstudio.html"><i class="fa fa-check"></i><b>3.2</b> Opening RStudio</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="opening-rstudio.html"><a href="opening-rstudio.html#in-class-exercise-1"><i class="fa fa-check"></i><b>3.2.1</b> In-class Exercise 1</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>3.3</b> Functions</a></li>
+<li class="chapter" data-level="3.4" data-path="data-management.html"><a href="data-management.html"><i class="fa fa-check"></i><b>3.4</b> Data Management</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="data-management.html"><a href="data-management.html#data-in-r"><i class="fa fa-check"></i><b>3.4.1</b> Data in R</a></li>
+<li class="chapter" data-level="3.4.2" data-path="data-management.html"><a href="data-management.html#using-r-as-a-calculator"><i class="fa fa-check"></i><b>3.4.2</b> Using R as a Calculator</a></li>
+<li class="chapter" data-level="3.4.3" data-path="data-management.html"><a href="data-management.html#creating-a-data-frame-from-scratch"><i class="fa fa-check"></i><b>3.4.3</b> Creating a Data Frame from Scratch</a></li>
+<li class="chapter" data-level="3.4.4" data-path="data-management.html"><a href="data-management.html#in-class-exercise-2"><i class="fa fa-check"></i><b>3.4.4</b> In-class Exercise 2</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="basic-multivariate-regression.html"><a href="basic-multivariate-regression.html"><i class="fa fa-check"></i><b>4</b> Basic Multivariate Regression</a><ul>
+<li class="chapter" data-level="4.1" data-path="dummy-variables.html"><a href="dummy-variables.html"><i class="fa fa-check"></i><b>4.1</b> Dummy Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="anova.html"><a href="anova.html"><i class="fa fa-check"></i><b>5</b> ANOVA</a><ul>
+<li class="chapter" data-level="5.1" data-path="exercises.html"><a href="exercises.html"><i class="fa fa-check"></i><b>5.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="violating-assumptions.html"><a href="violating-assumptions.html"><i class="fa fa-check"></i><b>6</b> Violating Assumptions</a><ul>
+<li class="chapter" data-level="6.1" data-path="heteroscedasticity.html"><a href="heteroscedasticity.html"><i class="fa fa-check"></i><b>6.1</b> Heteroscedasticity</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="heteroscedasticity.html"><a href="heteroscedasticity.html#detecting-heteroscedasticity"><i class="fa fa-check"></i><b>6.1.1</b> Detecting Heteroscedasticity</a></li>
+<li class="chapter" data-level="6.1.2" data-path="heteroscedasticity.html"><a href="heteroscedasticity.html#correcting-heteroscedasticity"><i class="fa fa-check"></i><b>6.1.2</b> Correcting Heteroscedasticity</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="multicollinearity.html"><a href="multicollinearity.html"><i class="fa fa-check"></i><b>6.2</b> Multicollinearity</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="multicollinearity.html"><a href="multicollinearity.html#variance-inflated-factors-vif"><i class="fa fa-check"></i><b>6.2.1</b> Variance Inflated Factors (VIF)</a></li>
+<li class="chapter" data-level="6.2.2" data-path="multicollinearity.html"><a href="multicollinearity.html#examples"><i class="fa fa-check"></i><b>6.2.2</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="other-issues-and-problems-with-data.html"><a href="other-issues-and-problems-with-data.html"><i class="fa fa-check"></i><b>6.3</b> Other Issues and Problems with Data</a></li>
+<li class="chapter" data-level="6.4" data-path="autocorrelation.html"><a href="autocorrelation.html"><i class="fa fa-check"></i><b>6.4</b> Autocorrelation</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="autocorrelation.html"><a href="autocorrelation.html#durbin-watson-d-test"><i class="fa fa-check"></i><b>6.4.1</b> Durbin Watson d-Test</a></li>
+<li class="chapter" data-level="6.4.2" data-path="autocorrelation.html"><a href="autocorrelation.html#breusch-godfrey-test"><i class="fa fa-check"></i><b>6.4.2</b> Breusch-Godfrey Test</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="exercises-1.html"><a href="exercises-1.html"><i class="fa fa-check"></i><b>6.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="binary-choice.html"><a href="binary-choice.html"><i class="fa fa-check"></i><b>7</b> Binary Choice</a><ul>
+<li class="chapter" data-level="7.1" data-path="binary-choice-estimation-in-r.html"><a href="binary-choice-estimation-in-r.html"><i class="fa fa-check"></i><b>7.1</b> Binary Choice Estimation in R</a></li>
+<li class="chapter" data-level="7.2" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html"><i class="fa fa-check"></i><b>7.2</b> Additional Examples and Probit Model</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html#full-time-work"><i class="fa fa-check"></i><b>7.2.1</b> Full-Time Work</a></li>
+<li class="chapter" data-level="7.2.2" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html#voting-behavior"><i class="fa fa-check"></i><b>7.2.2</b> Voting Behavior</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="exercises-2.html"><a href="exercises-2.html"><i class="fa fa-check"></i><b>7.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="qualitative-choice-models.html"><a href="qualitative-choice-models.html"><i class="fa fa-check"></i><b>8</b> Qualitative Choice Models</a><ul>
+<li class="chapter" data-level="8.1" data-path="ordered-logit-model.html"><a href="ordered-logit-model.html"><i class="fa fa-check"></i><b>8.1</b> Ordered Logit Model</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="ordered-logit-model.html"><a href="ordered-logit-model.html#ordered-logit-example-organic-food-purchase"><i class="fa fa-check"></i><b>8.1.1</b> Ordered Logit Example: Organic Food Purchase</a></li>
+<li class="chapter" data-level="8.1.2" data-path="ordered-logit-model.html"><a href="ordered-logit-model.html#predicted-probability-and-marginal-effects"><i class="fa fa-check"></i><b>8.1.2</b> Predicted Probability and Marginal Effects</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html"><i class="fa fa-check"></i><b>8.2</b> Multinomial Logit and Multinomial Probit Models</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#theoretical-aspects"><i class="fa fa-check"></i><b>8.2.1</b> Theoretical Aspects</a></li>
+<li class="chapter" data-level="8.2.2" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#data-managment"><i class="fa fa-check"></i><b>8.2.2</b> Data Managment</a></li>
+<li class="chapter" data-level="8.2.3" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#fishing-data"><i class="fa fa-check"></i><b>8.2.3</b> Fishing Data</a></li>
+<li class="chapter" data-level="8.2.4" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#travel-data"><i class="fa fa-check"></i><b>8.2.4</b> Travel Data</a></li>
+<li class="chapter" data-level="8.2.5" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#electric-vehicle-data"><i class="fa fa-check"></i><b>8.2.5</b> Electric Vehicle Data</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="exercises-3.html"><a href="exercises-3.html"><i class="fa fa-check"></i><b>8.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="limited-dependent-variable-models.html"><a href="limited-dependent-variable-models.html"><i class="fa fa-check"></i><b>9</b> Limited Dependent Variable Models</a><ul>
+<li class="chapter" data-level="9.1" data-path="truncation.html"><a href="truncation.html"><i class="fa fa-check"></i><b>9.1</b> Truncation</a></li>
+<li class="chapter" data-level="9.2" data-path="censoring.html"><a href="censoring.html"><i class="fa fa-check"></i><b>9.2</b> Censoring</a></li>
+<li class="chapter" data-level="9.3" data-path="count-regression-models.html"><a href="count-regression-models.html"><i class="fa fa-check"></i><b>9.3</b> Count Regression Models</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="count-regression-models.html"><a href="count-regression-models.html#poisson-regression-model"><i class="fa fa-check"></i><b>9.3.1</b> Poisson Regression Model</a></li>
+<li class="chapter" data-level="9.3.2" data-path="count-regression-models.html"><a href="count-regression-models.html#quasi-poisson-regression-model"><i class="fa fa-check"></i><b>9.3.2</b> Quasi-Poisson Regression Model</a></li>
+<li class="chapter" data-level="9.3.3" data-path="count-regression-models.html"><a href="count-regression-models.html#negative-binomial-regression-model"><i class="fa fa-check"></i><b>9.3.3</b> Negative Binomial Regression Model</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="hurdle-and-zero-inflation-models.html"><a href="hurdle-and-zero-inflation-models.html"><i class="fa fa-check"></i><b>9.4</b> Hurdle and Zero-Inflation Models</a></li>
+<li class="chapter" data-level="9.5" data-path="survival-analysis.html"><a href="survival-analysis.html"><i class="fa fa-check"></i><b>9.5</b> Survival Analysis</a></li>
+<li class="chapter" data-level="9.6" data-path="exercises-4.html"><a href="exercises-4.html"><i class="fa fa-check"></i><b>9.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="panel-data.html"><a href="panel-data.html"><i class="fa fa-check"></i><b>10</b> Panel Data</a><ul>
+<li class="chapter" data-level="10.1" data-path="overview-1.html"><a href="overview-1.html"><i class="fa fa-check"></i><b>10.1</b> Overview</a></li>
+<li class="chapter" data-level="10.2" data-path="pooled-ordinary-least-square-model.html"><a href="pooled-ordinary-least-square-model.html"><i class="fa fa-check"></i><b>10.2</b> Pooled Ordinary Least Square model</a></li>
+<li class="chapter" data-level="10.3" data-path="fixed-effects-panel-data-model.html"><a href="fixed-effects-panel-data-model.html"><i class="fa fa-check"></i><b>10.3</b> Fixed Effects Panel Data Model</a></li>
+<li class="chapter" data-level="10.4" data-path="exercises-5.html"><a href="exercises-5.html"><i class="fa fa-check"></i><b>10.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="time-series.html"><a href="time-series.html"><i class="fa fa-check"></i><b>11</b> Time Series</a><ul>
+<li class="chapter" data-level="11.1" data-path="static-regression-model.html"><a href="static-regression-model.html"><i class="fa fa-check"></i><b>11.1</b> Static Regression Model</a></li>
+<li class="chapter" data-level="11.2" data-path="trend-and-seasonality.html"><a href="trend-and-seasonality.html"><i class="fa fa-check"></i><b>11.2</b> Trend and Seasonality</a><ul>
+<li class="chapter" data-level="11.2.1" data-path="trend-and-seasonality.html"><a href="trend-and-seasonality.html#practice-exercise"><i class="fa fa-check"></i><b>11.2.1</b> Practice Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="finitie-distributed-lag-models.html"><a href="finitie-distributed-lag-models.html"><i class="fa fa-check"></i><b>11.3</b> Finitie Distributed Lag Models</a></li>
+<li class="chapter" data-level="11.4" data-path="autoregressive-model.html"><a href="autoregressive-model.html"><i class="fa fa-check"></i><b>11.4</b> Autoregressive Model</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>12</b> Data Sources</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Analysis for Public Affairs with R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="pooled-ordinary-least-square-model" class="section level2">
+<h2><span class="header-section-number">10.2</span> Pooled Ordinary Least Square model</h2>
+<p>The first example is data from the General Social Survey (GSS). Recall that the GSS is not a panel data set since the respondents change from one year to the next. The years analyzed for this example are the even years between 1974 and 1984. Note that this data set is accompanying the book <em>Introductory Econometrics: A Modern Approach</em> by Jeffrey Wooldridge.</p>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="pooled-ordinary-least-square-model.html#cb109-1"></a>bhat =<span class="st"> </span><span class="kw">lm</span>(kids<span class="op">~</span>educ<span class="op">+</span>age<span class="op">+</span><span class="kw">I</span>(age<span class="op">^</span><span class="dv">2</span>)<span class="op">+</span>east<span class="op">+</span>northcentral<span class="op">+</span>west<span class="op">+</span>farm<span class="op">+</span>otherrural</span>
+<span id="cb109-2"><a href="pooled-ordinary-least-square-model.html#cb109-2"></a>          <span class="op">+</span>town<span class="op">+</span>smallcity<span class="op">+</span>y74<span class="op">+</span>y76<span class="op">+</span>y78<span class="op">+</span>y80<span class="op">+</span>y82<span class="op">+</span>y84,<span class="dt">data=</span>fertil1)</span>
+<span id="cb109-3"><a href="pooled-ordinary-least-square-model.html#cb109-3"></a><span class="kw">summary</span>(bhat)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = kids ~ educ + age + I(age^2) + east + northcentral + 
+##     west + farm + otherrural + town + smallcity + y74 + y76 + 
+##     y78 + y80 + y82 + y84, data = fertil1)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -4.1437 -1.0481 -0.1082  0.9450  5.1055 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  -6.785069   3.098715  -2.190 0.028758 *  
+## educ         -0.129765   0.018653  -6.957 5.94e-12 ***
+## age           0.499186   0.140592   3.551 0.000400 ***
+## I(age^2)     -0.005436   0.001589  -3.421 0.000648 ***
+## east          0.060729   0.132538   0.458 0.646896    
+## northcentral  0.219568   0.120638   1.820 0.069019 .  
+## west          0.050807   0.167982   0.302 0.762360    
+## farm         -0.109598   0.149353  -0.734 0.463217    
+## otherrural   -0.199208   0.178270  -1.117 0.264043    
+## town          0.058579   0.126538   0.463 0.643502    
+## smallcity     0.221122   0.162964   1.357 0.175095    
+## y74           0.240846   0.175541   1.372 0.170334    
+## y76          -0.139590   0.181902  -0.767 0.443012    
+## y78          -0.104546   0.184622  -0.566 0.571324    
+## y80          -0.086997   0.185803  -0.468 0.639718    
+## y82          -0.414209   0.174412  -2.375 0.017723 *  
+## y84          -0.565326   0.177398  -3.187 0.001479 ** 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.581 on 1112 degrees of freedom
+## Multiple R-squared:  0.09941,    Adjusted R-squared:  0.08645 
+## F-statistic: 7.671 on 16 and 1112 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>The evolution of fertility rates over time after controlling of other observable factors can be interpreted as follows:</p>
+<ul>
+<li>Base year: 1972</li>
+<li>Negative coefficients indicate a drop in fertility in the early 1980’s
+Coefficient of <span class="math inline">\(y82\)</span> (-0.41) indicates that women had on average 0.41 less children, i.e., 100 women had 41 kids less than 1972.</li>
+<li>This drop is independent from education since we are controlling for education.</li>
+<li>More educated women have fewer children</li>
+<li>Assumes that the effect of each explanatory variable remains constant.</li>
+</ul>
+<p>The next example uses <code>cps7885</code> and interacts year dummy with key explanatory variables to see if the effect of that variable has changed over time. That is, the following model is estimated:
+<span class="math display">\[\ln(wage)=\beta_0+\gamma_0 \cdot y85+\beta_1 \cdot educ+\gamma_1 \cdot y85 \cdot educ+\beta_2 \cdot exper+ \beta_3 \cdot exper^2+\beta_4 \cdot union+\beta_5 \cdot female+\gamma_5 \cdot y85 \cdot female\]</span></p>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="pooled-ordinary-least-square-model.html#cb111-1"></a>bhat =<span class="st"> </span><span class="kw">lm</span>(<span class="dt">formula=</span>lwage<span class="op">~</span>y85<span class="op">+</span>educ<span class="op">+</span>y85<span class="op">*</span>educ<span class="op">+</span>exper<span class="op">+</span>expersq<span class="op">+</span>union<span class="op">+</span>female<span class="op">+</span>y85fem,<span class="dt">data=</span>cps7885)</span>
+<span id="cb111-2"><a href="pooled-ordinary-least-square-model.html#cb111-2"></a><span class="kw">summary</span>(bhat)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = lwage ~ y85 + educ + y85 * educ + exper + expersq + 
+##     union + female + y85fem, data = cps7885)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -2.56098 -0.25828  0.00864  0.26571  2.11669 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  4.589e-01  9.345e-02   4.911 1.05e-06 ***
+## y85          1.178e-01  1.238e-01   0.952   0.3415    
+## educ         7.472e-02  6.676e-03  11.192  &lt; 2e-16 ***
+## exper        2.958e-02  3.567e-03   8.293 3.27e-16 ***
+## expersq     -3.994e-04  7.754e-05  -5.151 3.08e-07 ***
+## union        2.021e-01  3.029e-02   6.672 4.03e-11 ***
+## female      -3.167e-01  3.662e-02  -8.648  &lt; 2e-16 ***
+## y85fem       8.505e-02  5.131e-02   1.658   0.0977 .  
+## y85:educ     1.846e-02  9.354e-03   1.974   0.0487 *  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.4127 on 1075 degrees of freedom
+## Multiple R-squared:  0.4262, Adjusted R-squared:  0.4219 
+## F-statistic:  99.8 on 8 and 1075 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>This model can be interpreted as follows:</p>
+<ul>
+<li><span class="math inline">\(\beta_0\)</span> is the 1978 intercept</li>
+<li><span class="math inline">\(\beta_0+\gamma_0\)</span> is the 1985 intercept</li>
+<li><span class="math inline">\(\beta_1\)</span> is the return to education in 1978</li>
+<li><span class="math inline">\(\beta_1 + \gamma_1\)</span> is the return to education in 1985</li>
+<li><span class="math inline">\(\gamma_1\)</span> measures how the return to education has changed over the seven year period</li>
+<li>1978 return to education: 7.47%</li>
+<li>1985 return to education: 7.47%+1.85% = 9.32%</li>
+<li>1978 gender gap: 31.67%</li>
+<li>1985 gender gap: 31.67% - 8.51% = 23.16%</li>
+</ul>
+<p>The last example regarding pooled data illustrates how misleading a regression model can be if executed incorrectly. The data set is called <code>kiel</code> and is on home values near the location of an garbage incinerator. The important aspect of the data set is that there was no knowledge about the proposed incinerator in 1978. In a first step, the data is separated into the two years:</p>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="pooled-ordinary-least-square-model.html#cb113-1"></a>kiel1978 =<span class="st"> </span><span class="kw">subset</span>(kiel,year<span class="op">==</span><span class="dv">1978</span>)</span>
+<span id="cb113-2"><a href="pooled-ordinary-least-square-model.html#cb113-2"></a>kiel1981 =<span class="st"> </span><span class="kw">subset</span>(kiel,year<span class="op">==</span><span class="dv">1981</span>)</span></code></pre></div>
+<p>Next, two regressions for each of the years are estimated.</p>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="pooled-ordinary-least-square-model.html#cb114-1"></a><span class="kw">summary</span>(<span class="kw">lm</span>(rprice<span class="op">~</span>nearinc,<span class="dt">data=</span>kiel1981))</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = rprice ~ nearinc, data = kiel1981)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -60678 -19832  -2997  21139 136754 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)   101308       3093  32.754  &lt; 2e-16 ***
+## nearinc       -30688       5828  -5.266 5.14e-07 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 31240 on 140 degrees of freedom
+## Multiple R-squared:  0.1653, Adjusted R-squared:  0.1594 
+## F-statistic: 27.73 on 1 and 140 DF,  p-value: 5.139e-07</code></pre>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="pooled-ordinary-least-square-model.html#cb116-1"></a><span class="kw">summary</span>(<span class="kw">lm</span>(rprice<span class="op">~</span>nearinc,<span class="dt">data=</span>kiel1978))</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = rprice ~ nearinc, data = kiel1978)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -56517 -16605  -3193   8683 236307 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)    82517       2654  31.094  &lt; 2e-16 ***
+## nearinc       -18824       4745  -3.968 0.000105 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 29430 on 177 degrees of freedom
+## Multiple R-squared:  0.08167,    Adjusted R-squared:  0.07648 
+## F-statistic: 15.74 on 1 and 177 DF,  p-value: 0.0001054</code></pre>
+<p>The results can be used for a difference-in-difference estimator: -$30,688-(-$18,824)=-$11,864. Expressed differently:
+<span class="math display">\[\hat{\delta}_1 = (price_{81,near}-price_{81,far})-(price_{78,near}-price_{78,far})\]</span>
+where <span class="math inline">\(\hat{\delta}_1\)</span> represents the difference over time in average differences in housing prices in the two locations. To determine statistical significance, the following model must be estimated:
+<span class="math display">\[price = \beta_0 + \gamma_0 \cdot y81 + \beta_1 \cdot nearinc + \gamma_1 \cdot y81 \cdot nearinc\]</span>
+The interpretation of the coefficients is as follows:</p>
+<ul>
+<li><span class="math inline">\(\beta_0\)</span>: Average home value which is not near the garbage incinerator</li>
+<li><span class="math inline">\(\gamma_0 \cdot y81\)</span>: Average change in housing values for all homes</li>
+<li><span class="math inline">\(\beta_1 \cdot nearinc\)</span>: Location effect that is not due to the incinerator</li>
+<li><span class="math inline">\(\gamma_1\)</span>: Decline in housing values due to incinerator</li>
+</ul>
+<p>Include <span class="math inline">\(age\)</span> and <span class="math inline">\(age^2\)</span> in the above equation to take advantage of the information provided in the data. Other variables such as <span class="math inline">\(cbd\)</span>, <span class="math inline">\(rooms\)</span>, <span class="math inline">\(area\)</span>, <span class="math inline">\(land\)</span>, and <span class="math inline">\(baths\)</span> can be added as well. In general, the results show that homes have lost 9.3% in values when including additional independent variables and using the natural logarithm of price.</p>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="overview-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="fixed-effects-panel-data-model.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/jrfdumortier/dataanalysis/edit/master/paneldata.rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/jrfdumortier/dataanalysis/blob/master/paneldata.rmd",
+"text": null
+},
+"download": ["bookdownproj.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

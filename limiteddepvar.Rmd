@@ -176,6 +176,26 @@ bhat5 = glm.nb(totprotests~log(pop)+log(popdensity)+percentblack+blackpovertyrat
 summary(bhat5) 
 ```
 
+## Hurdle and Zero-Inflation Models
+Count data often includes many observations at 0 which can lead to problems using a Poisson or a Negative-Binomial Regression Model. The application of both models is first illustrated with the `NMES1988` data from the package [AER](https://cran.r-project.org/web/packages/AER/index.html) and then with the BLM protest data. 
+
+The data `NMES1988` contains 4406 observations of people on Medicare who are 66 years or older. The outcome of interest is the number of doctor $visits$ as a function of $hospital$ (number of hospital visits), $health$ (self-indicated health status), $chronic$ (number of chronic conditions), $gender$, $school$, and $insurance$. 
+
+```{r}
+data("NMES1988",package="AER")
+eq = visits~hospital+health+chronic+gender+school+insurance
+bhat_pois = glm(eq,data=NMES1988,family=poisson)
+summary(bhat_pois)
+bhat_nb = glm(eq,data=NMES1988)
+summary(bhat_nb)
+bhat_hurdle = hurdle(eq,data=NMES1988,dist="negbin")
+summary(bhat_hurdle)
+```
+
+## Survival Analysis
+
+
+
 ## Exercises
 
 1. `Aptitude Tobit Model`: Consider the censored data set in `tobit`. The aptitude score is limited at 800. Estimate an appropriate model with $apt$ as the dependent variable and $read$, $math$, and program as the independent variables. Make sure to convert $prog$ into dummy variables first.

@@ -1,0 +1,152 @@
+# Time Series
+This chapter introduces time as a component in regression models. Times series represent a temporal ordering of the data. In the cross-section models seen so far, the observations could have been in any order. In this chapter, the ordering of the observations matters. It is usually assumed that there is a stochastic process generating the series and the important aspect is that only a single realization of the stochastic process is observed. The following topics are covered:
+
+- Static regression model
+- Trend and seasonality
+- Finite distributed lag models (including past or lagged independent variables)
+- Autoregressive model (including past or lagged dependent variables) also known as dynamic models:
+- Forecasting
+
+## Static Regression Model
+A static regression model is used if the data represents various time periods but the independent variables $x_{i,t}$ have an immediate effect on the dependent variable $y_t$. For example, if you consider the per-capita chicken consumption as a function of the chicken price and real disposable income in the data `meatdemand`, then the following model can be estimated. 
+
+```{r}
+summary(lm(qchicken~rdi+pchicken,data=meatdemand))
+```
+
+This assumes that there is an immediate effect of income and chicken price on consumption. 
+
+## Trend and Seasonality
+In general, trends in the data can be linear:
+$$y_t = \beta_0 + \beta_1 \cdot t + \epsilon_t$$
+or exponential: 
+$$\ln(y_t) = \beta_0 + \beta_1 \cdot t + \epsilon_t$$
+Note that $\beta_1$ in the exponential time trend model is the average annual growth rate (assuming $t$ is in years). Often, data can be decomposed into three components:
+
+- Trend
+- Season
+- Random component
+
+The seasonal component can be included via dummy variables. For example, for quarterly data the following model can be used:
+
+$$y_t=\beta_0+\delta_1 \cdot Q1_t+\delta_2 \cdot Q2_t+\delta_3 \cdot Q3_t+\beta_1 \cdot x_{1,t}+ \cdots+\beta_k \cdot x_{k,t}+\epsilon_t$$
+One seasonal dummy must be dropped. That is, quarterly and yearly data require three and eleven dummy variables, respectively. Consider the `retail` data. 
+
+```{r}
+retail$date  = as.Date(retail$date,format="%Y-%m-%d")
+retail$month = format(retail$date,"%m")
+retail$t     = c(1:nrow(retail))
+bhat         = lm(retail~factor(month)+t,data=retail)
+retail$fit   = predict.lm(bhat)
+ggplot(retail)+
+  geom_line(mapping=aes(x=date,y=retail),color="red")+
+  geom_line(mapping=aes(x=date,y=fit))
+```
+
+### Practice Exercise
+
+1. Consider the data in `ez`. It contains unemployment claims ($uclms$) from Anderson (IN) before and after the establishments of an enterprise zone (EZ). The purpose of an EZ is to provide incentives for business to invest in area that are usually plagued by economic distress. Execute two regression models with $\ln(uclms)$ as the dependent variable and including a time trend and monthly dummy variables as the independent variables: (1) without $EZ$ and (2) with $EZ$. What can be concluded in terms of trend, seasonality, and the effectiveness of the EZ.
+
+2. Consider the data in `traffic` which contains information on accidents, traffic laws, and other variables for California. The dependent variable of interest is the natural log of $totacc$. In a first regression, use the time trend and monthly dummy variables as the independent variables. In a second regression, add $wkends$, $unem$, $spdlaw$, and $beltlaw$. What can be concluded in terms of trend, seasonality, and the effectiveness of the laws concerning speed limits and belt usage. Why would weekends and unemployment be important?
+
+## Finitie Distributed Lag Models
+Distributed-lag models include past or lagged independent variables:
+$$y_t=\alpha+\beta_0 \cdot x_t+\beta_1 \cdot x_{t-1}+\beta_2 \cdot x_{t-2}+\dots \beta_k \cdot x_{t-k}+\epsilon$$
+There are many reasons to include lagged independent variables such as psychological (e.g., it is difficult to break a habit or adjust to a new situation), economic (e.g., contractual obligations), or political (e.g., effectiveness of policy builds up over time) reasons. 
+
+The relationship between income and consumption is used to introduce distributed lag models. Assume the following relationship between income and consumption:
+$$C_t=\alpha+\beta_0 \cdot I_t+\beta_1 \cdot I_{t-1}+\beta_2 \cdot I_{t-2}$$
+Assume that $\alpha_0=100$, $\beta_0=0.4$, $\beta_1=0.3$, and $\beta_2=0.2$. For this example, the following questions are of interest:
+
+- What is the long-run consumption with \$4,000?
+- How does the consumption change if the income increases to \$5000?
+
+Note that the sum of the $\beta_i$'s is 0.9. 
+The long-run multiplier (or long-run propensity) is written as:
+$$\sum_{i=1}^k \beta_i = \beta_0+\beta_1+\beta_2 + \dots +\beta_k = \beta$$
+
+The question about how may lagged independent variables to include is a difficult to answer question. If the assumption is made that all $\beta_k$ are of the same sign, then the so-called Koyck transformation can be applied:
+$$\beta_k = \beta_0 \cdot \lambda^k \quad \text{for} \quad k=0,1,2,\dots$$
+Characteristics of this assumption:
+
+- $\lambda <1$ gives less weight to distant values of $\beta$
+- Long-run multiplier is finite, i.e.,
+    $$\sum_{k=0}^\infty \beta_k = \beta_0 \cdot \left( \frac{1}{1-\lambda} \right)$$
+
+Given the above assumptions, the Koyck transformation can be applied to the regression model. The original model is written as:
+$$y_t = \alpha+\beta_0 \cdot x_t+\beta_0 \cdot \lambda x_{t-1}+\beta_0 \cdot \lambda^2 \cdot x_{t-2}+\dots+\epsilon_t$$
+
+The reformulated equation to be estimated is
+$$y_t = \alpha \cdot (1-\lambda) + \beta_0 \cdot x_t + \lambda \cdot y_{t-1} + \upsilon_t$$
+The notation of the error term has changed from $\epsilon_t$ to $\upsilon_t$ in order to highlight that the terms will be different. 
+
+```{r}
+koyck = usdata
+koyck$year = substr(koyck$date,1,4)
+koyck = aggregate(koyck[c("income","consumption")],FUN=sum,by=list(koyck$year))
+colnames(koyck) = c("year","income","consumption")
+bhat = lm(formula = consumption ~ income + Lag(consumption), data = koyck)
+summary(bhat)
+```
+
+## Autoregressive Model
+An autoregressive model includes lagged dependent variables. One of the simplest model is an autoregressive model of order 1, i.e., an AR(1) Model
+$$y_t = \alpha + \beta \cdot y_{t-1} + \epsilon_t$$
+where $\epsilon_t \sim N(0,\sigma^2)$. Consider the data of earthquakes over magnitude 7 in the data set `quakes`: 
+```{r, echo=FALSE}
+ggplot(quakes,aes(x=year,y=quakes))+geom_line()+theme_bw()+theme(axis.title.x=element_blank())
+```
+
+In a first step, a scatter plot is constructed of $Y_{t-1}$ and $y_t$. The easiest way is to use the function `acf`:
+```{r,echo=FALSE}
+correlation = acf(quakes$quakes)
+correlation$acf[2]
+```
+The correlation coefficicent of 0.25 indicates a weak positive correlation between the number of earthquakes in periods $t$ and $t-1$. Remember that correlation is not causation. The AR(1) model can be estimated with the `lm()` function used previously:
+```{r}
+summary(lm(quakes~Lag(quakes),data=quakes))
+```
+
+Note that although the slope coefficient associated with the lagged term is statistically significant, the R-squared value is very low. A second example considers quarterly `beer` production in Australia. In a first step, the data is converted into a time series:
+
+```{r}
+beer = ts(beer$sales,start=c(1992,1),end=c(2014,4),frequency=4)
+```
+
+Next, the data is plotted using a function from the package [ggfortify](https://cran.r-project.org/web/packages/ggfortify/index.html). Additional documentation using the package is found under [Plotting ts objects](https://cran.r-project.org/web/packages/ggfortify/vignettes/plot_ts.html).
+```{r}
+autoplot(beer)
+```
+
+Note that the `beer` now appears in a different category in the Global Environment, i.e., not under "Data" anymore. The function `tslm` from the package [forecast](https://cran.r-project.org/web/packages/forecast/index.html) is used next. The function fits a linear model including seasonality and a trend component (and a trend-squared component if desired). 
+
+```{r}
+bhat = tslm(beer~trend+I(trend^2)+season)
+summary(bhat)
+```
+
+The package [forecast](https://cran.r-project.org/web/packages/forecast/index.html) can be also be used to forcast:
+```{r}
+plot(forecast(bhat,h=20))
+```
+
+The third examples uses data on Japanese car production (`jcars`) to illustrate the concept of autocorrelation. The focus is on car production after 1963. 
+
+```{r, echo=FALSE}
+jcars = subset(jcars,year>1963)
+```
+
+In a first step, the data is visualized using `ggplot`:
+
+```{r}
+ggplot(jcars,aes(x=year,y=cars))+geom_line()+theme_bw()+theme(axis.title.x=element_blank())
+```
+
+The sample autocorrelation function (ACF) is the correlation between $y_t$ and $y_{t-1}$, $y_{t-2}$, $y_{t-3}$, and so on. It can be written as follows:
+$$\rho_j = \frac{Cov(y_t,y_{t-j})}{\sqrt{Var(y_t)\cdot Var(y_{t-j})}}$$
+
+The ACF can be used to identify a possible structure of time series either of the actual time series or the residuals of the regression. The autocorrelation function (ACF) is plotted using the function `acf()` in R.
+
+```{r}
+acf(jcars$cars)
+```
