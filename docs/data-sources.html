@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>12 Data Sources | Data Analysis for Public Affairs with R</title>
   <meta name="description" content="12 Data Sources | Data Analysis for Public Affairs with R" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="12 Data Sources | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
@@ -24,14 +24,14 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2021-04-21" />
+<meta name="date" content="2021-04-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="autoregressive-model.html"/>
+<link rel="prev" href="exercises-6.html"/>
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,6 +51,8 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -117,6 +119,7 @@ code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
+
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -216,15 +219,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.1" data-path="overview-1.html"><a href="overview-1.html"><i class="fa fa-check"></i><b>10.1</b> Overview</a></li>
 <li class="chapter" data-level="10.2" data-path="pooled-ordinary-least-square-model.html"><a href="pooled-ordinary-least-square-model.html"><i class="fa fa-check"></i><b>10.2</b> Pooled Ordinary Least Square model</a></li>
 <li class="chapter" data-level="10.3" data-path="fixed-effects-panel-data-model.html"><a href="fixed-effects-panel-data-model.html"><i class="fa fa-check"></i><b>10.3</b> Fixed Effects Panel Data Model</a></li>
-<li class="chapter" data-level="10.4" data-path="exercises-5.html"><a href="exercises-5.html"><i class="fa fa-check"></i><b>10.4</b> Exercises</a></li>
+<li class="chapter" data-level="10.4" data-path="random-effects-model.html"><a href="random-effects-model.html"><i class="fa fa-check"></i><b>10.4</b> Random Effects Model</a></li>
+<li class="chapter" data-level="10.5" data-path="exercises-5.html"><a href="exercises-5.html"><i class="fa fa-check"></i><b>10.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="time-series.html"><a href="time-series.html"><i class="fa fa-check"></i><b>11</b> Time Series</a><ul>
-<li class="chapter" data-level="11.1" data-path="static-regression-model.html"><a href="static-regression-model.html"><i class="fa fa-check"></i><b>11.1</b> Static Regression Model</a></li>
-<li class="chapter" data-level="11.2" data-path="trend-and-seasonality.html"><a href="trend-and-seasonality.html"><i class="fa fa-check"></i><b>11.2</b> Trend and Seasonality</a><ul>
-<li class="chapter" data-level="11.2.1" data-path="trend-and-seasonality.html"><a href="trend-and-seasonality.html#practice-exercise"><i class="fa fa-check"></i><b>11.2.1</b> Practice Exercise</a></li>
+<li class="chapter" data-level="11.1" data-path="trend-and-seasonality.html"><a href="trend-and-seasonality.html"><i class="fa fa-check"></i><b>11.1</b> Trend and Seasonality</a><ul>
+<li class="chapter" data-level="11.1.1" data-path="trend-and-seasonality.html"><a href="trend-and-seasonality.html#practice-exercise"><i class="fa fa-check"></i><b>11.1.1</b> Practice Exercise</a></li>
 </ul></li>
-<li class="chapter" data-level="11.3" data-path="finitie-distributed-lag-models.html"><a href="finitie-distributed-lag-models.html"><i class="fa fa-check"></i><b>11.3</b> Finitie Distributed Lag Models</a></li>
+<li class="chapter" data-level="11.2" data-path="finite-distributed-lag-models.html"><a href="finite-distributed-lag-models.html"><i class="fa fa-check"></i><b>11.2</b> Finite Distributed Lag Models</a></li>
+<li class="chapter" data-level="11.3" data-path="basic-theoretical-aspects-of-time-series.html"><a href="basic-theoretical-aspects-of-time-series.html"><i class="fa fa-check"></i><b>11.3</b> Basic Theoretical Aspects of Time Series</a></li>
 <li class="chapter" data-level="11.4" data-path="autoregressive-model.html"><a href="autoregressive-model.html"><i class="fa fa-check"></i><b>11.4</b> Autoregressive Model</a></li>
+<li class="chapter" data-level="11.5" data-path="moving-average-models.html"><a href="moving-average-models.html"><i class="fa fa-check"></i><b>11.5</b> Moving Average Models</a></li>
+<li class="chapter" data-level="11.6" data-path="random-walk.html"><a href="random-walk.html"><i class="fa fa-check"></i><b>11.6</b> Random Walk</a></li>
+<li class="chapter" data-level="11.7" data-path="forecasting-japanense-car-production.html"><a href="forecasting-japanense-car-production.html"><i class="fa fa-check"></i><b>11.7</b> Forecasting Japanense Car Production</a></li>
+<li class="chapter" data-level="11.8" data-path="exercises-6.html"><a href="exercises-6.html"><i class="fa fa-check"></i><b>11.8</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>12</b> Data Sources</a></li>
 <li class="divider"></li>
@@ -378,7 +386,7 @@ emp1 – emp52: factors coded yes if the individual was employed in the correspo
           </div>
         </div>
       </div>
-<a href="autoregressive-model.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="exercises-6.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
     </div>
   </div>
@@ -402,6 +410,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {

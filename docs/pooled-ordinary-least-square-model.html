@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>10.2 Pooled Ordinary Least Square model | Data Analysis for Public Affairs with R</title>
   <meta name="description" content="10.2 Pooled Ordinary Least Square model | Data Analysis for Public Affairs with R" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="10.2 Pooled Ordinary Least Square model | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2021-04-21" />
+<meta name="date" content="2021-04-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -51,6 +51,8 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -117,6 +119,7 @@ code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
+
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -216,15 +219,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.1" data-path="overview-1.html"><a href="overview-1.html"><i class="fa fa-check"></i><b>10.1</b> Overview</a></li>
 <li class="chapter" data-level="10.2" data-path="pooled-ordinary-least-square-model.html"><a href="pooled-ordinary-least-square-model.html"><i class="fa fa-check"></i><b>10.2</b> Pooled Ordinary Least Square model</a></li>
 <li class="chapter" data-level="10.3" data-path="fixed-effects-panel-data-model.html"><a href="fixed-effects-panel-data-model.html"><i class="fa fa-check"></i><b>10.3</b> Fixed Effects Panel Data Model</a></li>
-<li class="chapter" data-level="10.4" data-path="exercises-5.html"><a href="exercises-5.html"><i class="fa fa-check"></i><b>10.4</b> Exercises</a></li>
+<li class="chapter" data-level="10.4" data-path="random-effects-model.html"><a href="random-effects-model.html"><i class="fa fa-check"></i><b>10.4</b> Random Effects Model</a></li>
+<li class="chapter" data-level="10.5" data-path="exercises-5.html"><a href="exercises-5.html"><i class="fa fa-check"></i><b>10.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="time-series.html"><a href="time-series.html"><i class="fa fa-check"></i><b>11</b> Time Series</a><ul>
-<li class="chapter" data-level="11.1" data-path="static-regression-model.html"><a href="static-regression-model.html"><i class="fa fa-check"></i><b>11.1</b> Static Regression Model</a></li>
-<li class="chapter" data-level="11.2" data-path="trend-and-seasonality.html"><a href="trend-and-seasonality.html"><i class="fa fa-check"></i><b>11.2</b> Trend and Seasonality</a><ul>
-<li class="chapter" data-level="11.2.1" data-path="trend-and-seasonality.html"><a href="trend-and-seasonality.html#practice-exercise"><i class="fa fa-check"></i><b>11.2.1</b> Practice Exercise</a></li>
+<li class="chapter" data-level="11.1" data-path="trend-and-seasonality.html"><a href="trend-and-seasonality.html"><i class="fa fa-check"></i><b>11.1</b> Trend and Seasonality</a><ul>
+<li class="chapter" data-level="11.1.1" data-path="trend-and-seasonality.html"><a href="trend-and-seasonality.html#practice-exercise"><i class="fa fa-check"></i><b>11.1.1</b> Practice Exercise</a></li>
 </ul></li>
-<li class="chapter" data-level="11.3" data-path="finitie-distributed-lag-models.html"><a href="finitie-distributed-lag-models.html"><i class="fa fa-check"></i><b>11.3</b> Finitie Distributed Lag Models</a></li>
+<li class="chapter" data-level="11.2" data-path="finite-distributed-lag-models.html"><a href="finite-distributed-lag-models.html"><i class="fa fa-check"></i><b>11.2</b> Finite Distributed Lag Models</a></li>
+<li class="chapter" data-level="11.3" data-path="basic-theoretical-aspects-of-time-series.html"><a href="basic-theoretical-aspects-of-time-series.html"><i class="fa fa-check"></i><b>11.3</b> Basic Theoretical Aspects of Time Series</a></li>
 <li class="chapter" data-level="11.4" data-path="autoregressive-model.html"><a href="autoregressive-model.html"><i class="fa fa-check"></i><b>11.4</b> Autoregressive Model</a></li>
+<li class="chapter" data-level="11.5" data-path="moving-average-models.html"><a href="moving-average-models.html"><i class="fa fa-check"></i><b>11.5</b> Moving Average Models</a></li>
+<li class="chapter" data-level="11.6" data-path="random-walk.html"><a href="random-walk.html"><i class="fa fa-check"></i><b>11.6</b> Random Walk</a></li>
+<li class="chapter" data-level="11.7" data-path="forecasting-japanense-car-production.html"><a href="forecasting-japanense-car-production.html"><i class="fa fa-check"></i><b>11.7</b> Forecasting Japanense Car Production</a></li>
+<li class="chapter" data-level="11.8" data-path="exercises-6.html"><a href="exercises-6.html"><i class="fa fa-check"></i><b>11.8</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>12</b> Data Sources</a></li>
 <li class="divider"></li>
@@ -249,9 +257,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="pooled-ordinary-least-square-model" class="section level2">
 <h2><span class="header-section-number">10.2</span> Pooled Ordinary Least Square model</h2>
 <p>The first example is data from the General Social Survey (GSS). Recall that the GSS is not a panel data set since the respondents change from one year to the next. The years analyzed for this example are the even years between 1974 and 1984. Note that this data set is accompanying the book <em>Introductory Econometrics: A Modern Approach</em> by Jeffrey Wooldridge.</p>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="pooled-ordinary-least-square-model.html#cb109-1"></a>bhat =<span class="st"> </span><span class="kw">lm</span>(kids<span class="op">~</span>educ<span class="op">+</span>age<span class="op">+</span><span class="kw">I</span>(age<span class="op">^</span><span class="dv">2</span>)<span class="op">+</span>east<span class="op">+</span>northcentral<span class="op">+</span>west<span class="op">+</span>farm<span class="op">+</span>otherrural</span>
-<span id="cb109-2"><a href="pooled-ordinary-least-square-model.html#cb109-2"></a>          <span class="op">+</span>town<span class="op">+</span>smallcity<span class="op">+</span>y74<span class="op">+</span>y76<span class="op">+</span>y78<span class="op">+</span>y80<span class="op">+</span>y82<span class="op">+</span>y84,<span class="dt">data=</span>fertil1)</span>
-<span id="cb109-3"><a href="pooled-ordinary-least-square-model.html#cb109-3"></a><span class="kw">summary</span>(bhat)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = kids ~ educ + age + I(age^2) + east + northcentral + 
@@ -298,8 +303,6 @@ Coefficient of <span class="math inline">\(y82\)</span> (-0.41) indicates that w
 </ul>
 <p>The next example uses <code>cps7885</code> and interacts year dummy with key explanatory variables to see if the effect of that variable has changed over time. That is, the following model is estimated:
 <span class="math display">\[\ln(wage)=\beta_0+\gamma_0 \cdot y85+\beta_1 \cdot educ+\gamma_1 \cdot y85 \cdot educ+\beta_2 \cdot exper+ \beta_3 \cdot exper^2+\beta_4 \cdot union+\beta_5 \cdot female+\gamma_5 \cdot y85 \cdot female\]</span></p>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="pooled-ordinary-least-square-model.html#cb111-1"></a>bhat =<span class="st"> </span><span class="kw">lm</span>(<span class="dt">formula=</span>lwage<span class="op">~</span>y85<span class="op">+</span>educ<span class="op">+</span>y85<span class="op">*</span>educ<span class="op">+</span>exper<span class="op">+</span>expersq<span class="op">+</span>union<span class="op">+</span>female<span class="op">+</span>y85fem,<span class="dt">data=</span>cps7885)</span>
-<span id="cb111-2"><a href="pooled-ordinary-least-square-model.html#cb111-2"></a><span class="kw">summary</span>(bhat)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = lwage ~ y85 + educ + y85 * educ + exper + expersq + 
@@ -339,10 +342,10 @@ Coefficient of <span class="math inline">\(y82\)</span> (-0.41) indicates that w
 <li>1985 gender gap: 31.67% - 8.51% = 23.16%</li>
 </ul>
 <p>The last example regarding pooled data illustrates how misleading a regression model can be if executed incorrectly. The data set is called <code>kiel</code> and is on home values near the location of an garbage incinerator. The important aspect of the data set is that there was no knowledge about the proposed incinerator in 1978. In a first step, the data is separated into the two years:</p>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="pooled-ordinary-least-square-model.html#cb113-1"></a>kiel1978 =<span class="st"> </span><span class="kw">subset</span>(kiel,year<span class="op">==</span><span class="dv">1978</span>)</span>
-<span id="cb113-2"><a href="pooled-ordinary-least-square-model.html#cb113-2"></a>kiel1981 =<span class="st"> </span><span class="kw">subset</span>(kiel,year<span class="op">==</span><span class="dv">1981</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="pooled-ordinary-least-square-model.html#cb111-1"></a>kiel1978 =<span class="st"> </span><span class="kw">subset</span>(kiel,year<span class="op">==</span><span class="dv">1978</span>)</span>
+<span id="cb111-2"><a href="pooled-ordinary-least-square-model.html#cb111-2"></a>kiel1981 =<span class="st"> </span><span class="kw">subset</span>(kiel,year<span class="op">==</span><span class="dv">1981</span>)</span></code></pre></div>
 <p>Next, two regressions for each of the years are estimated.</p>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="pooled-ordinary-least-square-model.html#cb114-1"></a><span class="kw">summary</span>(<span class="kw">lm</span>(rprice<span class="op">~</span>nearinc,<span class="dt">data=</span>kiel1981))</span></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="pooled-ordinary-least-square-model.html#cb112-1"></a><span class="kw">summary</span>(<span class="kw">lm</span>(rprice<span class="op">~</span>nearinc,<span class="dt">data=</span>kiel1981))</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = rprice ~ nearinc, data = kiel1981)
@@ -361,7 +364,7 @@ Coefficient of <span class="math inline">\(y82\)</span> (-0.41) indicates that w
 ## Residual standard error: 31240 on 140 degrees of freedom
 ## Multiple R-squared:  0.1653, Adjusted R-squared:  0.1594 
 ## F-statistic: 27.73 on 1 and 140 DF,  p-value: 5.139e-07</code></pre>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="pooled-ordinary-least-square-model.html#cb116-1"></a><span class="kw">summary</span>(<span class="kw">lm</span>(rprice<span class="op">~</span>nearinc,<span class="dt">data=</span>kiel1978))</span></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="pooled-ordinary-least-square-model.html#cb114-1"></a><span class="kw">summary</span>(<span class="kw">lm</span>(rprice<span class="op">~</span>nearinc,<span class="dt">data=</span>kiel1978))</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = rprice ~ nearinc, data = kiel1978)
@@ -383,15 +386,91 @@ Coefficient of <span class="math inline">\(y82\)</span> (-0.41) indicates that w
 <p>The results can be used for a difference-in-difference estimator: -$30,688-(-$18,824)=-$11,864. Expressed differently:
 <span class="math display">\[\hat{\delta}_1 = (price_{81,near}-price_{81,far})-(price_{78,near}-price_{78,far})\]</span>
 where <span class="math inline">\(\hat{\delta}_1\)</span> represents the difference over time in average differences in housing prices in the two locations. To determine statistical significance, the following model must be estimated:
-<span class="math display">\[price = \beta_0 + \gamma_0 \cdot y81 + \beta_1 \cdot nearinc + \gamma_1 \cdot y81 \cdot nearinc\]</span>
-The interpretation of the coefficients is as follows:</p>
+<span class="math display">\[price = \beta_0 + \gamma_0 \cdot y81 + \beta_1 \cdot nearinc + \delta_1 \cdot y81 \cdot nearinc\]</span></p>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="pooled-ordinary-least-square-model.html#cb116-1"></a><span class="kw">summary</span>(<span class="kw">lm</span>(rprice<span class="op">~</span>y81<span class="op">+</span>nearinc<span class="op">+</span><span class="kw">I</span>(y81<span class="op">*</span>nearinc),<span class="dt">data=</span>kiel))</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = rprice ~ y81 + nearinc + I(y81 * nearinc), data = kiel)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -60678 -17693  -3031  12483 236307 
+## 
+## Coefficients:
+##                  Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)         82517       2727  30.260  &lt; 2e-16 ***
+## y81                 18790       4050   4.640 5.12e-06 ***
+## nearinc            -18824       4875  -3.861 0.000137 ***
+## I(y81 * nearinc)   -11864       7457  -1.591 0.112595    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 30240 on 317 degrees of freedom
+## Multiple R-squared:  0.1739, Adjusted R-squared:  0.1661 
+## F-statistic: 22.25 on 3 and 317 DF,  p-value: 4.224e-13</code></pre>
+<p>The interpretation of the coefficients is as follows:</p>
 <ul>
 <li><span class="math inline">\(\beta_0\)</span>: Average home value which is not near the garbage incinerator</li>
 <li><span class="math inline">\(\gamma_0 \cdot y81\)</span>: Average change in housing values for all homes</li>
 <li><span class="math inline">\(\beta_1 \cdot nearinc\)</span>: Location effect that is not due to the incinerator</li>
 <li><span class="math inline">\(\gamma_1\)</span>: Decline in housing values due to incinerator</li>
 </ul>
-<p>Include <span class="math inline">\(age\)</span> and <span class="math inline">\(age^2\)</span> in the above equation to take advantage of the information provided in the data. Other variables such as <span class="math inline">\(cbd\)</span>, <span class="math inline">\(rooms\)</span>, <span class="math inline">\(area\)</span>, <span class="math inline">\(land\)</span>, and <span class="math inline">\(baths\)</span> can be added as well. In general, the results show that homes have lost 9.3% in values when including additional independent variables and using the natural logarithm of price.</p>
+<p>Include <span class="math inline">\(age\)</span> and <span class="math inline">\(age^2\)</span> in the above equation to take advantage of the information provided in the data leads to the following result:</p>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="pooled-ordinary-least-square-model.html#cb118-1"></a><span class="kw">summary</span>(<span class="kw">lm</span>(rprice<span class="op">~</span>y81<span class="op">+</span>nearinc<span class="op">+</span><span class="kw">I</span>(y81<span class="op">*</span>nearinc)<span class="op">+</span>age<span class="op">+</span><span class="kw">I</span>(age<span class="op">^</span><span class="dv">2</span>),<span class="dt">data=</span>kiel))</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = rprice ~ y81 + nearinc + I(y81 * nearinc) + age + 
+##     I(age^2), data = kiel)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -79349 -14431  -1711  10069 201486 
+## 
+## Coefficients:
+##                    Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)       8.912e+04  2.406e+03  37.039  &lt; 2e-16 ***
+## y81               2.132e+04  3.444e+03   6.191 1.86e-09 ***
+## nearinc           9.398e+03  4.812e+03   1.953 0.051713 .  
+## I(y81 * nearinc) -2.192e+04  6.360e+03  -3.447 0.000644 ***
+## age              -1.494e+03  1.319e+02 -11.333  &lt; 2e-16 ***
+## I(age^2)          8.691e+00  8.481e-01  10.248  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 25540 on 315 degrees of freedom
+## Multiple R-squared:  0.4144, Adjusted R-squared:  0.4052 
+## F-statistic: 44.59 on 5 and 315 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>Other variables such as <span class="math inline">\(cbd\)</span>, <span class="math inline">\(rooms\)</span>, <span class="math inline">\(area\)</span>, <span class="math inline">\(land\)</span>, and <span class="math inline">\(baths\)</span> can be added as well.</p>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="pooled-ordinary-least-square-model.html#cb120-1"></a><span class="kw">summary</span>(<span class="kw">lm</span>(rprice<span class="op">~</span>y81<span class="op">+</span>nearinc<span class="op">+</span><span class="kw">I</span>(y81<span class="op">*</span>nearinc)<span class="op">+</span>age<span class="op">+</span><span class="kw">I</span>(age<span class="op">^</span><span class="dv">2</span>)<span class="op">+</span>intst<span class="op">+</span>land<span class="op">+</span>area<span class="op">+</span>rooms<span class="op">+</span>baths,<span class="dt">data=</span>kiel))</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = rprice ~ y81 + nearinc + I(y81 * nearinc) + age + 
+##     I(age^2) + intst + land + area + rooms + baths, data = kiel)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -76721  -8885   -252   8433 136649 
+## 
+## Coefficients:
+##                    Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)       1.381e+04  1.117e+04   1.237  0.21720    
+## y81               1.393e+04  2.799e+03   4.977 1.07e-06 ***
+## nearinc           3.780e+03  4.453e+03   0.849  0.39661    
+## I(y81 * nearinc) -1.418e+04  4.987e+03  -2.843  0.00477 ** 
+## age              -7.395e+02  1.311e+02  -5.639 3.85e-08 ***
+## I(age^2)          3.453e+00  8.128e-01   4.248 2.86e-05 ***
+## intst            -5.386e-01  1.963e-01  -2.743  0.00643 ** 
+## land              1.414e-01  3.108e-02   4.551 7.69e-06 ***
+## area              1.809e+01  2.306e+00   7.843 7.16e-14 ***
+## rooms             3.304e+03  1.661e+03   1.989  0.04758 *  
+## baths             6.977e+03  2.581e+03   2.703  0.00725 ** 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 19620 on 310 degrees of freedom
+## Multiple R-squared:   0.66,  Adjusted R-squared:  0.6491 
+## F-statistic: 60.19 on 10 and 310 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>In general, the results show that homes have lost 9.3% in values when including additional independent variables and using the natural logarithm of price.</p>
 </div>
             </section>
 
@@ -422,6 +501,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {

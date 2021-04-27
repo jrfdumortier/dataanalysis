@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>9.2 Censoring | Data Analysis for Public Affairs with R</title>
   <meta name="description" content="9.2 Censoring | Data Analysis for Public Affairs with R" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="9.2 Censoring | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2021-04-21" />
+<meta name="date" content="2021-04-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -51,6 +51,8 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -117,6 +119,7 @@ code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
+
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -216,15 +219,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.1" data-path="overview-1.html"><a href="overview-1.html"><i class="fa fa-check"></i><b>10.1</b> Overview</a></li>
 <li class="chapter" data-level="10.2" data-path="pooled-ordinary-least-square-model.html"><a href="pooled-ordinary-least-square-model.html"><i class="fa fa-check"></i><b>10.2</b> Pooled Ordinary Least Square model</a></li>
 <li class="chapter" data-level="10.3" data-path="fixed-effects-panel-data-model.html"><a href="fixed-effects-panel-data-model.html"><i class="fa fa-check"></i><b>10.3</b> Fixed Effects Panel Data Model</a></li>
-<li class="chapter" data-level="10.4" data-path="exercises-5.html"><a href="exercises-5.html"><i class="fa fa-check"></i><b>10.4</b> Exercises</a></li>
+<li class="chapter" data-level="10.4" data-path="random-effects-model.html"><a href="random-effects-model.html"><i class="fa fa-check"></i><b>10.4</b> Random Effects Model</a></li>
+<li class="chapter" data-level="10.5" data-path="exercises-5.html"><a href="exercises-5.html"><i class="fa fa-check"></i><b>10.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="time-series.html"><a href="time-series.html"><i class="fa fa-check"></i><b>11</b> Time Series</a><ul>
-<li class="chapter" data-level="11.1" data-path="static-regression-model.html"><a href="static-regression-model.html"><i class="fa fa-check"></i><b>11.1</b> Static Regression Model</a></li>
-<li class="chapter" data-level="11.2" data-path="trend-and-seasonality.html"><a href="trend-and-seasonality.html"><i class="fa fa-check"></i><b>11.2</b> Trend and Seasonality</a><ul>
-<li class="chapter" data-level="11.2.1" data-path="trend-and-seasonality.html"><a href="trend-and-seasonality.html#practice-exercise"><i class="fa fa-check"></i><b>11.2.1</b> Practice Exercise</a></li>
+<li class="chapter" data-level="11.1" data-path="trend-and-seasonality.html"><a href="trend-and-seasonality.html"><i class="fa fa-check"></i><b>11.1</b> Trend and Seasonality</a><ul>
+<li class="chapter" data-level="11.1.1" data-path="trend-and-seasonality.html"><a href="trend-and-seasonality.html#practice-exercise"><i class="fa fa-check"></i><b>11.1.1</b> Practice Exercise</a></li>
 </ul></li>
-<li class="chapter" data-level="11.3" data-path="finitie-distributed-lag-models.html"><a href="finitie-distributed-lag-models.html"><i class="fa fa-check"></i><b>11.3</b> Finitie Distributed Lag Models</a></li>
+<li class="chapter" data-level="11.2" data-path="finite-distributed-lag-models.html"><a href="finite-distributed-lag-models.html"><i class="fa fa-check"></i><b>11.2</b> Finite Distributed Lag Models</a></li>
+<li class="chapter" data-level="11.3" data-path="basic-theoretical-aspects-of-time-series.html"><a href="basic-theoretical-aspects-of-time-series.html"><i class="fa fa-check"></i><b>11.3</b> Basic Theoretical Aspects of Time Series</a></li>
 <li class="chapter" data-level="11.4" data-path="autoregressive-model.html"><a href="autoregressive-model.html"><i class="fa fa-check"></i><b>11.4</b> Autoregressive Model</a></li>
+<li class="chapter" data-level="11.5" data-path="moving-average-models.html"><a href="moving-average-models.html"><i class="fa fa-check"></i><b>11.5</b> Moving Average Models</a></li>
+<li class="chapter" data-level="11.6" data-path="random-walk.html"><a href="random-walk.html"><i class="fa fa-check"></i><b>11.6</b> Random Walk</a></li>
+<li class="chapter" data-level="11.7" data-path="forecasting-japanense-car-production.html"><a href="forecasting-japanense-car-production.html"><i class="fa fa-check"></i><b>11.7</b> Forecasting Japanense Car Production</a></li>
+<li class="chapter" data-level="11.8" data-path="exercises-6.html"><a href="exercises-6.html"><i class="fa fa-check"></i><b>11.8</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>12</b> Data Sources</a></li>
 <li class="divider"></li>
@@ -249,7 +257,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="censoring" class="section level2">
 <h2><span class="header-section-number">9.2</span> Censoring</h2>
 <p>In the case of censoring, the values of the dependent variable are reported at a certain point if they are above or below a certain value.</p>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
 <p>If all data was reported at the correct value, the following following regression model could be executed:</p>
 <div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="censoring.html#cb74-1"></a><span class="kw">summary</span>(bhat_real)</span></code></pre></div>
 <pre><code>## 
@@ -257,19 +265,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## lm(formula = y_real ~ x, data = censoring)
 ## 
 ## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -1.9280 -0.7849 -0.1564  0.6311  2.4465 
+##      Min       1Q   Median       3Q      Max 
+## -1.74706 -0.57441 -0.05195  0.44300  2.12897 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) -1.32539    0.26128  -5.073 6.29e-06 ***
-## x            0.43593    0.04634   9.407 1.80e-12 ***
+## (Intercept) -1.75972    0.28179  -6.245 1.06e-07 ***
+## x            0.45674    0.04654   9.814 4.67e-13 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 0.9921 on 48 degrees of freedom
-## Multiple R-squared:  0.6483, Adjusted R-squared:  0.641 
-## F-statistic: 88.49 on 1 and 48 DF,  p-value: 1.803e-12</code></pre>
+## Residual standard error: 0.8837 on 48 degrees of freedom
+## Multiple R-squared:  0.6674, Adjusted R-squared:  0.6605 
+## F-statistic: 96.31 on 1 and 48 DF,  p-value: 4.669e-13</code></pre>
 <p>Ignoring censoring leads to biased results:</p>
 <div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="censoring.html#cb76-1"></a><span class="kw">summary</span>(bhat_censored)</span></code></pre></div>
 <pre><code>## 
@@ -278,18 +286,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -1.1565 -0.6446 -0.1244  0.3530  2.3600 
+## -1.5436 -0.4791 -0.1385  0.3782  2.0415 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) -0.44801    0.21654  -2.069    0.044 *  
-## x            0.32198    0.03841   8.383 5.84e-11 ***
+## (Intercept) -0.72358    0.26230  -2.759  0.00819 ** 
+## x            0.31695    0.04332   7.316 2.41e-09 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 0.8222 on 48 degrees of freedom
-## Multiple R-squared:  0.5942, Adjusted R-squared:  0.5857 
-## F-statistic: 70.28 on 1 and 48 DF,  p-value: 5.836e-11</code></pre>
+## Residual standard error: 0.8225 on 48 degrees of freedom
+## Multiple R-squared:  0.5272, Adjusted R-squared:  0.5174 
+## F-statistic: 53.53 on 1 and 48 DF,  p-value: 2.413e-09</code></pre>
 <p>Using the R package <a href="https://cran.r-project.org/web/packages/censReg/index.html">censReg</a>) allows for the reduction of the bias:</p>
 <div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="censoring.html#cb78-1"></a>b_correct =<span class="st"> </span><span class="kw">censReg</span>(y_obs<span class="op">~</span>x,<span class="dt">data=</span>censoring)</span>
 <span id="cb78-2"><a href="censoring.html#cb78-2"></a><span class="kw">summary</span>(b_correct)</span></code></pre></div>
@@ -299,19 +307,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Observations:
 ##          Total  Left-censored     Uncensored Right-censored 
-##             50             19             31              0 
+##             50             17             33              0 
 ## 
 ## Coefficients:
 ##             Estimate Std. error t value  Pr(&gt; t)    
-## (Intercept) -1.64928    0.40134  -4.109 3.97e-05 ***
-## x            0.47892    0.06260   7.651 2.00e-14 ***
-## logSigma     0.04512    0.13033   0.346    0.729    
+## (Intercept) -2.18829    0.47505  -4.606 4.10e-06 ***
+## x            0.50838    0.07024   7.238 4.56e-13 ***
+## logSigma    -0.01821    0.12428  -0.146    0.884    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## Newton-Raphson maximisation, 6 iterations
 ## Return code 1: gradient close to zero (gradtol)
-## Log-likelihood: -54.15188 on 3 Df</code></pre>
+## Log-likelihood: -52.84244 on 3 Df</code></pre>
 </div>
             </section>
 
@@ -342,6 +350,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {

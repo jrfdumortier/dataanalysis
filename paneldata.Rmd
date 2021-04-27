@@ -42,10 +42,9 @@ There are three types of regression models presented in this chapter:
 ## Pooled Ordinary Least Square model
 The first example is data from the General Social Survey (GSS). Recall that the GSS is not a panel data set since the respondents change from one year to the next. The years analyzed for this example are the even years between 1974 and 1984. Note that this data set is accompanying the book *Introductory Econometrics: A Modern Approach* by Jeffrey Wooldridge. 
 
-```{r}
-bhat = lm(kids~educ+age+I(age^2)+east+northcentral+west+farm+otherrural
-          +town+smallcity+y74+y76+y78+y80+y82+y84,data=fertil1)
-summary(bhat)
+```{r,echo=FALSE}
+summary(lm(kids~educ+age+I(age^2)+east+northcentral+west+farm+otherrural
+          +town+smallcity+y74+y76+y78+y80+y82+y84,data=fertil1))
 ```
 
 The evolution of fertility rates over time after controlling of other observable factors can be interpreted as follows:
@@ -60,9 +59,8 @@ Coefficient of $y82$ (-0.41) indicates that women had on average 0.41 less child
 The next example uses `cps7885` and interacts year dummy with key explanatory variables to see if the effect of that variable has changed over time. That is, the following model is estimated:
 $$\ln(wage)=\beta_0+\gamma_0 \cdot y85+\beta_1 \cdot educ+\gamma_1 \cdot y85 \cdot educ+\beta_2 \cdot exper+ \beta_3 \cdot exper^2+\beta_4 \cdot union+\beta_5 \cdot female+\gamma_5 \cdot y85 \cdot female$$
 
-```{r}
-bhat = lm(formula=lwage~y85+educ+y85*educ+exper+expersq+union+female+y85fem,data=cps7885)
-summary(bhat)
+```{r,echo=FALSE}
+summary(lm(formula=lwage~y85+educ+y85*educ+exper+expersq+union+female+y85fem,data=cps7885))
 ```
 
 This model can be interpreted as follows:
@@ -94,7 +92,10 @@ summary(lm(rprice~nearinc,data=kiel1978))
 The results can be used for a difference-in-difference estimator: -\$30,688-(-\$18,824)=-\$11,864. Expressed differently:
 $$\hat{\delta}_1 = (price_{81,near}-price_{81,far})-(price_{78,near}-price_{78,far})$$
 where $\hat{\delta}_1$ represents the difference over time in average differences in housing prices in the two locations. To determine statistical significance, the following model must be estimated:
-$$price = \beta_0 + \gamma_0 \cdot y81 + \beta_1 \cdot nearinc + \gamma_1 \cdot y81 \cdot nearinc$$
+$$price = \beta_0 + \gamma_0 \cdot y81 + \beta_1 \cdot nearinc + \delta_1 \cdot y81 \cdot nearinc$$
+```{r}
+summary(lm(rprice~y81+nearinc+I(y81*nearinc),data=kiel))
+```
 The interpretation of the coefficients is as follows:
 
 - $\beta_0$: Average home value which is not near the garbage incinerator
@@ -102,7 +103,19 @@ The interpretation of the coefficients is as follows:
 - $\beta_1 \cdot nearinc$: Location effect that is not due to the incinerator
 - $\gamma_1$: Decline in housing values due to incinerator
 
-Include $age$ and $age^2$ in the above equation to take advantage of the information provided in the data. Other variables such as $cbd$, $rooms$, $area$, $land$, and $baths$ can be added as well. In general, the results show that homes have lost 9.3% in values when including additional independent variables and using the natural logarithm of price. 
+Include $age$ and $age^2$ in the above equation to take advantage of the information provided in the data leads to the following result:
+
+```{r}
+summary(lm(rprice~y81+nearinc+I(y81*nearinc)+age+I(age^2),data=kiel))
+```
+
+Other variables such as $cbd$, $rooms$, $area$, $land$, and $baths$ can be added as well.
+
+```{r}
+summary(lm(rprice~y81+nearinc+I(y81*nearinc)+age+I(age^2)+intst+land+area+rooms+baths,data=kiel))
+```
+
+In general, the results show that homes have lost 9.3% in values when including additional independent variables and using the natural logarithm of price. 
 
 ## Fixed Effects Panel Data Model
 The two sections on fixed and random effects panel data model use a very old data set but which is standard in all panel data texts. The data set is called `grunfeld` and is part of the package [plm](https://cran.r-project.org/web/packages/plm/index.html). The data contains the following variables of 10 companies over the period 1935 to 1954:
@@ -111,7 +124,13 @@ The two sections on fixed and random effects panel data model use a very old dat
 - $value$: Value of the firm
 - $capital$: Capital stock
 
-The companies of interest for this chapter are GM (firm 1), U.S. Steel (firm 2), GE (firm 3), and Westinghouse (firm 8).
+The fixed effects model or Least-Squares Dummy Variable (LSDV) regression model assumes constant slope coefficients but varying intercepts over $i$. The regression equation can be written as:
+$$inv_{it} = \beta_{0i} + \beta_1 \cdot value_{it} + \beta_2 \cdot capital_{it}$$
+where $i$ and $t$ represent the firms and time, respectively. This model can also be written as
+$$inv_{it} = \alpha_0+\alpha_1 \cdot D_{1i} + \alpha_2 \cdot D_{2i} +\alpha_3 \cdot D_{3i} + \beta_1 \cdot value_{it} + \beta_2 \cdot capital_{it}$$
+Individual specific effects:
+$$y_{it} = \alpha_i + \beta_i \cdot x_{it} + \epsilon_{it}$$
+where $\alpha_i$ can be fixed or random. The companies of interest for this chapter are GM (firm 1), U.S. Steel (firm 2), GE (firm 3), and Westinghouse (firm 8).
 
 ```{r}
 grunfeld = subset(grunfeld,grunfeld$firm %in% c(1,2,3,8))
@@ -137,94 +156,37 @@ grunfeld = pdata.frame(grunfeld,index=c("firm","year"))
 There are two possibilities to execute a pooled OLS Model. Use the regular `lm()` function or use `plm()` specifying the model as "pooling". The outputs will be names `grunwald.ols` and `grunwald.pooling`. 
 
 ```{r}
-summary(plm(inv~value+capital,data=grunfeld,model="pooling"))
+grunfeld.pooling = plm(inv~value+capital,data=grunfeld,model="pooling")
+summary(grunfeld.pooling)
 ```
 
-\begin{frame}{Fixed Effects Model}{Theoretical Concepts I}
-    Fixed effects model or Least-Squares Dummy Variable (LSDV) regression
-        \begin{itemize}
-            \item Constant slope coefficients but varying intercept over $i$
-        \end{itemize}
-    Regression equation:
-        \begin{gather*}
-            inv_{it} = \beta_{0i} + \beta_1 \cdot value_{it} + \beta_2 \cdot capital_{it}\\
-            i=1,2,3,4\\
-            t=1,2, \dots 20
-        \end{gather*}
-    This model can also be written as
-        \begin{equation*}
-            inv_{it} = \alpha_0+\alpha_1 \cdot D_{1i} + \alpha_2 \cdot D_{2i} +\alpha_3 \cdot D_{3i} + \beta_1 \cdot value_{it} + \beta_2 \cdot capital_{it}
-        \end{equation*}
-    Individual specific effects:
-        \begin{equation*}
-            y_{it} = \alpha_i + \beta_i \cdot x_{it} + \epsilon_{it}
-        \end{equation*}
-    $\alpha_i$ can be fixed or random
-\end{frame}
-%========================================================================================================================================
-\begin{frame}{Fixed Effects Model}{Theoretical Concepts II}
-    Fixed effects model
-        \begin{itemize}
-            \item Intercept $\beta_{0i}$ is firm specific.
-            \item For an individual, this could be education and/or ability, possibly correlated with independent variables
-            \item Intercept is time-invariant.
-            \item Slope coefficients do not vary across individuals (firms) or time
-        \end{itemize}
-    Implementation in R
-        \begin{itemize}
-            \item Using the \texttt{plm} function and specifying the model as \texttt{``within''}
-            \item Name the output \texttt{``grunwald.fixed''}
-        \end{itemize}
-\end{frame}
+Fixed effects model
+
+- Intercept $\beta_{0i}$ is firm specific.
+- For an individual, this could be education and/or ability, possibly correlated with independent variables
+- Intercept is time-invariant.
+- Slope coefficients do not vary across individuals (firms) or time
+
+To implement the model in R, the function `plm()` must be used specifying the model as "within". The output will be names `grunwald.fixed`.
+
+```{r,echo=FALSE}
+grunfeld.fixed = plm(inv~value+capital,data=grunfeld,model="within")
+summary(grunfeld.fixed)
+```
+
+Use `fixef(grunfeld.fixed)` to get the firm specific intercepts. The function `pFtest()` can be used to test whether a fixed effects or OLS is appropriate (H$_0$: OLS better). If the significance level is set to $\alpha=0.05$ then the fixed effects model is a better choice if the p-value is below 0.05:
 
 ```{r}
-summary(plm(inv~value+capital,data=grunfeld,model="within"))
+pFtest(grunfeld.fixed,grunfeld.pooling)
 ```
 
-\begin{frame}[fragile]{Fixed Effects Model}{Firm-Specific Intercepts and Hypothesis Test}
-In order to get the firm specific intercepts:
-\begin{verbatim}
-fixef(grunfeld.fixed)
-         1          2          3          8
- -85.51533   94.98762 -246.22751  -59.38573
-\end{verbatim}
+The fixed effects model can also be implemented using the function `lm()`:
 
-Testing whether a fixed effects or OLS is appropriate (H$_0$: OLS better):
-\begin{verbatim}
-pFtest(grunfeld.fixed,grunfeld.ols)
+```{r}
+lm(formula=inv~value+capital+factor(firm),data=grunfeld)
+```
 
-	F test for individual effects
-
-data:  inv ~ value + capital
-F = 67.215, df1 = 3, df2 = 74, p-value < 2.2e-16
-alternative hypothesis: significant effects
-\end{verbatim}
-
-If the p-value is below 0.05 then the fixed effects model is a better choice.
-\end{frame}
-%========================================================================================================================================
-\begin{frame}[fragile]{Fixed Effects Model}{Implementation in R using \texttt{lm}}
-\scriptsize \begin{verbatim}
-Call:
-lm(formula = inv ~ value + capital + factor(firm), data = grunfeld)
-
-Coefficients:
-                Estimate Std. Error t value Pr(>|t|)
-(Intercept)    -85.51533   73.48978  -1.164 0.248310
-value            0.10840    0.01757   6.171  3.3e-08 ***
-capital          0.34506    0.02671  12.919  < 2e-16 ***
-factor(firm)2  180.50295   45.71679   3.948 0.000178 ***
-factor(firm)3 -160.71218   46.62236  -3.447 0.000938 ***
-factor(firm)8   26.12959   64.94348   0.402 0.688591
----
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-
-Residual standard error: 75.54 on 74 degrees of freedom
-Multiple R-squared:  0.9341,	Adjusted R-squared:  0.9297
-F-statistic: 209.9 on 5 and 74 DF,  p-value: < 2.2e-16
-\end{verbatim}
-\end{frame}
-%========================================================================================================================================
+## Random Effects Model
 \begin{frame}{Random Effects Model}{Theoretical Concepts}
     The general fixed effects model can be expressed as
         \begin{equation*}
@@ -330,22 +292,6 @@ If p-value is below 0.05 then use fixed effects.
 %\end{frame}
 
 
-\end{document}
-
-\begin{frame}{Implementation in R}
-
-    Data set: \emph{psid.csv} (Panel Study on Income Dynamics)
-        \begin{itemize}
-            \item exp
-            \item wks
-            \item occ
-            \item ind
-            \item south
-            \item smsa
-            \item ms
-            \item fem
-        \end{itemize}
-\end{frame}
 
 ## Exercises
 

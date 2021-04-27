@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>11.4 Autoregressive Model | Data Analysis for Public Affairs with R</title>
   <meta name="description" content="11.4 Autoregressive Model | Data Analysis for Public Affairs with R" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="11.4 Autoregressive Model | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
@@ -24,15 +24,15 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2021-04-21" />
+<meta name="date" content="2021-04-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="finitie-distributed-lag-models.html"/>
-<link rel="next" href="data-sources.html"/>
+<link rel="prev" href="basic-theoretical-aspects-of-time-series.html"/>
+<link rel="next" href="moving-average-models.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,6 +51,8 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -117,6 +119,7 @@ code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
+
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -216,15 +219,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.1" data-path="overview-1.html"><a href="overview-1.html"><i class="fa fa-check"></i><b>10.1</b> Overview</a></li>
 <li class="chapter" data-level="10.2" data-path="pooled-ordinary-least-square-model.html"><a href="pooled-ordinary-least-square-model.html"><i class="fa fa-check"></i><b>10.2</b> Pooled Ordinary Least Square model</a></li>
 <li class="chapter" data-level="10.3" data-path="fixed-effects-panel-data-model.html"><a href="fixed-effects-panel-data-model.html"><i class="fa fa-check"></i><b>10.3</b> Fixed Effects Panel Data Model</a></li>
-<li class="chapter" data-level="10.4" data-path="exercises-5.html"><a href="exercises-5.html"><i class="fa fa-check"></i><b>10.4</b> Exercises</a></li>
+<li class="chapter" data-level="10.4" data-path="random-effects-model.html"><a href="random-effects-model.html"><i class="fa fa-check"></i><b>10.4</b> Random Effects Model</a></li>
+<li class="chapter" data-level="10.5" data-path="exercises-5.html"><a href="exercises-5.html"><i class="fa fa-check"></i><b>10.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="time-series.html"><a href="time-series.html"><i class="fa fa-check"></i><b>11</b> Time Series</a><ul>
-<li class="chapter" data-level="11.1" data-path="static-regression-model.html"><a href="static-regression-model.html"><i class="fa fa-check"></i><b>11.1</b> Static Regression Model</a></li>
-<li class="chapter" data-level="11.2" data-path="trend-and-seasonality.html"><a href="trend-and-seasonality.html"><i class="fa fa-check"></i><b>11.2</b> Trend and Seasonality</a><ul>
-<li class="chapter" data-level="11.2.1" data-path="trend-and-seasonality.html"><a href="trend-and-seasonality.html#practice-exercise"><i class="fa fa-check"></i><b>11.2.1</b> Practice Exercise</a></li>
+<li class="chapter" data-level="11.1" data-path="trend-and-seasonality.html"><a href="trend-and-seasonality.html"><i class="fa fa-check"></i><b>11.1</b> Trend and Seasonality</a><ul>
+<li class="chapter" data-level="11.1.1" data-path="trend-and-seasonality.html"><a href="trend-and-seasonality.html#practice-exercise"><i class="fa fa-check"></i><b>11.1.1</b> Practice Exercise</a></li>
 </ul></li>
-<li class="chapter" data-level="11.3" data-path="finitie-distributed-lag-models.html"><a href="finitie-distributed-lag-models.html"><i class="fa fa-check"></i><b>11.3</b> Finitie Distributed Lag Models</a></li>
+<li class="chapter" data-level="11.2" data-path="finite-distributed-lag-models.html"><a href="finite-distributed-lag-models.html"><i class="fa fa-check"></i><b>11.2</b> Finite Distributed Lag Models</a></li>
+<li class="chapter" data-level="11.3" data-path="basic-theoretical-aspects-of-time-series.html"><a href="basic-theoretical-aspects-of-time-series.html"><i class="fa fa-check"></i><b>11.3</b> Basic Theoretical Aspects of Time Series</a></li>
 <li class="chapter" data-level="11.4" data-path="autoregressive-model.html"><a href="autoregressive-model.html"><i class="fa fa-check"></i><b>11.4</b> Autoregressive Model</a></li>
+<li class="chapter" data-level="11.5" data-path="moving-average-models.html"><a href="moving-average-models.html"><i class="fa fa-check"></i><b>11.5</b> Moving Average Models</a></li>
+<li class="chapter" data-level="11.6" data-path="random-walk.html"><a href="random-walk.html"><i class="fa fa-check"></i><b>11.6</b> Random Walk</a></li>
+<li class="chapter" data-level="11.7" data-path="forecasting-japanense-car-production.html"><a href="forecasting-japanense-car-production.html"><i class="fa fa-check"></i><b>11.7</b> Forecasting Japanense Car Production</a></li>
+<li class="chapter" data-level="11.8" data-path="exercises-6.html"><a href="exercises-6.html"><i class="fa fa-check"></i><b>11.8</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>12</b> Data Sources</a></li>
 <li class="divider"></li>
@@ -251,12 +259,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>An autoregressive model includes lagged dependent variables. One of the simplest model is an autoregressive model of order 1, i.e., an AR(1) Model
 <span class="math display">\[y_t = \alpha + \beta \cdot y_{t-1} + \epsilon_t\]</span>
 where <span class="math inline">\(\epsilon_t \sim N(0,\sigma^2)\)</span>. Consider the data of earthquakes over magnitude 7 in the data set <code>quakes</code>:
-<img src="bookdownproj_files/figure-html/unnamed-chunk-57-1.png" width="672" /></p>
+<img src="bookdownproj_files/figure-html/unnamed-chunk-66-1.png" width="672" /></p>
 <p>In a first step, a scatter plot is constructed of <span class="math inline">\(Y_{t-1}\)</span> and <span class="math inline">\(y_t\)</span>. The easiest way is to use the function <code>acf</code>:
-<img src="bookdownproj_files/figure-html/unnamed-chunk-58-1.png" width="672" /></p>
+<img src="bookdownproj_files/figure-html/unnamed-chunk-67-1.png" width="672" /></p>
 <pre><code>## [1] 0.2486712</code></pre>
 <p>The correlation coefficicent of 0.25 indicates a weak positive correlation between the number of earthquakes in periods <span class="math inline">\(t\)</span> and <span class="math inline">\(t-1\)</span>. Remember that correlation is not causation. The AR(1) model can be estimated with the <code>lm()</code> function used previously:</p>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="autoregressive-model.html#cb130-1"></a><span class="kw">summary</span>(<span class="kw">lm</span>(quakes<span class="op">~</span><span class="kw">Lag</span>(quakes),<span class="dt">data=</span>quakes))</span></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="autoregressive-model.html#cb145-1"></a><span class="kw">summary</span>(<span class="kw">lm</span>(quakes<span class="op">~</span><span class="kw">Lag</span>(quakes),<span class="dt">data=</span>quakes))</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = quakes ~ Lag(quakes), data = quakes)
@@ -276,58 +284,24 @@ where <span class="math inline">\(\epsilon_t \sim N(0,\sigma^2)\)</span>. Consid
 ##   (1 observation deleted due to missingness)
 ## Multiple R-squared:  0.06785,    Adjusted R-squared:  0.05824 
 ## F-statistic:  7.06 on 1 and 97 DF,  p-value: 0.009216</code></pre>
-<p>Note that although the slope coefficient associated with the lagged term is statistically significant, the R-squared value is very low. A second example considers quarterly <code>beer</code> production in Australia. In a first step, the data is converted into a time series:</p>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="autoregressive-model.html#cb132-1"></a>beer =<span class="st"> </span><span class="kw">ts</span>(beer<span class="op">$</span>sales,<span class="dt">start=</span><span class="kw">c</span>(<span class="dv">1992</span>,<span class="dv">1</span>),<span class="dt">end=</span><span class="kw">c</span>(<span class="dv">2014</span>,<span class="dv">4</span>),<span class="dt">frequency=</span><span class="dv">4</span>)</span></code></pre></div>
-<p>Next, the data is plotted using a function from the package <a href="https://cran.r-project.org/web/packages/ggfortify/index.html">ggfortify</a>. Additional documentation using the package is found under <a href="https://cran.r-project.org/web/packages/ggfortify/vignettes/plot_ts.html">Plotting ts objects</a>.</p>
-<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="autoregressive-model.html#cb133-1"></a><span class="kw">autoplot</span>(beer)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-61-1.png" width="672" /></p>
-<p>Note that the <code>beer</code> now appears in a different category in the Global Environment, i.e., not under “Data” anymore. The function <code>tslm</code> from the package <a href="https://cran.r-project.org/web/packages/forecast/index.html">forecast</a> is used next. The function fits a linear model including seasonality and a trend component (and a trend-squared component if desired).</p>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="autoregressive-model.html#cb134-1"></a>bhat =<span class="st"> </span><span class="kw">tslm</span>(beer<span class="op">~</span>trend<span class="op">+</span><span class="kw">I</span>(trend<span class="op">^</span><span class="dv">2</span>)<span class="op">+</span>season)</span>
-<span id="cb134-2"><a href="autoregressive-model.html#cb134-2"></a><span class="kw">summary</span>(bhat)</span></code></pre></div>
-<pre><code>## 
-## Call:
-## tslm(formula = beer ~ trend + I(trend^2) + season)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -677.24 -163.84    2.12  195.34  529.37 
-## 
-## Coefficients:
-##              Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) 4.082e+03  9.865e+01  41.381  &lt; 2e-16 ***
-## trend       3.975e+01  4.298e+00   9.249 1.53e-14 ***
-## I(trend^2)  4.200e-01  4.477e-02   9.381 8.26e-15 ***
-## season2     8.677e+02  7.987e+01  10.864  &lt; 2e-16 ***
-## season3     1.043e+03  7.990e+01  13.061  &lt; 2e-16 ***
-## season4     2.031e+03  7.993e+01  25.408  &lt; 2e-16 ***
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 270.8 on 86 degrees of freedom
-## Multiple R-squared:  0.9867, Adjusted R-squared:  0.9859 
-## F-statistic:  1278 on 5 and 86 DF,  p-value: &lt; 2.2e-16</code></pre>
-<p>The package <a href="https://cran.r-project.org/web/packages/forecast/index.html">forecast</a> can be also be used to forcast:</p>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="autoregressive-model.html#cb136-1"></a><span class="kw">plot</span>(<span class="kw">forecast</span>(bhat,<span class="dt">h=</span><span class="dv">20</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-63-1.png" width="672" /></p>
-<p>The third examples uses data on Japanese car production (<code>jcars</code>) to illustrate the concept of autocorrelation. The focus is on car production after 1963.</p>
+<p>Note that although the slope coefficient associated with the lagged term is statistically significant, the R-squared value is very low.
+The third examples uses data on Japanese car production (<code>jcars</code>) to illustrate the concept of autocorrelation. The focus is on car production after 1963.</p>
 <p>In a first step, the data is visualized using <code>ggplot</code>:</p>
-<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="autoregressive-model.html#cb137-1"></a><span class="kw">ggplot</span>(jcars,<span class="kw">aes</span>(<span class="dt">x=</span>year,<span class="dt">y=</span>cars))<span class="op">+</span><span class="kw">geom_line</span>()<span class="op">+</span><span class="kw">theme_bw</span>()<span class="op">+</span><span class="kw">theme</span>(<span class="dt">axis.title.x=</span><span class="kw">element_blank</span>())</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-65-1.png" width="672" /></p>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="autoregressive-model.html#cb147-1"></a><span class="kw">ggplot</span>(jcars,<span class="kw">aes</span>(<span class="dt">x=</span>year,<span class="dt">y=</span>cars))<span class="op">+</span><span class="kw">geom_line</span>()<span class="op">+</span><span class="kw">theme_bw</span>()<span class="op">+</span><span class="kw">theme</span>(<span class="dt">axis.title.x=</span><span class="kw">element_blank</span>())</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-70-1.png" width="672" /></p>
 <p>The sample autocorrelation function (ACF) is the correlation between <span class="math inline">\(y_t\)</span> and <span class="math inline">\(y_{t-1}\)</span>, <span class="math inline">\(y_{t-2}\)</span>, <span class="math inline">\(y_{t-3}\)</span>, and so on. It can be written as follows:
 <span class="math display">\[\rho_j = \frac{Cov(y_t,y_{t-j})}{\sqrt{Var(y_t)\cdot Var(y_{t-j})}}\]</span></p>
 <p>The ACF can be used to identify a possible structure of time series either of the actual time series or the residuals of the regression. The autocorrelation function (ACF) is plotted using the function <code>acf()</code> in R.</p>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="autoregressive-model.html#cb138-1"></a><span class="kw">acf</span>(jcars<span class="op">$</span>cars)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-66-1.png" width="672" /></p>
-
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="autoregressive-model.html#cb148-1"></a><span class="kw">acf</span>(jcars<span class="op">$</span>cars)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-71-1.png" width="672" /></p>
 </div>
-<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="finitie-distributed-lag-models.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="data-sources.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="basic-theoretical-aspects-of-time-series.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="moving-average-models.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -350,6 +324,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {

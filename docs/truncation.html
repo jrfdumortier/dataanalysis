@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>9.1 Truncation | Data Analysis for Public Affairs with R</title>
   <meta name="description" content="9.1 Truncation | Data Analysis for Public Affairs with R" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="9.1 Truncation | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2021-04-21" />
+<meta name="date" content="2021-04-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -51,6 +51,8 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -117,6 +119,7 @@ code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
+
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -216,15 +219,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.1" data-path="overview-1.html"><a href="overview-1.html"><i class="fa fa-check"></i><b>10.1</b> Overview</a></li>
 <li class="chapter" data-level="10.2" data-path="pooled-ordinary-least-square-model.html"><a href="pooled-ordinary-least-square-model.html"><i class="fa fa-check"></i><b>10.2</b> Pooled Ordinary Least Square model</a></li>
 <li class="chapter" data-level="10.3" data-path="fixed-effects-panel-data-model.html"><a href="fixed-effects-panel-data-model.html"><i class="fa fa-check"></i><b>10.3</b> Fixed Effects Panel Data Model</a></li>
-<li class="chapter" data-level="10.4" data-path="exercises-5.html"><a href="exercises-5.html"><i class="fa fa-check"></i><b>10.4</b> Exercises</a></li>
+<li class="chapter" data-level="10.4" data-path="random-effects-model.html"><a href="random-effects-model.html"><i class="fa fa-check"></i><b>10.4</b> Random Effects Model</a></li>
+<li class="chapter" data-level="10.5" data-path="exercises-5.html"><a href="exercises-5.html"><i class="fa fa-check"></i><b>10.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="time-series.html"><a href="time-series.html"><i class="fa fa-check"></i><b>11</b> Time Series</a><ul>
-<li class="chapter" data-level="11.1" data-path="static-regression-model.html"><a href="static-regression-model.html"><i class="fa fa-check"></i><b>11.1</b> Static Regression Model</a></li>
-<li class="chapter" data-level="11.2" data-path="trend-and-seasonality.html"><a href="trend-and-seasonality.html"><i class="fa fa-check"></i><b>11.2</b> Trend and Seasonality</a><ul>
-<li class="chapter" data-level="11.2.1" data-path="trend-and-seasonality.html"><a href="trend-and-seasonality.html#practice-exercise"><i class="fa fa-check"></i><b>11.2.1</b> Practice Exercise</a></li>
+<li class="chapter" data-level="11.1" data-path="trend-and-seasonality.html"><a href="trend-and-seasonality.html"><i class="fa fa-check"></i><b>11.1</b> Trend and Seasonality</a><ul>
+<li class="chapter" data-level="11.1.1" data-path="trend-and-seasonality.html"><a href="trend-and-seasonality.html#practice-exercise"><i class="fa fa-check"></i><b>11.1.1</b> Practice Exercise</a></li>
 </ul></li>
-<li class="chapter" data-level="11.3" data-path="finitie-distributed-lag-models.html"><a href="finitie-distributed-lag-models.html"><i class="fa fa-check"></i><b>11.3</b> Finitie Distributed Lag Models</a></li>
+<li class="chapter" data-level="11.2" data-path="finite-distributed-lag-models.html"><a href="finite-distributed-lag-models.html"><i class="fa fa-check"></i><b>11.2</b> Finite Distributed Lag Models</a></li>
+<li class="chapter" data-level="11.3" data-path="basic-theoretical-aspects-of-time-series.html"><a href="basic-theoretical-aspects-of-time-series.html"><i class="fa fa-check"></i><b>11.3</b> Basic Theoretical Aspects of Time Series</a></li>
 <li class="chapter" data-level="11.4" data-path="autoregressive-model.html"><a href="autoregressive-model.html"><i class="fa fa-check"></i><b>11.4</b> Autoregressive Model</a></li>
+<li class="chapter" data-level="11.5" data-path="moving-average-models.html"><a href="moving-average-models.html"><i class="fa fa-check"></i><b>11.5</b> Moving Average Models</a></li>
+<li class="chapter" data-level="11.6" data-path="random-walk.html"><a href="random-walk.html"><i class="fa fa-check"></i><b>11.6</b> Random Walk</a></li>
+<li class="chapter" data-level="11.7" data-path="forecasting-japanense-car-production.html"><a href="forecasting-japanense-car-production.html"><i class="fa fa-check"></i><b>11.7</b> Forecasting Japanense Car Production</a></li>
+<li class="chapter" data-level="11.8" data-path="exercises-6.html"><a href="exercises-6.html"><i class="fa fa-check"></i><b>11.8</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>12</b> Data Sources</a></li>
 <li class="divider"></li>
@@ -258,18 +266,18 @@ If all the data was observed, the correct regression model would give the follow
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -1.9430 -0.7735  0.1659  0.6512  2.3772 
+## -2.2662 -0.8090  0.1286  0.5955  3.6108 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) -1.50451    0.35042  -4.293 8.50e-05 ***
-## x            0.42639    0.05861   7.275 2.79e-09 ***
+## (Intercept)  -1.7965     0.3153  -5.698 7.24e-07 ***
+## x             0.4394     0.0539   8.152 1.30e-10 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 1.109 on 48 degrees of freedom
-## Multiple R-squared:  0.5244, Adjusted R-squared:  0.5145 
-## F-statistic: 52.92 on 1 and 48 DF,  p-value: 2.793e-09</code></pre>
+## Residual standard error: 1.092 on 48 degrees of freedom
+## Multiple R-squared:  0.5806, Adjusted R-squared:  0.5719 
+## F-statistic: 66.46 on 1 and 48 DF,  p-value: 1.299e-10</code></pre>
 <p>The estimates are biased if truncation is ignored:</p>
 <div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="truncation.html#cb70-1"></a><span class="kw">summary</span>(bhat_truncated)</span></code></pre></div>
 <pre><code>## 
@@ -278,19 +286,19 @@ If all the data was observed, the correct regression model would give the follow
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -1.9254 -0.7751 -0.2127  0.6512  2.1546 
+## -1.3285 -0.5652 -0.1207  0.6004  2.5648 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)   
-## (Intercept) -0.31318    0.53268  -0.588  0.56046   
-## x            0.28021    0.07821   3.583  0.00105 **
+## (Intercept)  0.10255    0.44433   0.231  0.81905   
+## x            0.21108    0.06514   3.240  0.00292 **
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 1.046 on 34 degrees of freedom
-##   (14 observations deleted due to missingness)
-## Multiple R-squared:  0.2741, Adjusted R-squared:  0.2527 
-## F-statistic: 12.84 on 1 and 34 DF,  p-value: 0.001051</code></pre>
+## Residual standard error: 0.8552 on 30 degrees of freedom
+##   (18 observations deleted due to missingness)
+## Multiple R-squared:  0.2593, Adjusted R-squared:  0.2346 
+## F-statistic:  10.5 on 1 and 30 DF,  p-value: 0.002918</code></pre>
 <p>To correct for the truncation, use the functions from the package <a href="https://cran.r-project.org/web/packages/truncreg/index.html">truncreg</a> which allows to reduce the bias of the coefficients:</p>
 <div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="truncation.html#cb72-1"></a>bhat_correct =<span class="st"> </span><span class="kw">truncreg</span>(y_obs<span class="op">~</span>x,<span class="dt">data=</span>truncation)</span>
 <span id="cb72-2"><a href="truncation.html#cb72-2"></a><span class="kw">summary</span>(bhat_correct)</span></code></pre></div>
@@ -299,20 +307,20 @@ If all the data was observed, the correct regression model would give the follow
 ## truncreg(formula = y_obs ~ x, data = truncation)
 ## 
 ## BFGS maximization method
-## 33 iterations, 0h:0m:0s 
-## g&#39;(-H)^-1g = 1.7E-08 
+## 36 iterations, 0h:0m:0s 
+## g&#39;(-H)^-1g = 9.5E-14 
 ##  
 ## 
 ## 
 ## Coefficients :
 ##             Estimate Std. Error t-value  Pr(&gt;|t|)    
-## (Intercept) -3.71422    2.35633 -1.5763   0.11496    
-## x            0.63549    0.25539  2.4884   0.01283 *  
-## sigma        1.48284    0.36736  4.0364 5.427e-05 ***
+## (Intercept) -0.96274    0.95569 -1.0074  0.313755    
+## x            0.32445    0.11668  2.7808  0.005423 ** 
+## sigma        1.02426    0.20399  5.0213 5.134e-07 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Log-Likelihood: -43.289 on 3 Df</code></pre>
+## Log-Likelihood: -35.698 on 3 Df</code></pre>
 </div>
             </section>
 
@@ -343,6 +351,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
