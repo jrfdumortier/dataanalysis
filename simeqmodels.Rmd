@@ -1,5 +1,7 @@
 # Simultanous Equation Models
 
+http://rstudio-pubs-static.s3.amazonaws.com/195495_d47be7c818424a3c9bfa5452dd17c6c6.html
+
 The models presented in the previous chapters contained one dependent ($y$) and multiple independent variables ($x_k$). The relationship was such that variables $x_k$ influence $y$. 
 
 The package required for this chapter is called [systemfit](https://cran.r-project.org/web/packages/systemfit/index.html). 

@@ -1,0 +1,189 @@
+# Basic Statistics and Sampling
+
+% !Rnw root = DataAnalysisPA.Rnw
+
+<<BSS_lln,echo=FALSE,message=FALSE,warning=FALSE,error=FALSE,results='hide',fig.keep="none">>=
+n                   = 1000
+x                   = sample(0:1,n,repl=T)
+s                   = cumsum(x)
+r                   = s/(1:n)
+lln                 = data.frame(trials=c(1:1000),heads=r)
+ggplot(lln,aes(x=trials,y=heads))+geom_line()+theme_bw()+ylab("Share of Heads")+
+     ylim(0,1)+xlab("Trials")
+ggsave("BSS_lln.pdf",width=7,height=4.25)
+rm(n,r,s,x,lln)
+@
+<<BSS_riskpooling,echo=FALSE,message=FALSE,warning=FALSE,error=FALSE,results='hide',fig.keep="none">>=
+ndraws    = 1000;
+fireinsurance  = function(ninsur){
+     fire = matrix(0,ndraws,1)
+          for (i in 1:ndraws){
+               fg      <- sample(x=c(1,0),size=ninsur,replace=TRUE,prob=c(1/250,249/250))
+               fg      <- sum(fg)/ninsur
+               fire[i] <- fg}
+               return(fire)}
+fire1     = fireinsurance(1000)
+fire2     = fireinsurance(10000)
+fire3     = fireinsurance(25000)
+fire4     = fireinsurance(100000)
+pdf("BSS_riskpooling.pdf", width=6, height=7)
+par(mfrow=c(2,2))
+hist(fire1,xlim=c(0,0.025),ylim=c(0,750),main="1000 People Insured",xlab="",
+          breaks=seq(0,0.03,0.001))
+     hist(fire2,xlim=c(0,0.025),ylim=c(0,750),main="10000 People Insured",xlab="",
+          breaks=seq(0,0.03,0.001))
+     hist(fire3,xlim=c(0,0.025),ylim=c(0,750),main="25000 People Insured",xlab="",
+          breaks=seq(0,0.03,0.001))
+     hist(fire4,xlim=c(0,0.025),ylim=c(0,750),main="100000 People Insured",xlab="",
+          breaks=seq(0,0.03,0.001))
+graphics.off()
+@
+<<BSS_clt,echo=FALSE,message=FALSE,warning=FALSE,error=FALSE,results='hide',fig.keep="none">>=
+pop_n               = 10000
+sample_n            = 500
+pop_uniform         = runif(pop_n,min=0,max=1)
+pop_poisson         = rpois(pop_n,lambda=5)
+pop_exponential     = rexp(pop_n,rate=1.5)
+pop_beta            = rbeta(pop_n,0.5,0.5)
+out                 = matrix(0,1000,4);
+for (i in 1:1000){
+     out[i,1]       = mean(sample(pop_uniform,sample_n))
+     out[i,2]       = mean(sample(pop_poisson,sample_n))
+     out[i,3]       = mean(sample(pop_exponential,sample_n))
+     out[i,4]       = mean(sample(pop_beta,sample_n))}
+pdf("BSS_clt.pdf",width=9,height=6)
+  par(mfrow=c(2,4))
+    hist(pop_uniform,main="Population: Uniform",xlab="")
+    hist(out[,1],main="Sample: Uniform",xlab="")
+    hist(pop_poisson,main="Population: Poisson",xlab="")
+    hist(out[,2],main="sample: Poisson",xlab="")
+    hist(pop_exponential,main="Population: Exponential",xlab="")
+    hist(out[,3],main="Sample: Exponential",xlab="")
+    hist(pop_exponential,main="Population: Beta",xlab="")
+    hist(out[,4],main="Sample: Beta",xlab="")
+graphics.off()
+@
+
+\section{Basic Statistics and Sampling}
+In the previous sections, we assumed that we know the parameters associated with probability distributions. From now on, we are interested in finding those parameters by sampling from a population. It is important to differentiate between the \emph{population}, whose parameters are unknown to the researcher, and a \emph{sample} taken from the population. The sample can tell us something about the population parameters. The sampling distribution will be the probability distribution associated with the statistic, e.g., mean or variance, from the sample. Put differently, when we talk a sample and calculate the mean, how would that estimate differ and which values would a different sample produce. Suppose you have a set of random variables $X_1, X_2, X_3, \dots , X_n$ which represent the results of repeating an experiment. The random variables are ``independent and identically distributed'' (i.i.d.). The expectation of the average is written as:
+  \begin{equation*}
+      \bar{X}_n = \frac{X_1 + X_2 + \dots + X_n}{n}
+  \end{equation*}
+The sampling variance is expressed as:
+  \begin{equation*}
+      Var(\bar{X}_n) = \frac{\sigma^2}{n}
+  \end{equation*}
+The standard error of the mean is written as
+     \begin{equation*}
+          \sigma_{\bar{x}} = \frac{\sigma}{\sqrt{n}}
+     \end{equation*}
+This is different from the sample variance! The sampling variance represents the variation of a particular statistic, e.g., mean. Before we get into the details, let us introduce two very important concepts: (1) the Law of Large Numbers and (2) the Central Limit Theorem. 
+
+
+%n                   = 30
+%nsize               = 5
+%salary              = runif(n,10,20)
+%mu_salary           = mean(salary)
+%var_salary          = 1/n*sum((salary-mu_salary)^2)
+%sd_salary           = sqrt(var_salary)
+%allsamples          = combn(salary,nsize,FUN=mean)
+%sd(allsamples)*(nrow(allsamples)-1)/nrow(allsamples)
+%sd_salary/sqrt(nsize)
+
+
+\subsection{Law of Large Numbers}
+The unemployment rate in the United States is measured via the Current Population Survey (CPS) which samples 60,000 households on a monthly basis. People are classified into ``employed'', ``unemployed'', ``not in the labor force''. The reason for this large sample is that the larger the sample, the closer you get to the true parameter. This is a result of the law of large numbers. Any feature of a distribution can be recovered from repeated sampling. In particular, the law of large number can be spelled out as
+  \begin{equation*}
+      \lim_{n \rightarrow \infty} P(|\bar{X}_n - \mu | > \epsilon) = 0
+  \end{equation*}
+For example, if you toss a coin, there are two possible outcomes: heads or tails. The expected value of heads (or tails) is $E(H)=E(T)=0.5$. The variance of $n$ coin tosses is
+  \begin{equation*}
+      Var(n) = \frac{p \cdot (1-p)}{n}
+  \end{equation*}
+Note that $p \cdot (1-p)$ is the variance associated with a Bernoulli. So the variance of $n$ coin tosses is $Var(1) = 0.5$, $Var(10) = 0.025$, $Var(1000) = 0.00025$, etc. It is difficult to predict the share of heads from a single coin toss but high prediction precision from several thousand tosses (Figure \ref{fig:lawoflargenumbers}). There are very important implications, e.g., insurance business. If there is risk aversion for individuals as well as for firms, why do insurance companies exist? Let us illustrate how the law of large numbers can help us answer this question. Assume an insurance company that sells home insurance policies. The probability of a fire is $P(fire)=1/250=0.004$. Each home is valued at \$250,000 and the value of the home after a fire is \$0. The insurance premium is equal to the expected loss, i.e., \$1000. In a simulation exercise, the damage to $n$ homeowners (where $n$ is the number of homes insured) and the share of homes burned down is calculated. The exercise is repeated a 1000 times and then a histogram is generated (Figure \ref{fig:riskpooling}).
+    \begin{figure}
+        \begin{center}
+            \includegraphics[width=6in]{BSS_lln.pdf}
+        \end{center}
+        \caption{Law of Large Numbers illustrated by flipping a coin up to 50,000 times.}
+        \label{fig:lawoflargenumbers}
+    \end{figure}
+    \begin{figure}
+        \begin{center}
+            \includegraphics[width=6in]{BSS_riskpooling.pdf}
+        \end{center}
+        \caption{Risk pooling by an insurance company}
+        \label{fig:riskpooling}
+    \end{figure}
+
+\subsection{Central Limit Theorem}
+
+The Central Limit Theorem tells us that the average of an i.i.d. sample of a random variable $X$ will converge in distribution to the Normal
+  \begin{equation*}
+      z_n =  \frac{\bar{x}_n-\mu}{\sigma / \sqrt{n}} \Rightarrow F_{z_n}(a) = \Phi(a)
+  \end{equation*}
+where 
+     \begin{equation*}
+          \bar{x}=\frac{1}{n} \sum_{i=1}^{n} x_i
+     \end{equation*}
+The Central Limit Theorem is key for what we are going to see in the remaining sections. What it states is that no matter the underlying distribution (discrete or continuous), if we sample repeatedly and write down the mean of the sample $i$, i.e., $\bar{x}_i$, those means $\bar{x}_i$ will be normally distributed (Figure \ref{fig:clt}). 
+      \begin{figure}[p]
+        \begin{center}
+            \includegraphics[width=5in]{BSS_clt.pdf}
+        \end{center}
+        \caption{Illustration of the Central Limit Theorem}
+        \label{fig:clt}
+    \end{figure}
+
+\subsection{Estimation and Estimators}
+Assume the simple setting of where the random variable $X$ represents a population with probability density function $f(x;\theta)$. This probability density function depends on the parameter $\theta$ which is unknown. It is assumed that the probability density function is known except for the parameter $\theta$. So we have to engage in sampling from the population to get information about the parameter of interest. To gather information about $\theta$, we perform random sampling and collect $X_1, X_2, \dots, X_n$ which represents an identically and identically distributed (i.i.d.)  random sample drawn from the probability density function $f(x;\theta)$. In the most abstract formulation, we can think of $W$ as an estimator for the parameter $\theta$ in as $W=h(X_1, X_2, \dots X_n)$.
+
+The goal of a good estimation procedure is to determine an \emph{unbiased} point estimator $\hat{\theta}$ of the population parameter $\theta$. To evaluate our estimation procedure, we are interested in analyzing the sampling distribution associated with $\hat{\theta}$. From a theoretical perspective, the bias $b$ of an estimator can be expressed as 
+  \begin{equation*}
+    b(\hat{\theta})=E(\hat{\theta})-\theta
+  \end{equation*}
+The mean squared error of a point estimator W is defined as 
+  \begin{equation*}
+    MSE(\hat{\theta})=E((\hat{\theta}-\theta)^2)
+  \end{equation*}
+Note, that unbiased does not refer to the fact that $\hat{\theta}=\theta$ from one sample but if we were able to repeat the sampling infinite times, the average of the $\hat{\theta}$ would be equal to $\theta$. Some commonly used statistics are the sample mean, the sample variance, the sample standard deviation, and the sample mid-range. The sample mean is the arithmetic average of the values in a random sample. It is denoted
+\begin{equation*}
+\bar{X}(X_1,X_2, \cdot \cdot \cdot, X_n)=\frac{X_{1}+ X_2+ . . . +X_n}{n}=\frac{1}{n}\sum_{i=1}^{n}X_i
+\end{equation*}
+The observed value of $\bar{X}$ in any sample is denoted by the lower case letter, i.e., $\bar{x}$. The sample variance is the statistic defined by
+\begin{equation*}
+S^2(X_1,X_2, \cdot \cdot \cdot, X_n)=\frac{1}{n-1}\sum_{i=1}^{n}(X_i-\bar{X})^{2}
+\end{equation*}
+The observed value of ${S^2}$ in any sample is denoted by the lower case letter, i.e., ${s^2}$. The sample standard deviation is the statistic defined by $S=\sqrt{S^2}$. The sample mid-range is the statistic defined by
+\begin{equation*}
+\frac{max(X_1,X_2, \cdot \cdot \cdot ,X_n)-min(X_1,X_2, \cdot \cdot \cdot,X_n)} {2}
+\end{equation*}
+Imagine that you have two estimation methods for the estimator $\hat{\theta}$. Which one do you chose? The answer is that you would chose the most efficient estimator based on the sampling variance. 
+    
+%\subsection{Unbiased Point Estimators for the Bernoulli and Normal Distribution}
+%Consider table \ref{table:UnbiasedBernoulliNormal} that shows point estimators for the Bernoulli and Normal distribution.
+%\begin{table}[h!]
+%  \begin{center}
+%    \begin{tabular}{lcccc}\toprule
+%    $\theta$        & Sample Size       & $\hat{\theta}$         & E($\hat{\theta}$) & $\sigma_{\hat{\theta}}$ \\  \midrule
+%    $\mu$           & n                 & $\bar{Y}$              & $\mu$             & $\frac{\sigma}{\sqrt{n}}$ \\
+%    $p$             & n                 & $\hat{p}=\frac{Y}{n}$  & p                 & $\sqrt{\frac{p \cdot q}{n}}$ \\ 
+%    $\mu_1-\mu_2$   & $n_1$ and $n_2$   & $\bar{Y}_1-\bar{Y}_2$  & $\mu_1 - \mu_2$   & $\sqrt{\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}}$ \\ 
+%    $p_1-p_2$       & $n_1$ and $n_2$   & $\hat{p}_1-\hat{p}_2$  & $p_1 -p_2$        & $\sqrt{\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}}$  \\ %\bottomrule
+%    \end{tabular}
+%  \end{center}
+%  \caption{Unbiased Point Estimators for the Bernoulli and Normal Distribution}
+%  \label{table:UnbiasedBernoulliNormal}
+%\end{table}
+
+
+
+\subsection{Exercises}
+\begin{enumerate}
+\item \emph{Random Numbers}: R/RStudio allows you to generate random numbers from a variety of distributions. For example, you can generate 100 normally distributed random numbers with $\mu=70$ and $\sigma = 10$ using the following command: \texttt{rnorm(100,70,10)}. Generate three datasets ($\mu=70$ and $\sigma = 10$) with the command \texttt{rnorm} and name them $x1$, $x2$, and $x3$. The data sets $x1$ and $x$ have 50 random numbers each and $x3$ has 1000 random numbers. Calculate and report the mean of $x1$, $x2$, and $x3$. Plot a histogram of all three datasets.
+\begin{enumerate}
+\item Why do the histograms of $x1$ and $x2$ look different despite the fact that they were generated using the same command? Do they look normally distributed?
+\item The histogram of $x3$ will look much more like a normal distribution. Why is that the case?
+\item Compare the three means and explain which statistical law should make the mean of $x3$ always closer to 70 than for $x1$ and $x2$.
+\end{enumerate}
+\end{enumerate}

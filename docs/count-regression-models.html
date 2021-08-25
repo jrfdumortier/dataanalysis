@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>9.3 Count Regression Models | Data Analysis for Public Affairs with R</title>
-  <meta name="description" content="9.3 Count Regression Models | Data Analysis for Public Affairs with R" />
+  <title>11.3 Count Regression Models | Data Analysis for Public Affairs with R</title>
+  <meta name="description" content="11.3 Count Regression Models | Data Analysis for Public Affairs with R" />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="9.3 Count Regression Models | Data Analysis for Public Affairs with R" />
+  <meta property="og:title" content="11.3 Count Regression Models | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="9.3 Count Regression Models | Data Analysis for Public Affairs with R" />
+  <meta name="twitter:title" content="11.3 Count Regression Models | Data Analysis for Public Affairs with R" />
   
   
   
@@ -24,7 +24,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2021-04-27" />
+<meta name="date" content="2021-08-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -147,94 +147,127 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>3</b> Introduction to R</a><ul>
-<li class="chapter" data-level="3.1" data-path="online-resources-and-help.html"><a href="online-resources-and-help.html"><i class="fa fa-check"></i><b>3.1</b> Online Resources and Help</a></li>
+<li class="chapter" data-level="3.1" data-path="r-resources-and-help.html"><a href="r-resources-and-help.html"><i class="fa fa-check"></i><b>3.1</b> R Resources and Help</a></li>
 <li class="chapter" data-level="3.2" data-path="opening-rstudio.html"><a href="opening-rstudio.html"><i class="fa fa-check"></i><b>3.2</b> Opening RStudio</a><ul>
 <li class="chapter" data-level="3.2.1" data-path="opening-rstudio.html"><a href="opening-rstudio.html#in-class-exercise-1"><i class="fa fa-check"></i><b>3.2.1</b> In-class Exercise 1</a></li>
 </ul></li>
 <li class="chapter" data-level="3.3" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>3.3</b> Functions</a></li>
-<li class="chapter" data-level="3.4" data-path="data-management.html"><a href="data-management.html"><i class="fa fa-check"></i><b>3.4</b> Data Management</a><ul>
-<li class="chapter" data-level="3.4.1" data-path="data-management.html"><a href="data-management.html#data-in-r"><i class="fa fa-check"></i><b>3.4.1</b> Data in R</a></li>
-<li class="chapter" data-level="3.4.2" data-path="data-management.html"><a href="data-management.html#using-r-as-a-calculator"><i class="fa fa-check"></i><b>3.4.2</b> Using R as a Calculator</a></li>
-<li class="chapter" data-level="3.4.3" data-path="data-management.html"><a href="data-management.html#creating-a-data-frame-from-scratch"><i class="fa fa-check"></i><b>3.4.3</b> Creating a Data Frame from Scratch</a></li>
-<li class="chapter" data-level="3.4.4" data-path="data-management.html"><a href="data-management.html#in-class-exercise-2"><i class="fa fa-check"></i><b>3.4.4</b> In-class Exercise 2</a></li>
+<li class="chapter" data-level="3.4" data-path="data-in-r.html"><a href="data-in-r.html"><i class="fa fa-check"></i><b>3.4</b> Data in R</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="data-in-r.html"><a href="data-in-r.html#using-r-as-a-calculator"><i class="fa fa-check"></i><b>3.4.1</b> Using R as a Calculator</a></li>
+<li class="chapter" data-level="3.4.2" data-path="data-in-r.html"><a href="data-in-r.html#creating-a-data-frame-from-scratch"><i class="fa fa-check"></i><b>3.4.2</b> Creating a Data Frame from Scratch</a></li>
+<li class="chapter" data-level="3.4.3" data-path="data-in-r.html"><a href="data-in-r.html#in-class-exercise-2"><i class="fa fa-check"></i><b>3.4.3</b> In-class Exercise 2</a></li>
+<li class="chapter" data-level="3.4.4" data-path="data-in-r.html"><a href="data-in-r.html#indexing"><i class="fa fa-check"></i><b>3.4.4</b> Indexing</a></li>
 </ul></li>
+<li class="chapter" data-level="3.5" data-path="importing-data-into-r.html"><a href="importing-data-into-r.html"><i class="fa fa-check"></i><b>3.5</b> Importing Data into R</a></li>
+<li class="chapter" data-level="3.6" data-path="sub-setting-a-data-frame.html"><a href="sub-setting-a-data-frame.html"><i class="fa fa-check"></i><b>3.6</b> Sub-setting a Data Frame</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="sub-setting-a-data-frame.html"><a href="sub-setting-a-data-frame.html#in-class-exercises-3"><i class="fa fa-check"></i><b>3.6.1</b> In-class Exercises 3</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="basic-multivariate-regression.html"><a href="basic-multivariate-regression.html"><i class="fa fa-check"></i><b>4</b> Basic Multivariate Regression</a><ul>
-<li class="chapter" data-level="4.1" data-path="dummy-variables.html"><a href="dummy-variables.html"><i class="fa fa-check"></i><b>4.1</b> Dummy Variables</a></li>
+<li class="chapter" data-level="3.7" data-path="aggregating-data.html"><a href="aggregating-data.html"><i class="fa fa-check"></i><b>3.7</b> Aggregating Data</a></li>
+<li class="chapter" data-level="3.8" data-path="writing-data-frame-to-csv-file.html"><a href="writing-data-frame-to-csv-file.html"><i class="fa fa-check"></i><b>3.8</b> Writing Data Frame to .csv-File</a></li>
+<li class="chapter" data-level="3.9" data-path="reshaping-data-from-long-to-wide-and-viceversa.html"><a href="reshaping-data-from-long-to-wide-and-viceversa.html"><i class="fa fa-check"></i><b>3.9</b> Reshaping Data from Long to Wide and Viceversa</a></li>
+<li class="chapter" data-level="3.10" data-path="extending-the-basic-table-function.html"><a href="extending-the-basic-table-function.html"><i class="fa fa-check"></i><b>3.10</b> Extending the Basic <code>table()</code> Function</a></li>
+<li class="chapter" data-level="3.11" data-path="merging-datasets.html"><a href="merging-datasets.html"><i class="fa fa-check"></i><b>3.11</b> Merging Datasets</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="anova.html"><a href="anova.html"><i class="fa fa-check"></i><b>5</b> ANOVA</a><ul>
-<li class="chapter" data-level="5.1" data-path="exercises.html"><a href="exercises.html"><i class="fa fa-check"></i><b>5.1</b> Exercises</a></li>
+<li class="chapter" data-level="4" data-path="summarizing-data.html"><a href="summarizing-data.html"><i class="fa fa-check"></i><b>4</b> Summarizing Data</a><ul>
+<li class="chapter" data-level="4.1" data-path="measures-of-central-tendency.html"><a href="measures-of-central-tendency.html"><i class="fa fa-check"></i><b>4.1</b> Measures of Central Tendency</a></li>
+<li class="chapter" data-level="4.2" data-path="measures-of-dispersion.html"><a href="measures-of-dispersion.html"><i class="fa fa-check"></i><b>4.2</b> Measures of Dispersion</a></li>
+<li class="chapter" data-level="4.3" data-path="histograms.html"><a href="histograms.html"><i class="fa fa-check"></i><b>4.3</b> Histograms</a></li>
+<li class="chapter" data-level="4.4" data-path="empirical-cumulative-distribution-function.html"><a href="empirical-cumulative-distribution-function.html"><i class="fa fa-check"></i><b>4.4</b> Empirical Cumulative Distribution Function</a></li>
+<li class="chapter" data-level="4.5" data-path="boxplots.html"><a href="boxplots.html"><i class="fa fa-check"></i><b>4.5</b> Boxplots</a></li>
+<li class="chapter" data-level="4.6" data-path="covariance-and-correlation-coefficicent.html"><a href="covariance-and-correlation-coefficicent.html"><i class="fa fa-check"></i><b>4.6</b> Covariance and Correlation Coefficicent</a></li>
+<li class="chapter" data-level="4.7" data-path="exercises.html"><a href="exercises.html"><i class="fa fa-check"></i><b>4.7</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="violating-assumptions.html"><a href="violating-assumptions.html"><i class="fa fa-check"></i><b>6</b> Violating Assumptions</a><ul>
-<li class="chapter" data-level="6.1" data-path="heteroscedasticity.html"><a href="heteroscedasticity.html"><i class="fa fa-check"></i><b>6.1</b> Heteroscedasticity</a><ul>
-<li class="chapter" data-level="6.1.1" data-path="heteroscedasticity.html"><a href="heteroscedasticity.html#detecting-heteroscedasticity"><i class="fa fa-check"></i><b>6.1.1</b> Detecting Heteroscedasticity</a></li>
-<li class="chapter" data-level="6.1.2" data-path="heteroscedasticity.html"><a href="heteroscedasticity.html#correcting-heteroscedasticity"><i class="fa fa-check"></i><b>6.1.2</b> Correcting Heteroscedasticity</a></li>
+<li class="chapter" data-level="5" data-path="probability.html"><a href="probability.html"><i class="fa fa-check"></i><b>5</b> Probability</a><ul>
+<li class="chapter" data-level="5.1" data-path="sample-spaces-outcomes-events-and-set-operations.html"><a href="sample-spaces-outcomes-events-and-set-operations.html"><i class="fa fa-check"></i><b>5.1</b> Sample Spaces, Outcomes, Events, and Set Operations</a></li>
+<li class="chapter" data-level="5.2" data-path="probability-of-a-union.html"><a href="probability-of-a-union.html"><i class="fa fa-check"></i><b>5.2</b> Probability of a Union</a></li>
+<li class="chapter" data-level="5.3" data-path="probability-of-an-intersection.html"><a href="probability-of-an-intersection.html"><i class="fa fa-check"></i><b>5.3</b> Probability of an Intersection</a></li>
+<li class="chapter" data-level="5.4" data-path="conditional-probability-and-independence.html"><a href="conditional-probability-and-independence.html"><i class="fa fa-check"></i><b>5.4</b> Conditional Probability and Independence</a></li>
+<li class="chapter" data-level="5.5" data-path="independence.html"><a href="independence.html"><i class="fa fa-check"></i><b>5.5</b> Independence</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="independence.html"><a href="independence.html#birthday-problem"><i class="fa fa-check"></i><b>5.5.1</b> Birthday Problem</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="multicollinearity.html"><a href="multicollinearity.html"><i class="fa fa-check"></i><b>6.2</b> Multicollinearity</a><ul>
-<li class="chapter" data-level="6.2.1" data-path="multicollinearity.html"><a href="multicollinearity.html#variance-inflated-factors-vif"><i class="fa fa-check"></i><b>6.2.1</b> Variance Inflated Factors (VIF)</a></li>
-<li class="chapter" data-level="6.2.2" data-path="multicollinearity.html"><a href="multicollinearity.html#examples"><i class="fa fa-check"></i><b>6.2.2</b> Examples</a></li>
+<li class="chapter" data-level="5.6" data-path="law-of-total-probability-and-bayes-rule.html"><a href="law-of-total-probability-and-bayes-rule.html"><i class="fa fa-check"></i><b>5.6</b> Law of Total Probability and Bayes Rule</a></li>
+<li class="chapter" data-level="5.7" data-path="combinatorial-methods.html"><a href="combinatorial-methods.html"><i class="fa fa-check"></i><b>5.7</b> Combinatorial Methods</a><ul>
+<li class="chapter" data-level="5.7.1" data-path="combinatorial-methods.html"><a href="combinatorial-methods.html#permutations"><i class="fa fa-check"></i><b>5.7.1</b> Permutations</a></li>
+<li class="chapter" data-level="5.7.2" data-path="combinatorial-methods.html"><a href="combinatorial-methods.html#combinations"><i class="fa fa-check"></i><b>5.7.2</b> Combinations</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="other-issues-and-problems-with-data.html"><a href="other-issues-and-problems-with-data.html"><i class="fa fa-check"></i><b>6.3</b> Other Issues and Problems with Data</a></li>
-<li class="chapter" data-level="6.4" data-path="autocorrelation.html"><a href="autocorrelation.html"><i class="fa fa-check"></i><b>6.4</b> Autocorrelation</a><ul>
-<li class="chapter" data-level="6.4.1" data-path="autocorrelation.html"><a href="autocorrelation.html#durbin-watson-d-test"><i class="fa fa-check"></i><b>6.4.1</b> Durbin Watson d-Test</a></li>
-<li class="chapter" data-level="6.4.2" data-path="autocorrelation.html"><a href="autocorrelation.html#breusch-godfrey-test"><i class="fa fa-check"></i><b>6.4.2</b> Breusch-Godfrey Test</a></li>
+<li class="chapter" data-level="5.8" data-path="exercises-1.html"><a href="exercises-1.html"><i class="fa fa-check"></i><b>5.8</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="6.5" data-path="exercises-1.html"><a href="exercises-1.html"><i class="fa fa-check"></i><b>6.5</b> Exercises</a></li>
+<li class="chapter" data-level="6" data-path="basic-multivariate-regression.html"><a href="basic-multivariate-regression.html"><i class="fa fa-check"></i><b>6</b> Basic Multivariate Regression</a><ul>
+<li class="chapter" data-level="6.1" data-path="dummy-variables.html"><a href="dummy-variables.html"><i class="fa fa-check"></i><b>6.1</b> Dummy Variables</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="binary-choice.html"><a href="binary-choice.html"><i class="fa fa-check"></i><b>7</b> Binary Choice</a><ul>
-<li class="chapter" data-level="7.1" data-path="binary-choice-estimation-in-r.html"><a href="binary-choice-estimation-in-r.html"><i class="fa fa-check"></i><b>7.1</b> Binary Choice Estimation in R</a></li>
-<li class="chapter" data-level="7.2" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html"><i class="fa fa-check"></i><b>7.2</b> Additional Examples and Probit Model</a><ul>
-<li class="chapter" data-level="7.2.1" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html#full-time-work"><i class="fa fa-check"></i><b>7.2.1</b> Full-Time Work</a></li>
-<li class="chapter" data-level="7.2.2" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html#voting-behavior"><i class="fa fa-check"></i><b>7.2.2</b> Voting Behavior</a></li>
+<li class="chapter" data-level="7" data-path="anova.html"><a href="anova.html"><i class="fa fa-check"></i><b>7</b> ANOVA</a><ul>
+<li class="chapter" data-level="7.1" data-path="exercises-2.html"><a href="exercises-2.html"><i class="fa fa-check"></i><b>7.1</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="7.3" data-path="exercises-2.html"><a href="exercises-2.html"><i class="fa fa-check"></i><b>7.3</b> Exercises</a></li>
+<li class="chapter" data-level="8" data-path="violating-assumptions.html"><a href="violating-assumptions.html"><i class="fa fa-check"></i><b>8</b> Violating Assumptions</a><ul>
+<li class="chapter" data-level="8.1" data-path="heteroscedasticity.html"><a href="heteroscedasticity.html"><i class="fa fa-check"></i><b>8.1</b> Heteroscedasticity</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="heteroscedasticity.html"><a href="heteroscedasticity.html#detecting-heteroscedasticity"><i class="fa fa-check"></i><b>8.1.1</b> Detecting Heteroscedasticity</a></li>
+<li class="chapter" data-level="8.1.2" data-path="heteroscedasticity.html"><a href="heteroscedasticity.html#correcting-heteroscedasticity"><i class="fa fa-check"></i><b>8.1.2</b> Correcting Heteroscedasticity</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="qualitative-choice-models.html"><a href="qualitative-choice-models.html"><i class="fa fa-check"></i><b>8</b> Qualitative Choice Models</a><ul>
-<li class="chapter" data-level="8.1" data-path="ordered-logit-model.html"><a href="ordered-logit-model.html"><i class="fa fa-check"></i><b>8.1</b> Ordered Logit Model</a><ul>
-<li class="chapter" data-level="8.1.1" data-path="ordered-logit-model.html"><a href="ordered-logit-model.html#ordered-logit-example-organic-food-purchase"><i class="fa fa-check"></i><b>8.1.1</b> Ordered Logit Example: Organic Food Purchase</a></li>
-<li class="chapter" data-level="8.1.2" data-path="ordered-logit-model.html"><a href="ordered-logit-model.html#predicted-probability-and-marginal-effects"><i class="fa fa-check"></i><b>8.1.2</b> Predicted Probability and Marginal Effects</a></li>
+<li class="chapter" data-level="8.2" data-path="multicollinearity.html"><a href="multicollinearity.html"><i class="fa fa-check"></i><b>8.2</b> Multicollinearity</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="multicollinearity.html"><a href="multicollinearity.html#variance-inflated-factors-vif"><i class="fa fa-check"></i><b>8.2.1</b> Variance Inflated Factors (VIF)</a></li>
+<li class="chapter" data-level="8.2.2" data-path="multicollinearity.html"><a href="multicollinearity.html#examples"><i class="fa fa-check"></i><b>8.2.2</b> Examples</a></li>
 </ul></li>
-<li class="chapter" data-level="8.2" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html"><i class="fa fa-check"></i><b>8.2</b> Multinomial Logit and Multinomial Probit Models</a><ul>
-<li class="chapter" data-level="8.2.1" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#theoretical-aspects"><i class="fa fa-check"></i><b>8.2.1</b> Theoretical Aspects</a></li>
-<li class="chapter" data-level="8.2.2" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#data-managment"><i class="fa fa-check"></i><b>8.2.2</b> Data Managment</a></li>
-<li class="chapter" data-level="8.2.3" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#fishing-data"><i class="fa fa-check"></i><b>8.2.3</b> Fishing Data</a></li>
-<li class="chapter" data-level="8.2.4" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#travel-data"><i class="fa fa-check"></i><b>8.2.4</b> Travel Data</a></li>
-<li class="chapter" data-level="8.2.5" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#electric-vehicle-data"><i class="fa fa-check"></i><b>8.2.5</b> Electric Vehicle Data</a></li>
+<li class="chapter" data-level="8.3" data-path="other-issues-and-problems-with-data.html"><a href="other-issues-and-problems-with-data.html"><i class="fa fa-check"></i><b>8.3</b> Other Issues and Problems with Data</a></li>
+<li class="chapter" data-level="8.4" data-path="autocorrelation.html"><a href="autocorrelation.html"><i class="fa fa-check"></i><b>8.4</b> Autocorrelation</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="autocorrelation.html"><a href="autocorrelation.html#durbin-watson-d-test"><i class="fa fa-check"></i><b>8.4.1</b> Durbin Watson d-Test</a></li>
+<li class="chapter" data-level="8.4.2" data-path="autocorrelation.html"><a href="autocorrelation.html#breusch-godfrey-test"><i class="fa fa-check"></i><b>8.4.2</b> Breusch-Godfrey Test</a></li>
 </ul></li>
-<li class="chapter" data-level="8.3" data-path="exercises-3.html"><a href="exercises-3.html"><i class="fa fa-check"></i><b>8.3</b> Exercises</a></li>
+<li class="chapter" data-level="8.5" data-path="exercises-3.html"><a href="exercises-3.html"><i class="fa fa-check"></i><b>8.5</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="limited-dependent-variable-models.html"><a href="limited-dependent-variable-models.html"><i class="fa fa-check"></i><b>9</b> Limited Dependent Variable Models</a><ul>
-<li class="chapter" data-level="9.1" data-path="truncation.html"><a href="truncation.html"><i class="fa fa-check"></i><b>9.1</b> Truncation</a></li>
-<li class="chapter" data-level="9.2" data-path="censoring.html"><a href="censoring.html"><i class="fa fa-check"></i><b>9.2</b> Censoring</a></li>
-<li class="chapter" data-level="9.3" data-path="count-regression-models.html"><a href="count-regression-models.html"><i class="fa fa-check"></i><b>9.3</b> Count Regression Models</a><ul>
-<li class="chapter" data-level="9.3.1" data-path="count-regression-models.html"><a href="count-regression-models.html#poisson-regression-model"><i class="fa fa-check"></i><b>9.3.1</b> Poisson Regression Model</a></li>
-<li class="chapter" data-level="9.3.2" data-path="count-regression-models.html"><a href="count-regression-models.html#quasi-poisson-regression-model"><i class="fa fa-check"></i><b>9.3.2</b> Quasi-Poisson Regression Model</a></li>
-<li class="chapter" data-level="9.3.3" data-path="count-regression-models.html"><a href="count-regression-models.html#negative-binomial-regression-model"><i class="fa fa-check"></i><b>9.3.3</b> Negative Binomial Regression Model</a></li>
+<li class="chapter" data-level="9" data-path="binary-choice.html"><a href="binary-choice.html"><i class="fa fa-check"></i><b>9</b> Binary Choice</a><ul>
+<li class="chapter" data-level="9.1" data-path="binary-choice-estimation-in-r.html"><a href="binary-choice-estimation-in-r.html"><i class="fa fa-check"></i><b>9.1</b> Binary Choice Estimation in R</a></li>
+<li class="chapter" data-level="9.2" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html"><i class="fa fa-check"></i><b>9.2</b> Additional Examples and Probit Model</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html#full-time-work"><i class="fa fa-check"></i><b>9.2.1</b> Full-Time Work</a></li>
+<li class="chapter" data-level="9.2.2" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html#voting-behavior"><i class="fa fa-check"></i><b>9.2.2</b> Voting Behavior</a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="hurdle-and-zero-inflation-models.html"><a href="hurdle-and-zero-inflation-models.html"><i class="fa fa-check"></i><b>9.4</b> Hurdle and Zero-Inflation Models</a></li>
-<li class="chapter" data-level="9.5" data-path="survival-analysis.html"><a href="survival-analysis.html"><i class="fa fa-check"></i><b>9.5</b> Survival Analysis</a></li>
-<li class="chapter" data-level="9.6" data-path="exercises-4.html"><a href="exercises-4.html"><i class="fa fa-check"></i><b>9.6</b> Exercises</a></li>
+<li class="chapter" data-level="9.3" data-path="exercises-4.html"><a href="exercises-4.html"><i class="fa fa-check"></i><b>9.3</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="panel-data.html"><a href="panel-data.html"><i class="fa fa-check"></i><b>10</b> Panel Data</a><ul>
-<li class="chapter" data-level="10.1" data-path="overview-1.html"><a href="overview-1.html"><i class="fa fa-check"></i><b>10.1</b> Overview</a></li>
-<li class="chapter" data-level="10.2" data-path="pooled-ordinary-least-square-model.html"><a href="pooled-ordinary-least-square-model.html"><i class="fa fa-check"></i><b>10.2</b> Pooled Ordinary Least Square model</a></li>
-<li class="chapter" data-level="10.3" data-path="fixed-effects-panel-data-model.html"><a href="fixed-effects-panel-data-model.html"><i class="fa fa-check"></i><b>10.3</b> Fixed Effects Panel Data Model</a></li>
-<li class="chapter" data-level="10.4" data-path="random-effects-model.html"><a href="random-effects-model.html"><i class="fa fa-check"></i><b>10.4</b> Random Effects Model</a></li>
-<li class="chapter" data-level="10.5" data-path="exercises-5.html"><a href="exercises-5.html"><i class="fa fa-check"></i><b>10.5</b> Exercises</a></li>
+<li class="chapter" data-level="10" data-path="qualitative-choice-models.html"><a href="qualitative-choice-models.html"><i class="fa fa-check"></i><b>10</b> Qualitative Choice Models</a><ul>
+<li class="chapter" data-level="10.1" data-path="ordered-logit-model.html"><a href="ordered-logit-model.html"><i class="fa fa-check"></i><b>10.1</b> Ordered Logit Model</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="ordered-logit-model.html"><a href="ordered-logit-model.html#ordered-logit-example-organic-food-purchase"><i class="fa fa-check"></i><b>10.1.1</b> Ordered Logit Example: Organic Food Purchase</a></li>
+<li class="chapter" data-level="10.1.2" data-path="ordered-logit-model.html"><a href="ordered-logit-model.html#predicted-probability-and-marginal-effects"><i class="fa fa-check"></i><b>10.1.2</b> Predicted Probability and Marginal Effects</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="time-series.html"><a href="time-series.html"><i class="fa fa-check"></i><b>11</b> Time Series</a><ul>
-<li class="chapter" data-level="11.1" data-path="trend-and-seasonality.html"><a href="trend-and-seasonality.html"><i class="fa fa-check"></i><b>11.1</b> Trend and Seasonality</a><ul>
-<li class="chapter" data-level="11.1.1" data-path="trend-and-seasonality.html"><a href="trend-and-seasonality.html#practice-exercise"><i class="fa fa-check"></i><b>11.1.1</b> Practice Exercise</a></li>
+<li class="chapter" data-level="10.2" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html"><i class="fa fa-check"></i><b>10.2</b> Multinomial Logit and Multinomial Probit Models</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#theoretical-aspects"><i class="fa fa-check"></i><b>10.2.1</b> Theoretical Aspects</a></li>
+<li class="chapter" data-level="10.2.2" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#data-managment"><i class="fa fa-check"></i><b>10.2.2</b> Data Managment</a></li>
+<li class="chapter" data-level="10.2.3" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#fishing-data"><i class="fa fa-check"></i><b>10.2.3</b> Fishing Data</a></li>
+<li class="chapter" data-level="10.2.4" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#travel-data"><i class="fa fa-check"></i><b>10.2.4</b> Travel Data</a></li>
+<li class="chapter" data-level="10.2.5" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#electric-vehicle-data"><i class="fa fa-check"></i><b>10.2.5</b> Electric Vehicle Data</a></li>
 </ul></li>
-<li class="chapter" data-level="11.2" data-path="finite-distributed-lag-models.html"><a href="finite-distributed-lag-models.html"><i class="fa fa-check"></i><b>11.2</b> Finite Distributed Lag Models</a></li>
-<li class="chapter" data-level="11.3" data-path="basic-theoretical-aspects-of-time-series.html"><a href="basic-theoretical-aspects-of-time-series.html"><i class="fa fa-check"></i><b>11.3</b> Basic Theoretical Aspects of Time Series</a></li>
-<li class="chapter" data-level="11.4" data-path="autoregressive-model.html"><a href="autoregressive-model.html"><i class="fa fa-check"></i><b>11.4</b> Autoregressive Model</a></li>
-<li class="chapter" data-level="11.5" data-path="moving-average-models.html"><a href="moving-average-models.html"><i class="fa fa-check"></i><b>11.5</b> Moving Average Models</a></li>
-<li class="chapter" data-level="11.6" data-path="random-walk.html"><a href="random-walk.html"><i class="fa fa-check"></i><b>11.6</b> Random Walk</a></li>
-<li class="chapter" data-level="11.7" data-path="forecasting-japanense-car-production.html"><a href="forecasting-japanense-car-production.html"><i class="fa fa-check"></i><b>11.7</b> Forecasting Japanense Car Production</a></li>
-<li class="chapter" data-level="11.8" data-path="exercises-6.html"><a href="exercises-6.html"><i class="fa fa-check"></i><b>11.8</b> Exercises</a></li>
+<li class="chapter" data-level="10.3" data-path="exercises-5.html"><a href="exercises-5.html"><i class="fa fa-check"></i><b>10.3</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>12</b> Data Sources</a></li>
+<li class="chapter" data-level="11" data-path="limited-dependent-variable-models.html"><a href="limited-dependent-variable-models.html"><i class="fa fa-check"></i><b>11</b> Limited Dependent Variable Models</a><ul>
+<li class="chapter" data-level="11.1" data-path="truncation.html"><a href="truncation.html"><i class="fa fa-check"></i><b>11.1</b> Truncation</a></li>
+<li class="chapter" data-level="11.2" data-path="censoring.html"><a href="censoring.html"><i class="fa fa-check"></i><b>11.2</b> Censoring</a></li>
+<li class="chapter" data-level="11.3" data-path="count-regression-models.html"><a href="count-regression-models.html"><i class="fa fa-check"></i><b>11.3</b> Count Regression Models</a><ul>
+<li class="chapter" data-level="11.3.1" data-path="count-regression-models.html"><a href="count-regression-models.html#poisson-regression-model"><i class="fa fa-check"></i><b>11.3.1</b> Poisson Regression Model</a></li>
+<li class="chapter" data-level="11.3.2" data-path="count-regression-models.html"><a href="count-regression-models.html#quasi-poisson-regression-model"><i class="fa fa-check"></i><b>11.3.2</b> Quasi-Poisson Regression Model</a></li>
+<li class="chapter" data-level="11.3.3" data-path="count-regression-models.html"><a href="count-regression-models.html#negative-binomial-regression-model"><i class="fa fa-check"></i><b>11.3.3</b> Negative Binomial Regression Model</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="hurdle-and-zero-inflation-models.html"><a href="hurdle-and-zero-inflation-models.html"><i class="fa fa-check"></i><b>11.4</b> Hurdle and Zero-Inflation Models</a></li>
+<li class="chapter" data-level="11.5" data-path="survival-analysis.html"><a href="survival-analysis.html"><i class="fa fa-check"></i><b>11.5</b> Survival Analysis</a></li>
+<li class="chapter" data-level="11.6" data-path="exercises-6.html"><a href="exercises-6.html"><i class="fa fa-check"></i><b>11.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="panel-data.html"><a href="panel-data.html"><i class="fa fa-check"></i><b>12</b> Panel Data</a><ul>
+<li class="chapter" data-level="12.1" data-path="overview-1.html"><a href="overview-1.html"><i class="fa fa-check"></i><b>12.1</b> Overview</a></li>
+<li class="chapter" data-level="12.2" data-path="pooled-ordinary-least-square-model.html"><a href="pooled-ordinary-least-square-model.html"><i class="fa fa-check"></i><b>12.2</b> Pooled Ordinary Least Square model</a></li>
+<li class="chapter" data-level="12.3" data-path="fixed-effects-panel-data-model.html"><a href="fixed-effects-panel-data-model.html"><i class="fa fa-check"></i><b>12.3</b> Fixed Effects Panel Data Model</a></li>
+<li class="chapter" data-level="12.4" data-path="random-effects-model.html"><a href="random-effects-model.html"><i class="fa fa-check"></i><b>12.4</b> Random Effects Model</a></li>
+<li class="chapter" data-level="12.5" data-path="exercises-7.html"><a href="exercises-7.html"><i class="fa fa-check"></i><b>12.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="time-series.html"><a href="time-series.html"><i class="fa fa-check"></i><b>13</b> Time Series</a><ul>
+<li class="chapter" data-level="13.1" data-path="trend-and-seasonality.html"><a href="trend-and-seasonality.html"><i class="fa fa-check"></i><b>13.1</b> Trend and Seasonality</a><ul>
+<li class="chapter" data-level="13.1.1" data-path="trend-and-seasonality.html"><a href="trend-and-seasonality.html#practice-exercise"><i class="fa fa-check"></i><b>13.1.1</b> Practice Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="finite-distributed-lag-models.html"><a href="finite-distributed-lag-models.html"><i class="fa fa-check"></i><b>13.2</b> Finite Distributed Lag Models</a></li>
+<li class="chapter" data-level="13.3" data-path="basic-theoretical-aspects-of-time-series.html"><a href="basic-theoretical-aspects-of-time-series.html"><i class="fa fa-check"></i><b>13.3</b> Basic Theoretical Aspects of Time Series</a></li>
+<li class="chapter" data-level="13.4" data-path="autoregressive-model.html"><a href="autoregressive-model.html"><i class="fa fa-check"></i><b>13.4</b> Autoregressive Model</a></li>
+<li class="chapter" data-level="13.5" data-path="moving-average-models.html"><a href="moving-average-models.html"><i class="fa fa-check"></i><b>13.5</b> Moving Average Models</a></li>
+<li class="chapter" data-level="13.6" data-path="random-walk.html"><a href="random-walk.html"><i class="fa fa-check"></i><b>13.6</b> Random Walk</a></li>
+<li class="chapter" data-level="13.7" data-path="forecasting-japanense-car-production.html"><a href="forecasting-japanense-car-production.html"><i class="fa fa-check"></i><b>13.7</b> Forecasting Japanense Car Production</a></li>
+<li class="chapter" data-level="13.8" data-path="exercises-8.html"><a href="exercises-8.html"><i class="fa fa-check"></i><b>13.8</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>14</b> Data Sources</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 </ul>
@@ -255,7 +288,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="count-regression-models" class="section level2">
-<h2><span class="header-section-number">9.3</span> Count Regression Models</h2>
+<h2><span class="header-section-number">11.3</span> Count Regression Models</h2>
 <p>Count regression models apply to cases in which the dependent variable represents discrete, integer count data. Here are some examples of count outcomes:</p>
 <ul>
 <li>What are the number of arrests for a person?</li>
@@ -269,24 +302,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 <p>The main package used is <a href="https://cran.r-project.org/web/packages/pscl/index.html">pscl</a>. There is also an additional resource with more theoretical details on the topic: <a href="http://dx.doi.org/10.18637/jss.v027.i08">Regression Models for Count Data in R</a>. A more up-to-date version of the document may be found with the <a href="https://cran.r-project.org/web/packages/pscl/index.html">pscl</a> package documentation.</p>
 <div id="poisson-regression-model" class="section level3">
-<h3><span class="header-section-number">9.3.1</span> Poisson Regression Model</h3>
+<h3><span class="header-section-number">11.3.1</span> Poisson Regression Model</h3>
 <p>Recall that the Poisson distribution is written as:
 <span class="math display">\[Pr(Y=k)=\frac{e^{-\lambda} \cdot \lambda^k}{k!}\]</span>
 The important characteristics of the distribution is that the mean and variance are equal to <span class="math inline">\(\lambda\)</span>, i.e., <span class="math inline">\(E(Y)=\lambda\)</span> and <span class="math inline">\(Var(Y)=\lambda\)</span>, this is also known as the equidispersion property. The mean parameter is written as <span class="math inline">\(\lambda=exp(\beta_0+\beta_1 \cdot x_1+ \dots + \beta_k \cdot x_k)\)</span>.</p>
 <p>The first examples uses the 2017 <a href="https://nhts.ornl.gov/">NHTS</a> data contained in <code>hhpub</code>. In a first step, the data is prepared for the regression model, i.e., missing or unknown values are eliminated and income is measured in (thousand) dollar terms:</p>
-<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="count-regression-models.html#cb80-1"></a>hhpubdata =<span class="st"> </span><span class="kw">subset</span>(hhpub,HHFAMINC <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">11</span>) <span class="op">&amp;</span><span class="st"> </span>HOMEOWN <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>) <span class="op">&amp;</span><span class="st"> </span>URBRUR <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>) <span class="op">&amp;</span><span class="st"> </span>HHVEHCNT <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span><span class="op">:</span><span class="dv">12</span>))</span>
-<span id="cb80-2"><a href="count-regression-models.html#cb80-2"></a>HHFAMINC =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">11</span>)</span>
-<span id="cb80-3"><a href="count-regression-models.html#cb80-3"></a>INCOME =<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>,<span class="fl">12.5</span>,<span class="dv">20</span>,<span class="dv">30</span>,<span class="fl">42.5</span>,<span class="fl">57.5</span>,<span class="fl">82.5</span>,<span class="fl">112.5</span>,<span class="fl">137.5</span>,<span class="dv">175</span>,<span class="dv">200</span>)</span>
-<span id="cb80-4"><a href="count-regression-models.html#cb80-4"></a>INCOME =<span class="st"> </span><span class="kw">data.frame</span>(HHFAMINC,INCOME)</span>
-<span id="cb80-5"><a href="count-regression-models.html#cb80-5"></a>hhpubdata =<span class="st"> </span><span class="kw">merge</span>(hhpubdata,INCOME)</span>
-<span id="cb80-6"><a href="count-regression-models.html#cb80-6"></a>hhpubdata<span class="op">$</span>RURAL =<span class="st"> </span>hhpubdata<span class="op">$</span>URBRUR<span class="dv">-1</span></span>
-<span id="cb80-7"><a href="count-regression-models.html#cb80-7"></a>hhpubdata<span class="op">$</span>RENT =<span class="st"> </span>hhpubdata<span class="op">$</span>HOMEOWN<span class="dv">-1</span></span></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="count-regression-models.html#cb102-1"></a>hhpubdata =<span class="st"> </span><span class="kw">subset</span>(hhpub,HHFAMINC <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">11</span>) <span class="op">&amp;</span><span class="st"> </span>HOMEOWN <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>) <span class="op">&amp;</span><span class="st"> </span>URBRUR <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>) <span class="op">&amp;</span><span class="st"> </span>HHVEHCNT <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span><span class="op">:</span><span class="dv">12</span>))</span>
+<span id="cb102-2"><a href="count-regression-models.html#cb102-2"></a>HHFAMINC =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">11</span>)</span>
+<span id="cb102-3"><a href="count-regression-models.html#cb102-3"></a>INCOME =<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>,<span class="fl">12.5</span>,<span class="dv">20</span>,<span class="dv">30</span>,<span class="fl">42.5</span>,<span class="fl">57.5</span>,<span class="fl">82.5</span>,<span class="fl">112.5</span>,<span class="fl">137.5</span>,<span class="dv">175</span>,<span class="dv">200</span>)</span>
+<span id="cb102-4"><a href="count-regression-models.html#cb102-4"></a>INCOME =<span class="st"> </span><span class="kw">data.frame</span>(HHFAMINC,INCOME)</span>
+<span id="cb102-5"><a href="count-regression-models.html#cb102-5"></a>hhpubdata =<span class="st"> </span><span class="kw">merge</span>(hhpubdata,INCOME)</span>
+<span id="cb102-6"><a href="count-regression-models.html#cb102-6"></a>hhpubdata<span class="op">$</span>RURAL =<span class="st"> </span>hhpubdata<span class="op">$</span>URBRUR<span class="dv">-1</span></span>
+<span id="cb102-7"><a href="count-regression-models.html#cb102-7"></a>hhpubdata<span class="op">$</span>RENT =<span class="st"> </span>hhpubdata<span class="op">$</span>HOMEOWN<span class="dv">-1</span></span></code></pre></div>
 <p>The outcome of interest is the number of vehicles based on household income, home ownership, and urban/rural household location. Before executing the Poisson regression model, calculate the mean and variance of the outcome variable.</p>
 <pre><code>## [1] 1.981142</code></pre>
 <pre><code>## [1] 1.386027</code></pre>
 <p>The mean and the variance are similar and thus, estimating a Poisson Regression Model is an appropriate first step. The package <a href="https://cran.r-project.org/web/packages/AER/index.html">AER</a> also contains the function <code>dispersiontest()</code> which conducts a hypothesis test assuming no overdispersion. This test will be used after execution of the main regression. To estimate the model, the <code>glm()</code> function can be used by specifying <code>family=poisson</code>.</p>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="count-regression-models.html#cb83-1"></a>bhat_pois =<span class="st"> </span><span class="kw">glm</span>(HHVEHCNT<span class="op">~</span>INCOME<span class="op">+</span>RENT<span class="op">+</span>RURAL,<span class="dt">data=</span>hhpubdata,<span class="dt">family=</span>poisson)</span>
-<span id="cb83-2"><a href="count-regression-models.html#cb83-2"></a><span class="kw">summary</span>(bhat_pois)</span></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="count-regression-models.html#cb105-1"></a>bhat_pois =<span class="st"> </span><span class="kw">glm</span>(HHVEHCNT<span class="op">~</span>INCOME<span class="op">+</span>RENT<span class="op">+</span>RURAL,<span class="dt">data=</span>hhpubdata,<span class="dt">family=</span>poisson)</span>
+<span id="cb105-2"><a href="count-regression-models.html#cb105-2"></a><span class="kw">summary</span>(bhat_pois)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = HHVEHCNT ~ INCOME + RENT + RURAL, family = poisson, 
@@ -319,7 +352,7 @@ The important characteristics of the distribution is that the mean and variance 
 <li>If <span class="math inline">\(\beta&lt;0\)</span>, then <span class="math inline">\(\exp(\beta) &lt; 1\)</span>, and the expected count <span class="math inline">\(E(y)\)</span> is <span class="math inline">\(\exp(\beta)\)</span> times smaller than when <span class="math inline">\(X = 0\)</span></li>
 </ul>
 <p>The function <code>overdispersion</code> tests the null hypothesis of equidispersion:</p>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="count-regression-models.html#cb85-1"></a><span class="kw">dispersiontest</span>(bhat_pois)</span></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="count-regression-models.html#cb107-1"></a><span class="kw">dispersiontest</span>(bhat_pois)</span></code></pre></div>
 <pre><code>## 
 ##  Overdispersion test
 ## 
@@ -332,17 +365,17 @@ The important characteristics of the distribution is that the mean and variance 
 <p>Given the <em>p</em>-value, the null hypothesis cannot be rejected. If the data suggests overdispersion, two alternative regression models can be used: (1) Quasi-Poisson and (2) Negative Binomial.</p>
 </div>
 <div id="quasi-poisson-regression-model" class="section level3">
-<h3><span class="header-section-number">9.3.2</span> Quasi-Poisson Regression Model</h3>
+<h3><span class="header-section-number">11.3.2</span> Quasi-Poisson Regression Model</h3>
 <p>The dataset <code>blm</code> used in this section as well as the one describing the negative binomial model is associated with the article <a href="https://doi.org/10.1017/S1537592717004273">Black Lives Matter: Evidence that Police-Caused Deaths Predict Protest Activity</a>. Note that the paper includes a significant number of supplementary materials which allows for the replication of the results and much more.</p>
 <p>The dependent variable is the total number of protests in a city. In a first step, the mean and variance of the variable <span class="math inline">\(totalprotests\)</span> are calclated:</p>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="count-regression-models.html#cb87-1"></a><span class="kw">mean</span>(blm<span class="op">$</span>totprotests)</span></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="count-regression-models.html#cb109-1"></a><span class="kw">mean</span>(blm<span class="op">$</span>totprotests)</span></code></pre></div>
 <pre><code>## [1] 0.4959529</code></pre>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="count-regression-models.html#cb89-1"></a><span class="kw">var</span>(blm<span class="op">$</span>totprotests)</span></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="count-regression-models.html#cb111-1"></a><span class="kw">var</span>(blm<span class="op">$</span>totprotests)</span></code></pre></div>
 <pre><code>## [1] 6.35326</code></pre>
 <p>The variance is significantly higher than the mean which suggests overdispersion. In a first step, a regular Poisson model is estimated.</p>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="count-regression-models.html#cb91-1"></a>eq1 =<span class="st"> &quot;totprotests~log(pop)+log(popdensity)+percentblack+blackpovertyrate+I(blackpovertyrate^2)+percentbachelor+collegeenrollpc+demshare&quot;</span></span>
-<span id="cb91-2"><a href="count-regression-models.html#cb91-2"></a>bhat1 =<span class="st"> </span><span class="kw">glm</span>(eq1,<span class="dt">data=</span>blm,<span class="dt">family=</span>poisson)</span>
-<span id="cb91-3"><a href="count-regression-models.html#cb91-3"></a><span class="kw">summary</span>(bhat1)</span></code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="count-regression-models.html#cb113-1"></a>eq1 =<span class="st"> &quot;totprotests~log(pop)+log(popdensity)+percentblack+blackpovertyrate+I(blackpovertyrate^2)+percentbachelor+collegeenrollpc+demshare&quot;</span></span>
+<span id="cb113-2"><a href="count-regression-models.html#cb113-2"></a>bhat1 =<span class="st"> </span><span class="kw">glm</span>(eq1,<span class="dt">data=</span>blm,<span class="dt">family=</span>poisson)</span>
+<span id="cb113-3"><a href="count-regression-models.html#cb113-3"></a><span class="kw">summary</span>(bhat1)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = eq1, family = poisson, data = blm)
@@ -374,7 +407,7 @@ The important characteristics of the distribution is that the mean and variance 
 ## 
 ## Number of Fisher Scoring iterations: 6</code></pre>
 <p>Note that the signs and statistical significance correspond to Model 1 (Table 3) in the original paper. The coefficients are different because the paper only include negative binomial regression models. The reason for not using a Poisson regression model is the presence of overdispersion:</p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="count-regression-models.html#cb93-1"></a><span class="kw">dispersiontest</span>(bhat1)</span></code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="count-regression-models.html#cb115-1"></a><span class="kw">dispersiontest</span>(bhat1)</span></code></pre></div>
 <pre><code>## 
 ##  Overdispersion test
 ## 
@@ -385,8 +418,8 @@ The important characteristics of the distribution is that the mean and variance 
 ## dispersion 
 ##   2.212733</code></pre>
 <p>Note that the null hypothesis is rejected at the 10% but not the 5% significance level. The Quasi-Poisson Regression Model handles overdispersion by adjusting the stand-errors but leaving the coefficicent estimates the same.</p>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="count-regression-models.html#cb95-1"></a>bhat2 =<span class="st"> </span><span class="kw">glm</span>(eq1,<span class="dt">data=</span>blm,<span class="dt">family=</span>quasipoisson)</span>
-<span id="cb95-2"><a href="count-regression-models.html#cb95-2"></a><span class="kw">summary</span>(bhat2)</span></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="count-regression-models.html#cb117-1"></a>bhat2 =<span class="st"> </span><span class="kw">glm</span>(eq1,<span class="dt">data=</span>blm,<span class="dt">family=</span>quasipoisson)</span>
+<span id="cb117-2"><a href="count-regression-models.html#cb117-2"></a><span class="kw">summary</span>(bhat2)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = eq1, family = quasipoisson, data = blm)
@@ -420,11 +453,11 @@ The important characteristics of the distribution is that the mean and variance 
 <p>Note that in this case, the population density is not statistically significant anymore.</p>
 </div>
 <div id="negative-binomial-regression-model" class="section level3">
-<h3><span class="header-section-number">9.3.3</span> Negative Binomial Regression Model</h3>
+<h3><span class="header-section-number">11.3.3</span> Negative Binomial Regression Model</h3>
 <p>The Negative Binomial Regression Model can be used in the presence of count data and overdispersion. Below, the results from the article <a href="https://doi.org/10.1017/S1537592717004273">Black Lives Matter: Evidence that Police-Caused Deaths Predict Protest Activity</a> are recreated using the negative binomial models presented in the paper. The required package is <a href="https://cran.r-project.org/web/packages/MASS/index.html">MASS</a></p>
 <p>The first model is a basic model of resource mobilization and opportunity structure.</p>
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="count-regression-models.html#cb97-1"></a>bhat3 =<span class="st"> </span><span class="kw">glm.nb</span>(eq1,<span class="dt">data=</span>blm,<span class="dt">link=</span>log)</span>
-<span id="cb97-2"><a href="count-regression-models.html#cb97-2"></a><span class="kw">summary</span>(bhat3) </span></code></pre></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="count-regression-models.html#cb119-1"></a>bhat3 =<span class="st"> </span><span class="kw">glm.nb</span>(eq1,<span class="dt">data=</span>blm,<span class="dt">link=</span>log)</span>
+<span id="cb119-2"><a href="count-regression-models.html#cb119-2"></a><span class="kw">summary</span>(bhat3) </span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm.nb(formula = eq1, data = blm, link = log, init.theta = 1.559078735)
@@ -462,8 +495,8 @@ The important characteristics of the distribution is that the mean and variance 
 ## 
 ##  2 x log-likelihood:  -1100.187</code></pre>
 <p>In a second model, black deaths are added:</p>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="count-regression-models.html#cb99-1"></a>bhat4 =<span class="st"> </span><span class="kw">glm.nb</span>(totprotests<span class="op">~</span><span class="kw">log</span>(pop)<span class="op">+</span><span class="kw">log</span>(popdensity)<span class="op">+</span>percentblack<span class="op">+</span>blackpovertyrate<span class="op">+</span><span class="kw">I</span>(blackpovertyrate<span class="op">^</span><span class="dv">2</span>)<span class="op">+</span>percentbachelor<span class="op">+</span>collegeenrollpc<span class="op">+</span>demshare<span class="op">+</span>deathsblackpc,<span class="dt">data=</span>blm,<span class="dt">link=</span>log)</span>
-<span id="cb99-2"><a href="count-regression-models.html#cb99-2"></a><span class="kw">summary</span>(bhat4) </span></code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="count-regression-models.html#cb121-1"></a>bhat4 =<span class="st"> </span><span class="kw">glm.nb</span>(totprotests<span class="op">~</span><span class="kw">log</span>(pop)<span class="op">+</span><span class="kw">log</span>(popdensity)<span class="op">+</span>percentblack<span class="op">+</span>blackpovertyrate<span class="op">+</span><span class="kw">I</span>(blackpovertyrate<span class="op">^</span><span class="dv">2</span>)<span class="op">+</span>percentbachelor<span class="op">+</span>collegeenrollpc<span class="op">+</span>demshare<span class="op">+</span>deathsblackpc,<span class="dt">data=</span>blm,<span class="dt">link=</span>log)</span>
+<span id="cb121-2"><a href="count-regression-models.html#cb121-2"></a><span class="kw">summary</span>(bhat4) </span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm.nb(formula = totprotests ~ log(pop) + log(popdensity) + percentblack + 
@@ -505,8 +538,8 @@ The important characteristics of the distribution is that the mean and variance 
 ## 
 ##  2 x log-likelihood:  -1091.353</code></pre>
 <p>And in the third model, the authors use all police-caused deaths instead (victims of any race):</p>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="count-regression-models.html#cb101-1"></a>bhat5 =<span class="st"> </span><span class="kw">glm.nb</span>(totprotests<span class="op">~</span><span class="kw">log</span>(pop)<span class="op">+</span><span class="kw">log</span>(popdensity)<span class="op">+</span>percentblack<span class="op">+</span>blackpovertyrate<span class="op">+</span><span class="kw">I</span>(blackpovertyrate<span class="op">^</span><span class="dv">2</span>)<span class="op">+</span>percentbachelor<span class="op">+</span>collegeenrollpc<span class="op">+</span>demshare<span class="op">+</span>deathspc,<span class="dt">data=</span>blm,<span class="dt">link=</span>log)</span>
-<span id="cb101-2"><a href="count-regression-models.html#cb101-2"></a><span class="kw">summary</span>(bhat5) </span></code></pre></div>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="count-regression-models.html#cb123-1"></a>bhat5 =<span class="st"> </span><span class="kw">glm.nb</span>(totprotests<span class="op">~</span><span class="kw">log</span>(pop)<span class="op">+</span><span class="kw">log</span>(popdensity)<span class="op">+</span>percentblack<span class="op">+</span>blackpovertyrate<span class="op">+</span><span class="kw">I</span>(blackpovertyrate<span class="op">^</span><span class="dv">2</span>)<span class="op">+</span>percentbachelor<span class="op">+</span>collegeenrollpc<span class="op">+</span>demshare<span class="op">+</span>deathspc,<span class="dt">data=</span>blm,<span class="dt">link=</span>log)</span>
+<span id="cb123-2"><a href="count-regression-models.html#cb123-2"></a><span class="kw">summary</span>(bhat5) </span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm.nb(formula = totprotests ~ log(pop) + log(popdensity) + percentblack + 

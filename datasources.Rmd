@@ -64,9 +64,9 @@ you have the following variables: \emph{age}, \emph{level2} (indicating whether 
           \item \emph{childs}:
           \item \emph{vote}: Voted in the 2016 election ($yes=1$).
           \item \emph{income}: Income of the respondent taking as the average over the range from the GSS.
-          \item \emph{gun}: Gun ownership ($yes=1$).
-          \item \emph{deathpenalty}: Favoring the death penalty ($yes=1$).
-          \item \emph{totalwealth}: Total wealther of the respondent taking as the average over the range from the GSS.
+          \item \emph{gun}: Gun ownership ($yes=1$). Original GSS name: `owngun`.
+          \item \emph{deathpenalty}: Favoring the death penalty ($yes=1$). Original GSS name: `cappun`.
+          \item \emph{totalwealth}: Total wealth of the respondent taking as the average over the range from the GSS.
      \end{itemize}
 
 - `gssgun` ($N=1300$):
@@ -161,7 +161,7 @@ emp1 – emp52: factors coded yes if the individual was employed in the correspo
 \item \emph{consumption}: Real personal consumption expenditures per capita
 \end{itemize}
 
-- `vehicles` ($N=42702$): The data set contains data about the fuel efficiency of vehicles from model year 1984 to 2021 ($year$). It also includes $make$ and $model$ for the various manufacturers. The variable $displ$ refers to engine displacement in liters\footnote{\url{https://en.wikipedia.org/wiki/Engine_displacement}}, $VClass$ is the vehicle class, $ghgScore$ indicates the greenhouse gas (GHG) emissions, and $comb08U$ is unrounded combined MPG. The data is obtained from the U.S. Environmental Protection Agency' (EPA) \href{https://www.fueleconomy.gov/feg/download.shtml}{Fuel Economy Data} webpage.
+- `vehicles` ($N=42702$): The data set contains data about the fuel efficiency of vehicles from model year 1984 to 2021 ($year$). It also includes $make$ and $model$ for the various manufacturers. The variable $displ$ refers to engine displacement in liters\footnote{\url{https://en.wikipedia.org/wiki/Engine_displacement}}, $VClass$ is the vehicle class, $ghgScore$ indicates the greenhouse gas (GHG) emissions, and $comb08U$ is unrounded combined MPG. The data is obtained from the U.S. Environmental Protection Agency' (EPA) \href{https://www.fueleconomy.gov/feg/download.shtml}{Fuel Economy Data} webpage. The full dataset contains many more variables which are well [documented](https://www.fueleconomy.gov/feg/ws/index.shtml#vehicle).
 
 - `vehpub` ($N=256115$): The data contains vehicle data from the 2017 National Household Travel Survey (NHTS). Some columns were deleted but the detailed code book can be found [here](https://nhts.ornl.gov/tables09/CodebookBrowser.aspx). The variables included are:
     - $HOUSEID$: Household Identifier 

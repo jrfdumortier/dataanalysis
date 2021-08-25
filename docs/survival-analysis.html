@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>9.5 Survival Analysis | Data Analysis for Public Affairs with R</title>
-  <meta name="description" content="9.5 Survival Analysis | Data Analysis for Public Affairs with R" />
+  <title>11.5 Survival Analysis | Data Analysis for Public Affairs with R</title>
+  <meta name="description" content="11.5 Survival Analysis | Data Analysis for Public Affairs with R" />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="9.5 Survival Analysis | Data Analysis for Public Affairs with R" />
+  <meta property="og:title" content="11.5 Survival Analysis | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="9.5 Survival Analysis | Data Analysis for Public Affairs with R" />
+  <meta name="twitter:title" content="11.5 Survival Analysis | Data Analysis for Public Affairs with R" />
   
   
   
@@ -24,7 +24,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2021-04-27" />
+<meta name="date" content="2021-08-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="hurdle-and-zero-inflation-models.html"/>
-<link rel="next" href="exercises-4.html"/>
+<link rel="next" href="exercises-6.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -147,94 +147,127 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>3</b> Introduction to R</a><ul>
-<li class="chapter" data-level="3.1" data-path="online-resources-and-help.html"><a href="online-resources-and-help.html"><i class="fa fa-check"></i><b>3.1</b> Online Resources and Help</a></li>
+<li class="chapter" data-level="3.1" data-path="r-resources-and-help.html"><a href="r-resources-and-help.html"><i class="fa fa-check"></i><b>3.1</b> R Resources and Help</a></li>
 <li class="chapter" data-level="3.2" data-path="opening-rstudio.html"><a href="opening-rstudio.html"><i class="fa fa-check"></i><b>3.2</b> Opening RStudio</a><ul>
 <li class="chapter" data-level="3.2.1" data-path="opening-rstudio.html"><a href="opening-rstudio.html#in-class-exercise-1"><i class="fa fa-check"></i><b>3.2.1</b> In-class Exercise 1</a></li>
 </ul></li>
 <li class="chapter" data-level="3.3" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>3.3</b> Functions</a></li>
-<li class="chapter" data-level="3.4" data-path="data-management.html"><a href="data-management.html"><i class="fa fa-check"></i><b>3.4</b> Data Management</a><ul>
-<li class="chapter" data-level="3.4.1" data-path="data-management.html"><a href="data-management.html#data-in-r"><i class="fa fa-check"></i><b>3.4.1</b> Data in R</a></li>
-<li class="chapter" data-level="3.4.2" data-path="data-management.html"><a href="data-management.html#using-r-as-a-calculator"><i class="fa fa-check"></i><b>3.4.2</b> Using R as a Calculator</a></li>
-<li class="chapter" data-level="3.4.3" data-path="data-management.html"><a href="data-management.html#creating-a-data-frame-from-scratch"><i class="fa fa-check"></i><b>3.4.3</b> Creating a Data Frame from Scratch</a></li>
-<li class="chapter" data-level="3.4.4" data-path="data-management.html"><a href="data-management.html#in-class-exercise-2"><i class="fa fa-check"></i><b>3.4.4</b> In-class Exercise 2</a></li>
+<li class="chapter" data-level="3.4" data-path="data-in-r.html"><a href="data-in-r.html"><i class="fa fa-check"></i><b>3.4</b> Data in R</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="data-in-r.html"><a href="data-in-r.html#using-r-as-a-calculator"><i class="fa fa-check"></i><b>3.4.1</b> Using R as a Calculator</a></li>
+<li class="chapter" data-level="3.4.2" data-path="data-in-r.html"><a href="data-in-r.html#creating-a-data-frame-from-scratch"><i class="fa fa-check"></i><b>3.4.2</b> Creating a Data Frame from Scratch</a></li>
+<li class="chapter" data-level="3.4.3" data-path="data-in-r.html"><a href="data-in-r.html#in-class-exercise-2"><i class="fa fa-check"></i><b>3.4.3</b> In-class Exercise 2</a></li>
+<li class="chapter" data-level="3.4.4" data-path="data-in-r.html"><a href="data-in-r.html#indexing"><i class="fa fa-check"></i><b>3.4.4</b> Indexing</a></li>
 </ul></li>
+<li class="chapter" data-level="3.5" data-path="importing-data-into-r.html"><a href="importing-data-into-r.html"><i class="fa fa-check"></i><b>3.5</b> Importing Data into R</a></li>
+<li class="chapter" data-level="3.6" data-path="sub-setting-a-data-frame.html"><a href="sub-setting-a-data-frame.html"><i class="fa fa-check"></i><b>3.6</b> Sub-setting a Data Frame</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="sub-setting-a-data-frame.html"><a href="sub-setting-a-data-frame.html#in-class-exercises-3"><i class="fa fa-check"></i><b>3.6.1</b> In-class Exercises 3</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="basic-multivariate-regression.html"><a href="basic-multivariate-regression.html"><i class="fa fa-check"></i><b>4</b> Basic Multivariate Regression</a><ul>
-<li class="chapter" data-level="4.1" data-path="dummy-variables.html"><a href="dummy-variables.html"><i class="fa fa-check"></i><b>4.1</b> Dummy Variables</a></li>
+<li class="chapter" data-level="3.7" data-path="aggregating-data.html"><a href="aggregating-data.html"><i class="fa fa-check"></i><b>3.7</b> Aggregating Data</a></li>
+<li class="chapter" data-level="3.8" data-path="writing-data-frame-to-csv-file.html"><a href="writing-data-frame-to-csv-file.html"><i class="fa fa-check"></i><b>3.8</b> Writing Data Frame to .csv-File</a></li>
+<li class="chapter" data-level="3.9" data-path="reshaping-data-from-long-to-wide-and-viceversa.html"><a href="reshaping-data-from-long-to-wide-and-viceversa.html"><i class="fa fa-check"></i><b>3.9</b> Reshaping Data from Long to Wide and Viceversa</a></li>
+<li class="chapter" data-level="3.10" data-path="extending-the-basic-table-function.html"><a href="extending-the-basic-table-function.html"><i class="fa fa-check"></i><b>3.10</b> Extending the Basic <code>table()</code> Function</a></li>
+<li class="chapter" data-level="3.11" data-path="merging-datasets.html"><a href="merging-datasets.html"><i class="fa fa-check"></i><b>3.11</b> Merging Datasets</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="anova.html"><a href="anova.html"><i class="fa fa-check"></i><b>5</b> ANOVA</a><ul>
-<li class="chapter" data-level="5.1" data-path="exercises.html"><a href="exercises.html"><i class="fa fa-check"></i><b>5.1</b> Exercises</a></li>
+<li class="chapter" data-level="4" data-path="summarizing-data.html"><a href="summarizing-data.html"><i class="fa fa-check"></i><b>4</b> Summarizing Data</a><ul>
+<li class="chapter" data-level="4.1" data-path="measures-of-central-tendency.html"><a href="measures-of-central-tendency.html"><i class="fa fa-check"></i><b>4.1</b> Measures of Central Tendency</a></li>
+<li class="chapter" data-level="4.2" data-path="measures-of-dispersion.html"><a href="measures-of-dispersion.html"><i class="fa fa-check"></i><b>4.2</b> Measures of Dispersion</a></li>
+<li class="chapter" data-level="4.3" data-path="histograms.html"><a href="histograms.html"><i class="fa fa-check"></i><b>4.3</b> Histograms</a></li>
+<li class="chapter" data-level="4.4" data-path="empirical-cumulative-distribution-function.html"><a href="empirical-cumulative-distribution-function.html"><i class="fa fa-check"></i><b>4.4</b> Empirical Cumulative Distribution Function</a></li>
+<li class="chapter" data-level="4.5" data-path="boxplots.html"><a href="boxplots.html"><i class="fa fa-check"></i><b>4.5</b> Boxplots</a></li>
+<li class="chapter" data-level="4.6" data-path="covariance-and-correlation-coefficicent.html"><a href="covariance-and-correlation-coefficicent.html"><i class="fa fa-check"></i><b>4.6</b> Covariance and Correlation Coefficicent</a></li>
+<li class="chapter" data-level="4.7" data-path="exercises.html"><a href="exercises.html"><i class="fa fa-check"></i><b>4.7</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="violating-assumptions.html"><a href="violating-assumptions.html"><i class="fa fa-check"></i><b>6</b> Violating Assumptions</a><ul>
-<li class="chapter" data-level="6.1" data-path="heteroscedasticity.html"><a href="heteroscedasticity.html"><i class="fa fa-check"></i><b>6.1</b> Heteroscedasticity</a><ul>
-<li class="chapter" data-level="6.1.1" data-path="heteroscedasticity.html"><a href="heteroscedasticity.html#detecting-heteroscedasticity"><i class="fa fa-check"></i><b>6.1.1</b> Detecting Heteroscedasticity</a></li>
-<li class="chapter" data-level="6.1.2" data-path="heteroscedasticity.html"><a href="heteroscedasticity.html#correcting-heteroscedasticity"><i class="fa fa-check"></i><b>6.1.2</b> Correcting Heteroscedasticity</a></li>
+<li class="chapter" data-level="5" data-path="probability.html"><a href="probability.html"><i class="fa fa-check"></i><b>5</b> Probability</a><ul>
+<li class="chapter" data-level="5.1" data-path="sample-spaces-outcomes-events-and-set-operations.html"><a href="sample-spaces-outcomes-events-and-set-operations.html"><i class="fa fa-check"></i><b>5.1</b> Sample Spaces, Outcomes, Events, and Set Operations</a></li>
+<li class="chapter" data-level="5.2" data-path="probability-of-a-union.html"><a href="probability-of-a-union.html"><i class="fa fa-check"></i><b>5.2</b> Probability of a Union</a></li>
+<li class="chapter" data-level="5.3" data-path="probability-of-an-intersection.html"><a href="probability-of-an-intersection.html"><i class="fa fa-check"></i><b>5.3</b> Probability of an Intersection</a></li>
+<li class="chapter" data-level="5.4" data-path="conditional-probability-and-independence.html"><a href="conditional-probability-and-independence.html"><i class="fa fa-check"></i><b>5.4</b> Conditional Probability and Independence</a></li>
+<li class="chapter" data-level="5.5" data-path="independence.html"><a href="independence.html"><i class="fa fa-check"></i><b>5.5</b> Independence</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="independence.html"><a href="independence.html#birthday-problem"><i class="fa fa-check"></i><b>5.5.1</b> Birthday Problem</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="multicollinearity.html"><a href="multicollinearity.html"><i class="fa fa-check"></i><b>6.2</b> Multicollinearity</a><ul>
-<li class="chapter" data-level="6.2.1" data-path="multicollinearity.html"><a href="multicollinearity.html#variance-inflated-factors-vif"><i class="fa fa-check"></i><b>6.2.1</b> Variance Inflated Factors (VIF)</a></li>
-<li class="chapter" data-level="6.2.2" data-path="multicollinearity.html"><a href="multicollinearity.html#examples"><i class="fa fa-check"></i><b>6.2.2</b> Examples</a></li>
+<li class="chapter" data-level="5.6" data-path="law-of-total-probability-and-bayes-rule.html"><a href="law-of-total-probability-and-bayes-rule.html"><i class="fa fa-check"></i><b>5.6</b> Law of Total Probability and Bayes Rule</a></li>
+<li class="chapter" data-level="5.7" data-path="combinatorial-methods.html"><a href="combinatorial-methods.html"><i class="fa fa-check"></i><b>5.7</b> Combinatorial Methods</a><ul>
+<li class="chapter" data-level="5.7.1" data-path="combinatorial-methods.html"><a href="combinatorial-methods.html#permutations"><i class="fa fa-check"></i><b>5.7.1</b> Permutations</a></li>
+<li class="chapter" data-level="5.7.2" data-path="combinatorial-methods.html"><a href="combinatorial-methods.html#combinations"><i class="fa fa-check"></i><b>5.7.2</b> Combinations</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="other-issues-and-problems-with-data.html"><a href="other-issues-and-problems-with-data.html"><i class="fa fa-check"></i><b>6.3</b> Other Issues and Problems with Data</a></li>
-<li class="chapter" data-level="6.4" data-path="autocorrelation.html"><a href="autocorrelation.html"><i class="fa fa-check"></i><b>6.4</b> Autocorrelation</a><ul>
-<li class="chapter" data-level="6.4.1" data-path="autocorrelation.html"><a href="autocorrelation.html#durbin-watson-d-test"><i class="fa fa-check"></i><b>6.4.1</b> Durbin Watson d-Test</a></li>
-<li class="chapter" data-level="6.4.2" data-path="autocorrelation.html"><a href="autocorrelation.html#breusch-godfrey-test"><i class="fa fa-check"></i><b>6.4.2</b> Breusch-Godfrey Test</a></li>
+<li class="chapter" data-level="5.8" data-path="exercises-1.html"><a href="exercises-1.html"><i class="fa fa-check"></i><b>5.8</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="6.5" data-path="exercises-1.html"><a href="exercises-1.html"><i class="fa fa-check"></i><b>6.5</b> Exercises</a></li>
+<li class="chapter" data-level="6" data-path="basic-multivariate-regression.html"><a href="basic-multivariate-regression.html"><i class="fa fa-check"></i><b>6</b> Basic Multivariate Regression</a><ul>
+<li class="chapter" data-level="6.1" data-path="dummy-variables.html"><a href="dummy-variables.html"><i class="fa fa-check"></i><b>6.1</b> Dummy Variables</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="binary-choice.html"><a href="binary-choice.html"><i class="fa fa-check"></i><b>7</b> Binary Choice</a><ul>
-<li class="chapter" data-level="7.1" data-path="binary-choice-estimation-in-r.html"><a href="binary-choice-estimation-in-r.html"><i class="fa fa-check"></i><b>7.1</b> Binary Choice Estimation in R</a></li>
-<li class="chapter" data-level="7.2" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html"><i class="fa fa-check"></i><b>7.2</b> Additional Examples and Probit Model</a><ul>
-<li class="chapter" data-level="7.2.1" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html#full-time-work"><i class="fa fa-check"></i><b>7.2.1</b> Full-Time Work</a></li>
-<li class="chapter" data-level="7.2.2" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html#voting-behavior"><i class="fa fa-check"></i><b>7.2.2</b> Voting Behavior</a></li>
+<li class="chapter" data-level="7" data-path="anova.html"><a href="anova.html"><i class="fa fa-check"></i><b>7</b> ANOVA</a><ul>
+<li class="chapter" data-level="7.1" data-path="exercises-2.html"><a href="exercises-2.html"><i class="fa fa-check"></i><b>7.1</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="7.3" data-path="exercises-2.html"><a href="exercises-2.html"><i class="fa fa-check"></i><b>7.3</b> Exercises</a></li>
+<li class="chapter" data-level="8" data-path="violating-assumptions.html"><a href="violating-assumptions.html"><i class="fa fa-check"></i><b>8</b> Violating Assumptions</a><ul>
+<li class="chapter" data-level="8.1" data-path="heteroscedasticity.html"><a href="heteroscedasticity.html"><i class="fa fa-check"></i><b>8.1</b> Heteroscedasticity</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="heteroscedasticity.html"><a href="heteroscedasticity.html#detecting-heteroscedasticity"><i class="fa fa-check"></i><b>8.1.1</b> Detecting Heteroscedasticity</a></li>
+<li class="chapter" data-level="8.1.2" data-path="heteroscedasticity.html"><a href="heteroscedasticity.html#correcting-heteroscedasticity"><i class="fa fa-check"></i><b>8.1.2</b> Correcting Heteroscedasticity</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="qualitative-choice-models.html"><a href="qualitative-choice-models.html"><i class="fa fa-check"></i><b>8</b> Qualitative Choice Models</a><ul>
-<li class="chapter" data-level="8.1" data-path="ordered-logit-model.html"><a href="ordered-logit-model.html"><i class="fa fa-check"></i><b>8.1</b> Ordered Logit Model</a><ul>
-<li class="chapter" data-level="8.1.1" data-path="ordered-logit-model.html"><a href="ordered-logit-model.html#ordered-logit-example-organic-food-purchase"><i class="fa fa-check"></i><b>8.1.1</b> Ordered Logit Example: Organic Food Purchase</a></li>
-<li class="chapter" data-level="8.1.2" data-path="ordered-logit-model.html"><a href="ordered-logit-model.html#predicted-probability-and-marginal-effects"><i class="fa fa-check"></i><b>8.1.2</b> Predicted Probability and Marginal Effects</a></li>
+<li class="chapter" data-level="8.2" data-path="multicollinearity.html"><a href="multicollinearity.html"><i class="fa fa-check"></i><b>8.2</b> Multicollinearity</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="multicollinearity.html"><a href="multicollinearity.html#variance-inflated-factors-vif"><i class="fa fa-check"></i><b>8.2.1</b> Variance Inflated Factors (VIF)</a></li>
+<li class="chapter" data-level="8.2.2" data-path="multicollinearity.html"><a href="multicollinearity.html#examples"><i class="fa fa-check"></i><b>8.2.2</b> Examples</a></li>
 </ul></li>
-<li class="chapter" data-level="8.2" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html"><i class="fa fa-check"></i><b>8.2</b> Multinomial Logit and Multinomial Probit Models</a><ul>
-<li class="chapter" data-level="8.2.1" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#theoretical-aspects"><i class="fa fa-check"></i><b>8.2.1</b> Theoretical Aspects</a></li>
-<li class="chapter" data-level="8.2.2" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#data-managment"><i class="fa fa-check"></i><b>8.2.2</b> Data Managment</a></li>
-<li class="chapter" data-level="8.2.3" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#fishing-data"><i class="fa fa-check"></i><b>8.2.3</b> Fishing Data</a></li>
-<li class="chapter" data-level="8.2.4" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#travel-data"><i class="fa fa-check"></i><b>8.2.4</b> Travel Data</a></li>
-<li class="chapter" data-level="8.2.5" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#electric-vehicle-data"><i class="fa fa-check"></i><b>8.2.5</b> Electric Vehicle Data</a></li>
+<li class="chapter" data-level="8.3" data-path="other-issues-and-problems-with-data.html"><a href="other-issues-and-problems-with-data.html"><i class="fa fa-check"></i><b>8.3</b> Other Issues and Problems with Data</a></li>
+<li class="chapter" data-level="8.4" data-path="autocorrelation.html"><a href="autocorrelation.html"><i class="fa fa-check"></i><b>8.4</b> Autocorrelation</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="autocorrelation.html"><a href="autocorrelation.html#durbin-watson-d-test"><i class="fa fa-check"></i><b>8.4.1</b> Durbin Watson d-Test</a></li>
+<li class="chapter" data-level="8.4.2" data-path="autocorrelation.html"><a href="autocorrelation.html#breusch-godfrey-test"><i class="fa fa-check"></i><b>8.4.2</b> Breusch-Godfrey Test</a></li>
 </ul></li>
-<li class="chapter" data-level="8.3" data-path="exercises-3.html"><a href="exercises-3.html"><i class="fa fa-check"></i><b>8.3</b> Exercises</a></li>
+<li class="chapter" data-level="8.5" data-path="exercises-3.html"><a href="exercises-3.html"><i class="fa fa-check"></i><b>8.5</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="limited-dependent-variable-models.html"><a href="limited-dependent-variable-models.html"><i class="fa fa-check"></i><b>9</b> Limited Dependent Variable Models</a><ul>
-<li class="chapter" data-level="9.1" data-path="truncation.html"><a href="truncation.html"><i class="fa fa-check"></i><b>9.1</b> Truncation</a></li>
-<li class="chapter" data-level="9.2" data-path="censoring.html"><a href="censoring.html"><i class="fa fa-check"></i><b>9.2</b> Censoring</a></li>
-<li class="chapter" data-level="9.3" data-path="count-regression-models.html"><a href="count-regression-models.html"><i class="fa fa-check"></i><b>9.3</b> Count Regression Models</a><ul>
-<li class="chapter" data-level="9.3.1" data-path="count-regression-models.html"><a href="count-regression-models.html#poisson-regression-model"><i class="fa fa-check"></i><b>9.3.1</b> Poisson Regression Model</a></li>
-<li class="chapter" data-level="9.3.2" data-path="count-regression-models.html"><a href="count-regression-models.html#quasi-poisson-regression-model"><i class="fa fa-check"></i><b>9.3.2</b> Quasi-Poisson Regression Model</a></li>
-<li class="chapter" data-level="9.3.3" data-path="count-regression-models.html"><a href="count-regression-models.html#negative-binomial-regression-model"><i class="fa fa-check"></i><b>9.3.3</b> Negative Binomial Regression Model</a></li>
+<li class="chapter" data-level="9" data-path="binary-choice.html"><a href="binary-choice.html"><i class="fa fa-check"></i><b>9</b> Binary Choice</a><ul>
+<li class="chapter" data-level="9.1" data-path="binary-choice-estimation-in-r.html"><a href="binary-choice-estimation-in-r.html"><i class="fa fa-check"></i><b>9.1</b> Binary Choice Estimation in R</a></li>
+<li class="chapter" data-level="9.2" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html"><i class="fa fa-check"></i><b>9.2</b> Additional Examples and Probit Model</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html#full-time-work"><i class="fa fa-check"></i><b>9.2.1</b> Full-Time Work</a></li>
+<li class="chapter" data-level="9.2.2" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html#voting-behavior"><i class="fa fa-check"></i><b>9.2.2</b> Voting Behavior</a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="hurdle-and-zero-inflation-models.html"><a href="hurdle-and-zero-inflation-models.html"><i class="fa fa-check"></i><b>9.4</b> Hurdle and Zero-Inflation Models</a></li>
-<li class="chapter" data-level="9.5" data-path="survival-analysis.html"><a href="survival-analysis.html"><i class="fa fa-check"></i><b>9.5</b> Survival Analysis</a></li>
-<li class="chapter" data-level="9.6" data-path="exercises-4.html"><a href="exercises-4.html"><i class="fa fa-check"></i><b>9.6</b> Exercises</a></li>
+<li class="chapter" data-level="9.3" data-path="exercises-4.html"><a href="exercises-4.html"><i class="fa fa-check"></i><b>9.3</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="panel-data.html"><a href="panel-data.html"><i class="fa fa-check"></i><b>10</b> Panel Data</a><ul>
-<li class="chapter" data-level="10.1" data-path="overview-1.html"><a href="overview-1.html"><i class="fa fa-check"></i><b>10.1</b> Overview</a></li>
-<li class="chapter" data-level="10.2" data-path="pooled-ordinary-least-square-model.html"><a href="pooled-ordinary-least-square-model.html"><i class="fa fa-check"></i><b>10.2</b> Pooled Ordinary Least Square model</a></li>
-<li class="chapter" data-level="10.3" data-path="fixed-effects-panel-data-model.html"><a href="fixed-effects-panel-data-model.html"><i class="fa fa-check"></i><b>10.3</b> Fixed Effects Panel Data Model</a></li>
-<li class="chapter" data-level="10.4" data-path="random-effects-model.html"><a href="random-effects-model.html"><i class="fa fa-check"></i><b>10.4</b> Random Effects Model</a></li>
-<li class="chapter" data-level="10.5" data-path="exercises-5.html"><a href="exercises-5.html"><i class="fa fa-check"></i><b>10.5</b> Exercises</a></li>
+<li class="chapter" data-level="10" data-path="qualitative-choice-models.html"><a href="qualitative-choice-models.html"><i class="fa fa-check"></i><b>10</b> Qualitative Choice Models</a><ul>
+<li class="chapter" data-level="10.1" data-path="ordered-logit-model.html"><a href="ordered-logit-model.html"><i class="fa fa-check"></i><b>10.1</b> Ordered Logit Model</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="ordered-logit-model.html"><a href="ordered-logit-model.html#ordered-logit-example-organic-food-purchase"><i class="fa fa-check"></i><b>10.1.1</b> Ordered Logit Example: Organic Food Purchase</a></li>
+<li class="chapter" data-level="10.1.2" data-path="ordered-logit-model.html"><a href="ordered-logit-model.html#predicted-probability-and-marginal-effects"><i class="fa fa-check"></i><b>10.1.2</b> Predicted Probability and Marginal Effects</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="time-series.html"><a href="time-series.html"><i class="fa fa-check"></i><b>11</b> Time Series</a><ul>
-<li class="chapter" data-level="11.1" data-path="trend-and-seasonality.html"><a href="trend-and-seasonality.html"><i class="fa fa-check"></i><b>11.1</b> Trend and Seasonality</a><ul>
-<li class="chapter" data-level="11.1.1" data-path="trend-and-seasonality.html"><a href="trend-and-seasonality.html#practice-exercise"><i class="fa fa-check"></i><b>11.1.1</b> Practice Exercise</a></li>
+<li class="chapter" data-level="10.2" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html"><i class="fa fa-check"></i><b>10.2</b> Multinomial Logit and Multinomial Probit Models</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#theoretical-aspects"><i class="fa fa-check"></i><b>10.2.1</b> Theoretical Aspects</a></li>
+<li class="chapter" data-level="10.2.2" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#data-managment"><i class="fa fa-check"></i><b>10.2.2</b> Data Managment</a></li>
+<li class="chapter" data-level="10.2.3" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#fishing-data"><i class="fa fa-check"></i><b>10.2.3</b> Fishing Data</a></li>
+<li class="chapter" data-level="10.2.4" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#travel-data"><i class="fa fa-check"></i><b>10.2.4</b> Travel Data</a></li>
+<li class="chapter" data-level="10.2.5" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#electric-vehicle-data"><i class="fa fa-check"></i><b>10.2.5</b> Electric Vehicle Data</a></li>
 </ul></li>
-<li class="chapter" data-level="11.2" data-path="finite-distributed-lag-models.html"><a href="finite-distributed-lag-models.html"><i class="fa fa-check"></i><b>11.2</b> Finite Distributed Lag Models</a></li>
-<li class="chapter" data-level="11.3" data-path="basic-theoretical-aspects-of-time-series.html"><a href="basic-theoretical-aspects-of-time-series.html"><i class="fa fa-check"></i><b>11.3</b> Basic Theoretical Aspects of Time Series</a></li>
-<li class="chapter" data-level="11.4" data-path="autoregressive-model.html"><a href="autoregressive-model.html"><i class="fa fa-check"></i><b>11.4</b> Autoregressive Model</a></li>
-<li class="chapter" data-level="11.5" data-path="moving-average-models.html"><a href="moving-average-models.html"><i class="fa fa-check"></i><b>11.5</b> Moving Average Models</a></li>
-<li class="chapter" data-level="11.6" data-path="random-walk.html"><a href="random-walk.html"><i class="fa fa-check"></i><b>11.6</b> Random Walk</a></li>
-<li class="chapter" data-level="11.7" data-path="forecasting-japanense-car-production.html"><a href="forecasting-japanense-car-production.html"><i class="fa fa-check"></i><b>11.7</b> Forecasting Japanense Car Production</a></li>
-<li class="chapter" data-level="11.8" data-path="exercises-6.html"><a href="exercises-6.html"><i class="fa fa-check"></i><b>11.8</b> Exercises</a></li>
+<li class="chapter" data-level="10.3" data-path="exercises-5.html"><a href="exercises-5.html"><i class="fa fa-check"></i><b>10.3</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>12</b> Data Sources</a></li>
+<li class="chapter" data-level="11" data-path="limited-dependent-variable-models.html"><a href="limited-dependent-variable-models.html"><i class="fa fa-check"></i><b>11</b> Limited Dependent Variable Models</a><ul>
+<li class="chapter" data-level="11.1" data-path="truncation.html"><a href="truncation.html"><i class="fa fa-check"></i><b>11.1</b> Truncation</a></li>
+<li class="chapter" data-level="11.2" data-path="censoring.html"><a href="censoring.html"><i class="fa fa-check"></i><b>11.2</b> Censoring</a></li>
+<li class="chapter" data-level="11.3" data-path="count-regression-models.html"><a href="count-regression-models.html"><i class="fa fa-check"></i><b>11.3</b> Count Regression Models</a><ul>
+<li class="chapter" data-level="11.3.1" data-path="count-regression-models.html"><a href="count-regression-models.html#poisson-regression-model"><i class="fa fa-check"></i><b>11.3.1</b> Poisson Regression Model</a></li>
+<li class="chapter" data-level="11.3.2" data-path="count-regression-models.html"><a href="count-regression-models.html#quasi-poisson-regression-model"><i class="fa fa-check"></i><b>11.3.2</b> Quasi-Poisson Regression Model</a></li>
+<li class="chapter" data-level="11.3.3" data-path="count-regression-models.html"><a href="count-regression-models.html#negative-binomial-regression-model"><i class="fa fa-check"></i><b>11.3.3</b> Negative Binomial Regression Model</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="hurdle-and-zero-inflation-models.html"><a href="hurdle-and-zero-inflation-models.html"><i class="fa fa-check"></i><b>11.4</b> Hurdle and Zero-Inflation Models</a></li>
+<li class="chapter" data-level="11.5" data-path="survival-analysis.html"><a href="survival-analysis.html"><i class="fa fa-check"></i><b>11.5</b> Survival Analysis</a></li>
+<li class="chapter" data-level="11.6" data-path="exercises-6.html"><a href="exercises-6.html"><i class="fa fa-check"></i><b>11.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="panel-data.html"><a href="panel-data.html"><i class="fa fa-check"></i><b>12</b> Panel Data</a><ul>
+<li class="chapter" data-level="12.1" data-path="overview-1.html"><a href="overview-1.html"><i class="fa fa-check"></i><b>12.1</b> Overview</a></li>
+<li class="chapter" data-level="12.2" data-path="pooled-ordinary-least-square-model.html"><a href="pooled-ordinary-least-square-model.html"><i class="fa fa-check"></i><b>12.2</b> Pooled Ordinary Least Square model</a></li>
+<li class="chapter" data-level="12.3" data-path="fixed-effects-panel-data-model.html"><a href="fixed-effects-panel-data-model.html"><i class="fa fa-check"></i><b>12.3</b> Fixed Effects Panel Data Model</a></li>
+<li class="chapter" data-level="12.4" data-path="random-effects-model.html"><a href="random-effects-model.html"><i class="fa fa-check"></i><b>12.4</b> Random Effects Model</a></li>
+<li class="chapter" data-level="12.5" data-path="exercises-7.html"><a href="exercises-7.html"><i class="fa fa-check"></i><b>12.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="time-series.html"><a href="time-series.html"><i class="fa fa-check"></i><b>13</b> Time Series</a><ul>
+<li class="chapter" data-level="13.1" data-path="trend-and-seasonality.html"><a href="trend-and-seasonality.html"><i class="fa fa-check"></i><b>13.1</b> Trend and Seasonality</a><ul>
+<li class="chapter" data-level="13.1.1" data-path="trend-and-seasonality.html"><a href="trend-and-seasonality.html#practice-exercise"><i class="fa fa-check"></i><b>13.1.1</b> Practice Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="finite-distributed-lag-models.html"><a href="finite-distributed-lag-models.html"><i class="fa fa-check"></i><b>13.2</b> Finite Distributed Lag Models</a></li>
+<li class="chapter" data-level="13.3" data-path="basic-theoretical-aspects-of-time-series.html"><a href="basic-theoretical-aspects-of-time-series.html"><i class="fa fa-check"></i><b>13.3</b> Basic Theoretical Aspects of Time Series</a></li>
+<li class="chapter" data-level="13.4" data-path="autoregressive-model.html"><a href="autoregressive-model.html"><i class="fa fa-check"></i><b>13.4</b> Autoregressive Model</a></li>
+<li class="chapter" data-level="13.5" data-path="moving-average-models.html"><a href="moving-average-models.html"><i class="fa fa-check"></i><b>13.5</b> Moving Average Models</a></li>
+<li class="chapter" data-level="13.6" data-path="random-walk.html"><a href="random-walk.html"><i class="fa fa-check"></i><b>13.6</b> Random Walk</a></li>
+<li class="chapter" data-level="13.7" data-path="forecasting-japanense-car-production.html"><a href="forecasting-japanense-car-production.html"><i class="fa fa-check"></i><b>13.7</b> Forecasting Japanense Car Production</a></li>
+<li class="chapter" data-level="13.8" data-path="exercises-8.html"><a href="exercises-8.html"><i class="fa fa-check"></i><b>13.8</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>14</b> Data Sources</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 </ul>
@@ -255,7 +288,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="survival-analysis" class="section level2">
-<h2><span class="header-section-number">9.5</span> Survival Analysis</h2>
+<h2><span class="header-section-number">11.5</span> Survival Analysis</h2>
 </div>
             </section>
 
@@ -263,7 +296,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="hurdle-and-zero-inflation-models.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="exercises-4.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="exercises-6.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

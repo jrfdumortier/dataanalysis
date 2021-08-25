@@ -1,0 +1,193 @@
+# Hypothesis Testing
+In statistics, a hypothesis is a statement about a population, usually claiming that a parameters takes a particular numerical value or falls in a certain range of values. The steps of a hypothesis test are:
+
+- Assumptions about the data
+- Hypothesis: The null hypothesis states that the parameter takes a particular value. This is called $H_0$. For example, we can claim that $H_0$: $\mu = \mu_0$. The alternative hypothesis is called $H_a$. This can be a one-sided test, i.e., $H_a$: $\mu > \mu_0$ or $H_a$: $\mu < \mu_0$, or a two-sided test, i.e., $H_a$: $\mu \neq \mu_0$
+- Test statistic: How far is the parameter value away from the null hypothesis.
+- *p*-Value: Probability of observing the parameter given the null hypothesis. Small p-values represent evidence against the null hypothesis $H_0$. Sometimes this is also called the rejection region.
+
+There are two types of errors associated with hypothesis testing. A *Type I* error occurs if $H_0$ is true but you reject $H_0$. A *Type II* error occurs if $H_a$ is true but you fail to reject $H_0$. The significance level is the largest acceptable probability of committing a *Type I* error. This is denoted with $\alpha$. 
+
+```{r HYP_onetail_twotail,message=FALSE,warning=FALSE,echo=FALSE}
+p1        = ggplot(data.frame(x=c(-4,4)),aes(x=x))+
+               stat_function(fun=dnorm,xlim=c(-4,-1.96),geom="area",fill="grey")+
+               stat_function(fun=dnorm,xlim=c(1.96,4),geom="area",fill="grey")+
+               geom_segment(aes(x=-1.96,y=0,xend=-1.96,yend=dnorm(-1.96)))+
+               geom_segment(aes(x=1.96,y=0,xend=1.96,yend=dnorm(1.96)))+
+               stat_function(fun=dnorm)+theme_bw()+
+               scale_x_continuous(breaks=c(-1.96,0,1.96),labels=c("-1.96","0","1.96"))+
+               theme(axis.title.x=element_blank(),panel.grid.major=element_blank(),
+               panel.grid.minor=element_blank(),panel.background=element_blank())
+p2        = ggplot(data.frame(x=c(-4,4)),aes(x=x))+
+               stat_function(fun=dnorm,xlim=c(-4,-1.645),geom="area",fill="grey")+
+               geom_segment(aes(x=-1.645,y=0,xend=-1.645,yend=dnorm(-1.645)))+
+               stat_function(fun=dnorm)+theme_bw()+
+               scale_x_continuous(breaks=c(-1.645,0),labels=c("-1.645","0"))+
+               theme(axis.title.x=element_blank(),panel.grid.major=element_blank(),
+               panel.grid.minor=element_blank(),panel.background=element_blank())
+p3        = ggplot(data.frame(x=c(-4,4)),aes(x=x))+
+               stat_function(fun=dnorm,xlim=c(1.645,4),geom="area",fill="grey")+
+               geom_segment(aes(x=1.645,y=0,xend=1.645,yend=dnorm(1.645)))+
+               stat_function(fun=dnorm)+theme_bw()+
+               scale_x_continuous(breaks=c(0,1.645),labels=c("0","1.645"))+
+               theme(axis.title.x=element_blank(),panel.grid.major=element_blank(),
+               panel.grid.minor=element_blank(),panel.background=element_blank())
+ggarrange(p1,p2,p3,nrow=1,ncol=3)
+rm(p1,p2,p3)
+```
+
+## Hypothesis Tests about Proportions
+To execute a hypothesis test for a population proportion, we have to assume that the data is categorical with the population proportion $p$ defined in the context. Assuming that the sample size is above 30, the test statistic is written as
+$$z=\frac{\hat{p}-p_0}{\sqrt{\frac{p_0 \cdot (1-p_0)}{n}}}$$
+Recall that the sampling distribution of a sample proportion has mean $p$ and standard deviation $\sqrt{p(1-p)/n}$. This *z*-score measures the number of standard errors between the sample proportion $\hat{p}$ and the null hypothesis $p_0$. The significance level shows us how strong the evidence must be. For example, assume we have a sample size of $n=100$ and that $\hat{p}=0.48$. He hypothesize that $p_0=0.5$, i.e., $H_0$: $p_0=0.5$. So the standard error is 
+$$S.E. = \sqrt{\frac{0.5 \cdot 0.5}{100}}=0.05$$
+
+Thus, the *z*-score is
+$$z=\frac{0.48-0.5}{0.05}=\frac{0.02}{0.05}=-0.4$$
+For a two-sided hypothesis test at the $\alpha=0.05$ level, we fail to reject the hypothesis because $-0.4>-1.96$.
+
+```{r HYP_socialmedia}
+t.test(gsssocialmedia$instagram,mu=1/3,alternative=c("two.sided"))
+t.test(gsssocialmedia$instagram,mu=1/3,alternative=c("less"))
+```
+
+## *t*-Test: Standardized normal variables and confidence intervals with unknown $\sigma$ 
+The requirements to use the *t*-test are that (1) the variable is quantitative, (2) the data production employed randomization, and the population distribution is approximately normal. The test statistic is
+$$t=\frac{\hat{x}-\mu_0}{s/ \sqrt{n}$$
+For example, consider the following scores from a graduate MPA class which has eighteen students: 46, 58, 87, 98, 82, 68, 83, 98, 66, 75, 62, 67, 78, 32, 74, 47, 95, 26. The mean of the data is 69. The variance is $s^2=450.76$ and the standard deviation is $s=21.23$. We are interested in the null hypothesis $\mu= 80$. We can compute the $t$-statistic as follows:
+$$t = \frac{69-80}{21.23/ \sqrt{18}} = -2.198$$
+Consider a one sided test that $\mu= 80$ with alternative $\mu< 80$. The value of the $t$-statistic is $-2.198$. We reject the null hypothesis if $-2.198 < t_{n-1,0.05}$. From the $t$-tables, we find that $t_{17,0.05} = 1.74$. Given that $-2.198$ is less than $-1.74$, we reject the null hypothesis that $\mu = 80$. To determine the $p$-value, we have to use the Student's distribution with $df=n-1$.
+ 
+In the past, automobile manufacturers have been fined for being overly ``optimistic'' about the fuel economy of their cars. The t-test allows us to very the claims made by automobile manufacturers. Assume that you are testing 16 cars and that the average fuel economy is 22.5 MPG. The claimed fuel economy is 25 MPG. Thus the test statistic is
+$$t = \frac{22.5-25}{1.3/ \sqrt{16}} = -7.692308$$
+Hence, we reject the fuel economy claim of 25 MPG. The mean and sample variance make it too unlikely that the fuel economy claim of 25 MPG is correct. Often, the so-called p-value is associated with the test statistic. The p-value represents the probability of observing the sample based on $H_0$. 
+
+Lastly, assume that you are buying new tires for your car. The tire manufacturer claims that the tires last at least 42,000 miles. A magazine tests 64 tires and concludes that the mean is 41,500 miles and $s=3000$. In this case, the test statistic is 
+$$t = \frac{41500-42000}{3000/\sqrt{64}}=-1.33$$
+Do we reject or fail to reject the null hypothesis?
+
+## Comparing Two Groups
+Before we get into the hypothesis testing involving two sample, let us first look at the confidence interval for the difference in two samples. The standard error for comparing two proportions, i.e., $(\hat{p}_1-\hat{p}_2)$;
+$$S.E.=\sqrt{\frac{\hat{p}_1(1-\hat{p}_1)}{n_1}+\frac{\hat{p}_2(1-\hat{p}_2))}{n_2}}$$
+Hence, the confidence interval can be expressed as
+$$(\hat{p}_1-\hat{p}_2) \pm z \cdot \sqrt{\frac{\hat{p}_1(1-\hat{p}_1)}{n_1}+\frac{\hat{p}_2(1-\hat{p}_2))}{n_2}}$$
+Suppose that we want to test the null hypothesis $p_1=p_2$. We first need to calculate the pooled estimate, i.e., the total number of success over the total number of observations. You can think of this as a weighted average. Let this weighted average be $\hat{p}$. In this case, the standard error can be expressed as
+$$S.E. = \sqrt{\hat{p} \cdot (1-\hat{p}) \frac{1}{n_1}+\frac{1}{n_2}}$$
+Then, the test statistic is written as 
+$$z = \frac{\hat{p}_1-\hat{p}_2}{S.E.}$$
+
+\subsection{Small sample test for the population difference between two population means}
+\begin{equation*}
+s_p^2 = \frac{(n_1-1)s^2_1+(n_2-1)s^2_2}{n_1+n_2-2}
+\end{equation*}
+Test statistic
+\begin{equation*}
+t=\frac{\bar{x}_1-\bar{x}_2}{s_p \sqrt{1/n_1+1/n_2}}
+\end{equation*}
+
+\clearpage
+\subsection{Hypothesis Testing in R}
+Suppose for the first example that we do not have the data at hand but just have the sample mean and the sample standard deviation. 
+<<hypothesis_testing_nodata,echo=TRUE,message=FALSE,warning=FALSE,results='markup',error=FALSE,include=TRUE,fig.keep="none">>=
+xbar      = 115     # sample mean 
+mu0       = 120     # hypothesized value 
+s         = 20      # sample standard deviation 
+n         = 25      # sample size 
+t         = (xbar-mu0)/(s/sqrt(n)) 
+alpha     = .05 
+t_alpha   = qt(1-alpha, df=n-1)
+xbar      = 96      # sample mean 
+mu0       = 100     # hypothesized value 
+s         = 16      # sample standard deviation 
+n         = 49      # sample size 
+t         = (xbar-mu0)/(s/sqrt(n)) 
+alpha     = .01 
+t_alpha   = qt(1-alpha, df=n-1) 
+@
+
+<<HYP_books,echo=TRUE,message=FALSE,warning=FALSE,error=FALSE,results='markup',fig.keep="none">>=
+largeonlineretailer = c(10.20,18.95,184.53,236.75,67.41)
+bookstore           = c(11.40,19,200.75,247.20,71.25)
+t.test(largeonlineretailer,bookstore,paired=TRUE)
+@
+
+\clearpage
+<<HYP_waterpressure,echo=TRUE,message=FALSE,warning=FALSE,error=FALSE,results='markup',fig.keep="none">>=
+n                   = nrow(waterpressure)
+xbar                = mean(waterpressure$psi)
+stdev               = sd(waterpressure$psi)
+tstatistic          = (xbar-50)/(stdev/sqrt(n))
+criticalvalue       = qt(c(0.025,0.975),df=n-1)
+pvalue              = (1-pt(tstatistic,n-1))*2
+t.test(waterpressure$psi,mu=50)
+@
+
+<<HYP_MPA,echo=TRUE,message=FALSE,warning=FALSE,error=FALSE,results='markup',fig.keep="none">>=
+n                   = nrow(mpa)
+xbar                = mean(mpa$scores)
+stdev               = sd(mpa$scores)
+tstatistic          = (xbar-80)/(stdev/sqrt(n))
+criticalvalue       = qt(0.05,df=n-1)
+pvalue              = pt(tstatistic,n-1)
+t.test(mpa$scores,mu=80,alternative="less")
+@
+
+<<HYP_Ohio,echo=TRUE,message=FALSE,warning=FALSE,error=FALSE,results='markup',fig.keep="none">>=
+ohio                = merge(ohioincome,ohioscore,by=c("IRN"))
+ohio_small          = subset(ohio,enrollment<1000)
+ohio_large          = subset(ohio,enrollment>=3000)
+t.test(ohio_small$score,ohio_large$score,var.equal = TRUE)
+t.test(ohio_small$score,ohio_large$score,var.equal = FALSE)
+@
+
+\clearpage
+<<HYP_CompactCars,echo=TRUE,message=FALSE,warning=FALSE,error=FALSE,results='markup',fig.keep="none">>=
+cc1995              = subset(compactcars,year==1995)
+cc2015              = subset(compactcars,year==2015)
+t.test(cc1995$Automatic,cc1995$Manual,paired = TRUE)
+t.test(cc2015$Automatic,cc2015$Manual,paired = TRUE)
+@
+\clearpage
+
+## Exercises
+
+1. *Milk Containers*: A bottling machine fills one-gallon containers with 128 fluid ounces of milk. You suspect that there is some variation in the amount filled and you take measurements from 50 containers. The measurements are in the data set `milk`. Test the null hypothesis that the machine fills the containers with more than 128 fluid ounces. 
+
+2. *Soda Cans II*: Consider a machine filling soda cans with a reported average of 360 milliliters (mL). The amounts filled into the cans follow a normal distribution with  (unknown) mean $\mu$ and standard deviation $\sigma$. You take a sample of soda cans and measure the volume. Your data (in mL) is found in data set `soda`. Test the hypothesis (at the 5\% significance level) that the machine fills cans with more than 360 mL.
+
+3. Paper Mill II:} The local paper mill claims that it does not discharge more than 1000 gallons of waste water into the White River. An environmental interest group measures the discharge over one week and the data is reported to you in the data set \texttt{discharge}. Formulate and test the hypothesis with regard to the claims of the paper mill.
+
+4. Meridian Hills II:} The data set \texttt{mh1} contains home values of 101 homes in the Meridian Hills area in Indianapolis. Test the hypothesis that the home values are greater than \$500,000.
+
+5. HDI:} The United Nations Development Programme (UNDP) creates an annual Human Development Report (HRD) including a Human Development Index (HDI). It attempts to measures quality of life in various countries. According to \href{http://hdr.undp.org/en/humandev}{UNDP}:
+
+\begin{quote}
+\emph{``Human development -- or the human development approach -- is about expanding the richness of human life, rather than simply the richness of the economy in which human beings live. It is an approach that is focused on people and their opportunities and choices.''}
+\end{quote}
+
+The data webpage can be found at \url{http://hdr.undp.org/en/data} and for this question, I want you to download the 2019 HDR tables. You can either click on ``Download 2019 Human Development Data All Tables and Dashboards'' on the data webpage or you can click \href{http://hdr.undp.org/sites/default/files/hdro_statistical_data_tables_1_15_d1_d5.xlsx}{here}. For this question, you only need the data contained in sheet \texttt{Table 1}.
+
+\begin{enumerate}
+\item The second to last column is named \emph{GNI per capita rank minus HDI rank}. Interpret the meaning of the column. What does a negative/positive value mean?
+\item Construct a scatter plot with \emph{Gross national income (GNI) per capita} on the horizontal axis and \emph{Human development index (HDI)} on the vertical axis. What do you observe and what can be concluded?
+\item Subset the original data into two groups. The first group contains the top 10 countries in terms of income. The second group contains the countries ranked 11-20 in terms of income. You can do this separation in Excel. Is there a statistically significant difference in HDI between those two groups?
+\item Subset the original data into two groups. The first group contains the top 20 countries in terms of income. The second group contains the countries ranked 21-40 in terms of income. Is there a statistically significant difference in HDI between those two groups?
+\item Compare your answers from parts (3) and (4). What do you conclude?
+\end{enumerate}
+
+6. *Airlines*: You will analyze airline delay data from the Bureau of Transportation Statistics. The data is contained in the data set `airlines`.The sheet \texttt{description} explains the columns which you will find in the sheet \texttt{airlines}. Pick a random airport (except Indianapolis). Answer the following questions:
+
+     - We are going to focus on the three major carriers: American Airlines, Delta Air Lines, and United Air Lines. Note that United Air Lines is the result of a merger from United and Continental in 2011. The records for Continental Air Lines in the data set stops in that year. To make the data for United comparable over the entire time frame, add the \texttt{arr\_flights} and \texttt{arr\_del15} numbers for United and Continental between 2003 and 2011. That is, we are looking at the merged company over the entire time horizon.
+     - Create a column called \texttt{delay} which represents the share of flights delayed by airline, month, and year. Use the columns \texttt{arr\_flights} and \texttt{arr\_del15} for this calculations. Graph the share of delayed arrivals (i.e., delay) for the three carriers over time. Is there a pattern? For example, is it upward trending or downward trending. Is one airline consistently worse than others? Is an airline improving over time compared to others?
+     - Using the data from January 2014 to today, do a boxplot using the \texttt{delay} column grouped by the three airlines.
+     - Do three two-sample hypothesis tests using the \texttt{delay} data from January 2014 to today: (1) United vs. Delta, (2) Delta vs. American, and (3) American vs. United. The null hypothesis for all three tests is that there is no difference in delays. Report and interpret your results.
+
+7. *Automatic vs. Manual Transmission*: Consider the data in `compactcars`. For a long time, cars with a manual transmission were more fuel efficient than cars with an automatic transmission. This has changed in recent years due to improvements for automatic transmissions. In this exercise, you will conduct two  paired hypothesis tests: one for compact cars of the 1995 model year and one for the 2015 model year. The data set contains only vehicles and models of the EPA category *Compact Cars* for which the identical model was available with either automatic or manual transmission. Conduct a paired hypothesis test for 1995 and 2015 with the null hypothesis that there is no difference in fuel efficiency. Based on your calculations, what do you conclude? Note that you are not conducting a hypothesis test to compare the 1995 and 2015 fuel efficiency. It is fairly intuitive and clear that the fuel efficiceny has imporived over that time period.  
+
+8. *Green Laws*: Go to the [data repository of the General Social Survey (GSS)](http://www3.norc.org/GSS+Website/). Read through page to familiarize you with the GSS. This data goes beyond the homework but could be useful to you in the future either for work or if you are interested in a particular question about public opinions. If you are interested in a particular topic, go to *Browse Variables*. For this question, search for the variable `GRNLAWS`.
+
+     - What is the question associated with this variable and which years are covered?
+     -  Construct the 95\% confidence interval for the years covered by this question. Interpret in context. Can you conclude whether or not a majority or minority of the population would answer yes?
+     - How has this variable evolved over the years? Make sure to report the share of of respondents in favor. Include a graph with time on the horizontal axis.
+
+9. *Ohio Schools I*: The data set `ohioincome` and `ohioscore` contain information about the school districts in Ohio with regard to enrollment, overall school performance (think of that as a measure of how good the school is), and median income in the school district. First, merge the two files using the R command `merge()` and based on IRN which serves as an identifier linking the two data sets. Test the hypothesis that there is no difference in performance for the top 25\% and bottom 25\% of schools in terms of median income. That is, you are testing the hypothesis that low median income and high median income school districts are performing equally well.

@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>5.1 Exercises | Data Analysis for Public Affairs with R</title>
-  <meta name="description" content="5.1 Exercises | Data Analysis for Public Affairs with R" />
+  <title>4.7 Exercises | Data Analysis for Public Affairs with R</title>
+  <meta name="description" content="4.7 Exercises | Data Analysis for Public Affairs with R" />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="5.1 Exercises | Data Analysis for Public Affairs with R" />
+  <meta property="og:title" content="4.7 Exercises | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="5.1 Exercises | Data Analysis for Public Affairs with R" />
+  <meta name="twitter:title" content="4.7 Exercises | Data Analysis for Public Affairs with R" />
   
   
   
@@ -24,15 +24,15 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2021-04-27" />
+<meta name="date" content="2021-08-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="anova.html"/>
-<link rel="next" href="violating-assumptions.html"/>
+<link rel="prev" href="covariance-and-correlation-coefficicent.html"/>
+<link rel="next" href="probability.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -147,94 +147,127 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>3</b> Introduction to R</a><ul>
-<li class="chapter" data-level="3.1" data-path="online-resources-and-help.html"><a href="online-resources-and-help.html"><i class="fa fa-check"></i><b>3.1</b> Online Resources and Help</a></li>
+<li class="chapter" data-level="3.1" data-path="r-resources-and-help.html"><a href="r-resources-and-help.html"><i class="fa fa-check"></i><b>3.1</b> R Resources and Help</a></li>
 <li class="chapter" data-level="3.2" data-path="opening-rstudio.html"><a href="opening-rstudio.html"><i class="fa fa-check"></i><b>3.2</b> Opening RStudio</a><ul>
 <li class="chapter" data-level="3.2.1" data-path="opening-rstudio.html"><a href="opening-rstudio.html#in-class-exercise-1"><i class="fa fa-check"></i><b>3.2.1</b> In-class Exercise 1</a></li>
 </ul></li>
 <li class="chapter" data-level="3.3" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>3.3</b> Functions</a></li>
-<li class="chapter" data-level="3.4" data-path="data-management.html"><a href="data-management.html"><i class="fa fa-check"></i><b>3.4</b> Data Management</a><ul>
-<li class="chapter" data-level="3.4.1" data-path="data-management.html"><a href="data-management.html#data-in-r"><i class="fa fa-check"></i><b>3.4.1</b> Data in R</a></li>
-<li class="chapter" data-level="3.4.2" data-path="data-management.html"><a href="data-management.html#using-r-as-a-calculator"><i class="fa fa-check"></i><b>3.4.2</b> Using R as a Calculator</a></li>
-<li class="chapter" data-level="3.4.3" data-path="data-management.html"><a href="data-management.html#creating-a-data-frame-from-scratch"><i class="fa fa-check"></i><b>3.4.3</b> Creating a Data Frame from Scratch</a></li>
-<li class="chapter" data-level="3.4.4" data-path="data-management.html"><a href="data-management.html#in-class-exercise-2"><i class="fa fa-check"></i><b>3.4.4</b> In-class Exercise 2</a></li>
+<li class="chapter" data-level="3.4" data-path="data-in-r.html"><a href="data-in-r.html"><i class="fa fa-check"></i><b>3.4</b> Data in R</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="data-in-r.html"><a href="data-in-r.html#using-r-as-a-calculator"><i class="fa fa-check"></i><b>3.4.1</b> Using R as a Calculator</a></li>
+<li class="chapter" data-level="3.4.2" data-path="data-in-r.html"><a href="data-in-r.html#creating-a-data-frame-from-scratch"><i class="fa fa-check"></i><b>3.4.2</b> Creating a Data Frame from Scratch</a></li>
+<li class="chapter" data-level="3.4.3" data-path="data-in-r.html"><a href="data-in-r.html#in-class-exercise-2"><i class="fa fa-check"></i><b>3.4.3</b> In-class Exercise 2</a></li>
+<li class="chapter" data-level="3.4.4" data-path="data-in-r.html"><a href="data-in-r.html#indexing"><i class="fa fa-check"></i><b>3.4.4</b> Indexing</a></li>
 </ul></li>
+<li class="chapter" data-level="3.5" data-path="importing-data-into-r.html"><a href="importing-data-into-r.html"><i class="fa fa-check"></i><b>3.5</b> Importing Data into R</a></li>
+<li class="chapter" data-level="3.6" data-path="sub-setting-a-data-frame.html"><a href="sub-setting-a-data-frame.html"><i class="fa fa-check"></i><b>3.6</b> Sub-setting a Data Frame</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="sub-setting-a-data-frame.html"><a href="sub-setting-a-data-frame.html#in-class-exercises-3"><i class="fa fa-check"></i><b>3.6.1</b> In-class Exercises 3</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="basic-multivariate-regression.html"><a href="basic-multivariate-regression.html"><i class="fa fa-check"></i><b>4</b> Basic Multivariate Regression</a><ul>
-<li class="chapter" data-level="4.1" data-path="dummy-variables.html"><a href="dummy-variables.html"><i class="fa fa-check"></i><b>4.1</b> Dummy Variables</a></li>
+<li class="chapter" data-level="3.7" data-path="aggregating-data.html"><a href="aggregating-data.html"><i class="fa fa-check"></i><b>3.7</b> Aggregating Data</a></li>
+<li class="chapter" data-level="3.8" data-path="writing-data-frame-to-csv-file.html"><a href="writing-data-frame-to-csv-file.html"><i class="fa fa-check"></i><b>3.8</b> Writing Data Frame to .csv-File</a></li>
+<li class="chapter" data-level="3.9" data-path="reshaping-data-from-long-to-wide-and-viceversa.html"><a href="reshaping-data-from-long-to-wide-and-viceversa.html"><i class="fa fa-check"></i><b>3.9</b> Reshaping Data from Long to Wide and Viceversa</a></li>
+<li class="chapter" data-level="3.10" data-path="extending-the-basic-table-function.html"><a href="extending-the-basic-table-function.html"><i class="fa fa-check"></i><b>3.10</b> Extending the Basic <code>table()</code> Function</a></li>
+<li class="chapter" data-level="3.11" data-path="merging-datasets.html"><a href="merging-datasets.html"><i class="fa fa-check"></i><b>3.11</b> Merging Datasets</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="anova.html"><a href="anova.html"><i class="fa fa-check"></i><b>5</b> ANOVA</a><ul>
-<li class="chapter" data-level="5.1" data-path="exercises.html"><a href="exercises.html"><i class="fa fa-check"></i><b>5.1</b> Exercises</a></li>
+<li class="chapter" data-level="4" data-path="summarizing-data.html"><a href="summarizing-data.html"><i class="fa fa-check"></i><b>4</b> Summarizing Data</a><ul>
+<li class="chapter" data-level="4.1" data-path="measures-of-central-tendency.html"><a href="measures-of-central-tendency.html"><i class="fa fa-check"></i><b>4.1</b> Measures of Central Tendency</a></li>
+<li class="chapter" data-level="4.2" data-path="measures-of-dispersion.html"><a href="measures-of-dispersion.html"><i class="fa fa-check"></i><b>4.2</b> Measures of Dispersion</a></li>
+<li class="chapter" data-level="4.3" data-path="histograms.html"><a href="histograms.html"><i class="fa fa-check"></i><b>4.3</b> Histograms</a></li>
+<li class="chapter" data-level="4.4" data-path="empirical-cumulative-distribution-function.html"><a href="empirical-cumulative-distribution-function.html"><i class="fa fa-check"></i><b>4.4</b> Empirical Cumulative Distribution Function</a></li>
+<li class="chapter" data-level="4.5" data-path="boxplots.html"><a href="boxplots.html"><i class="fa fa-check"></i><b>4.5</b> Boxplots</a></li>
+<li class="chapter" data-level="4.6" data-path="covariance-and-correlation-coefficicent.html"><a href="covariance-and-correlation-coefficicent.html"><i class="fa fa-check"></i><b>4.6</b> Covariance and Correlation Coefficicent</a></li>
+<li class="chapter" data-level="4.7" data-path="exercises.html"><a href="exercises.html"><i class="fa fa-check"></i><b>4.7</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="violating-assumptions.html"><a href="violating-assumptions.html"><i class="fa fa-check"></i><b>6</b> Violating Assumptions</a><ul>
-<li class="chapter" data-level="6.1" data-path="heteroscedasticity.html"><a href="heteroscedasticity.html"><i class="fa fa-check"></i><b>6.1</b> Heteroscedasticity</a><ul>
-<li class="chapter" data-level="6.1.1" data-path="heteroscedasticity.html"><a href="heteroscedasticity.html#detecting-heteroscedasticity"><i class="fa fa-check"></i><b>6.1.1</b> Detecting Heteroscedasticity</a></li>
-<li class="chapter" data-level="6.1.2" data-path="heteroscedasticity.html"><a href="heteroscedasticity.html#correcting-heteroscedasticity"><i class="fa fa-check"></i><b>6.1.2</b> Correcting Heteroscedasticity</a></li>
+<li class="chapter" data-level="5" data-path="probability.html"><a href="probability.html"><i class="fa fa-check"></i><b>5</b> Probability</a><ul>
+<li class="chapter" data-level="5.1" data-path="sample-spaces-outcomes-events-and-set-operations.html"><a href="sample-spaces-outcomes-events-and-set-operations.html"><i class="fa fa-check"></i><b>5.1</b> Sample Spaces, Outcomes, Events, and Set Operations</a></li>
+<li class="chapter" data-level="5.2" data-path="probability-of-a-union.html"><a href="probability-of-a-union.html"><i class="fa fa-check"></i><b>5.2</b> Probability of a Union</a></li>
+<li class="chapter" data-level="5.3" data-path="probability-of-an-intersection.html"><a href="probability-of-an-intersection.html"><i class="fa fa-check"></i><b>5.3</b> Probability of an Intersection</a></li>
+<li class="chapter" data-level="5.4" data-path="conditional-probability-and-independence.html"><a href="conditional-probability-and-independence.html"><i class="fa fa-check"></i><b>5.4</b> Conditional Probability and Independence</a></li>
+<li class="chapter" data-level="5.5" data-path="independence.html"><a href="independence.html"><i class="fa fa-check"></i><b>5.5</b> Independence</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="independence.html"><a href="independence.html#birthday-problem"><i class="fa fa-check"></i><b>5.5.1</b> Birthday Problem</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="multicollinearity.html"><a href="multicollinearity.html"><i class="fa fa-check"></i><b>6.2</b> Multicollinearity</a><ul>
-<li class="chapter" data-level="6.2.1" data-path="multicollinearity.html"><a href="multicollinearity.html#variance-inflated-factors-vif"><i class="fa fa-check"></i><b>6.2.1</b> Variance Inflated Factors (VIF)</a></li>
-<li class="chapter" data-level="6.2.2" data-path="multicollinearity.html"><a href="multicollinearity.html#examples"><i class="fa fa-check"></i><b>6.2.2</b> Examples</a></li>
+<li class="chapter" data-level="5.6" data-path="law-of-total-probability-and-bayes-rule.html"><a href="law-of-total-probability-and-bayes-rule.html"><i class="fa fa-check"></i><b>5.6</b> Law of Total Probability and Bayes Rule</a></li>
+<li class="chapter" data-level="5.7" data-path="combinatorial-methods.html"><a href="combinatorial-methods.html"><i class="fa fa-check"></i><b>5.7</b> Combinatorial Methods</a><ul>
+<li class="chapter" data-level="5.7.1" data-path="combinatorial-methods.html"><a href="combinatorial-methods.html#permutations"><i class="fa fa-check"></i><b>5.7.1</b> Permutations</a></li>
+<li class="chapter" data-level="5.7.2" data-path="combinatorial-methods.html"><a href="combinatorial-methods.html#combinations"><i class="fa fa-check"></i><b>5.7.2</b> Combinations</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="other-issues-and-problems-with-data.html"><a href="other-issues-and-problems-with-data.html"><i class="fa fa-check"></i><b>6.3</b> Other Issues and Problems with Data</a></li>
-<li class="chapter" data-level="6.4" data-path="autocorrelation.html"><a href="autocorrelation.html"><i class="fa fa-check"></i><b>6.4</b> Autocorrelation</a><ul>
-<li class="chapter" data-level="6.4.1" data-path="autocorrelation.html"><a href="autocorrelation.html#durbin-watson-d-test"><i class="fa fa-check"></i><b>6.4.1</b> Durbin Watson d-Test</a></li>
-<li class="chapter" data-level="6.4.2" data-path="autocorrelation.html"><a href="autocorrelation.html#breusch-godfrey-test"><i class="fa fa-check"></i><b>6.4.2</b> Breusch-Godfrey Test</a></li>
+<li class="chapter" data-level="5.8" data-path="exercises-1.html"><a href="exercises-1.html"><i class="fa fa-check"></i><b>5.8</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="6.5" data-path="exercises-1.html"><a href="exercises-1.html"><i class="fa fa-check"></i><b>6.5</b> Exercises</a></li>
+<li class="chapter" data-level="6" data-path="basic-multivariate-regression.html"><a href="basic-multivariate-regression.html"><i class="fa fa-check"></i><b>6</b> Basic Multivariate Regression</a><ul>
+<li class="chapter" data-level="6.1" data-path="dummy-variables.html"><a href="dummy-variables.html"><i class="fa fa-check"></i><b>6.1</b> Dummy Variables</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="binary-choice.html"><a href="binary-choice.html"><i class="fa fa-check"></i><b>7</b> Binary Choice</a><ul>
-<li class="chapter" data-level="7.1" data-path="binary-choice-estimation-in-r.html"><a href="binary-choice-estimation-in-r.html"><i class="fa fa-check"></i><b>7.1</b> Binary Choice Estimation in R</a></li>
-<li class="chapter" data-level="7.2" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html"><i class="fa fa-check"></i><b>7.2</b> Additional Examples and Probit Model</a><ul>
-<li class="chapter" data-level="7.2.1" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html#full-time-work"><i class="fa fa-check"></i><b>7.2.1</b> Full-Time Work</a></li>
-<li class="chapter" data-level="7.2.2" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html#voting-behavior"><i class="fa fa-check"></i><b>7.2.2</b> Voting Behavior</a></li>
+<li class="chapter" data-level="7" data-path="anova.html"><a href="anova.html"><i class="fa fa-check"></i><b>7</b> ANOVA</a><ul>
+<li class="chapter" data-level="7.1" data-path="exercises-2.html"><a href="exercises-2.html"><i class="fa fa-check"></i><b>7.1</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="7.3" data-path="exercises-2.html"><a href="exercises-2.html"><i class="fa fa-check"></i><b>7.3</b> Exercises</a></li>
+<li class="chapter" data-level="8" data-path="violating-assumptions.html"><a href="violating-assumptions.html"><i class="fa fa-check"></i><b>8</b> Violating Assumptions</a><ul>
+<li class="chapter" data-level="8.1" data-path="heteroscedasticity.html"><a href="heteroscedasticity.html"><i class="fa fa-check"></i><b>8.1</b> Heteroscedasticity</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="heteroscedasticity.html"><a href="heteroscedasticity.html#detecting-heteroscedasticity"><i class="fa fa-check"></i><b>8.1.1</b> Detecting Heteroscedasticity</a></li>
+<li class="chapter" data-level="8.1.2" data-path="heteroscedasticity.html"><a href="heteroscedasticity.html#correcting-heteroscedasticity"><i class="fa fa-check"></i><b>8.1.2</b> Correcting Heteroscedasticity</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="qualitative-choice-models.html"><a href="qualitative-choice-models.html"><i class="fa fa-check"></i><b>8</b> Qualitative Choice Models</a><ul>
-<li class="chapter" data-level="8.1" data-path="ordered-logit-model.html"><a href="ordered-logit-model.html"><i class="fa fa-check"></i><b>8.1</b> Ordered Logit Model</a><ul>
-<li class="chapter" data-level="8.1.1" data-path="ordered-logit-model.html"><a href="ordered-logit-model.html#ordered-logit-example-organic-food-purchase"><i class="fa fa-check"></i><b>8.1.1</b> Ordered Logit Example: Organic Food Purchase</a></li>
-<li class="chapter" data-level="8.1.2" data-path="ordered-logit-model.html"><a href="ordered-logit-model.html#predicted-probability-and-marginal-effects"><i class="fa fa-check"></i><b>8.1.2</b> Predicted Probability and Marginal Effects</a></li>
+<li class="chapter" data-level="8.2" data-path="multicollinearity.html"><a href="multicollinearity.html"><i class="fa fa-check"></i><b>8.2</b> Multicollinearity</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="multicollinearity.html"><a href="multicollinearity.html#variance-inflated-factors-vif"><i class="fa fa-check"></i><b>8.2.1</b> Variance Inflated Factors (VIF)</a></li>
+<li class="chapter" data-level="8.2.2" data-path="multicollinearity.html"><a href="multicollinearity.html#examples"><i class="fa fa-check"></i><b>8.2.2</b> Examples</a></li>
 </ul></li>
-<li class="chapter" data-level="8.2" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html"><i class="fa fa-check"></i><b>8.2</b> Multinomial Logit and Multinomial Probit Models</a><ul>
-<li class="chapter" data-level="8.2.1" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#theoretical-aspects"><i class="fa fa-check"></i><b>8.2.1</b> Theoretical Aspects</a></li>
-<li class="chapter" data-level="8.2.2" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#data-managment"><i class="fa fa-check"></i><b>8.2.2</b> Data Managment</a></li>
-<li class="chapter" data-level="8.2.3" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#fishing-data"><i class="fa fa-check"></i><b>8.2.3</b> Fishing Data</a></li>
-<li class="chapter" data-level="8.2.4" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#travel-data"><i class="fa fa-check"></i><b>8.2.4</b> Travel Data</a></li>
-<li class="chapter" data-level="8.2.5" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#electric-vehicle-data"><i class="fa fa-check"></i><b>8.2.5</b> Electric Vehicle Data</a></li>
+<li class="chapter" data-level="8.3" data-path="other-issues-and-problems-with-data.html"><a href="other-issues-and-problems-with-data.html"><i class="fa fa-check"></i><b>8.3</b> Other Issues and Problems with Data</a></li>
+<li class="chapter" data-level="8.4" data-path="autocorrelation.html"><a href="autocorrelation.html"><i class="fa fa-check"></i><b>8.4</b> Autocorrelation</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="autocorrelation.html"><a href="autocorrelation.html#durbin-watson-d-test"><i class="fa fa-check"></i><b>8.4.1</b> Durbin Watson d-Test</a></li>
+<li class="chapter" data-level="8.4.2" data-path="autocorrelation.html"><a href="autocorrelation.html#breusch-godfrey-test"><i class="fa fa-check"></i><b>8.4.2</b> Breusch-Godfrey Test</a></li>
 </ul></li>
-<li class="chapter" data-level="8.3" data-path="exercises-3.html"><a href="exercises-3.html"><i class="fa fa-check"></i><b>8.3</b> Exercises</a></li>
+<li class="chapter" data-level="8.5" data-path="exercises-3.html"><a href="exercises-3.html"><i class="fa fa-check"></i><b>8.5</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="limited-dependent-variable-models.html"><a href="limited-dependent-variable-models.html"><i class="fa fa-check"></i><b>9</b> Limited Dependent Variable Models</a><ul>
-<li class="chapter" data-level="9.1" data-path="truncation.html"><a href="truncation.html"><i class="fa fa-check"></i><b>9.1</b> Truncation</a></li>
-<li class="chapter" data-level="9.2" data-path="censoring.html"><a href="censoring.html"><i class="fa fa-check"></i><b>9.2</b> Censoring</a></li>
-<li class="chapter" data-level="9.3" data-path="count-regression-models.html"><a href="count-regression-models.html"><i class="fa fa-check"></i><b>9.3</b> Count Regression Models</a><ul>
-<li class="chapter" data-level="9.3.1" data-path="count-regression-models.html"><a href="count-regression-models.html#poisson-regression-model"><i class="fa fa-check"></i><b>9.3.1</b> Poisson Regression Model</a></li>
-<li class="chapter" data-level="9.3.2" data-path="count-regression-models.html"><a href="count-regression-models.html#quasi-poisson-regression-model"><i class="fa fa-check"></i><b>9.3.2</b> Quasi-Poisson Regression Model</a></li>
-<li class="chapter" data-level="9.3.3" data-path="count-regression-models.html"><a href="count-regression-models.html#negative-binomial-regression-model"><i class="fa fa-check"></i><b>9.3.3</b> Negative Binomial Regression Model</a></li>
+<li class="chapter" data-level="9" data-path="binary-choice.html"><a href="binary-choice.html"><i class="fa fa-check"></i><b>9</b> Binary Choice</a><ul>
+<li class="chapter" data-level="9.1" data-path="binary-choice-estimation-in-r.html"><a href="binary-choice-estimation-in-r.html"><i class="fa fa-check"></i><b>9.1</b> Binary Choice Estimation in R</a></li>
+<li class="chapter" data-level="9.2" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html"><i class="fa fa-check"></i><b>9.2</b> Additional Examples and Probit Model</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html#full-time-work"><i class="fa fa-check"></i><b>9.2.1</b> Full-Time Work</a></li>
+<li class="chapter" data-level="9.2.2" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html#voting-behavior"><i class="fa fa-check"></i><b>9.2.2</b> Voting Behavior</a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="hurdle-and-zero-inflation-models.html"><a href="hurdle-and-zero-inflation-models.html"><i class="fa fa-check"></i><b>9.4</b> Hurdle and Zero-Inflation Models</a></li>
-<li class="chapter" data-level="9.5" data-path="survival-analysis.html"><a href="survival-analysis.html"><i class="fa fa-check"></i><b>9.5</b> Survival Analysis</a></li>
-<li class="chapter" data-level="9.6" data-path="exercises-4.html"><a href="exercises-4.html"><i class="fa fa-check"></i><b>9.6</b> Exercises</a></li>
+<li class="chapter" data-level="9.3" data-path="exercises-4.html"><a href="exercises-4.html"><i class="fa fa-check"></i><b>9.3</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="panel-data.html"><a href="panel-data.html"><i class="fa fa-check"></i><b>10</b> Panel Data</a><ul>
-<li class="chapter" data-level="10.1" data-path="overview-1.html"><a href="overview-1.html"><i class="fa fa-check"></i><b>10.1</b> Overview</a></li>
-<li class="chapter" data-level="10.2" data-path="pooled-ordinary-least-square-model.html"><a href="pooled-ordinary-least-square-model.html"><i class="fa fa-check"></i><b>10.2</b> Pooled Ordinary Least Square model</a></li>
-<li class="chapter" data-level="10.3" data-path="fixed-effects-panel-data-model.html"><a href="fixed-effects-panel-data-model.html"><i class="fa fa-check"></i><b>10.3</b> Fixed Effects Panel Data Model</a></li>
-<li class="chapter" data-level="10.4" data-path="random-effects-model.html"><a href="random-effects-model.html"><i class="fa fa-check"></i><b>10.4</b> Random Effects Model</a></li>
-<li class="chapter" data-level="10.5" data-path="exercises-5.html"><a href="exercises-5.html"><i class="fa fa-check"></i><b>10.5</b> Exercises</a></li>
+<li class="chapter" data-level="10" data-path="qualitative-choice-models.html"><a href="qualitative-choice-models.html"><i class="fa fa-check"></i><b>10</b> Qualitative Choice Models</a><ul>
+<li class="chapter" data-level="10.1" data-path="ordered-logit-model.html"><a href="ordered-logit-model.html"><i class="fa fa-check"></i><b>10.1</b> Ordered Logit Model</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="ordered-logit-model.html"><a href="ordered-logit-model.html#ordered-logit-example-organic-food-purchase"><i class="fa fa-check"></i><b>10.1.1</b> Ordered Logit Example: Organic Food Purchase</a></li>
+<li class="chapter" data-level="10.1.2" data-path="ordered-logit-model.html"><a href="ordered-logit-model.html#predicted-probability-and-marginal-effects"><i class="fa fa-check"></i><b>10.1.2</b> Predicted Probability and Marginal Effects</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="time-series.html"><a href="time-series.html"><i class="fa fa-check"></i><b>11</b> Time Series</a><ul>
-<li class="chapter" data-level="11.1" data-path="trend-and-seasonality.html"><a href="trend-and-seasonality.html"><i class="fa fa-check"></i><b>11.1</b> Trend and Seasonality</a><ul>
-<li class="chapter" data-level="11.1.1" data-path="trend-and-seasonality.html"><a href="trend-and-seasonality.html#practice-exercise"><i class="fa fa-check"></i><b>11.1.1</b> Practice Exercise</a></li>
+<li class="chapter" data-level="10.2" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html"><i class="fa fa-check"></i><b>10.2</b> Multinomial Logit and Multinomial Probit Models</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#theoretical-aspects"><i class="fa fa-check"></i><b>10.2.1</b> Theoretical Aspects</a></li>
+<li class="chapter" data-level="10.2.2" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#data-managment"><i class="fa fa-check"></i><b>10.2.2</b> Data Managment</a></li>
+<li class="chapter" data-level="10.2.3" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#fishing-data"><i class="fa fa-check"></i><b>10.2.3</b> Fishing Data</a></li>
+<li class="chapter" data-level="10.2.4" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#travel-data"><i class="fa fa-check"></i><b>10.2.4</b> Travel Data</a></li>
+<li class="chapter" data-level="10.2.5" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#electric-vehicle-data"><i class="fa fa-check"></i><b>10.2.5</b> Electric Vehicle Data</a></li>
 </ul></li>
-<li class="chapter" data-level="11.2" data-path="finite-distributed-lag-models.html"><a href="finite-distributed-lag-models.html"><i class="fa fa-check"></i><b>11.2</b> Finite Distributed Lag Models</a></li>
-<li class="chapter" data-level="11.3" data-path="basic-theoretical-aspects-of-time-series.html"><a href="basic-theoretical-aspects-of-time-series.html"><i class="fa fa-check"></i><b>11.3</b> Basic Theoretical Aspects of Time Series</a></li>
-<li class="chapter" data-level="11.4" data-path="autoregressive-model.html"><a href="autoregressive-model.html"><i class="fa fa-check"></i><b>11.4</b> Autoregressive Model</a></li>
-<li class="chapter" data-level="11.5" data-path="moving-average-models.html"><a href="moving-average-models.html"><i class="fa fa-check"></i><b>11.5</b> Moving Average Models</a></li>
-<li class="chapter" data-level="11.6" data-path="random-walk.html"><a href="random-walk.html"><i class="fa fa-check"></i><b>11.6</b> Random Walk</a></li>
-<li class="chapter" data-level="11.7" data-path="forecasting-japanense-car-production.html"><a href="forecasting-japanense-car-production.html"><i class="fa fa-check"></i><b>11.7</b> Forecasting Japanense Car Production</a></li>
-<li class="chapter" data-level="11.8" data-path="exercises-6.html"><a href="exercises-6.html"><i class="fa fa-check"></i><b>11.8</b> Exercises</a></li>
+<li class="chapter" data-level="10.3" data-path="exercises-5.html"><a href="exercises-5.html"><i class="fa fa-check"></i><b>10.3</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>12</b> Data Sources</a></li>
+<li class="chapter" data-level="11" data-path="limited-dependent-variable-models.html"><a href="limited-dependent-variable-models.html"><i class="fa fa-check"></i><b>11</b> Limited Dependent Variable Models</a><ul>
+<li class="chapter" data-level="11.1" data-path="truncation.html"><a href="truncation.html"><i class="fa fa-check"></i><b>11.1</b> Truncation</a></li>
+<li class="chapter" data-level="11.2" data-path="censoring.html"><a href="censoring.html"><i class="fa fa-check"></i><b>11.2</b> Censoring</a></li>
+<li class="chapter" data-level="11.3" data-path="count-regression-models.html"><a href="count-regression-models.html"><i class="fa fa-check"></i><b>11.3</b> Count Regression Models</a><ul>
+<li class="chapter" data-level="11.3.1" data-path="count-regression-models.html"><a href="count-regression-models.html#poisson-regression-model"><i class="fa fa-check"></i><b>11.3.1</b> Poisson Regression Model</a></li>
+<li class="chapter" data-level="11.3.2" data-path="count-regression-models.html"><a href="count-regression-models.html#quasi-poisson-regression-model"><i class="fa fa-check"></i><b>11.3.2</b> Quasi-Poisson Regression Model</a></li>
+<li class="chapter" data-level="11.3.3" data-path="count-regression-models.html"><a href="count-regression-models.html#negative-binomial-regression-model"><i class="fa fa-check"></i><b>11.3.3</b> Negative Binomial Regression Model</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="hurdle-and-zero-inflation-models.html"><a href="hurdle-and-zero-inflation-models.html"><i class="fa fa-check"></i><b>11.4</b> Hurdle and Zero-Inflation Models</a></li>
+<li class="chapter" data-level="11.5" data-path="survival-analysis.html"><a href="survival-analysis.html"><i class="fa fa-check"></i><b>11.5</b> Survival Analysis</a></li>
+<li class="chapter" data-level="11.6" data-path="exercises-6.html"><a href="exercises-6.html"><i class="fa fa-check"></i><b>11.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="panel-data.html"><a href="panel-data.html"><i class="fa fa-check"></i><b>12</b> Panel Data</a><ul>
+<li class="chapter" data-level="12.1" data-path="overview-1.html"><a href="overview-1.html"><i class="fa fa-check"></i><b>12.1</b> Overview</a></li>
+<li class="chapter" data-level="12.2" data-path="pooled-ordinary-least-square-model.html"><a href="pooled-ordinary-least-square-model.html"><i class="fa fa-check"></i><b>12.2</b> Pooled Ordinary Least Square model</a></li>
+<li class="chapter" data-level="12.3" data-path="fixed-effects-panel-data-model.html"><a href="fixed-effects-panel-data-model.html"><i class="fa fa-check"></i><b>12.3</b> Fixed Effects Panel Data Model</a></li>
+<li class="chapter" data-level="12.4" data-path="random-effects-model.html"><a href="random-effects-model.html"><i class="fa fa-check"></i><b>12.4</b> Random Effects Model</a></li>
+<li class="chapter" data-level="12.5" data-path="exercises-7.html"><a href="exercises-7.html"><i class="fa fa-check"></i><b>12.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="time-series.html"><a href="time-series.html"><i class="fa fa-check"></i><b>13</b> Time Series</a><ul>
+<li class="chapter" data-level="13.1" data-path="trend-and-seasonality.html"><a href="trend-and-seasonality.html"><i class="fa fa-check"></i><b>13.1</b> Trend and Seasonality</a><ul>
+<li class="chapter" data-level="13.1.1" data-path="trend-and-seasonality.html"><a href="trend-and-seasonality.html#practice-exercise"><i class="fa fa-check"></i><b>13.1.1</b> Practice Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="finite-distributed-lag-models.html"><a href="finite-distributed-lag-models.html"><i class="fa fa-check"></i><b>13.2</b> Finite Distributed Lag Models</a></li>
+<li class="chapter" data-level="13.3" data-path="basic-theoretical-aspects-of-time-series.html"><a href="basic-theoretical-aspects-of-time-series.html"><i class="fa fa-check"></i><b>13.3</b> Basic Theoretical Aspects of Time Series</a></li>
+<li class="chapter" data-level="13.4" data-path="autoregressive-model.html"><a href="autoregressive-model.html"><i class="fa fa-check"></i><b>13.4</b> Autoregressive Model</a></li>
+<li class="chapter" data-level="13.5" data-path="moving-average-models.html"><a href="moving-average-models.html"><i class="fa fa-check"></i><b>13.5</b> Moving Average Models</a></li>
+<li class="chapter" data-level="13.6" data-path="random-walk.html"><a href="random-walk.html"><i class="fa fa-check"></i><b>13.6</b> Random Walk</a></li>
+<li class="chapter" data-level="13.7" data-path="forecasting-japanense-car-production.html"><a href="forecasting-japanense-car-production.html"><i class="fa fa-check"></i><b>13.7</b> Forecasting Japanense Car Production</a></li>
+<li class="chapter" data-level="13.8" data-path="exercises-8.html"><a href="exercises-8.html"><i class="fa fa-check"></i><b>13.8</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>14</b> Data Sources</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 </ul>
@@ -255,12 +288,69 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="exercises" class="section level2">
-<h2><span class="header-section-number">5.1</span> Exercises</h2>
+<h2><span class="header-section-number">4.7</span> Exercises</h2>
 <ol style="list-style-type: decimal">
-<li>Consider the data in <code>indyhomes</code>. A real estate agent once mentioned that homes built in the eighties are of lower quality and thus, are cheaper. One possibility to asses this claim is with an ANOVA model. Add three new dummy variables to the data frame: eighties (equal to 1 if the home was built in any year between 1980 to 1989), northwest (equal to 1 if the home is in the 46268 ZIP code), and singlestory (equal to 1 if the home has one story). Estimate the following ANOVA model:
-<span class="math display">\[price = \beta_0+\beta_1 \cdot d_{80s}+\beta_2 \cdot d_{northwest} + \beta_3 \cdot d_{single}\]</span>
-What do you conclude? Next, add square footage to the model. What has changed in terms of coefficicents? How do you interpret that change?</li>
+<li><p><em>Natural Gas Usage and Temperature</em>: Use the data <code>heating</code> for this exercise. Construct a scatter plot with temperature on the horizontal axis and natural gas usage on the vertical axis. What do you observe? How would you expect the graph to look like if electricity consumption was on the vertical axis?</p></li>
+<li><p><em>Household Pulse Survey</em>: The U.S. Census Bureau has created a weekly survey to <em>“quickly and efficiently deploy data collected on how people’s lives have been impacted by the coronavirus pandemic.”</em> The results are presented weekly (e.g., week 22 represents January 6-18). If you go to the survey’s <a href="https://www.census.gov/data/experimental-data-products/household-pulse-survey.html">webpage</a>, you find that you can explore the data using three tools. There is the “Interactive Tool” which uses a graphical user interface to display the data. There are “Data Tables” which represent the aggregate data in Excel files. And lastly, there are “Public Use Files” (PUF) which contain the original data. For this exercise, you will use the PUF of the most recent week available to do the following:</p>
+<ul>
+<li><p>Download the most recent PUF file in csv-format which is denoted “HPS Week X PUF CSV” where <span class="math inline">\(X\)</span> represents the week. Extract the zip-file and you find three csv-files. The two files necessary for this exercise are <code>pulse2020\_data.dictonary\_CSV\_X.csv</code> and <code>pulse2020\_puf\_X.csv</code> (no need to use the largest file).</p></li>
+<li><p>Column <code>Variable</code> in <em>pulse2020_data.dictonary_CSV_X.csv</em> describes the columns in <em>pulse2020_puf_X.csv</em>. Pick two variables which are of interest to you, e.g., Educational attainment and Frequency of worry over previous 7 days, and construct a cross-table (using the package <code>gmodels</code> for example) similar to the one on gun ownership but only include the dimensions of interest. So for example, given the relationship between worrying and education, the R-code would look like this:</p></li>
+<li><p>What is your interpretation of the results obtained in part (b)? Is it what you expected? What do you conclude from a policy perspective?</p></li>
+</ul></li>
+<li><p><em>Housing Price Index</em>: Pick one of 49 U.S. States (not Indiana). Go to the <a href="https://fred.stlouisfed.org/">FRED webpage</a> and download two data series: (1) All-Transactions House Price Index for the United States (USSTHPI) and (2) All-Transactions House Price Index for the state of your choice. Answer the following questions.</p>
+<ul>
+<li>What do the two data series describe?</li>
+<li>Plot the two data series over time. Your result should look similar to Panel (b) in Figure .</li>
+<li>How do the housing prices evolve in your state compared to the United States. Do homes in your state get more expensive than the general trend? Less? How has the housing market evolved during and after the 2008 recession?</li>
+</ul>
+<div class="figure">
+<img src="bookdownproj_files/figure-html/SUM_EX_housing-1.png" alt="Evolution of the housing price index for the U.S. and Indiana (Source: FRED St. Louis)" width="672" />
+<p class="caption">
+(#fig:SUM_EX_housing)Evolution of the housing price index for the U.S. and Indiana (Source: FRED St. Louis)
+</p>
+</div>
+<pre><code>## Warning in rm(inhousing, ushousing, housing, rincblls, p1, p2): object &#39;inhousing&#39; not found</code></pre>
+<pre><code>## Warning in rm(inhousing, ushousing, housing, rincblls, p1, p2): object &#39;ushousing&#39; not found</code></pre>
+<pre><code>## Warning in rm(inhousing, ushousing, housing, rincblls, p1, p2): object &#39;rincblls&#39; not found</code></pre>
+<pre><code>## Warning in rm(inhousing, ushousing, housing, rincblls, p1, p2): object &#39;p1&#39; not found</code></pre>
+<pre><code>## Warning in rm(inhousing, ushousing, housing, rincblls, p1, p2): object &#39;p2&#39; not found</code></pre></li>
+<li><p><em>BMW Data and Boxplot</em>: Consider the used car data set  for this exercise. The file contains the prices and miles of a particular BMW model in the Indianapolis area. The column  indicates whether the car has all wheel drive (=1) or not (=0). You must use the R/RStudio commands and not just look at the data. Answer the following questions:</p></li>
+<li><p><em>EPA Fuel Economy</em>: Use the 2018 data contained in <code>*</code>vehicles<code>for this problem.   - Generate a scatter plot of the variables</code>displ<code>and</code>comb08U`. What can you say about the shape of the scatter plot and the relationship between engine displacement and fuel economy.</p>
+<ul>
+<li>Transform both variables into their natural logarithm and plot the scatter plot. What changes?</li>
+<li>Create a table summarizing the average fuel economy by vehicle class (VClass) for the following four manufacturers: (1) Ford, (2) Chevrolet, (3) Toyota and (4) Honda. You will have to use the function  for this.</li>
+</ul></li>
+<li><p><em>GSS Trends</em>: The General Social Survey is an annual survey tracking societal trends in the United States. For a more detailed description, you can go to <a href="https://gss.norc.org/About-The-GSS">here</a>. In this exercise, I want you pick a particular issue and one breakdown (e.g., age, sex, political affiliation) and plot a graph with R/RStudio on how attitudes about the issue have evolved over time. I suggest, you go to <a href="https://gssdataexplorer.norc.org/trends/">trends</a> and pick a topic you are interested in. You will see that the website already provides you with a trend graph but I want you to use R/RStudio for this exercise and re-create the graph (i.e., you get zero points if you simply copy the graph provided on the website). For example, suppose you are interested in the variable  which asks the respondent ``Do you feel that the income from your job alone is enough to meet your family’s usual monthly expenses and bills?’’ One of many possibility to plot this with R/RStudio would look like Panel (b) in Figure . Make sure to label the <span class="math inline">\(x\)</span>,<span class="math inline">\(y\)</span>-axis correctly as well as provide a legend for the graph.</p></li>
 </ol>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="exercises.html#cb22-1"></a>years             =<span class="st"> </span><span class="kw">seq</span>(<span class="dv">2002</span>,<span class="dv">2018</span>,<span class="dv">4</span>)</span>
+<span id="cb22-2"><a href="exercises.html#cb22-2"></a>LC                =<span class="st"> </span><span class="kw">c</span>(<span class="dv">21</span>,<span class="fl">35.3</span>,<span class="fl">28.4</span>,<span class="fl">19.6</span>,<span class="fl">39.1</span>)   <span class="co"># Question response: YES (for all)</span></span>
+<span id="cb22-3"><a href="exercises.html#cb22-3"></a>LC                =<span class="st"> </span><span class="kw">data.frame</span>(years,<span class="dt">Class=</span><span class="st">&quot;Lower Class&quot;</span>,<span class="dt">value=</span>LC)</span>
+<span id="cb22-4"><a href="exercises.html#cb22-4"></a>WC                =<span class="st"> </span><span class="kw">c</span>(<span class="fl">39.1</span>,<span class="fl">39.7</span>,<span class="fl">36.5</span>,<span class="fl">38.6</span>,<span class="fl">41.3</span>) </span>
+<span id="cb22-5"><a href="exercises.html#cb22-5"></a>WC                =<span class="st"> </span><span class="kw">data.frame</span>(years,<span class="dt">Class=</span><span class="st">&quot;Working Class&quot;</span>,<span class="dt">value=</span>WC)</span>
+<span id="cb22-6"><a href="exercises.html#cb22-6"></a>MC                =<span class="st"> </span><span class="kw">c</span>(<span class="dv">48</span>,<span class="fl">53.4</span>,<span class="fl">50.1</span>,<span class="fl">59.4</span>,<span class="fl">58.3</span>)</span>
+<span id="cb22-7"><a href="exercises.html#cb22-7"></a>MC                =<span class="st"> </span><span class="kw">data.frame</span>(years,<span class="dt">Class=</span><span class="st">&quot;Middle Class&quot;</span>,<span class="dt">value=</span>MC)</span>
+<span id="cb22-8"><a href="exercises.html#cb22-8"></a>UC                =<span class="st"> </span><span class="kw">c</span>(<span class="fl">60.4</span>,<span class="fl">60.2</span>,<span class="fl">43.0</span>,<span class="fl">61.9</span>,<span class="fl">62.9</span>)</span>
+<span id="cb22-9"><a href="exercises.html#cb22-9"></a>UC                =<span class="st"> </span><span class="kw">data.frame</span>(years,<span class="dt">Class=</span><span class="st">&quot;Upper Class&quot;</span>,<span class="dt">value=</span>UC)</span>
+<span id="cb22-10"><a href="exercises.html#cb22-10"></a>rincblls          =<span class="st"> </span><span class="kw">rbind</span>(LC,WC,MC,UC)</span>
+<span id="cb22-11"><a href="exercises.html#cb22-11"></a><span class="kw">rm</span>(LC,MC,UC,WC,years)</span>
+<span id="cb22-12"><a href="exercises.html#cb22-12"></a><span class="kw">ggplot</span>(rincblls,<span class="kw">aes</span>(<span class="dt">x=</span>years,<span class="dt">y=</span>value,<span class="dt">group=</span>Class))<span class="op">+</span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">linetype=</span>Class))<span class="op">+</span></span>
+<span id="cb22-13"><a href="exercises.html#cb22-13"></a><span class="st">        </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">shape=</span>Class))<span class="op">+</span><span class="kw">theme_bw</span>()<span class="op">+</span><span class="kw">ylim</span>(<span class="dv">0</span>,<span class="dv">100</span>)<span class="op">+</span><span class="kw">ylab</span>(<span class="st">&quot;Percent&quot;</span>)<span class="op">+</span></span>
+<span id="cb22-14"><a href="exercises.html#cb22-14"></a><span class="st">        </span><span class="kw">ggtitle</span>(<span class="st">&quot;(b) Income alone is enough to pay pills (Answer: Yes)&quot;</span>)<span class="op">+</span></span>
+<span id="cb22-15"><a href="exercises.html#cb22-15"></a><span class="st">        </span><span class="kw">theme</span>(<span class="dt">axis.title.x=</span><span class="kw">element_blank</span>(),<span class="dt">legend.position=</span><span class="st">&quot;bottom&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/SUM_EX_enough_income-1.png" width="672" /></p>
+<ol start="7" style="list-style-type: decimal">
+<li><em>WDI Boxplot</em>: The World Bank data <code>wdi</code> contains development indicators and also information how the World Bank classifies those countries by region and income. Focus on the years 1975, 1985, 1995, 2005, and 2015 for this question. Use the command <code>subset()</code> to extract those years. Next, you have to install and load the package <code>gglpot2</code>. The package <code>ggplot2</code> allows you to do some great data visualization. Execute the following lines:</li>
+</ol>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="exercises.html#cb23-1"></a>wdiofinterest =<span class="st"> </span><span class="kw">subset</span>(wdi,year <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">1975</span>,<span class="dv">1985</span>,<span class="dv">1995</span>,<span class="dv">2005</span>,<span class="dv">2015</span>))</span>
+<span id="cb23-2"><a href="exercises.html#cb23-2"></a><span class="kw">ggplot</span>(wdiofinterest,<span class="kw">aes</span>(<span class="dt">x=</span>region,<span class="dt">y=</span>lifeexp,<span class="dt">fill=</span><span class="kw">as.character</span>(year)))<span class="op">+</span></span>
+<span id="cb23-3"><a href="exercises.html#cb23-3"></a><span class="st">    </span><span class="kw">geom_boxplot</span>(<span class="dt">position=</span><span class="kw">position_dodge</span>(<span class="dv">1</span>))</span></code></pre></div>
+<pre><code>## Warning: Removed 102 rows containing non-finite values (stat_boxplot).</code></pre>
+<p><img src="bookdownproj_files/figure-html/SUM_EX_boxplot-1.png" width="672" /></p>
+<p>The result are boxplots by region and by year. Based on the resulting plot, explain differences between regions in terms of life expectancy and also in terms of evolution over time.</p>
+<ol start="8" style="list-style-type: decimal">
+<li><em>Faithful</em>: The data set <code>faithful</code> which is included with R contains data about the eruption (in minutes) and waiting times between eruptions (in minutes) from Old Faithful geyser in Yellowstone National Park. Use a scatter plot to visualize the relationship between eruption and waiting time. That is, generate graph with “eruption” on the vertical axis and “waiting” on the horizontal axis. What do you observe? What is the correlation coefficient? Is there anything odd in the resulting scatter plot? Next, use R to construct a empirical cumulative distribution function.</li>
+</ol>
+
 
 </div>
 <!-- </div> -->
@@ -269,8 +359,8 @@ What do you conclude? Next, add square footage to the model. What has changed in
           </div>
         </div>
       </div>
-<a href="anova.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="violating-assumptions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="covariance-and-correlation-coefficicent.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="probability.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -302,7 +392,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/jrfdumortier/dataanalysis/edit/master/anova.rmd",
+"link": "https://github.com/jrfdumortier/dataanalysis/edit/master/summarizingdata.rmd",
 "text": "Edit"
 },
 "history": {
@@ -310,7 +400,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/jrfdumortier/dataanalysis/blob/master/anova.rmd",
+"link": "https://github.com/jrfdumortier/dataanalysis/blob/master/summarizingdata.rmd",
 "text": null
 },
 "download": ["bookdownproj.pdf"],

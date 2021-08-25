@@ -1,0 +1,94 @@
+# Confidence Intervals
+The 95\% confidence interval for a parameter is an interval calculated from sample data by a method that has a 95\% probability of producing an interval containing the true value of the parameter. Suppose a population has a known mean of 65 (e.g., the height of women in the U.S.). If you take 100 samples of women from the population and calculate a confidence interval given the methods described below, the true mean of 65 will be included in the 95 confidence intervals. Note that the following statement is not correct: "The probability that the unknown parameter is contained within a 95\% confidence interval is 95\%." The section on confidence intervals as well as the subsequent section on hypothesis testing makes significant use of the *t*-Distribution.
+
+We have seen point estimation before and this section will look at interval estimation. An interval estimation is often more useful than a point estimation of the unknown parameter $\theta$ because it gives an interval of numbers within which the parameter value is believed to fall. This allows us to put lower and upper boundaries on the parameter, i.e., $\hat{\theta}_l < \theta < \hat{\theta}_u$. We can then associate a probability, called ``confidence level'', to being within the boundary. A popular value is 95\%. (Question: Why is 100\% not useful?)
+$$ Pr(\hat{\theta}_l < \theta < \hat{\theta}_u) = 1 - \alpha$$
+Note that there is no way of knowing if the confidence interval actually covers the true parameter.  Remember that we have $E(\bar{x})=\mu$ and $Var(\bar{x})=\sigma^2/n$. The mean $\pm 1.96$ standard deviations includes 95\% of the normal distribution. Because the sampling distribution is approximately normal (recall this fact from the central limit theorem and the law of large numbers), the distance of 1.96 standard deviations is the margin of error. The margin of error measures how accurate the point estimate is likely to be in  estimating a parameter. 
+
+## Confidence Interval for a Proportion
+If we measure a proportion: $p+q=1$ and $\sigma=\sqrt{(p \cdot q)}$. So the standard error for the mean is 
+$$\sigma_{\hat{p}}=\sqrt{\frac{\hat{p} \cdot (1-\hat{p})}{n}}$$
+Thus, the 95\% confidence interval is constructed as follows:
+$$\hat{p} \pm 1.96 \cdot \sigma_{\bar{x}}  \Leftrightarrow \hat{p} \pm 1.96 \cdot \sqrt{\frac{\hat{p} \cdot (1-\hat{p})}{n}}$$
+In this case, the margin of error is $1.96 \cdot 0.0497 = 0.097412$. In a first example, assume that you are interested in the political party affiliation of voters. Suppose that $n=1000$ and $p_{GOP}=0.55$. Given the above equation, we can calculate 
+
+$$\sigma_{\bar{x}}=\sqrt{\frac{0.55 \cdot (1-0.55)}{1000}} = 0.0157 $$
+This gives us the margin of error for the political party affiliation of $0.55 \pm 1.96 \cdot 0.0157$.
+
+<<COI_mh2,echo=TRUE,message=FALSE,warning=FALSE,error=FALSE,include=TRUE,fig.keep="none">>=
+nobs           = nrow(mh2)
+meandata       = mean(mh2$price)
+stdev          = sd(mh2$price)
+t_alpha_df     = qt(0.975,nobs-1)
+CI_lower       = meandata-t_alpha_df*stdev/sqrt(nobs)
+CI_upper       = meandata+t_alpha_df*stdev/sqrt(nobs)
+t.test(mh2$price)
+@
+
+<<COI_vote,echo=TRUE,message=FALSE,warning=FALSE,error=FALSE,include=TRUE,fig.keep="none">>=
+nobs           = nrow(gss2018)
+meandata       = mean(gss2018$vote)
+z              = qnorm(0.975)
+stderror       = sqrt(meandata*(1-meandata)/nobs)
+CI_lower       = meandata-z*stderror
+CI_upper       = meandata+z*stderror
+t.test(gss2018$vote)
+@
+
+The sample size needed for large-sample confidence intervals is $n \cdot \hat{p} \geq 15$. Sometimes it is easier to go with a different rule thumb that specifies that $n \geq 30$.
+
+
+For a second example, you are interested in the martial status of people. Suppose that $n=100$ and $p_m=0.55$. Given the above equation, we can calculate 
+$$\sigma_{\bar{x}}=\sqrt{\frac{0.55 \cdot (1-0.55)}{100}} = 0.0497$$
+This gives the margin of error for the marital status of $0.55 \pm 1.96 \cdot 0.0497$. The margin of error is 9.74\%. Note that the margin of error increases if your sample size decreases. 
+
+## Confidence Interval for the Mean
+To construct a confidence interval for a population mean, we have to estimate the standard deviation of the sample. The sample variance is denoted with $s^2$ and the standard error (S.E.) is denoted with
+$$S.E. = \frac{s}{\sqrt{n}}$$
+In most cases, $\sigma^2$ is unknown. If we knew $\sigma^2$, we could use the normal distribution. Because we rely on an estimate of the variance, we have to correct for the errors associated with this estimation and we need to use the t-distribution. The t-score is similar to the z-score in that it comes from a bell-shaped curve but the tails are thicker. 
+
+Consider the data in `eggweights`. To construct the confidence interval, the sample mean and sample standard deviation are required. Calculating those values leads to $\bar{x}=61.05$ and $s=4.46$. So the standard error is
+$$S.E. = \frac{4.46}{\sqrt{61}}=0.57$$
+For $n=61$ and $df=n-1=60$, we find the confidence interval of $61.05 \pm 2.0003 \cdot 0.57$.
+
+## Sample Size Calculation for a Proportion
+Recall the confidence interval for a proportion:
+$$\hat{p} \pm \underbrace{z \cdot \sqrt{\frac{\hat{p} \cdot (1-\hat{p})}{n}}}_{\text{Margin of Error (ME)}}$$
+If a maximum margin of error is desired, e.g., $\pm 2\%$, then the above expression must be solved for $n$. This leads to the following sample size formula:
+$$n > \frac{1.96^2 \cdot p \cdot (1-p)}{ME^2}$$
+In order to use the formula, the value of $p$ must be known. The problem is that the value is only known after the survey or poll is conducted and not before. To ensure that the margin of error is within the desired limits, a value of $p=0.5$ is chosen. If the survey or poll is conducted and results in a proportion of people being in favor of an issue or a candidate, then the margin of error will exactly correspond chosen one. If the resulting proportion is different from 0.5, the margin of error is smaller. Thus, the value of $p=0.5$ can be considered a worst-case scenario because it maximizes the variance. If there is knowledge about the resulting proportion before then that value can be used. For example, using a value of 0.5 to determine the sample size for the U.S. unemployment rate would be prohibitively expensive and unnecessary. 
+
+To illustrate the concept of sample size calculation, let us consider a survey that is interested in the proportion of people in support of a property tax reform. You do not have any knowledge about the population parameters but want the estimate to be within 2\%. For this reason, you adopt an initial estimate of $p=0.5$. This results in a worst case scenario. 
+$$n= \frac{1.96^2 \cdot 0.5 \cdot (1-0.5)}{0.02^2} =2401$$
+If the desired margin of error is reduced in half, then the sample size does not double but quadruples. This is due to squared terms in the above equations. 
+
+In some (rare) cases, the sample size necessary depends on the population size. Suppose you are interested in how many students support a privatization of parking. The sample size calculation for a finite population is written as follows:
+$$n_f = \frac{n_{\infty} \cdot N}{n_{\infty} + (N-1)}$$
+The term $n_\infty$ represents the sample size for an infinite population. Consider a college of 10,000 students. The sample size calculation proceeds as follows: 
+$$\frac{2401 \cdot 10000}{2401 +( 10000-1)}=1937$$
+
+
+## Simulation of a 95\% Confidence Interval
+This section is designed to illustrate the concept of confidence interval with R. For this exercise,  a 95\% confidence interval is simulated. The script below proceeds as follows:
+
+1. A population of 1 million voters is generated with 55\% of those voters favoring candidate *A* in an upcoming election. 
+
+
+%Download the R script file associated with this homework from Canvas. Execute the script file. You can just execute the script-file which simulates a voter population. We generate a population of 1,000,000 voters and 55\% of those voters support candidate $X$ in the upcoming election. In class, I said that we do not know the parameters associated with the population. In this case, we do know that 55\% vote for a particular candidate. In the script file, we then draw 100 samples with a sample size of $n=500$. Those 100 samples are stored in a comma separated value file names ``dataX.csv.'' Note that so far, you should only have executed the script file downloaded from Canvas. Next, do the following:
+
+
+## Exercises
+1. *Meridian Hills I*: The data set `mh1` contains home values for homes in the Meridian Hills area in Indianapolis. Construct a 90\%, 95\%, and 99\% confidence interval around the mean using R.
+
+2. *GSS Guns*: Consider the data in `gss2018`. The data is taken from the 2018 General Social Survey. Note that only  observation which have complete responses for all variables are included in the data. The question associated with the variable `gun` is "Do you happen to have in your home (IF HOUSE: or garage) any guns or revolvers?" and the question associated with the variable `deathpenalty` is "Do you favor or oppose the death penalty for persons convicted of murder?" Construct a 90\% confidence interval around the proportion for both variables.
+
+3. *Soda Cans I*: Consider a machine filling soda cans with a reported average of 360 milliliters (mL). The amounts filled into the cans follow a normal distribution with (unknown) mean $\mu$ and standard deviation $\sigma$. You take a sample of soda cans and measure the volume. Your data (in mL) is found in file `soda`. Construct a 99\% confidence interval around the mean.
+
+4. *Paper Mill*: The local paper mill claims that it does not discharge more than 1000 gallons of waste water into the White River. An environmental interest group measures the discharge over one week and the data is reported to you in file `discharge`. Construct a 95\% confidence interval around the mean discharge.
+
+5. *Sanders vs. Biden*: A 2020 article about the race of Sanders vs. Biden in Florida states that *"Biden is lapping Sanders in voter support, with support from 66 percent of likely Democratic primary voters to 22 percent for Sanders, according to a University of North Florida poll taken March 5-10."*
+The article mentions a margin of error $\pm 2.5\%$. For this exercise, use the number of 66\% and calculate the sample size that was used to conduct the poll.
+        
+6. *Privatizing Parking*: You are interested in how many students at IUPUI are supporting privatizing parking services. You have information from a different university who found that 20\% of students support privatization. In fall 2018, IUPUI had an enrollment of 29,579 students. Calculate the necessary sample size based on the (1) information you have from the other university and (2) the worst-case scenario in terms of variance You want the margin of error to be with $\pm$ 3\%.
+
+7. *VMT by State*: Consider the data in `vehpub`. Pick any state other than Indiana and construct a 95\% confidence interval around the average annual miles traveled based on the odometer reading and the age of the vehicles. Keep in mind that the survey was conducted in 2017. Pay attention to eliminate missing or otherwise irrelevant values.

@@ -6,11 +6,10 @@ Topics covered in this lecture
 - Plotting and Graphs with R
 - Basic Statistics
 
-In-class exercises will be conducted throughout the Lecture.
+In-class exercises will be conducted throughout the lecture.
 
-## Online Resources and Help
-Very large user community for R. Google search for ``Some topic R'' usually leads quickly to the desired help.
-Here are the links to a few online tutorials
+## R Resources and Help
+Very large user community for R. Google search for "Some topic R" usually leads quickly to the desired help. Here are the links to a few online tutorials
 
 - [UCLA Institute for Digital Research and Education](http://stats.idre.ucla.edu/r/)
 - [StatMethods](https://www.statmethods.net/)
@@ -39,7 +38,7 @@ Work in RStudio is done in four windows:
      - Use of R interactively. Should only be used for quick calculations and not part of an analysis.
 3. Environment
      - Lists all the variables, data frames, and user-created functions.
-     - It is tempting to use the ``Import Dataset'' function \dots Don't.
+     - It is tempting to use the "Import Dataset" function \dots Don't.
 4. Plots/Packages/Help
 
 There is a base version of R that allows doing many calculations but the power of R comes through its packages. To use functions associated with a particular package, click ``Install'' in the packages window of RStudio and type in the name of the package. Or alternatively, use
@@ -50,7 +49,7 @@ To use a package, you have to activate it by either checking the box in the wind
 
 The `\#` allows you to include comments in your script file that are not read by R. It is good practice to start any new script with clearing the memory using the command `rm(list=ls())`. Use the command `get()` to determine the current working directory or set the new working directory with the command `setwd()`, e.g., `setwd("E:/")`. For file paths, replace $\backslash$ with $/$. Next, you want to load all libraries necessary for your entire script file with the command `library()`. It is also good practice to save your R-script on a regular basis. The frontmatter, i.e., the top of a R-script file, could look as follows
 
-```{r frontmatter,warning=FALSE}
+```{r INR_frontmatter,warning=FALSE}
 rm(list=ls())
 load("DataAnalysisPAData.RData")
 library(openxlsx)
@@ -87,10 +86,7 @@ For this function we have the following default values
 - `mu=0`
 - `conf.level=0.95`
 
-## Data Management
-
-### Data in R
-
+## Data in R
 The main data types which can appear in the Environment window of R are:
 
 - Vectors
@@ -108,10 +104,9 @@ The main data types which can appear in the Environment window of R are:
      - `myfirstlist = list(preselection,midterm,somematrix)`
 
 ### Using R as a Calculator
+Entering heights of people and storing it in a vector named `height`:
 
-Entering heights of people and storing it in a vector named \emph{height}:
-
-```{r}
+```{r INR_height,results=FALSE}
 height = c(71,77,70,73,66,69,73,73,75,76)
 ```
 
@@ -133,7 +128,7 @@ Data frames are the most commonly used tables in R/RStudio. They are similar to 
 
 Suggestion: Use only lower-case variable names and objects.
 
-```{r}
+```{r INR_students}
 studentid       = 1:10
 studentnames    = c("Andrew","Linda","William","Daniel","Gina",
                     "Mick","Sonny","Wilbur","Elisabeth","James")
@@ -151,7 +146,7 @@ English = c(52.5,60,77.5,30,95)
 student = data.frame(Name,Economics,English)
 ```
 
-```{r, echo=FALSE}
+```{r INR_student, echo=FALSE}
 knitr::kable(head(student,booktabs=TRUE))
 ```
 
@@ -159,3 +154,101 @@ Notes:
 
 - Use $name$ as the column header for the students' names.
 - Once you have created the data frame, remove the unused vectors.
+
+### Indexing
+Indexing refers to identifying elements in your data:
+
+- For most objects: `students[row number,coloumn number]`
+     - `students[3,2]` returns 95. What does `students[3,]` return?
+- If you want to select certain columns: `students[c("name")]`
+     - Other example: `students[c("name","english")]`
+- Selecting results based on certain conditions: `students[which(students\$economics>80),]`
+
+Referring to a particular column in a data frame is done through the dollar symbol:
+- `students\$english`
+- You will use this functionality very often.
+
+Creating a new column: `students\$average = rowMeans(students[c("economics","english")])`
+
+## Importing Data into R
+In almost all cases, the data is imported into R from an external data set. The data has to be "machine-readable" which means that the first row must contain the variable names and the actual data starts in the second row. Machine-readable data can be imported as follows:
+
+- `read.csv("filename.csv")`: If you have a comma separated value (.csv) file then this is the easiest and preferred way to import data.
+- `readWorkbook(file="filename.xlsx",sheet="sheet name")`: Requires the package [openxlsx](https://cran.r-project.org/web/packages/openxlsx/index.html). Note that there are many packages reading Excel and this is one of the most reliable and user-friendly.
+- Importing data from other software packages (e.g., SAS, Stata, Minitab, SPSS) or .dbf (database) files can be achieved using the package [foreign](https://cran.r-project.org/web/packages/foreign/index.html). The package works also for Stata data up to version 12. To important data from Stata version 13 and above, the package [readstata13](https://cran.r-project.org/web/packages/readstata13/index.html). 
+
+## Sub-setting a Data Frame
+To extract variables or observations based on certain criteria, the command `subset()` must be used. Consider the data `vehicles`. Extracting vehicle information only for the year 2015 is done as follows:
+
+- `cars2015 = subset(vehicles,year==2015)`
+
+Note that the double equal sign conducts a logical test. This is similar to Stata. Using a single equal sign does not extract any data and simply returns the original data without (!) an error message. 
+
+To list all the distinct values in a column, the command `unique()` can be used. This command only makes sense in the case of categorical data in a particular column. For example, listing all EPA vehicle size classes ($VClass$) can be accomplished as follows:  
+
+- `unique(cars2015\$VClass)`
+
+Suppose you are only interested in the variables $ghgScore$ and $VClass$ for the model year 2015.
+
+- `cars2015 = subset(vehicles,year==2015,select=c("ghgScore","VClass"))`
+
+Suppose you are only interested in "Compact Cars" and "Large Cars" in the column $VClass$ for the year 2015. There the notation is a bit odd (note that the many line breaks are not necessary to include in R):
+
+```{r INR_subset_cars2015}
+cars = subset(vehicles,
+              year==2015 & VClass %in% c("Compact Cars", "Large Cars"),
+              select=c("make","ghgScore","VClass"))
+```
+
+### In-class Exercises 3
+From the vehicles data set, extract the GHG Score and the vehicle class from the 2014 model year for the following manufacturers: Toyota, Ford, and Audi. Your new data set should contain the following columns: $ghgScore$, $make$, and $VClass$. Is the resulting data frame sensible or do you see a problem?
+
+## Aggregating Data 
+To aggregate data based on a function, e.g., sum or mean:
+
+```{r INR_aggregate,results=FALSE}
+cars = aggregate(cars$ghgScore,FUN=mean,
+                 by=list(cars$make,cars$VClass))
+```
+
+## Writing Data Frame to .csv-File
+To write data to the current working directory:
+
+- `write.csv(cars2014,"cars2014.csv",row.names=FALSE)`
+
+Using the option `row.names=FALSE` avoids an index column in the output file. 
+
+## Reshaping Data from Long to Wide and Viceversa
+R has the ability to reshape data from long to wide format and back. For this demonstration, we use the data in `compactcars` and the command `reshape()` from the package [reshape2](https://cran.r-project.org/web/packages/reshape2/index.html):
+
+```{r INR_reshape}
+cars = melt(compactcars,id=c("year","make","model","displ","drive"))
+```
+
+Reshaping the data is generally very useful but also tricky. For detailed information see the section [How can I reshape my data in R](https://stats.idre.ucla.edu/r/faq/how-can-i-reshape-my-data-in-r/).
+
+## Extending the Basic `table()` Function
+The required package to extend the basic `table()` function is called [gmodels](https://cran.r-project.org/web/packages/gmodels/index.html). Compare the outputs of the functions `table()` and `CrossTable()`. The commands below do the following:
+
+- Standard `table()` function.
+- The function `CrossTable()` includes the proportions along the two dimensions of gun ownership and gender. Note that a description of the cell content is at the top of the results page. 
+
+```{r INR_CrossTable,results=FALSE}
+table(gssgun$owngun,gssgun$sex)
+CrossTable(gssgun$owngun,gssgun$sex,prop.chisq=FALSE)
+```
+Note that for almost any R command, you can store the output by assigning it to an object:
+
+- `somename = CrossTable(gssgun$owngun,gssgun$sex,prop.chisq=FALSE)`
+
+## Merging Datasets
+Consider two data sets from school districts in Ohio:
+
+- `ohioscore` contains an identifier column IRN and a score that indicates the quality of the school.
+- `ohioincome` contains the same identifier than the previous sheet in addition to median household income and enrollment.
+
+To merge the two data frames based on the column $IRN$, the function `merge()` must be used:
+
+```{r INR_merge}
+ohioschool = merge(ohioscore,ohioincome,by=c("IRN"))
+```
