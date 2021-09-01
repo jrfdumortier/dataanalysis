@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>13.3 Basic Theoretical Aspects of Time Series | Data Analysis for Public Affairs with R</title>
   <meta name="description" content="13.3 Basic Theoretical Aspects of Time Series | Data Analysis for Public Affairs with R" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
 
   <meta property="og:title" content="13.3 Basic Theoretical Aspects of Time Series | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2021-08-25" />
+<meta name="date" content="2021-09-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="finite-distributed-lag-models.html"/>
 <link rel="next" href="autoregressive-model.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -157,16 +157,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.4.2" data-path="data-in-r.html"><a href="data-in-r.html#creating-a-data-frame-from-scratch"><i class="fa fa-check"></i><b>3.4.2</b> Creating a Data Frame from Scratch</a></li>
 <li class="chapter" data-level="3.4.3" data-path="data-in-r.html"><a href="data-in-r.html#in-class-exercise-2"><i class="fa fa-check"></i><b>3.4.3</b> In-class Exercise 2</a></li>
 <li class="chapter" data-level="3.4.4" data-path="data-in-r.html"><a href="data-in-r.html#indexing"><i class="fa fa-check"></i><b>3.4.4</b> Indexing</a></li>
+<li class="chapter" data-level="3.4.5" data-path="data-in-r.html"><a href="data-in-r.html#importing-data-into-r"><i class="fa fa-check"></i><b>3.4.5</b> Importing Data into R</a></li>
+<li class="chapter" data-level="3.4.6" data-path="data-in-r.html"><a href="data-in-r.html#sub-setting-a-data-frame"><i class="fa fa-check"></i><b>3.4.6</b> Sub-setting a Data Frame</a></li>
+<li class="chapter" data-level="3.4.7" data-path="data-in-r.html"><a href="data-in-r.html#in-class-exercises-3"><i class="fa fa-check"></i><b>3.4.7</b> In-class Exercises 3</a></li>
+<li class="chapter" data-level="3.4.8" data-path="data-in-r.html"><a href="data-in-r.html#aggregating-data"><i class="fa fa-check"></i><b>3.4.8</b> Aggregating Data</a></li>
+<li class="chapter" data-level="3.4.9" data-path="data-in-r.html"><a href="data-in-r.html#writing-data-frame-to-.csv-file"><i class="fa fa-check"></i><b>3.4.9</b> Writing Data Frame to .csv-File</a></li>
+<li class="chapter" data-level="3.4.10" data-path="data-in-r.html"><a href="data-in-r.html#reshaping-data-from-long-to-wide-and-viceversa"><i class="fa fa-check"></i><b>3.4.10</b> Reshaping Data from Long to Wide and Viceversa</a></li>
+<li class="chapter" data-level="3.4.11" data-path="data-in-r.html"><a href="data-in-r.html#extending-the-basic-table-function"><i class="fa fa-check"></i><b>3.4.11</b> Extending the Basic <code>table()</code> Function</a></li>
+<li class="chapter" data-level="3.4.12" data-path="data-in-r.html"><a href="data-in-r.html#merging-datasets"><i class="fa fa-check"></i><b>3.4.12</b> Merging Datasets</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="importing-data-into-r.html"><a href="importing-data-into-r.html"><i class="fa fa-check"></i><b>3.5</b> Importing Data into R</a></li>
-<li class="chapter" data-level="3.6" data-path="sub-setting-a-data-frame.html"><a href="sub-setting-a-data-frame.html"><i class="fa fa-check"></i><b>3.6</b> Sub-setting a Data Frame</a><ul>
-<li class="chapter" data-level="3.6.1" data-path="sub-setting-a-data-frame.html"><a href="sub-setting-a-data-frame.html#in-class-exercises-3"><i class="fa fa-check"></i><b>3.6.1</b> In-class Exercises 3</a></li>
-</ul></li>
-<li class="chapter" data-level="3.7" data-path="aggregating-data.html"><a href="aggregating-data.html"><i class="fa fa-check"></i><b>3.7</b> Aggregating Data</a></li>
-<li class="chapter" data-level="3.8" data-path="writing-data-frame-to-csv-file.html"><a href="writing-data-frame-to-csv-file.html"><i class="fa fa-check"></i><b>3.8</b> Writing Data Frame to .csv-File</a></li>
-<li class="chapter" data-level="3.9" data-path="reshaping-data-from-long-to-wide-and-viceversa.html"><a href="reshaping-data-from-long-to-wide-and-viceversa.html"><i class="fa fa-check"></i><b>3.9</b> Reshaping Data from Long to Wide and Viceversa</a></li>
-<li class="chapter" data-level="3.10" data-path="extending-the-basic-table-function.html"><a href="extending-the-basic-table-function.html"><i class="fa fa-check"></i><b>3.10</b> Extending the Basic <code>table()</code> Function</a></li>
-<li class="chapter" data-level="3.11" data-path="merging-datasets.html"><a href="merging-datasets.html"><i class="fa fa-check"></i><b>3.11</b> Merging Datasets</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="summarizing-data.html"><a href="summarizing-data.html"><i class="fa fa-check"></i><b>4</b> Summarizing Data</a><ul>
 <li class="chapter" data-level="4.1" data-path="measures-of-central-tendency.html"><a href="measures-of-central-tendency.html"><i class="fa fa-check"></i><b>4.1</b> Measures of Central Tendency</a></li>
@@ -296,33 +295,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Constant covariance: <span class="math inline">\(Cov(y_t,y_{t-h})\)</span> depends on <span class="math inline">\(h\)</span> but not on <span class="math inline">\(t\)</span>.</li>
 </ul>
 <p>A time series with a trend is usually not stationary (or nonstationary). The concepts behind are explained latter but the issue can be illustrated with a simple simulation.</p>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="basic-theoretical-aspects-of-time-series.html#cb163-1"></a>spurious            =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x=</span><span class="kw">matrix</span>(<span class="dv">0</span>,<span class="dv">500</span>,<span class="dv">1</span>),<span class="dt">y=</span><span class="kw">matrix</span>(<span class="dv">0</span>,<span class="dv">500</span>,<span class="dv">1</span>))</span>
-<span id="cb163-2"><a href="basic-theoretical-aspects-of-time-series.html#cb163-2"></a>spurious[<span class="dv">1</span>,<span class="dv">1</span>]       =<span class="st"> </span><span class="dv">1</span></span>
-<span id="cb163-3"><a href="basic-theoretical-aspects-of-time-series.html#cb163-3"></a>spurious[<span class="dv">1</span>,<span class="dv">2</span>]       =<span class="st"> </span><span class="dv">2</span></span>
-<span id="cb163-4"><a href="basic-theoretical-aspects-of-time-series.html#cb163-4"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span><span class="dv">500</span>){</span>
-<span id="cb163-5"><a href="basic-theoretical-aspects-of-time-series.html#cb163-5"></a>     spurious[i,<span class="dv">1</span>] =<span class="st"> </span>spurious[i<span class="dv">-1</span>,<span class="dv">1</span>]<span class="op">+</span><span class="kw">rnorm</span>(<span class="dv">1</span>)</span>
-<span id="cb163-6"><a href="basic-theoretical-aspects-of-time-series.html#cb163-6"></a>     spurious[i,<span class="dv">2</span>] =<span class="st"> </span>spurious[i<span class="dv">-1</span>,<span class="dv">2</span>]<span class="op">+</span><span class="kw">rnorm</span>(<span class="dv">1</span>)}</span>
-<span id="cb163-7"><a href="basic-theoretical-aspects-of-time-series.html#cb163-7"></a>bhat =<span class="st"> </span><span class="kw">lm</span>(y<span class="op">~</span>x,<span class="dt">data=</span>spurious)</span>
-<span id="cb163-8"><a href="basic-theoretical-aspects-of-time-series.html#cb163-8"></a><span class="kw">summary</span>(bhat)</span></code></pre></div>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="basic-theoretical-aspects-of-time-series.html#cb160-1"></a>spurious            =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x=</span><span class="kw">matrix</span>(<span class="dv">0</span>,<span class="dv">500</span>,<span class="dv">1</span>),<span class="dt">y=</span><span class="kw">matrix</span>(<span class="dv">0</span>,<span class="dv">500</span>,<span class="dv">1</span>))</span>
+<span id="cb160-2"><a href="basic-theoretical-aspects-of-time-series.html#cb160-2"></a>spurious[<span class="dv">1</span>,<span class="dv">1</span>]       =<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb160-3"><a href="basic-theoretical-aspects-of-time-series.html#cb160-3"></a>spurious[<span class="dv">1</span>,<span class="dv">2</span>]       =<span class="st"> </span><span class="dv">2</span></span>
+<span id="cb160-4"><a href="basic-theoretical-aspects-of-time-series.html#cb160-4"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span><span class="dv">500</span>){</span>
+<span id="cb160-5"><a href="basic-theoretical-aspects-of-time-series.html#cb160-5"></a>     spurious[i,<span class="dv">1</span>] =<span class="st"> </span>spurious[i<span class="dv">-1</span>,<span class="dv">1</span>]<span class="op">+</span><span class="kw">rnorm</span>(<span class="dv">1</span>)</span>
+<span id="cb160-6"><a href="basic-theoretical-aspects-of-time-series.html#cb160-6"></a>     spurious[i,<span class="dv">2</span>] =<span class="st"> </span>spurious[i<span class="dv">-1</span>,<span class="dv">2</span>]<span class="op">+</span><span class="kw">rnorm</span>(<span class="dv">1</span>)}</span>
+<span id="cb160-7"><a href="basic-theoretical-aspects-of-time-series.html#cb160-7"></a>bhat =<span class="st"> </span><span class="kw">lm</span>(y<span class="op">~</span>x,<span class="dt">data=</span>spurious)</span>
+<span id="cb160-8"><a href="basic-theoretical-aspects-of-time-series.html#cb160-8"></a><span class="kw">summary</span>(bhat)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = y ~ x, data = spurious)
 ## 
 ## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -18.4232  -4.3766   0.0817   4.6152  15.9854 
+##     Min      1Q  Median      3Q     Max 
+## -17.690  -3.178   1.888   4.510  10.394 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  1.17361    0.75794   1.548    0.122    
-## x            1.20399    0.04033  29.851   &lt;2e-16 ***
+## (Intercept) 12.20262    0.31391  38.874   &lt;2e-16 ***
+## x           -0.04081    0.03608  -1.131    0.259    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 6.267 on 498 degrees of freedom
-## Multiple R-squared:  0.6415, Adjusted R-squared:  0.6408 
-## F-statistic: 891.1 on 1 and 498 DF,  p-value: &lt; 2.2e-16</code></pre>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="basic-theoretical-aspects-of-time-series.html#cb165-1"></a><span class="kw">rm</span>(spurious,bhat)</span></code></pre></div>
+## Residual standard error: 6.229 on 498 degrees of freedom
+## Multiple R-squared:  0.002563,   Adjusted R-squared:  0.00056 
+## F-statistic:  1.28 on 1 and 498 DF,  p-value: 0.2585</code></pre>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="basic-theoretical-aspects-of-time-series.html#cb162-1"></a><span class="kw">rm</span>(spurious,bhat)</span></code></pre></div>
 <p>There is no relationship between <span class="math inline">\(y\)</span> and <span class="math inline">\(x\)</span> yet the regression results indicate statistical significance.</p>
 <p>Consider the following so-called autoregressive model. The model depends on lagged terms of the dependent variable:
 <span class="math display">\[y_t=\alpha+\phi_1 \cdot y_{t-1}+\epsilon_t\]</span>
@@ -383,6 +382,10 @@ gitbook.start({
 "text": null
 },
 "download": ["bookdownproj.pdf"],
+"search": {
+"engine": "lunr",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

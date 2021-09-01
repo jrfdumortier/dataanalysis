@@ -1,4 +1,13 @@
-tab:unnamed-chunk-1
+fig:INTmfplot1
+fig:INTmfplot2
+tab:SUMthreestates
+fig:SUMsamplevariance
+fig:SUMfaithfulhistograms
+fig:SUMfaithfulecdf
+fig:SUMeucrime
+fig:SUMcorrelation
+fig:SUMmh2correlation
+fig:SUMexhousing
 preface
 introduction
 overview

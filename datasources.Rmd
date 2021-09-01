@@ -40,6 +40,8 @@ variable \emph{choice} represents the choice by the consumer for gasoline vehicl
 hybrids ($choice = 2$), plug-in hybrids ($choice = 3$), and electric vehicles ($choice = 4$). For each consumer,
 you have the following variables: \emph{age}, \emph{level2} (indicating whether people have a fast charger for electric cars in their community), \emph{female}, and \emph{numcars} (number of cars). The variable \emph{politics} is coded as follows: Under \$15,000 (1), \$15,000 to \$24,999 (2), \$25,000 to \$34, 999 (3), \$35,000 to \$49,999 (4), \$50,000 to \$74,999 (5), \$75,000 to \$99,999 (6), \$100,000 to \$149,999 (7), \$150,000 to \$199,999 (8), \$200,000 to \$249,000 (9), above \$250,000 (10). The variable \emph{edu} is coded as follows:  Less than High School (1), High School / GED (2), Some College (3), 2-year College Degree (4), 4-year College Degree (5), Masters Degree (6), Doctoral Degree (7). The variable politics is coded as follows: Extremely Liberal (1), Liberal (2), Slightly liberal (3), Moderate (4), Slightly conservative (5), Conservative (6), Extremely conservative (7), Other (8), None (9). See \citet{Dumortier:2014} for more details. 
 
+- `faithful` ($N=272$): Eruption and waiting in time minutes of Old Faithful Geyser. This data is also included in R. 
+
 - `fertil1` ($N=1129$): Data from the General Social Survey. The data set is accompanying the book *Introductory Econometrics: A Modern Approach* by Jeffrey Wooldridge. The variables are as follows:  
 
     - year: 72 to 84, even

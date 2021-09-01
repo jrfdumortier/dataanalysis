@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>11.1 Truncation | Data Analysis for Public Affairs with R</title>
   <meta name="description" content="11.1 Truncation | Data Analysis for Public Affairs with R" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
 
   <meta property="og:title" content="11.1 Truncation | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2021-08-25" />
+<meta name="date" content="2021-09-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="limited-dependent-variable-models.html"/>
 <link rel="next" href="censoring.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -157,16 +157,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.4.2" data-path="data-in-r.html"><a href="data-in-r.html#creating-a-data-frame-from-scratch"><i class="fa fa-check"></i><b>3.4.2</b> Creating a Data Frame from Scratch</a></li>
 <li class="chapter" data-level="3.4.3" data-path="data-in-r.html"><a href="data-in-r.html#in-class-exercise-2"><i class="fa fa-check"></i><b>3.4.3</b> In-class Exercise 2</a></li>
 <li class="chapter" data-level="3.4.4" data-path="data-in-r.html"><a href="data-in-r.html#indexing"><i class="fa fa-check"></i><b>3.4.4</b> Indexing</a></li>
+<li class="chapter" data-level="3.4.5" data-path="data-in-r.html"><a href="data-in-r.html#importing-data-into-r"><i class="fa fa-check"></i><b>3.4.5</b> Importing Data into R</a></li>
+<li class="chapter" data-level="3.4.6" data-path="data-in-r.html"><a href="data-in-r.html#sub-setting-a-data-frame"><i class="fa fa-check"></i><b>3.4.6</b> Sub-setting a Data Frame</a></li>
+<li class="chapter" data-level="3.4.7" data-path="data-in-r.html"><a href="data-in-r.html#in-class-exercises-3"><i class="fa fa-check"></i><b>3.4.7</b> In-class Exercises 3</a></li>
+<li class="chapter" data-level="3.4.8" data-path="data-in-r.html"><a href="data-in-r.html#aggregating-data"><i class="fa fa-check"></i><b>3.4.8</b> Aggregating Data</a></li>
+<li class="chapter" data-level="3.4.9" data-path="data-in-r.html"><a href="data-in-r.html#writing-data-frame-to-.csv-file"><i class="fa fa-check"></i><b>3.4.9</b> Writing Data Frame to .csv-File</a></li>
+<li class="chapter" data-level="3.4.10" data-path="data-in-r.html"><a href="data-in-r.html#reshaping-data-from-long-to-wide-and-viceversa"><i class="fa fa-check"></i><b>3.4.10</b> Reshaping Data from Long to Wide and Viceversa</a></li>
+<li class="chapter" data-level="3.4.11" data-path="data-in-r.html"><a href="data-in-r.html#extending-the-basic-table-function"><i class="fa fa-check"></i><b>3.4.11</b> Extending the Basic <code>table()</code> Function</a></li>
+<li class="chapter" data-level="3.4.12" data-path="data-in-r.html"><a href="data-in-r.html#merging-datasets"><i class="fa fa-check"></i><b>3.4.12</b> Merging Datasets</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="importing-data-into-r.html"><a href="importing-data-into-r.html"><i class="fa fa-check"></i><b>3.5</b> Importing Data into R</a></li>
-<li class="chapter" data-level="3.6" data-path="sub-setting-a-data-frame.html"><a href="sub-setting-a-data-frame.html"><i class="fa fa-check"></i><b>3.6</b> Sub-setting a Data Frame</a><ul>
-<li class="chapter" data-level="3.6.1" data-path="sub-setting-a-data-frame.html"><a href="sub-setting-a-data-frame.html#in-class-exercises-3"><i class="fa fa-check"></i><b>3.6.1</b> In-class Exercises 3</a></li>
-</ul></li>
-<li class="chapter" data-level="3.7" data-path="aggregating-data.html"><a href="aggregating-data.html"><i class="fa fa-check"></i><b>3.7</b> Aggregating Data</a></li>
-<li class="chapter" data-level="3.8" data-path="writing-data-frame-to-csv-file.html"><a href="writing-data-frame-to-csv-file.html"><i class="fa fa-check"></i><b>3.8</b> Writing Data Frame to .csv-File</a></li>
-<li class="chapter" data-level="3.9" data-path="reshaping-data-from-long-to-wide-and-viceversa.html"><a href="reshaping-data-from-long-to-wide-and-viceversa.html"><i class="fa fa-check"></i><b>3.9</b> Reshaping Data from Long to Wide and Viceversa</a></li>
-<li class="chapter" data-level="3.10" data-path="extending-the-basic-table-function.html"><a href="extending-the-basic-table-function.html"><i class="fa fa-check"></i><b>3.10</b> Extending the Basic <code>table()</code> Function</a></li>
-<li class="chapter" data-level="3.11" data-path="merging-datasets.html"><a href="merging-datasets.html"><i class="fa fa-check"></i><b>3.11</b> Merging Datasets</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="summarizing-data.html"><a href="summarizing-data.html"><i class="fa fa-check"></i><b>4</b> Summarizing Data</a><ul>
 <li class="chapter" data-level="4.1" data-path="measures-of-central-tendency.html"><a href="measures-of-central-tendency.html"><i class="fa fa-check"></i><b>4.1</b> Measures of Central Tendency</a></li>
@@ -292,68 +291,68 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In the case of truncation, a certain part of the data is not observed. In the graph below, the true parameters are <span class="math inline">\(\beta_0=-2\)</span> and <span class="math inline">\(\beta_1=0.5\)</span>. Values <span class="math inline">\(y&lt;0\)</span> are not reported in the data. The green regression line is “correct” whereas the “red” is the line obtained from a regression model which ignores the truncation.</p>
 <p><img src="bookdownproj_files/figure-html/truncationplot-1.png" width="672" />
 If all the data was observed, the correct regression model would give the following results:</p>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="truncation.html#cb90-1"></a><span class="kw">summary</span>(bhat_real)</span></code></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="truncation.html#cb87-1"></a><span class="kw">summary</span>(bhat_real)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = y_real ~ x, data = truncation)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -1.8070 -0.4897 -0.2218  0.6941  1.8430 
+## -2.2440 -0.8548 -0.2270  0.9849  1.9892 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) -1.78523    0.25635  -6.964 8.35e-09 ***
-## x            0.44454    0.04267  10.419 6.50e-14 ***
+## (Intercept) -1.72992    0.31847  -5.432 1.82e-06 ***
+## x            0.42241    0.05316   7.946 2.65e-10 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 0.8653 on 48 degrees of freedom
-## Multiple R-squared:  0.6934, Adjusted R-squared:  0.687 
-## F-statistic: 108.5 on 1 and 48 DF,  p-value: 6.505e-14</code></pre>
+## Residual standard error: 1.1 on 48 degrees of freedom
+## Multiple R-squared:  0.5681, Adjusted R-squared:  0.5591 
+## F-statistic: 63.15 on 1 and 48 DF,  p-value: 2.654e-10</code></pre>
 <p>The estimates are biased if truncation is ignored:</p>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="truncation.html#cb92-1"></a><span class="kw">summary</span>(bhat_truncated)</span></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="truncation.html#cb89-1"></a><span class="kw">summary</span>(bhat_truncated)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = y_obs ~ x, data = truncation)
 ## 
 ## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -1.2593 -0.5960 -0.1303  0.7183  1.3481 
+##      Min       1Q   Median       3Q      Max 
+## -1.51564 -0.72946 -0.02989  0.51637  1.92435 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) -0.90486    0.48506  -1.865   0.0719 .  
-## x            0.34870    0.06788   5.137 1.58e-05 ***
+## (Intercept)  -0.3262     0.3823  -0.853      0.4    
+## x             0.2703     0.0557   4.852 3.28e-05 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 0.7908 on 30 degrees of freedom
-##   (18 observations deleted due to missingness)
-## Multiple R-squared:  0.468,  Adjusted R-squared:  0.4502 
-## F-statistic: 26.39 on 1 and 30 DF,  p-value: 1.583e-05</code></pre>
+## Residual standard error: 0.8773 on 31 degrees of freedom
+##   (17 observations deleted due to missingness)
+## Multiple R-squared:  0.4317, Adjusted R-squared:  0.4133 
+## F-statistic: 23.55 on 1 and 31 DF,  p-value: 3.278e-05</code></pre>
 <p>To correct for the truncation, use the functions from the package <a href="https://cran.r-project.org/web/packages/truncreg/index.html">truncreg</a> which allows to reduce the bias of the coefficients:</p>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="truncation.html#cb94-1"></a>bhat_correct =<span class="st"> </span><span class="kw">truncreg</span>(y_obs<span class="op">~</span>x,<span class="dt">data=</span>truncation)</span>
-<span id="cb94-2"><a href="truncation.html#cb94-2"></a><span class="kw">summary</span>(bhat_correct)</span></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="truncation.html#cb91-1"></a>bhat_correct =<span class="st"> </span><span class="kw">truncreg</span>(y_obs<span class="op">~</span>x,<span class="dt">data=</span>truncation)</span>
+<span id="cb91-2"><a href="truncation.html#cb91-2"></a><span class="kw">summary</span>(bhat_correct)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## truncreg(formula = y_obs ~ x, data = truncation)
 ## 
 ## BFGS maximization method
-## 22 iterations, 0h:0m:0s 
-## g&#39;(-H)^-1g = 1.64E-05 
+## 37 iterations, 0h:0m:0s 
+## g&#39;(-H)^-1g = 1.49E-11 
 ##  
 ## 
 ## 
 ## Coefficients :
 ##             Estimate Std. Error t-value  Pr(&gt;|t|)    
-## (Intercept) -2.76297    1.19218 -2.3176   0.02047 *  
-## x            0.56360    0.14340  3.9303 8.484e-05 ***
-## sigma        0.91779    0.16537  5.5500 2.857e-08 ***
+## (Intercept) -3.69027    1.74598 -2.1136 0.0345517 *  
+## x            0.65894    0.20004  3.2941 0.0009875 ***
+## sigma        1.09363    0.22403  4.8816 1.052e-06 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Log-Likelihood: -31.172 on 3 Df</code></pre>
+## Log-Likelihood: -30.662 on 3 Df</code></pre>
 </div>
             </section>
 
@@ -405,6 +404,10 @@ gitbook.start({
 "text": null
 },
 "download": ["bookdownproj.pdf"],
+"search": {
+"engine": "lunr",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

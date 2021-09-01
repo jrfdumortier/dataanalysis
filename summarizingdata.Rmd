@@ -1,5 +1,4 @@
 # Summarizing Data
-
 The purpose of this section is the description of data using numerical and graphical methods. Numerical methods include measures of central tendency and dispersion. Graphical methods presented are histograms, box plots, and empirical cumulative distribution functions. The last part presents the concepts of correlation and covariance. 
 
 ## Measures of Central Tendency
@@ -8,7 +7,7 @@ $$\bar{x} = \frac{1}{n} \sum_{i=1}^{N} x_i$$
 
 The mean does not always explain data very well and there are some other measures to explore. Among them are the median and mode. The median divides the data set into two equal parts, such that half of all the values are greater than the median and half are smaller than the median. The middle term of the data set is the $(n+1)/2$-th term. The median has the advantage that a very high or very low values do not influence the median. For example, the average taxable income in Switzerland is \$56,805. The town Vaux-sur-Morges has an average taxable income of \$670,046. It turns out that one very wealthy person (Andre Hoffmann from Roche Pharmaceutical) drives up the average in the village with 178 inhabitants. The mode is the value that occurs the most frequently. Consider the table below on the income distribution of ten citizens in three states. Note that the mean income in all three states is 10. Although, there is considerable variation among the citizens. The median is 10, 9.5, and 2 for state A, B, and C, respectively. The mode is 10, 10, and 2 for state A, B, and C, respectively. 
 
-```{r,echo=FALSE}
+```{r SUMthreestates,echo=FALSE}
 knitr::kable(head(states,10),booktabs=TRUE,caption='Income distribution among citizens in three states.')
 ```
 
@@ -18,9 +17,9 @@ $$\sigma^2 = \frac{1}{N} \sum^N_{i=1}(x_i-\mu)^2$$
 
 The sample variance is calculated as follows:
 $$s^2 = \frac{1}{N-1} \sum^N_{i=1}(x_i-\bar{x})^2$$
-The population variance is used to calculate the variance of the entire population. For example, if a professor is interested in calculating the variance associated with the final exam, they would use population variance equation because the class is not a sample of a larger population. The second equation dividing by $N-1$ is used if we have a sample and want to estimate (!) the variance associated with the population. Consider the figure below which illustrates the difference. A randomly generated data set contains 100,000 observations with $\mu=50$ and $\sigma=20$. An simulation procedure takes 1000 sample with sample sizes varying from 2 to 50 (horizontal axis). For each of the sample, the population variance is estimated by dividing by either $N$ or $N-1$. The estimates dividing by $N-1$ are closer to the population standard deviation than for the samples divided by $N$.   
+The population variance is used to calculate the variance of the entire population. For example, if a professor is interested in calculating the variance associated with the final exam, they would use population variance equation because the class is not a sample of a larger population. The second equation dividing by $N-1$ is used if we have a sample and want to estimate (!) the variance associated with the population. Consider the figure below which illustrates the difference. A randomly generated data set contains 100,000 observations with $\mu=50$ and $\sigma=20$. An simulation procedure takes 1000 sample with sample sizes varying from 2 to 50 (horizontal axis). For each of the sample, the population variance is estimated by dividing by either $N$ or $N-1$. The estimates dividing by *N-1* are closer to the population standard deviation than for the samples divided by *N*.   
 
-```{r SUM_samplevariance,echo=FALSE,warning=FALSE}
+```{r SUMsamplevariance,echo=FALSE,warning=FALSE,fig.cap="Difference between dividing by *N* and *N-1* to estimate the variance."}
 pop       = rnorm(100000,mean=50,sd=20)
 n_nminus1 = matrix(0,1000,2)
 out       = matrix(0,50,2)
@@ -43,23 +42,29 @@ rm(n_nminus1,out,out1,out2,i,j,pop,temp)
 The coefficient of variation standardizes the standard deviation $\sigma$ by the mean, i.e., $CV=\sigma/\mu$. Because the magnitude of the standard deviation depends on the mean, it is sometimes necessary to calculate the coefficient of variation to make two or more standard deviations comparable. For example, suppose you are comparing residential home values in California and Indiana. You calculate the mean and standard deviation for California as \$2,000,000 and \$400,000, respectively. The mean and standard deviation for Indiana are \$125,000 and \$50,000, respectively. Calculating the coefficient of variation ($CV$) for both states leads to $CV_{CA} = 0.2$ and $CV_{IN} = 0.4$. Hence, there is much more variation in the home values for Indiana than there is in California.    
 
 ## Histograms
-In almost all cases, a visual inspection of the data is appropriate. Although numerical statistics such as mean and/or standard deviation exist, many fail to easily identify patterns or anomalies. Histograms are probably the most basic method to graphically summarize data and are also good approximations of the probability distributions. Suppose you have a data set $x_1,x_2, \dots, x_n$. You divide the range of values into bins. For example, if a data set ranges from 75 to 155, then a possible bin size could be 10, i.e., $75, 85, \dots, 155$. The height of the bar for each bin is determined by the number of observations in the bin range. Those bins usually have the same size but it is not necessary. Consider the eruption and waiting times of Old Faithful geyser in Yellowstone National Park. Panel (a) and (b) represent the histograms of eruption and waiting time, respectively.
+In almost all cases, a visual inspection of the data is appropriate. Although numerical statistics such as mean and/or standard deviation exist, many fail to easily identify patterns or anomalies. Histograms are probably the most basic method to graphically summarize data and are also good approximations of the probability distributions. Suppose you have a data set $x_1,x_2, \dots, x_n$. You divide the range of values into bins. For example, if a data set ranges from 75 to 155, then a possible bin size could be 10, i.e., 75, 85,..., 155. The height of the bar for each bin is determined by the number of observations in the bin range. Those bins usually have the same size but it is not necessary. Consider the eruption and waiting times of Old Faithful geyser in Yellowstone National Park. Panel (a) and (b) represent the histograms of eruption and waiting time, respectively.
 
-```{r SUM_faithful_histograms,echo=FALSE,fig.cap="Histogram of eruption and waiting time of Old Faithful geyser"}
+```{r SUMfaithfulhistograms,echo=FALSE,fig.cap="Histogram of eruption and waiting time of Old Faithful geyser"}
 faithful = data.frame(faithful)
 par(mfrow=c(1,2))
      hist(faithful$eruptions,main="(a) Eruption Time",xlab="Minutes",xlim=c(1,6),ylim=c(0,80))
      hist(faithful$waiting,main="(b) Waiting Time",xlab="Minutes",xlim=c(40,100),ylim=c(0,60))
 ```
 
-To draw a histogram of the data as shown in figure \ref{fig:SUM_faithful}, use the command `hist(faithful$eruptions)`. Note that you can control the appearance of the histogram by using options `hist(faithful$eruptions,main="Eruption",xlab="Minutes",xlim=c(1,6),ylim=c(0,80))`.
+To draw a histogram of the data as shown in the above figure, use the folling command:
+
+- `hist(faithful$eruptions)`
+
+Note that you can control the appearance of the histogram by using options:
+
+- `hist(faithful$eruptions,main="Eruption",xlab="Minutes",xlim=c(1,6),ylim=c(0,80))`
 
 ## Empirical Cumulative Distribution Function
 The empirical cumulative distribution function can be written as
 $$F_n(x) = \frac{\text{number of elements} \leq x}{n}$$
-Given the previously mentioned Old Faithful data, the empirical cumulative distribution function is shown shown below. An important measure of empirical cumulative distribution functions are quantiles. Quantiles are the values that cut x\% of the distributional area. Below the quantile is a certain share of all values in a set of ordered observations. If the distribution is divided in $n$ equal shares, there are $n-1$ quantiles. Commonly used quantiles are quartiles, quintiles, deciles, and percentiles. Quartiles divide the sample into 4 equal shares, i.e., 3 quartiles: 25\%-, 50\%-, 75\%- quartile. Quintiles divide the sample into 5 equal shares, deciles into 10 equal shares, and percentiles divide the sample into 100 equal shares. Closely related to quartiles is the *interquartile range (IQR)*.
+Given the previously mentioned Old Faithful data, the empirical cumulative distribution function is shown shown below. An important measure of empirical cumulative distribution functions are quantiles. Quantiles are the values that cut x\% of the distributional area. Below the quantile is a certain share of all values in a set of ordered observations. If the distribution is divided in $n$ equal shares, there are *n-1* quantiles. Commonly used quantiles are quartiles, quintiles, deciles, and percentiles. Quartiles divide the sample into 4 equal shares, i.e., 3 quartiles: 25\%-, 50\%-, 75\%- quartile. Quintiles divide the sample into 5 equal shares, deciles into 10 equal shares, and percentiles divide the sample into 100 equal shares. Closely related to quartiles is the *interquartile range (IQR)*.
 
-```{r SUM_faithful_ecdf,echo=FALSE,fig.cap="Empirical cumulative distribution functions of eruption and waiting time of Old Faithful geyser"}
+```{r SUMfaithfulecdf,fig.cap="Empirical cumulative distribution functions of eruption and waiting time of Old Faithful geyser"}
 faithful = data.frame(faithful)
 par(mfrow=c(1,2))
      plot(ecdf(faithful$eruptions),main="Eruption Time",xlab="Minutes",xlim=c(1,6),lty=1)
@@ -69,7 +74,7 @@ par(mfrow=c(1,2))
 ## Boxplots
 Outliers are values that extremely deviate from the mean, i.e., extremely high or low values. Those values limit the explanatory power of the mean. Reasons for outliers can be error in measurement, error of judgement, miscalculation, typo in data matrix, real extraordinary values. To treat outliers, we must know whether they are true values or a mistake. Outliers can be neglected under certain conditions, but it is important to bear them in mind when interpreting results! 
 
-```{r SUM_eucrime,echo=FALSE,fig.cap="2008-2018 Intentional homicides in select European countries, i.e., Albania (AL), Austria (AT), Switzerland (CH), Czech Republic (CZ), Denmark (DK), Estonia (EE), Norway (NO), Sweden (SE), and Slovakia (SK) Source: Eurostat"}
+```{r SUMeucrime,echo=FALSE,fig.cap="2008-2018 Intentional homicides in select European countries, i.e., Albania (AL), Austria (AT), Switzerland (CH), Czech Republic (CZ), Denmark (DK), Estonia (EE), Norway (NO), Sweden (SE), and Slovakia (SK) Source: Eurostat"}
 eucrime = subset(eucrime,geo %in% c("AL","AT","NO","CZ","DK","EE","SK","SE","CH"))
 boxplot(eucrime$values~eucrime$geo,ylab="Number of Intentional Homicides",xlab="",ylim=c(0,200))
 ```
@@ -82,11 +87,11 @@ If the sign of the covariance is positive, then $x$ and $y$ tend to move in the 
 - Property 1: $Var(X+Y)=Var(X)+Var(Y)+ 2 \cdot Cov(X,Y)$
 - Property 2 (Transformation of the covariance): $Cov(r \cdot X+s,t \cdot Y+u)=r \cdot t \cdot Cov(X,Y)$
 
-The most important aspect about correlation (and statistics in general): Correlation does not mean causation. Causation requires a strong theoretical believe that one variable is the cause of another variable, e.g., influence of education on income. The correlation coefficient (sometimes called Pearson's $r$) is defined as 
+The most important aspect about correlation (and statistics in general): Correlation does not mean causation. Causation requires a strong theoretical believe that one variable is the cause of another variable, e.g., influence of education on income. The correlation coefficient (sometimes called Pearson's *r*) is defined as 
 $$\rho(X,Y) = \frac{Cov(X,Y)}{\sqrt{Var(X) \cdot  Var(Y)}}$$
 The correlation coefficient varies between $-1$ and $1$. The Sign provides the direction of the relationship between two variables and the Value provides the magnitude of the relationship. Note that the correlation coefficient has no dimensions!
 
-```{r SUM_correlation,echo=FALSE,fig.cap="Examples of various correlation coefficients"}
+```{r SUMcorrelation,echo=FALSE,fig.cap="Examples of various correlation coefficients"}
 mycorr = function(n,rho){ 
      theta = acos(rho)                            # corresponding angle
      x1    = rnorm(n,1,1)                       # fixed given data
@@ -113,22 +118,21 @@ mycorr = function(n,rho){
 rm(out1,out2,out3,out4,mycorr)
 ```
 
-```{r SUM_mh2_correlation,echo=FALSE,fig.cap="Correlation between the square footage of a home and the price of the home in the Meridian Hills neighborhood in Indianapolis."}
+A second example uses the data `mh2` and the resulting scatter plot is shown below. 
+
+```{r SUMmh2correlation,echo=FALSE,fig.cap="Correlation between the square footage of a home and the price of the home in the Meridian Hills neighborhood in Indianapolis."}
 nobs                = nrow(mh2)
 var_mh2price        = 1/nobs*sum((mh2$price-mean(mh2$price))^2)
 sd_mh2price         = sqrt(var_mh2price)
-#summary(mh2)
-#cov(mh2$price,mh2$sqft)
-#cor(mh2$price,mh2$sqft)
 ggplot(mh2,aes(x=sqft,y=price/1000))+geom_point()+theme_bw()+ylab("Price in thousand $")+
   xlab("Square Footage of Home")+ylim(0,2000)+xlim(0,11000)
 rm(nobs,var_mh2price,sd_mh2price)
 ```
 
 
-The function \texttt{summary} gives you mean, median, and quartiles for the eruption and waiting times. The functions \texttt{var} and \texttt{cor} calculate the variance, covariance, and correlation coefficient associated with the data sets. We will see in subsequent chapters how to interpret the covariance and correlation coefficients.
+The function `summary()` gives you mean, median, and quartiles for the eruption and waiting times. The functions `var()` and `cor()` calculate the variance, covariance, and correlation coefficient associated with the data sets. We will see in subsequent chapters how to interpret the covariance and correlation coefficients.
 
-```{r}
+```{r SUMfaithfulVarCov}
 faithful = data.frame(faithful)
 summary(faithful) 
 var(faithful)
@@ -136,11 +140,13 @@ cor(faithful$eruptions,faithful$waiting)
 ```
 
 
+Note that sometimes, we deal with qualitative data, i.e., data that is not expressed as a number but as an expression. Example are gender (male/female), owning a car (yes/no), modes of commute (car, bike, train, bus, etc.). Consider the data in `gssgun`. One way to count the responses for firearm ownership is to use the following command:
 
-Note that sometimes, we deal with qualitative data, i.e., data that is not expressed as a number but as an expression. Example are gender (male/female), owning a car (yes/no), modes of commute (car, bike, train, bus, etc.). Consider the file \texttt{gss2012}. One way to count the responses for firearm ownership is to use the command \texttt{table(gss\$owngun)}. Suppose you are only interested in people who answer ``yes'' or ``no'' for the questions concerning arrests and firearms ownership. You will have to subset the data.
+- `table(gss$owngun)`
 
-<<SUM_gss2012,echo=TRUE,message=FALSE,warning=FALSE,error=FALSE,include=TRUE,fig.keep="none">>=
-```{r}
+Suppose you are only interested in people who answer *yes* or *no* for the questions concerning arrests and firearms ownership. You will have to subset the data.
+
+```{r SUMgssgun,echo=TRUE}
 CrossTable(gssgun$owngun,gssgun$sex,prop.chisq=FALSE)
 ```
 
@@ -148,11 +154,16 @@ CrossTable(gssgun$owngun,gssgun$sex,prop.chisq=FALSE)
 
 1. *Natural Gas Usage and Temperature*: Use the data `heating` for this exercise. Construct a scatter plot with temperature on the horizontal axis and natural gas usage on the vertical axis. What do you observe? How would you expect the graph to look like if electricity consumption was on the vertical axis?
 
-2. *Household Pulse Survey*: The U.S. Census Bureau has created a weekly survey to *"quickly and efficiently deploy data collected on how people's lives have been impacted by the coronavirus pandemic."* The results are presented weekly (e.g., week 22 represents January 6-18). If you go to the survey's [webpage](https://www.census.gov/data/experimental-data-products/household-pulse-survey.html), you find that you can explore the data using three tools. There is the "Interactive Tool" which uses a graphical user interface to display the data. There are "Data Tables" which represent the aggregate data in Excel files. And lastly, there are "Public Use Files" (PUF) which contain the original data. For this exercise, you will use the PUF of the most recent week available to do the following:
-    - Download the most recent PUF file in csv-format which is denoted "HPS Week X PUF CSV" where $X$ represents the week. Extract the zip-file and you find three csv-files. The two files necessary for this exercise are `pulse2020\_data.dictonary\_CSV\_X.csv` and `pulse2020\_puf\_X.csv` (no need to use the largest file).
-    - Column `Variable` in *pulse2020\_data.dictonary\_CSV\_X.csv* describes the columns in *pulse2020\_puf\_X.csv*. Pick two variables which are of interest to you, e.g., Educational attainment and Frequency of worry over previous 7 days, and construct a cross-table (using the package `gmodels` for example) similar to the one on gun ownership but only include the dimensions of interest. So for example, given the relationship between worrying and education, the R-code would look like this:
+2. *Household Pulse Survey*: The U.S. Census Bureau has created a weekly survey to *quickly and efficiently deploy data collected on how people's lives have been impacted by the coronavirus pandemic.* The results are presented weekly (e.g., week 22 represents January 6-18, 2021). If you go to the survey's [webpage](https://www.census.gov/data/experimental-data-products/household-pulse-survey.html), you find that you can explore the data using three tools. There is the *Interactive Tool* which uses a graphical user interface to display the data. There are *Data Tables* which represent the aggregate data in Excel files. And lastly, there are *Public Use Files* (PUF) which contain the original data. For this exercise, you will use the PUF of the most recent week available to do the following:
 
-```{r,results=FALSE,eval=FALSE, include=FALSE, r,results=FALSE}
+    - Download the most recent PUF file in csv-format which is denoted "HPS Week X PUF CSV" where *X* represents the week. Extract the zip-file and you find three csv-files. The two following files are necessary for this exercise (no need to use the largest file):
+
+        - `pulse2020_data.dictonary_CSV_X.csv`
+        - `pulse2020_puf_X.csv`
+    
+    - Column $Variable$ in *pulse2020_data.dictonary_CSV_X.csv* describes the columns in *pulse2020_puf_X.csv*. Pick two variables which are of interest to you, e.g., Educational attainment and Frequency of worry over previous 7 days, and construct a cross-table (using the package `gmodels` for example) similar to the one on gun ownership but only include the dimensions of interest. So for example, given the relationship between worrying and education, the R-code would look like this:
+
+```{r SUMhouseholdpulsesurvey,results=FALSE,eval=FALSE,include=FALSE}
 hps   = subset(hps,WORRY %in% c(1:4) & EEDUC %in% c(1:7))
 EEDUC = data.frame(EEDUC=c(1:7),
                    EDU=c("Less than high school",
@@ -172,36 +183,36 @@ hps[["prop.row"]]
 ```
     - What is your interpretation of the results obtained in part (b)? Is it what you expected? What do you conclude from a policy perspective? 
 
-3. *Housing Price Index*: Pick one of 49 U.S. States (not Indiana). Go to the [FRED webpage](https://fred.stlouisfed.org/) and download two data series: (1) All-Transactions House Price Index for the United States (USSTHPI) and (2) All-Transactions House Price Index for the state of your choice. Answer the following questions.
+3. *GSS 2018*: In the data set `gss2018`, pick two of the following variables: $fulltime$, $government$, $married$, $vote$, $gun$, $deathpenalty$. Construct a cross-table similar to the one about gender and guns in the section *Introduction to R*.  using the function `CrossTable()`. Ignore the Chi-square statistic but explain if you see any pattern that is of interest.
+
+4. *Airport Delays*: Pick an airport (not IND) and year of your choice in the data set `airlines`. You should be using the function `subset()` to pick year and airport. Next, add a column called $delay$ which is the share of delays from all the arriving flights. Next, construct a boxplot with all the airlines on the x-axis, i.e., one boxplot, and the variable $delay$ on the vertical axis. Interpret the boxplot. Are there airlines which are particularly on time or always late? 
+
+5. *Housing Price Index*: Pick one of 49 U.S. States (not Indiana). Go to the [FRED webpage](https://fred.stlouisfed.org/) and download two data series: (1) All-Transactions House Price Index for the United States (USSTHPI) and (2) All-Transactions House Price Index for the state of your choice. Answer the following questions.
     - What do the two data series describe?
     - Plot the two data series over time. Your result should look similar to Panel (b) in Figure \ref{fig:SUM_exercises}.
     - How do the housing prices evolve in your state compared to the United States. Do homes in your state get more expensive than the general trend? Less? How has the housing market evolved during and after the 2008 recession?
     
-    ```{r SUM_EX_housing,fig.cap="Evolution of the housing price index for the U.S. and Indiana (Source: FRED St. Louis)",echo=FALSE}
-
+    ```{r SUMexhousing,fig.cap="Evolution of the All Transaction House Price Index for the U.S. and Indiana (Source: FRED St. Louis)",echo=FALSE,warning=FALSE}
 ggplot(housing,aes(x=date,y=value,color=Region))+
         geom_line(aes(color=Region))+theme_bw()+ylim(0,500)+
         ylab("Index 1980:Q1=100")+scale_color_brewer(palette="Paired")+
-        ggtitle("(a) All Transaction House Price Index")+
         theme(axis.title.x=element_blank(),legend.position="bottom")
-rm(inhousing,ushousing,housing,rincblls,p1,p2)
+rm(housing)
 ```
 
-4. *BMW Data and Boxplot*: Consider the used car data set \texttt{bmw} for this exercise. The file contains the prices and miles of a particular BMW model in the Indianapolis area. The column \emph{allwheeldrive} indicates whether the car has all wheel drive (=1) or not (=0). You must use the R/RStudio commands and not just look at the data. Answer the following questions:
-\begin{enumerate}
-\item Calculate the following statistics for price and miles: Minimum, maximum, median, and mean.
-\item Calculate the same statistics as in the previous part but separate the data into two groups: (1) with all-wheel drive and (2) without all-wheel drive.
-\item Create a box-and-whisker plot grouped by all-wheel drive. This must be one graph.
-\end{enumerate}
+6. *BMW Data and Boxplot*: Consider the used car data set `bmw` for this exercise which contains the prices and miles of a particular BMW model in the Indianapolis area. The column $allwheeldrive$ indicates whether the car has all wheel drive (1) or not (0). You must use the R/RStudio commands and not just look at the data. Answer the following questions:
+    a. Calculate the following statistics for price and miles: Minimum, maximum, median, and mean.
+    b.  Calculate the same statistics as in the previous part but separate the data into two groups: (1) with all-wheel drive and (2) without all-wheel drive.
+    c. Create a box-and-whisker plot grouped by all-wheel drive. This must be one graph.
 
-5. *EPA Fuel Economy*: Use the 2018 data contained in `*`vehicles` for this problem. 
-    - Generate a scatter plot of the variables `displ` and `comb08U`.  What can you say about the shape of the scatter plot and the relationship between engine displacement and fuel economy. 
-    - Transform both variables into their natural logarithm and plot the scatter plot. What changes?
-    - Create a table summarizing the average fuel economy by vehicle class (VClass) for the following four manufacturers: (1) Ford, (2) Chevrolet, (3) Toyota and (4) Honda. You will have to use the function \texttt{aggregate} for this. 
+7. *EPA Fuel Economy*: Use the 2018 data contained in `vehicles` for this problem. 
+    a. Generate a scatter plot of the variables `displ` and `comb08U`.  What can you say about the shape of the scatter plot and the relationship between engine displacement and fuel economy. 
+    b. Transform both variables into their natural logarithm and plot the scatter plot. What changes?
+    c. Create a table summarizing the average fuel economy by vehicle class (VClass) for the following four manufacturers: (1) Ford, (2) Chevrolet, (3) Toyota and (4) Honda. You will have to use the function `aggregate()` for this. 
 
-6. *GSS Trends*: The General Social Survey is an annual survey tracking societal trends in the United States. For a more detailed description, you can go to [here](https://gss.norc.org/About-The-GSS). In this exercise, I want you pick a particular issue and one breakdown (e.g., age, sex, political affiliation) and plot a graph with R/RStudio on how attitudes about the issue have evolved over time. I suggest, you go to [trends](https://gssdataexplorer.norc.org/trends/) and pick a topic you are interested in. You will see that the website already provides you with a trend graph but I want you to use R/RStudio for this exercise and re-create the graph (i.e., you get zero points if you simply copy the graph provided on the website). For example, suppose you are interested in the variable \emph{rincblls} which asks the respondent ``Do you feel that the income from your job alone is enough to meet your family's usual monthly expenses and bills?'' One of many possibility to plot this with R/RStudio would look like Panel (b) in Figure \ref{fig:SUM_exercises}. Make sure to label the $x$,$y$-axis correctly as well as provide a legend for the graph. 
+8. *GSS Trends*: The General Social Survey is an annual survey tracking societal trends in the United States. For a more detailed description, you can go to [here](https://gss.norc.org/About-The-GSS). In this exercise, I want you pick a particular issue and one breakdown (e.g., age, sex, political affiliation) and plot a graph with R/RStudio on how attitudes about the issue have evolved over time. I suggest, you go to [trends](https://gssdataexplorer.norc.org/trends/) and pick a topic you are interested in. You will see that the website already provides you with a trend graph but I want you to use R/RStudio for this exercise and re-create the graph (i.e., you get zero points if you simply copy the graph provided on the website). For example, suppose you are interested in the variable \emph{rincblls} which asks the respondent ``Do you feel that the income from your job alone is enough to meet your family's usual monthly expenses and bills?'' One of many possibility to plot this with R/RStudio would look like Panel (b) in Figure \ref{fig:SUM_exercises}. Make sure to label the $x$,$y$-axis correctly as well as provide a legend for the graph. 
 
-```{r SUM_EX_enough_income}
+    ```{r SUMEXenoughincome,echo=FALSE}
 years             = seq(2002,2018,4)
 LC                = c(21,35.3,28.4,19.6,39.1)   # Question response: YES (for all)
 LC                = data.frame(years,Class="Lower Class",value=LC)
@@ -215,26 +226,16 @@ rincblls          = rbind(LC,WC,MC,UC)
 rm(LC,MC,UC,WC,years)
 ggplot(rincblls,aes(x=years,y=value,group=Class))+geom_line(aes(linetype=Class))+
         geom_point(aes(shape=Class))+theme_bw()+ylim(0,100)+ylab("Percent")+
-        ggtitle("(b) Income alone is enough to pay pills (Answer: Yes)")+
         theme(axis.title.x=element_blank(),legend.position="bottom")
 ```
 
-7. *WDI Boxplot*: The World Bank data `wdi` contains development indicators and also information how the World Bank classifies those countries by region and income. Focus on the years 1975, 1985, 1995, 2005, and 2015 for this question. Use the command `subset()` to extract those years. Next, you have to install and load the package `gglpot2`. The package `ggplot2` allows you to do some great data visualization. Execute the following lines: 
+9. *WDI Boxplot*: The World Bank data `wdi` contains development indicators and also information how the World Bank classifies those countries by region and income. Focus on the years 1975, 1985, 1995, 2005, and 2015 for this question. Use the command `subset()` to extract those years. Next, you have to install and load the package `gglpot2`. The package `ggplot2` allows you to do some great data visualization. Execute the commands below. The result is a boxplot by region and by year. Based on the resulting plot, explain differences between regions in terms of life expectancy and also in terms of evolution over time. 
 
-```{r SUM_EX_boxplot}
+    ```{r SUMEXboxplotwdi,warning=FALSE,results=FALSE,fig.show='hide'}
 wdiofinterest = subset(wdi,year %in% c(1975,1985,1995,2005,2015))
 ggplot(wdiofinterest,aes(x=region,y=lifeexp,fill=as.character(year)))+
     geom_boxplot(position=position_dodge(1))
 ```
 
-The result are boxplots by region and by year. Based on the resulting plot, explain differences between regions in terms of life expectancy and also in terms of evolution over time. 
 
-8. *Faithful*: The data set `faithful` which is included with R contains data about the eruption  (in minutes) and waiting times between eruptions (in minutes) from Old Faithful geyser in Yellowstone National Park. Use a scatter plot to visualize the relationship between eruption and waiting time. That is, generate graph with "eruption" on the vertical axis and "waiting" on the horizontal axis. What do you observe? What is the correlation coefficient? Is there anything odd in the resulting scatter plot? Next, use R to construct a empirical cumulative distribution function.
-
-\begin{figure}
-\begin{center}
-\includegraphics[width=5in]{SUM_exercises.pdf}
-\end{center}
-\caption{Panel (a): . Panel (b): Possible figure associated with the General Social Survey question ``Do you feel that the income from your job alone is enough to meet your family's usual monthly expenses and bills?'' with a breakdown by self-identified socio-economic class}
-\label{fig:SUM_exercises}
-\end{figure}
+10. *Faithful*: The data set `faithful` which is included with R contains data about the eruption and waiting times in minutes between eruptions from Old Faithful geyser in Yellowstone National Park. Use a scatter plot to visualize the relationship between eruption and waiting time. That is, generate graph with $eruption$ on the vertical axis and $waiting$ on the horizontal axis. What do you observe? What is the correlation coefficient? Is there anything odd in the resulting scatter plot? Next, use R to construct a empirical cumulative distribution function.

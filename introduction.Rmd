@@ -45,7 +45,7 @@ We are surrounded by probability and statistics on a daily basis because the wor
 
 If you are working and receiving retirement benefits, you are likely investing those in mutual fund. The saying "do not put all your eggs in one basket" applies in this context. The figure below shows the evolution of Vanguard 500 Index Fund Investor Shares (VFINX) and the Fidelity Select Retailing Portfolio (FSRPX). Although not perfectly, the funds generally move in the same direction.  
 
-```{r INT_mf_plot1,echo=FALSE,warning=FALSE,fig.cap="Evolution of the Vanguard 500 Index Fund Investor Shares (VFINX) and Fidelity Select Retailing Portfolio (FSRPX)"}
+```{r INTmfplot1,echo=FALSE,warning=FALSE,fig.cap="Evolution of the Vanguard 500 Index Fund Investor Shares (VFINX) and Fidelity Select Retailing Portfolio (FSRPX)"}
 fund                = c("VFINX","FSRPX")
 funddata            = getSymbols(fund[1],src="yahoo",return.class='xts',auto.assign=FALSE,
                                  from="2014-01-01",to=Sys.Date())
@@ -73,10 +73,9 @@ ggplot(data=funddata,aes(x=date,y=value,color=Ticker))+geom_line()+
      theme_bw()+theme(legend.position="bottom")
 ```
 
-```{r INT_mf_plot2,echo=FALSE,warning=FALSE,fig.cap="Scatter plot and indication of frequency of the daily returns of VFINX and FSRPX"}
-ggplot(returndata,aes(VFINX,FSRPX))+
-     geom_bin2d(binwidth=c(0.002,0.002))+
-     theme_bw()+theme(legend.position="bottom")
+```{r INTmfplot2,echo=FALSE,warning=FALSE,fig.cap="Scatter plot and indication of frequency of the daily returns of VFINX and FSRPX"}
+ggplot(returndata,aes(VFINX,FSRPX))+geom_bin2d(binwidth=c(0.002,0.002))+theme_bw()+theme(legend.position="bottom")
+rm(fund,funddata,temp,data1,data2,returndata)
 ```
 
 Both graphs indicate a certain degree of positive association between the returns, i.e., if one of the mutual funds increases, the other tends to increase as well (and vice versa).

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>4 Summarizing Data | Data Analysis for Public Affairs with R</title>
   <meta name="description" content="4 Summarizing Data | Data Analysis for Public Affairs with R" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
 
   <meta property="og:title" content="4 Summarizing Data | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
@@ -24,16 +24,16 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2021-08-25" />
+<meta name="date" content="2021-09-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="merging-datasets.html"/>
+<link rel="prev" href="data-in-r.html"/>
 <link rel="next" href="measures-of-central-tendency.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -157,16 +157,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.4.2" data-path="data-in-r.html"><a href="data-in-r.html#creating-a-data-frame-from-scratch"><i class="fa fa-check"></i><b>3.4.2</b> Creating a Data Frame from Scratch</a></li>
 <li class="chapter" data-level="3.4.3" data-path="data-in-r.html"><a href="data-in-r.html#in-class-exercise-2"><i class="fa fa-check"></i><b>3.4.3</b> In-class Exercise 2</a></li>
 <li class="chapter" data-level="3.4.4" data-path="data-in-r.html"><a href="data-in-r.html#indexing"><i class="fa fa-check"></i><b>3.4.4</b> Indexing</a></li>
+<li class="chapter" data-level="3.4.5" data-path="data-in-r.html"><a href="data-in-r.html#importing-data-into-r"><i class="fa fa-check"></i><b>3.4.5</b> Importing Data into R</a></li>
+<li class="chapter" data-level="3.4.6" data-path="data-in-r.html"><a href="data-in-r.html#sub-setting-a-data-frame"><i class="fa fa-check"></i><b>3.4.6</b> Sub-setting a Data Frame</a></li>
+<li class="chapter" data-level="3.4.7" data-path="data-in-r.html"><a href="data-in-r.html#in-class-exercises-3"><i class="fa fa-check"></i><b>3.4.7</b> In-class Exercises 3</a></li>
+<li class="chapter" data-level="3.4.8" data-path="data-in-r.html"><a href="data-in-r.html#aggregating-data"><i class="fa fa-check"></i><b>3.4.8</b> Aggregating Data</a></li>
+<li class="chapter" data-level="3.4.9" data-path="data-in-r.html"><a href="data-in-r.html#writing-data-frame-to-.csv-file"><i class="fa fa-check"></i><b>3.4.9</b> Writing Data Frame to .csv-File</a></li>
+<li class="chapter" data-level="3.4.10" data-path="data-in-r.html"><a href="data-in-r.html#reshaping-data-from-long-to-wide-and-viceversa"><i class="fa fa-check"></i><b>3.4.10</b> Reshaping Data from Long to Wide and Viceversa</a></li>
+<li class="chapter" data-level="3.4.11" data-path="data-in-r.html"><a href="data-in-r.html#extending-the-basic-table-function"><i class="fa fa-check"></i><b>3.4.11</b> Extending the Basic <code>table()</code> Function</a></li>
+<li class="chapter" data-level="3.4.12" data-path="data-in-r.html"><a href="data-in-r.html#merging-datasets"><i class="fa fa-check"></i><b>3.4.12</b> Merging Datasets</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="importing-data-into-r.html"><a href="importing-data-into-r.html"><i class="fa fa-check"></i><b>3.5</b> Importing Data into R</a></li>
-<li class="chapter" data-level="3.6" data-path="sub-setting-a-data-frame.html"><a href="sub-setting-a-data-frame.html"><i class="fa fa-check"></i><b>3.6</b> Sub-setting a Data Frame</a><ul>
-<li class="chapter" data-level="3.6.1" data-path="sub-setting-a-data-frame.html"><a href="sub-setting-a-data-frame.html#in-class-exercises-3"><i class="fa fa-check"></i><b>3.6.1</b> In-class Exercises 3</a></li>
-</ul></li>
-<li class="chapter" data-level="3.7" data-path="aggregating-data.html"><a href="aggregating-data.html"><i class="fa fa-check"></i><b>3.7</b> Aggregating Data</a></li>
-<li class="chapter" data-level="3.8" data-path="writing-data-frame-to-csv-file.html"><a href="writing-data-frame-to-csv-file.html"><i class="fa fa-check"></i><b>3.8</b> Writing Data Frame to .csv-File</a></li>
-<li class="chapter" data-level="3.9" data-path="reshaping-data-from-long-to-wide-and-viceversa.html"><a href="reshaping-data-from-long-to-wide-and-viceversa.html"><i class="fa fa-check"></i><b>3.9</b> Reshaping Data from Long to Wide and Viceversa</a></li>
-<li class="chapter" data-level="3.10" data-path="extending-the-basic-table-function.html"><a href="extending-the-basic-table-function.html"><i class="fa fa-check"></i><b>3.10</b> Extending the Basic <code>table()</code> Function</a></li>
-<li class="chapter" data-level="3.11" data-path="merging-datasets.html"><a href="merging-datasets.html"><i class="fa fa-check"></i><b>3.11</b> Merging Datasets</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="summarizing-data.html"><a href="summarizing-data.html"><i class="fa fa-check"></i><b>4</b> Summarizing Data</a><ul>
 <li class="chapter" data-level="4.1" data-path="measures-of-central-tendency.html"><a href="measures-of-central-tendency.html"><i class="fa fa-check"></i><b>4.1</b> Measures of Central Tendency</a></li>
@@ -296,7 +295,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="merging-datasets.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="data-in-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="measures-of-central-tendency.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
@@ -341,6 +340,10 @@ gitbook.start({
 "text": null
 },
 "download": ["bookdownproj.pdf"],
+"search": {
+"engine": "lunr",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

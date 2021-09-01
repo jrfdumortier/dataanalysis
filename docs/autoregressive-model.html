@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>13.4 Autoregressive Model | Data Analysis for Public Affairs with R</title>
   <meta name="description" content="13.4 Autoregressive Model | Data Analysis for Public Affairs with R" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
 
   <meta property="og:title" content="13.4 Autoregressive Model | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2021-08-25" />
+<meta name="date" content="2021-09-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="basic-theoretical-aspects-of-time-series.html"/>
 <link rel="next" href="moving-average-models.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -157,16 +157,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.4.2" data-path="data-in-r.html"><a href="data-in-r.html#creating-a-data-frame-from-scratch"><i class="fa fa-check"></i><b>3.4.2</b> Creating a Data Frame from Scratch</a></li>
 <li class="chapter" data-level="3.4.3" data-path="data-in-r.html"><a href="data-in-r.html#in-class-exercise-2"><i class="fa fa-check"></i><b>3.4.3</b> In-class Exercise 2</a></li>
 <li class="chapter" data-level="3.4.4" data-path="data-in-r.html"><a href="data-in-r.html#indexing"><i class="fa fa-check"></i><b>3.4.4</b> Indexing</a></li>
+<li class="chapter" data-level="3.4.5" data-path="data-in-r.html"><a href="data-in-r.html#importing-data-into-r"><i class="fa fa-check"></i><b>3.4.5</b> Importing Data into R</a></li>
+<li class="chapter" data-level="3.4.6" data-path="data-in-r.html"><a href="data-in-r.html#sub-setting-a-data-frame"><i class="fa fa-check"></i><b>3.4.6</b> Sub-setting a Data Frame</a></li>
+<li class="chapter" data-level="3.4.7" data-path="data-in-r.html"><a href="data-in-r.html#in-class-exercises-3"><i class="fa fa-check"></i><b>3.4.7</b> In-class Exercises 3</a></li>
+<li class="chapter" data-level="3.4.8" data-path="data-in-r.html"><a href="data-in-r.html#aggregating-data"><i class="fa fa-check"></i><b>3.4.8</b> Aggregating Data</a></li>
+<li class="chapter" data-level="3.4.9" data-path="data-in-r.html"><a href="data-in-r.html#writing-data-frame-to-.csv-file"><i class="fa fa-check"></i><b>3.4.9</b> Writing Data Frame to .csv-File</a></li>
+<li class="chapter" data-level="3.4.10" data-path="data-in-r.html"><a href="data-in-r.html#reshaping-data-from-long-to-wide-and-viceversa"><i class="fa fa-check"></i><b>3.4.10</b> Reshaping Data from Long to Wide and Viceversa</a></li>
+<li class="chapter" data-level="3.4.11" data-path="data-in-r.html"><a href="data-in-r.html#extending-the-basic-table-function"><i class="fa fa-check"></i><b>3.4.11</b> Extending the Basic <code>table()</code> Function</a></li>
+<li class="chapter" data-level="3.4.12" data-path="data-in-r.html"><a href="data-in-r.html#merging-datasets"><i class="fa fa-check"></i><b>3.4.12</b> Merging Datasets</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="importing-data-into-r.html"><a href="importing-data-into-r.html"><i class="fa fa-check"></i><b>3.5</b> Importing Data into R</a></li>
-<li class="chapter" data-level="3.6" data-path="sub-setting-a-data-frame.html"><a href="sub-setting-a-data-frame.html"><i class="fa fa-check"></i><b>3.6</b> Sub-setting a Data Frame</a><ul>
-<li class="chapter" data-level="3.6.1" data-path="sub-setting-a-data-frame.html"><a href="sub-setting-a-data-frame.html#in-class-exercises-3"><i class="fa fa-check"></i><b>3.6.1</b> In-class Exercises 3</a></li>
-</ul></li>
-<li class="chapter" data-level="3.7" data-path="aggregating-data.html"><a href="aggregating-data.html"><i class="fa fa-check"></i><b>3.7</b> Aggregating Data</a></li>
-<li class="chapter" data-level="3.8" data-path="writing-data-frame-to-csv-file.html"><a href="writing-data-frame-to-csv-file.html"><i class="fa fa-check"></i><b>3.8</b> Writing Data Frame to .csv-File</a></li>
-<li class="chapter" data-level="3.9" data-path="reshaping-data-from-long-to-wide-and-viceversa.html"><a href="reshaping-data-from-long-to-wide-and-viceversa.html"><i class="fa fa-check"></i><b>3.9</b> Reshaping Data from Long to Wide and Viceversa</a></li>
-<li class="chapter" data-level="3.10" data-path="extending-the-basic-table-function.html"><a href="extending-the-basic-table-function.html"><i class="fa fa-check"></i><b>3.10</b> Extending the Basic <code>table()</code> Function</a></li>
-<li class="chapter" data-level="3.11" data-path="merging-datasets.html"><a href="merging-datasets.html"><i class="fa fa-check"></i><b>3.11</b> Merging Datasets</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="summarizing-data.html"><a href="summarizing-data.html"><i class="fa fa-check"></i><b>4</b> Summarizing Data</a><ul>
 <li class="chapter" data-level="4.1" data-path="measures-of-central-tendency.html"><a href="measures-of-central-tendency.html"><i class="fa fa-check"></i><b>4.1</b> Measures of Central Tendency</a></li>
@@ -292,12 +291,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>An autoregressive model includes lagged dependent variables. One of the simplest model is an autoregressive model of order 1, i.e., an AR(1) Model
 <span class="math display">\[y_t = \alpha + \beta \cdot y_{t-1} + \epsilon_t\]</span>
 where <span class="math inline">\(\epsilon_t \sim N(0,\sigma^2)\)</span>. Consider the data of earthquakes over magnitude 7 in the data set <code>quakes</code>:
-<img src="bookdownproj_files/figure-html/unnamed-chunk-65-1.png" width="672" /></p>
+<img src="bookdownproj_files/figure-html/unnamed-chunk-62-1.png" width="672" /></p>
 <p>In a first step, a scatter plot is constructed of <span class="math inline">\(Y_{t-1}\)</span> and <span class="math inline">\(y_t\)</span>. The easiest way is to use the function <code>acf</code>:
-<img src="bookdownproj_files/figure-html/unnamed-chunk-66-1.png" width="672" /></p>
+<img src="bookdownproj_files/figure-html/unnamed-chunk-63-1.png" width="672" /></p>
 <pre><code>## [1] 0.2486712</code></pre>
 <p>The correlation coefficicent of 0.25 indicates a weak positive correlation between the number of earthquakes in periods <span class="math inline">\(t\)</span> and <span class="math inline">\(t-1\)</span>. Remember that correlation is not causation. The AR(1) model can be estimated with the <code>lm()</code> function used previously:</p>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="autoregressive-model.html#cb167-1"></a><span class="kw">summary</span>(<span class="kw">lm</span>(quakes<span class="op">~</span><span class="kw">Lag</span>(quakes),<span class="dt">data=</span>quakes))</span></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="autoregressive-model.html#cb164-1"></a><span class="kw">summary</span>(<span class="kw">lm</span>(quakes<span class="op">~</span><span class="kw">Lag</span>(quakes),<span class="dt">data=</span>quakes))</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = quakes ~ Lag(quakes), data = quakes)
@@ -320,13 +319,13 @@ where <span class="math inline">\(\epsilon_t \sim N(0,\sigma^2)\)</span>. Consid
 <p>Note that although the slope coefficient associated with the lagged term is statistically significant, the R-squared value is very low.
 The third examples uses data on Japanese car production (<code>jcars</code>) to illustrate the concept of autocorrelation. The focus is on car production after 1963.</p>
 <p>In a first step, the data is visualized using <code>ggplot</code>:</p>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="autoregressive-model.html#cb169-1"></a><span class="kw">ggplot</span>(jcars,<span class="kw">aes</span>(<span class="dt">x=</span>year,<span class="dt">y=</span>cars))<span class="op">+</span><span class="kw">geom_line</span>()<span class="op">+</span><span class="kw">theme_bw</span>()<span class="op">+</span><span class="kw">theme</span>(<span class="dt">axis.title.x=</span><span class="kw">element_blank</span>())</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-69-1.png" width="672" /></p>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="autoregressive-model.html#cb166-1"></a><span class="kw">ggplot</span>(jcars,<span class="kw">aes</span>(<span class="dt">x=</span>year,<span class="dt">y=</span>cars))<span class="op">+</span><span class="kw">geom_line</span>()<span class="op">+</span><span class="kw">theme_bw</span>()<span class="op">+</span><span class="kw">theme</span>(<span class="dt">axis.title.x=</span><span class="kw">element_blank</span>())</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-66-1.png" width="672" /></p>
 <p>The sample autocorrelation function (ACF) is the correlation between <span class="math inline">\(y_t\)</span> and <span class="math inline">\(y_{t-1}\)</span>, <span class="math inline">\(y_{t-2}\)</span>, <span class="math inline">\(y_{t-3}\)</span>, and so on. It can be written as follows:
 <span class="math display">\[\rho_j = \frac{Cov(y_t,y_{t-j})}{\sqrt{Var(y_t)\cdot Var(y_{t-j})}}\]</span></p>
 <p>The ACF can be used to identify a possible structure of time series either of the actual time series or the residuals of the regression. The autocorrelation function (ACF) is plotted using the function <code>acf()</code> in R.</p>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="autoregressive-model.html#cb170-1"></a><span class="kw">acf</span>(jcars<span class="op">$</span>cars)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-70-1.png" width="672" /></p>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="autoregressive-model.html#cb167-1"></a><span class="kw">acf</span>(jcars<span class="op">$</span>cars)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-67-1.png" width="672" /></p>
 </div>
             </section>
 
@@ -378,6 +377,10 @@ gitbook.start({
 "text": null
 },
 "download": ["bookdownproj.pdf"],
+"search": {
+"engine": "lunr",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>13.2 Finite Distributed Lag Models | Data Analysis for Public Affairs with R</title>
   <meta name="description" content="13.2 Finite Distributed Lag Models | Data Analysis for Public Affairs with R" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
 
   <meta property="og:title" content="13.2 Finite Distributed Lag Models | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2021-08-25" />
+<meta name="date" content="2021-09-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="trend-and-seasonality.html"/>
 <link rel="next" href="basic-theoretical-aspects-of-time-series.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -157,16 +157,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.4.2" data-path="data-in-r.html"><a href="data-in-r.html#creating-a-data-frame-from-scratch"><i class="fa fa-check"></i><b>3.4.2</b> Creating a Data Frame from Scratch</a></li>
 <li class="chapter" data-level="3.4.3" data-path="data-in-r.html"><a href="data-in-r.html#in-class-exercise-2"><i class="fa fa-check"></i><b>3.4.3</b> In-class Exercise 2</a></li>
 <li class="chapter" data-level="3.4.4" data-path="data-in-r.html"><a href="data-in-r.html#indexing"><i class="fa fa-check"></i><b>3.4.4</b> Indexing</a></li>
+<li class="chapter" data-level="3.4.5" data-path="data-in-r.html"><a href="data-in-r.html#importing-data-into-r"><i class="fa fa-check"></i><b>3.4.5</b> Importing Data into R</a></li>
+<li class="chapter" data-level="3.4.6" data-path="data-in-r.html"><a href="data-in-r.html#sub-setting-a-data-frame"><i class="fa fa-check"></i><b>3.4.6</b> Sub-setting a Data Frame</a></li>
+<li class="chapter" data-level="3.4.7" data-path="data-in-r.html"><a href="data-in-r.html#in-class-exercises-3"><i class="fa fa-check"></i><b>3.4.7</b> In-class Exercises 3</a></li>
+<li class="chapter" data-level="3.4.8" data-path="data-in-r.html"><a href="data-in-r.html#aggregating-data"><i class="fa fa-check"></i><b>3.4.8</b> Aggregating Data</a></li>
+<li class="chapter" data-level="3.4.9" data-path="data-in-r.html"><a href="data-in-r.html#writing-data-frame-to-.csv-file"><i class="fa fa-check"></i><b>3.4.9</b> Writing Data Frame to .csv-File</a></li>
+<li class="chapter" data-level="3.4.10" data-path="data-in-r.html"><a href="data-in-r.html#reshaping-data-from-long-to-wide-and-viceversa"><i class="fa fa-check"></i><b>3.4.10</b> Reshaping Data from Long to Wide and Viceversa</a></li>
+<li class="chapter" data-level="3.4.11" data-path="data-in-r.html"><a href="data-in-r.html#extending-the-basic-table-function"><i class="fa fa-check"></i><b>3.4.11</b> Extending the Basic <code>table()</code> Function</a></li>
+<li class="chapter" data-level="3.4.12" data-path="data-in-r.html"><a href="data-in-r.html#merging-datasets"><i class="fa fa-check"></i><b>3.4.12</b> Merging Datasets</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="importing-data-into-r.html"><a href="importing-data-into-r.html"><i class="fa fa-check"></i><b>3.5</b> Importing Data into R</a></li>
-<li class="chapter" data-level="3.6" data-path="sub-setting-a-data-frame.html"><a href="sub-setting-a-data-frame.html"><i class="fa fa-check"></i><b>3.6</b> Sub-setting a Data Frame</a><ul>
-<li class="chapter" data-level="3.6.1" data-path="sub-setting-a-data-frame.html"><a href="sub-setting-a-data-frame.html#in-class-exercises-3"><i class="fa fa-check"></i><b>3.6.1</b> In-class Exercises 3</a></li>
-</ul></li>
-<li class="chapter" data-level="3.7" data-path="aggregating-data.html"><a href="aggregating-data.html"><i class="fa fa-check"></i><b>3.7</b> Aggregating Data</a></li>
-<li class="chapter" data-level="3.8" data-path="writing-data-frame-to-csv-file.html"><a href="writing-data-frame-to-csv-file.html"><i class="fa fa-check"></i><b>3.8</b> Writing Data Frame to .csv-File</a></li>
-<li class="chapter" data-level="3.9" data-path="reshaping-data-from-long-to-wide-and-viceversa.html"><a href="reshaping-data-from-long-to-wide-and-viceversa.html"><i class="fa fa-check"></i><b>3.9</b> Reshaping Data from Long to Wide and Viceversa</a></li>
-<li class="chapter" data-level="3.10" data-path="extending-the-basic-table-function.html"><a href="extending-the-basic-table-function.html"><i class="fa fa-check"></i><b>3.10</b> Extending the Basic <code>table()</code> Function</a></li>
-<li class="chapter" data-level="3.11" data-path="merging-datasets.html"><a href="merging-datasets.html"><i class="fa fa-check"></i><b>3.11</b> Merging Datasets</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="summarizing-data.html"><a href="summarizing-data.html"><i class="fa fa-check"></i><b>4</b> Summarizing Data</a><ul>
 <li class="chapter" data-level="4.1" data-path="measures-of-central-tendency.html"><a href="measures-of-central-tendency.html"><i class="fa fa-check"></i><b>4.1</b> Measures of Central Tendency</a></li>
@@ -315,32 +314,32 @@ Characteristics of this assumption:</p>
 <p>The reformulated equation to be estimated is
 <span class="math display">\[y_t = \alpha \cdot (1-\lambda) + \beta_0 \cdot x_t + \lambda \cdot y_{t-1} + \upsilon_t\]</span>
 The notation of the error term has changed from <span class="math inline">\(\epsilon_t\)</span> to <span class="math inline">\(\upsilon_t\)</span> in order to highlight that the terms will be different.</p>
-<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="finite-distributed-lag-models.html#cb161-1"></a>koyck =<span class="st"> </span>usdata</span>
-<span id="cb161-2"><a href="finite-distributed-lag-models.html#cb161-2"></a>koyck<span class="op">$</span>year =<span class="st"> </span><span class="kw">substr</span>(koyck<span class="op">$</span>date,<span class="dv">1</span>,<span class="dv">4</span>)</span>
-<span id="cb161-3"><a href="finite-distributed-lag-models.html#cb161-3"></a>koyck =<span class="st"> </span><span class="kw">aggregate</span>(koyck[<span class="kw">c</span>(<span class="st">&quot;income&quot;</span>,<span class="st">&quot;consumption&quot;</span>)],<span class="dt">FUN=</span>sum,<span class="dt">by=</span><span class="kw">list</span>(koyck<span class="op">$</span>year))</span>
-<span id="cb161-4"><a href="finite-distributed-lag-models.html#cb161-4"></a><span class="kw">colnames</span>(koyck) =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;year&quot;</span>,<span class="st">&quot;income&quot;</span>,<span class="st">&quot;consumption&quot;</span>)</span>
-<span id="cb161-5"><a href="finite-distributed-lag-models.html#cb161-5"></a>bhat =<span class="st"> </span><span class="kw">lm</span>(<span class="dt">formula =</span> consumption <span class="op">~</span><span class="st"> </span>income <span class="op">+</span><span class="st"> </span><span class="kw">Lag</span>(consumption), <span class="dt">data =</span> koyck)</span>
-<span id="cb161-6"><a href="finite-distributed-lag-models.html#cb161-6"></a><span class="kw">summary</span>(bhat)</span></code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="finite-distributed-lag-models.html#cb158-1"></a>koyck =<span class="st"> </span>usdata</span>
+<span id="cb158-2"><a href="finite-distributed-lag-models.html#cb158-2"></a>koyck<span class="op">$</span>year =<span class="st"> </span><span class="kw">substr</span>(koyck<span class="op">$</span>date,<span class="dv">1</span>,<span class="dv">4</span>)</span>
+<span id="cb158-3"><a href="finite-distributed-lag-models.html#cb158-3"></a>koyck =<span class="st"> </span><span class="kw">aggregate</span>(koyck[<span class="kw">c</span>(<span class="st">&quot;income&quot;</span>,<span class="st">&quot;consumption&quot;</span>)],<span class="dt">FUN=</span>sum,<span class="dt">by=</span><span class="kw">list</span>(koyck<span class="op">$</span>year))</span>
+<span id="cb158-4"><a href="finite-distributed-lag-models.html#cb158-4"></a><span class="kw">colnames</span>(koyck) =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;year&quot;</span>,<span class="st">&quot;income&quot;</span>,<span class="st">&quot;consumption&quot;</span>)</span>
+<span id="cb158-5"><a href="finite-distributed-lag-models.html#cb158-5"></a>bhat =<span class="st"> </span><span class="kw">lm</span>(<span class="dt">formula =</span> consumption <span class="op">~</span><span class="st"> </span>income <span class="op">+</span><span class="st"> </span><span class="kw">Lag</span>(consumption), <span class="dt">data =</span> koyck)</span>
+<span id="cb158-6"><a href="finite-distributed-lag-models.html#cb158-6"></a><span class="kw">summary</span>(bhat)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = consumption ~ income + Lag(consumption), data = koyck)
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
-## -17058.0  -1090.9    218.5   1212.4   5945.7 
+## -17246.9  -1043.4    204.7   1173.2   6082.1 
 ## 
 ## Coefficients:
 ##                    Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)      -2.362e+03  8.294e+02  -2.847  0.00576 ** 
-## income            9.241e-01  2.325e-02  39.742  &lt; 2e-16 ***
-## Lag(consumption) -1.838e-02  2.549e-02  -0.721  0.47309    
+## (Intercept)      -2.407e+03  8.770e+02  -2.745  0.00766 ** 
+## income            9.174e-01  3.857e-02  23.786  &lt; 2e-16 ***
+## Lag(consumption) -9.825e-03  4.182e-02  -0.235  0.81493    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 2803 on 71 degrees of freedom
+## Residual standard error: 2904 on 71 degrees of freedom
 ##   (1 observation deleted due to missingness)
-## Multiple R-squared:  0.9951, Adjusted R-squared:  0.9949 
-## F-statistic:  7136 on 2 and 71 DF,  p-value: &lt; 2.2e-16</code></pre>
+## Multiple R-squared:  0.9946, Adjusted R-squared:  0.9944 
+## F-statistic:  6488 on 2 and 71 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
             </section>
 
@@ -392,6 +391,10 @@ gitbook.start({
 "text": null
 },
 "download": ["bookdownproj.pdf"],
+"search": {
+"engine": "lunr",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }
