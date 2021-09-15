@@ -203,7 +203,7 @@ rm(housing)
 6. *BMW Data and Boxplot*: Consider the used car data set `bmw` for this exercise which contains the prices and miles of a particular BMW model in the Indianapolis area. The column $allwheeldrive$ indicates whether the car has all wheel drive (1) or not (0). You must use the R/RStudio commands and not just look at the data. Answer the following questions:
     a. Calculate the following statistics for price and miles: Minimum, maximum, median, and mean.
     b.  Calculate the same statistics as in the previous part but separate the data into two groups: (1) with all-wheel drive and (2) without all-wheel drive.
-    c. Create a box-and-whisker plot grouped by all-wheel drive. This must be one graph.
+    c. Use the data on prices only. Create a box-and-whisker plot grouped by all-wheel drive. This must be one graph.
 
 7. *EPA Fuel Economy*: Use the 2018 data contained in `vehicles` for this problem. 
     a. Generate a scatter plot of the variables `displ` and `comb08U`.  What can you say about the shape of the scatter plot and the relationship between engine displacement and fuel economy. 

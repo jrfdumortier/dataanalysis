@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>10.3 Exercises | Data Analysis for Public Affairs with R</title>
-  <meta name="description" content="10.3 Exercises | Data Analysis for Public Affairs with R" />
+  <title>11.6 Exercises | Data Analysis for Public Affairs with R</title>
+  <meta name="description" content="11.6 Exercises | Data Analysis for Public Affairs with R" />
   <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="10.3 Exercises | Data Analysis for Public Affairs with R" />
+  <meta property="og:title" content="11.6 Exercises | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="10.3 Exercises | Data Analysis for Public Affairs with R" />
+  <meta name="twitter:title" content="11.6 Exercises | Data Analysis for Public Affairs with R" />
   
   
   
@@ -24,15 +24,15 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2021-09-01" />
+<meta name="date" content="2021-09-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="multinomial-logit-and-multinomial-probit-models.html"/>
-<link rel="next" href="limited-dependent-variable-models.html"/>
+<link rel="prev" href="survival-analysis.html"/>
+<link rel="next" href="panel-data.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -180,7 +180,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.1" data-path="sample-spaces-outcomes-events-and-set-operations.html"><a href="sample-spaces-outcomes-events-and-set-operations.html"><i class="fa fa-check"></i><b>5.1</b> Sample Spaces, Outcomes, Events, and Set Operations</a></li>
 <li class="chapter" data-level="5.2" data-path="probability-of-a-union.html"><a href="probability-of-a-union.html"><i class="fa fa-check"></i><b>5.2</b> Probability of a Union</a></li>
 <li class="chapter" data-level="5.3" data-path="probability-of-an-intersection.html"><a href="probability-of-an-intersection.html"><i class="fa fa-check"></i><b>5.3</b> Probability of an Intersection</a></li>
-<li class="chapter" data-level="5.4" data-path="conditional-probability-and-independence.html"><a href="conditional-probability-and-independence.html"><i class="fa fa-check"></i><b>5.4</b> Conditional Probability and Independence</a></li>
+<li class="chapter" data-level="5.4" data-path="conditional-probability.html"><a href="conditional-probability.html"><i class="fa fa-check"></i><b>5.4</b> Conditional Probability</a></li>
 <li class="chapter" data-level="5.5" data-path="independence.html"><a href="independence.html"><i class="fa fa-check"></i><b>5.5</b> Independence</a><ul>
 <li class="chapter" data-level="5.5.1" data-path="independence.html"><a href="independence.html#birthday-problem"><i class="fa fa-check"></i><b>5.5.1</b> Birthday Problem</a></li>
 </ul></li>
@@ -189,13 +189,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.7.1" data-path="combinatorial-methods.html"><a href="combinatorial-methods.html#permutations"><i class="fa fa-check"></i><b>5.7.1</b> Permutations</a></li>
 <li class="chapter" data-level="5.7.2" data-path="combinatorial-methods.html"><a href="combinatorial-methods.html#combinations"><i class="fa fa-check"></i><b>5.7.2</b> Combinations</a></li>
 </ul></li>
-<li class="chapter" data-level="5.8" data-path="exercises-1.html"><a href="exercises-1.html"><i class="fa fa-check"></i><b>5.8</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="basic-multivariate-regression.html"><a href="basic-multivariate-regression.html"><i class="fa fa-check"></i><b>6</b> Basic Multivariate Regression</a><ul>
 <li class="chapter" data-level="6.1" data-path="dummy-variables.html"><a href="dummy-variables.html"><i class="fa fa-check"></i><b>6.1</b> Dummy Variables</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="anova.html"><a href="anova.html"><i class="fa fa-check"></i><b>7</b> ANOVA</a><ul>
-<li class="chapter" data-level="7.1" data-path="exercises-2.html"><a href="exercises-2.html"><i class="fa fa-check"></i><b>7.1</b> Exercises</a></li>
+<li class="chapter" data-level="7.1" data-path="exercises-1.html"><a href="exercises-1.html"><i class="fa fa-check"></i><b>7.1</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="violating-assumptions.html"><a href="violating-assumptions.html"><i class="fa fa-check"></i><b>8</b> Violating Assumptions</a><ul>
 <li class="chapter" data-level="8.1" data-path="heteroscedasticity.html"><a href="heteroscedasticity.html"><i class="fa fa-check"></i><b>8.1</b> Heteroscedasticity</a><ul>
@@ -211,7 +210,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.4.1" data-path="autocorrelation.html"><a href="autocorrelation.html#durbin-watson-d-test"><i class="fa fa-check"></i><b>8.4.1</b> Durbin Watson d-Test</a></li>
 <li class="chapter" data-level="8.4.2" data-path="autocorrelation.html"><a href="autocorrelation.html#breusch-godfrey-test"><i class="fa fa-check"></i><b>8.4.2</b> Breusch-Godfrey Test</a></li>
 </ul></li>
-<li class="chapter" data-level="8.5" data-path="exercises-3.html"><a href="exercises-3.html"><i class="fa fa-check"></i><b>8.5</b> Exercises</a></li>
+<li class="chapter" data-level="8.5" data-path="exercises-2.html"><a href="exercises-2.html"><i class="fa fa-check"></i><b>8.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="binary-choice.html"><a href="binary-choice.html"><i class="fa fa-check"></i><b>9</b> Binary Choice</a><ul>
 <li class="chapter" data-level="9.1" data-path="binary-choice-estimation-in-r.html"><a href="binary-choice-estimation-in-r.html"><i class="fa fa-check"></i><b>9.1</b> Binary Choice Estimation in R</a></li>
@@ -219,7 +218,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.2.1" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html#full-time-work"><i class="fa fa-check"></i><b>9.2.1</b> Full-Time Work</a></li>
 <li class="chapter" data-level="9.2.2" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html#voting-behavior"><i class="fa fa-check"></i><b>9.2.2</b> Voting Behavior</a></li>
 </ul></li>
-<li class="chapter" data-level="9.3" data-path="exercises-4.html"><a href="exercises-4.html"><i class="fa fa-check"></i><b>9.3</b> Exercises</a></li>
+<li class="chapter" data-level="9.3" data-path="exercises-3.html"><a href="exercises-3.html"><i class="fa fa-check"></i><b>9.3</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="qualitative-choice-models.html"><a href="qualitative-choice-models.html"><i class="fa fa-check"></i><b>10</b> Qualitative Choice Models</a><ul>
 <li class="chapter" data-level="10.1" data-path="ordered-logit-model.html"><a href="ordered-logit-model.html"><i class="fa fa-check"></i><b>10.1</b> Ordered Logit Model</a><ul>
@@ -233,7 +232,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.2.4" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#travel-data"><i class="fa fa-check"></i><b>10.2.4</b> Travel Data</a></li>
 <li class="chapter" data-level="10.2.5" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#electric-vehicle-data"><i class="fa fa-check"></i><b>10.2.5</b> Electric Vehicle Data</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="exercises-5.html"><a href="exercises-5.html"><i class="fa fa-check"></i><b>10.3</b> Exercises</a></li>
+<li class="chapter" data-level="10.3" data-path="exercises-4.html"><a href="exercises-4.html"><i class="fa fa-check"></i><b>10.3</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="limited-dependent-variable-models.html"><a href="limited-dependent-variable-models.html"><i class="fa fa-check"></i><b>11</b> Limited Dependent Variable Models</a><ul>
 <li class="chapter" data-level="11.1" data-path="truncation.html"><a href="truncation.html"><i class="fa fa-check"></i><b>11.1</b> Truncation</a></li>
@@ -245,14 +244,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="11.4" data-path="hurdle-and-zero-inflation-models.html"><a href="hurdle-and-zero-inflation-models.html"><i class="fa fa-check"></i><b>11.4</b> Hurdle and Zero-Inflation Models</a></li>
 <li class="chapter" data-level="11.5" data-path="survival-analysis.html"><a href="survival-analysis.html"><i class="fa fa-check"></i><b>11.5</b> Survival Analysis</a></li>
-<li class="chapter" data-level="11.6" data-path="exercises-6.html"><a href="exercises-6.html"><i class="fa fa-check"></i><b>11.6</b> Exercises</a></li>
+<li class="chapter" data-level="11.6" data-path="exercises-5.html"><a href="exercises-5.html"><i class="fa fa-check"></i><b>11.6</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="panel-data.html"><a href="panel-data.html"><i class="fa fa-check"></i><b>12</b> Panel Data</a><ul>
 <li class="chapter" data-level="12.1" data-path="overview-1.html"><a href="overview-1.html"><i class="fa fa-check"></i><b>12.1</b> Overview</a></li>
 <li class="chapter" data-level="12.2" data-path="pooled-ordinary-least-square-model.html"><a href="pooled-ordinary-least-square-model.html"><i class="fa fa-check"></i><b>12.2</b> Pooled Ordinary Least Square model</a></li>
 <li class="chapter" data-level="12.3" data-path="fixed-effects-panel-data-model.html"><a href="fixed-effects-panel-data-model.html"><i class="fa fa-check"></i><b>12.3</b> Fixed Effects Panel Data Model</a></li>
 <li class="chapter" data-level="12.4" data-path="random-effects-model.html"><a href="random-effects-model.html"><i class="fa fa-check"></i><b>12.4</b> Random Effects Model</a></li>
-<li class="chapter" data-level="12.5" data-path="exercises-7.html"><a href="exercises-7.html"><i class="fa fa-check"></i><b>12.5</b> Exercises</a></li>
+<li class="chapter" data-level="12.5" data-path="exercises-6.html"><a href="exercises-6.html"><i class="fa fa-check"></i><b>12.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="time-series.html"><a href="time-series.html"><i class="fa fa-check"></i><b>13</b> Time Series</a><ul>
 <li class="chapter" data-level="13.1" data-path="trend-and-seasonality.html"><a href="trend-and-seasonality.html"><i class="fa fa-check"></i><b>13.1</b> Trend and Seasonality</a><ul>
@@ -264,7 +263,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.5" data-path="moving-average-models.html"><a href="moving-average-models.html"><i class="fa fa-check"></i><b>13.5</b> Moving Average Models</a></li>
 <li class="chapter" data-level="13.6" data-path="random-walk.html"><a href="random-walk.html"><i class="fa fa-check"></i><b>13.6</b> Random Walk</a></li>
 <li class="chapter" data-level="13.7" data-path="forecasting-japanense-car-production.html"><a href="forecasting-japanense-car-production.html"><i class="fa fa-check"></i><b>13.7</b> Forecasting Japanense Car Production</a></li>
-<li class="chapter" data-level="13.8" data-path="exercises-8.html"><a href="exercises-8.html"><i class="fa fa-check"></i><b>13.8</b> Exercises</a></li>
+<li class="chapter" data-level="13.8" data-path="exercises-7.html"><a href="exercises-7.html"><i class="fa fa-check"></i><b>13.8</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>14</b> Data Sources</a></li>
 <li class="divider"></li>
@@ -287,34 +286,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="exercises-5" class="section level2">
-<h2><span class="header-section-number">10.3</span> Exercises</h2>
+<h2><span class="header-section-number">11.6</span> Exercises</h2>
 <ol style="list-style-type: decimal">
-<li><p><em>Happiness</em>: Using the data set <code>happy</code>, generate an ordered logit regression model that regresses the dependent variable <span class="math inline">\(happiness\)</span> on those variables that have the strongest potential causal relationship. For your model, interpret the R output and indicate why each independent variable that is included in the model would contribute to higher or lower happiness. Speak to the possibility of multicollinearity in the independent variables.</p></li>
-<li><p><em>Alternative Fuel Vehicle Choice</em>: The data <code>evdata</code> contains data about the choice of consumers with respect to alternative fuel vehicles. For each consumer, you have the following variables: <span class="math inline">\(age\)</span>, <span class="math inline">\(suv\)</span> (whether they are interested in buying a SUV), <span class="math inline">\(level2\)</span> (indicating whether people have a fast charger for electric cars in their community), <span class="math inline">\(own \dots\)</span> (indicating whether the respondent currently has a gas, hybrid, plug- in hybrid, or battery electric vehicle), <span class="math inline">\(gender\)</span> (1=female) and <span class="math inline">\(numcars\)</span> (number of cars). Estimate a multinomial logit model that estimates the probability of a consumer to purchase a gasoline, hybrid, plug-in hybrid, or battery electric vehicle. Calculate the marginal probabilities as well.</p></li>
-<li><p><em>NHTS</em>: Consider the data set <code>hhpub</code> from the 2017 National Household Travel Survey (NHTS). The data contains information about household characteristics and some of their travel means. For this question, you will focus on the following variables: <span class="math inline">\(BIKE\)</span>, <span class="math inline">\(HBPPOPDN\)</span>, <span class="math inline">\(HHFAMINC\)</span>, <span class="math inline">\(HHVEHCNT\)</span>, <span class="math inline">\(HOMEOWN\)</span>, and <span class="math inline">\(URBRUR\)</span>. You must read the <a href="https://nhts.ornl.gov/tables09/CodebookBrowser.aspx">codebook</a> for this question and learn how the variables are coded. Go to the <a href="https://nhts.ornl.gov/tables09/CodebookBrowser.aspx">codebook</a> and pick “Household” as the dataset (drop down menu). Before conducting the analysis, delete all entries
-that are not complete (i.e., all the negative values). Once you have final data set, estimate
-an ordered logit model with <span class="math inline">\(BIKE\)</span> as the dependent variable and the other variables as the
-independent variables. What do you conclude from the model?</p></li>
-<li><p><em>Home heating</em>: Consider the dataset <code>Heating</code> from the R package <a href="https://cran.r-project.org/web/packages/mlogit/index.html">mlogit</a>. You can load the data set into R by typing: <code>data("Heating",package="mlogit")</code>. The data contains the choice of heating systems in California homes. There are five types of heating systems:</p>
-<ul>
-<li>gas central (<span class="math inline">\(gc\)</span>)</li>
-<li>gas room (<span class="math inline">\(gr\)</span>)</li>
-<li>electric central (<span class="math inline">\(ec\)</span>)</li>
-<li>electric room (<span class="math inline">\(er\)</span>)</li>
-<li>heat pump (<span class="math inline">\(hp\)</span>)</li>
-</ul>
-<p>There are 900 observations with the following variables:</p>
-<ul>
-<li><span class="math inline">\(idcase\)</span> gives the observation number (1-900),</li>
-<li><span class="math inline">\(depvar\)</span> identifies the chosen alternative (gc, gr, ec, er, hp),</li>
-<li><span class="math inline">\(ic.alt\)</span> is the installation cost for the 5 alternatives,</li>
-<li><span class="math inline">\(oc.alt\)</span> is the annual operating cost for the 5 alternatives,</li>
-<li><span class="math inline">\(income\)</span> is the annual income of the household,</li>
-<li><span class="math inline">\(agehed\)</span> is the age of the household head,</li>
-<li><span class="math inline">\(rooms\)</span> is the number of rooms in the house,</li>
-<li><span class="math inline">\(region\)</span> a factor with levels <span class="math inline">\(ncostl\)</span> (northern coastal region), <span class="math inline">\(scostl\)</span> (southern coastal region), <span class="math inline">\(mountn\)</span> (mountain region), <span class="math inline">\(valley\)</span> (central valley region).</li>
-</ul>
-<p>Estimate a multinomial logit model with installation and operating cost as the alternative-specific variables and income, age, and number of rooms as the individual-specific variables.</p></li>
+<li><p><code>Aptitude Tobit Model</code>: Consider the censored data set in <code>tobit</code>. The aptitude score is limited at 800. Estimate an appropriate model with <span class="math inline">\(apt\)</span> as the dependent variable and <span class="math inline">\(read\)</span>, <span class="math inline">\(math\)</span>, and program as the independent variables. Make sure to convert <span class="math inline">\(prog\)</span> into dummy variables first.</p></li>
+<li><p><code>Chicago Grocery Stores</code>: One subdivision of Chicago are so-called Chicago Community Areas (CCA). The data in <code>chicagogrocery</code> includes data about the number of grocery stores (<span class="math inline">\(stores\)</span>) in each CCA as well as demographic information. Estimate a Poisson and Negative Binomial Regression Model with <span class="math inline">\(stores\)</span> as the dependent variable and the following independent variables: <span class="math inline">\(income\)</span>, <span class="math inline">\(pop\)</span>, unemployment rate (<span class="math inline">\(unemployed/laborforce\)</span>) and percentage of blacks (<span class="math inline">\(black/pop\)</span>). What do you conclude? Are the results what you would expect?</p></li>
 </ol>
 
 </div>
@@ -324,8 +299,8 @@ independent variables. What do you conclude from the model?</p></li>
           </div>
         </div>
       </div>
-<a href="multinomial-logit-and-multinomial-probit-models.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="limited-dependent-variable-models.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="survival-analysis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="panel-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -357,7 +332,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/jrfdumortier/dataanalysis/edit/master/qualitativechoice.rmd",
+"link": "https://github.com/jrfdumortier/dataanalysis/edit/master/limiteddepvar.rmd",
 "text": "Edit"
 },
 "history": {
@@ -365,7 +340,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/jrfdumortier/dataanalysis/blob/master/qualitativechoice.rmd",
+"link": "https://github.com/jrfdumortier/dataanalysis/blob/master/limiteddepvar.rmd",
 "text": null
 },
 "download": ["bookdownproj.pdf"],
