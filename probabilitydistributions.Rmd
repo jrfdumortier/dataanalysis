@@ -1,15 +1,26 @@
 # Probability Distributions
-In order to associated more complex probabilities to a sample space, we need to employ probability distributions. In a first part, the concept of random variables is presented incuding expected value and variance of a random variable. The two remaining parts of this chapter cover probability distributions for discrete and continuous random variables, respectively. The following discrete probability distributions are presented:
+In order to associated more complex probabilities to a sample space, we need to employ probability distributions. In a first part, the concept of random variables is presented including expected value and variance of a random variable. The two remaining parts of this chapter cover probability distributions for discrete and continuous random variables, respectively. For each probability distribution, the respective names and commands in R are presented. Many probability distributions in R have a "name" (presented in parenthesis in the lists below). The following discrete probability distributions are presented:
 
 - Bernoulli Distribution
-- Binomial Distribution
-- Poisson Distribution
+- Binomial Distribution ("binom")
+- Poisson Distribution ("pois")
 
 Continuous distributions included in this chapter are:
 
-- Uniform Distribution
-- Normal Distribution
-- Student/*t*-Distribution 
+- Uniform Distribution ("unif")
+- Normal Distribution ("norm")
+- Student Distribution or *t*-Distribution ("t")
+
+There is a particular set of R commands to find various aspects of the distributions:
+
+- `dname()` for the density or probability function
+- `pname()` for the cumulative density function
+- `rname()` for the random numbers 
+- `qname()` for the inverse
+
+There is also a YouTube video associated with this chapter:
+
+- [Probability Distributions](https://youtu.be/29eB-nzfVAM)
 
 ## Random Variables
 A random variable $X$ is a variable that can take different values and there is a probability associated for each value or range of values. We differentiate between discrete and continuous random variables. The important aspect to keep in mind is that the sum of the probabilities for all values has to be equal to one!
@@ -24,24 +35,56 @@ $$Var(X) = E(X-E(X))^2 = E(X^2)-E(X)^2 $$
 
 Both equations give you the variance. Sometimes one of the equations is more convenient to use. Note that $E(X^2) \neq E(X)^2$.
  
-Imagine you roll a die and observe the number that comes up. The probability mass or frequency function is given by
+Suppose you roll a die and observe the number that comes up. The probability mass or frequency function is given by
 $$p(x_i)=P(X=x_i)= \frac{1}{6} \quad \text{for i=1,...,6}$$
 Thus, the expected value can be calculated as follows: 
 $$E(X)  = \sum_{i=1}^6 x_i \cdot \left(\frac{1}{6}\right) = 21/6 = 3.5$$
 
+## Discrete Probability Distributions
+A random variable $X$ is said to be discrete if it can assume only a finite or countable infinite number of distinct values. A discrete random variable can be defined on both a countable or uncountable sample space. The probability that $X$ takes on the value $k$, i.e., $P(X=k)$, is defined as the sum of the probabilities of all sample points that are assigned the value k. For each value within its domain, we have $P(X=k) \geq 0$ and that the sum of all probabilities is equal to one. For example, suppose you are flipping a coin three times and associate the outcome "heads" with the number one. The results of this experiment are illustrated in the table below.
 
+| Outcome | HHH | HHT | HTH | HTT | THH | THT | TTH | TTT |
+|---------|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| Pr      | 1/8 | 1/8 | 1/8 | 1/8 | 1/8 | 1/8 | 1/8 | 1/8 |
+| X       |  3  |  2  |  2  |  1  |  2  |  1  |  1  |  0  |
 
-<<DIS_randomvariable,echo=FALSE,message=FALSE,warning=FALSE,error=FALSE,results='hide',fig.keep="none">>=
-n         = 100000  
-x         = rbinom(n, 10, 0.5)
-t         = (table(x)/n)
-pdf("DIS_randomvariable.pdf",width=6,height=4)
+This experiment can also be represented with a histogram which can be turned into a frequency histogram. This is illustrated for tossing a coin ten times and repeating the experiment 10,000 times. 
+
+```{r DISrandomvariable,echo=FALSE,fig.cap="Tossing a coin ten times and repeating the experiment 1000 times."}
+n = 100000  
+x = rbinom(n, 10, 0.5)
+t = (table(x)/n)
 par(mfrow=c(1,2))
      plot(table(x),ylab="Frequency",main="n=10, p=0.5")
      plot(t,ylab="Probability",main="n=10, p=0.5") 
-graphics.off()
-@
-<<DIS_overbooking,echo=FALSE,message=FALSE,warning=FALSE,error=FALSE,results='hide',fig.keep="none">>=
+rm(n,x,t)
+```
+
+### Bernoulli distribution
+The Bernoulli (named after Jacob Bernoulli, 1654-1705) distribution is the simplest probability distribution. There are only two outcomes: *Success* and *Failure*. The distribution is characterized by one parameter, i.e., $p$. The probability mass function is written as $P(X=1)=p$ and, correspondingly, $P(X=0)=1-p$. The expected value of the binomial is written as follows:
+$$E(x)=1 \cdot p+0 \cdot (1-p)=p$$
+To calculate the variance, we have $E(x^2)=1^2 \cdot p + 0^2 \cdot (1-p)=p$ and $E(x)^2=p^2$. Thus, we have 
+$$Var(x)=E(x^2)-E(x)^2=p\cdot(1-p)$$ 
+
+### Binomial distribution
+The binomial distribution is closely related to the Bernoulli distribution because it represents *repeated* Bernoulli outcomes. The two parameters are $n$ and $p$. The number of successes is represented by $k$. The probability mass function is written as 
+$$Pr(X=k) = {n \choose k} \cdot p^k  \cdot (1-p)^{n-k}$$
+The expected value of $X$ is $E(X)=n \cdot p$ and the variance is $Var = n \cdot p \cdot (1-p)$. A situation must meet the following conditions for a random variable $X$ to have a binomial distribution: 
+
+- You have a fixed number of trials involving a random process; let $n$ be the number of trials.
+- You can classify the outcome of each trial into one of two groups: success or failure.
+- The probability of success is the same for each trial. Let $p$ be the probability of success, which means $1-p$ is the probability of failure.
+- The trials are independent, meaning the outcome of one trial does not influence the outcome of any other trial.
+
+Imagine a multiple choice test with three questions and five choices for each question. First, draw a probability tree. What is the probability of two correct responses? Next, the binomial distribution is used to calculate the probability.
+$$P(X=2) = {3 \choose 2} \cdot 0.2^2  \cdot (1-0.2)^{3-2} =0.096$$
+and
+$$P(X=3) = {3 \choose 3} \cdot 0.2^3  \cdot (1-0.2)^{3-3} =0.008$$
+Summing up both probabilities gives us $P(X \ge 2) = 0.104$.
+
+The binomial  distribution can be used to analyze the issue of overbooking. Assume that an airline as a plane with a seating capacity of 115. The ticket price for each traveler is \$400. The airline can overbook the flight, i.e., selling more than 115 tickets, but has to pay \$700 in case a person has a valid ticket but needs to be re-booked to another flight. There is a probability of 10\% that a booked passenger does not show up. The results for overbooking between 1 and 31 seats are shown in the figure below.
+
+```{r DISoverbooking,echo=FALSE,fig.cap="Example of using the binomial distribution to determine how many seats to sell over capacity."}
 seats               = 115
 seatssold           = 0:30
 airfare             = 400
@@ -56,139 +99,17 @@ for(i in 1:nrow(profit)){
      profit$Profit[i]    = profitfun(x,airfare,profit$Penalty[i])}
 profit$Profit       = as.numeric(profit$Profit)
 profit$Legend       = paste("Penalty fee of $",profit$Penalty,sep="")
-ggplot(profit,aes(x=Seats,y=Profit,group=Legend))+geom_line(aes(color=Legend))+ylim(0,50000)
-ggsave("DIS_overbooking.pdf")
-@
+ggplot(profit,aes(x=Seats,y=Profit,group=Legend))+geom_line(aes(color=Legend))+ylim(0,50000)+
+  theme_bw()
+rm(profit,airfare,fee,i,p,seats,seatssold,x,profitfun)
+```
 
-<<DIS_normal,echo=FALSE,message=FALSE,warning=FALSE,error=FALSE,results='hide',fig.keep="none">>=
-pdf("DIS_normal.pdf",width=6,height=3)
-     
-     graphics.off()
-@
-<<DIS_tdistributiontable,echo=FALSE,message=FALSE,warning=FALSE,error=FALSE,results='hide',fig.keep="none">>=
-pdf("DIS_tdistributiontable.pdf", width=6, height=4)
-     curve(dt(x,10),from=-5,to=5,ylab="Density",xlab="x")
-     x=seq(2.228,5,length=100)
-     y=dt(x,10)
-     polygon(c(2.228,x,5),c(0,y,0),col="gray")
-graphics.off()
-@
-<<DIS_nbinomialtonormal,echo=FALSE,message=FALSE,warning=FALSE,error=FALSE,results='hide',fig.keep="none">>=
-pdf("DIS_nbinomialtonormal.pdf", width=6, height=5)
-     par(mfrow=c(2,3))
-          n = 50
-          p = 0.5
-               for(i in 1:6){
-                    x = rbinom(10^i,50,p)
-                    hist(x,prob=TRUE,col="grey",ylim=c(0,0.2),xlim=c(10,40),main=paste(10^i," Draws"))
-                    curve(dnorm(x,n*p,sqrt(n*p*(1-p))),add=TRUE,col="red",lwd=2)}
-     graphics.off()
-@
-## Discrete Probability Distributions
-A random variable $X$ is said to be discrete if it can assume only a finite or countable infinite number of distinct values. A discrete random variable can be defined on both a countable or uncountable sample space. The probability that $X$ takes on the value $k$, i.e., $P(X=k)$, is defined as the sum of the probabilities of all sample points that are assigned the value k. For each value within its domain, we have $P(X=k) \geq 0$ and that the sum of all probabilities is equal to one. For example, suppose you are tossing a coin three times and associate the outcome ``heads'' with the number one (Table \ref{table:CoinThreeTimes}). You can also represent this experiment with a histogram. You can then turn the histogram into a frequency histogram. This is illustrated for tossing a coin ten times and repeating the experiment 10,000 times. 
-
-
-\begin{figure}
-\begin{center}
-\includegraphics[width=5in]{DIS_randomvariable.pdf}
-\end{center}
-\caption{Tossing a coin 10 times and repeating the experiment 10,000 times.}
-\end{figure}
-  
-    \begin{table}[t!]
-        \begin{center}
-            \begin{tabular}{cccccc} \toprule
-            Elements     & P       & X & Elements  & P & X \\ \midrule
-            H,H,H        & 1/8     & 3 & T,H,H & 1/8 & 2 \\
-            H,H,T        & 1/8     & 2 & T,H,T & 1/8 & 1 \\
-            H,T,H        & 1/8     & 2 & T,T,H & 1/8 & 1 \\
-            H,T,T        & 1/8     & 1 & T,T,T & 1/8 & 0 \\ \bottomrule
-            \end{tabular}
-        \end{center}
-        \caption{Probability distribution from tossing a coin three times. Let the random variable $X$ be the number of heads after three flips}
-        \label{table:CoinThreeTimes}
-    \end{table}
-A second example would be rolling a red die and a green die. Let the random variable be the larger of the two numbers if they are different and the common value if they are the same (Table \ref{table:RedDieGreenDie}). What is the probability that the random variable $X$ takes on the value of 6? Or put differently, what is $P(X=6)$?
-\begin{table}[b!]
-\begin{center}
-\begin{tabular}{ccccccc} \toprule
-& \multicolumn{6}{c}{Red} \\ \cmidrule(r){2-7}
-Green  & 1 & 2 & 3 & 4 & 5 & 6 \\ \midrule
-1  & 1,1 $\rightarrow$ 1 & 1,2 $\rightarrow$ 2 & 1,3 $\rightarrow$ 3 & 1,4 $\rightarrow$ 4 & 1,5 $\rightarrow$ 5 & 1,6 $\rightarrow$ 6\\
-2  & 2,1 $\rightarrow$ 2 & 2,2 $\rightarrow$ 2 & 2,3 $\rightarrow$ 3 & 2,4 $\rightarrow$ 4 & 2,5 $\rightarrow$ 5 & 2,6 $\rightarrow$ 6\\
-3  & 3,1 $\rightarrow$ 3 & 3,2 $\rightarrow$ 3 & 3,3 $\rightarrow$ 3 & 3,4 $\rightarrow$ 4 & 3,5 $\rightarrow$ 5 & 3,6 $\rightarrow$ 6\\
-4  & 4,1 $\rightarrow$ 4 & 4,2 $\rightarrow$ 4 & 4,3 $\rightarrow$ 4 & 4,4 $\rightarrow$ 4 & 4,5 $\rightarrow$ 5 & 4,6 $\rightarrow$ 6\\
-5  & 5,1 $\rightarrow$ 5 & 5,2 $\rightarrow$ 5 & 5,3 $\rightarrow$ 5 & 5,4 $\rightarrow$ 5 & 5,5 $\rightarrow$ 5 & 5,6 $\rightarrow$ 6\\
-6  & 6,1 $\rightarrow$ 6 & 6,2 $\rightarrow$ 6 & 6,3 $\rightarrow$ 6 & 6,4 $\rightarrow$ 6 & 6,5 $\rightarrow$ 6 & 6,6 $\rightarrow$ 6\\ \bottomrule
-\end{tabular}
-\caption{Rolling a red die and a green die. The random variable is the larger of the two numbers if they are different and the common value if they are the same.}
-\label{table:RedDieGreenDie}
-\end{center}
-\end{table}
-
-### Bernoulli distribution
-The Bernoulli (named after Jacob Bernoulli, 1654-1705) distribution is the simplest probability distribution. There are only two outcomes: `Success` and `Failure`. The distribution is characterized by one parameter $p$. The probability mass function is written as $P(X=1)=p$ and, correspondingly, $P(X=0)= 1-p$. The expected value of the binomial is $E(x)=1 \cdot p+0 \cdot (1-p)=p$. To calculate the variance, we have $E(x^2)=1^2 \cdot p + 0^2 \cdot (1-p)=p$ and $E(x)^2=p^2$. Thus, we have $Var(x)=E(x^2)-E(x)^2=p\cdot(1-p)$. 
-
-## Binomial distribution
-The binomial distribution is closely related to the Bernoulli distribution because it represents *repeated* Bernoulli outcomes. The two parameters are $n$ and $p$. The number of successes is represented by $k$. The probability mass function is written as $$       P(X=k) = \begin{pmatrix}
-       n \\
-       k
-       \end{pmatrix}
-       \cdot p^k  \cdot (1-p)^{n-k}$$
-The expected value of $X$ is $E(X)=n \cdot p$ and the variance is $Var = n \cdot p \cdot (1-p)$. A situation must meet the following conditions for a random variable $X$ to have a binomial distribution: 
-- You have a fixed number of trials involving a random process; let $n$ be the number of trials.
-- You can classify the outcome of each trial into one of two groups: success or failure.
-- The probability of success is the same for each trial. Let $p$ be the probability of success, which means $1 - p$ is the probability of failure.
-- The trials are independent, meaning the outcome of one trial does not influence the outcome of any other trial.
-
-\noindent \emph{Example: Multiple Choice Exam}\\
-Imagine a multiple choice test with 3 questions and 5 choices for each question. First, draw a probability tree. What is the probability of two correct responses?      \begin{equation*}
-          P(X=2) = \begin{pmatrix}
-          3 \\
-          2
-          \end{pmatrix}
-          \cdot 0.2^2  \cdot (1-0.2)^{3-2} =0.096
-     \end{equation*}
-and
-     \begin{equation*}
-       P(X=2) = \begin{pmatrix}
-       3 \\
-       3
-       \end{pmatrix}
-       \cdot 0.2^3  \cdot (1-0.2)^{3-3} = 0.008
-   \end{equation*}
-Summing up both probabilities gives us $P(X \ge 2) = 0.104$. The same can be achieved with Excel: ``BINOM.DIST(2,3,0.2,FALSE)''.\\
-
-\noindent \emph{Example: Coin tosses}\\
-Imagine that we are tossing a coin three times. What is the probability of getting heads twice?
-   \begin{equation*}
-       \frac{3!}{2! \cdot (3-2)!} \cdot 0.5^2 \cdot 0.5 = \frac{8}{2} \cdot 0.25^2 \cdot 0.5= 0.125 = 1/8
-   \end{equation*}
-   
-\noindent \emph{Example: Overbooking}\\   
-The binomial  distribution can be used to analyze the issue of overbooking. Assume that an airline as a plane with a seating capacity of 115. The ticket price for each traveler is \$400. The airline can overbook the flight, i.e., selling more than 115 tickets, but has to pay \$700 in case a person has a valid ticket but needs to be re-booked to another flight. There is a probability of 10\% that a booked passenger does not show up. The results for overbooking between 1 and 31 seats are shown in Figure \ref{fig:overbooking}.
-\begin{figure}[t]
-     \begin{center}
-          \includegraphics[width=6in]{DIS_overbooking.pdf}
-     \end{center}
-     \caption{Example of using the binomial distribution to determine how many seats to sell over capacity.}
-     \label{fig:overbooking}
-\end{figure}
-
- As a last example, assume that we are rolling a die three times. Let the random variable $X$ be the number of times we get 6. In this case we have
-     \begin{align*}
-          P(X=3) &=(1/6)^3 \approx 58\%\\
-          P(X=2) &=(1/6)^2 \cdot (5/6)^1 \approx 35\%\\
-          P(X=1) &=(1/6)^1 \cdot (5/6)^2 \approx 7\%\\
-          P(X=0) &=(5/6)^3 \approx 0.46\%\\
-     \end{align*}
- 
 ### Poisson Distribution
 The Poisson distribution is used for count data (i.e., $0,1,2,...$). The probability mass function for the Poisson distribution is given by the following equation:
 $$P(X=k)=\frac{\lambda^k \cdot e^{-\lambda}}{k!}$$
 An example of the Poisson distribution (named after Simeon Denis Poisson, 1781-1840) for different parameter values is shown below.
 
-```{r,echo=FALSE,fig.cap="Poisson Distribution"}
+```{r DISPoissonDistribution,echo=FALSE,fig.cap="Poisson Distribution"}
 par(mfrow=c(3,2),mar=c(1,1,2,1),oma=c(4,4,2,0))
 for (i in c(1,2,3,5,7,9)){
     curve(dpois(x,lambda=i),from=0,to=18,n=19,type="p",pch=15,cex=1.5,xlim=c(0,19),ylim=c(0,0.4),xlab="",ylab="")
@@ -206,13 +127,26 @@ $$ \int_{-\infty }^{\infty } f_X(x)  dx =1$$
 It is important to note that for a continuous distribution, the probability of a particular event is zero.
 
 ### Uniform distribution
-If $a<b$, a random variable $X$ is said to have a uniform probability distribution on the interval $(a,b)$ if and only if the density function of $X$ is
+The simplest continuous distribution is the uniform distribution. If $a<b$, a random variable $X$ is said to have a uniform probability distribution on the interval $(a,b)$ if and only if the density function of $X$ is
 $$f(x) = \frac{1}{b-a}$$
 Parameters defining a uniform distribution: $a,b$. Suppose that a package is scheduled to be delivered between 9:00 (9am) and 20:00 (8pm). You are out for lunch between 12:00 (noon) and 13:30 (1:30pm). The probability that the package arrives during the lunch break is $P(12<x<13)=\frac{1}{20-9} \cdot 1.5 \approx 13.64\%$.
  
 ### Normal distribution
 The random variable $X$ is said to be normally distributed with mean $\mu$ and variance $\sigma^2$ (abbreviated by $x \sim N[\mu,\sigma^2$) if the density function of $x$ is given by
 $$f(x;\mu,\sigma^2)=\frac{1}{\sqrt{2\pi \sigma^2}}\cdot e^{{\frac{-1}{~2} \left(\frac{x-\mu}{\sigma}\right)}^2}$$
+The Normal distribution can be derived from the Binomial Distribution. 
+
+```{r DISbinomialtonormal,echo=FALSE}
+par(mfrow=c(2,3))
+  n = 50
+  p = 0.5
+  d = c(10,100,1000,10000,100000,1000000)
+  for(i in 1:6){
+    x = rbinom(d[i],n,p)
+    hist(x,prob=TRUE,col="grey",ylim=c(0,0.2),xlim=c(10,40),main=paste(d[i]," Draws"))
+    curve(dnorm(x,n*p,sqrt(n*p*(1-p))),add=TRUE,col="red",lwd=2)}
+```
+
 ```{r,echo=FALSE}
 par(mfrow=c(1,2))
           curve(dnorm(x,mean=0,sd=1),from=-4,to=4,ylab="Density",xlab="x")
@@ -225,83 +159,27 @@ par(mfrow=c(1,2))
                polygon(c(-1.5,x,-0.5),c(0,y,0),col="gray")
 ```
 
-
-\begin{figure}[t]
-     \begin{center}
-          \includegraphics[width=6in]{DIS_normal.pdf}
-     \end{center}
-     \caption{Normal Distribution $N(0,1)$ and Probability of $60<x<70$. Note that this can also be calculated with Excel with the function `NORM.DIST` or `NORM.S.DIST`.}
-     \label{fig:poisson}
-\end{figure}
-
 The normal probability density function is bell-shaped and symmetric as shown in the figure. It is usually necessary to standardize the normal distribution to make it N(0,1):
 $$z = \frac{X-\mu}{\sigma}$$
 where $z$ is the distance from the mean of a Normal distribution expressed in units of the standard deviation. Suppose that we have $\mu = 75$ and $\sigma = 10$ and we want to find $P(x<60)$ and $P(60<x<70)$. 
-\begin{align*}
-    P(x<60) & \Rightarrow \frac{60-75}{10}=-1.5\\
-    P(60<x<70) & \Rightarrow z_1 = -1.5, z_2 = -0.5
-\end{align*}
-The normal distribution can be derived from the binomial distribution (Galton board). Assume that the average height of males and females in the U.S. is $\mu_M=70$ and $\mu_F=65$ inches, respectively. The standard deviations are $\sigma_M=4$ and $\sigma_F=3.5$. Calculate the probabilities associated with being $\sigma$, $2 \cdot \sigma$, and $3 \cdot \sigma$ away from the mean. 
-
+$$Pr(x<60) \Rightarrow \frac{60-75}{10}=-1.5\\
+  P(60<x<70) \Rightarrow z_1 = -1.5, z_2 = -0.5$$
+The normal distribution can be derived from the binomial distribution (Galton board). Assume that the average height of males and females in the U.S. is $\mu_M=70$ and $\mu_F=65$ inches, respectively. The standard deviations are $\sigma_M=4$ and $\sigma_F=3.5$. Calculate the probabilities associated with being $\sigma$, $2 \cdot \sigma$, and $3 \cdot \sigma$ away from the mean. For more information on how the Normal Distribution evolved, see [The Evolution of the Normal Distribution](https://doi.org/10.1080/0025570X.2006.11953386). 
 
 ### *t*-Distribution
+Hence, we have to replace it with an estimate, i.e., with the value of the sample standard deviation. To calculate the Student $t$ distribution, we need the degrees of freedom as well: $t_{\alpha,\nu}$. This distribution was published by William Gosset in 1908. His employer, Guinness Breweries, required him to publish under a pseudonym, so he chose "Student".  
 
-Hence, we have to replace it with an estimate, i.e., with the value of the sample standard deviation. To calculate the Student $t$ distribution, we need the degrees of freedom as well: $t_{\alpha,\nu}$. This distribution was published by William Gosset in 1908. His employer, Guinness Breweries, required him to publish under a pseudonym, so he chose ``Student'' (Figure \ref{fig:tdistribution}).  
-      \begin{figure}[p]
-        \begin{center}
-            \includegraphics[width=5in]{COI_tdistribution.pdf}
-        \end{center}
-        \caption{$t$-distribution for various levels of degrees of freedom and Normal distribution}
-        \label{fig:tdistribution}
-    \end{figure}
-    
-<<COI_tdistribution,echo=FALSE,message=FALSE,warning=FALSE,error=FALSE,results='hide',fig.keep="none">>=
+```{r DIStdistribution,echo=FALSE,fig.cap="Student Distribution for various levels of degrees of freedom and Normal distribution"}
 x       = seq(-4, 4, length=100)
 hx      = dnorm(x)
 degf    = c(1, 3, 8, 30)
 colors  = c("red", "blue", "darkgreen", "gold", "black")
 labels  = c("df=1", "df=3", "df=8", "df=30", "normal")
-pdf("COI_tdistribution.pdf", width=6, height=5)
 plot(x,hx,type="l",lty=2,xlab="x value",ylab="Density",main="Comparison of t Distributions")
 for (i in 1:4){lines(x, dt(x,degf[i]), lwd=2, col=colors[i])}
 legend("topright", inset=.05, title="Distributions",
   labels, lwd=2, lty=c(1, 1, 1, 1, 2), col=colors)
-graphics.off()
-@
-
-\subsection{Constructing a Probability Density Function from a Histogram}
-Bins of a histogram:
-        \begin{itemize}
-            \item Bin width: $B_1,B_2,\dots,B_m$
-            \item Bin height: Number of observations in the bin / $(n \cdot |B_i|)$
-        \end{itemize}
- 
-\clearpage
-
-\subsection{Probability Distributions in R}
-Each probability distribution in R has a name. For example
-     \begin{itemize}
-          \item Binomial: \texttt{binom}
-          \item Normal: \texttt{norm}
-          \item Poisson: \texttt{pois}
-          \item Student: \texttt{t}
-          \item Uniform: \texttt{unif}
-     \end{itemize}
-Note that there are many more. What is important are the common commands that go with those names, in particular: 
-     \begin{itemize}
-          \item dname() for the density or probability function
-          \item pname() for the cumulative density function
-          \item rname() for the random numbers 
-          \item qname() for the inverse
-     \end{itemize}
-For example, consider the multiple choice questionnaire with three questions and five possible answers. What is the probability of having all three correct? What is the probability of having at most 2 correct?
-
-<<DIS_Binomial,echo=TRUE,message=FALSE,warning=FALSE,error=FALSE,include=TRUE,fig.keep="none">>=
-dbinom(3,3,1/5)  
-pbinom(2,3,1/5)
-pbinom(4,14,0.3)
-qnorm(0.8,21.1,5.1)
-@
+```
 
 ## Exercises
 1. *Fair Game*: A friend of yours has a coin and proposes the following game. You toss the coin 10 times and count the number of heads. The amount you win or lose on $k$ heads is given by $k^2 - 7\cdot k$. 
@@ -321,3 +199,5 @@ qnorm(0.8,21.1,5.1)
 5. *LED Light Bulbs*: On average, a LED light bulb manufacturer produces 250 defective light bulbs out of 5,000. You randomly pick 8 light bulbs. What is the probability of finding more than 1 defective bulbs?
 
 6. *Vaccine Trials*: A pharmaceutical company estimates that a new vaccine that is undergoing test trials has a 1/10000 chance of causing a serious side effect in a human being. If the company administers the vaccine to 10,000 volunteers, what is the probability that at least 1 volunteers develops those serious side effects? The company wants to make sure that the probability of at least one person developing the side effect is 95\%. How many volunteers do they need?
+
+7. *Quillayute*: Airline magazines are often not very interesting. On a flight from Washington DC to Indianapolis, a magazine did cover an interesting story however. A resort in WA charges the temperature in Dollars per night. For example, if it is 72F then a room costs \$72. Of course, this is too boost demand in the Winter months. The closest weather station to the resort is at Quillayute Airport.

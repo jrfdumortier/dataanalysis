@@ -13,7 +13,6 @@ Very large user community for R. Google search for "Some topic R" usually leads 
 
 - [UCLA Institute for Digital Research and Education](http://stats.idre.ucla.edu/r/)
 - [StatMethods](https://www.statmethods.net/)
-- [Statistical tools for high-throughput data analysis](http://www.sthda.com/english/)
 
 Two online resources will provide you the solution to the vast majority of your R questions. Getting on those websites is usually the result of a Google search.
 
@@ -23,9 +22,9 @@ Two online resources will provide you the solution to the vast majority of your 
 Besides many online resources, there are also two useful textbooks
 
 - [Applied Econometrics with R](https://link.springer.com/book/10.1007/978-0-387-77318-6) by Christian Kleiber and Achim Zeileis.
-- [Introductory Statistics with R](https://link.springer.com/book/10.1007/978-0-387-79054-1]) by Peter Dalgaard.
+- [Introductory Statistics with R](https://link.springer.com/book/10.1007/978-0-387-79054-1) by Peter Dalgaard.
 
-An additional online tutorial is [Using R for Introductory Statistics](https://cran.r-project.org/doc/contrib/Verzani-SimpleR.pdf]) by John Verzani.
+An additional online tutorial is [Using R for Introductory Statistics](https://cran.r-project.org/doc/contrib/Verzani-SimpleR.pdf) by John Verzani.
 
 ## Opening RStudio
 Work in RStudio is done in four windows:
@@ -139,7 +138,7 @@ rm(studentid,height,studentnames)
 ### In-class Exercise 2
 Create a data frame called `students` containing the following information:
 
-```{r inclassex2, echo=FALSE}
+```{r INRinclassex2, echo=FALSE}
 Name = c("Mindy","Gregory","Shubra","Keith","Louisa")
 Economics = c(80,60,95,77.5,97.5)
 English = c(52.5,60,77.5,30,95)

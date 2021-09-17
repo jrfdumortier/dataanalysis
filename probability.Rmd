@@ -23,63 +23,83 @@ There are several set operations and we can use Venn diagrams to illustrate them
 
 - **Intersection**: The intersection $W$ of two sets $X$ and $Y$ is the set of elements that are in both $X$ and $Y$. We write $W=X\cap Y$. 
 - **Empty or Null Sets**: The empty set or the null set ($\emptyset$) is the set with no elements. For example, if the sets $A$ and $B$ contain no common elements then these two sets are said to be disjoint, e.g., odd and even numbers: $ A\cap B=\emptyset$.
-- **Unions**: The union of two sets $A$ and $B$ is the set of all elements in one or the other of the sets. We write $ C=A\cup B$.
+- **Unions**: The union of two sets $A$ and $B$ is the set of all elements in one or the other of the sets. We write $C=A \cup B$.
 - **Complements**: The complement of a set $X$ is the set of elements of the universal set $U$ that are not elements of $X$, and is written $X^{c}$. 
 
 For a discrete sample space $\Omega$, the probability of an event is a non-negative number, i.e., $Pr(A) \geq 0$, for any subset $A$ of $\Omega$. In addition, we have $Pr(\Omega) = 1$, i.e., all the probabilities of the outcomes in the sample space sum up to 1.
 
-For example, if we flip a coin, the sample space is $\Omega = \{H,T\}$. The corresponding probabilities are $Pr(H)=0.5$ and $Pr(T)=0.5$. The sum of both is equal to 1. Keep in mind that $PA^c)=1-PA)$. It is sometimes easier to calculate the complement of an event than the event itself. If *A*, *B*, *C*, ... is a finite or infinite sequence of mutually exclusive events --- that is events which cannot happen at the same time --- from the sample space $\Omega$,then 
+For example, if we flip a coin, the sample space is $\Omega = \{H,T\}$. The corresponding probabilities are $Pr(H)=0.5$ and $Pr(T)=0.5$. The sum of both is equal to 1. Keep in mind that $Pr(A^c)=1-Pr(A)$. It is sometimes easier to calculate the complement of an event than the event itself. If $A,B, C,\dots$ is a finite or infinite sequence of mutually exclusive events --- that is events which cannot happen at the same time --- from the sample space $\Omega$, then 
 $$P\left(A \cup B \cup C \cup \cdots \right)=P(A)+P(B)+P(C)+\cdots$$
 To illustrate this, suppose you are flipping a coin three times. The eight events in $\Omega$ are
 $$\Omega = \{HHH,HHT,HTH,HTT,THH,THT,TTH,TTT\}$$
 The probability of each event is equally likely, i.e., 
-$$Pr\left(E_{i}\right)=1/8 \quad \text{ for } i=1,2,3,\dots,8$$
-If your event of interest $A$ is that exactly two of the three tosses results are heads, then $A=\{HHT,HTH,THH\}$. By summing up the probabilities associated with those events, we find that $Pr(A)$: 
+$$Pr\left(E_i \right)=1/8$$
+for $i=1,2,3,\dots,8$. If your event of interest $A$ is that exactly two of the three tosses results are heads, then $A=\{HHT,HTH,THH\}$. By summing up the probabilities associated with those events, we find that $Pr(A)$: 
 $$Pr(A)=Pr(HHT)+Pr(HTH)+Pr(THH)=\frac{1}{8} +\frac{1}{8} +\frac{1}{8} =\frac{3}{8}$$
 Note that the same result can be obtained by using a probability tree. A probability tree has the advantage that it represents the possible outcome and probabilities in a graphical manner.
 
 ## Probability of a Union
-For any two events *A* and *B*, we have the probability of a union (also known as the addition rule) which states that the probability of *A* or *B* occurring can be written as:
+For any two events $A$ and $B$, we have the probability of a union (also known as the addition rule) which states that the probability of $A$ or $B$ occurring can be written as:
 $$Pr(A \cup B)=P(A)+P(B)-P(A \cap B)$$
-If $P(A \cap B)=0$, then we call them disjoint events. 
+If $Pr(A \cap B)=0$, then we call them disjoint events. 
 
-For example, suppose that researchers are interested in the substances found in people's blood. Let $A=\{Alcohol\}$, $B=\{Cocaine \}$, and $A \cap B = \{Both \}$. Assume that the probabilities are given by $P(A)=0.86$, $P(B)=0.35$, and $P(A \cap B)=0.29$.So $P(A \cup B) = 0.86+0.35-0.29 = 0.92$. If you are intrigued by this example on how to measure drug consumption, check out this [EU Project](https://www.emcdda.europa.eu/topics/pods/waste-water-analysis_en). 
+For example, suppose that researchers are interested in the substances found in people's blood. Let $A=\{Alcohol\}$, $B=\{Cocaine \}$, and $A \cap B = \{Both \}$. Assume that the probabilities are as follows:
+$$Pr(A)=0.86\\
+Pr(B)=0.35\\
+Pr(A \cap B)=0.29$$
+Hence, $Pr(A \cup B)$ is calculated as follows:
+$$Pr(A \cup B)= 0.86+0.35-0.29 = 0.92$$ 
+If you are intrigued by this example on how to measure drug consumption, check out this [EU Project](https://www.emcdda.europa.eu/topics/pods/waste-water-analysis_en). 
 
-For a second example, assume the following events taken from the police by controling semi-trucks: $A=\{\text{faulty breaks}\}$, $B=\{\text{bad tires}\}$, and $A \cup B =\{\text{faulty breaks and/or bad tires}\}$. Let $P(A)=0.23$, $P(B)=0.24$, and $P(A \cap B)=0.09$. Using the above equation, we can determine that $P(A \cup B)=0.23+0.24-0.09=0.38$. If the events are mutually exclusive, the term $P(A \cap B)$ is equal to 0. 
+For a second example, assume the following events taken from the police by controlling semi-trucks: $A=\{\text{faulty breaks}\}$, $B=\{\text{bad tires}\}$, and $A \cup B =\{\text{faulty breaks and/or bad tires}\}$. Let the probabilities be as follows:
+$$Pr(A)=0.23\\
+Pr(B)=0.24\\
+Pr(A \cap B)=0.09$$
+Using the above equation, we can determine that $P(A \cup B)=0.23+0.24-0.09=0.38$. Note that if the events are mutually exclusive, the term $Pr(A \cap B)$ is equal to 0. 
 
-Lastly, consider the data below on the gate arrival of airplanes during a week at a mid-sized airport. Everything not within +/- 10 minutes is considered not on time. *Flights* represents the total number of arriving flights which is 275. 
+Lastly, consider the data below on the gate arrival of airplanes during a week at a mid-sized airport. Everything not within +/- 10 minutes is considered not on time. $Flights$ represents the total number of arriving flights which is 275. 
 
-```{r PROflightarrival,echo=FALSE}
-flights = data.frame(
-  Arrival=c("Less than 10 minutes early","Within +/- 10 minutes","More than 10 minutes late"),
-  Event=c("A","B","C"),
-  Flights=c(55,121,99),
-  Probability=c(0.2,0.44,0.36))
-knitr::kable(head(flights,booktabs=TRUE))
-```
+| Arrival                    | Event | Flights | Probability |
+|:---------------------------|:-----:|:-------:|:-----------:|
+| Less than 10 minutes early |   A   |    55   |     0.20    |
+| Within +/- 10 minutes      |   B   |   121   |     0.44    |
+| More than 10 minutes late  |   C   |    99   |     0.36    |
+
 The probability of a flight not begin on time is calculated as follows:
-$$Pr(unpunctual)=0.2+0.36=0.56$$
+$$Pr(A \cup C)=0.2+0.36=0.56$$
 
 ## Probability of an Intersection   
-To find the probability that events $A$ and $B$ occur, we have to use the multiplication rule (i.e., probability of the intersection) which is written as
-$$P(A \cap B) = P(A) \cdot P(B)$$
-For the multiplication rule to hold, the two events must be independent! The multiplication rule for dependent events will be introduced in more detail later but can be written as $P(A \cap B) = P(A) \cdot P(B|A)$ where $P(B|A)$ is the probability of $A$ given that even $B$ occurred. 
+To find the probability that events $A$ and $B$ occur, we have to use the multiplication rule (i.e., probability of the intersection) which is written as follows:
+$$Pr(A \cap B) = P(A) \cdot P(B)$$
+For the multiplication rule to hold, the two events must be independent! The multiplication rule for dependent events will be introduced in more detail later but can be written as follows:
+$$Pr(A \cap B) = Pr(A) \cdot Pr(B|A)$$
+where $Pr(B|A)$ is the probability of $A$ given that even $B$ occurred. 
 
-Suppose you have 16 polo shirts in your closet with your company's logo. Nine of them are green and seven are blue. In the morning, you get dressed when it is dark and you randomly grab a shirt two days in a row (without doing laundry). What is the probability that both shirts are blue. $P(B_1) = 7/16$ and $P(B_2|B_1) = 6/15$. Thus, $P(B_1 \cap B_2) = P(B_1) \cdot P(B_2|B_1) 7/16 \cdot 6/15 = 0.175$. 
+Suppose you have 16 polo shirts in your closet with your company's logo. Nine of them are green and seven are blue. In the morning, you get dressed in the dark and randomly grab a shirt two days in a row (without doing laundry). What is the probability that both shirts are blue? Define the events $B_i$ and $G_i$ as grabbing a blue and green shirt, respectively on day $i$. In this case, the probabilities are as follows:
+$$Pr(B_1) = 7/16\\
+Pr(B_2|B_1) = 6/15$$ 
+Thus, 
+$$Pr(B_1 \cap B_2) = Pr(B_1) \cdot Pr(B_2|B_1) = 7/16 \cdot 6/15 = 0.175$$ 
+If you are interested in the probability to get a 6 on roll 1 (event $A$) and a 6 on roll 2 (event $B$). This is written as $Pr(A) \cdot Pr(B) = 1/6 \cdot 1/6 = 1/36$. This can also be expressed as a joint probability. The joint probability calculates the likelihood of two or more events happening at the same time. 
 
-For example, suppose you are interested in the probability to get a 6 on roll 1 (event $A$) and a 6 on roll 2 (event $B$). This is written as $P(A) \cdot P(B) = 1/6 \cdot 1/6 = 1/36$. This can also be expressed as a joint probability. The joint probability calculates the likelihood of two or more events happening at the same time. Let $A=\{Hearts\}$ and $B=\{Queen\}$. Then the joint probability is the likelihood of drawing the Queen of Hearts from a deck of cards. This joint probability can be calculated as follows:
-$$P(A) = \frac{1}{4}\\
-  P(B) = \frac{4}{52}\\
-  P(A \cap B) = P(A) \cdot P(B) = \frac{1}{52}$$
-Let event $A$ be that the first child is a girl and let event $B$ be the second child being a girl. What is the sample space for the gender of the two kids? Given the sample space of $\Omega = \{FF,FM,MF,MM\}$, we have $P(A)=0.5$, $P(B) = 0.5$, $P(A \cup B)=0.5+0.5-0.25$, and $P(A \cap B)=0.25$. 
+Let $A=\{Hearts\}$ and $B=\{Queen\}$. Then the joint probability is the likelihood of drawing the Queen of Hearts from a deck of cards. This joint probability can be calculated as follows:
+$$Pr(A) = \frac{1}{4}\\
+  Pr(B) = \frac{4}{52}\\
+  Pr(A \cap B) = Pr(A) \cdot Pr(B) = \frac{1}{52}$$
+Let event $A$ be that the first child is a girl and let event $B$ be the second child being a girl. What is the sample space for the gender of the two kids? Given the sample space of $\Omega = \{FF,FM,MF,MM\}$, we have $Pr(A)=0.5$, $Pr(B) = 0.5$, $Pr(A \cup B)=0.5+0.5-0.25$, and $Pr(A \cap B)=0.25$. 
 
 ## Conditional Probability
-In the previous section, we have seen how to determine the probability of simple events. In this section, we will learn how to calculate the probability of an event knowing that some other event happened before. We call this *conditional probability*, i.e., what can we say about an event if the sample space changes? For example, what is the probability of a person earning more than \$150,000 given graduation from Harvard Law School? What is the probability of a person getting arrested given a prior arrest? What is the probability of getting an *A* in graduate statistics given an undergraduate degree in mathematics? What is the probability of receiving a grant from a funding agency given prior funding from the same agency? 
+In the previous section, we have seen how to determine the probability of simple events. In this section, we will learn how to calculate the probability of an event knowing that some other event happened before. We call this *conditional probability*, i.e., what can we say about an event if the sample space changes? Consider the following examples:
 
-The conditional probability of event *A* given that event *B* happened is expressed as $Pr(A|B)$. Given event *B* such that $Pr(B)>0$ and any other event *A*, we define the conditional probability of *A* given *B* as:
-$$P(A|B)=\frac{P(A\cap B)}{P(B)}$$
+- What is the probability of a person earning more than \$150,000 given graduation from Harvard Law School? 
+- What is the probability of a person getting arrested given a prior arrest? 
+- What is the probability of getting an *A* in graduate statistics given an undergraduate degree in mathematics? 
+- What is the probability of receiving a grant from a funding agency given prior funding from the same agency? 
+
+The conditional probability of event $A$ given that event $B$ happened is expressed as $Pr(A|B)$. Given event $B$ such that $Pr(B)>0$ and any other event $A$, we define the conditional probability of $A$ given $B$ as:
+$$Pr(A|B)=\frac{Pr(A\cap B)}{Pr(B)}$$
 Rearrangement of the terms from the conditional probability definition leads to the multiplication rule for dependent events:
-$$P(A\cap B) = P(A|B) \cdot P(B)$$
+$$Pr(A\cap B) = Pr(A|B) \cdot Pr(B)$$
 Let us consider a couple of examples to illustrate this concept. Consider the following table relating the quality of the service (from an electrician) received to the years of experience.
 
 |                | Good service | Bad Service | Total |
@@ -88,19 +108,19 @@ Let us consider a couple of examples to illustrate this concept. Consider the fo
 | Below 10 years |      10      |      20     |   30  |
 | Total          |      26      |      24     |   50  |
 
-Define the event "good service" as *G* and "more than 10 years of experience" as *E*. What is $P(G)$, $P(G|E)$?, $P(E)$?
+Define the event "good service" as $G$ and "more than 10 years of experience" as $E$. What is $Pr(G)$, $Pr(G|E)$?, $Pr(E)$?
 
-Next, consider rolling a die and the interest in the probabiluty of a 1 given that an odd number was obtained. Let event *A* be "observe a 1" and event *B* be "observe an odd number". The probability of interest is $Pr(A|B)$. The event $A\cap B$ requires the observance of both a 1 and an odd number. In this instance, $A\subset B$ so $A\cap B=A$ and $P(A \cap B)=P(A)=1/6$. Also, $P(B)=1/2$ and, using the definition,
-$$P(A|B) = \frac{P(A \cap B)}{P(B)} =\frac{1/6}{1/2} = \frac{1}{3}$$
-In the last example, a box with red and black balls is considered. The box contains *r* red balls labeled $1,2,3,\dots,r$ and *b* black balls labeled $1,2,3,\dots,b$. If a ball from the box is known to be red, what is the probability it is the red ball labeled 1, i.e., $P(B|A)$? Let event $A$ be "observe a red ball" and event $B$ be "observe a 1". The probability of $A$ is $P(A)=r/(r+b)$ and the probability of a red ball with the number 1 on it is $P(A \cap B)=1/(r+b)$. Then the probability that the ball is red and labeled 1 given that it is red is given by
-$$P(B|A)=\frac{P(A\cap B)}{P(A)} =\frac{1/(r+b)}{r/(r+b)} = \frac{1}{r}$$
-This differs from the probability of $B$ (a 1 on the ball) which is given by $P(B)=2/(r+b)$.
+Next, consider rolling a die and the interest in the probability of a 1 given that an odd number was obtained. Let event $A$ be "observe a 1" and event $B$ be "observe an odd number". The probability of interest is $Pr(A|B)$. The event $A\cap B$ requires the observance of both a 1 and an odd number. In this instance, $A\subset B$ so $A\cap B=A$ and $Pr(A \cap B)=Pr(A)=1/6$. Also, $Pr(B)=1/2$ and, using the definition,
+$$Pr(A|B) = \frac{Pr(A \cap B)}{Pr(B)} =\frac{1/6}{1/2} = \frac{1}{3}$$
+In the last example, a box with red and black balls is considered. The box contains *r* red balls labeled $1,2,3,\dots,r$ and *b* black balls labeled $1,2,3,\dots,b$. If a ball from the box is known to be red, what is the probability it is the red ball labeled 1, i.e., $Pr(B|A)$? Let event $A$ be "observe a red ball" and event $B$ be "observe a 1". The probability of $A$ is $Pr(A)=r/(r+b)$ and the probability of a red ball with the number 1 on it is $Pr(A \cap B)=1/(r+b)$. Then the probability that the ball is red and labeled 1 given that it is red is given by
+$$Pr(B|A)=\frac{Pr(A\cap B)}{Pr(A)} =\frac{1/(r+b)}{r/(r+b)} = \frac{1}{r}$$
+This differs from the probability of $B$ (a 1 on the ball) which is given by $Pr(B)=2/(r+b)$.
 
 ## Independence
 Two events are said to be independent if $Pr(A\cap B)=Pr(A) \cdot Pr(B)$. The events $A$ and $B$ are independent if knowledge of $B$ does not affect the probability of $A$. This can be written in terms of conditional probability as
-$$P(A|B)=P(A)\\
-  P(B|A)=P(B)$$
-The probability of both events should be positive because division by zero is meaningless.\footnote{Remember that $P(A|B)=P(A\cap B)/P(B)$ and $P(B|A)=P(A\cap B)/P(B)$.}
+$$Pr(A|B)=Pr(A)\\
+  Pr(B|A)=Pr(B)$$
+The probability of both events should be positive because division by zero is meaningless. Remember that $Pr(A|B)=Pr(A\cap B)/Pr(B)$ and $Pr(B|A)=Pr(A\cap B)/Pr(B)$.
 
 Suppose you are rolling a red die and a green die. Let event $A$ be "4 on the red die" and event $B$ is "sum of the dice is odd". What is $Pr(A)$, $Pr(B)$, and $Pr(A \cap B)$? Are $A$ and $B$ independent? The table below displays all possible outcomes and can help to calculate the probabilities.
 
@@ -114,37 +134,38 @@ Suppose you are rolling a red die and a green die. Let event $A$ be "4 on the re
 | 5       |  5,1  | 5,2 | 5,3 | 5,4 | 5,5 | 5,6 |
 | 6       |  6,1  | 6,2 | 6,3 | 6,4 | 6,5 | 6,6 |
 
-The probability of $A$ is $6/36=1/6$. The probability of $B$ is $18/36 = 1/2$ and the probability of $A\cap B$ is $3/36 = 1/12$. To check for independence multiply $P(A)$ and $P(B)$ as follows
-$$P(A)P(B)=\left(\frac{1}{6}\right)\left(\frac{1}{2}\right)=\frac{1}{12}$$
-The events $A$ and $B$ are thus independent. Suppose that we have two events from rolling two dice. Event $A={2,4,6}$ and event $B={1,2,3}$. Then we have $P(A)=1/2$ and $P(B)=1/2$. And $P(A\cup B)=1/6$ and $P(A|B)=1/3$. Next consider a different scenario.
+The probabilities are as follows:
+$$Pr(A)=6/36=1/6\\
+  Pr(B)=18/36 = 1/2\\
+  Pr(A\cap B) = 3/36 = 1/12$$
+To check for independence, multiply $Pr(A)$ and $Pr(B)$ as follows
+$$Pr(A) \cdot Pr(B)=\left(\frac{1}{6}\right)\left(\frac{1}{2}\right)=\frac{1}{12}$$
+Next consider a different scenario. Assume event $C$ be "at least three dots on a die" and event $D$ as "sum of dice equals 7". Are those two events independent?
+$$Pr(C) = \frac{32}{36}\\
+  Pr(D) = \frac{1}{6}$$
 
-Assume event $C$ be "at least three dots on a die" and event $D$ as "sum of dice equals 7". Are those two events independent?
-$$P(C) = \frac{32}{36}\\
-  P(D) = \frac{1}{6}$$
-
-$$P(C|D) = \frac{P(C \cap D)}{P(D)}=\frac{6/36}{6/36}=1$$
-
+$$Pr(C|D) = \frac{Pr(C \cap D)}{Pr(D)}=\frac{6/36}{6/36}=1$$
 Thus, the two events are dependent. 
 
 ### Birthday Problem
-Define the following two events: Event $B_2$ is that "two people have different birthdays" and event $B_3$ is that "three different birthdays of three people." The probability that two people have different birthdays is
-$$P(B_2) = 1-\frac{1}{365}$$
+Usually, people [underestimate the probability of finding two matching birthdays in a group](https://opinionator.blogs.nytimes.com/2012/10/01/its-my-birthday-too-yeah/) of people. Here the issue is that people think in terms of matching with their own birthday. That probability is indeed small (1 out of 365). But the matching birthday considers all combinations. Define the following two events: Event $B_2$ is that "two people have different birthdays" and event $B_3$ is that "three different birthdays of three people." The probability that two people have different birthdays is
+$$Pr(B_2) = 1-\frac{1}{365}$$
 and that probability that three different people have different birthdays is given by
-$$P(B_3) = P(A_3|B_2)P(B_2)$$
-$$P(A_3|B_2) = 1-\frac{2}{365}$$
-$$P(B_3) = \left(1-\frac{2}{365}\right)\left(1-\frac{1}{365}\right)$$
+$$Pr(B_3) = Pr(A_3|B_2) \cdot Pr(B_2)$$
+$$Pr(A_3|B_2) = 1-\frac{2}{365}$$
+$$Pr(B_3) = \left(1-\frac{2}{365}\right)\left(1-\frac{1}{365}\right)$$
 In general, we have
-$$P(B_n)  =P(A_n|B_{n-1})P(B_{n-1}) = \left(1-\frac{n-1}{365}\right)
-P(B_{n-1})= \left(1-\frac{n-1}{365}\right) \cdots \left(1-\frac{2}{365}\right)\left(1-\frac{1}{365}\right)$$
-This last probability does to zero very quickly as $n$ increases. 
+$$Pr(B_n)  =Pr(A_n|B_{n-1}) \cdot Pr(B_{n-1}) = \left(1-\frac{n-1}{365}\right) \cdot
+Pr(B_{n-1})= \left(1-\frac{n-1}{365}\right) \cdots \left(1-\frac{2}{365}\right)\left(1-\frac{1}{365}\right)$$
+This last probability does to zero very quickly as $n$ increases. There are also other examples of [paradoxes of probability and other statistical strangeness](https://theconversation.com/paradoxes-of-probability-and-other-statistical-strangeness-74440). 
 
 ## Law of Total Probability and Bayes Rule
-Suppose that you are testing a cow for mad cow disease or bovine spongiform encephalopathy (BSE). Like many medical tests, there is a chance of a false-positive. Define the event $B$ as "cow has BSE" and event $T$ as "cow tests positive." Assume that we have the following probabilities: $P(T|B) = 0.7$, $P(T|B^C) = 0.1$, $P(B) = 0.02$, and $P(B^C) = 0.98$. What is $P(T) = P(T|B) \cdot P(B) + P(T|B^C) \cdot P(B^C)$? Remember from conditional probability
-$$P(T|B) = \frac{P(T \cap B )}{P(B)} \\
-  P(T|B^C) = \frac{P(T \cap B^C )}{P(B^C)}$$
+Suppose that you are testing a cow for mad cow disease or bovine spongiform encephalopathy (BSE). Like many medical tests, there is a chance of a false-positive. Define the event $B$ as "cow has BSE" and event $T$ as "cow tests positive." Assume that we have the following probabilities: $Pr(T|B) = 0.7$, $Pr(T|B^C) = 0.1$, $Pr(B) = 0.02$, and $Pr(B^C) = 0.98$. What is $Pr(T) = Pr(T|B) \cdot Pr(B) + Pr(T|B^C) \cdot Pr(B^C)$? Remember from conditional probability
+$$Pr(T|B) = \frac{Pr(T \cap B )}{Pr(B)} \\
+  Pr(T|B^C) = \frac{Pr(T \cap B^C )}{Pr(B^C)}$$
 Using the provided probabilities, this can be expressed as $P(T)=0.7 \cdot 0.02 + 0.1 \cdot 0.95 = 0.112$. What is the probability that a cow has BSE if it tests positive, i.e., $P(B|T)$? The solution to this can be written as 
-$$P(B|T)  = \frac{P(T \cap B )}{P(T)} = \frac{P(T|B) \cdot P(B)}{P(T|B) \cdot P(B) + P(T|B^C) \cdot P(B^C)}$$
-Using the provided probabilities, this can be expressed as $P(B|T)=0.7 \cdot 0.02 / 0.112 = 0.125$. This can also be explained using a probability tree.
+$$Pr(B|T)  = \frac{Pr(T \cap B )}{Pr(T)} = \frac{Pr(T|B) \cdot Pr(B)}{Pr(T|B) \cdot Pr(B) + Pr(T|B^C) \cdot Pr(B^C)}$$
+Using the provided probabilities, this can be expressed as $Pr(B|T)=0.7 \cdot 0.02 / 0.112=0.125$. This can also be explained using a probability tree.
 
 ## Combinatorial Methods
 ### Permutations
@@ -163,6 +184,7 @@ What is $C_{6}^{6}$? Consider a bowl containing six balls with the letters $A$, 
 $$C_{2}^{6}=\frac{6!}{2! \cdot 4!}=\frac{6\cdot 5\cdot 4\cdot 3\cdot 2\cdot 1}{2\cdot 1\cdot 4\cdot 3 \cdot 2 \cdot 1} =\frac{6 \cdot 5}{2} =15$$
 The equation for a combination with repetition is as follows:
 $${n+k-1 \choose k} = \frac{(n+k-1)!}{k! \cdot (n-1)!}=\frac{(n+k-1)!}{k! \cdot (n-k)!}$$
+ 
 ## Exercises
 1. *Simple Probabilities*: Calculate the following probabilities:
     a. Drawing an ace from a deck of cards? 

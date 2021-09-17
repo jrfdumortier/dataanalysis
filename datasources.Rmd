@@ -129,6 +129,14 @@ you have the following variables: \emph{age}, \emph{level2} (indicating whether 
 
 - `organic` ($N=100$): Randomly generated data on the purchase behavior of organic food (binary choice) as a function of income.
 
+- `quillayute` ($N=$): Weather data from Quillayute Airport in Washington State. Weather station USW00094240.
+    - $TAVG$: Average temperature in degree Fahrenheit
+    - $TMAX$: Maximum temperature in degree Fahrenheit
+    - $TMIN$: Minimum temperature in degree Fahrenheit
+    - $PRCP$: Precipitation in Inches
+    - $SNOW$: Snowfall in Inches
+    - $SNOWD$: Snow depth in Inches
+
 - `retail` ($N=348$): \href{https://fred.stlouisfed.org/series/RSXFSN}{Advance Retail Sales: Retail (Excluding Food Services)} obtained from the St. Louis FRED.
 
 - `rossi` ($N=432$):
