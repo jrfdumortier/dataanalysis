@@ -24,7 +24,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2021-09-17" />
+<meta name="date" content="2021-09-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -205,7 +205,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.3.2" data-path="continuous-distributions.html"><a href="continuous-distributions.html#normal-distribution"><i class="fa fa-check"></i><b>6.3.2</b> Normal distribution</a></li>
 <li class="chapter" data-level="6.3.3" data-path="continuous-distributions.html"><a href="continuous-distributions.html#t-distribution"><i class="fa fa-check"></i><b>6.3.3</b> <em>t</em>-Distribution</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="exercises-2.html"><a href="exercises-2.html"><i class="fa fa-check"></i><b>6.4</b> Exercises</a></li>
+<li class="chapter" data-level="6.4" data-path="distribution-fitting.html"><a href="distribution-fitting.html"><i class="fa fa-check"></i><b>6.4</b> Distribution Fitting</a></li>
+<li class="chapter" data-level="6.5" data-path="exercises-2.html"><a href="exercises-2.html"><i class="fa fa-check"></i><b>6.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="basic-multivariate-regression.html"><a href="basic-multivariate-regression.html"><i class="fa fa-check"></i><b>7</b> Basic Multivariate Regression</a><ul>
 <li class="chapter" data-level="7.1" data-path="dummy-variables.html"><a href="dummy-variables.html"><i class="fa fa-check"></i><b>7.1</b> Dummy Variables</a></li>
@@ -307,7 +308,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In the case of truncation, a certain part of the data is not observed. In the graph below, the true parameters are <span class="math inline">\(\beta_0=-2\)</span> and <span class="math inline">\(\beta_1=0.5\)</span>. Values <span class="math inline">\(y&lt;0\)</span> are not reported in the data. The green regression line is “correct” whereas the “red” is the line obtained from a regression model which ignores the truncation.</p>
 <p><img src="bookdownproj_files/figure-html/truncationplot-1.png" width="672" />
 If all the data was observed, the correct regression model would give the following results:</p>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="truncation.html#cb87-1"></a><span class="kw">summary</span>(bhat_real)</span></code></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="truncation.html#cb88-1"></a><span class="kw">summary</span>(bhat_real)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = y_real ~ x, data = truncation)
@@ -327,7 +328,7 @@ If all the data was observed, the correct regression model would give the follow
 ## Multiple R-squared:  0.5681, Adjusted R-squared:  0.5591 
 ## F-statistic: 63.15 on 1 and 48 DF,  p-value: 2.654e-10</code></pre>
 <p>The estimates are biased if truncation is ignored:</p>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="truncation.html#cb89-1"></a><span class="kw">summary</span>(bhat_truncated)</span></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="truncation.html#cb90-1"></a><span class="kw">summary</span>(bhat_truncated)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = y_obs ~ x, data = truncation)
@@ -348,8 +349,8 @@ If all the data was observed, the correct regression model would give the follow
 ## Multiple R-squared:  0.4317, Adjusted R-squared:  0.4133 
 ## F-statistic: 23.55 on 1 and 31 DF,  p-value: 3.278e-05</code></pre>
 <p>To correct for the truncation, use the functions from the package <a href="https://cran.r-project.org/web/packages/truncreg/index.html">truncreg</a> which allows to reduce the bias of the coefficients:</p>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="truncation.html#cb91-1"></a>bhat_correct =<span class="st"> </span><span class="kw">truncreg</span>(y_obs<span class="op">~</span>x,<span class="dt">data=</span>truncation)</span>
-<span id="cb91-2"><a href="truncation.html#cb91-2"></a><span class="kw">summary</span>(bhat_correct)</span></code></pre></div>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="truncation.html#cb92-1"></a>bhat_correct =<span class="st"> </span><span class="kw">truncreg</span>(y_obs<span class="op">~</span>x,<span class="dt">data=</span>truncation)</span>
+<span id="cb92-2"><a href="truncation.html#cb92-2"></a><span class="kw">summary</span>(bhat_correct)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## truncreg(formula = y_obs ~ x, data = truncation)

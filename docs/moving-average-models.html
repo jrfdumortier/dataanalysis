@@ -24,7 +24,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2021-09-17" />
+<meta name="date" content="2021-09-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -205,7 +205,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.3.2" data-path="continuous-distributions.html"><a href="continuous-distributions.html#normal-distribution"><i class="fa fa-check"></i><b>6.3.2</b> Normal distribution</a></li>
 <li class="chapter" data-level="6.3.3" data-path="continuous-distributions.html"><a href="continuous-distributions.html#t-distribution"><i class="fa fa-check"></i><b>6.3.3</b> <em>t</em>-Distribution</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="exercises-2.html"><a href="exercises-2.html"><i class="fa fa-check"></i><b>6.4</b> Exercises</a></li>
+<li class="chapter" data-level="6.4" data-path="distribution-fitting.html"><a href="distribution-fitting.html"><i class="fa fa-check"></i><b>6.4</b> Distribution Fitting</a></li>
+<li class="chapter" data-level="6.5" data-path="exercises-2.html"><a href="exercises-2.html"><i class="fa fa-check"></i><b>6.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="basic-multivariate-regression.html"><a href="basic-multivariate-regression.html"><i class="fa fa-check"></i><b>7</b> Basic Multivariate Regression</a><ul>
 <li class="chapter" data-level="7.1" data-path="dummy-variables.html"><a href="dummy-variables.html"><i class="fa fa-check"></i><b>7.1</b> Dummy Variables</a></li>
@@ -305,10 +306,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="moving-average-models" class="section level2">
 <h2><span class="header-section-number">14.5</span> Moving Average Models</h2>
 <p>The moving average model presented in this chapter should not be confused with the concept of moving average (also known as rolling mean) which is familiar to many people. To avoid confusion, the term rolling mean is used for the latter. An example of a rolling mean is plotted below:</p>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="moving-average-models.html#cb168-1"></a><span class="kw">ggplot</span>(covid,<span class="kw">aes</span>(<span class="dt">x=</span>date))<span class="op">+</span></span>
-<span id="cb168-2"><a href="moving-average-models.html#cb168-2"></a><span class="st">     </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">y=</span>newcases<span class="op">/</span><span class="dv">1000</span>))<span class="op">+</span></span>
-<span id="cb168-3"><a href="moving-average-models.html#cb168-3"></a><span class="st">     </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">y=</span><span class="kw">rollmean</span>(newcases<span class="op">/</span><span class="dv">1000</span>,<span class="dv">7</span>,<span class="dt">na.pad=</span><span class="ot">TRUE</span>,<span class="dt">align=</span><span class="st">&quot;right&quot;</span>)),</span>
-<span id="cb168-4"><a href="moving-average-models.html#cb168-4"></a>               <span class="dt">color=</span><span class="st">&quot;red&quot;</span>)<span class="op">+</span><span class="kw">ylab</span>(<span class="st">&quot;New Cases in Thousand&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="moving-average-models.html#cb169-1"></a><span class="kw">ggplot</span>(covid,<span class="kw">aes</span>(<span class="dt">x=</span>date))<span class="op">+</span></span>
+<span id="cb169-2"><a href="moving-average-models.html#cb169-2"></a><span class="st">     </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">y=</span>newcases<span class="op">/</span><span class="dv">1000</span>))<span class="op">+</span></span>
+<span id="cb169-3"><a href="moving-average-models.html#cb169-3"></a><span class="st">     </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">y=</span><span class="kw">rollmean</span>(newcases<span class="op">/</span><span class="dv">1000</span>,<span class="dv">7</span>,<span class="dt">na.pad=</span><span class="ot">TRUE</span>,<span class="dt">align=</span><span class="st">&quot;right&quot;</span>)),</span>
+<span id="cb169-4"><a href="moving-average-models.html#cb169-4"></a>               <span class="dt">color=</span><span class="st">&quot;red&quot;</span>)<span class="op">+</span><span class="kw">ylab</span>(<span class="st">&quot;New Cases in Thousand&quot;</span>)</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-68-1.png" width="672" /></p>
 <p>A moving average term in a time series model is a past error (multiplied by a coefficient), e.g., MA(1):
 <span class="math display">\[x_t = \mu + w_t + \theta_1 \cdot w_{t-1}\]</span>

@@ -18,9 +18,10 @@ There is a particular set of R commands to find various aspects of the distribut
 - `rname()` for the random numbers 
 - `qname()` for the inverse
 
-There is also a YouTube video associated with this chapter:
+There is also a YouTube video and slides associated with this chapter:
 
-- [Probability Distributions](https://youtu.be/29eB-nzfVAM)
+- [Probability Distributions - Video](https://youtu.be/29eB-nzfVAM)
+- [Probability Distributions - Slides](https://github.com/jrfdumortier/slidesstatistics/blob/main/ProbabilityDistributions.pdf)
 
 ## Random Variables
 A random variable $X$ is a variable that can take different values and there is a probability associated for each value or range of values. We differentiate between discrete and continuous random variables. The important aspect to keep in mind is that the sum of the probabilities for all values has to be equal to one!
@@ -180,6 +181,25 @@ for (i in 1:4){lines(x, dt(x,degf[i]), lwd=2, col=colors[i])}
 legend("topright", inset=.05, title="Distributions",
   labels, lwd=2, lty=c(1, 1, 1, 1, 2), col=colors)
 ```
+
+## Distribution Fitting
+Bins of a histogram:
+     \begin{itemize}
+\item Bin width: $B_1,B_2,\dots,B_m$
+     \item Bin height: Number of observations in the bin / $(n \cdot |B_i|)$
+     \end{itemize}
+
+
+
+For example, consider the multiple choice questionnaire with three questions and five possible answers. What is the probability of having all three correct? What is the probability of having at most 2 correct?
+     
+     <<DIS_Binomial,echo=TRUE,message=FALSE,warning=FALSE,error=FALSE,include=TRUE,fig.keep="none">>=
+     dbinom(3,3,1/5)  
+pbinom(2,3,1/5)
+pbinom(4,14,0.3)
+qnorm(0.8,21.1,5.1)
+@
+     
 
 ## Exercises
 1. *Fair Game*: A friend of yours has a coin and proposes the following game. You toss the coin 10 times and count the number of heads. The amount you win or lose on $k$ heads is given by $k^2 - 7\cdot k$. 

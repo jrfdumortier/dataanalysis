@@ -24,7 +24,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2021-09-17" />
+<meta name="date" content="2021-09-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -205,7 +205,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.3.2" data-path="continuous-distributions.html"><a href="continuous-distributions.html#normal-distribution"><i class="fa fa-check"></i><b>6.3.2</b> Normal distribution</a></li>
 <li class="chapter" data-level="6.3.3" data-path="continuous-distributions.html"><a href="continuous-distributions.html#t-distribution"><i class="fa fa-check"></i><b>6.3.3</b> <em>t</em>-Distribution</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="exercises-2.html"><a href="exercises-2.html"><i class="fa fa-check"></i><b>6.4</b> Exercises</a></li>
+<li class="chapter" data-level="6.4" data-path="distribution-fitting.html"><a href="distribution-fitting.html"><i class="fa fa-check"></i><b>6.4</b> Distribution Fitting</a></li>
+<li class="chapter" data-level="6.5" data-path="exercises-2.html"><a href="exercises-2.html"><i class="fa fa-check"></i><b>6.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="basic-multivariate-regression.html"><a href="basic-multivariate-regression.html"><i class="fa fa-check"></i><b>7</b> Basic Multivariate Regression</a><ul>
 <li class="chapter" data-level="7.1" data-path="dummy-variables.html"><a href="dummy-variables.html"><i class="fa fa-check"></i><b>7.1</b> Dummy Variables</a></li>
@@ -307,7 +308,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In the case of censoring, the values of the dependent variable are reported at a certain point if they are above or below a certain value.</p>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
 <p>If all data was reported at the correct value, the following following regression model could be executed:</p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="censoring.html#cb93-1"></a><span class="kw">summary</span>(bhat_real)</span></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="censoring.html#cb94-1"></a><span class="kw">summary</span>(bhat_real)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = y_real ~ x, data = censoring)
@@ -327,7 +328,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Multiple R-squared:  0.7178, Adjusted R-squared:  0.7119 
 ## F-statistic: 122.1 on 1 and 48 DF,  p-value: 8.718e-15</code></pre>
 <p>Ignoring censoring leads to biased results:</p>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="censoring.html#cb95-1"></a><span class="kw">summary</span>(bhat_censored)</span></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="censoring.html#cb96-1"></a><span class="kw">summary</span>(bhat_censored)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = y_obs ~ x, data = censoring)
@@ -347,8 +348,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Multiple R-squared:  0.5881, Adjusted R-squared:  0.5795 
 ## F-statistic: 68.52 on 1 and 48 DF,  p-value: 8.402e-11</code></pre>
 <p>Using the R package <a href="https://cran.r-project.org/web/packages/censReg/index.html">censReg</a>) allows for the reduction of the bias:</p>
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="censoring.html#cb97-1"></a>b_correct =<span class="st"> </span><span class="kw">censReg</span>(y_obs<span class="op">~</span>x,<span class="dt">data=</span>censoring)</span>
-<span id="cb97-2"><a href="censoring.html#cb97-2"></a><span class="kw">summary</span>(b_correct)</span></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="censoring.html#cb98-1"></a>b_correct =<span class="st"> </span><span class="kw">censReg</span>(y_obs<span class="op">~</span>x,<span class="dt">data=</span>censoring)</span>
+<span id="cb98-2"><a href="censoring.html#cb98-2"></a><span class="kw">summary</span>(b_correct)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## censReg(formula = y_obs ~ x, data = censoring)

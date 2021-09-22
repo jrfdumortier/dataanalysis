@@ -24,7 +24,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2021-09-17" />
+<meta name="date" content="2021-09-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -205,7 +205,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.3.2" data-path="continuous-distributions.html"><a href="continuous-distributions.html#normal-distribution"><i class="fa fa-check"></i><b>6.3.2</b> Normal distribution</a></li>
 <li class="chapter" data-level="6.3.3" data-path="continuous-distributions.html"><a href="continuous-distributions.html#t-distribution"><i class="fa fa-check"></i><b>6.3.3</b> <em>t</em>-Distribution</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="exercises-2.html"><a href="exercises-2.html"><i class="fa fa-check"></i><b>6.4</b> Exercises</a></li>
+<li class="chapter" data-level="6.4" data-path="distribution-fitting.html"><a href="distribution-fitting.html"><i class="fa fa-check"></i><b>6.4</b> Distribution Fitting</a></li>
+<li class="chapter" data-level="6.5" data-path="exercises-2.html"><a href="exercises-2.html"><i class="fa fa-check"></i><b>6.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="basic-multivariate-regression.html"><a href="basic-multivariate-regression.html"><i class="fa fa-check"></i><b>7</b> Basic Multivariate Regression</a><ul>
 <li class="chapter" data-level="7.1" data-path="dummy-variables.html"><a href="dummy-variables.html"><i class="fa fa-check"></i><b>7.1</b> Dummy Variables</a></li>
@@ -317,23 +318,23 @@ Note that <span class="math inline">\(\beta_1\)</span> in the exponential time t
 <p>The seasonal component can be included via dummy variables. For example, for quarterly data the following model can be used:</p>
 <p><span class="math display">\[y_t=\beta_0+\delta_1 \cdot Q1_t+\delta_2 \cdot Q2_t+\delta_3 \cdot Q3_t+\beta_1 \cdot x_{1,t}+ \cdots+\beta_k \cdot x_{k,t}+\epsilon_t\]</span>
 One seasonal dummy must be dropped. That is, quarterly and yearly data require three and eleven dummy variables, respectively. Consider the <code>retail</code> data.</p>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="trend-and-seasonality.html#cb152-1"></a>retail<span class="op">$</span>date  =<span class="st"> </span><span class="kw">as.Date</span>(retail<span class="op">$</span>date,<span class="dt">format=</span><span class="st">&quot;%Y-%m-%d&quot;</span>)</span>
-<span id="cb152-2"><a href="trend-and-seasonality.html#cb152-2"></a>retail<span class="op">$</span>month =<span class="st"> </span><span class="kw">format</span>(retail<span class="op">$</span>date,<span class="st">&quot;%m&quot;</span>)</span>
-<span id="cb152-3"><a href="trend-and-seasonality.html#cb152-3"></a>retail<span class="op">$</span>t     =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(retail))</span>
-<span id="cb152-4"><a href="trend-and-seasonality.html#cb152-4"></a>bhat         =<span class="st"> </span><span class="kw">lm</span>(retail<span class="op">~</span><span class="kw">factor</span>(month)<span class="op">+</span>t,<span class="dt">data=</span>retail)</span>
-<span id="cb152-5"><a href="trend-and-seasonality.html#cb152-5"></a>retail<span class="op">$</span>fit   =<span class="st"> </span><span class="kw">predict.lm</span>(bhat)</span>
-<span id="cb152-6"><a href="trend-and-seasonality.html#cb152-6"></a><span class="kw">ggplot</span>(retail)<span class="op">+</span></span>
-<span id="cb152-7"><a href="trend-and-seasonality.html#cb152-7"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">mapping=</span><span class="kw">aes</span>(<span class="dt">x=</span>date,<span class="dt">y=</span>retail),<span class="dt">color=</span><span class="st">&quot;red&quot;</span>)<span class="op">+</span></span>
-<span id="cb152-8"><a href="trend-and-seasonality.html#cb152-8"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">mapping=</span><span class="kw">aes</span>(<span class="dt">x=</span>date,<span class="dt">y=</span>fit))</span></code></pre></div>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="trend-and-seasonality.html#cb153-1"></a>retail<span class="op">$</span>date  =<span class="st"> </span><span class="kw">as.Date</span>(retail<span class="op">$</span>date,<span class="dt">format=</span><span class="st">&quot;%Y-%m-%d&quot;</span>)</span>
+<span id="cb153-2"><a href="trend-and-seasonality.html#cb153-2"></a>retail<span class="op">$</span>month =<span class="st"> </span><span class="kw">format</span>(retail<span class="op">$</span>date,<span class="st">&quot;%m&quot;</span>)</span>
+<span id="cb153-3"><a href="trend-and-seasonality.html#cb153-3"></a>retail<span class="op">$</span>t     =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(retail))</span>
+<span id="cb153-4"><a href="trend-and-seasonality.html#cb153-4"></a>bhat         =<span class="st"> </span><span class="kw">lm</span>(retail<span class="op">~</span><span class="kw">factor</span>(month)<span class="op">+</span>t,<span class="dt">data=</span>retail)</span>
+<span id="cb153-5"><a href="trend-and-seasonality.html#cb153-5"></a>retail<span class="op">$</span>fit   =<span class="st"> </span><span class="kw">predict.lm</span>(bhat)</span>
+<span id="cb153-6"><a href="trend-and-seasonality.html#cb153-6"></a><span class="kw">ggplot</span>(retail)<span class="op">+</span></span>
+<span id="cb153-7"><a href="trend-and-seasonality.html#cb153-7"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">mapping=</span><span class="kw">aes</span>(<span class="dt">x=</span>date,<span class="dt">y=</span>retail),<span class="dt">color=</span><span class="st">&quot;red&quot;</span>)<span class="op">+</span></span>
+<span id="cb153-8"><a href="trend-and-seasonality.html#cb153-8"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">mapping=</span><span class="kw">aes</span>(<span class="dt">x=</span>date,<span class="dt">y=</span>fit))</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-55-1.png" width="672" /></p>
 <p>A second example considers quarterly <code>beer</code> production in Australia. In a first step, the data is converted into a time series:</p>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="trend-and-seasonality.html#cb153-1"></a>beer =<span class="st"> </span><span class="kw">ts</span>(beer<span class="op">$</span>sales,<span class="dt">start=</span><span class="kw">c</span>(<span class="dv">1992</span>,<span class="dv">1</span>),<span class="dt">end=</span><span class="kw">c</span>(<span class="dv">2014</span>,<span class="dv">4</span>),<span class="dt">frequency=</span><span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="trend-and-seasonality.html#cb154-1"></a>beer =<span class="st"> </span><span class="kw">ts</span>(beer<span class="op">$</span>sales,<span class="dt">start=</span><span class="kw">c</span>(<span class="dv">1992</span>,<span class="dv">1</span>),<span class="dt">end=</span><span class="kw">c</span>(<span class="dv">2014</span>,<span class="dv">4</span>),<span class="dt">frequency=</span><span class="dv">4</span>)</span></code></pre></div>
 <p>Next, the data is plotted using a function from the package <a href="https://cran.r-project.org/web/packages/ggfortify/index.html">ggfortify</a>. Additional documentation using the package is found under <a href="https://cran.r-project.org/web/packages/ggfortify/vignettes/plot_ts.html">Plotting ts objects</a>.</p>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="trend-and-seasonality.html#cb154-1"></a><span class="kw">autoplot</span>(beer)</span></code></pre></div>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="trend-and-seasonality.html#cb155-1"></a><span class="kw">autoplot</span>(beer)</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-57-1.png" width="672" /></p>
 <p>Note that the <code>beer</code> now appears in a different category in the Global Environment, i.e., not under “Data” anymore. The function <code>tslm</code> from the package <a href="https://cran.r-project.org/web/packages/forecast/index.html">forecast</a> is used next. The function fits a linear model including seasonality and a trend component (and a trend-squared component if desired).</p>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="trend-and-seasonality.html#cb155-1"></a>bhat =<span class="st"> </span><span class="kw">tslm</span>(beer<span class="op">~</span>trend<span class="op">+</span><span class="kw">I</span>(trend<span class="op">^</span><span class="dv">2</span>)<span class="op">+</span>season)</span>
-<span id="cb155-2"><a href="trend-and-seasonality.html#cb155-2"></a><span class="kw">summary</span>(bhat)</span></code></pre></div>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="trend-and-seasonality.html#cb156-1"></a>bhat =<span class="st"> </span><span class="kw">tslm</span>(beer<span class="op">~</span>trend<span class="op">+</span><span class="kw">I</span>(trend<span class="op">^</span><span class="dv">2</span>)<span class="op">+</span>season)</span>
+<span id="cb156-2"><a href="trend-and-seasonality.html#cb156-2"></a><span class="kw">summary</span>(bhat)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## tslm(formula = beer ~ trend + I(trend^2) + season)
@@ -357,7 +358,7 @@ One seasonal dummy must be dropped. That is, quarterly and yearly data require t
 ## Multiple R-squared:  0.9867, Adjusted R-squared:  0.9859 
 ## F-statistic:  1278 on 5 and 86 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>The package <a href="https://cran.r-project.org/web/packages/forecast/index.html">forecast</a> can be also be used to forcast:</p>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="trend-and-seasonality.html#cb157-1"></a><span class="kw">plot</span>(<span class="kw">forecast</span>(bhat,<span class="dt">h=</span><span class="dv">20</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="trend-and-seasonality.html#cb158-1"></a><span class="kw">plot</span>(<span class="kw">forecast</span>(bhat,<span class="dt">h=</span><span class="dv">20</span>))</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-59-1.png" width="672" /></p>
 <div id="practice-exercise" class="section level3">
 <h3><span class="header-section-number">14.1.1</span> Practice Exercise</h3>

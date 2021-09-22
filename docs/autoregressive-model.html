@@ -24,7 +24,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2021-09-17" />
+<meta name="date" content="2021-09-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -205,7 +205,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.3.2" data-path="continuous-distributions.html"><a href="continuous-distributions.html#normal-distribution"><i class="fa fa-check"></i><b>6.3.2</b> Normal distribution</a></li>
 <li class="chapter" data-level="6.3.3" data-path="continuous-distributions.html"><a href="continuous-distributions.html#t-distribution"><i class="fa fa-check"></i><b>6.3.3</b> <em>t</em>-Distribution</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="exercises-2.html"><a href="exercises-2.html"><i class="fa fa-check"></i><b>6.4</b> Exercises</a></li>
+<li class="chapter" data-level="6.4" data-path="distribution-fitting.html"><a href="distribution-fitting.html"><i class="fa fa-check"></i><b>6.4</b> Distribution Fitting</a></li>
+<li class="chapter" data-level="6.5" data-path="exercises-2.html"><a href="exercises-2.html"><i class="fa fa-check"></i><b>6.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="basic-multivariate-regression.html"><a href="basic-multivariate-regression.html"><i class="fa fa-check"></i><b>7</b> Basic Multivariate Regression</a><ul>
 <li class="chapter" data-level="7.1" data-path="dummy-variables.html"><a href="dummy-variables.html"><i class="fa fa-check"></i><b>7.1</b> Dummy Variables</a></li>
@@ -312,7 +313,7 @@ where <span class="math inline">\(\epsilon_t \sim N(0,\sigma^2)\)</span>. Consid
 <img src="bookdownproj_files/figure-html/unnamed-chunk-63-1.png" width="672" /></p>
 <pre><code>## [1] 0.2486712</code></pre>
 <p>The correlation coefficicent of 0.25 indicates a weak positive correlation between the number of earthquakes in periods <span class="math inline">\(t\)</span> and <span class="math inline">\(t-1\)</span>. Remember that correlation is not causation. The AR(1) model can be estimated with the <code>lm()</code> function used previously:</p>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="autoregressive-model.html#cb164-1"></a><span class="kw">summary</span>(<span class="kw">lm</span>(quakes<span class="op">~</span><span class="kw">Lag</span>(quakes),<span class="dt">data=</span>quakes))</span></code></pre></div>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="autoregressive-model.html#cb165-1"></a><span class="kw">summary</span>(<span class="kw">lm</span>(quakes<span class="op">~</span><span class="kw">Lag</span>(quakes),<span class="dt">data=</span>quakes))</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = quakes ~ Lag(quakes), data = quakes)
@@ -335,12 +336,12 @@ where <span class="math inline">\(\epsilon_t \sim N(0,\sigma^2)\)</span>. Consid
 <p>Note that although the slope coefficient associated with the lagged term is statistically significant, the R-squared value is very low.
 The third examples uses data on Japanese car production (<code>jcars</code>) to illustrate the concept of autocorrelation. The focus is on car production after 1963.</p>
 <p>In a first step, the data is visualized using <code>ggplot</code>:</p>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="autoregressive-model.html#cb166-1"></a><span class="kw">ggplot</span>(jcars,<span class="kw">aes</span>(<span class="dt">x=</span>year,<span class="dt">y=</span>cars))<span class="op">+</span><span class="kw">geom_line</span>()<span class="op">+</span><span class="kw">theme_bw</span>()<span class="op">+</span><span class="kw">theme</span>(<span class="dt">axis.title.x=</span><span class="kw">element_blank</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="autoregressive-model.html#cb167-1"></a><span class="kw">ggplot</span>(jcars,<span class="kw">aes</span>(<span class="dt">x=</span>year,<span class="dt">y=</span>cars))<span class="op">+</span><span class="kw">geom_line</span>()<span class="op">+</span><span class="kw">theme_bw</span>()<span class="op">+</span><span class="kw">theme</span>(<span class="dt">axis.title.x=</span><span class="kw">element_blank</span>())</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-66-1.png" width="672" /></p>
 <p>The sample autocorrelation function (ACF) is the correlation between <span class="math inline">\(y_t\)</span> and <span class="math inline">\(y_{t-1}\)</span>, <span class="math inline">\(y_{t-2}\)</span>, <span class="math inline">\(y_{t-3}\)</span>, and so on. It can be written as follows:
 <span class="math display">\[\rho_j = \frac{Cov(y_t,y_{t-j})}{\sqrt{Var(y_t)\cdot Var(y_{t-j})}}\]</span></p>
 <p>The ACF can be used to identify a possible structure of time series either of the actual time series or the residuals of the regression. The autocorrelation function (ACF) is plotted using the function <code>acf()</code> in R.</p>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="autoregressive-model.html#cb167-1"></a><span class="kw">acf</span>(jcars<span class="op">$</span>cars)</span></code></pre></div>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="autoregressive-model.html#cb168-1"></a><span class="kw">acf</span>(jcars<span class="op">$</span>cars)</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-67-1.png" width="672" /></p>
 </div>
             </section>

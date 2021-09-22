@@ -68,6 +68,7 @@ continuous-distributions
 uniform-distribution
 normal-distribution
 t-distribution
+distribution-fitting
 exercises-2
 basic-multivariate-regression
 dummy-variables

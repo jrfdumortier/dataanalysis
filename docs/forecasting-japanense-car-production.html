@@ -24,7 +24,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2021-09-17" />
+<meta name="date" content="2021-09-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -205,7 +205,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.3.2" data-path="continuous-distributions.html"><a href="continuous-distributions.html#normal-distribution"><i class="fa fa-check"></i><b>6.3.2</b> Normal distribution</a></li>
 <li class="chapter" data-level="6.3.3" data-path="continuous-distributions.html"><a href="continuous-distributions.html#t-distribution"><i class="fa fa-check"></i><b>6.3.3</b> <em>t</em>-Distribution</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="exercises-2.html"><a href="exercises-2.html"><i class="fa fa-check"></i><b>6.4</b> Exercises</a></li>
+<li class="chapter" data-level="6.4" data-path="distribution-fitting.html"><a href="distribution-fitting.html"><i class="fa fa-check"></i><b>6.4</b> Distribution Fitting</a></li>
+<li class="chapter" data-level="6.5" data-path="exercises-2.html"><a href="exercises-2.html"><i class="fa fa-check"></i><b>6.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="basic-multivariate-regression.html"><a href="basic-multivariate-regression.html"><i class="fa fa-check"></i><b>7</b> Basic Multivariate Regression</a><ul>
 <li class="chapter" data-level="7.1" data-path="dummy-variables.html"><a href="dummy-variables.html"><i class="fa fa-check"></i><b>7.1</b> Dummy Variables</a></li>
@@ -308,7 +309,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span class="math display">\[y_t = \beta_0 + \beta_1 t + \epsilon_t\]</span>
 Model 2: Autoregressive Model
 <span class="math display">\[ y_t = \beta_0 + \beta_1 t + n_t \quad \text{where} \quad n_t = \phi_1 n_{t-1} + \epsilon_t\]</span></p>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="forecasting-japanense-car-production.html#cb170-1"></a><span class="kw">summary</span>(<span class="kw">lm</span>(cars<span class="op">~</span>year,<span class="dt">data=</span>jcars))</span></code></pre></div>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="forecasting-japanense-car-production.html#cb171-1"></a><span class="kw">summary</span>(<span class="kw">lm</span>(cars<span class="op">~</span>year,<span class="dt">data=</span>jcars))</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = cars ~ year, data = jcars)
@@ -327,7 +328,7 @@ Model 2: Autoregressive Model
 ## Residual standard error: 583.2 on 24 degrees of freedom
 ## Multiple R-squared:  0.9755, Adjusted R-squared:  0.9745 
 ## F-statistic: 957.1 on 1 and 24 DF,  p-value: &lt; 2.2e-16</code></pre>
-<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="forecasting-japanense-car-production.html#cb172-1"></a><span class="kw">auto.arima</span>(jcars<span class="op">$</span>cars)</span></code></pre></div>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="forecasting-japanense-car-production.html#cb173-1"></a><span class="kw">auto.arima</span>(jcars<span class="op">$</span>cars)</span></code></pre></div>
 <pre><code>## Series: jcars$cars 
 ## ARIMA(0,1,0) with drift 
 ## 
@@ -338,8 +339,8 @@ Model 2: Autoregressive Model
 ## 
 ## sigma^2 estimated as 182188:  log likelihood=-186.37
 ## AIC=376.75   AICc=377.29   BIC=379.18</code></pre>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="forecasting-japanense-car-production.html#cb174-1"></a>bhat =<span class="st"> </span><span class="kw">Arima</span>(jcars<span class="op">$</span>cars,<span class="dt">order=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>),<span class="dt">include.constant=</span><span class="ot">TRUE</span>,<span class="dt">include.drift =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb174-2"><a href="forecasting-japanense-car-production.html#cb174-2"></a><span class="kw">summary</span>(bhat)</span></code></pre></div>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="forecasting-japanense-car-production.html#cb175-1"></a>bhat =<span class="st"> </span><span class="kw">Arima</span>(jcars<span class="op">$</span>cars,<span class="dt">order=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>),<span class="dt">include.constant=</span><span class="ot">TRUE</span>,<span class="dt">include.drift =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb175-2"><a href="forecasting-japanense-car-production.html#cb175-2"></a><span class="kw">summary</span>(bhat)</span></code></pre></div>
 <pre><code>## Series: jcars$cars 
 ## ARIMA(1,0,0) with drift 
 ## 
@@ -354,7 +355,7 @@ Model 2: Autoregressive Model
 ## Training set error measures:
 ##                    ME     RMSE      MAE        MPE     MAPE      MASE      ACF1
 ## Training set 17.28081 389.7285 311.2957 -0.7522648 5.354775 0.5840007 0.1564618</code></pre>
-<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="forecasting-japanense-car-production.html#cb176-1"></a><span class="kw">plot</span>(<span class="kw">forecast</span>(bhat))</span></code></pre></div>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="forecasting-japanense-car-production.html#cb177-1"></a><span class="kw">plot</span>(<span class="kw">forecast</span>(bhat))</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-73-1.png" width="672" /></p>
 </div>
             </section>

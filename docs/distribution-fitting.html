@@ -24,7 +24,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2021-09-17" />
+<meta name="date" content="2021-09-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -307,16 +307,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">6.4</span> Distribution Fitting</h2>
 Bins of a histogram:
 
-
-
-Each probability distribution in R has a name. For example
-
-Note that there are many more. What is important are the common commands that go with those names, in particular:
-
 <p>For example, consider the multiple choice questionnaire with three questions and five possible answers. What is the probability of having all three correct? What is the probability of having at most 2 correct?</p>
-<p>&lt;&lt;DIS_Binomial,echo=TRUE,message=FALSE,warning=FALSE,error=FALSE,include=TRUE,fig.keep=“none”&gt;&gt;=
-dbinom(3,3,1/5)<br />
-pbinom(2,3,1/5)
+<pre><code> &lt;&lt;DIS_Binomial,echo=TRUE,message=FALSE,warning=FALSE,error=FALSE,include=TRUE,fig.keep=&quot;none&quot;&gt;&gt;=
+ dbinom(3,3,1/5)  </code></pre>
+<p>pbinom(2,3,1/5)
 pbinom(4,14,0.3)
 qnorm(0.8,21.1,5.1)
 @</p>
