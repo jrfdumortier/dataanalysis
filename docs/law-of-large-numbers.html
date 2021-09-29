@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>12 Qualitative Choice Models | Data Analysis for Public Affairs with R</title>
-  <meta name="description" content="12 Qualitative Choice Models | Data Analysis for Public Affairs with R" />
+  <title>7.1 Law of Large Numbers | Data Analysis for Public Affairs with R</title>
+  <meta name="description" content="7.1 Law of Large Numbers | Data Analysis for Public Affairs with R" />
   <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="12 Qualitative Choice Models | Data Analysis for Public Affairs with R" />
+  <meta property="og:title" content="7.1 Law of Large Numbers | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="12 Qualitative Choice Models | Data Analysis for Public Affairs with R" />
+  <meta name="twitter:title" content="7.1 Law of Large Numbers | Data Analysis for Public Affairs with R" />
   
   
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="exercises-6.html"/>
-<link rel="next" href="ordered-logit-model.html"/>
+<link rel="prev" href="basic-statistics-and-sampling.html"/>
+<link rel="next" href="central-limit-theorem.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -309,36 +309,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="qualitative-choice-models" class="section level1">
-<h1><span class="header-section-number">12</span> Qualitative Choice Models</h1>
-<p>The last chapter introduced binary choice models that answer questions such as:</p>
-<ul>
-<li>Did you vote during the last election?</li>
-<li>Does an individual recidivate after being released from prison?</li>
-</ul>
-<p>In this chapter, cases of dependent variables with more than two categories are considered. The categorical dependent variables can be with or without natural ordering. Here are some examples of natural ordering:</p>
-<ul>
-<li>Level of happiness: Very happy, happy, okay, or sad</li>
-<li>Intent to get vaccinated: Definitely yes, probably yes, probably no, definitely no</li>
-</ul>
-<p>Examples without natural ordering:</p>
-<ul>
-<li>Type of car to purchase: Passenger car, Pick-up truck, van, convertible</li>
-</ul>
-<p>Those models are also known as Discrete Choice Models. The packages required for this section are <a href="https://cran.r-project.org/web/packages/mlogit/index.html">mlogit</a>, <a href="https://cran.r-project.org/web/packages/erer/index.html">erer</a>, <a href="https://cran.r-project.org/web/packages/MASS/index.html">MASS</a>, <a href="https://cran.r-project.org/web/packages/AER/index.html">AER</a>, <a href="https://cran.r-project.org/web/packages/glmmML/index.html">glmmML</a>, and <a href="https://cran.r-project.org/web/packages/nnet/index.html">nnet</a>. The data required are <code>fpdata</code> and <code>evdata</code> in addition to <code>Fishing</code> and <code>TravelMode</code> which are part of the packages <a href="https://cran.r-project.org/web/packages/mlogit/index.html">mlogit</a> and <a href="https://cran.r-project.org/web/packages/AER/index.html">AER</a>. You can load them into R with the following commands:</p>
-<ul>
-<li><code>data("Fishing",package="mlogit")</code></li>
-<li><code>data("TravelMode",package="AER")</code></li>
-</ul>
-<p>There is also a <a href="https://youtu.be/xLUIil1sGW4">YouTube Video</a> associated with this chapter.</p>
+<div id="law-of-large-numbers" class="section level2">
+<h2><span class="header-section-number">7.1</span> Law of Large Numbers</h2>
+<p>The unemployment rate in the United States is measured via the Current Population Survey (CPS) which samples 60,000 households on a monthly basis. People are classified into <em>employed</em>, <em>unemployed</em>, <em>not in the labor force</em>. The reason for this large sample is that the larger the sample, the smaller the margin of error (more on that concept below). This is a result of the law of large numbers. Any feature of a distribution can be recovered from repeated sampling. In particular, the law of large number can be spelled out as
+<span class="math display">\[\lim_{n \rightarrow \infty} P(|\bar{X}_n - \mu | &gt; \epsilon) = 0\]</span>
+For example, if you flip a coin, there are two possible outcomes: heads or tails. The expected value of heads (or tails) is <span class="math inline">\(E(H)=E(T)=0.5\)</span>. The variance of <span class="math inline">\(n\)</span> coin tosses is
+<span class="math display">\[Var(n) = \frac{p \cdot (1-p)}{n}\]</span></p>
+<p>Note that <span class="math inline">\(p \cdot (1-p)\)</span> is the variance associated with a Bernoulli. So the variance of <span class="math inline">\(n\)</span> coin tosses is <span class="math inline">\(Var(1) = 0.5\)</span>, <span class="math inline">\(Var(10) = 0.025\)</span>, <span class="math inline">\(Var(1000) = 0.00025\)</span>, etc. It is difficult to predict the share of heads from a single coin toss but high prediction precision from several thousand tosses.</p>
+<div class="figure"><span style="display:block;" id="fig:BSSlln"></span>
+<img src="bookdownproj_files/figure-html/BSSlln-1.png" alt="Law of Large Numbers illustrated by flipping a coin up to 50,000 times." width="672" />
+<p class="caption">
+Figure 7.1: Law of Large Numbers illustrated by flipping a coin up to 50,000 times.
+</p>
+</div>
+<p>There are very important implications, e.g., insurance business. If there is risk aversion for individuals as well as for firms, why do insurance companies exist? Let us illustrate how the law of large numbers can help us answer this question. Assume an insurance company that sells home insurance policies. The probability of a fire is <span class="math inline">\(P(fire)=1/250=0.004\)</span>. Each home is valued at $250,000 and the value of the home after a fire is $0. The insurance premium is equal to the expected loss, i.e., $1000. In a simulation exercise, the damage to <span class="math inline">\(n\)</span> homeowners (where <span class="math inline">\(n\)</span> is the number of homes insured) and the share of homes burned down is calculated. The exercise is repeated a 1000 times and then a histogram is generated.</p>
+<div class="figure"><span style="display:block;" id="fig:BSSriskpooling"></span>
+<img src="bookdownproj_files/figure-html/BSSriskpooling-1.png" alt="Risk pooling by an insurance company." width="672" />
+<p class="caption">
+Figure 7.2: Risk pooling by an insurance company.
+</p>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="exercises-6.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="ordered-logit-model.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="basic-statistics-and-sampling.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="central-limit-theorem.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -370,7 +368,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/jrfdumortier/dataanalysis/edit/master/qualitativechoice.rmd",
+"link": "https://github.com/jrfdumortier/dataanalysis/edit/master/sampling.rmd",
 "text": "Edit"
 },
 "history": {
@@ -378,7 +376,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/jrfdumortier/dataanalysis/blob/master/qualitativechoice.rmd",
+"link": "https://github.com/jrfdumortier/dataanalysis/blob/master/sampling.rmd",
 "text": null
 },
 "download": ["bookdownproj.pdf"],

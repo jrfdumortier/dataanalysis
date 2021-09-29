@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>12 Qualitative Choice Models | Data Analysis for Public Affairs with R</title>
-  <meta name="description" content="12 Qualitative Choice Models | Data Analysis for Public Affairs with R" />
+  <title>7.3 Estimation and Estimators | Data Analysis for Public Affairs with R</title>
+  <meta name="description" content="7.3 Estimation and Estimators | Data Analysis for Public Affairs with R" />
   <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="12 Qualitative Choice Models | Data Analysis for Public Affairs with R" />
+  <meta property="og:title" content="7.3 Estimation and Estimators | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="12 Qualitative Choice Models | Data Analysis for Public Affairs with R" />
+  <meta name="twitter:title" content="7.3 Estimation and Estimators | Data Analysis for Public Affairs with R" />
   
   
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="exercises-6.html"/>
-<link rel="next" href="ordered-logit-model.html"/>
+<link rel="prev" href="central-limit-theorem.html"/>
+<link rel="next" href="exercises-3.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -309,36 +309,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="qualitative-choice-models" class="section level1">
-<h1><span class="header-section-number">12</span> Qualitative Choice Models</h1>
-<p>The last chapter introduced binary choice models that answer questions such as:</p>
-<ul>
-<li>Did you vote during the last election?</li>
-<li>Does an individual recidivate after being released from prison?</li>
-</ul>
-<p>In this chapter, cases of dependent variables with more than two categories are considered. The categorical dependent variables can be with or without natural ordering. Here are some examples of natural ordering:</p>
-<ul>
-<li>Level of happiness: Very happy, happy, okay, or sad</li>
-<li>Intent to get vaccinated: Definitely yes, probably yes, probably no, definitely no</li>
-</ul>
-<p>Examples without natural ordering:</p>
-<ul>
-<li>Type of car to purchase: Passenger car, Pick-up truck, van, convertible</li>
-</ul>
-<p>Those models are also known as Discrete Choice Models. The packages required for this section are <a href="https://cran.r-project.org/web/packages/mlogit/index.html">mlogit</a>, <a href="https://cran.r-project.org/web/packages/erer/index.html">erer</a>, <a href="https://cran.r-project.org/web/packages/MASS/index.html">MASS</a>, <a href="https://cran.r-project.org/web/packages/AER/index.html">AER</a>, <a href="https://cran.r-project.org/web/packages/glmmML/index.html">glmmML</a>, and <a href="https://cran.r-project.org/web/packages/nnet/index.html">nnet</a>. The data required are <code>fpdata</code> and <code>evdata</code> in addition to <code>Fishing</code> and <code>TravelMode</code> which are part of the packages <a href="https://cran.r-project.org/web/packages/mlogit/index.html">mlogit</a> and <a href="https://cran.r-project.org/web/packages/AER/index.html">AER</a>. You can load them into R with the following commands:</p>
-<ul>
-<li><code>data("Fishing",package="mlogit")</code></li>
-<li><code>data("TravelMode",package="AER")</code></li>
-</ul>
-<p>There is also a <a href="https://youtu.be/xLUIil1sGW4">YouTube Video</a> associated with this chapter.</p>
+<div id="estimation-and-estimators" class="section level2">
+<h2><span class="header-section-number">7.3</span> Estimation and Estimators</h2>
+<p>Assume the simple setting of where the random variable <span class="math inline">\(X\)</span> represents a population with probability density function <span class="math inline">\(f(x;\theta)\)</span>. This probability density function depends on the parameter <span class="math inline">\(\theta\)</span> which is unknown. It is assumed that the probability density function is known except for the parameter <span class="math inline">\(\theta\)</span>. So we have to engage in sampling from the population to get information about the parameter of interest. To gather information about <span class="math inline">\(\theta\)</span>, we perform random sampling and collect <span class="math inline">\(X_1, X_2, \dots, X_n\)</span> which represents an identically and identically distributed (i.i.d.) random sample drawn from the probability density function <span class="math inline">\(f(x;\theta)\)</span>. In the most abstract formulation, we can think of <span class="math inline">\(W\)</span> as an estimator for the parameter <span class="math inline">\(\theta\)</span> in as <span class="math inline">\(W=h(X_1, X_2, \dots X_n)\)</span>.</p>
+<p>The goal of a good estimation procedure is to determine an unbiased point estimator <span class="math inline">\(\hat{\theta}\)</span> of the population parameter <span class="math inline">\(\theta\)</span>. To evaluate our estimation procedure, we are interested in analyzing the sampling distribution associated with <span class="math inline">\(\hat{\theta}\)</span>. From a theoretical perspective, the bias <span class="math inline">\(b\)</span> of an estimator can be expressed as
+<span class="math display">\[b(\hat{\theta})=E(\hat{\theta})-\theta\]</span>
+The mean squared error of a point estimator W is defined as
+<span class="math display">\[MSE(\hat{\theta})=E((\hat{\theta}-\theta)^2)\]</span>
+Note, that unbiased does not refer to the fact that <span class="math inline">\(\hat{\theta}=\theta\)</span> from one sample but if we were able to repeat the sampling infinite times, the average of the <span class="math inline">\(\hat{\theta}\)</span> would be equal to <span class="math inline">\(\theta\)</span>. Some commonly used statistics are the sample mean, the sample variance, the sample standard deviation, and the sample mid-range. The sample mean is the arithmetic average of the values in a random sample. It is denoted
+<span class="math display">\[\bar{X}(X_1,X_2, \cdot \cdot \cdot, X_n)=\frac{X_{1}+ X_2+ . . . +X_n}{n}=\frac{1}{n}\sum_{i=1}^{n}X_i\]</span>
+The observed value of <span class="math inline">\(\bar{X}\)</span> in any sample is denoted by the lower case letter, i.e., <span class="math inline">\(\bar{x}\)</span>. The sample variance is the statistic defined by
+<span class="math display">\[S^2(X_1,X_2, \cdot \cdot \cdot, X_n)=\frac{1}{n-1}\sum_{i=1}^{n}(X_i-\bar{X})^{2}\]</span>
+The observed value of <span class="math inline">\({S^2}\)</span> in any sample is denoted by the lower case letter, i.e., <span class="math inline">\({s^2}\)</span>. The sample standard deviation is the statistic defined by <span class="math inline">\(S=\sqrt{S^2}\)</span>. The sample mid-range is the statistic defined by
+<span class="math display">\[\frac{max(X_1,X_2, \cdot \cdot \cdot ,X_n)-min(X_1,X_2, \cdot \cdot \cdot,X_n)}{2}\]</span>
+Imagine that you have two estimation methods for the estimator <span class="math inline">\(\hat{\theta}\)</span>. Which one do you chose? The answer is that you would chose the most efficient estimator based on the sampling variance.</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="exercises-6.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="ordered-logit-model.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="central-limit-theorem.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="exercises-3.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -370,7 +362,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/jrfdumortier/dataanalysis/edit/master/qualitativechoice.rmd",
+"link": "https://github.com/jrfdumortier/dataanalysis/edit/master/sampling.rmd",
 "text": "Edit"
 },
 "history": {
@@ -378,7 +370,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/jrfdumortier/dataanalysis/blob/master/qualitativechoice.rmd",
+"link": "https://github.com/jrfdumortier/dataanalysis/blob/master/sampling.rmd",
 "text": null
 },
 "download": ["bookdownproj.pdf"],

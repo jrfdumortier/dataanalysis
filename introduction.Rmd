@@ -91,7 +91,7 @@ Throughout this book, we are going to use the software [R](https://www.r-project
 
 - [ETH Zurich](https://stat.ethz.ch/R-manual/R-devel/doc/html/): If you are looking for documentation about all the various functions in R, this is the website to check them. Note that in most cases, the result of a Google search leads to the ETHZ page.
 - [StatMethods](https://www.statmethods.net/): This webpage contains a lot of tutorials and introduces you to the basic functionality of R.
-- Statistical tools for high-throughput data analysis (STHDA): This webpage has been down since at least September 2021 and if it comes back online, the link will be provided here. The site was great to learn how to do data visualization with the R package [ggplot2](https://cran.r-project.org/web/packages/ggplot2/index.html). 
+- [Statistical tools for high-throughput data analysis (STHDA)](http://www.sthda.com/english/): The site was great to learn how to do data visualization with the R package [ggplot2](https://cran.r-project.org/web/packages/ggplot2/index.html). 
 
 R/RStudio has several advantages over Excel:
 

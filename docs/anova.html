@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>8 ANOVA | Data Analysis for Public Affairs with R</title>
-  <meta name="description" content="8 ANOVA | Data Analysis for Public Affairs with R" />
+  <title>9 ANOVA | Data Analysis for Public Affairs with R</title>
+  <meta name="description" content="9 ANOVA | Data Analysis for Public Affairs with R" />
   <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="8 ANOVA | Data Analysis for Public Affairs with R" />
+  <meta property="og:title" content="9 ANOVA | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="8 ANOVA | Data Analysis for Public Affairs with R" />
+  <meta name="twitter:title" content="9 ANOVA | Data Analysis for Public Affairs with R" />
   
   
   
@@ -24,7 +24,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2021-09-22" />
+<meta name="date" content="2021-09-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="dummy-variables.html"/>
-<link rel="next" href="exercises-3.html"/>
+<link rel="next" href="exercises-4.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -208,82 +208,88 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.4" data-path="distribution-fitting.html"><a href="distribution-fitting.html"><i class="fa fa-check"></i><b>6.4</b> Distribution Fitting</a></li>
 <li class="chapter" data-level="6.5" data-path="exercises-2.html"><a href="exercises-2.html"><i class="fa fa-check"></i><b>6.5</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="basic-multivariate-regression.html"><a href="basic-multivariate-regression.html"><i class="fa fa-check"></i><b>7</b> Basic Multivariate Regression</a><ul>
-<li class="chapter" data-level="7.1" data-path="dummy-variables.html"><a href="dummy-variables.html"><i class="fa fa-check"></i><b>7.1</b> Dummy Variables</a></li>
+<li class="chapter" data-level="7" data-path="basic-statistics-and-sampling.html"><a href="basic-statistics-and-sampling.html"><i class="fa fa-check"></i><b>7</b> Basic Statistics and Sampling</a><ul>
+<li class="chapter" data-level="7.1" data-path="law-of-large-numbers.html"><a href="law-of-large-numbers.html"><i class="fa fa-check"></i><b>7.1</b> Law of Large Numbers</a></li>
+<li class="chapter" data-level="7.2" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html"><i class="fa fa-check"></i><b>7.2</b> Central Limit Theorem</a></li>
+<li class="chapter" data-level="7.3" data-path="estimation-and-estimators.html"><a href="estimation-and-estimators.html"><i class="fa fa-check"></i><b>7.3</b> Estimation and Estimators</a></li>
+<li class="chapter" data-level="7.4" data-path="exercises-3.html"><a href="exercises-3.html"><i class="fa fa-check"></i><b>7.4</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="anova.html"><a href="anova.html"><i class="fa fa-check"></i><b>8</b> ANOVA</a><ul>
-<li class="chapter" data-level="8.1" data-path="exercises-3.html"><a href="exercises-3.html"><i class="fa fa-check"></i><b>8.1</b> Exercises</a></li>
+<li class="chapter" data-level="8" data-path="basic-multivariate-regression.html"><a href="basic-multivariate-regression.html"><i class="fa fa-check"></i><b>8</b> Basic Multivariate Regression</a><ul>
+<li class="chapter" data-level="8.1" data-path="dummy-variables.html"><a href="dummy-variables.html"><i class="fa fa-check"></i><b>8.1</b> Dummy Variables</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="violating-assumptions.html"><a href="violating-assumptions.html"><i class="fa fa-check"></i><b>9</b> Violating Assumptions</a><ul>
-<li class="chapter" data-level="9.1" data-path="heteroscedasticity.html"><a href="heteroscedasticity.html"><i class="fa fa-check"></i><b>9.1</b> Heteroscedasticity</a><ul>
-<li class="chapter" data-level="9.1.1" data-path="heteroscedasticity.html"><a href="heteroscedasticity.html#detecting-heteroscedasticity"><i class="fa fa-check"></i><b>9.1.1</b> Detecting Heteroscedasticity</a></li>
-<li class="chapter" data-level="9.1.2" data-path="heteroscedasticity.html"><a href="heteroscedasticity.html#correcting-heteroscedasticity"><i class="fa fa-check"></i><b>9.1.2</b> Correcting Heteroscedasticity</a></li>
+<li class="chapter" data-level="9" data-path="anova.html"><a href="anova.html"><i class="fa fa-check"></i><b>9</b> ANOVA</a><ul>
+<li class="chapter" data-level="9.1" data-path="exercises-4.html"><a href="exercises-4.html"><i class="fa fa-check"></i><b>9.1</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="9.2" data-path="multicollinearity.html"><a href="multicollinearity.html"><i class="fa fa-check"></i><b>9.2</b> Multicollinearity</a><ul>
-<li class="chapter" data-level="9.2.1" data-path="multicollinearity.html"><a href="multicollinearity.html#variance-inflated-factors-vif"><i class="fa fa-check"></i><b>9.2.1</b> Variance Inflated Factors (VIF)</a></li>
-<li class="chapter" data-level="9.2.2" data-path="multicollinearity.html"><a href="multicollinearity.html#examples"><i class="fa fa-check"></i><b>9.2.2</b> Examples</a></li>
+<li class="chapter" data-level="10" data-path="violating-assumptions.html"><a href="violating-assumptions.html"><i class="fa fa-check"></i><b>10</b> Violating Assumptions</a><ul>
+<li class="chapter" data-level="10.1" data-path="heteroscedasticity.html"><a href="heteroscedasticity.html"><i class="fa fa-check"></i><b>10.1</b> Heteroscedasticity</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="heteroscedasticity.html"><a href="heteroscedasticity.html#detecting-heteroscedasticity"><i class="fa fa-check"></i><b>10.1.1</b> Detecting Heteroscedasticity</a></li>
+<li class="chapter" data-level="10.1.2" data-path="heteroscedasticity.html"><a href="heteroscedasticity.html#correcting-heteroscedasticity"><i class="fa fa-check"></i><b>10.1.2</b> Correcting Heteroscedasticity</a></li>
 </ul></li>
-<li class="chapter" data-level="9.3" data-path="other-issues-and-problems-with-data.html"><a href="other-issues-and-problems-with-data.html"><i class="fa fa-check"></i><b>9.3</b> Other Issues and Problems with Data</a></li>
-<li class="chapter" data-level="9.4" data-path="autocorrelation.html"><a href="autocorrelation.html"><i class="fa fa-check"></i><b>9.4</b> Autocorrelation</a><ul>
-<li class="chapter" data-level="9.4.1" data-path="autocorrelation.html"><a href="autocorrelation.html#durbin-watson-d-test"><i class="fa fa-check"></i><b>9.4.1</b> Durbin Watson d-Test</a></li>
-<li class="chapter" data-level="9.4.2" data-path="autocorrelation.html"><a href="autocorrelation.html#breusch-godfrey-test"><i class="fa fa-check"></i><b>9.4.2</b> Breusch-Godfrey Test</a></li>
+<li class="chapter" data-level="10.2" data-path="multicollinearity.html"><a href="multicollinearity.html"><i class="fa fa-check"></i><b>10.2</b> Multicollinearity</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="multicollinearity.html"><a href="multicollinearity.html#variance-inflated-factors-vif"><i class="fa fa-check"></i><b>10.2.1</b> Variance Inflated Factors (VIF)</a></li>
+<li class="chapter" data-level="10.2.2" data-path="multicollinearity.html"><a href="multicollinearity.html#examples"><i class="fa fa-check"></i><b>10.2.2</b> Examples</a></li>
 </ul></li>
-<li class="chapter" data-level="9.5" data-path="exercises-4.html"><a href="exercises-4.html"><i class="fa fa-check"></i><b>9.5</b> Exercises</a></li>
+<li class="chapter" data-level="10.3" data-path="other-issues-and-problems-with-data.html"><a href="other-issues-and-problems-with-data.html"><i class="fa fa-check"></i><b>10.3</b> Other Issues and Problems with Data</a></li>
+<li class="chapter" data-level="10.4" data-path="autocorrelation.html"><a href="autocorrelation.html"><i class="fa fa-check"></i><b>10.4</b> Autocorrelation</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="autocorrelation.html"><a href="autocorrelation.html#durbin-watson-d-test"><i class="fa fa-check"></i><b>10.4.1</b> Durbin Watson d-Test</a></li>
+<li class="chapter" data-level="10.4.2" data-path="autocorrelation.html"><a href="autocorrelation.html#breusch-godfrey-test"><i class="fa fa-check"></i><b>10.4.2</b> Breusch-Godfrey Test</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="binary-choice.html"><a href="binary-choice.html"><i class="fa fa-check"></i><b>10</b> Binary Choice</a><ul>
-<li class="chapter" data-level="10.1" data-path="binary-choice-estimation-in-r.html"><a href="binary-choice-estimation-in-r.html"><i class="fa fa-check"></i><b>10.1</b> Binary Choice Estimation in R</a></li>
-<li class="chapter" data-level="10.2" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html"><i class="fa fa-check"></i><b>10.2</b> Additional Examples and Probit Model</a><ul>
-<li class="chapter" data-level="10.2.1" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html#full-time-work"><i class="fa fa-check"></i><b>10.2.1</b> Full-Time Work</a></li>
-<li class="chapter" data-level="10.2.2" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html#voting-behavior"><i class="fa fa-check"></i><b>10.2.2</b> Voting Behavior</a></li>
+<li class="chapter" data-level="10.5" data-path="exercises-5.html"><a href="exercises-5.html"><i class="fa fa-check"></i><b>10.5</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="exercises-5.html"><a href="exercises-5.html"><i class="fa fa-check"></i><b>10.3</b> Exercises</a></li>
-</ul></li>
-<li class="chapter" data-level="11" data-path="qualitative-choice-models.html"><a href="qualitative-choice-models.html"><i class="fa fa-check"></i><b>11</b> Qualitative Choice Models</a><ul>
-<li class="chapter" data-level="11.1" data-path="ordered-logit-model.html"><a href="ordered-logit-model.html"><i class="fa fa-check"></i><b>11.1</b> Ordered Logit Model</a><ul>
-<li class="chapter" data-level="11.1.1" data-path="ordered-logit-model.html"><a href="ordered-logit-model.html#ordered-logit-example-organic-food-purchase"><i class="fa fa-check"></i><b>11.1.1</b> Ordered Logit Example: Organic Food Purchase</a></li>
-<li class="chapter" data-level="11.1.2" data-path="ordered-logit-model.html"><a href="ordered-logit-model.html#predicted-probability-and-marginal-effects"><i class="fa fa-check"></i><b>11.1.2</b> Predicted Probability and Marginal Effects</a></li>
-</ul></li>
-<li class="chapter" data-level="11.2" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html"><i class="fa fa-check"></i><b>11.2</b> Multinomial Logit and Multinomial Probit Models</a><ul>
-<li class="chapter" data-level="11.2.1" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#theoretical-aspects"><i class="fa fa-check"></i><b>11.2.1</b> Theoretical Aspects</a></li>
-<li class="chapter" data-level="11.2.2" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#data-managment"><i class="fa fa-check"></i><b>11.2.2</b> Data Managment</a></li>
-<li class="chapter" data-level="11.2.3" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#fishing-data"><i class="fa fa-check"></i><b>11.2.3</b> Fishing Data</a></li>
-<li class="chapter" data-level="11.2.4" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#travel-data"><i class="fa fa-check"></i><b>11.2.4</b> Travel Data</a></li>
-<li class="chapter" data-level="11.2.5" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#electric-vehicle-data"><i class="fa fa-check"></i><b>11.2.5</b> Electric Vehicle Data</a></li>
+<li class="chapter" data-level="11" data-path="binary-choice.html"><a href="binary-choice.html"><i class="fa fa-check"></i><b>11</b> Binary Choice</a><ul>
+<li class="chapter" data-level="11.1" data-path="binary-choice-estimation-in-r.html"><a href="binary-choice-estimation-in-r.html"><i class="fa fa-check"></i><b>11.1</b> Binary Choice Estimation in R</a></li>
+<li class="chapter" data-level="11.2" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html"><i class="fa fa-check"></i><b>11.2</b> Additional Examples and Probit Model</a><ul>
+<li class="chapter" data-level="11.2.1" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html#full-time-work"><i class="fa fa-check"></i><b>11.2.1</b> Full-Time Work</a></li>
+<li class="chapter" data-level="11.2.2" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html#voting-behavior"><i class="fa fa-check"></i><b>11.2.2</b> Voting Behavior</a></li>
 </ul></li>
 <li class="chapter" data-level="11.3" data-path="exercises-6.html"><a href="exercises-6.html"><i class="fa fa-check"></i><b>11.3</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="limited-dependent-variable-models.html"><a href="limited-dependent-variable-models.html"><i class="fa fa-check"></i><b>12</b> Limited Dependent Variable Models</a><ul>
-<li class="chapter" data-level="12.1" data-path="truncation.html"><a href="truncation.html"><i class="fa fa-check"></i><b>12.1</b> Truncation</a></li>
-<li class="chapter" data-level="12.2" data-path="censoring.html"><a href="censoring.html"><i class="fa fa-check"></i><b>12.2</b> Censoring</a></li>
-<li class="chapter" data-level="12.3" data-path="count-regression-models.html"><a href="count-regression-models.html"><i class="fa fa-check"></i><b>12.3</b> Count Regression Models</a><ul>
-<li class="chapter" data-level="12.3.1" data-path="count-regression-models.html"><a href="count-regression-models.html#poisson-regression-model"><i class="fa fa-check"></i><b>12.3.1</b> Poisson Regression Model</a></li>
-<li class="chapter" data-level="12.3.2" data-path="count-regression-models.html"><a href="count-regression-models.html#quasi-poisson-regression-model"><i class="fa fa-check"></i><b>12.3.2</b> Quasi-Poisson Regression Model</a></li>
-<li class="chapter" data-level="12.3.3" data-path="count-regression-models.html"><a href="count-regression-models.html#negative-binomial-regression-model"><i class="fa fa-check"></i><b>12.3.3</b> Negative Binomial Regression Model</a></li>
+<li class="chapter" data-level="12" data-path="qualitative-choice-models.html"><a href="qualitative-choice-models.html"><i class="fa fa-check"></i><b>12</b> Qualitative Choice Models</a><ul>
+<li class="chapter" data-level="12.1" data-path="ordered-logit-model.html"><a href="ordered-logit-model.html"><i class="fa fa-check"></i><b>12.1</b> Ordered Logit Model</a><ul>
+<li class="chapter" data-level="12.1.1" data-path="ordered-logit-model.html"><a href="ordered-logit-model.html#ordered-logit-example-organic-food-purchase"><i class="fa fa-check"></i><b>12.1.1</b> Ordered Logit Example: Organic Food Purchase</a></li>
+<li class="chapter" data-level="12.1.2" data-path="ordered-logit-model.html"><a href="ordered-logit-model.html#predicted-probability-and-marginal-effects"><i class="fa fa-check"></i><b>12.1.2</b> Predicted Probability and Marginal Effects</a></li>
 </ul></li>
-<li class="chapter" data-level="12.4" data-path="hurdle-and-zero-inflation-models.html"><a href="hurdle-and-zero-inflation-models.html"><i class="fa fa-check"></i><b>12.4</b> Hurdle and Zero-Inflation Models</a></li>
-<li class="chapter" data-level="12.5" data-path="survival-analysis.html"><a href="survival-analysis.html"><i class="fa fa-check"></i><b>12.5</b> Survival Analysis</a></li>
-<li class="chapter" data-level="12.6" data-path="exercises-7.html"><a href="exercises-7.html"><i class="fa fa-check"></i><b>12.6</b> Exercises</a></li>
+<li class="chapter" data-level="12.2" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html"><i class="fa fa-check"></i><b>12.2</b> Multinomial Logit and Multinomial Probit Models</a><ul>
+<li class="chapter" data-level="12.2.1" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#theoretical-aspects"><i class="fa fa-check"></i><b>12.2.1</b> Theoretical Aspects</a></li>
+<li class="chapter" data-level="12.2.2" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#data-managment"><i class="fa fa-check"></i><b>12.2.2</b> Data Managment</a></li>
+<li class="chapter" data-level="12.2.3" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#fishing-data"><i class="fa fa-check"></i><b>12.2.3</b> Fishing Data</a></li>
+<li class="chapter" data-level="12.2.4" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#travel-data"><i class="fa fa-check"></i><b>12.2.4</b> Travel Data</a></li>
+<li class="chapter" data-level="12.2.5" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#electric-vehicle-data"><i class="fa fa-check"></i><b>12.2.5</b> Electric Vehicle Data</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="panel-data.html"><a href="panel-data.html"><i class="fa fa-check"></i><b>13</b> Panel Data</a><ul>
-<li class="chapter" data-level="13.1" data-path="overview-1.html"><a href="overview-1.html"><i class="fa fa-check"></i><b>13.1</b> Overview</a></li>
-<li class="chapter" data-level="13.2" data-path="pooled-ordinary-least-square-model.html"><a href="pooled-ordinary-least-square-model.html"><i class="fa fa-check"></i><b>13.2</b> Pooled Ordinary Least Square model</a></li>
-<li class="chapter" data-level="13.3" data-path="fixed-effects-panel-data-model.html"><a href="fixed-effects-panel-data-model.html"><i class="fa fa-check"></i><b>13.3</b> Fixed Effects Panel Data Model</a></li>
-<li class="chapter" data-level="13.4" data-path="random-effects-model.html"><a href="random-effects-model.html"><i class="fa fa-check"></i><b>13.4</b> Random Effects Model</a></li>
-<li class="chapter" data-level="13.5" data-path="exercises-8.html"><a href="exercises-8.html"><i class="fa fa-check"></i><b>13.5</b> Exercises</a></li>
+<li class="chapter" data-level="12.3" data-path="exercises-7.html"><a href="exercises-7.html"><i class="fa fa-check"></i><b>12.3</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="time-series.html"><a href="time-series.html"><i class="fa fa-check"></i><b>14</b> Time Series</a><ul>
-<li class="chapter" data-level="14.1" data-path="trend-and-seasonality.html"><a href="trend-and-seasonality.html"><i class="fa fa-check"></i><b>14.1</b> Trend and Seasonality</a><ul>
-<li class="chapter" data-level="14.1.1" data-path="trend-and-seasonality.html"><a href="trend-and-seasonality.html#practice-exercise"><i class="fa fa-check"></i><b>14.1.1</b> Practice Exercise</a></li>
+<li class="chapter" data-level="13" data-path="limited-dependent-variable-models.html"><a href="limited-dependent-variable-models.html"><i class="fa fa-check"></i><b>13</b> Limited Dependent Variable Models</a><ul>
+<li class="chapter" data-level="13.1" data-path="truncation.html"><a href="truncation.html"><i class="fa fa-check"></i><b>13.1</b> Truncation</a></li>
+<li class="chapter" data-level="13.2" data-path="censoring.html"><a href="censoring.html"><i class="fa fa-check"></i><b>13.2</b> Censoring</a></li>
+<li class="chapter" data-level="13.3" data-path="count-regression-models.html"><a href="count-regression-models.html"><i class="fa fa-check"></i><b>13.3</b> Count Regression Models</a><ul>
+<li class="chapter" data-level="13.3.1" data-path="count-regression-models.html"><a href="count-regression-models.html#poisson-regression-model"><i class="fa fa-check"></i><b>13.3.1</b> Poisson Regression Model</a></li>
+<li class="chapter" data-level="13.3.2" data-path="count-regression-models.html"><a href="count-regression-models.html#quasi-poisson-regression-model"><i class="fa fa-check"></i><b>13.3.2</b> Quasi-Poisson Regression Model</a></li>
+<li class="chapter" data-level="13.3.3" data-path="count-regression-models.html"><a href="count-regression-models.html#negative-binomial-regression-model"><i class="fa fa-check"></i><b>13.3.3</b> Negative Binomial Regression Model</a></li>
 </ul></li>
-<li class="chapter" data-level="14.2" data-path="finite-distributed-lag-models.html"><a href="finite-distributed-lag-models.html"><i class="fa fa-check"></i><b>14.2</b> Finite Distributed Lag Models</a></li>
-<li class="chapter" data-level="14.3" data-path="basic-theoretical-aspects-of-time-series.html"><a href="basic-theoretical-aspects-of-time-series.html"><i class="fa fa-check"></i><b>14.3</b> Basic Theoretical Aspects of Time Series</a></li>
-<li class="chapter" data-level="14.4" data-path="autoregressive-model.html"><a href="autoregressive-model.html"><i class="fa fa-check"></i><b>14.4</b> Autoregressive Model</a></li>
-<li class="chapter" data-level="14.5" data-path="moving-average-models.html"><a href="moving-average-models.html"><i class="fa fa-check"></i><b>14.5</b> Moving Average Models</a></li>
-<li class="chapter" data-level="14.6" data-path="random-walk.html"><a href="random-walk.html"><i class="fa fa-check"></i><b>14.6</b> Random Walk</a></li>
-<li class="chapter" data-level="14.7" data-path="forecasting-japanense-car-production.html"><a href="forecasting-japanense-car-production.html"><i class="fa fa-check"></i><b>14.7</b> Forecasting Japanense Car Production</a></li>
-<li class="chapter" data-level="14.8" data-path="exercises-9.html"><a href="exercises-9.html"><i class="fa fa-check"></i><b>14.8</b> Exercises</a></li>
+<li class="chapter" data-level="13.4" data-path="hurdle-and-zero-inflation-models.html"><a href="hurdle-and-zero-inflation-models.html"><i class="fa fa-check"></i><b>13.4</b> Hurdle and Zero-Inflation Models</a></li>
+<li class="chapter" data-level="13.5" data-path="survival-analysis.html"><a href="survival-analysis.html"><i class="fa fa-check"></i><b>13.5</b> Survival Analysis</a></li>
+<li class="chapter" data-level="13.6" data-path="exercises-8.html"><a href="exercises-8.html"><i class="fa fa-check"></i><b>13.6</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="15" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>15</b> Data Sources</a></li>
+<li class="chapter" data-level="14" data-path="panel-data.html"><a href="panel-data.html"><i class="fa fa-check"></i><b>14</b> Panel Data</a><ul>
+<li class="chapter" data-level="14.1" data-path="overview-1.html"><a href="overview-1.html"><i class="fa fa-check"></i><b>14.1</b> Overview</a></li>
+<li class="chapter" data-level="14.2" data-path="pooled-ordinary-least-square-model.html"><a href="pooled-ordinary-least-square-model.html"><i class="fa fa-check"></i><b>14.2</b> Pooled Ordinary Least Square model</a></li>
+<li class="chapter" data-level="14.3" data-path="fixed-effects-panel-data-model.html"><a href="fixed-effects-panel-data-model.html"><i class="fa fa-check"></i><b>14.3</b> Fixed Effects Panel Data Model</a></li>
+<li class="chapter" data-level="14.4" data-path="random-effects-model.html"><a href="random-effects-model.html"><i class="fa fa-check"></i><b>14.4</b> Random Effects Model</a></li>
+<li class="chapter" data-level="14.5" data-path="exercises-9.html"><a href="exercises-9.html"><i class="fa fa-check"></i><b>14.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="time-series.html"><a href="time-series.html"><i class="fa fa-check"></i><b>15</b> Time Series</a><ul>
+<li class="chapter" data-level="15.1" data-path="trend-and-seasonality.html"><a href="trend-and-seasonality.html"><i class="fa fa-check"></i><b>15.1</b> Trend and Seasonality</a><ul>
+<li class="chapter" data-level="15.1.1" data-path="trend-and-seasonality.html"><a href="trend-and-seasonality.html#practice-exercise"><i class="fa fa-check"></i><b>15.1.1</b> Practice Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="finite-distributed-lag-models.html"><a href="finite-distributed-lag-models.html"><i class="fa fa-check"></i><b>15.2</b> Finite Distributed Lag Models</a></li>
+<li class="chapter" data-level="15.3" data-path="basic-theoretical-aspects-of-time-series.html"><a href="basic-theoretical-aspects-of-time-series.html"><i class="fa fa-check"></i><b>15.3</b> Basic Theoretical Aspects of Time Series</a></li>
+<li class="chapter" data-level="15.4" data-path="autoregressive-model.html"><a href="autoregressive-model.html"><i class="fa fa-check"></i><b>15.4</b> Autoregressive Model</a></li>
+<li class="chapter" data-level="15.5" data-path="moving-average-models.html"><a href="moving-average-models.html"><i class="fa fa-check"></i><b>15.5</b> Moving Average Models</a></li>
+<li class="chapter" data-level="15.6" data-path="random-walk.html"><a href="random-walk.html"><i class="fa fa-check"></i><b>15.6</b> Random Walk</a></li>
+<li class="chapter" data-level="15.7" data-path="forecasting-japanense-car-production.html"><a href="forecasting-japanense-car-production.html"><i class="fa fa-check"></i><b>15.7</b> Forecasting Japanense Car Production</a></li>
+<li class="chapter" data-level="15.8" data-path="exercises-10.html"><a href="exercises-10.html"><i class="fa fa-check"></i><b>15.8</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>16</b> Data Sources</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 </ul>
@@ -304,7 +310,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="anova" class="section level1">
-<h1><span class="header-section-number">8</span> ANOVA</h1>
+<h1><span class="header-section-number">9</span> ANOVA</h1>
 <p>Analysis of Variance (ANOVA) models (also know as Dummy Variable Regression models) are regressions with only dummy variables. An ANOVA model with two independent variables can be written as follows:
 <span class="math display">\[y_i = \beta_0 + \beta_1 \cdot d_1 + \beta_2 \cdot d_2\]</span>
 where <span class="math inline">\(d_1\)</span> and <span class="math inline">\(d_2\)</span> are dummy variables. Consider the following model using the <code>gss2018</code> data:
@@ -339,7 +345,7 @@ where <em>fulltime</em> and <em>government</em> are dummy variables. That is, if
         </div>
       </div>
 <a href="dummy-variables.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="exercises-3.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="exercises-4.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

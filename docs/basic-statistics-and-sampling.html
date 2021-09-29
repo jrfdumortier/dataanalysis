@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>12 Qualitative Choice Models | Data Analysis for Public Affairs with R</title>
-  <meta name="description" content="12 Qualitative Choice Models | Data Analysis for Public Affairs with R" />
+  <title>7 Basic Statistics and Sampling | Data Analysis for Public Affairs with R</title>
+  <meta name="description" content="7 Basic Statistics and Sampling | Data Analysis for Public Affairs with R" />
   <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="12 Qualitative Choice Models | Data Analysis for Public Affairs with R" />
+  <meta property="og:title" content="7 Basic Statistics and Sampling | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="12 Qualitative Choice Models | Data Analysis for Public Affairs with R" />
+  <meta name="twitter:title" content="7 Basic Statistics and Sampling | Data Analysis for Public Affairs with R" />
   
   
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="exercises-6.html"/>
-<link rel="next" href="ordered-logit-model.html"/>
+<link rel="prev" href="exercises-2.html"/>
+<link rel="next" href="law-of-large-numbers.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -309,36 +309,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="qualitative-choice-models" class="section level1">
-<h1><span class="header-section-number">12</span> Qualitative Choice Models</h1>
-<p>The last chapter introduced binary choice models that answer questions such as:</p>
-<ul>
-<li>Did you vote during the last election?</li>
-<li>Does an individual recidivate after being released from prison?</li>
-</ul>
-<p>In this chapter, cases of dependent variables with more than two categories are considered. The categorical dependent variables can be with or without natural ordering. Here are some examples of natural ordering:</p>
-<ul>
-<li>Level of happiness: Very happy, happy, okay, or sad</li>
-<li>Intent to get vaccinated: Definitely yes, probably yes, probably no, definitely no</li>
-</ul>
-<p>Examples without natural ordering:</p>
-<ul>
-<li>Type of car to purchase: Passenger car, Pick-up truck, van, convertible</li>
-</ul>
-<p>Those models are also known as Discrete Choice Models. The packages required for this section are <a href="https://cran.r-project.org/web/packages/mlogit/index.html">mlogit</a>, <a href="https://cran.r-project.org/web/packages/erer/index.html">erer</a>, <a href="https://cran.r-project.org/web/packages/MASS/index.html">MASS</a>, <a href="https://cran.r-project.org/web/packages/AER/index.html">AER</a>, <a href="https://cran.r-project.org/web/packages/glmmML/index.html">glmmML</a>, and <a href="https://cran.r-project.org/web/packages/nnet/index.html">nnet</a>. The data required are <code>fpdata</code> and <code>evdata</code> in addition to <code>Fishing</code> and <code>TravelMode</code> which are part of the packages <a href="https://cran.r-project.org/web/packages/mlogit/index.html">mlogit</a> and <a href="https://cran.r-project.org/web/packages/AER/index.html">AER</a>. You can load them into R with the following commands:</p>
-<ul>
-<li><code>data("Fishing",package="mlogit")</code></li>
-<li><code>data("TravelMode",package="AER")</code></li>
-</ul>
-<p>There is also a <a href="https://youtu.be/xLUIil1sGW4">YouTube Video</a> associated with this chapter.</p>
+<div id="basic-statistics-and-sampling" class="section level1">
+<h1><span class="header-section-number">7</span> Basic Statistics and Sampling</h1>
+<p>Slides: <a href="https://github.com/jrfdumortier/slidesstatistics/raw/main/BasicStatisticsSampling.pdf">Basic Statistics and Sampling.pdf</a></p>
+<p>In the previous sections, we assumed that we know the parameters associated with probability distributions. From now on, we are interested in finding those parameters by sampling from a population. It is important to differentiate between the population ( whose parameters remain unknown to the researcher) and a sample (i.e., a subset) taken from the population. The sample can tell us something about the population parameters. The sampling distribution will be the probability distribution associated with the statistic, e.g., mean or variance, from the sample. Put differently, when we take a sample and calculate the mean, how would that estimate differ and which values would a different sample produce. Suppose you have a set of random variables <span class="math inline">\(X_1, X_2, X_3, \dots , X_n\)</span> which represent the results of repeating an experiment. The random variables are independent and identically distributed (i.i.d.). The expectation of the average is written as:
+<span class="math display">\[\bar{X}_n = \frac{X_1 + X_2 + \dots + X_n}{n}\]</span>
+The sampling variance is expressed as:
+<span class="math display">\[Var(\bar{X}_n) = \frac{\sigma^2}{n}\]</span></p>
+<p>The standard error of the mean is written as
+<span class="math display">\[\sigma_{\bar{x}} = \frac{\sigma}{\sqrt{n}}\]</span></p>
+<p>This is different from the sample variance! The sampling variance represents the variation of a particular statistic, e.g., mean. Before we get into the details, let us introduce two very important concepts: (1) the Law of Large Numbers and (2) the Central Limit Theorem.</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="exercises-6.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="ordered-logit-model.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="exercises-2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="law-of-large-numbers.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -370,7 +358,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/jrfdumortier/dataanalysis/edit/master/qualitativechoice.rmd",
+"link": "https://github.com/jrfdumortier/dataanalysis/edit/master/sampling.rmd",
 "text": "Edit"
 },
 "history": {
@@ -378,7 +366,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/jrfdumortier/dataanalysis/blob/master/qualitativechoice.rmd",
+"link": "https://github.com/jrfdumortier/dataanalysis/blob/master/sampling.rmd",
 "text": null
 },
 "download": ["bookdownproj.pdf"],

@@ -17,12 +17,21 @@ Very large user community for R. Google search for "Some topic R" usually leads 
 Two online resources will provide you the solution to the vast majority of your R questions. Getting on those websites is usually the result of a Google search.
 
 - [Statistical Data Analysis R](https://stat.ethz.ch/R-manual/): This resource contains the function manual for R/RStudio including all packages. Example for a function [boxplot](https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/boxplot.html). The most helpful part are the examples at the bottom of the page.
-- Stack Overflow: Resources for developers. For example, a Google search for "r ggplot two y axis" may give you the following [result](https://stackoverflow.com/questions/3099219/plot-with-2-y-axes-one-y-axis-on-the-left-and-another-y-axis-on-the-right) Note that all questions on Stack Overflow have to be accompanied by a re-creatable dataset.
+- Stack Overflow: Resources for developers. For example, a Google search for "r ggplot two y axis" may give you the following [result](https://stackoverflow.com/questions/3099219/plot-with-2-y-axes-one-y-axis-on-the-left-and-another-y-axis-on-the-right). Note that all questions on Stack Overflow have to be accompanied by a re-creatable dataset.
 
-Besides many online resources, there are also two useful textbooks
+There are also many R books on GitHub:
 
-- [Applied Econometrics with R](https://link.springer.com/book/10.1007/978-0-387-77318-6) by Christian Kleiber and Achim Zeileis.
-- [Introductory Statistics with R](https://link.springer.com/book/10.1007/978-0-387-79054-1) by Peter Dalgaard.
+- [Principles of Econometrics with R](https://bookdown.org/ccolonescu/RPoE4/)
+- [Introduction to Econometrics with R](https://www.econometrics-with-r.org/)
+- [Geocomputation with R](https://geocompr.robinlovelace.net/)
+- [Introduction to Data Science](https://rafalab.github.io/dsbook/)
+- [Forecasting: Principles and Practice](https://otexts.com/fpp2/)
+
+Besides many online resources, there are also two useful textbooks:
+
+- [Applied Econometrics with R](https://link.springer.com/book/10.1007/978-0-387-77318-6) by Christian Kleiber and Achim Zeileis
+- [Introductory Statistics with R](https://link.springer.com/book/10.1007/978-0-387-79054-1) by Peter Dalgaard
+- [An Introduction to Statistical Learning with Applications in R](https://link.springer.com/book/10.1007/978-1-4614-7138-7) by Gareth James, Daniela Witten, Trevor Hastie, and Robert Tibshirani
 
 An additional online tutorial is [Using R for Introductory Statistics](https://cran.r-project.org/doc/contrib/Verzani-SimpleR.pdf) by John Verzani.
 

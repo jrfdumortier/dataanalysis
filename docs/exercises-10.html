@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>12 Qualitative Choice Models | Data Analysis for Public Affairs with R</title>
-  <meta name="description" content="12 Qualitative Choice Models | Data Analysis for Public Affairs with R" />
+  <title>15.8 Exercises | Data Analysis for Public Affairs with R</title>
+  <meta name="description" content="15.8 Exercises | Data Analysis for Public Affairs with R" />
   <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="12 Qualitative Choice Models | Data Analysis for Public Affairs with R" />
+  <meta property="og:title" content="15.8 Exercises | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="12 Qualitative Choice Models | Data Analysis for Public Affairs with R" />
+  <meta name="twitter:title" content="15.8 Exercises | Data Analysis for Public Affairs with R" />
   
   
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="exercises-6.html"/>
-<link rel="next" href="ordered-logit-model.html"/>
+<link rel="prev" href="forecasting-japanense-car-production.html"/>
+<link rel="next" href="data-sources.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -309,36 +309,50 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="qualitative-choice-models" class="section level1">
-<h1><span class="header-section-number">12</span> Qualitative Choice Models</h1>
-<p>The last chapter introduced binary choice models that answer questions such as:</p>
-<ul>
-<li>Did you vote during the last election?</li>
-<li>Does an individual recidivate after being released from prison?</li>
-</ul>
-<p>In this chapter, cases of dependent variables with more than two categories are considered. The categorical dependent variables can be with or without natural ordering. Here are some examples of natural ordering:</p>
-<ul>
-<li>Level of happiness: Very happy, happy, okay, or sad</li>
-<li>Intent to get vaccinated: Definitely yes, probably yes, probably no, definitely no</li>
-</ul>
-<p>Examples without natural ordering:</p>
-<ul>
-<li>Type of car to purchase: Passenger car, Pick-up truck, van, convertible</li>
-</ul>
-<p>Those models are also known as Discrete Choice Models. The packages required for this section are <a href="https://cran.r-project.org/web/packages/mlogit/index.html">mlogit</a>, <a href="https://cran.r-project.org/web/packages/erer/index.html">erer</a>, <a href="https://cran.r-project.org/web/packages/MASS/index.html">MASS</a>, <a href="https://cran.r-project.org/web/packages/AER/index.html">AER</a>, <a href="https://cran.r-project.org/web/packages/glmmML/index.html">glmmML</a>, and <a href="https://cran.r-project.org/web/packages/nnet/index.html">nnet</a>. The data required are <code>fpdata</code> and <code>evdata</code> in addition to <code>Fishing</code> and <code>TravelMode</code> which are part of the packages <a href="https://cran.r-project.org/web/packages/mlogit/index.html">mlogit</a> and <a href="https://cran.r-project.org/web/packages/AER/index.html">AER</a>. You can load them into R with the following commands:</p>
-<ul>
-<li><code>data("Fishing",package="mlogit")</code></li>
-<li><code>data("TravelMode",package="AER")</code></li>
-</ul>
-<p>There is also a <a href="https://youtu.be/xLUIil1sGW4">YouTube Video</a> associated with this chapter.</p>
+<div id="exercises-10" class="section level2">
+<h2><span class="header-section-number">15.8</span> Exercises</h2>
+<ol style="list-style-type: decimal">
+<li>The data in <code>souvenirs</code> represents the sales of a souvenir beach shop in Australia. The sales volume in the shop fluctuates with the number of tourists which are in town. A larger number of tourists is observed in December for the holiday season and for the local surfing festival in March. Over the years, the shop has expanded in terms of items offered and also in store area.
+<ol style="list-style-type: lower-alpha">
+<li>Plot the data. What do you observe in terms of trend, seasonality, and magnitude of fluctuations?</li>
+<li>Estimate a regular OLS Model with <span class="math inline">\(sales\)</span> as the dependent variable and a trend as well as monthly dummy variables as independent variables.</li>
+<li>Plot the observed sales and predicted sales over time.</li>
+<li>Repeat the estimation and the plot from (b) and (c) but use the natural log of <span class="math inline">\(sales\)</span>, i.e., $(sales), as the dependent variable instead.</li>
+<li>Compare the two graphs you have generated. What is the difference and what is the reason for the difference? Which form of the dependent variable is more appropriate.</li>
+</ol></li>
+<li>Consider the data <code>retail</code> and the following model:
+<span class="math display">\[\ln(retail_t)=\beta_0+\beta_1 \cdot t +\delta_1 \cdot Q1_t+\delta_2 \cdot Q2_t+\delta_3 \cdot Q3_t+\epsilon_t\]</span>
+<ol style="list-style-type: lower-alpha">
+<li>Estimate the above regression equation, report, and interpret the results.</li>
+<li>How is using <span class="math inline">\(\ln(retail)\)</span> different from <span class="math inline">\(retail\)</span> as the dependent variable? How does it change the interpretation of the coefficients?</li>
+<li>Re-estimate the model but this time using <span class="math inline">\(retail\)</span> as the dependent variable.</li>
+<li>Plot (in the same graph) the observed values and both modeled series. What do you observe? Does one model fit better than the other? If yes, which one?</li>
+</ol></li>
+<li>The data <code>wdi</code> includes per-capita income (<span class="math inline">\(gdp\)</span>), overall household consumption (<span class="math inline">\(consumption\)</span>), and <span class="math inline">\(population\)</span>. For a country of your choice, do the following:
+<ol style="list-style-type: lower-alpha">
+<li>Subset the data such that you are only left with the country of your choice.</li>
+<li>Create a new column which contains the consumption per capita, i.e., consumption divided by population.</li>
+<li>Make sure that there are at least 10 years of observations for the country of your choice.</li>
+<li>Estimate a Koyck-Model with consumption as the dependent variable and per-capita consumption as the dependent variable.</li>
+</ol></li>
+<li>Consider the data in <code>cmort</code> which represents weekly data of cardiovascular mortality in Los Angeles over the period 1970 to 1979.
+<ol style="list-style-type: lower-alpha">
+<li>Estimate an AR(2) model of the following form to the data:
+<span class="math display">\[y_t = \alpha + \beta_1 \cdot y_{t-1} + \beta_2 \cdot y_{t-2} + \epsilon_t\]</span>
+Make sure to use the function <code>ar.ols()</code> with the options <code>deman=FALSE</code> and <code>intercept=TRUE</code>.</li>
+<li>Given the above model, what are the predicted values for the last four weeks of data. Compare the forecast to the observed values. Is it a good fit?</li>
+</ol></li>
+</ol>
+
 </div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="exercises-6.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="ordered-logit-model.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="forecasting-japanense-car-production.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="data-sources.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -370,7 +384,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/jrfdumortier/dataanalysis/edit/master/qualitativechoice.rmd",
+"link": "https://github.com/jrfdumortier/dataanalysis/edit/master/timeseries.rmd",
 "text": "Edit"
 },
 "history": {
@@ -378,7 +392,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/jrfdumortier/dataanalysis/blob/master/qualitativechoice.rmd",
+"link": "https://github.com/jrfdumortier/dataanalysis/blob/master/timeseries.rmd",
 "text": null
 },
 "download": ["bookdownproj.pdf"],
