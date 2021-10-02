@@ -1,21 +1,72 @@
 # Confidence Intervals
-The 95\% confidence interval for a parameter is an interval calculated from sample data by a method that has a 95\% probability of producing an interval containing the true value of the parameter. Suppose a population has a known mean of 65 (e.g., the height of women in the U.S.). If you take 100 samples of women from the population and calculate a confidence interval given the methods described below, the true mean of 65 will be included in the 95 confidence intervals. Note that the following statement is not correct: "The probability that the unknown parameter is contained within a 95\% confidence interval is 95\%." The section on confidence intervals as well as the subsequent section on hypothesis testing makes significant use of the *t*-Distribution.
+This chapter introduces the concept of confidence intervals and interval estimation. An interval estimation is often more useful than a point estimation of the unknown population parameter $\theta$ because it gives an interval of numbers within which the parameter value could fall. There are slides and a YouTube Video associated with this chapter:
 
-We have seen point estimation before and this section will look at interval estimation. An interval estimation is often more useful than a point estimation of the unknown parameter $\theta$ because it gives an interval of numbers within which the parameter value is believed to fall. This allows us to put lower and upper boundaries on the parameter, i.e., $\hat{\theta}_l < \theta < \hat{\theta}_u$. We can then associate a probability, called ``confidence level'', to being within the boundary. A popular value is 95\%. (Question: Why is 100\% not useful?)
+- [Confidence Intervals - Slides](https://github.com/jrfdumortier/slidesstatistics/raw/main/ConfidenceIntervals.pdf)
+- [Confidence Intervals - Video](https://youtu.be/w_jk6YoASqA)
+
+This chapter on confidence intervals as well as the subsequent chapter on hypothesis testing makes significant use of the *t*-Distribution. The aforementioned interval estimation allows us to put lower and upper boundaries on the parameter, i.e., $\hat{\theta}_l < \theta < \hat{\theta}_u$. Usually a probability value of 95\% is used.
+
 $$ Pr(\hat{\theta}_l < \theta < \hat{\theta}_u) = 1 - \alpha$$
-Note that there is no way of knowing if the confidence interval actually covers the true parameter.  Remember that we have $E(\bar{x})=\mu$ and $Var(\bar{x})=\sigma^2/n$. The mean $\pm 1.96$ standard deviations includes 95\% of the normal distribution. Because the sampling distribution is approximately normal (recall this fact from the central limit theorem and the law of large numbers), the distance of 1.96 standard deviations is the margin of error. The margin of error measures how accurate the point estimate is likely to be in  estimating a parameter. 
+
+The 95\% confidence interval for a parameter is an interval calculated from sample data by a method that has a 95\% probability of producing an interval containing the true parameter value. Suppose a population has a known mean of 65, e.g., the height of women in the United States. Taking 100 samples of women from the population and calculating a confidence interval given the methods described below, the true mean of 65 will be included (on average) in 95 of those confidence intervals. Note that the **following statement is not correct**: 
+
+> The probability that the unknown parameter is contained within a 95\% confidence interval is 95\%.
+
+
+Note that there is no way of knowing if the confidence interval actually covers the true parameter. Remember that we have $E(\bar{x})=\mu$ and $Var(\bar{x})=\sigma^2/n$. The mean $\pm 1.96$ standard deviations includes 95\% of the normal distribution. Because the sampling distribution is approximately normal (recall this fact from the Central Limit Theorem and the law of large numbers), the distance of 1.96 standard deviations is the margin of error. The margin of error measures how accurate the point estimate is likely to be in  estimating a parameter. 
+
+This section is designed to illustrate the concept of confidence interval with R. A population of 1 million voters is generated with 55\% of those voters favoring candidate *A* in an upcoming election. For this exercise, a 95\% confidence interval is simulated. The script below proceeds as follows:
+
+```{r COIsimulation,results=FALSE}
+voters = rbinom(1000000,1,0.55)
+output = data.frame(lb=numeric(),ub=numeric(),inside=numeric())
+meanA  = mean(voters)
+for(i in 1:100){
+     poll = sample(voters,1000,replace=FALSE)
+     CI   = t.test(poll)
+     temp = data.frame(ub=CI$conf.int[1],lb=CI$conf.int[2],inside=0)
+     if(CI$conf.int[1]<=meanA & CI$conf.int[2]>=meanA){temp$inside=1}
+     output = rbind(output,temp)}
+mean(output$inside)
+rm(voters,output,meanA,poll,CI,temp)
+```
+In a first step, a population of 1 million voters is created. The subsequent steps take 100 samples of 1,000 voters. For each sample, the confidence interval (i.e., lower and upper bounds denoted as *lb* and *ub*, respectively) is calculated. The next step checks whether the true mean is contained in the confidence interval. If the above code is executed, the output of `mean()` should be around 0.95. 
 
 ## Confidence Interval for a Proportion
-If we measure a proportion: $p+q=1$ and $\sigma=\sqrt{(p \cdot q)}$. So the standard error for the mean is 
+Recall from the Bernoulli distribution that $p+q=1$ and $\sigma=\sqrt{(p \cdot q)}$. The standard error for the mean is 
 $$\sigma_{\hat{p}}=\sqrt{\frac{\hat{p} \cdot (1-\hat{p})}{n}}$$
 Thus, the 95\% confidence interval is constructed as follows:
 $$\hat{p} \pm 1.96 \cdot \sigma_{\bar{x}}  \Leftrightarrow \hat{p} \pm 1.96 \cdot \sqrt{\frac{\hat{p} \cdot (1-\hat{p})}{n}}$$
-In this case, the margin of error is $1.96 \cdot 0.0497 = 0.097412$. In a first example, assume that you are interested in the political party affiliation of voters. Suppose that $n=1000$ and $p_{GOP}=0.55$. Given the above equation, we can calculate 
+Consider the voting data in `gss2018`. The mean is 0.67 and the standard error is
+$$\sigma_{\bar{x}}=\sqrt{\frac{0.67 \cdot (1-0.67)}{772}}=0.0169$$
 
-$$\sigma_{\bar{x}}=\sqrt{\frac{0.55 \cdot (1-0.55)}{1000}} = 0.0157 $$
-This gives us the margin of error for the political party affiliation of $0.55 \pm 1.96 \cdot 0.0157$.
+In this case, the margin of error is $1.96 \cdot 0.0169=0.033$. To calculate a confidence interval for a proportion in R, the function `t.test()` is used. Before using the function, the manual calculations are presented. 
 
-<<COI_mh2,echo=TRUE,message=FALSE,warning=FALSE,error=FALSE,include=TRUE,fig.keep="none">>=
+```{r COIproportionmanual,results=FALSE}
+nobs           = nrow(gss2018)
+meandata       = mean(gss2018$vote)
+z              = qnorm(0.975)
+stderror       = sqrt(meandata*(1-meandata)/nobs)
+CI_lower       = meandata-z*stderror
+CI_upper       = meandata+z*stderror
+```
+
+Using the function `t.test()` is simpler:
+
+```{r COIproportionttest}
+t.test(gss2018$vote)
+```
+
+## Confidence Interval for the Mean
+To construct a confidence interval for a population mean, the sample standard deviation must be estimated. The sample variance is denoted with $s^2$ and the standard error (S.E.) is denoted with
+$$S.E. = \frac{s}{\sqrt{n}}$$
+In most cases, $\sigma^2$ is unknown. If $\sigma^2$ was known, the normal distribution could be used. Because we rely on an estimate of the variance, we have to correct for the errors associated with this estimation and we need to use the t-distribution. The t-score is similar to the z-score in that it comes from a bell-shaped curve but the tails are thicker. 
+
+Consider the data in `eggweights`. To construct the confidence interval, the sample mean and sample standard deviation are required. Calculating those values leads to $\bar{x}=61.05$ and $s=4.46$. So the standard error is
+$$S.E. = \frac{4.46}{\sqrt{61}}=0.57$$
+For $n=61$ and $df=n-1=60$, we find the confidence interval of $61.05 \pm 2.0003 \cdot 0.57$.
+
+```{r}
 nobs           = nrow(mh2)
 meandata       = mean(mh2$price)
 stdev          = sd(mh2$price)
@@ -23,33 +74,7 @@ t_alpha_df     = qt(0.975,nobs-1)
 CI_lower       = meandata-t_alpha_df*stdev/sqrt(nobs)
 CI_upper       = meandata+t_alpha_df*stdev/sqrt(nobs)
 t.test(mh2$price)
-@
-
-<<COI_vote,echo=TRUE,message=FALSE,warning=FALSE,error=FALSE,include=TRUE,fig.keep="none">>=
-nobs           = nrow(gss2018)
-meandata       = mean(gss2018$vote)
-z              = qnorm(0.975)
-stderror       = sqrt(meandata*(1-meandata)/nobs)
-CI_lower       = meandata-z*stderror
-CI_upper       = meandata+z*stderror
-t.test(gss2018$vote)
-@
-
-The sample size needed for large-sample confidence intervals is $n \cdot \hat{p} \geq 15$. Sometimes it is easier to go with a different rule thumb that specifies that $n \geq 30$.
-
-
-For a second example, you are interested in the martial status of people. Suppose that $n=100$ and $p_m=0.55$. Given the above equation, we can calculate 
-$$\sigma_{\bar{x}}=\sqrt{\frac{0.55 \cdot (1-0.55)}{100}} = 0.0497$$
-This gives the margin of error for the marital status of $0.55 \pm 1.96 \cdot 0.0497$. The margin of error is 9.74\%. Note that the margin of error increases if your sample size decreases. 
-
-## Confidence Interval for the Mean
-To construct a confidence interval for a population mean, we have to estimate the standard deviation of the sample. The sample variance is denoted with $s^2$ and the standard error (S.E.) is denoted with
-$$S.E. = \frac{s}{\sqrt{n}}$$
-In most cases, $\sigma^2$ is unknown. If we knew $\sigma^2$, we could use the normal distribution. Because we rely on an estimate of the variance, we have to correct for the errors associated with this estimation and we need to use the t-distribution. The t-score is similar to the z-score in that it comes from a bell-shaped curve but the tails are thicker. 
-
-Consider the data in `eggweights`. To construct the confidence interval, the sample mean and sample standard deviation are required. Calculating those values leads to $\bar{x}=61.05$ and $s=4.46$. So the standard error is
-$$S.E. = \frac{4.46}{\sqrt{61}}=0.57$$
-For $n=61$ and $df=n-1=60$, we find the confidence interval of $61.05 \pm 2.0003 \cdot 0.57$.
+```
 
 ## Sample Size Calculation for a Proportion
 Recall the confidence interval for a proportion:
@@ -68,13 +93,6 @@ The term $n_\infty$ represents the sample size for an infinite population. Consi
 $$\frac{2401 \cdot 10000}{2401 +( 10000-1)}=1937$$
 
 
-## Simulation of a 95\% Confidence Interval
-This section is designed to illustrate the concept of confidence interval with R. For this exercise,  a 95\% confidence interval is simulated. The script below proceeds as follows:
-
-1. A population of 1 million voters is generated with 55\% of those voters favoring candidate *A* in an upcoming election. 
-
-
-%Download the R script file associated with this homework from Canvas. Execute the script file. You can just execute the script-file which simulates a voter population. We generate a population of 1,000,000 voters and 55\% of those voters support candidate $X$ in the upcoming election. In class, I said that we do not know the parameters associated with the population. In this case, we do know that 55\% vote for a particular candidate. In the script file, we then draw 100 samples with a sample size of $n=500$. Those 100 samples are stored in a comma separated value file names ``dataX.csv.'' Note that so far, you should only have executed the script file downloaded from Canvas. Next, do the following:
 
 
 ## Exercises
