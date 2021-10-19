@@ -72,6 +72,3 @@ t.test(checkout,mu=4,alternative=c("greater"))
 ```{r}
 wilcox.test(irs,mu=12)
 ```
-
-
-# Check out data story telling: https://www.youtube.com/watch?v=6xsvGYIxJok

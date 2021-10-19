@@ -3,10 +3,10 @@ Extension of the bivariate model to multivariate regression
 
 - One dependent variable but multiple independent variables
 
-Topics associated with multivariate regression models covered in this lecture:
+Topics associated with multivariate regression models covered in this chapter:
 
-- Multicollinearity
 - Dummy Variables
+- Multicollinearity
 - Natural logarithm
 - Functional forms
 - Interaction Terms
@@ -25,12 +25,81 @@ Bivariate regression model (one independent and one dependent variable)
         \end{equation*}
     A model with two independent variables (predictors) describes a plane.
 
-## Dummy Variables
-Dummy variables represent a single qualitative characteristic such as religion, gender, or nationality. Dummy variables are independent variables coded as either 0 or 1. For example, consider 
+% !Rnw root = DataAnalysisPA.Rnw
 
-Example: Price ($Y_i$) of a car depending on miles ($X_i$) and AWD ($D_i$)
-                \begin{equation*}
-                    Y_i = \beta_0 + \beta_1 X_i + \beta_2 D_i + \epsilon_i
+<<MVR_3DRegression,echo=FALSE,message=FALSE,warning=FALSE,error=FALSE,results='hide',fig.keep="none">>=
+
+bhat=lm(pcconsumption~rdi+rprice,data=coffee)
+pdf("MVR_3DRegression.pdf", width=6, height=6)
+sp        = scatterplot3d::scatterplot3d(coffee$rdi,coffee$rprice,coffee$pcconsumption,
+                                         angle=45,zlab="Per Capita Consumption",
+                                         xlab="Real Disposable Income",
+                                         ylab="Price")
+sp$plane3d(bhat,lty.box="solid")
+orig      = sp$xyz.convert(coffee$rdi,coffee$rprice,coffee$pcconsumption)
+plane     = sp$xyz.convert(coffee$rdi,coffee$rprice, fitted(bhat))
+i.negpos  = 1+(resid(bhat)>0)
+segments(orig$x,orig$y,plane$x,plane$y,col=c("blue","red")[i.negpos],lty=1)
+graphics.off()
+@
+
+\section{Multivariate Regression Model}
+At the end of this chapter, the reader should be able to understand the following concepts:
+\begin{itemize}
+\item Create dummy variables based on qualitative choices
+\end{itemize}
+
+
+The multivariate linear regression model (multiple independent variables) can be written as
+  \begin{equation*}
+    y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \dots + \beta_k x_k + \epsilon
+  \end{equation*}
+The assumption (among others) that need to be satisfied for those models to work are 
+\begin{itemize}
+\item No perfect collinearity among independent variables
+\item $E(\epsilon | x_1, \dots, x_k) = 0$
+\end{itemize}
+The purpose of the multivariate regression model is to measure the effect of one or more independent variable(s) on the dependent variable. It is crucial to control for everything else that could influence the dependent variable. Here is an example of why controlling for everything else is important. For example, measuring the weekly grocery bill as a function of years of education might give you a statistically significant effect for education but if you include income, the effect for education might (most likely) disappear. 
+
+In the following example, assume that crime rate depends on, population density and unemployment
+  \begin{equation*}
+      y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_3 + \epsilon
+  \end{equation*}
+where $x_1$ = population density and $x_2$ = unemployment.
+
+The following picture illustrates the multivariate regression for two independent variables and one dependent variable.
+
+\begin{figure}
+\begin{center}
+\includegraphics{MVR_3DRegression.pdf}
+\end{center}
+\caption{Multivariate regression model with two predictors}
+\label{fig:TwoPredictors}
+\end{figure}
+
+\subsection{Multicollinearity}
+Multicollinearity is a problem of small sample sizes. There are no implications for bias or consistency but it can inflate the standard errors which could lead to erroneous results. Make sure included variables are not too highly correlated with the variable of interest. The following is a data set to illustrate the concept of multicollinearity. Note that this is not real data since it is manipulated such that a problem occurs. Suppose that we first regress the SAT score as a function of mean family income and per capita school expenditure. 
+
+Note that both, income and expenditure, are statistically significant. Now, let us repeat the regression but let us include faculty per 1000 people instead of expenditure: 
+
+Again both independent variables are statistically significant. Now, let us repeat the regression by including expenditure and faculty.
+
+\subsection{Errors in Model Specifications}
+Errors in the model specification can happen if we include or omit variables that do not belong or should be included in the model. There is almost no way to avoid the problem in applied research. The question becomes whether this is a problem or not. Let us first look at the case we \emph{exclude relevant variables}. Assume that the correct model is written as $y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \epsilon$ but that instead we estimate the following model where we omit the variable $x_2$, i.e., $y = \beta_0 + \beta_1 x_1 + \epsilon$. Based on the estimation of the misspecified model, is the estimate of $\beta_1$ biased, i.e., incorrect? It turns out that the estimate of $\beta_1$ will be biased:
+    \begin{equation*}
+        E(\hat{\beta}_1) = \beta_1 + \beta_2 \frac{Cov(x_1,x_2)}{Var(x_1)}
+    \end{equation*}
+The estimate of $\beta_1$ is correct only if $x_1$ and $x_2$ are uncorrelated, i.e., $Cov(x_1,x_2)=0$. Data was simulated using the following (correct) regression equation $y = 50 + 4 \cdot x_1 + 5 \cdot x_2 + \epsilon$. So we know that $\beta_0=50$, $\beta_1=4$, and $\beta_2 =5$. Using the data \texttt{SPEC1} and running the regression, we get
+
+The regression results show that we can recover the correct coefficients. In this case, the intercept is incorrect but we are still recovering the correct coefficient for $\beta_1$. The correlation coefficient between $x_1$ and $x_2$ is -0.0276. Now for the next regression, suppose that we omit variable $x_2$.  Using the data set \texttt{SPEC2} which has the same coefficients $\beta$ than the previous data set but the correlation between $x_1$ and $x_2$ is 0.5685. 
+
+Running the full model leads to the same result as before where the correct coefficients can be recovered. The model is now incorrectly estimates. The true coefficient is $\beta_2=5$. Given Var($x_1$)=841.958, the we can see that $4+5 \cdot 458.102 / 841.958 =6.72$ which is close to 6.914. 
+
+Let us turn to the case were we \emph{include irrelevant variables}. Assume that the correct model is written as $y = \beta_0 + \beta_1 x_1  + \epsilon$ but that instead we estimate the following model $y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \epsilon$. Again, will the estimate of $\beta_1$ be biased? In this case, the estimate of $\beta_1$ will be correct but the variance will be too high. 
+
+## Dummy Variables
+So far, independent variables were quantitative such as price, income, square footage, miles, and so on. But very often, a qualitative characteristic such as religion, gender, nationality must be modeled. For this purpose, dummy variables that can be either 0 or 1 are used. Dummy variables represent a single qualitative characteristic. For example, consider the price ($y_i$) of a car depending on miles ($x_i$) and AWD ($d_i$). In this case, $d_i$ is a dummy variable because the car either has all wheel drive or hasn't. The regression equation can be written as follows:
+$$y_i=\beta_0+\beta_1 \cdot x_i+\beta_2 \cdot d_i+\epsilon_i$$
                 \end{equation*}
             with $D_i = 1$ if AWD and $D_i = 0$  if RWD.
         \end{itemize}
@@ -44,3 +113,115 @@ Example: Price ($Y_i$) of a car depending on miles ($X_i$) and AWD ($D_i$)
             \item Knowledge on how the dummy-variable was coded.
             \item If the coefficient of the dummy-variable ``adds'' (or ``subtracts'' if sign is negative) compared to the 0-group.
         \end{itemize}
+        
+        
+Suppose that the price ($Y_i$) of a car depending on miles ($X_i$) and all-wheel drive ($D_i$):
+
+\begin{equation*}
+Y_i = \beta_0 + \beta_1 X_i + \beta_2 D_i + \epsilon_i
+\end{equation*}
+with $D_i = 1$ if AWD and $D_i = 0$  if RWD. This regression can be theoretically separated into two single equations:
+\begin{enumerate}
+\item RWD: $Y_i = \beta_0 + \beta_1 X_i + \epsilon_i$
+\item AWD: $Y_i = (\beta_0 + \beta_2 )+ \beta_1 X_i + \epsilon_i$
+\end{enumerate}
+
+In order to interpret dummy variables and the results associated with a regression involving dummy variables, we need to know how the dummy-variable was coded, i.e., if the coefficient of the dummy variable ``adds'' (or ``subtracts'' if sign is negative) compared to the 0-group. In our example $B_i$ ``adds'' for AWD to the basic price. \newpage
+
+<<MVR_bmw,echo=FALSE,message=FALSE,warning=FALSE,error=FALSE,include=TRUE,fig.keep="none">>=
+bhat           = lm(price~miles+allwheeldrive,data=bmw)
+summary(bhat)
+@
+
+<<MVR_bmw_plot,echo=FALSE,message=FALSE,warning=FALSE,error=FALSE,include=TRUE,fig.keep="none">>=
+bmw$AWD                                 = NA
+bmw$AWD[which(bmw$allwheeldrive==0)]    = "No"
+bmw$AWD[which(bmw$allwheeldrive==1)]    = "Yes"
+ggplot(bmw,aes(x=miles,y=price,color=AWD,shape=AWD))+geom_point()+geom_smooth(method=lm,se=FALSE)+theme_bw()
+ggsave("MVR_bmw.pdf",width=6,height=4)     
+@
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=6in]{MVR_bmw.pdf}
+\end{center}
+\end{figure}
+
+## Natural Logarithm
+Depending on the nature of the variables, it might be necessary to scale your variables for cosmetic purposes. This might be necessary if coefficients are very large or extremly small. A rescaling, e.g., dividing income by 1,000, does affect the coefficients and the standard errors but has no effect on the t-statistics.  
+
+Earlier in this course, we have introduced the natural logarithm to transform variables. It turns out that the natural logarithm has some important and useful interpretations. Consider the following simple consumption equation in which both variables are in logarithmic form:
+\begin{equation*}
+ln(consumption) = \beta_0 + \beta_1 \cdot \ln(income)  + \epsilon
+\end{equation*}
+In this case, $\beta_1$ is the elasticity of consumption with respect to income, i.e., a 1\% increase in income leads to a $\beta_1 \cdot 1\% $ increase in consumption. For example, if $\beta_1 = 0.4$, then a 1\% increase in income will rise consumption by 0.4\%. Note that the percentage increase is only an approximation for small changes. 
+
+\begin{table}
+\begin{center}
+\begin{tabular}{lll}\toprule
+Dep. Var. & Indep. Var & Interpretation                                                   \\ \midrule
+y         & x          & 1 dollar change in $x$ changes y by $\hat{\beta}$ dollars           \\
+ln(y)    & x          & 1 dollar change in $x$ changes y by 100 $\times \hat{\beta}$ percent  \\
+ln(y)    & ln(x)     & 1 percent change in $x$ changes y by $\hat{\beta}$ percent     \\
+y         & ln(x)     & 1 percent change in $x$ changes y by $\hat{\beta}/100$ dollars \\ \bottomrule
+\end{tabular}
+\end{center}
+\end{table}
+
+A third useful issue related to any regression analysis is the use of interaction effects. Interaction effects are used the influence of one independent variable depends on the level of another independent variable. Suppose that you want to measure time spent volunteering ($y$) and you think that it depends on the marital status ($x_1$), the number of children ($x_2$), and some other independent variables ($X$). So you could have the following regression equation
+\begin{equation*}
+y = \beta_1 \cdot x_1 \cdot  x_2 + \beta \cdot X + \epsilon
+\end{equation*}
+
+\begin{equation*} 
+\frac{dy}{dx}=\beta_1 x_2 + \beta_2
+\end{equation*}
+
+<<MVR_nfl,echo=FALSE,message=FALSE,warning=FALSE,error=FALSE,include=TRUE,fig.keep="none">>=
+bhat = lm(log(total)~yards+att+exp+exp2+draft1+draft2+veteran+changeteam+pbowlever+symm,data=nfl)
+summary(bhat)
+@
+
+
+## Exercises
+
+1. *Ohio Schools 2*: Consider the data sets `ohioincome` and `ohioscore`. In a first step, merge the two data sets by IRN. For all questions below, interpret the coefficients in terms of direction, magnitude, and statistical significance.
+    a. Estimate the following equation using R and report the output. 
+        $$score = \beta_0 + \beta_1 \cdot medianincome + \beta_2 \cdot enrollment$$
+    b. Estimate the following equation using R.  Compare your answer to the previous part. Do the coefficients change significantly? How do you interpret the squared term?
+        $$score = \beta_0 + \beta_1 \cdot medianincome + \beta_2 \cdot enrollment + \beta_3 \cdot medianincome^2$$
+
+2. *Honda vs. BMW*: The data sets `honda` and `bmw` contain prices and mileage of used Honda and BMW cars in the Indianapolis area. For BMW, you have a dummy variable which indicates all-wheel drive ($allwheeldrive$ = 1) or rear-wheel drive ($allwheeldrive$ = 0). Run a linear regression with price as the dependent variable and miles as the independent variable for both cars (separately). Report the intercept and slope coefficients. Interpret your results, e.g., how does an increase in miles affect the price of the cars. Generate two scatter plots of the data and the fitted lines. For each car, I want the scatter plot and the fitted line in the same graph. What can you say about the difference in depreciation of the two cars.
+
+3. *WDI*: Using the data in `wdi`, estimate the following equation for the year 2018 and report the results:
+      $$fertrate = \beta_0 + \beta_1 \cdot gdp+ \beta_2 \cdot litrate$$
+
+4. *Retail*: This exercise will demonstrate the use of dummy variables to model seasonality in data. Note that time series analysis is a fairly complex topic and this question only serves as an introduction. Using the data in `retail`, estimate the following regression model:
+    $$retail = \beta_0 + \beta_1 \cdot t + \sum_{m=1}^{11} \beta_m \cdot D_m$$
+where $t$ represents a simple time trend and $D_m$ are monthly dummy variables. Make sure to only include 11(!) monthly dummy variables. Is there seasonality in the data? Interpret. 
+
+5. *Indy Homes*: The data contains home values of two ZIP codes in Indianapolis. In this exercise, you will estimate the value of homes (dependent variable) based on a set of independent variables. The variables are mostly self-explanatory. The variables *levels* and garage refers to the number of *stories* and the garage parking spots, respectively. 
+
+    a. Create a dummy variable called $northwest$ for the 46268 ZIP code.
+    b. Report the results of the following regression equation
+        $$\ln(price)=\beta_0+\beta_1 \cdot \ln(sqft)+\beta_2 \cdot northwest+\beta_3 \cdot \ln(lot)+\beta_4 \cdot bed+\beta_5 \cdot garage\\
+        + \beta_6 \cdot levels+ \beta_7 \cdot northwest \cdot levels$$
+
+\item Interpret each coefficient from the previous part and how it affects $ln(price)$. How do you interpret the interaction term?
+\item What is the expected home value of a house in the 46228 ZIP code area with the following characteristics: 1800 sqft, 0.54 acres lot, 4 bedrooms, 3 bathrooms, 2 garage spots, and 1 story.
+\end{enumerate}
+
+\item \emph{Pork Demand:} In this exercise, you will estimate the per-capita pork demand as a function of pork prices and the prices of substitutes (beef and chicken) as well as real disposable income. Estimate the following equation and interpret the coefficients. Are the signs of the coefficients what you would expect?
+\begin{equation*}
+\ln(q_{pork}) = \beta_0 + \beta_1 \cdot \ln(p_{pork}) + \beta_2 \cdot \ln(p_{chicken}) + \beta_3 \cdot \ln(p_{beef}) + \beta_4 \cdot \ln(rdi)
+\end{equation*}
+
+\item \emph{NFL:} This question will have you create a similar analysis to the one found in \citet{Berri:2011}:
+\begin{align*}
+\ln(total) &=\beta_0 + \beta_1 \cdot yards+ \beta_2 \cdot att+ \beta_3 \cdot exp+ \beta_4 \cdot exp^2 + \beta_5 \cdot draft1+ \beta_6 \cdot draft2 \\
+&+ \beta_7 \cdot veteran +\beta_8 \cdot changeteam+ \beta_9 \cdot pbowlever+ \beta_{10} \cdot symm
+\end{align*}
+
+Report the output and interpret the coefficients in terms of statistical significance and direction (i.e., sign).
+\end{enumerate}
+

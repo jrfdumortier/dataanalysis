@@ -1,8 +1,14 @@
 # Bivariate Regression
 At the end of this chapter, the reader should be able to understand the following concepts:
+
 - Identify the dependent and the independent variables in a linear regression model.
 - Calculate a linear regression model finding the intercept and slope coefficients.
 - Evaluate the statistical significance of a regression coefficient based on hypothesis testing.
+
+There are slides and a YouTube Video associated with this chapter:
+
+- [Bivariate Regression - Slides](https://github.com/jrfdumortier/slidesstatistics/raw/main/BivariateRegression.pdf)
+- [Bivariate Regression - Video](https://youtu.be/omZJ5hJYc9k)
 
 The goal of a regression model is to establish causality between the dependent variable ($y$) and the independent variable(s) ($x_k$). It is assumed that the direction of influence is clear, i.e., $x$ influences $y$ and not vice versa. Each observation $y_i$ is a function of $x_i$ plus some random term $\epsilon_i$. The bivariate regression model is adequate to explain the mechanics of regression models. Every regression equation can be decomposed into four parts: 
 
@@ -14,32 +20,22 @@ The goal of a regression model is to establish causality between the dependent v
 The bivariate model can be written as follows:
 $$y=\beta_0+\beta_1 \cdot x+\epsilon$$ 
 Any regression model aims to minimize the sum of the squared residuals which is why it is also called ordinary least square (OLS) model. Consider the above model for a particular observation $i$:
-\begin{align*}
- y_i = & \beta_0 + \beta_1 x_i + \epsilon_i\\
-     = &\hat{\beta}_0 + \hat{\beta}_1 x_i + e_i \\
-     \Rightarrow e_i = & y_i - \hat{\beta}_1 - \hat{\beta}_2 x_i
-\end{align*} 
+$$y_i=\beta_0 + \beta_1 x_i + \epsilon_i\\
+     =\hat{\beta}_0 + \hat{\beta}_1 x_i + e_i \\
+     \Rightarrow e_i= y_i - \hat{\beta}_1 - \hat{\beta}_2 x_i$$
 where $\epsilon$ is the disturbance term with $E(\epsilon_i) = 0$, and $Var(\epsilon_i) = \sigma^2$ for all i. This is equivalent to stating that the population from which $y_i$ is drawn has a mean of $\beta_1+\beta_2 x_i$ and a variance of $\sigma^2$. Now if these estimated errors $e_i$ are squared and summed we obtain
 $$\sum_{i=1}^N e_i^2 = \sum_{t=1}^N \left( y_{i} -\hat{\beta}_{1} -\hat{\beta}_2 x_i \right)^2$$
 The estimated errors $e_i$ is the vertical distance between $y_i$ and the predicted $\hat{y}_i$ on the sample regression line. Different values for the parameters $\beta_0$ and $\beta_1$ give different values for the sum of squared errors. Equation \ref{eq:BVR:ols_equation} must be minimized with respect to $\beta_0$ and $\beta_1$. Using calculus, it can be shown that $\beta_0$ and $\beta_1$ that minimize equation \ref{eq:BVR:ols_equation} can be determined as follows:  
-  \begin{enumerate}
-    \item Mean of $x$
-      \begin{equation*}
-        \bar{x}=\frac{1}{N}{\sum_{i=1}^{N} x_i}
-      \end{equation*}
-    \item Mean of $y$
-      \begin{equation*}
-        \bar{y}=\frac{1}{N}{\sum_{i=1}^{N} y_i}
-      \end{equation*}
-    \item Slope coefficients
-      \begin{equation*}
-        \beta_1 = \frac{\sum_{i=1}^{N} (x_i - \bar{x})(y_i-\bar{y})}{\sum_{i=1}^{N} (x_i-\bar{x})^2}
-      \end{equation*}
-    \item Intercept
-      \begin{equation*}
-        \beta_0 = \bar{y}-\beta_1 \bar{x}
-      \end{equation*}
-  \end{enumerate} 
+
+- Mean of $x$:
+    $$\bar{x}=\frac{1}{N}{\sum_{i=1}^{N} x_i}$$
+- Mean of $y$
+    $$\bar{y}=\frac{1}{N}{\sum_{i=1}^{N} y_i}$$
+- Slope coefficients
+    $$\beta_1 = \frac{\sum_{i=1}^{N} (x_i - \bar{x})(y_i-\bar{y})}{\sum_{i=1}^{N} (x_i-\bar{x})^2}$$
+- Intercept
+    $$\beta_0 = \bar{y}-\beta_1 \bar{x}$$
+
 The last equation implies that the regression line goes through the point ($\bar{y}$, $\bar{x}$). Independent of the number of observations, there will always be only one $\beta_0$ and one $\beta_1$. The linear function with the intercept $\beta_0$ and the slope coefficient $\beta_1$ does not exactly provide $y$ given value of $x$. Rather it provides the expected value of $y$, i.e., $E(y|x)$. Panel (a) of the figure provides an example with the price of a home determined by the square footage. 
 
 ```{r,echo=FALSE,fig.cap="Example of regression line to model home values as a function of square footage. The red dashed lines in panel (a) represent the error terms associated with each observation. Panel (b) is the histogram associated with the error terms. The expected value of the error terms is zero and by assumption, the error terms are normally distributed."}
@@ -60,28 +56,15 @@ rm(bhat,i,nobs,price,sqft)
 
 The direction of the relationship is clear in the sense that the square footage (independent variable) influences the home value (dependent variable) and not vice versa. The red dashed lines are the vertical error terms. In the graph, the solid regression line is such that the sum of the squared error terms is minimized.
 
+For the OLS Model to provide unbiased estimates, assumptions associated with the model are necessary. Later sections cover how to test if those assumptions are satisfied and how to correct the model if needed. The assumptions are:
 
-<<BVR_anscombe_plots,echo=FALSE,message=FALSE,warning=FALSE,error=FALSE,include=FALSE,fig.keep="none">>=
+- Linear in parameters, i.e., $y_i = \beta_0 + \beta_1 x_i + \epsilon_i$. This does not assume a linear relationship between $x$ and $y$. Later chapters cover functional forms and how to model non-linear relationships with a linear model.
+- The error terms have a zero mean, i.e., $E(\epsilon_i)=0$.
+- Homoscedasticity, i.e., $Var(\epsilon_i) = \sigma^2$ (Figure \ref{fig:BVR_heteroscedasticity}).
+- No autoregression, i.e., $Cov(\epsilon_i,\epsilon_j)=0$.
+- Exogeneity of the independent variable, i.e., $E(\epsilon_i|x_i)=0$.
 
-pdf("BVR_anscombe1.pdf", width=8, height=7)
-     par(mfrow = c(2, 2))
-     plot(bhat1)  
-     graphics.off()
-pdf("BVR_anscombe2.pdf", width=8, height=7)
-     par(mfrow = c(2, 2))
-     plot(bhat2)  
-     graphics.off()
-pdf("BVR_anscombe3.pdf", width=8, height=7)
-     par(mfrow = c(2, 2))
-     plot(bhat3)  
-     graphics.off()
-pdf("BVR_anscombe4.pdf", width=8, height=7)
-     par(mfrow = c(2, 2))
-     plot(bhat4)  
-     graphics.off()
-@
-
-<<BVR_heteroscedasticity,echo=FALSE,message=FALSE,warning=FALSE,error=FALSE,include=FALSE,fig.keep="none">>=
+```{r BVRhomoheteroscedasticity,echo=FALSE,fig.cap="Panel (a) illustrates homoscedastic data whereas Panel (b) illustrates heteroscedastic data. The coefficient estimates will be unbiased by the standard error are larger for the model suffering from heteroscedasticity."}
 nobs           = 250
 x              = sort(runif(nobs,1500,3000))
 y_true         = 50000+70*x
@@ -92,187 +75,62 @@ housing$y_homo = housing$y_true+housing$e_homo
 housing$y_hetr = housing$y_true+housing$e_hetr
 b_homo         = lm(y_homo~x,data=housing)
 b_hetr         = lm(y_hetr~x,data=housing)
-pdf("BVR_heteroscedasticity.pdf", width=8, height=5)
-     par(mfrow=c(1,2))
-          plot(x,housing$y_homo,ylim=c(100000,350000),main="Homoscedastic Data",ylab="Price",xlab="sqft.")
-          abline(b_homo)
-          plot(x,housing$y_hetr,ylim=c(100000,350000),main="Heteroscedastic Data",ylab="Price",xlab="sqft.")
-          abline(b_hetr)
-graphics.off()
+par(mfrow=c(1,2))
+  plot(x,housing$y_homo,ylim=c(100000,350000),main="Homoscedastic Data",ylab="Price",xlab="sqft.")
+  abline(b_homo)
+  plot(x,housing$y_hetr,ylim=c(100000,350000),main="Heteroscedastic Data",ylab="Price",xlab="sqft.")
+  abline(b_hetr)
 rm(b_hetr,b_homo,housing)
-@
-<<BVR_income,echo=FALSE,message=FALSE,warning=FALSE,error=FALSE,include=FALSE,fig.keep="none">>=
-data                = fredr("A794RX0Q048SBEA") # Real personal consumption expenditures per capita
-data$year           = as.numeric(format(data$date,'%Y'))
-data                = data[,c("year","value")]
-data                = aggregate(data$value,by=list(data$year),FUN=mean)
-colnames(data)      = c("year","consumption")
-macro               = data
-data                = fredr("A229RX0Q048SBEA") # Real Disposable Personal Income: Per Capita
-data$year           = as.numeric(format(data$date,'%Y'))
-data                = data[,c("year","value")]
-data                = aggregate(data$value,by=list(data$year),FUN=mean)
-colnames(data)      = c("year","income")
-macro               = merge(macro,data,by="year")
-dconsumption        = diff(macro$consumption)
-dincome             = diff(macro$income)
-bhat                = lm(dconsumption~dincome)
-summary(bhat) 
-pdf("BVR_income.pdf",width=6,height=5)
-     plot(dincome,dconsumption,xlab=c("Change in Real Income (in $)"),
-          ylab=c("Change in Real Consumption (in $)"),
-          main="Change in Per Capita Income and Consumption")
-     abline(bhat)
-graphics.off()
-rm(bhat,data,macro,dconsumption,dincome)
-@
-<<BVR_functionalforms,echo=FALSE,message=FALSE,warning=FALSE,error=FALSE,include=TRUE,fig.keep="none">>=
+```
 
-@
+## Measuring the Strength of the Relationship
+To measure the strength of the hypothesized statistical relationship between the dependent and independent variables of the regression equation, we calculate a value called $R^2$. The value of $R^2$ can also be thought of as an indicator of goodness of fit, or how well the sample regression line fits the sample data. To see how this statistic is used, we decompose the variation of $y$ in the sample into two components, i.e., the \emph{unexplained variation} and the *explained variation*. Let the total sum of squares (TSS) be 
 
+$$TSS = \sum_{i=1}^N (y_i-\bar{y})^2$$
 
-
-
-
-\subsection{Introduction to Regression Models}
- 
-
-\begin{figure}
-\begin{center}
-\includegraphics[width=6in]{BVR_homevalues.pdf}
-\end{center}
-\caption{}
-\label{fig:BVR_homevalues}
-\end{figure}
-
-\begin{figure}[t!]
-\begin{center}
-\includegraphics[width=6in]{BVR_heteroscedasticity.pdf}
-\end{center}
-\caption{Panel (a) illustrates homoscedastic data whereas Panel (b) illustrates heteroscedastic data. The coefficient estimates will be unbiased by the standard error are larger for the model suffering from heteroscedasticity.}
-\label{fig:BVR_heteroscedasticity}
-\end{figure}
-
-For the OLS Model to provide unbiased estimates, five assumptions associated with the model are necessary. Later sections cover how to test if those assumptions are satisfied and how to correct the model if needed. The assumptions are:
-
-\begin{enumerate}
-\item Linear in parameters, i.e., $y_i = \beta_0 + \beta_1 x_i + \epsilon_i$. This does not assume a linear relationship between $x$ and $y$. Later chapters cover functional forms and how to model non-linear relationships with a linear model.
-\item The error terms have a zero mean, i.e., $E(\epsilon_i)=0$.
-\item Homoscedasticity, i.e., $Var(\epsilon_i) = \sigma^2$ (Figure \ref{fig:BVR_heteroscedasticity}).
-\item No autoregression, i.e., $Cov(\epsilon_i,\epsilon_j)=0$.
-\item Exogeneity of the independent variable, i.e., $E(\epsilon_i|x_i)=0$.
-\end{enumerate} 
-
-\subsection{Measuring the Strength of the Relationship}
-To measure the strength of the hypothesized statistical relationship between the dependent and independent variables of the regression equation, we calculate a value called $R^2$. The value of $R^2$ can also be thought of as an indicator of ``goodness of fit,'' or how well the sample regression line fits the sample data. To see how this statistic is used, we decompose the variation of $y$ in the sample into two components, i.e., the \emph{unexplained variation} and the \emph{explained variation}. Let the total sum of squares (TSS) be 
-     \begin{equation*}
-          TSS = \sum_{i=1}^N (y_i-\bar{y})^2
-     \end{equation*}
 Let the explained sum of squares (ESS) be 
-     \begin{equation*}
-          ESS = \sum_{i=1}^N (\hat{y}_i-\bar{y})^2
-     \end{equation*}
-And let the unexplained (residual) sum of square (RSS) be
-      \begin{equation*}
-          RSS = \sum_{i=1}^N (y_i-\hat{y}_i)^2
-     \end{equation*}    
-Thus, the total sum of squares is equal to the explained sum of squares plus the unexplained sum of squares, i.e., TSS=RSS+ESS. The RSS represents the ``unexplained'' variation, since it indicates the amount of error (or the residual) in the prediction of $Y$; i.e., the difference between the actual value of $y$ and its predicted value. The SSE represents the variation of the predicted values of $y$ around $\bar{y}$, and indicates the gain in predictive power achieved by using $\hat{y}$ as a predictor of $y$ instead of $\bar{y}$. Hence, the ESS is the amount of total variation in $y$ which is accounted for (or explained) by the regression line. So $R^2$ is defined as
-     \begin{equation*}
-          R^2 = \frac{ESS}{TSS}=1-\frac{RSS}{TSS}
-     \end{equation*}
 
-\subsection{Hypothesis Testing}
+$$ESS = \sum_{i=1}^N (\hat{y}_i-\bar{y})^2$$
+
+And let the unexplained (residual) sum of square (RSS) be
+
+$$RSS = \sum_{i=1}^N (y_i-\hat{y}_i)^2$$
+  
+Thus, the total sum of squares is equal to the explained sum of squares plus the unexplained sum of squares, i.e., TSS=RSS+ESS. The RSS represents the ``unexplained'' variation, since it indicates the amount of error (or the residual) in the prediction of $Y$; i.e., the difference between the actual value of $y$ and its predicted value. The SSE represents the variation of the predicted values of $y$ around $\bar{y}$, and indicates the gain in predictive power achieved by using $\hat{y}$ as a predictor of $y$ instead of $\bar{y}$. Hence, the ESS is the amount of total variation in $y$ which is accounted for (or explained) by the regression line. So $R^2$ is defined as
+$$R^2 = \frac{ESS}{TSS}=1-\frac{RSS}{TSS}$$
+
+## Hypothesis Testing
 To determine whether there is a statistically significant relationship between the variables, a hypothesis test with respect to the coefficients $\beta_0$ and $\beta_1$ must be conducted. Every statistical software package provides this hypothesis test and no additional calculations are necessary. For the hypothesis test to be valid, the error terms must be normally distributed. Given this assumption, we are using the following $t$-statistic with $n-2$ degrees of freedom. Note that the degrees of freedom decrease with every additional $\beta$. This becomes relevant in the case of multivariate regression. The test statistic is
-     \begin{equation*}
-          \frac{\hat{\beta}-\beta}{se_{\hat{\beta}}} \sim t_{n-2}
-     \end{equation*} 
+
+$$\frac{\hat{\beta}-\beta}{se_{\hat{\beta}}} \sim t_{n-2}$$
+
 The test statistic for $\beta_1$ can be written as
-     \begin{equation*}
-          \frac{\hat{\beta}_1-\beta_1}{se_{\hat{\beta}_1}} \sim t_{n-2}
-     \end{equation*} 
+
+$$\frac{\hat{\beta}_1-\beta_1}{se_{\hat{\beta}_1}} \sim t_{n-2}$$
 where
-\begin{equation*}
-     se_{\hat{\beta}_1} = \sqrt{\frac{\sum (y_i-\hat{y})^2 / (n-2) }{\sum(x_i-\bar{x})^2}}
-\end{equation*}
+$$se_{\hat{\beta}_1} = \sqrt{\frac{\sum (y_i-\hat{y})^2 / (n-2) }{\sum(x_i-\bar{x})^2}}$$
 The existence of a linear relationship between $X$ and $Y$ can be tested with the above $t$-statistic by specifying H$_0$: $\beta_1 = 0$. Tests of hypotheses concerning $\beta_0$ are much less frequent then tests concerning $\beta_1$.  
 
-<<BVR_simulation,echo=FALSE,message=FALSE,warning=FALSE,error=FALSE,include=FALSE,fig.keep="none">>=
-nobs           = 1000000
-samplesize     = 50
-simulations    = 1000
-sqft           = runif(n=nobs,min=1000,max=2000)
-price          = 50000+100*sqft+rnorm(n=nobs,mean=0,sd=40000)
-housing        = data.frame(price,sqft)
-bhatcoeff      = matrix(0,simulations,2)
-for(i in 1:simulations){
-     housingsample  = housing[sample(nrow(housing),samplesize),]
-     bhat           = lm(price~sqft,data=housingsample)
-     bhatcoeff[i,]  = bhat$coefficients}
-@
-
-\subsection{Numeric Example using Used Car Data}
+### Numeric Example using Used Car Data
 We are going to use a used car data set relating the price to the mileage of the car. Note that the direction of the relationship is clear, i.e., mileage affects price and not vice versa. The data can be found in the file \texttt{honda.csv}. In R/RStudio, the regression can performed simply by the command \texttt{bhat  = lm(price~miles,data=honda)}.
 
-<<BVR_honda,echo=FALSE,message=FALSE,warning=FALSE,error=FALSE,include=TRUE,fig.keep="none">>=
+```{r BVRhonda,echo=FALSE,fig.cap="Example of regression line to model Honda prices as a function of miles. The red dashed lines in panel (a) represent the error terms associated with each observation. Panel (b) is the histogram associated with the error terms. The expected value of the error terms is zero and by assumption, the error terms are normally distributed."}
 honda$price    = honda$price/1000
 honda$miles    = honda$miles/1000
 bhat           = lm(price~miles,data=honda)
-summary(bhat)
-pdf("BVR_honda.pdf",width=10,height=5)
-     par(mfrow=c(1,2))
-          plot(honda$miles,honda$price,ylim=c(0,25),main="(a) Prices and Miles",
-               ylab="Price (in 1000 $)",xlab="Miles")
-          abline(bhat)
-          for(i in 1:nrow(honda)){
-               segments(honda$miles[i],honda$price[i],honda$miles[i],bhat$fitted.values[i],lty=2,col="red")}
-          hist(bhat$residuals,main="(b) Histogram of Residuals ",xlab="Error Term",
-               ylim=c(0,25),breaks = seq(-7,7,1))
-graphics.off()
-@
-
-\begin{figure}[t!]
-\begin{center}
-\includegraphics[width=6in]{BVR_honda.pdf}
-\end{center}
-\caption{Example of regression line to model Honda prices as a function of miles. The red dashed lines in panel (a) represent the error terms associated with each observation. Panel (b) is the histogram associated with the error terms. The expected value of the error terms is zero and by assumption, the error terms are normally distributed.}
-\end{figure}
+par(mfrow=c(1,2))
+  plot(honda$miles,honda$price,ylim=c(0,25),main="(a) Prices and Miles",ylab="Price (in 1000 $)",xlab="Miles")
+  abline(bhat)
+  for(i in 1:nrow(honda)){
+       segments(honda$miles[i],honda$price[i],honda$miles[i],bhat$fitted.values[i],lty=2,col="red")}
+  hist(bhat$residuals,main="(b) Histogram of Residuals ",xlab="Error Term",ylim=c(0,25),breaks = seq(-7,7,1))
+```
 
 In general, there are two problems with interpreting the intercept. First, if the range of $x$ and $y$ does not include the intercept then it is difficult to attach any meaning to the intercept. Second, the intercept can be negative although in reality, this could not be possible. In almost all regression models, we do not care about the intercept. 
 
 For the purpose of this example, we are using 25 observations and have divided the price and miles by 1000. Note that scaling the variables does not affect your statistical model in terms of significance. 
 
-\begin{table}
-\begin{tabular}{rrrrrrrrrr} \toprule
-ID & miles & price & $x-\bar{x}$ & $y-\bar{y}$ & $(x-\bar{x})^2$ & $(y-\bar{y})^2$ & $(x-\bar{x})(y-\bar{y})$ & $\hat{y}$ & $(y-\hat{y})^2$ \\ \midrule
-1   & 37.329 & 17.500 & -1.59  & -1.46  & 2.54      & 2.14      & 2.33             & 19.07  & 2.45      \\
-2   & 30.313 & 17.995 & -8.61  & -0.97  & 74.12     & 0.94      & 8.34             & 19.51  & 2.31      \\
-3   & 25.426 & 19.955 & -13.50 & 0.99   & 182.15    & 0.98      & -13.39           & 19.83  & 0.02      \\
-4   & 45.449 & 18.000 & 6.53   & -0.96  & 42.60     & 0.93      & -6.29            & 18.55  & 0.30      \\
-5   & 21.051 & 19.467 & -17.87 & 0.50   & 319.38    & 0.25      & -9.00            & 20.11  & 0.41      \\
-6   & 31.278 & 17.987 & -7.64  & -0.98  & 58.44     & 0.95      & 7.46             & 19.45  & 2.15      \\
-7   & 27.486 & 19.210 & -11.44 & 0.25   & 130.79    & 0.06      & -2.82            & 19.70  & 0.24      \\
-8   & 59.358 & 17.987 & 20.44  & -0.98  & 417.62    & 0.95      & -19.95           & 17.66  & 0.11      \\
-9   & 33.539 & 17.789 & -5.38  & -1.17  & 28.98     & 1.38      & 6.32             & 19.31  & 2.31      \\
-10  & 51.383 & 18.877 & 12.46  & -0.09  & 155.27    & 0.01      & -1.07            & 18.17  & 0.51      \\
-11  & 59.986 & 17.999 & 21.06  & -0.96  & 443.68    & 0.93      & -20.31           & 17.61  & 0.15      \\
-12  & 30.498 & 17.699 & -8.42  & -1.26  & 70.97     & 1.60      & 10.65            & 19.50  & 3.25      \\
-13  & 72.775 & 15.887 & 33.85  & -3.08  & 1146.00   & 9.46      & -104.14          & 16.80  & 0.83      \\
-14  & 43.956 & 16.741 & 5.03   & -2.22  & 25.34     & 4.94      & -11.19           & 18.64  & 3.61      \\
-15  & 35.139 & 22.500 & -3.78  & 3.54   & 14.31     & 12.51     & -13.38           & 19.21  & 10.85     \\
-16  & 39.802 & 19.984 & 0.88   & 1.02   & 0.77      & 1.04      & 0.90             & 18.91  & 1.16      \\
-17  & 41.608 & 18.844 & 2.69   & -0.12  & 7.21      & 0.01      & -0.32            & 18.79  & 0.00      \\
-18  & 38.489 & 19.999 & -0.43  & 1.04   & 0.19      & 1.07      & -0.45            & 18.99  & 1.02      \\
-19  & 25.234 & 19.821 & -13.69 & 0.86   & 187.37    & 0.74      & -11.74           & 19.84  & 0.00      \\
-20  & 35.124 & 23.000 & -3.80  & 4.04   & 14.43     & 16.30     & -15.33           & 19.21  & 14.39     \\
-21  & 21.152 & 21.988 & -17.77 & 3.02   & 315.78    & 9.15      & -53.75           & 20.10  & 3.56      \\
-22  & 30.891 & 18.007 & -8.03  & -0.96  & 64.50     & 0.91      & 7.68             & 19.48  & 2.16      \\
-23  & 48.808 & 17.949 & 9.89   & -1.01  & 97.73     & 1.03      & -10.03           & 18.33  & 0.15      \\
-24  & 42.373 & 19.898 & 3.45   & 0.93   & 11.91     & 0.87      & 3.23             & 18.74  & 1.34      \\
-25  & 44.611 & 18.996 & 5.69   & 0.03   & 32.36     & 0.00      & 0.19             & 18.60  & 0.16      \\ \midrule
-Sum &        &        &        &        & 3844.44   & 69.16     & -246.07          & 474.08 & 53.41    \\ \bottomrule
-\end{tabular}
-\caption{Price and mileage for 25 Honda Accord in 1000 dollars. This corresponds to the cars 1 through 25 in the data set \texttt{honda.csv}. Note that $y$ refers to the price and $x$ refers to the mileage.}
-\end{table}
+
 
 Note that the average price is 18.963 and the average mileage is 38.922. Given the values above, we find that $\beta_1 =-246.07/3844.44=-0.064$ and $\beta_0 = 18.963 -(-0.064) \cdot 38.922 = 21.45$. For the goodness of fit measure $R^2$, we have
      \begin{equation*}
@@ -284,14 +142,12 @@ And for the standard error of $\beta_1$, we have
      \end{equation*}
 Since we have the intercept and slope coefficient, the regression line can be written as $price = 21.45-0.064 \cdot miles$. For example, having a car with 37.329 miles (in thousand), leads to $21.45-0.064(37.329)=19.07$.
 
-\subsection{Functional Forms}
+## Functional Forms
 Despite the fact that the regression model is linear, non-linear relationships can be measured. For example, the relation between consumption and income might be non linear since a change in consumption due to extra income may decrease with income. Or the relationship between income and education can exhibit a non-linear form because a change in income due to more education may decrease with more education. Consider the following relationship between $y$ and $x$: 
-     \begin{equation*}
-          y = \beta_0 + \beta_1 x + \beta_2 x^2
-     \end{equation*}
+$$y = \beta_0 + \beta_1 x + \beta_2 x^2$$
 If a nonlinear relation can be expressed as a linear relation by re-defining variables we can estimate that relation using ordinary least square. For the aforementioned equation, we can define new variables $x_1$ and $x_2$: $x_1 = x$ and $x_2 = x^2$. Note that this will lead to a multivariate relationship. 
 
-```{r BVR_functionalforms,echo=FALSE,fig.cap="Functional Forms: The equation associated with those graphs is $ln(y)=b_1+b_2 \cdot ln(x)$"}
+```{r BVRfunctionalforms,echo=FALSE}
 fun1 = function(x){exp(b[1]+b[2]*log(x))}
 fun2 = function(x){b[1]+b[2]*x+b[3]*x^2+b[4]*x^3}
 par(mfrow=c(1,2))
@@ -318,19 +174,6 @@ legend(0,5,legend=c(main1,main2,main3),fill=c("black","blue","red"),box.lty=0)
 rm(b,main1,main2,main3,fun1,fun2)
 ```
 
-
-\begin{figure}
-\begin{center}
-\includegraphics[width=6in]{BVR_functionalforms.pdf}
-\end{center}
-\caption{.}
-\end{figure}
-
-\clearpage
-<<BVR_accidents,echo=FALSE,message=FALSE,warning=FALSE,error=FALSE,include=TRUE,fig.keep="none">>=
-bhat = lm(accidents~temperature,data=accidents)
-summary(bhat)
-@
 
 ## About the Importance of the Assumptions
 The data in `anscombe` illustrates the danger of simply relying on the regression output. The so-called [Anscombe's Quartet](https://en.wikipedia.org/wiki/Anscombe%27s_quartet) includes $i=1,\dots,4$ data series denoted $y_i$ (dependent variable) and $x_i$ (independent variable). Estimate the four regression models and compare the results and the conclusions you draw from the output. Next, plot the observations and include the fitted line. The regression output for the first set:
