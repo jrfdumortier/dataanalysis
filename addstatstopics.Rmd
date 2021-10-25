@@ -72,3 +72,6 @@ t.test(checkout,mu=4,alternative=c("greater"))
 ```{r}
 wilcox.test(irs,mu=12)
 ```
+
+## Exercises
+1. *Chi-Squared Test: Education*: Use the `gss2018` data for this exercise. Select one of the following variables: $fulltime$, $government$, $married$, $gun$, or $deathpenalty$. Conduct a Chi-Squared hypothesis test between the variable chosen and education. Remember that the null hypothesis is independence between the variables. Report your results and interpret them as well. 

@@ -206,3 +206,5 @@ abline(bhat1,col="red")
         $$score = \beta_0 + \beta_1 \cdot medianincome + \beta_2 \cdot medianincome^2$$
     For this model, make sure to include the squared term by using the function `I()` in R. If you do not include it, R simply drops the last term. Report and interpret the output. 
     e. Do a scatter plot and include the (nonlinear) regression line estimated above in the plot. Is the model a good fit for the data. Compare your answer to the previous parts.
+    
+3. *Indy Home Heating*: Consider the data set `heating` which shows the consumption of natural gas and average temperature. Run a regression with $usage$ as the dependent variable and $temperature$ as the independent variable. Interpret the coefficients. Is the variable $usage$ indicative of your total energy consumption over the time period covered in the data set?

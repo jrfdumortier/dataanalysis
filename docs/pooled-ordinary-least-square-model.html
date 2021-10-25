@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>18.2 Pooled Ordinary Least Square model | Data Analysis for Public Affairs with R</title>
   <meta name="description" content="18.2 Pooled Ordinary Least Square model | Data Analysis for Public Affairs with R" />
-  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="18.2 Pooled Ordinary Least Square model | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2021-10-19" />
+<meta name="date" content="2021-10-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -34,6 +34,7 @@
 <link rel="prev" href="overview-1.html"/>
 <link rel="next" href="fixed-effects-panel-data-model.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -41,7 +42,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -231,6 +231,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.1" data-path="chi-square-test-chi2-test.html"><a href="chi-square-test-chi2-test.html"><i class="fa fa-check"></i><b>10.1</b> Chi-Square Test (<span class="math inline">\(\chi^2\)</span>-Test)</a></li>
 <li class="chapter" data-level="10.2" data-path="binomial-test.html"><a href="binomial-test.html"><i class="fa fa-check"></i><b>10.2</b> Binomial Test</a></li>
 <li class="chapter" data-level="10.3" data-path="wilcoxon-signed-rank-test.html"><a href="wilcoxon-signed-rank-test.html"><i class="fa fa-check"></i><b>10.3</b> Wilcoxon Signed-Rank Test</a></li>
+<li class="chapter" data-level="10.4" data-path="exercises-6.html"><a href="exercises-6.html"><i class="fa fa-check"></i><b>10.4</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="bivariate-regression.html"><a href="bivariate-regression.html"><i class="fa fa-check"></i><b>11</b> Bivariate Regression</a><ul>
 <li class="chapter" data-level="11.1" data-path="measuring-the-strength-of-the-relationship.html"><a href="measuring-the-strength-of-the-relationship.html"><i class="fa fa-check"></i><b>11.1</b> Measuring the Strength of the Relationship</a></li>
@@ -239,15 +240,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="11.3" data-path="functional-forms.html"><a href="functional-forms.html"><i class="fa fa-check"></i><b>11.3</b> Functional Forms</a></li>
 <li class="chapter" data-level="11.4" data-path="about-the-importance-of-the-assumptions.html"><a href="about-the-importance-of-the-assumptions.html"><i class="fa fa-check"></i><b>11.4</b> About the Importance of the Assumptions</a></li>
-<li class="chapter" data-level="11.5" data-path="exercises-6.html"><a href="exercises-6.html"><i class="fa fa-check"></i><b>11.5</b> Exercises</a></li>
+<li class="chapter" data-level="11.5" data-path="exercises-7.html"><a href="exercises-7.html"><i class="fa fa-check"></i><b>11.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="basic-multivariate-regression.html"><a href="basic-multivariate-regression.html"><i class="fa fa-check"></i><b>12</b> Basic Multivariate Regression</a><ul>
 <li class="chapter" data-level="12.1" data-path="dummy-variables.html"><a href="dummy-variables.html"><i class="fa fa-check"></i><b>12.1</b> Dummy Variables</a></li>
 <li class="chapter" data-level="12.2" data-path="natural-logarithm.html"><a href="natural-logarithm.html"><i class="fa fa-check"></i><b>12.2</b> Natural Logarithm</a></li>
-<li class="chapter" data-level="12.3" data-path="exercises-7.html"><a href="exercises-7.html"><i class="fa fa-check"></i><b>12.3</b> Exercises</a></li>
+<li class="chapter" data-level="12.3" data-path="exercises-8.html"><a href="exercises-8.html"><i class="fa fa-check"></i><b>12.3</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="anova.html"><a href="anova.html"><i class="fa fa-check"></i><b>13</b> ANOVA</a><ul>
-<li class="chapter" data-level="13.1" data-path="exercises-8.html"><a href="exercises-8.html"><i class="fa fa-check"></i><b>13.1</b> Exercises</a></li>
+<li class="chapter" data-level="13.1" data-path="exercises-9.html"><a href="exercises-9.html"><i class="fa fa-check"></i><b>13.1</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="violating-assumptions.html"><a href="violating-assumptions.html"><i class="fa fa-check"></i><b>14</b> Violating Assumptions</a><ul>
 <li class="chapter" data-level="14.1" data-path="heteroscedasticity.html"><a href="heteroscedasticity.html"><i class="fa fa-check"></i><b>14.1</b> Heteroscedasticity</a><ul>
@@ -263,7 +264,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14.4.1" data-path="autocorrelation.html"><a href="autocorrelation.html#durbin-watson-d-test"><i class="fa fa-check"></i><b>14.4.1</b> Durbin Watson d-Test</a></li>
 <li class="chapter" data-level="14.4.2" data-path="autocorrelation.html"><a href="autocorrelation.html#breusch-godfrey-test"><i class="fa fa-check"></i><b>14.4.2</b> Breusch-Godfrey Test</a></li>
 </ul></li>
-<li class="chapter" data-level="14.5" data-path="exercises-9.html"><a href="exercises-9.html"><i class="fa fa-check"></i><b>14.5</b> Exercises</a></li>
+<li class="chapter" data-level="14.5" data-path="exercises-10.html"><a href="exercises-10.html"><i class="fa fa-check"></i><b>14.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="15" data-path="binary-choice.html"><a href="binary-choice.html"><i class="fa fa-check"></i><b>15</b> Binary Choice</a><ul>
 <li class="chapter" data-level="15.1" data-path="binary-choice-estimation-in-r.html"><a href="binary-choice-estimation-in-r.html"><i class="fa fa-check"></i><b>15.1</b> Binary Choice Estimation in R</a></li>
@@ -271,7 +272,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="15.2.1" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html#full-time-work"><i class="fa fa-check"></i><b>15.2.1</b> Full-Time Work</a></li>
 <li class="chapter" data-level="15.2.2" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html#voting-behavior"><i class="fa fa-check"></i><b>15.2.2</b> Voting Behavior</a></li>
 </ul></li>
-<li class="chapter" data-level="15.3" data-path="exercises-10.html"><a href="exercises-10.html"><i class="fa fa-check"></i><b>15.3</b> Exercises</a></li>
+<li class="chapter" data-level="15.3" data-path="exercises-11.html"><a href="exercises-11.html"><i class="fa fa-check"></i><b>15.3</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="16" data-path="qualitative-choice-models.html"><a href="qualitative-choice-models.html"><i class="fa fa-check"></i><b>16</b> Qualitative Choice Models</a><ul>
 <li class="chapter" data-level="16.1" data-path="ordered-logit-model.html"><a href="ordered-logit-model.html"><i class="fa fa-check"></i><b>16.1</b> Ordered Logit Model</a><ul>
@@ -285,7 +286,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="16.2.4" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#travel-data"><i class="fa fa-check"></i><b>16.2.4</b> Travel Data</a></li>
 <li class="chapter" data-level="16.2.5" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#electric-vehicle-data"><i class="fa fa-check"></i><b>16.2.5</b> Electric Vehicle Data</a></li>
 </ul></li>
-<li class="chapter" data-level="16.3" data-path="exercises-11.html"><a href="exercises-11.html"><i class="fa fa-check"></i><b>16.3</b> Exercises</a></li>
+<li class="chapter" data-level="16.3" data-path="exercises-12.html"><a href="exercises-12.html"><i class="fa fa-check"></i><b>16.3</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="17" data-path="limited-dependent-variable-models.html"><a href="limited-dependent-variable-models.html"><i class="fa fa-check"></i><b>17</b> Limited Dependent Variable Models</a><ul>
 <li class="chapter" data-level="17.1" data-path="truncation.html"><a href="truncation.html"><i class="fa fa-check"></i><b>17.1</b> Truncation</a></li>
@@ -297,14 +298,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="17.4" data-path="hurdle-and-zero-inflation-models.html"><a href="hurdle-and-zero-inflation-models.html"><i class="fa fa-check"></i><b>17.4</b> Hurdle and Zero-Inflation Models</a></li>
 <li class="chapter" data-level="17.5" data-path="survival-analysis.html"><a href="survival-analysis.html"><i class="fa fa-check"></i><b>17.5</b> Survival Analysis</a></li>
-<li class="chapter" data-level="17.6" data-path="exercises-12.html"><a href="exercises-12.html"><i class="fa fa-check"></i><b>17.6</b> Exercises</a></li>
+<li class="chapter" data-level="17.6" data-path="exercises-13.html"><a href="exercises-13.html"><i class="fa fa-check"></i><b>17.6</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="18" data-path="panel-data.html"><a href="panel-data.html"><i class="fa fa-check"></i><b>18</b> Panel Data</a><ul>
 <li class="chapter" data-level="18.1" data-path="overview-1.html"><a href="overview-1.html"><i class="fa fa-check"></i><b>18.1</b> Overview</a></li>
 <li class="chapter" data-level="18.2" data-path="pooled-ordinary-least-square-model.html"><a href="pooled-ordinary-least-square-model.html"><i class="fa fa-check"></i><b>18.2</b> Pooled Ordinary Least Square model</a></li>
 <li class="chapter" data-level="18.3" data-path="fixed-effects-panel-data-model.html"><a href="fixed-effects-panel-data-model.html"><i class="fa fa-check"></i><b>18.3</b> Fixed Effects Panel Data Model</a></li>
 <li class="chapter" data-level="18.4" data-path="random-effects-model.html"><a href="random-effects-model.html"><i class="fa fa-check"></i><b>18.4</b> Random Effects Model</a></li>
-<li class="chapter" data-level="18.5" data-path="exercises-13.html"><a href="exercises-13.html"><i class="fa fa-check"></i><b>18.5</b> Exercises</a></li>
+<li class="chapter" data-level="18.5" data-path="exercises-14.html"><a href="exercises-14.html"><i class="fa fa-check"></i><b>18.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="19" data-path="time-series.html"><a href="time-series.html"><i class="fa fa-check"></i><b>19</b> Time Series</a><ul>
 <li class="chapter" data-level="19.1" data-path="trend-and-seasonality.html"><a href="trend-and-seasonality.html"><i class="fa fa-check"></i><b>19.1</b> Trend and Seasonality</a><ul>
@@ -316,7 +317,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.5" data-path="moving-average-models.html"><a href="moving-average-models.html"><i class="fa fa-check"></i><b>19.5</b> Moving Average Models</a></li>
 <li class="chapter" data-level="19.6" data-path="random-walk.html"><a href="random-walk.html"><i class="fa fa-check"></i><b>19.6</b> Random Walk</a></li>
 <li class="chapter" data-level="19.7" data-path="forecasting-japanense-car-production.html"><a href="forecasting-japanense-car-production.html"><i class="fa fa-check"></i><b>19.7</b> Forecasting Japanense Car Production</a></li>
-<li class="chapter" data-level="19.8" data-path="exercises-14.html"><a href="exercises-14.html"><i class="fa fa-check"></i><b>19.8</b> Exercises</a></li>
+<li class="chapter" data-level="19.8" data-path="exercises-15.html"><a href="exercises-15.html"><i class="fa fa-check"></i><b>19.8</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="20" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>20</b> Data Sources</a></li>
 <li class="divider"></li>
@@ -426,10 +427,10 @@ Coefficient of <span class="math inline">\(y82\)</span> (-0.41) indicates that w
 <li>1985 gender gap: 31.67% - 8.51% = 23.16%</li>
 </ul>
 <p>The last example regarding pooled data illustrates how misleading a regression model can be if executed incorrectly. The data set is called <code>kiel</code> and is on home values near the location of an garbage incinerator. The important aspect of the data set is that there was no knowledge about the proposed incinerator in 1978. In a first step, the data is separated into the two years:</p>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="pooled-ordinary-least-square-model.html#cb167-1"></a>kiel1978 =<span class="st"> </span><span class="kw">subset</span>(kiel,year<span class="op">==</span><span class="dv">1978</span>)</span>
-<span id="cb167-2"><a href="pooled-ordinary-least-square-model.html#cb167-2"></a>kiel1981 =<span class="st"> </span><span class="kw">subset</span>(kiel,year<span class="op">==</span><span class="dv">1981</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="pooled-ordinary-least-square-model.html#cb213-1"></a>kiel1978 =<span class="st"> </span><span class="kw">subset</span>(kiel,year<span class="op">==</span><span class="dv">1978</span>)</span>
+<span id="cb213-2"><a href="pooled-ordinary-least-square-model.html#cb213-2"></a>kiel1981 =<span class="st"> </span><span class="kw">subset</span>(kiel,year<span class="op">==</span><span class="dv">1981</span>)</span></code></pre></div>
 <p>Next, two regressions for each of the years are estimated.</p>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="pooled-ordinary-least-square-model.html#cb168-1"></a><span class="kw">summary</span>(<span class="kw">lm</span>(rprice<span class="op">~</span>nearinc,<span class="dt">data=</span>kiel1981))</span></code></pre></div>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="pooled-ordinary-least-square-model.html#cb214-1"></a><span class="kw">summary</span>(<span class="kw">lm</span>(rprice<span class="op">~</span>nearinc,<span class="dt">data=</span>kiel1981))</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = rprice ~ nearinc, data = kiel1981)
@@ -448,7 +449,7 @@ Coefficient of <span class="math inline">\(y82\)</span> (-0.41) indicates that w
 ## Residual standard error: 31240 on 140 degrees of freedom
 ## Multiple R-squared:  0.1653, Adjusted R-squared:  0.1594 
 ## F-statistic: 27.73 on 1 and 140 DF,  p-value: 5.139e-07</code></pre>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="pooled-ordinary-least-square-model.html#cb170-1"></a><span class="kw">summary</span>(<span class="kw">lm</span>(rprice<span class="op">~</span>nearinc,<span class="dt">data=</span>kiel1978))</span></code></pre></div>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="pooled-ordinary-least-square-model.html#cb216-1"></a><span class="kw">summary</span>(<span class="kw">lm</span>(rprice<span class="op">~</span>nearinc,<span class="dt">data=</span>kiel1978))</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = rprice ~ nearinc, data = kiel1978)
@@ -471,7 +472,7 @@ Coefficient of <span class="math inline">\(y82\)</span> (-0.41) indicates that w
 <span class="math display">\[\hat{\delta}_1 = (price_{81,near}-price_{81,far})-(price_{78,near}-price_{78,far})\]</span>
 where <span class="math inline">\(\hat{\delta}_1\)</span> represents the difference over time in average differences in housing prices in the two locations. To determine statistical significance, the following model must be estimated:
 <span class="math display">\[price = \beta_0 + \gamma_0 \cdot y81 + \beta_1 \cdot nearinc + \delta_1 \cdot y81 \cdot nearinc\]</span></p>
-<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="pooled-ordinary-least-square-model.html#cb172-1"></a><span class="kw">summary</span>(<span class="kw">lm</span>(rprice<span class="op">~</span>y81<span class="op">+</span>nearinc<span class="op">+</span><span class="kw">I</span>(y81<span class="op">*</span>nearinc),<span class="dt">data=</span>kiel))</span></code></pre></div>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="pooled-ordinary-least-square-model.html#cb218-1"></a><span class="kw">summary</span>(<span class="kw">lm</span>(rprice<span class="op">~</span>y81<span class="op">+</span>nearinc<span class="op">+</span><span class="kw">I</span>(y81<span class="op">*</span>nearinc),<span class="dt">data=</span>kiel))</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = rprice ~ y81 + nearinc + I(y81 * nearinc), data = kiel)
@@ -500,7 +501,7 @@ where <span class="math inline">\(\hat{\delta}_1\)</span> represents the differe
 <li><span class="math inline">\(\gamma_1\)</span>: Decline in housing values due to incinerator</li>
 </ul>
 <p>Include <span class="math inline">\(age\)</span> and <span class="math inline">\(age^2\)</span> in the above equation to take advantage of the information provided in the data leads to the following result:</p>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="pooled-ordinary-least-square-model.html#cb174-1"></a><span class="kw">summary</span>(<span class="kw">lm</span>(rprice<span class="op">~</span>y81<span class="op">+</span>nearinc<span class="op">+</span><span class="kw">I</span>(y81<span class="op">*</span>nearinc)<span class="op">+</span>age<span class="op">+</span><span class="kw">I</span>(age<span class="op">^</span><span class="dv">2</span>),<span class="dt">data=</span>kiel))</span></code></pre></div>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="pooled-ordinary-least-square-model.html#cb220-1"></a><span class="kw">summary</span>(<span class="kw">lm</span>(rprice<span class="op">~</span>y81<span class="op">+</span>nearinc<span class="op">+</span><span class="kw">I</span>(y81<span class="op">*</span>nearinc)<span class="op">+</span>age<span class="op">+</span><span class="kw">I</span>(age<span class="op">^</span><span class="dv">2</span>),<span class="dt">data=</span>kiel))</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = rprice ~ y81 + nearinc + I(y81 * nearinc) + age + 
@@ -525,7 +526,7 @@ where <span class="math inline">\(\hat{\delta}_1\)</span> represents the differe
 ## Multiple R-squared:  0.4144, Adjusted R-squared:  0.4052 
 ## F-statistic: 44.59 on 5 and 315 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>Other variables such as <span class="math inline">\(cbd\)</span>, <span class="math inline">\(rooms\)</span>, <span class="math inline">\(area\)</span>, <span class="math inline">\(land\)</span>, and <span class="math inline">\(baths\)</span> can be added as well.</p>
-<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="pooled-ordinary-least-square-model.html#cb176-1"></a><span class="kw">summary</span>(<span class="kw">lm</span>(rprice<span class="op">~</span>y81<span class="op">+</span>nearinc<span class="op">+</span><span class="kw">I</span>(y81<span class="op">*</span>nearinc)<span class="op">+</span>age<span class="op">+</span><span class="kw">I</span>(age<span class="op">^</span><span class="dv">2</span>)<span class="op">+</span>intst<span class="op">+</span>land<span class="op">+</span>area<span class="op">+</span>rooms<span class="op">+</span>baths,<span class="dt">data=</span>kiel))</span></code></pre></div>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="pooled-ordinary-least-square-model.html#cb222-1"></a><span class="kw">summary</span>(<span class="kw">lm</span>(rprice<span class="op">~</span>y81<span class="op">+</span>nearinc<span class="op">+</span><span class="kw">I</span>(y81<span class="op">*</span>nearinc)<span class="op">+</span>age<span class="op">+</span><span class="kw">I</span>(age<span class="op">^</span><span class="dv">2</span>)<span class="op">+</span>intst<span class="op">+</span>land<span class="op">+</span>area<span class="op">+</span>rooms<span class="op">+</span>baths,<span class="dt">data=</span>kiel))</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = rprice ~ y81 + nearinc + I(y81 * nearinc) + age + 
@@ -566,7 +567,6 @@ where <span class="math inline">\(\hat{\delta}_1\)</span> represents the differe
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -607,7 +607,7 @@ gitbook.start({
 },
 "download": ["bookdownproj.pdf"],
 "search": {
-"engine": "lunr",
+"engine": "fuse",
 "options": null
 },
 "toc": {

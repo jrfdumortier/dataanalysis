@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>8 Confidence Intervals | Data Analysis for Public Affairs with R</title>
   <meta name="description" content="8 Confidence Intervals | Data Analysis for Public Affairs with R" />
-  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="8 Confidence Intervals | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2021-10-19" />
+<meta name="date" content="2021-10-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -34,6 +34,7 @@
 <link rel="prev" href="exercises-3.html"/>
 <link rel="next" href="confidence-interval-for-a-proportion.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -41,7 +42,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -231,6 +231,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.1" data-path="chi-square-test-chi2-test.html"><a href="chi-square-test-chi2-test.html"><i class="fa fa-check"></i><b>10.1</b> Chi-Square Test (<span class="math inline">\(\chi^2\)</span>-Test)</a></li>
 <li class="chapter" data-level="10.2" data-path="binomial-test.html"><a href="binomial-test.html"><i class="fa fa-check"></i><b>10.2</b> Binomial Test</a></li>
 <li class="chapter" data-level="10.3" data-path="wilcoxon-signed-rank-test.html"><a href="wilcoxon-signed-rank-test.html"><i class="fa fa-check"></i><b>10.3</b> Wilcoxon Signed-Rank Test</a></li>
+<li class="chapter" data-level="10.4" data-path="exercises-6.html"><a href="exercises-6.html"><i class="fa fa-check"></i><b>10.4</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="bivariate-regression.html"><a href="bivariate-regression.html"><i class="fa fa-check"></i><b>11</b> Bivariate Regression</a><ul>
 <li class="chapter" data-level="11.1" data-path="measuring-the-strength-of-the-relationship.html"><a href="measuring-the-strength-of-the-relationship.html"><i class="fa fa-check"></i><b>11.1</b> Measuring the Strength of the Relationship</a></li>
@@ -239,15 +240,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="11.3" data-path="functional-forms.html"><a href="functional-forms.html"><i class="fa fa-check"></i><b>11.3</b> Functional Forms</a></li>
 <li class="chapter" data-level="11.4" data-path="about-the-importance-of-the-assumptions.html"><a href="about-the-importance-of-the-assumptions.html"><i class="fa fa-check"></i><b>11.4</b> About the Importance of the Assumptions</a></li>
-<li class="chapter" data-level="11.5" data-path="exercises-6.html"><a href="exercises-6.html"><i class="fa fa-check"></i><b>11.5</b> Exercises</a></li>
+<li class="chapter" data-level="11.5" data-path="exercises-7.html"><a href="exercises-7.html"><i class="fa fa-check"></i><b>11.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="basic-multivariate-regression.html"><a href="basic-multivariate-regression.html"><i class="fa fa-check"></i><b>12</b> Basic Multivariate Regression</a><ul>
 <li class="chapter" data-level="12.1" data-path="dummy-variables.html"><a href="dummy-variables.html"><i class="fa fa-check"></i><b>12.1</b> Dummy Variables</a></li>
 <li class="chapter" data-level="12.2" data-path="natural-logarithm.html"><a href="natural-logarithm.html"><i class="fa fa-check"></i><b>12.2</b> Natural Logarithm</a></li>
-<li class="chapter" data-level="12.3" data-path="exercises-7.html"><a href="exercises-7.html"><i class="fa fa-check"></i><b>12.3</b> Exercises</a></li>
+<li class="chapter" data-level="12.3" data-path="exercises-8.html"><a href="exercises-8.html"><i class="fa fa-check"></i><b>12.3</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="anova.html"><a href="anova.html"><i class="fa fa-check"></i><b>13</b> ANOVA</a><ul>
-<li class="chapter" data-level="13.1" data-path="exercises-8.html"><a href="exercises-8.html"><i class="fa fa-check"></i><b>13.1</b> Exercises</a></li>
+<li class="chapter" data-level="13.1" data-path="exercises-9.html"><a href="exercises-9.html"><i class="fa fa-check"></i><b>13.1</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="violating-assumptions.html"><a href="violating-assumptions.html"><i class="fa fa-check"></i><b>14</b> Violating Assumptions</a><ul>
 <li class="chapter" data-level="14.1" data-path="heteroscedasticity.html"><a href="heteroscedasticity.html"><i class="fa fa-check"></i><b>14.1</b> Heteroscedasticity</a><ul>
@@ -263,7 +264,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14.4.1" data-path="autocorrelation.html"><a href="autocorrelation.html#durbin-watson-d-test"><i class="fa fa-check"></i><b>14.4.1</b> Durbin Watson d-Test</a></li>
 <li class="chapter" data-level="14.4.2" data-path="autocorrelation.html"><a href="autocorrelation.html#breusch-godfrey-test"><i class="fa fa-check"></i><b>14.4.2</b> Breusch-Godfrey Test</a></li>
 </ul></li>
-<li class="chapter" data-level="14.5" data-path="exercises-9.html"><a href="exercises-9.html"><i class="fa fa-check"></i><b>14.5</b> Exercises</a></li>
+<li class="chapter" data-level="14.5" data-path="exercises-10.html"><a href="exercises-10.html"><i class="fa fa-check"></i><b>14.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="15" data-path="binary-choice.html"><a href="binary-choice.html"><i class="fa fa-check"></i><b>15</b> Binary Choice</a><ul>
 <li class="chapter" data-level="15.1" data-path="binary-choice-estimation-in-r.html"><a href="binary-choice-estimation-in-r.html"><i class="fa fa-check"></i><b>15.1</b> Binary Choice Estimation in R</a></li>
@@ -271,7 +272,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="15.2.1" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html#full-time-work"><i class="fa fa-check"></i><b>15.2.1</b> Full-Time Work</a></li>
 <li class="chapter" data-level="15.2.2" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html#voting-behavior"><i class="fa fa-check"></i><b>15.2.2</b> Voting Behavior</a></li>
 </ul></li>
-<li class="chapter" data-level="15.3" data-path="exercises-10.html"><a href="exercises-10.html"><i class="fa fa-check"></i><b>15.3</b> Exercises</a></li>
+<li class="chapter" data-level="15.3" data-path="exercises-11.html"><a href="exercises-11.html"><i class="fa fa-check"></i><b>15.3</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="16" data-path="qualitative-choice-models.html"><a href="qualitative-choice-models.html"><i class="fa fa-check"></i><b>16</b> Qualitative Choice Models</a><ul>
 <li class="chapter" data-level="16.1" data-path="ordered-logit-model.html"><a href="ordered-logit-model.html"><i class="fa fa-check"></i><b>16.1</b> Ordered Logit Model</a><ul>
@@ -285,7 +286,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="16.2.4" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#travel-data"><i class="fa fa-check"></i><b>16.2.4</b> Travel Data</a></li>
 <li class="chapter" data-level="16.2.5" data-path="multinomial-logit-and-multinomial-probit-models.html"><a href="multinomial-logit-and-multinomial-probit-models.html#electric-vehicle-data"><i class="fa fa-check"></i><b>16.2.5</b> Electric Vehicle Data</a></li>
 </ul></li>
-<li class="chapter" data-level="16.3" data-path="exercises-11.html"><a href="exercises-11.html"><i class="fa fa-check"></i><b>16.3</b> Exercises</a></li>
+<li class="chapter" data-level="16.3" data-path="exercises-12.html"><a href="exercises-12.html"><i class="fa fa-check"></i><b>16.3</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="17" data-path="limited-dependent-variable-models.html"><a href="limited-dependent-variable-models.html"><i class="fa fa-check"></i><b>17</b> Limited Dependent Variable Models</a><ul>
 <li class="chapter" data-level="17.1" data-path="truncation.html"><a href="truncation.html"><i class="fa fa-check"></i><b>17.1</b> Truncation</a></li>
@@ -297,14 +298,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="17.4" data-path="hurdle-and-zero-inflation-models.html"><a href="hurdle-and-zero-inflation-models.html"><i class="fa fa-check"></i><b>17.4</b> Hurdle and Zero-Inflation Models</a></li>
 <li class="chapter" data-level="17.5" data-path="survival-analysis.html"><a href="survival-analysis.html"><i class="fa fa-check"></i><b>17.5</b> Survival Analysis</a></li>
-<li class="chapter" data-level="17.6" data-path="exercises-12.html"><a href="exercises-12.html"><i class="fa fa-check"></i><b>17.6</b> Exercises</a></li>
+<li class="chapter" data-level="17.6" data-path="exercises-13.html"><a href="exercises-13.html"><i class="fa fa-check"></i><b>17.6</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="18" data-path="panel-data.html"><a href="panel-data.html"><i class="fa fa-check"></i><b>18</b> Panel Data</a><ul>
 <li class="chapter" data-level="18.1" data-path="overview-1.html"><a href="overview-1.html"><i class="fa fa-check"></i><b>18.1</b> Overview</a></li>
 <li class="chapter" data-level="18.2" data-path="pooled-ordinary-least-square-model.html"><a href="pooled-ordinary-least-square-model.html"><i class="fa fa-check"></i><b>18.2</b> Pooled Ordinary Least Square model</a></li>
 <li class="chapter" data-level="18.3" data-path="fixed-effects-panel-data-model.html"><a href="fixed-effects-panel-data-model.html"><i class="fa fa-check"></i><b>18.3</b> Fixed Effects Panel Data Model</a></li>
 <li class="chapter" data-level="18.4" data-path="random-effects-model.html"><a href="random-effects-model.html"><i class="fa fa-check"></i><b>18.4</b> Random Effects Model</a></li>
-<li class="chapter" data-level="18.5" data-path="exercises-13.html"><a href="exercises-13.html"><i class="fa fa-check"></i><b>18.5</b> Exercises</a></li>
+<li class="chapter" data-level="18.5" data-path="exercises-14.html"><a href="exercises-14.html"><i class="fa fa-check"></i><b>18.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="19" data-path="time-series.html"><a href="time-series.html"><i class="fa fa-check"></i><b>19</b> Time Series</a><ul>
 <li class="chapter" data-level="19.1" data-path="trend-and-seasonality.html"><a href="trend-and-seasonality.html"><i class="fa fa-check"></i><b>19.1</b> Trend and Seasonality</a><ul>
@@ -316,7 +317,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.5" data-path="moving-average-models.html"><a href="moving-average-models.html"><i class="fa fa-check"></i><b>19.5</b> Moving Average Models</a></li>
 <li class="chapter" data-level="19.6" data-path="random-walk.html"><a href="random-walk.html"><i class="fa fa-check"></i><b>19.6</b> Random Walk</a></li>
 <li class="chapter" data-level="19.7" data-path="forecasting-japanense-car-production.html"><a href="forecasting-japanense-car-production.html"><i class="fa fa-check"></i><b>19.7</b> Forecasting Japanense Car Production</a></li>
-<li class="chapter" data-level="19.8" data-path="exercises-14.html"><a href="exercises-14.html"><i class="fa fa-check"></i><b>19.8</b> Exercises</a></li>
+<li class="chapter" data-level="19.8" data-path="exercises-15.html"><a href="exercises-15.html"><i class="fa fa-check"></i><b>19.8</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="20" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>20</b> Data Sources</a></li>
 <li class="divider"></li>
@@ -353,17 +354,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </blockquote>
 <p>Note that there is no way of knowing if the confidence interval actually covers the true parameter. Remember that we have <span class="math inline">\(E(\bar{x})=\mu\)</span> and <span class="math inline">\(Var(\bar{x})=\sigma^2/n\)</span>. The mean <span class="math inline">\(\pm 1.96\)</span> standard deviations includes 95% of the normal distribution. Because the sampling distribution is approximately normal (recall this fact from the Central Limit Theorem and the law of large numbers), the distance of 1.96 standard deviations is the margin of error. The margin of error measures how accurate the point estimate is likely to be in estimating a parameter.</p>
 <p>This section is designed to illustrate the concept of confidence interval with R. A population of 1 million voters is generated with 55% of those voters favoring candidate <em>A</em> in an upcoming election. For this exercise, a 95% confidence interval is simulated. The script below proceeds as follows:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="confidence-intervals.html#cb24-1"></a>voters =<span class="st"> </span><span class="kw">rbinom</span>(<span class="dv">1000000</span>,<span class="dv">1</span>,<span class="fl">0.55</span>)</span>
-<span id="cb24-2"><a href="confidence-intervals.html#cb24-2"></a>output =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">lb=</span><span class="kw">numeric</span>(),<span class="dt">ub=</span><span class="kw">numeric</span>(),<span class="dt">inside=</span><span class="kw">numeric</span>())</span>
-<span id="cb24-3"><a href="confidence-intervals.html#cb24-3"></a>meanA  =<span class="st"> </span><span class="kw">mean</span>(voters)</span>
-<span id="cb24-4"><a href="confidence-intervals.html#cb24-4"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">100</span>){</span>
-<span id="cb24-5"><a href="confidence-intervals.html#cb24-5"></a>     poll =<span class="st"> </span><span class="kw">sample</span>(voters,<span class="dv">1000</span>,<span class="dt">replace=</span><span class="ot">FALSE</span>)</span>
-<span id="cb24-6"><a href="confidence-intervals.html#cb24-6"></a>     CI   =<span class="st"> </span><span class="kw">t.test</span>(poll)</span>
-<span id="cb24-7"><a href="confidence-intervals.html#cb24-7"></a>     temp =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">ub=</span>CI<span class="op">$</span>conf.int[<span class="dv">1</span>],<span class="dt">lb=</span>CI<span class="op">$</span>conf.int[<span class="dv">2</span>],<span class="dt">inside=</span><span class="dv">0</span>)</span>
-<span id="cb24-8"><a href="confidence-intervals.html#cb24-8"></a>     <span class="cf">if</span>(CI<span class="op">$</span>conf.int[<span class="dv">1</span>]<span class="op">&lt;=</span>meanA <span class="op">&amp;</span><span class="st"> </span>CI<span class="op">$</span>conf.int[<span class="dv">2</span>]<span class="op">&gt;=</span>meanA){temp<span class="op">$</span>inside=<span class="dv">1</span>}</span>
-<span id="cb24-9"><a href="confidence-intervals.html#cb24-9"></a>     output =<span class="st"> </span><span class="kw">rbind</span>(output,temp)}</span>
-<span id="cb24-10"><a href="confidence-intervals.html#cb24-10"></a><span class="kw">mean</span>(output<span class="op">$</span>inside)</span>
-<span id="cb24-11"><a href="confidence-intervals.html#cb24-11"></a><span class="kw">rm</span>(voters,output,meanA,poll,CI,temp)</span></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="confidence-intervals.html#cb68-1"></a>voters =<span class="st"> </span><span class="kw">rbinom</span>(<span class="dv">1000000</span>,<span class="dv">1</span>,<span class="fl">0.55</span>)</span>
+<span id="cb68-2"><a href="confidence-intervals.html#cb68-2"></a>output =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">lb=</span><span class="kw">numeric</span>(),<span class="dt">ub=</span><span class="kw">numeric</span>(),<span class="dt">inside=</span><span class="kw">numeric</span>())</span>
+<span id="cb68-3"><a href="confidence-intervals.html#cb68-3"></a>meanA  =<span class="st"> </span><span class="kw">mean</span>(voters)</span>
+<span id="cb68-4"><a href="confidence-intervals.html#cb68-4"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">100</span>){</span>
+<span id="cb68-5"><a href="confidence-intervals.html#cb68-5"></a>     poll =<span class="st"> </span><span class="kw">sample</span>(voters,<span class="dv">1000</span>,<span class="dt">replace=</span><span class="ot">FALSE</span>)</span>
+<span id="cb68-6"><a href="confidence-intervals.html#cb68-6"></a>     CI   =<span class="st"> </span><span class="kw">t.test</span>(poll)</span>
+<span id="cb68-7"><a href="confidence-intervals.html#cb68-7"></a>     temp =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">ub=</span>CI<span class="op">$</span>conf.int[<span class="dv">1</span>],<span class="dt">lb=</span>CI<span class="op">$</span>conf.int[<span class="dv">2</span>],<span class="dt">inside=</span><span class="dv">0</span>)</span>
+<span id="cb68-8"><a href="confidence-intervals.html#cb68-8"></a>     <span class="cf">if</span>(CI<span class="op">$</span>conf.int[<span class="dv">1</span>]<span class="op">&lt;=</span>meanA <span class="op">&amp;</span><span class="st"> </span>CI<span class="op">$</span>conf.int[<span class="dv">2</span>]<span class="op">&gt;=</span>meanA){temp<span class="op">$</span>inside=<span class="dv">1</span>}</span>
+<span id="cb68-9"><a href="confidence-intervals.html#cb68-9"></a>     output =<span class="st"> </span><span class="kw">rbind</span>(output,temp)}</span>
+<span id="cb68-10"><a href="confidence-intervals.html#cb68-10"></a><span class="kw">mean</span>(output<span class="op">$</span>inside)</span>
+<span id="cb68-11"><a href="confidence-intervals.html#cb68-11"></a><span class="kw">rm</span>(voters,output,meanA,poll,CI,temp)</span></code></pre></div>
 <p>In a first step, a population of 1 million voters is created. The subsequent steps take 100 samples of 1,000 voters. For each sample, the confidence interval (i.e., lower and upper bounds denoted as <em>lb</em> and <em>ub</em>, respectively) is calculated. The next step checks whether the true mean is contained in the confidence interval. If the above code is executed, the output of <code>mean()</code> should be around 0.95.</p>
 </div>
             </section>
@@ -376,7 +377,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -417,7 +417,7 @@ gitbook.start({
 },
 "download": ["bookdownproj.pdf"],
 "search": {
-"engine": "lunr",
+"engine": "fuse",
 "options": null
 },
 "toc": {
