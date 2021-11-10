@@ -24,7 +24,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2021-10-25" />
+<meta name="date" content="2021-11-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -243,9 +243,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.5" data-path="exercises-7.html"><a href="exercises-7.html"><i class="fa fa-check"></i><b>11.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="basic-multivariate-regression.html"><a href="basic-multivariate-regression.html"><i class="fa fa-check"></i><b>12</b> Basic Multivariate Regression</a><ul>
-<li class="chapter" data-level="12.1" data-path="dummy-variables.html"><a href="dummy-variables.html"><i class="fa fa-check"></i><b>12.1</b> Dummy Variables</a></li>
-<li class="chapter" data-level="12.2" data-path="natural-logarithm.html"><a href="natural-logarithm.html"><i class="fa fa-check"></i><b>12.2</b> Natural Logarithm</a></li>
-<li class="chapter" data-level="12.3" data-path="exercises-8.html"><a href="exercises-8.html"><i class="fa fa-check"></i><b>12.3</b> Exercises</a></li>
+<li class="chapter" data-level="12.1" data-path="introduction-1.html"><a href="introduction-1.html"><i class="fa fa-check"></i><b>12.1</b> Introduction</a></li>
+<li class="chapter" data-level="12.2" data-path="dummy-variables.html"><a href="dummy-variables.html"><i class="fa fa-check"></i><b>12.2</b> Dummy Variables</a></li>
+<li class="chapter" data-level="12.3" data-path="natural-logarithm.html"><a href="natural-logarithm.html"><i class="fa fa-check"></i><b>12.3</b> Natural Logarithm</a></li>
+<li class="chapter" data-level="12.4" data-path="functional-form.html"><a href="functional-form.html"><i class="fa fa-check"></i><b>12.4</b> Functional Form</a></li>
+<li class="chapter" data-level="12.5" data-path="interaction-effects.html"><a href="interaction-effects.html"><i class="fa fa-check"></i><b>12.5</b> Interaction Effects</a></li>
+<li class="chapter" data-level="12.6" data-path="exercises-8.html"><a href="exercises-8.html"><i class="fa fa-check"></i><b>12.6</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="anova.html"><a href="anova.html"><i class="fa fa-check"></i><b>13</b> ANOVA</a><ul>
 <li class="chapter" data-level="13.1" data-path="exercises-9.html"><a href="exercises-9.html"><i class="fa fa-check"></i><b>13.1</b> Exercises</a></li>
@@ -427,10 +430,10 @@ Coefficient of <span class="math inline">\(y82\)</span> (-0.41) indicates that w
 <li>1985 gender gap: 31.67% - 8.51% = 23.16%</li>
 </ul>
 <p>The last example regarding pooled data illustrates how misleading a regression model can be if executed incorrectly. The data set is called <code>kiel</code> and is on home values near the location of an garbage incinerator. The important aspect of the data set is that there was no knowledge about the proposed incinerator in 1978. In a first step, the data is separated into the two years:</p>
-<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="pooled-ordinary-least-square-model.html#cb213-1"></a>kiel1978 =<span class="st"> </span><span class="kw">subset</span>(kiel,year<span class="op">==</span><span class="dv">1978</span>)</span>
-<span id="cb213-2"><a href="pooled-ordinary-least-square-model.html#cb213-2"></a>kiel1981 =<span class="st"> </span><span class="kw">subset</span>(kiel,year<span class="op">==</span><span class="dv">1981</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="pooled-ordinary-least-square-model.html#cb174-1"></a>kiel1978 =<span class="st"> </span><span class="kw">subset</span>(kiel,year<span class="op">==</span><span class="dv">1978</span>)</span>
+<span id="cb174-2"><a href="pooled-ordinary-least-square-model.html#cb174-2"></a>kiel1981 =<span class="st"> </span><span class="kw">subset</span>(kiel,year<span class="op">==</span><span class="dv">1981</span>)</span></code></pre></div>
 <p>Next, two regressions for each of the years are estimated.</p>
-<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="pooled-ordinary-least-square-model.html#cb214-1"></a><span class="kw">summary</span>(<span class="kw">lm</span>(rprice<span class="op">~</span>nearinc,<span class="dt">data=</span>kiel1981))</span></code></pre></div>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="pooled-ordinary-least-square-model.html#cb175-1"></a><span class="kw">summary</span>(<span class="kw">lm</span>(rprice<span class="op">~</span>nearinc,<span class="dt">data=</span>kiel1981))</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = rprice ~ nearinc, data = kiel1981)
@@ -449,7 +452,7 @@ Coefficient of <span class="math inline">\(y82\)</span> (-0.41) indicates that w
 ## Residual standard error: 31240 on 140 degrees of freedom
 ## Multiple R-squared:  0.1653, Adjusted R-squared:  0.1594 
 ## F-statistic: 27.73 on 1 and 140 DF,  p-value: 5.139e-07</code></pre>
-<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="pooled-ordinary-least-square-model.html#cb216-1"></a><span class="kw">summary</span>(<span class="kw">lm</span>(rprice<span class="op">~</span>nearinc,<span class="dt">data=</span>kiel1978))</span></code></pre></div>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="pooled-ordinary-least-square-model.html#cb177-1"></a><span class="kw">summary</span>(<span class="kw">lm</span>(rprice<span class="op">~</span>nearinc,<span class="dt">data=</span>kiel1978))</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = rprice ~ nearinc, data = kiel1978)
@@ -472,7 +475,7 @@ Coefficient of <span class="math inline">\(y82\)</span> (-0.41) indicates that w
 <span class="math display">\[\hat{\delta}_1 = (price_{81,near}-price_{81,far})-(price_{78,near}-price_{78,far})\]</span>
 where <span class="math inline">\(\hat{\delta}_1\)</span> represents the difference over time in average differences in housing prices in the two locations. To determine statistical significance, the following model must be estimated:
 <span class="math display">\[price = \beta_0 + \gamma_0 \cdot y81 + \beta_1 \cdot nearinc + \delta_1 \cdot y81 \cdot nearinc\]</span></p>
-<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="pooled-ordinary-least-square-model.html#cb218-1"></a><span class="kw">summary</span>(<span class="kw">lm</span>(rprice<span class="op">~</span>y81<span class="op">+</span>nearinc<span class="op">+</span><span class="kw">I</span>(y81<span class="op">*</span>nearinc),<span class="dt">data=</span>kiel))</span></code></pre></div>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="pooled-ordinary-least-square-model.html#cb179-1"></a><span class="kw">summary</span>(<span class="kw">lm</span>(rprice<span class="op">~</span>y81<span class="op">+</span>nearinc<span class="op">+</span><span class="kw">I</span>(y81<span class="op">*</span>nearinc),<span class="dt">data=</span>kiel))</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = rprice ~ y81 + nearinc + I(y81 * nearinc), data = kiel)
@@ -501,7 +504,7 @@ where <span class="math inline">\(\hat{\delta}_1\)</span> represents the differe
 <li><span class="math inline">\(\gamma_1\)</span>: Decline in housing values due to incinerator</li>
 </ul>
 <p>Include <span class="math inline">\(age\)</span> and <span class="math inline">\(age^2\)</span> in the above equation to take advantage of the information provided in the data leads to the following result:</p>
-<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="pooled-ordinary-least-square-model.html#cb220-1"></a><span class="kw">summary</span>(<span class="kw">lm</span>(rprice<span class="op">~</span>y81<span class="op">+</span>nearinc<span class="op">+</span><span class="kw">I</span>(y81<span class="op">*</span>nearinc)<span class="op">+</span>age<span class="op">+</span><span class="kw">I</span>(age<span class="op">^</span><span class="dv">2</span>),<span class="dt">data=</span>kiel))</span></code></pre></div>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="pooled-ordinary-least-square-model.html#cb181-1"></a><span class="kw">summary</span>(<span class="kw">lm</span>(rprice<span class="op">~</span>y81<span class="op">+</span>nearinc<span class="op">+</span><span class="kw">I</span>(y81<span class="op">*</span>nearinc)<span class="op">+</span>age<span class="op">+</span><span class="kw">I</span>(age<span class="op">^</span><span class="dv">2</span>),<span class="dt">data=</span>kiel))</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = rprice ~ y81 + nearinc + I(y81 * nearinc) + age + 
@@ -526,7 +529,7 @@ where <span class="math inline">\(\hat{\delta}_1\)</span> represents the differe
 ## Multiple R-squared:  0.4144, Adjusted R-squared:  0.4052 
 ## F-statistic: 44.59 on 5 and 315 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>Other variables such as <span class="math inline">\(cbd\)</span>, <span class="math inline">\(rooms\)</span>, <span class="math inline">\(area\)</span>, <span class="math inline">\(land\)</span>, and <span class="math inline">\(baths\)</span> can be added as well.</p>
-<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="pooled-ordinary-least-square-model.html#cb222-1"></a><span class="kw">summary</span>(<span class="kw">lm</span>(rprice<span class="op">~</span>y81<span class="op">+</span>nearinc<span class="op">+</span><span class="kw">I</span>(y81<span class="op">*</span>nearinc)<span class="op">+</span>age<span class="op">+</span><span class="kw">I</span>(age<span class="op">^</span><span class="dv">2</span>)<span class="op">+</span>intst<span class="op">+</span>land<span class="op">+</span>area<span class="op">+</span>rooms<span class="op">+</span>baths,<span class="dt">data=</span>kiel))</span></code></pre></div>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="pooled-ordinary-least-square-model.html#cb183-1"></a><span class="kw">summary</span>(<span class="kw">lm</span>(rprice<span class="op">~</span>y81<span class="op">+</span>nearinc<span class="op">+</span><span class="kw">I</span>(y81<span class="op">*</span>nearinc)<span class="op">+</span>age<span class="op">+</span><span class="kw">I</span>(age<span class="op">^</span><span class="dv">2</span>)<span class="op">+</span>intst<span class="op">+</span>land<span class="op">+</span>area<span class="op">+</span>rooms<span class="op">+</span>baths,<span class="dt">data=</span>kiel))</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = rprice ~ y81 + nearinc + I(y81 * nearinc) + age + 

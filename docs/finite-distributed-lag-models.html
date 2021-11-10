@@ -24,7 +24,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2021-10-25" />
+<meta name="date" content="2021-11-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -243,9 +243,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.5" data-path="exercises-7.html"><a href="exercises-7.html"><i class="fa fa-check"></i><b>11.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="basic-multivariate-regression.html"><a href="basic-multivariate-regression.html"><i class="fa fa-check"></i><b>12</b> Basic Multivariate Regression</a><ul>
-<li class="chapter" data-level="12.1" data-path="dummy-variables.html"><a href="dummy-variables.html"><i class="fa fa-check"></i><b>12.1</b> Dummy Variables</a></li>
-<li class="chapter" data-level="12.2" data-path="natural-logarithm.html"><a href="natural-logarithm.html"><i class="fa fa-check"></i><b>12.2</b> Natural Logarithm</a></li>
-<li class="chapter" data-level="12.3" data-path="exercises-8.html"><a href="exercises-8.html"><i class="fa fa-check"></i><b>12.3</b> Exercises</a></li>
+<li class="chapter" data-level="12.1" data-path="introduction-1.html"><a href="introduction-1.html"><i class="fa fa-check"></i><b>12.1</b> Introduction</a></li>
+<li class="chapter" data-level="12.2" data-path="dummy-variables.html"><a href="dummy-variables.html"><i class="fa fa-check"></i><b>12.2</b> Dummy Variables</a></li>
+<li class="chapter" data-level="12.3" data-path="natural-logarithm.html"><a href="natural-logarithm.html"><i class="fa fa-check"></i><b>12.3</b> Natural Logarithm</a></li>
+<li class="chapter" data-level="12.4" data-path="functional-form.html"><a href="functional-form.html"><i class="fa fa-check"></i><b>12.4</b> Functional Form</a></li>
+<li class="chapter" data-level="12.5" data-path="interaction-effects.html"><a href="interaction-effects.html"><i class="fa fa-check"></i><b>12.5</b> Interaction Effects</a></li>
+<li class="chapter" data-level="12.6" data-path="exercises-8.html"><a href="exercises-8.html"><i class="fa fa-check"></i><b>12.6</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="anova.html"><a href="anova.html"><i class="fa fa-check"></i><b>13</b> ANOVA</a><ul>
 <li class="chapter" data-level="13.1" data-path="exercises-9.html"><a href="exercises-9.html"><i class="fa fa-check"></i><b>13.1</b> Exercises</a></li>
@@ -367,12 +370,12 @@ Characteristics of this assumption:</p>
 <p>The reformulated equation to be estimated is
 <span class="math display">\[y_t = \alpha \cdot (1-\lambda) + \beta_0 \cdot x_t + \lambda \cdot y_{t-1} + \upsilon_t\]</span>
 The notation of the error term has changed from <span class="math inline">\(\epsilon_t\)</span> to <span class="math inline">\(\upsilon_t\)</span> in order to highlight that the terms will be different.</p>
-<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="finite-distributed-lag-models.html#cb241-1"></a>koyck =<span class="st"> </span>usdata</span>
-<span id="cb241-2"><a href="finite-distributed-lag-models.html#cb241-2"></a>koyck<span class="op">$</span>year =<span class="st"> </span><span class="kw">substr</span>(koyck<span class="op">$</span>date,<span class="dv">1</span>,<span class="dv">4</span>)</span>
-<span id="cb241-3"><a href="finite-distributed-lag-models.html#cb241-3"></a>koyck =<span class="st"> </span><span class="kw">aggregate</span>(koyck[<span class="kw">c</span>(<span class="st">&quot;income&quot;</span>,<span class="st">&quot;consumption&quot;</span>)],<span class="dt">FUN=</span>sum,<span class="dt">by=</span><span class="kw">list</span>(koyck<span class="op">$</span>year))</span>
-<span id="cb241-4"><a href="finite-distributed-lag-models.html#cb241-4"></a><span class="kw">colnames</span>(koyck) =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;year&quot;</span>,<span class="st">&quot;income&quot;</span>,<span class="st">&quot;consumption&quot;</span>)</span>
-<span id="cb241-5"><a href="finite-distributed-lag-models.html#cb241-5"></a>bhat =<span class="st"> </span><span class="kw">lm</span>(<span class="dt">formula =</span> consumption <span class="op">~</span><span class="st"> </span>income <span class="op">+</span><span class="st"> </span><span class="kw">Lag</span>(consumption), <span class="dt">data =</span> koyck)</span>
-<span id="cb241-6"><a href="finite-distributed-lag-models.html#cb241-6"></a><span class="kw">summary</span>(bhat)</span></code></pre></div>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="finite-distributed-lag-models.html#cb202-1"></a>koyck =<span class="st"> </span>usdata</span>
+<span id="cb202-2"><a href="finite-distributed-lag-models.html#cb202-2"></a>koyck<span class="op">$</span>year =<span class="st"> </span><span class="kw">substr</span>(koyck<span class="op">$</span>date,<span class="dv">1</span>,<span class="dv">4</span>)</span>
+<span id="cb202-3"><a href="finite-distributed-lag-models.html#cb202-3"></a>koyck =<span class="st"> </span><span class="kw">aggregate</span>(koyck[<span class="kw">c</span>(<span class="st">&quot;income&quot;</span>,<span class="st">&quot;consumption&quot;</span>)],<span class="dt">FUN=</span>sum,<span class="dt">by=</span><span class="kw">list</span>(koyck<span class="op">$</span>year))</span>
+<span id="cb202-4"><a href="finite-distributed-lag-models.html#cb202-4"></a><span class="kw">colnames</span>(koyck) =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;year&quot;</span>,<span class="st">&quot;income&quot;</span>,<span class="st">&quot;consumption&quot;</span>)</span>
+<span id="cb202-5"><a href="finite-distributed-lag-models.html#cb202-5"></a>bhat =<span class="st"> </span><span class="kw">lm</span>(<span class="dt">formula =</span> consumption <span class="op">~</span><span class="st"> </span>income <span class="op">+</span><span class="st"> </span><span class="kw">Lag</span>(consumption), <span class="dt">data =</span> koyck)</span>
+<span id="cb202-6"><a href="finite-distributed-lag-models.html#cb202-6"></a><span class="kw">summary</span>(bhat)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = consumption ~ income + Lag(consumption), data = koyck)

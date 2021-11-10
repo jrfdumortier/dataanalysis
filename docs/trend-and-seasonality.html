@@ -24,7 +24,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2021-10-25" />
+<meta name="date" content="2021-11-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -243,9 +243,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.5" data-path="exercises-7.html"><a href="exercises-7.html"><i class="fa fa-check"></i><b>11.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="basic-multivariate-regression.html"><a href="basic-multivariate-regression.html"><i class="fa fa-check"></i><b>12</b> Basic Multivariate Regression</a><ul>
-<li class="chapter" data-level="12.1" data-path="dummy-variables.html"><a href="dummy-variables.html"><i class="fa fa-check"></i><b>12.1</b> Dummy Variables</a></li>
-<li class="chapter" data-level="12.2" data-path="natural-logarithm.html"><a href="natural-logarithm.html"><i class="fa fa-check"></i><b>12.2</b> Natural Logarithm</a></li>
-<li class="chapter" data-level="12.3" data-path="exercises-8.html"><a href="exercises-8.html"><i class="fa fa-check"></i><b>12.3</b> Exercises</a></li>
+<li class="chapter" data-level="12.1" data-path="introduction-1.html"><a href="introduction-1.html"><i class="fa fa-check"></i><b>12.1</b> Introduction</a></li>
+<li class="chapter" data-level="12.2" data-path="dummy-variables.html"><a href="dummy-variables.html"><i class="fa fa-check"></i><b>12.2</b> Dummy Variables</a></li>
+<li class="chapter" data-level="12.3" data-path="natural-logarithm.html"><a href="natural-logarithm.html"><i class="fa fa-check"></i><b>12.3</b> Natural Logarithm</a></li>
+<li class="chapter" data-level="12.4" data-path="functional-form.html"><a href="functional-form.html"><i class="fa fa-check"></i><b>12.4</b> Functional Form</a></li>
+<li class="chapter" data-level="12.5" data-path="interaction-effects.html"><a href="interaction-effects.html"><i class="fa fa-check"></i><b>12.5</b> Interaction Effects</a></li>
+<li class="chapter" data-level="12.6" data-path="exercises-8.html"><a href="exercises-8.html"><i class="fa fa-check"></i><b>12.6</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="anova.html"><a href="anova.html"><i class="fa fa-check"></i><b>13</b> ANOVA</a><ul>
 <li class="chapter" data-level="13.1" data-path="exercises-9.html"><a href="exercises-9.html"><i class="fa fa-check"></i><b>13.1</b> Exercises</a></li>
@@ -354,23 +357,23 @@ Note that <span class="math inline">\(\beta_1\)</span> in the exponential time t
 <p>The seasonal component can be included via dummy variables. For example, for quarterly data the following model can be used:</p>
 <p><span class="math display">\[y_t=\beta_0+\delta_1 \cdot Q1_t+\delta_2 \cdot Q2_t+\delta_3 \cdot Q3_t+\beta_1 \cdot x_{1,t}+ \cdots+\beta_k \cdot x_{k,t}+\epsilon_t\]</span>
 One seasonal dummy must be dropped. That is, quarterly and yearly data require three and eleven dummy variables, respectively. Consider the <code>retail</code> data.</p>
-<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="trend-and-seasonality.html#cb235-1"></a>retail<span class="op">$</span>date  =<span class="st"> </span><span class="kw">as.Date</span>(retail<span class="op">$</span>date,<span class="dt">format=</span><span class="st">&quot;%Y-%m-%d&quot;</span>)</span>
-<span id="cb235-2"><a href="trend-and-seasonality.html#cb235-2"></a>retail<span class="op">$</span>month =<span class="st"> </span><span class="kw">format</span>(retail<span class="op">$</span>date,<span class="st">&quot;%m&quot;</span>)</span>
-<span id="cb235-3"><a href="trend-and-seasonality.html#cb235-3"></a>retail<span class="op">$</span>t     =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(retail))</span>
-<span id="cb235-4"><a href="trend-and-seasonality.html#cb235-4"></a>bhat         =<span class="st"> </span><span class="kw">lm</span>(retail<span class="op">~</span><span class="kw">factor</span>(month)<span class="op">+</span>t,<span class="dt">data=</span>retail)</span>
-<span id="cb235-5"><a href="trend-and-seasonality.html#cb235-5"></a>retail<span class="op">$</span>fit   =<span class="st"> </span><span class="kw">predict.lm</span>(bhat)</span>
-<span id="cb235-6"><a href="trend-and-seasonality.html#cb235-6"></a><span class="kw">ggplot</span>(retail)<span class="op">+</span></span>
-<span id="cb235-7"><a href="trend-and-seasonality.html#cb235-7"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">mapping=</span><span class="kw">aes</span>(<span class="dt">x=</span>date,<span class="dt">y=</span>retail),<span class="dt">color=</span><span class="st">&quot;red&quot;</span>)<span class="op">+</span></span>
-<span id="cb235-8"><a href="trend-and-seasonality.html#cb235-8"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">mapping=</span><span class="kw">aes</span>(<span class="dt">x=</span>date,<span class="dt">y=</span>fit))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-70-1.png" width="672" /></p>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="trend-and-seasonality.html#cb196-1"></a>retail<span class="op">$</span>date  =<span class="st"> </span><span class="kw">as.Date</span>(retail<span class="op">$</span>date,<span class="dt">format=</span><span class="st">&quot;%Y-%m-%d&quot;</span>)</span>
+<span id="cb196-2"><a href="trend-and-seasonality.html#cb196-2"></a>retail<span class="op">$</span>month =<span class="st"> </span><span class="kw">format</span>(retail<span class="op">$</span>date,<span class="st">&quot;%m&quot;</span>)</span>
+<span id="cb196-3"><a href="trend-and-seasonality.html#cb196-3"></a>retail<span class="op">$</span>t     =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(retail))</span>
+<span id="cb196-4"><a href="trend-and-seasonality.html#cb196-4"></a>bhat         =<span class="st"> </span><span class="kw">lm</span>(retail<span class="op">~</span><span class="kw">factor</span>(month)<span class="op">+</span>t,<span class="dt">data=</span>retail)</span>
+<span id="cb196-5"><a href="trend-and-seasonality.html#cb196-5"></a>retail<span class="op">$</span>fit   =<span class="st"> </span><span class="kw">predict.lm</span>(bhat)</span>
+<span id="cb196-6"><a href="trend-and-seasonality.html#cb196-6"></a><span class="kw">ggplot</span>(retail)<span class="op">+</span></span>
+<span id="cb196-7"><a href="trend-and-seasonality.html#cb196-7"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">mapping=</span><span class="kw">aes</span>(<span class="dt">x=</span>date,<span class="dt">y=</span>retail),<span class="dt">color=</span><span class="st">&quot;red&quot;</span>)<span class="op">+</span></span>
+<span id="cb196-8"><a href="trend-and-seasonality.html#cb196-8"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">mapping=</span><span class="kw">aes</span>(<span class="dt">x=</span>date,<span class="dt">y=</span>fit))</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-73-1.png" width="672" /></p>
 <p>A second example considers quarterly <code>beer</code> production in Australia. In a first step, the data is converted into a time series:</p>
-<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="trend-and-seasonality.html#cb236-1"></a>beer =<span class="st"> </span><span class="kw">ts</span>(beer<span class="op">$</span>sales,<span class="dt">start=</span><span class="kw">c</span>(<span class="dv">1992</span>,<span class="dv">1</span>),<span class="dt">end=</span><span class="kw">c</span>(<span class="dv">2014</span>,<span class="dv">4</span>),<span class="dt">frequency=</span><span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="trend-and-seasonality.html#cb197-1"></a>beer =<span class="st"> </span><span class="kw">ts</span>(beer<span class="op">$</span>sales,<span class="dt">start=</span><span class="kw">c</span>(<span class="dv">1992</span>,<span class="dv">1</span>),<span class="dt">end=</span><span class="kw">c</span>(<span class="dv">2014</span>,<span class="dv">4</span>),<span class="dt">frequency=</span><span class="dv">4</span>)</span></code></pre></div>
 <p>Next, the data is plotted using a function from the package <a href="https://cran.r-project.org/web/packages/ggfortify/index.html">ggfortify</a>. Additional documentation using the package is found under <a href="https://cran.r-project.org/web/packages/ggfortify/vignettes/plot_ts.html">Plotting ts objects</a>.</p>
-<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="trend-and-seasonality.html#cb237-1"></a><span class="kw">autoplot</span>(beer)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-72-1.png" width="672" /></p>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="trend-and-seasonality.html#cb198-1"></a><span class="kw">autoplot</span>(beer)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-75-1.png" width="672" /></p>
 <p>Note that the <code>beer</code> now appears in a different category in the Global Environment, i.e., not under “Data” anymore. The function <code>tslm</code> from the package <a href="https://cran.r-project.org/web/packages/forecast/index.html">forecast</a> is used next. The function fits a linear model including seasonality and a trend component (and a trend-squared component if desired).</p>
-<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="trend-and-seasonality.html#cb238-1"></a>bhat =<span class="st"> </span><span class="kw">tslm</span>(beer<span class="op">~</span>trend<span class="op">+</span><span class="kw">I</span>(trend<span class="op">^</span><span class="dv">2</span>)<span class="op">+</span>season)</span>
-<span id="cb238-2"><a href="trend-and-seasonality.html#cb238-2"></a><span class="kw">summary</span>(bhat)</span></code></pre></div>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="trend-and-seasonality.html#cb199-1"></a>bhat =<span class="st"> </span><span class="kw">tslm</span>(beer<span class="op">~</span>trend<span class="op">+</span><span class="kw">I</span>(trend<span class="op">^</span><span class="dv">2</span>)<span class="op">+</span>season)</span>
+<span id="cb199-2"><a href="trend-and-seasonality.html#cb199-2"></a><span class="kw">summary</span>(bhat)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## tslm(formula = beer ~ trend + I(trend^2) + season)
@@ -394,8 +397,8 @@ One seasonal dummy must be dropped. That is, quarterly and yearly data require t
 ## Multiple R-squared:  0.9867, Adjusted R-squared:  0.9859 
 ## F-statistic:  1278 on 5 and 86 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>The package <a href="https://cran.r-project.org/web/packages/forecast/index.html">forecast</a> can be also be used to forcast:</p>
-<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="trend-and-seasonality.html#cb240-1"></a><span class="kw">plot</span>(<span class="kw">forecast</span>(bhat,<span class="dt">h=</span><span class="dv">20</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-74-1.png" width="672" /></p>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="trend-and-seasonality.html#cb201-1"></a><span class="kw">plot</span>(<span class="kw">forecast</span>(bhat,<span class="dt">h=</span><span class="dv">20</span>))</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-77-1.png" width="672" /></p>
 <div id="practice-exercise" class="section level3">
 <h3><span class="header-section-number">19.1.1</span> Practice Exercise</h3>
 <ol style="list-style-type: decimal">

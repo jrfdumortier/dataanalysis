@@ -125,7 +125,7 @@ summary(bhat_glm)
 
 ## Exercises
 
-1. Consider the problem of choosing whether or not to purchase a hybrid vehicle (e.g., the Toyota Prius, Honda Civic Hybrid, Ford Escape). As an analyst, you assume that whether or not an individual purchases a hybrid depends upon the current price of gasoline (*gas*), the difference in purchase price of a hybrid vehicle compared to a comparably equipped vehicle (*increment*), college education which is represented by a dummy variable that equals 1 if individual has completed college and equals 0 otherwise ($college$), and a dummy variable that equals 1 if the individual is a member of an environmental organization, e.g., Nature Conservancy, National Audubon Society, (*env*). Answer the following questions contained in `hybrid`:
+1. ***Hybrid Cars*** (***): Consider the problem of choosing whether or not to purchase a hybrid vehicle (e.g., the Toyota Prius, Honda Civic Hybrid, Ford Escape). As an analyst, you assume that whether or not an individual purchases a hybrid depends upon the current price of gasoline ($gas$), the difference in purchase price of a hybrid vehicle compared to a comparably equipped vehicle ($increment$), college education which is represented by a dummy variable that equals 1 if individual has completed college and equals 0 otherwise ($college$), and a dummy variable that equals 1 if the individual is a member of an environmental organization, e.g., Nature Conservancy, National Audubon Society, ($env$). Answer the following questions contained in `hybrid`:
 
      a. Provide summary statistics (i.e., mean, minimum, and maximum) for each variables.
      b. Estimate a regression model that allows to calculate the probability that a person would buy a hybrid.
@@ -136,10 +136,7 @@ summary(bhat_glm)
           - Type III: gasoline price = 3.00; difference in purchase price = 1,000; college = 1; and member of an environmental organization = 0
 
      d. Given the above probabilities, calculate the marginal effect that gasoline prices have on the probability that each of the three ``types'' of individuals will purchase a hybrid vehicle.
-     e. Given the above probabilities, calculate the marginal effect that joining an environmental group on Type I and Type III individuals.
 
-2. *EV Data*: Using the \texttt{evdata}, estimate a logit model which calculates the probability that a consumer would purchase a hybrid (choice=2), plug-in hybrid (choice=3), or electric vehicle (choice=4) as opposed to a gasoline car (choice=1). In a first step, you should create a new variable that is equal to 0 if the person purchases a gasoline vehicle and is equal to 1 for everything else. Include the following independent variables in your model: $age$, $numcars$, $politics$, $female$, $edu$, and $income$. 
+2. ***EV Data*** (**): Using the `evdata`, estimate a logit model which calculates the probability that a consumer would purchase a hybrid (choice=2), plug-in hybrid (choice=3), or electric vehicle (choice=4) as opposed to a gasoline car (choice=1). In a first step, you should create a new variable that is equal to 0 if the person purchases a gasoline vehicle and is equal to 1 for everything else. Include the following independent variables in your model: $age$, $numcars$, $politics$, $female$, $edu$, and $income$. 
 
-3. We are interested in the determinants of voting based on data from the General Social Survey (GSS). The following variables are hypothesized to be a determinant of voting behavior: $age$, $income$, $gun ownership$ (yes=1), $stance on death penalty$ (in favor=1), and $education level$ (higher number is associated with a higher education level). Run a probit and logit model and report the results. Calculate the marginal probabilities.   
-
-\end{enumerate}
+3. ***Voting Behavior*** (**): We are interested in the determinants of voting based on data from the General Social Survey (GSS). The following variables are hypothesized to be a determinant of voting behavior: $age$, $income$, $gun ownership$ (yes=1), $stance on death penalty$ (in favor=1), and $education level$ (higher number is associated with a higher education level). Run a probit and logit model and report the results. Calculate the marginal probabilities.   

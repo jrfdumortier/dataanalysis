@@ -24,7 +24,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2021-10-25" />
+<meta name="date" content="2021-11-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -243,9 +243,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.5" data-path="exercises-7.html"><a href="exercises-7.html"><i class="fa fa-check"></i><b>11.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="basic-multivariate-regression.html"><a href="basic-multivariate-regression.html"><i class="fa fa-check"></i><b>12</b> Basic Multivariate Regression</a><ul>
-<li class="chapter" data-level="12.1" data-path="dummy-variables.html"><a href="dummy-variables.html"><i class="fa fa-check"></i><b>12.1</b> Dummy Variables</a></li>
-<li class="chapter" data-level="12.2" data-path="natural-logarithm.html"><a href="natural-logarithm.html"><i class="fa fa-check"></i><b>12.2</b> Natural Logarithm</a></li>
-<li class="chapter" data-level="12.3" data-path="exercises-8.html"><a href="exercises-8.html"><i class="fa fa-check"></i><b>12.3</b> Exercises</a></li>
+<li class="chapter" data-level="12.1" data-path="introduction-1.html"><a href="introduction-1.html"><i class="fa fa-check"></i><b>12.1</b> Introduction</a></li>
+<li class="chapter" data-level="12.2" data-path="dummy-variables.html"><a href="dummy-variables.html"><i class="fa fa-check"></i><b>12.2</b> Dummy Variables</a></li>
+<li class="chapter" data-level="12.3" data-path="natural-logarithm.html"><a href="natural-logarithm.html"><i class="fa fa-check"></i><b>12.3</b> Natural Logarithm</a></li>
+<li class="chapter" data-level="12.4" data-path="functional-form.html"><a href="functional-form.html"><i class="fa fa-check"></i><b>12.4</b> Functional Form</a></li>
+<li class="chapter" data-level="12.5" data-path="interaction-effects.html"><a href="interaction-effects.html"><i class="fa fa-check"></i><b>12.5</b> Interaction Effects</a></li>
+<li class="chapter" data-level="12.6" data-path="exercises-8.html"><a href="exercises-8.html"><i class="fa fa-check"></i><b>12.6</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="anova.html"><a href="anova.html"><i class="fa fa-check"></i><b>13</b> ANOVA</a><ul>
 <li class="chapter" data-level="13.1" data-path="exercises-9.html"><a href="exercises-9.html"><i class="fa fa-check"></i><b>13.1</b> Exercises</a></li>
@@ -348,14 +351,14 @@ Thus, the 95% confidence interval is constructed as follows:
 Consider the voting data in <code>gss2018</code>. The mean is 0.67 and the standard error is
 <span class="math display">\[\sigma_{\bar{x}}=\sqrt{\frac{0.67 \cdot (1-0.67)}{772}}=0.0169\]</span></p>
 <p>In this case, the margin of error is <span class="math inline">\(1.96 \cdot 0.0169=0.033\)</span>. To calculate a confidence interval for a proportion in R, the function <code>t.test()</code> is used. Before using the function, the manual calculations are presented.</p>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="confidence-interval-for-a-proportion.html#cb69-1"></a>nobs           =<span class="st"> </span><span class="kw">nrow</span>(gss2018)</span>
-<span id="cb69-2"><a href="confidence-interval-for-a-proportion.html#cb69-2"></a>meandata       =<span class="st"> </span><span class="kw">mean</span>(gss2018<span class="op">$</span>vote)</span>
-<span id="cb69-3"><a href="confidence-interval-for-a-proportion.html#cb69-3"></a>z              =<span class="st"> </span><span class="kw">qnorm</span>(<span class="fl">0.975</span>)</span>
-<span id="cb69-4"><a href="confidence-interval-for-a-proportion.html#cb69-4"></a>stderror       =<span class="st"> </span><span class="kw">sqrt</span>(meandata<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>meandata)<span class="op">/</span>nobs)</span>
-<span id="cb69-5"><a href="confidence-interval-for-a-proportion.html#cb69-5"></a>CI_lower       =<span class="st"> </span>meandata<span class="op">-</span>z<span class="op">*</span>stderror</span>
-<span id="cb69-6"><a href="confidence-interval-for-a-proportion.html#cb69-6"></a>CI_upper       =<span class="st"> </span>meandata<span class="op">+</span>z<span class="op">*</span>stderror</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="confidence-interval-for-a-proportion.html#cb25-1"></a>nobs           =<span class="st"> </span><span class="kw">nrow</span>(gss2018)</span>
+<span id="cb25-2"><a href="confidence-interval-for-a-proportion.html#cb25-2"></a>meandata       =<span class="st"> </span><span class="kw">mean</span>(gss2018<span class="op">$</span>vote)</span>
+<span id="cb25-3"><a href="confidence-interval-for-a-proportion.html#cb25-3"></a>z              =<span class="st"> </span><span class="kw">qnorm</span>(<span class="fl">0.975</span>)</span>
+<span id="cb25-4"><a href="confidence-interval-for-a-proportion.html#cb25-4"></a>stderror       =<span class="st"> </span><span class="kw">sqrt</span>(meandata<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>meandata)<span class="op">/</span>nobs)</span>
+<span id="cb25-5"><a href="confidence-interval-for-a-proportion.html#cb25-5"></a>CI_lower       =<span class="st"> </span>meandata<span class="op">-</span>z<span class="op">*</span>stderror</span>
+<span id="cb25-6"><a href="confidence-interval-for-a-proportion.html#cb25-6"></a>CI_upper       =<span class="st"> </span>meandata<span class="op">+</span>z<span class="op">*</span>stderror</span></code></pre></div>
 <p>Using the function <code>t.test()</code> is simpler:</p>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="confidence-interval-for-a-proportion.html#cb70-1"></a><span class="kw">t.test</span>(gss2018<span class="op">$</span>vote)</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="confidence-interval-for-a-proportion.html#cb26-1"></a><span class="kw">t.test</span>(gss2018<span class="op">$</span>vote)</span></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 

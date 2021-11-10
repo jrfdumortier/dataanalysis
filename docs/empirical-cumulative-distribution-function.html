@@ -24,7 +24,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2021-10-25" />
+<meta name="date" content="2021-11-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -243,9 +243,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.5" data-path="exercises-7.html"><a href="exercises-7.html"><i class="fa fa-check"></i><b>11.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="basic-multivariate-regression.html"><a href="basic-multivariate-regression.html"><i class="fa fa-check"></i><b>12</b> Basic Multivariate Regression</a><ul>
-<li class="chapter" data-level="12.1" data-path="dummy-variables.html"><a href="dummy-variables.html"><i class="fa fa-check"></i><b>12.1</b> Dummy Variables</a></li>
-<li class="chapter" data-level="12.2" data-path="natural-logarithm.html"><a href="natural-logarithm.html"><i class="fa fa-check"></i><b>12.2</b> Natural Logarithm</a></li>
-<li class="chapter" data-level="12.3" data-path="exercises-8.html"><a href="exercises-8.html"><i class="fa fa-check"></i><b>12.3</b> Exercises</a></li>
+<li class="chapter" data-level="12.1" data-path="introduction-1.html"><a href="introduction-1.html"><i class="fa fa-check"></i><b>12.1</b> Introduction</a></li>
+<li class="chapter" data-level="12.2" data-path="dummy-variables.html"><a href="dummy-variables.html"><i class="fa fa-check"></i><b>12.2</b> Dummy Variables</a></li>
+<li class="chapter" data-level="12.3" data-path="natural-logarithm.html"><a href="natural-logarithm.html"><i class="fa fa-check"></i><b>12.3</b> Natural Logarithm</a></li>
+<li class="chapter" data-level="12.4" data-path="functional-form.html"><a href="functional-form.html"><i class="fa fa-check"></i><b>12.4</b> Functional Form</a></li>
+<li class="chapter" data-level="12.5" data-path="interaction-effects.html"><a href="interaction-effects.html"><i class="fa fa-check"></i><b>12.5</b> Interaction Effects</a></li>
+<li class="chapter" data-level="12.6" data-path="exercises-8.html"><a href="exercises-8.html"><i class="fa fa-check"></i><b>12.6</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="anova.html"><a href="anova.html"><i class="fa fa-check"></i><b>13</b> ANOVA</a><ul>
 <li class="chapter" data-level="13.1" data-path="exercises-9.html"><a href="exercises-9.html"><i class="fa fa-check"></i><b>13.1</b> Exercises</a></li>
@@ -344,10 +347,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The empirical cumulative distribution function can be written as
 <span class="math display">\[F_n(x) = \frac{\text{number of elements} \leq x}{n}\]</span>
 Given the previously mentioned Old Faithful data, the empirical cumulative distribution function is shown shown below. An important measure of empirical cumulative distribution functions are quantiles. Quantiles are the values that cut x% of the distributional area. Below the quantile is a certain share of all values in a set of ordered observations. If the distribution is divided in <span class="math inline">\(n\)</span> equal shares, there are <em>n-1</em> quantiles. Commonly used quantiles are quartiles, quintiles, deciles, and percentiles. Quartiles divide the sample into 4 equal shares, i.e., 3 quartiles: 25%-, 50%-, 75%- quartile. Quintiles divide the sample into 5 equal shares, deciles into 10 equal shares, and percentiles divide the sample into 100 equal shares. Closely related to quartiles is the <em>interquartile range (IQR)</em>.</p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="empirical-cumulative-distribution-function.html#cb56-1"></a>faithful =<span class="st"> </span><span class="kw">data.frame</span>(faithful)</span>
-<span id="cb56-2"><a href="empirical-cumulative-distribution-function.html#cb56-2"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
-<span id="cb56-3"><a href="empirical-cumulative-distribution-function.html#cb56-3"></a>     <span class="kw">plot</span>(<span class="kw">ecdf</span>(faithful<span class="op">$</span>eruptions),<span class="dt">main=</span><span class="st">&quot;Eruption Time&quot;</span>,<span class="dt">xlab=</span><span class="st">&quot;Minutes&quot;</span>,<span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">6</span>),<span class="dt">lty=</span><span class="dv">1</span>)</span>
-<span id="cb56-4"><a href="empirical-cumulative-distribution-function.html#cb56-4"></a>     <span class="kw">plot</span>(<span class="kw">ecdf</span>(faithful<span class="op">$</span>waiting),<span class="dt">main=</span><span class="st">&quot;Waiting Time&quot;</span>,<span class="dt">xlab=</span><span class="st">&quot;Minutes&quot;</span>,<span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">40</span>,<span class="dv">100</span>),<span class="dt">lty=</span><span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="empirical-cumulative-distribution-function.html#cb12-1"></a>faithful =<span class="st"> </span><span class="kw">data.frame</span>(faithful)</span>
+<span id="cb12-2"><a href="empirical-cumulative-distribution-function.html#cb12-2"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb12-3"><a href="empirical-cumulative-distribution-function.html#cb12-3"></a>     <span class="kw">plot</span>(<span class="kw">ecdf</span>(faithful<span class="op">$</span>eruptions),<span class="dt">main=</span><span class="st">&quot;Eruption Time&quot;</span>,<span class="dt">xlab=</span><span class="st">&quot;Minutes&quot;</span>,<span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">6</span>),<span class="dt">lty=</span><span class="dv">1</span>)</span>
+<span id="cb12-4"><a href="empirical-cumulative-distribution-function.html#cb12-4"></a>     <span class="kw">plot</span>(<span class="kw">ecdf</span>(faithful<span class="op">$</span>waiting),<span class="dt">main=</span><span class="st">&quot;Waiting Time&quot;</span>,<span class="dt">xlab=</span><span class="st">&quot;Minutes&quot;</span>,<span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">40</span>,<span class="dv">100</span>),<span class="dt">lty=</span><span class="dv">1</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:SUMfaithfulecdf"></span>
 <img src="bookdownproj_files/figure-html/SUMfaithfulecdf-1.png" alt="Empirical cumulative distribution functions of eruption and waiting time of Old Faithful geyser" width="672" />
 <p class="caption">

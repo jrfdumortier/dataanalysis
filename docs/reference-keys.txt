@@ -105,8 +105,11 @@ functional-forms
 about-the-importance-of-the-assumptions
 exercises-7
 basic-multivariate-regression
+introduction-1
 dummy-variables
 natural-logarithm
+functional-form
+interaction-effects
 exercises-8
 anova
 exercises-9

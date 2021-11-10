@@ -24,7 +24,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2021-10-25" />
+<meta name="date" content="2021-11-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -243,9 +243,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.5" data-path="exercises-7.html"><a href="exercises-7.html"><i class="fa fa-check"></i><b>11.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="basic-multivariate-regression.html"><a href="basic-multivariate-regression.html"><i class="fa fa-check"></i><b>12</b> Basic Multivariate Regression</a><ul>
-<li class="chapter" data-level="12.1" data-path="dummy-variables.html"><a href="dummy-variables.html"><i class="fa fa-check"></i><b>12.1</b> Dummy Variables</a></li>
-<li class="chapter" data-level="12.2" data-path="natural-logarithm.html"><a href="natural-logarithm.html"><i class="fa fa-check"></i><b>12.2</b> Natural Logarithm</a></li>
-<li class="chapter" data-level="12.3" data-path="exercises-8.html"><a href="exercises-8.html"><i class="fa fa-check"></i><b>12.3</b> Exercises</a></li>
+<li class="chapter" data-level="12.1" data-path="introduction-1.html"><a href="introduction-1.html"><i class="fa fa-check"></i><b>12.1</b> Introduction</a></li>
+<li class="chapter" data-level="12.2" data-path="dummy-variables.html"><a href="dummy-variables.html"><i class="fa fa-check"></i><b>12.2</b> Dummy Variables</a></li>
+<li class="chapter" data-level="12.3" data-path="natural-logarithm.html"><a href="natural-logarithm.html"><i class="fa fa-check"></i><b>12.3</b> Natural Logarithm</a></li>
+<li class="chapter" data-level="12.4" data-path="functional-form.html"><a href="functional-form.html"><i class="fa fa-check"></i><b>12.4</b> Functional Form</a></li>
+<li class="chapter" data-level="12.5" data-path="interaction-effects.html"><a href="interaction-effects.html"><i class="fa fa-check"></i><b>12.5</b> Interaction Effects</a></li>
+<li class="chapter" data-level="12.6" data-path="exercises-8.html"><a href="exercises-8.html"><i class="fa fa-check"></i><b>12.6</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="anova.html"><a href="anova.html"><i class="fa fa-check"></i><b>13</b> ANOVA</a><ul>
 <li class="chapter" data-level="13.1" data-path="exercises-9.html"><a href="exercises-9.html"><i class="fa fa-check"></i><b>13.1</b> Exercises</a></li>
@@ -366,9 +369,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>To use a package, you have to activate it by either checking the box in the window “Packages” or by including <code>library(packagename)</code>. Those packages are updated on a regular basis by users.</p>
 <p>The <code>#</code> allows you to include comments in your script file that are not read by R. It is good practice to start any new script with clearing the memory using the command <code>rm(list=ls())</code>. Use the command <code>get()</code> to determine the current working directory or set the new working directory with the command <code>setwd()</code>, e.g., <code>setwd("E:/")</code>. For file paths, replace <span class="math inline">\(\backslash\)</span> with <span class="math inline">\(/\)</span>. Next, you want to load all libraries necessary for your entire script file with the command <code>library()</code>. It is also good practice to save your R-script on a regular basis. The frontmatter, i.e., the top of a R-script file, could look as follows</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="opening-rstudio.html#cb45-1"></a><span class="kw">rm</span>(<span class="dt">list=</span><span class="kw">ls</span>())</span>
-<span id="cb45-2"><a href="opening-rstudio.html#cb45-2"></a><span class="kw">load</span>(<span class="st">&quot;DataAnalysisPAData.RData&quot;</span>)</span>
-<span id="cb45-3"><a href="opening-rstudio.html#cb45-3"></a><span class="kw">library</span>(openxlsx)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="opening-rstudio.html#cb1-1"></a><span class="kw">rm</span>(<span class="dt">list=</span><span class="kw">ls</span>())</span>
+<span id="cb1-2"><a href="opening-rstudio.html#cb1-2"></a><span class="kw">load</span>(<span class="st">&quot;DataAnalysisPAData.RData&quot;</span>)</span>
+<span id="cb1-3"><a href="opening-rstudio.html#cb1-3"></a><span class="kw">library</span>(openxlsx)</span></code></pre></div>
 <div id="in-class-exercise-1" class="section level3">
 <h3><span class="header-section-number">3.2.1</span> In-class Exercise 1</h3>
 <p>Create a R-script file with the following components:</p>

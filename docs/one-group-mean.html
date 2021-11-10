@@ -24,7 +24,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2021-10-25" />
+<meta name="date" content="2021-11-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -243,9 +243,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.5" data-path="exercises-7.html"><a href="exercises-7.html"><i class="fa fa-check"></i><b>11.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="basic-multivariate-regression.html"><a href="basic-multivariate-regression.html"><i class="fa fa-check"></i><b>12</b> Basic Multivariate Regression</a><ul>
-<li class="chapter" data-level="12.1" data-path="dummy-variables.html"><a href="dummy-variables.html"><i class="fa fa-check"></i><b>12.1</b> Dummy Variables</a></li>
-<li class="chapter" data-level="12.2" data-path="natural-logarithm.html"><a href="natural-logarithm.html"><i class="fa fa-check"></i><b>12.2</b> Natural Logarithm</a></li>
-<li class="chapter" data-level="12.3" data-path="exercises-8.html"><a href="exercises-8.html"><i class="fa fa-check"></i><b>12.3</b> Exercises</a></li>
+<li class="chapter" data-level="12.1" data-path="introduction-1.html"><a href="introduction-1.html"><i class="fa fa-check"></i><b>12.1</b> Introduction</a></li>
+<li class="chapter" data-level="12.2" data-path="dummy-variables.html"><a href="dummy-variables.html"><i class="fa fa-check"></i><b>12.2</b> Dummy Variables</a></li>
+<li class="chapter" data-level="12.3" data-path="natural-logarithm.html"><a href="natural-logarithm.html"><i class="fa fa-check"></i><b>12.3</b> Natural Logarithm</a></li>
+<li class="chapter" data-level="12.4" data-path="functional-form.html"><a href="functional-form.html"><i class="fa fa-check"></i><b>12.4</b> Functional Form</a></li>
+<li class="chapter" data-level="12.5" data-path="interaction-effects.html"><a href="interaction-effects.html"><i class="fa fa-check"></i><b>12.5</b> Interaction Effects</a></li>
+<li class="chapter" data-level="12.6" data-path="exercises-8.html"><a href="exercises-8.html"><i class="fa fa-check"></i><b>12.6</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="anova.html"><a href="anova.html"><i class="fa fa-check"></i><b>13</b> ANOVA</a><ul>
 <li class="chapter" data-level="13.1" data-path="exercises-9.html"><a href="exercises-9.html"><i class="fa fa-check"></i><b>13.1</b> Exercises</a></li>
@@ -349,19 +352,19 @@ H_a: \mu \neq 80\]</span>
 The <span class="math inline">\(t\)</span>-statistic can be calculated as follows:
 <span class="math display">\[t = \frac{69-80}{21.15/ \sqrt{18}} = -2.207\]</span>
 The critical value for this two-sided test is -2.11 and thus, the hypothesis is rejected. The hypothesis can aslo be implemented manually in R:</p>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="one-group-mean.html#cb78-1"></a>n                   =<span class="st"> </span><span class="kw">nrow</span>(mpa)</span>
-<span id="cb78-2"><a href="one-group-mean.html#cb78-2"></a>xbar                =<span class="st"> </span><span class="kw">mean</span>(mpa<span class="op">$</span>scores)</span>
-<span id="cb78-3"><a href="one-group-mean.html#cb78-3"></a>stdev               =<span class="st"> </span><span class="kw">sd</span>(mpa<span class="op">$</span>scores)</span>
-<span id="cb78-4"><a href="one-group-mean.html#cb78-4"></a>tstatistic          =<span class="st"> </span>(xbar<span class="dv">-80</span>)<span class="op">/</span>(stdev<span class="op">/</span><span class="kw">sqrt</span>(n))</span>
-<span id="cb78-5"><a href="one-group-mean.html#cb78-5"></a>criticalvalue       =<span class="st"> </span><span class="kw">qt</span>(<span class="fl">0.025</span>,<span class="dt">df=</span>n<span class="dv">-1</span>)</span>
-<span id="cb78-6"><a href="one-group-mean.html#cb78-6"></a>pvalue              =<span class="st"> </span><span class="kw">pt</span>(tstatistic,n<span class="dv">-1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="one-group-mean.html#cb34-1"></a>n                   =<span class="st"> </span><span class="kw">nrow</span>(mpa)</span>
+<span id="cb34-2"><a href="one-group-mean.html#cb34-2"></a>xbar                =<span class="st"> </span><span class="kw">mean</span>(mpa<span class="op">$</span>scores)</span>
+<span id="cb34-3"><a href="one-group-mean.html#cb34-3"></a>stdev               =<span class="st"> </span><span class="kw">sd</span>(mpa<span class="op">$</span>scores)</span>
+<span id="cb34-4"><a href="one-group-mean.html#cb34-4"></a>tstatistic          =<span class="st"> </span>(xbar<span class="dv">-80</span>)<span class="op">/</span>(stdev<span class="op">/</span><span class="kw">sqrt</span>(n))</span>
+<span id="cb34-5"><a href="one-group-mean.html#cb34-5"></a>criticalvalue       =<span class="st"> </span><span class="kw">qt</span>(<span class="fl">0.025</span>,<span class="dt">df=</span>n<span class="dv">-1</span>)</span>
+<span id="cb34-6"><a href="one-group-mean.html#cb34-6"></a>pvalue              =<span class="st"> </span><span class="kw">pt</span>(tstatistic,n<span class="dv">-1</span>)</span></code></pre></div>
 <p>Or the function <code>t.test()</code> can be used.</p>
-<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="one-group-mean.html#cb79-1"></a><span class="kw">t.test</span>(mpa<span class="op">$</span>scores,<span class="dt">mu=</span><span class="dv">80</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="one-group-mean.html#cb35-1"></a><span class="kw">t.test</span>(mpa<span class="op">$</span>scores,<span class="dt">mu=</span><span class="dv">80</span>)</span></code></pre></div>
 <p>Similar to the hypothesis tests on proportions, a one-sided test can be implemented with the function <code>t.test()</code> as well. Consider the data in <code>eggweights</code>. Consider the following one-sided hypothesis test:
 <span class="math display">\[ H_0: \mu \geq 63\\
 H_a: \mu &lt; 63\]</span>
 This hypothesis test is implemented as follows:</p>
-<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="one-group-mean.html#cb80-1"></a><span class="kw">t.test</span>(eggweights<span class="op">$</span>weight,<span class="dt">mu=</span><span class="dv">63</span>,<span class="dt">alternative=</span><span class="st">&quot;less&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="one-group-mean.html#cb36-1"></a><span class="kw">t.test</span>(eggweights<span class="op">$</span>weight,<span class="dt">mu=</span><span class="dv">63</span>,<span class="dt">alternative=</span><span class="st">&quot;less&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 

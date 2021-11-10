@@ -24,7 +24,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2021-10-25" />
+<meta name="date" content="2021-11-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -243,9 +243,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.5" data-path="exercises-7.html"><a href="exercises-7.html"><i class="fa fa-check"></i><b>11.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="basic-multivariate-regression.html"><a href="basic-multivariate-regression.html"><i class="fa fa-check"></i><b>12</b> Basic Multivariate Regression</a><ul>
-<li class="chapter" data-level="12.1" data-path="dummy-variables.html"><a href="dummy-variables.html"><i class="fa fa-check"></i><b>12.1</b> Dummy Variables</a></li>
-<li class="chapter" data-level="12.2" data-path="natural-logarithm.html"><a href="natural-logarithm.html"><i class="fa fa-check"></i><b>12.2</b> Natural Logarithm</a></li>
-<li class="chapter" data-level="12.3" data-path="exercises-8.html"><a href="exercises-8.html"><i class="fa fa-check"></i><b>12.3</b> Exercises</a></li>
+<li class="chapter" data-level="12.1" data-path="introduction-1.html"><a href="introduction-1.html"><i class="fa fa-check"></i><b>12.1</b> Introduction</a></li>
+<li class="chapter" data-level="12.2" data-path="dummy-variables.html"><a href="dummy-variables.html"><i class="fa fa-check"></i><b>12.2</b> Dummy Variables</a></li>
+<li class="chapter" data-level="12.3" data-path="natural-logarithm.html"><a href="natural-logarithm.html"><i class="fa fa-check"></i><b>12.3</b> Natural Logarithm</a></li>
+<li class="chapter" data-level="12.4" data-path="functional-form.html"><a href="functional-form.html"><i class="fa fa-check"></i><b>12.4</b> Functional Form</a></li>
+<li class="chapter" data-level="12.5" data-path="interaction-effects.html"><a href="interaction-effects.html"><i class="fa fa-check"></i><b>12.5</b> Interaction Effects</a></li>
+<li class="chapter" data-level="12.6" data-path="exercises-8.html"><a href="exercises-8.html"><i class="fa fa-check"></i><b>12.6</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="anova.html"><a href="anova.html"><i class="fa fa-check"></i><b>13</b> ANOVA</a><ul>
 <li class="chapter" data-level="13.1" data-path="exercises-9.html"><a href="exercises-9.html"><i class="fa fa-check"></i><b>13.1</b> Exercises</a></li>
@@ -396,10 +399,10 @@ Note that <span class="math inline">\(P(1)+P(2)+P(3) = 1\)</span></p>
 <li>The R parameter <code>varying</code> designates alternative specific variables</li>
 </ul>
 <p>In a first step, the model is only estimated using the individual-specific variable <span class="math inline">\(income\)</span>:</p>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="multinomial-logit-and-multinomial-probit-models.html#cb149-1"></a><span class="kw">data</span>(<span class="st">&quot;Fishing&quot;</span>,<span class="dt">package=</span><span class="st">&quot;mlogit&quot;</span>)</span>
-<span id="cb149-2"><a href="multinomial-logit-and-multinomial-probit-models.html#cb149-2"></a>fishing =<span class="st"> </span><span class="kw">mlogit.data</span>(Fishing,<span class="dt">shape=</span><span class="st">&quot;wide&quot;</span>,<span class="dt">varying=</span><span class="dv">2</span><span class="op">:</span><span class="dv">9</span>,<span class="dt">choice=</span><span class="st">&quot;mode&quot;</span>)</span>
-<span id="cb149-3"><a href="multinomial-logit-and-multinomial-probit-models.html#cb149-3"></a>bhat =<span class="st"> </span><span class="kw">mlogit</span>(mode<span class="op">~</span><span class="dv">0</span><span class="op">|</span>income,fishing)</span>
-<span id="cb149-4"><a href="multinomial-logit-and-multinomial-probit-models.html#cb149-4"></a><span class="kw">summary</span>(bhat)</span></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="multinomial-logit-and-multinomial-probit-models.html#cb110-1"></a><span class="kw">data</span>(<span class="st">&quot;Fishing&quot;</span>,<span class="dt">package=</span><span class="st">&quot;mlogit&quot;</span>)</span>
+<span id="cb110-2"><a href="multinomial-logit-and-multinomial-probit-models.html#cb110-2"></a>fishing =<span class="st"> </span><span class="kw">mlogit.data</span>(Fishing,<span class="dt">shape=</span><span class="st">&quot;wide&quot;</span>,<span class="dt">varying=</span><span class="dv">2</span><span class="op">:</span><span class="dv">9</span>,<span class="dt">choice=</span><span class="st">&quot;mode&quot;</span>)</span>
+<span id="cb110-3"><a href="multinomial-logit-and-multinomial-probit-models.html#cb110-3"></a>bhat =<span class="st"> </span><span class="kw">mlogit</span>(mode<span class="op">~</span><span class="dv">0</span><span class="op">|</span>income,fishing)</span>
+<span id="cb110-4"><a href="multinomial-logit-and-multinomial-probit-models.html#cb110-4"></a><span class="kw">summary</span>(bhat)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## mlogit(formula = mode ~ 0 | income, data = fishing, method = &quot;nr&quot;)
@@ -427,13 +430,13 @@ Note that <span class="math inline">\(P(1)+P(2)+P(3) = 1\)</span></p>
 ## Log-Likelihood: -1477.2
 ## McFadden R^2:  0.013736 
 ## Likelihood ratio test : chisq = 41.145 (p.value = 6.0931e-09)</code></pre>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="multinomial-logit-and-multinomial-probit-models.html#cb151-1"></a>fishing.fitted      =<span class="st"> </span><span class="kw">fitted</span>(bhat,<span class="dt">outcome=</span><span class="ot">FALSE</span>)</span>
-<span id="cb151-2"><a href="multinomial-logit-and-multinomial-probit-models.html#cb151-2"></a><span class="kw">effects</span>(bhat,<span class="dt">covariate =</span><span class="st">&quot;income&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="multinomial-logit-and-multinomial-probit-models.html#cb112-1"></a>fishing.fitted      =<span class="st"> </span><span class="kw">fitted</span>(bhat,<span class="dt">outcome=</span><span class="ot">FALSE</span>)</span>
+<span id="cb112-2"><a href="multinomial-logit-and-multinomial-probit-models.html#cb112-2"></a><span class="kw">effects</span>(bhat,<span class="dt">covariate =</span><span class="st">&quot;income&quot;</span>)</span></code></pre></div>
 <pre><code>##         beach          boat       charter          pier 
 ##  7.496226e-08  3.259851e-05 -1.201366e-05 -2.065981e-05</code></pre>
 <p>In a second step, alternative-specific variables are added:</p>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="multinomial-logit-and-multinomial-probit-models.html#cb153-1"></a>bhat                =<span class="st"> </span><span class="kw">mlogit</span>(mode<span class="op">~</span>catch<span class="op">+</span>price<span class="op">|</span>income,<span class="dt">data=</span>fishing)</span>
-<span id="cb153-2"><a href="multinomial-logit-and-multinomial-probit-models.html#cb153-2"></a><span class="kw">summary</span>(bhat)</span></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="multinomial-logit-and-multinomial-probit-models.html#cb114-1"></a>bhat                =<span class="st"> </span><span class="kw">mlogit</span>(mode<span class="op">~</span>catch<span class="op">+</span>price<span class="op">|</span>income,<span class="dt">data=</span>fishing)</span>
+<span id="cb114-2"><a href="multinomial-logit-and-multinomial-probit-models.html#cb114-2"></a><span class="kw">summary</span>(bhat)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## mlogit(formula = mode ~ catch + price | income, data = fishing, 
@@ -464,14 +467,14 @@ Note that <span class="math inline">\(P(1)+P(2)+P(3) = 1\)</span></p>
 ## Log-Likelihood: -1215.1
 ## McFadden R^2:  0.18868 
 ## Likelihood ratio test : chisq = 565.17 (p.value = &lt; 2.22e-16)</code></pre>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="multinomial-logit-and-multinomial-probit-models.html#cb155-1"></a>fishing.fitted      =<span class="st"> </span><span class="kw">fitted</span>(bhat,<span class="dt">outcome=</span><span class="ot">FALSE</span>)</span>
-<span id="cb155-2"><a href="multinomial-logit-and-multinomial-probit-models.html#cb155-2"></a><span class="kw">effects</span>(bhat,<span class="dt">covariate=</span><span class="st">&quot;income&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="multinomial-logit-and-multinomial-probit-models.html#cb116-1"></a>fishing.fitted      =<span class="st"> </span><span class="kw">fitted</span>(bhat,<span class="dt">outcome=</span><span class="ot">FALSE</span>)</span>
+<span id="cb116-2"><a href="multinomial-logit-and-multinomial-probit-models.html#cb116-2"></a><span class="kw">effects</span>(bhat,<span class="dt">covariate=</span><span class="st">&quot;income&quot;</span>)</span></code></pre></div>
 <pre><code>##         beach          boat       charter          pier 
 ## -7.214167e-07  3.176132e-05 -2.173392e-05 -9.305980e-06</code></pre>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="multinomial-logit-and-multinomial-probit-models.html#cb157-1"></a><span class="kw">rm</span>(bhat,Fishing,fishing.fitted)</span></code></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="multinomial-logit-and-multinomial-probit-models.html#cb118-1"></a><span class="kw">rm</span>(bhat,Fishing,fishing.fitted)</span></code></pre></div>
 <p>The <code>mlogit</code> package also allows for the estimation of a multinomial probit model.</p>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="multinomial-logit-and-multinomial-probit-models.html#cb158-1"></a>bhat                =<span class="st"> </span><span class="kw">mlogit</span>(mode<span class="op">~</span>catch<span class="op">+</span>price<span class="op">|</span>income,<span class="dt">data=</span>fishing,<span class="dt">probit=</span><span class="ot">FALSE</span>)</span>
-<span id="cb158-2"><a href="multinomial-logit-and-multinomial-probit-models.html#cb158-2"></a><span class="kw">summary</span>(bhat)</span></code></pre></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="multinomial-logit-and-multinomial-probit-models.html#cb119-1"></a>bhat                =<span class="st"> </span><span class="kw">mlogit</span>(mode<span class="op">~</span>catch<span class="op">+</span>price<span class="op">|</span>income,<span class="dt">data=</span>fishing,<span class="dt">probit=</span><span class="ot">FALSE</span>)</span>
+<span id="cb119-2"><a href="multinomial-logit-and-multinomial-probit-models.html#cb119-2"></a><span class="kw">summary</span>(bhat)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## mlogit(formula = mode ~ catch + price | income, data = fishing, 
@@ -502,19 +505,19 @@ Note that <span class="math inline">\(P(1)+P(2)+P(3) = 1\)</span></p>
 ## Log-Likelihood: -1215.1
 ## McFadden R^2:  0.18868 
 ## Likelihood ratio test : chisq = 565.17 (p.value = &lt; 2.22e-16)</code></pre>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="multinomial-logit-and-multinomial-probit-models.html#cb160-1"></a>fishing.fitted      =<span class="st"> </span><span class="kw">fitted</span>(bhat,<span class="dt">outcome=</span><span class="ot">FALSE</span>)</span>
-<span id="cb160-2"><a href="multinomial-logit-and-multinomial-probit-models.html#cb160-2"></a><span class="kw">effects</span>(bhat,<span class="dt">covariate=</span><span class="st">&quot;income&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="multinomial-logit-and-multinomial-probit-models.html#cb121-1"></a>fishing.fitted      =<span class="st"> </span><span class="kw">fitted</span>(bhat,<span class="dt">outcome=</span><span class="ot">FALSE</span>)</span>
+<span id="cb121-2"><a href="multinomial-logit-and-multinomial-probit-models.html#cb121-2"></a><span class="kw">effects</span>(bhat,<span class="dt">covariate=</span><span class="st">&quot;income&quot;</span>)</span></code></pre></div>
 <pre><code>##         beach          boat       charter          pier 
 ## -7.214167e-07  3.176132e-05 -2.173392e-05 -9.305980e-06</code></pre>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="multinomial-logit-and-multinomial-probit-models.html#cb162-1"></a><span class="kw">rm</span>(bhat,Fishing,fishing,fishing.fitted)</span></code></pre></div>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="multinomial-logit-and-multinomial-probit-models.html#cb123-1"></a><span class="kw">rm</span>(bhat,Fishing,fishing,fishing.fitted)</span></code></pre></div>
 <pre><code>## Warning in rm(bhat, Fishing, fishing, fishing.fitted): object &#39;Fishing&#39; not found</code></pre>
 </div>
 <div id="travel-data" class="section level3">
 <h3><span class="header-section-number">16.2.4</span> Travel Data</h3>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="multinomial-logit-and-multinomial-probit-models.html#cb164-1"></a><span class="kw">data</span>(<span class="st">&quot;TravelMode&quot;</span>,<span class="dt">package=</span><span class="st">&quot;AER&quot;</span>)</span>
-<span id="cb164-2"><a href="multinomial-logit-and-multinomial-probit-models.html#cb164-2"></a>travelmode =<span class="st"> </span><span class="kw">mlogit.data</span>(TravelMode,<span class="dt">choice=</span><span class="st">&quot;choice&quot;</span>,<span class="dt">shape=</span><span class="st">&quot;long&quot;</span>,<span class="dt">alt.var=</span><span class="st">&quot;mode&quot;</span>)</span>
-<span id="cb164-3"><a href="multinomial-logit-and-multinomial-probit-models.html#cb164-3"></a>bhat =<span class="st"> </span><span class="kw">mlogit</span>(choice<span class="op">~</span>gcost<span class="op">+</span>wait<span class="op">|</span>income<span class="op">+</span>size,<span class="dt">data=</span>travelmode,<span class="dt">reflevel=</span><span class="st">&quot;car&quot;</span>)</span>
-<span id="cb164-4"><a href="multinomial-logit-and-multinomial-probit-models.html#cb164-4"></a><span class="kw">summary</span>(bhat)</span></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="multinomial-logit-and-multinomial-probit-models.html#cb125-1"></a><span class="kw">data</span>(<span class="st">&quot;TravelMode&quot;</span>,<span class="dt">package=</span><span class="st">&quot;AER&quot;</span>)</span>
+<span id="cb125-2"><a href="multinomial-logit-and-multinomial-probit-models.html#cb125-2"></a>travelmode =<span class="st"> </span><span class="kw">mlogit.data</span>(TravelMode,<span class="dt">choice=</span><span class="st">&quot;choice&quot;</span>,<span class="dt">shape=</span><span class="st">&quot;long&quot;</span>,<span class="dt">alt.var=</span><span class="st">&quot;mode&quot;</span>)</span>
+<span id="cb125-3"><a href="multinomial-logit-and-multinomial-probit-models.html#cb125-3"></a>bhat =<span class="st"> </span><span class="kw">mlogit</span>(choice<span class="op">~</span>gcost<span class="op">+</span>wait<span class="op">|</span>income<span class="op">+</span>size,<span class="dt">data=</span>travelmode,<span class="dt">reflevel=</span><span class="st">&quot;car&quot;</span>)</span>
+<span id="cb125-4"><a href="multinomial-logit-and-multinomial-probit-models.html#cb125-4"></a><span class="kw">summary</span>(bhat)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## mlogit(formula = choice ~ gcost + wait | income + size, data = travelmode, 
@@ -548,13 +551,13 @@ Note that <span class="math inline">\(P(1)+P(2)+P(3) = 1\)</span></p>
 ## Log-Likelihood: -177.45
 ## McFadden R^2:  0.37463 
 ## Likelihood ratio test : chisq = 212.61 (p.value = &lt; 2.22e-16)</code></pre>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="multinomial-logit-and-multinomial-probit-models.html#cb166-1"></a>tavel.fitted =<span class="st"> </span><span class="kw">fitted</span>(bhat,<span class="dt">outcome=</span><span class="ot">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="multinomial-logit-and-multinomial-probit-models.html#cb127-1"></a>tavel.fitted =<span class="st"> </span><span class="kw">fitted</span>(bhat,<span class="dt">outcome=</span><span class="ot">FALSE</span>)</span></code></pre></div>
 </div>
 <div id="electric-vehicle-data" class="section level3">
 <h3><span class="header-section-number">16.2.5</span> Electric Vehicle Data</h3>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="multinomial-logit-and-multinomial-probit-models.html#cb167-1"></a>evdata =<span class="st"> </span><span class="kw">mlogit.data</span>(evdata,<span class="dt">shape=</span><span class="st">&quot;wide&quot;</span>,<span class="dt">choice=</span><span class="st">&quot;choice&quot;</span>)</span>
-<span id="cb167-2"><a href="multinomial-logit-and-multinomial-probit-models.html#cb167-2"></a>bhat =<span class="st"> </span><span class="kw">mlogit</span>(choice<span class="op">~</span><span class="dv">0</span><span class="op">|</span>age<span class="op">+</span>female<span class="op">+</span>level2<span class="op">+</span>numcars<span class="op">+</span>edu<span class="op">+</span>income<span class="op">+</span>politics,<span class="dt">data=</span>evdata)</span>
-<span id="cb167-3"><a href="multinomial-logit-and-multinomial-probit-models.html#cb167-3"></a><span class="kw">summary</span>(bhat)</span></code></pre></div>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="multinomial-logit-and-multinomial-probit-models.html#cb128-1"></a>evdata =<span class="st"> </span><span class="kw">mlogit.data</span>(evdata,<span class="dt">shape=</span><span class="st">&quot;wide&quot;</span>,<span class="dt">choice=</span><span class="st">&quot;choice&quot;</span>)</span>
+<span id="cb128-2"><a href="multinomial-logit-and-multinomial-probit-models.html#cb128-2"></a>bhat =<span class="st"> </span><span class="kw">mlogit</span>(choice<span class="op">~</span><span class="dv">0</span><span class="op">|</span>age<span class="op">+</span>female<span class="op">+</span>level2<span class="op">+</span>numcars<span class="op">+</span>edu<span class="op">+</span>income<span class="op">+</span>politics,<span class="dt">data=</span>evdata)</span>
+<span id="cb128-3"><a href="multinomial-logit-and-multinomial-probit-models.html#cb128-3"></a><span class="kw">summary</span>(bhat)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## mlogit(formula = choice ~ 0 | age + female + level2 + numcars + 
@@ -601,8 +604,8 @@ Note that <span class="math inline">\(P(1)+P(2)+P(3) = 1\)</span></p>
 ## Log-Likelihood: -663.51
 ## McFadden R^2:  0.062686 
 ## Likelihood ratio test : chisq = 88.75 (p.value = 2.6494e-10)</code></pre>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="multinomial-logit-and-multinomial-probit-models.html#cb169-1"></a>evdata.fitted =<span class="st"> </span><span class="kw">fitted</span>(bhat,<span class="dt">outcome=</span><span class="ot">FALSE</span>)</span>
-<span id="cb169-2"><a href="multinomial-logit-and-multinomial-probit-models.html#cb169-2"></a><span class="kw">rm</span>(bhat,evdata,evdata.fitted)</span></code></pre></div>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="multinomial-logit-and-multinomial-probit-models.html#cb130-1"></a>evdata.fitted =<span class="st"> </span><span class="kw">fitted</span>(bhat,<span class="dt">outcome=</span><span class="ot">FALSE</span>)</span>
+<span id="cb130-2"><a href="multinomial-logit-and-multinomial-probit-models.html#cb130-2"></a><span class="kw">rm</span>(bhat,evdata,evdata.fitted)</span></code></pre></div>
 </div>
 </div>
             </section>

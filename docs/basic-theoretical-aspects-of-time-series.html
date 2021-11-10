@@ -24,7 +24,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2021-10-25" />
+<meta name="date" content="2021-11-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -243,9 +243,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.5" data-path="exercises-7.html"><a href="exercises-7.html"><i class="fa fa-check"></i><b>11.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="basic-multivariate-regression.html"><a href="basic-multivariate-regression.html"><i class="fa fa-check"></i><b>12</b> Basic Multivariate Regression</a><ul>
-<li class="chapter" data-level="12.1" data-path="dummy-variables.html"><a href="dummy-variables.html"><i class="fa fa-check"></i><b>12.1</b> Dummy Variables</a></li>
-<li class="chapter" data-level="12.2" data-path="natural-logarithm.html"><a href="natural-logarithm.html"><i class="fa fa-check"></i><b>12.2</b> Natural Logarithm</a></li>
-<li class="chapter" data-level="12.3" data-path="exercises-8.html"><a href="exercises-8.html"><i class="fa fa-check"></i><b>12.3</b> Exercises</a></li>
+<li class="chapter" data-level="12.1" data-path="introduction-1.html"><a href="introduction-1.html"><i class="fa fa-check"></i><b>12.1</b> Introduction</a></li>
+<li class="chapter" data-level="12.2" data-path="dummy-variables.html"><a href="dummy-variables.html"><i class="fa fa-check"></i><b>12.2</b> Dummy Variables</a></li>
+<li class="chapter" data-level="12.3" data-path="natural-logarithm.html"><a href="natural-logarithm.html"><i class="fa fa-check"></i><b>12.3</b> Natural Logarithm</a></li>
+<li class="chapter" data-level="12.4" data-path="functional-form.html"><a href="functional-form.html"><i class="fa fa-check"></i><b>12.4</b> Functional Form</a></li>
+<li class="chapter" data-level="12.5" data-path="interaction-effects.html"><a href="interaction-effects.html"><i class="fa fa-check"></i><b>12.5</b> Interaction Effects</a></li>
+<li class="chapter" data-level="12.6" data-path="exercises-8.html"><a href="exercises-8.html"><i class="fa fa-check"></i><b>12.6</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="anova.html"><a href="anova.html"><i class="fa fa-check"></i><b>13</b> ANOVA</a><ul>
 <li class="chapter" data-level="13.1" data-path="exercises-9.html"><a href="exercises-9.html"><i class="fa fa-check"></i><b>13.1</b> Exercises</a></li>
@@ -348,14 +351,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Constant covariance: <span class="math inline">\(Cov(y_t,y_{t-h})\)</span> depends on <span class="math inline">\(h\)</span> but not on <span class="math inline">\(t\)</span>.</li>
 </ul>
 <p>A time series with a trend is usually not stationary (or nonstationary). The concepts behind are explained latter but the issue can be illustrated with a simple simulation.</p>
-<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="basic-theoretical-aspects-of-time-series.html#cb243-1"></a>spurious            =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x=</span><span class="kw">matrix</span>(<span class="dv">0</span>,<span class="dv">500</span>,<span class="dv">1</span>),<span class="dt">y=</span><span class="kw">matrix</span>(<span class="dv">0</span>,<span class="dv">500</span>,<span class="dv">1</span>))</span>
-<span id="cb243-2"><a href="basic-theoretical-aspects-of-time-series.html#cb243-2"></a>spurious[<span class="dv">1</span>,<span class="dv">1</span>]       =<span class="st"> </span><span class="dv">1</span></span>
-<span id="cb243-3"><a href="basic-theoretical-aspects-of-time-series.html#cb243-3"></a>spurious[<span class="dv">1</span>,<span class="dv">2</span>]       =<span class="st"> </span><span class="dv">2</span></span>
-<span id="cb243-4"><a href="basic-theoretical-aspects-of-time-series.html#cb243-4"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span><span class="dv">500</span>){</span>
-<span id="cb243-5"><a href="basic-theoretical-aspects-of-time-series.html#cb243-5"></a>     spurious[i,<span class="dv">1</span>] =<span class="st"> </span>spurious[i<span class="dv">-1</span>,<span class="dv">1</span>]<span class="op">+</span><span class="kw">rnorm</span>(<span class="dv">1</span>)</span>
-<span id="cb243-6"><a href="basic-theoretical-aspects-of-time-series.html#cb243-6"></a>     spurious[i,<span class="dv">2</span>] =<span class="st"> </span>spurious[i<span class="dv">-1</span>,<span class="dv">2</span>]<span class="op">+</span><span class="kw">rnorm</span>(<span class="dv">1</span>)}</span>
-<span id="cb243-7"><a href="basic-theoretical-aspects-of-time-series.html#cb243-7"></a>bhat =<span class="st"> </span><span class="kw">lm</span>(y<span class="op">~</span>x,<span class="dt">data=</span>spurious)</span>
-<span id="cb243-8"><a href="basic-theoretical-aspects-of-time-series.html#cb243-8"></a><span class="kw">summary</span>(bhat)</span></code></pre></div>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="basic-theoretical-aspects-of-time-series.html#cb204-1"></a>spurious            =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x=</span><span class="kw">matrix</span>(<span class="dv">0</span>,<span class="dv">500</span>,<span class="dv">1</span>),<span class="dt">y=</span><span class="kw">matrix</span>(<span class="dv">0</span>,<span class="dv">500</span>,<span class="dv">1</span>))</span>
+<span id="cb204-2"><a href="basic-theoretical-aspects-of-time-series.html#cb204-2"></a>spurious[<span class="dv">1</span>,<span class="dv">1</span>]       =<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb204-3"><a href="basic-theoretical-aspects-of-time-series.html#cb204-3"></a>spurious[<span class="dv">1</span>,<span class="dv">2</span>]       =<span class="st"> </span><span class="dv">2</span></span>
+<span id="cb204-4"><a href="basic-theoretical-aspects-of-time-series.html#cb204-4"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span><span class="dv">500</span>){</span>
+<span id="cb204-5"><a href="basic-theoretical-aspects-of-time-series.html#cb204-5"></a>     spurious[i,<span class="dv">1</span>] =<span class="st"> </span>spurious[i<span class="dv">-1</span>,<span class="dv">1</span>]<span class="op">+</span><span class="kw">rnorm</span>(<span class="dv">1</span>)</span>
+<span id="cb204-6"><a href="basic-theoretical-aspects-of-time-series.html#cb204-6"></a>     spurious[i,<span class="dv">2</span>] =<span class="st"> </span>spurious[i<span class="dv">-1</span>,<span class="dv">2</span>]<span class="op">+</span><span class="kw">rnorm</span>(<span class="dv">1</span>)}</span>
+<span id="cb204-7"><a href="basic-theoretical-aspects-of-time-series.html#cb204-7"></a>bhat =<span class="st"> </span><span class="kw">lm</span>(y<span class="op">~</span>x,<span class="dt">data=</span>spurious)</span>
+<span id="cb204-8"><a href="basic-theoretical-aspects-of-time-series.html#cb204-8"></a><span class="kw">summary</span>(bhat)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = y ~ x, data = spurious)
@@ -374,7 +377,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Residual standard error: 11.08 on 498 degrees of freedom
 ## Multiple R-squared:  0.1505, Adjusted R-squared:  0.1488 
 ## F-statistic: 88.24 on 1 and 498 DF,  p-value: &lt; 2.2e-16</code></pre>
-<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="basic-theoretical-aspects-of-time-series.html#cb245-1"></a><span class="kw">rm</span>(spurious,bhat)</span></code></pre></div>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="basic-theoretical-aspects-of-time-series.html#cb206-1"></a><span class="kw">rm</span>(spurious,bhat)</span></code></pre></div>
 <p>There is no relationship between <span class="math inline">\(y\)</span> and <span class="math inline">\(x\)</span> yet the regression results indicate statistical significance.</p>
 <p>Consider the following so-called autoregressive model. The model depends on lagged terms of the dependent variable:
 <span class="math display">\[y_t=\alpha+\phi_1 \cdot y_{t-1}+\epsilon_t\]</span>

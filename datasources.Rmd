@@ -1,6 +1,14 @@
 # Data Sources
+This chapter describes the functions and data sets associated with the lecture notes which are contained in the file [DataAnalysisPAData.RData](https://github.com/jrfdumortier/dataanalysis/blob/master/DataAnalysisPAData.RData).
 
-This chapter describes the data sets associated with the lecture notes. Some data sets are generic, i.e., randomly generated, to highlight a particular concept while other are either based on public sources or are taken from academic papers. In any case, the sources are clearly indicated. Sometimes modifications were made to the data for ease of use, e.g., removing missing values or unnecessary variables. All the data is contained in the file [DataAnalysisPAData.RData](https://github.com/jrfdumortier/dataanalysis/blob/master/DataAnalysisPAData.RData). Some of the data sets are also associated with specific R packages which is indicated. 
+The following functions are included:
+
+- `bday(k)`: This function calculates the probability of two people having the same birthday in a group of $k$ people.
+- `samplesize(me,p=0.5,pop)`: This function requires the desired margin of error as the input, e.g., $me=0.03$ for $\pm 3\%$. By default, the function calculates the sample size assuming a variance maximizing probability of $p=0.5$ and infinite population. Both parameters can be adjusted.
+
+Some data sets are generic, i.e., randomly generated, to highlight a particular concept while other are either based on public sources or are taken from academic papers. In any case, the sources are clearly indicated. Sometimes modifications were made to the data for ease of use, e.g., removing missing values or unnecessary variables. All the data is contained in the file . Some of the data sets are also associated with specific R packages which is indicated. The aforementioned file also contains the following functions:
+
+The following data sets are included:
 
 - `accidents` ($N=30$): Generic data on the number of $accidents$ and the $temperature$ in Fahrenheit.
 

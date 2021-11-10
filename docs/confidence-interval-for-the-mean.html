@@ -24,7 +24,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2021-10-25" />
+<meta name="date" content="2021-11-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -243,9 +243,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.5" data-path="exercises-7.html"><a href="exercises-7.html"><i class="fa fa-check"></i><b>11.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="basic-multivariate-regression.html"><a href="basic-multivariate-regression.html"><i class="fa fa-check"></i><b>12</b> Basic Multivariate Regression</a><ul>
-<li class="chapter" data-level="12.1" data-path="dummy-variables.html"><a href="dummy-variables.html"><i class="fa fa-check"></i><b>12.1</b> Dummy Variables</a></li>
-<li class="chapter" data-level="12.2" data-path="natural-logarithm.html"><a href="natural-logarithm.html"><i class="fa fa-check"></i><b>12.2</b> Natural Logarithm</a></li>
-<li class="chapter" data-level="12.3" data-path="exercises-8.html"><a href="exercises-8.html"><i class="fa fa-check"></i><b>12.3</b> Exercises</a></li>
+<li class="chapter" data-level="12.1" data-path="introduction-1.html"><a href="introduction-1.html"><i class="fa fa-check"></i><b>12.1</b> Introduction</a></li>
+<li class="chapter" data-level="12.2" data-path="dummy-variables.html"><a href="dummy-variables.html"><i class="fa fa-check"></i><b>12.2</b> Dummy Variables</a></li>
+<li class="chapter" data-level="12.3" data-path="natural-logarithm.html"><a href="natural-logarithm.html"><i class="fa fa-check"></i><b>12.3</b> Natural Logarithm</a></li>
+<li class="chapter" data-level="12.4" data-path="functional-form.html"><a href="functional-form.html"><i class="fa fa-check"></i><b>12.4</b> Functional Form</a></li>
+<li class="chapter" data-level="12.5" data-path="interaction-effects.html"><a href="interaction-effects.html"><i class="fa fa-check"></i><b>12.5</b> Interaction Effects</a></li>
+<li class="chapter" data-level="12.6" data-path="exercises-8.html"><a href="exercises-8.html"><i class="fa fa-check"></i><b>12.6</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="anova.html"><a href="anova.html"><i class="fa fa-check"></i><b>13</b> ANOVA</a><ul>
 <li class="chapter" data-level="13.1" data-path="exercises-9.html"><a href="exercises-9.html"><i class="fa fa-check"></i><b>13.1</b> Exercises</a></li>
@@ -347,13 +350,13 @@ In most cases, <span class="math inline">\(\sigma^2\)</span> is unknown. If <spa
 <p>Consider the data in <code>eggweights</code>. To construct the confidence interval, the sample mean and sample standard deviation are required. Calculating those values leads to <span class="math inline">\(\bar{x}=61.05\)</span> and <span class="math inline">\(s=4.46\)</span>. So the standard error is
 <span class="math display">\[S.E. = \frac{4.46}{\sqrt{61}}=0.57\]</span>
 For <span class="math inline">\(n=61\)</span> and <span class="math inline">\(df=n-1=60\)</span>, we find the confidence interval of <span class="math inline">\(61.05 \pm 2.0003 \cdot 0.57\)</span>.</p>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="confidence-interval-for-the-mean.html#cb72-1"></a>nobs           =<span class="st"> </span><span class="kw">nrow</span>(mh2)</span>
-<span id="cb72-2"><a href="confidence-interval-for-the-mean.html#cb72-2"></a>meandata       =<span class="st"> </span><span class="kw">mean</span>(mh2<span class="op">$</span>price)</span>
-<span id="cb72-3"><a href="confidence-interval-for-the-mean.html#cb72-3"></a>stdev          =<span class="st"> </span><span class="kw">sd</span>(mh2<span class="op">$</span>price)</span>
-<span id="cb72-4"><a href="confidence-interval-for-the-mean.html#cb72-4"></a>t_alpha_df     =<span class="st"> </span><span class="kw">qt</span>(<span class="fl">0.975</span>,nobs<span class="dv">-1</span>)</span>
-<span id="cb72-5"><a href="confidence-interval-for-the-mean.html#cb72-5"></a>CI_lower       =<span class="st"> </span>meandata<span class="op">-</span>t_alpha_df<span class="op">*</span>stdev<span class="op">/</span><span class="kw">sqrt</span>(nobs)</span>
-<span id="cb72-6"><a href="confidence-interval-for-the-mean.html#cb72-6"></a>CI_upper       =<span class="st"> </span>meandata<span class="op">+</span>t_alpha_df<span class="op">*</span>stdev<span class="op">/</span><span class="kw">sqrt</span>(nobs)</span>
-<span id="cb72-7"><a href="confidence-interval-for-the-mean.html#cb72-7"></a><span class="kw">t.test</span>(mh2<span class="op">$</span>price)</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="confidence-interval-for-the-mean.html#cb28-1"></a>nobs           =<span class="st"> </span><span class="kw">nrow</span>(mh2)</span>
+<span id="cb28-2"><a href="confidence-interval-for-the-mean.html#cb28-2"></a>meandata       =<span class="st"> </span><span class="kw">mean</span>(mh2<span class="op">$</span>price)</span>
+<span id="cb28-3"><a href="confidence-interval-for-the-mean.html#cb28-3"></a>stdev          =<span class="st"> </span><span class="kw">sd</span>(mh2<span class="op">$</span>price)</span>
+<span id="cb28-4"><a href="confidence-interval-for-the-mean.html#cb28-4"></a>t_alpha_df     =<span class="st"> </span><span class="kw">qt</span>(<span class="fl">0.975</span>,nobs<span class="dv">-1</span>)</span>
+<span id="cb28-5"><a href="confidence-interval-for-the-mean.html#cb28-5"></a>CI_lower       =<span class="st"> </span>meandata<span class="op">-</span>t_alpha_df<span class="op">*</span>stdev<span class="op">/</span><span class="kw">sqrt</span>(nobs)</span>
+<span id="cb28-6"><a href="confidence-interval-for-the-mean.html#cb28-6"></a>CI_upper       =<span class="st"> </span>meandata<span class="op">+</span>t_alpha_df<span class="op">*</span>stdev<span class="op">/</span><span class="kw">sqrt</span>(nobs)</span>
+<span id="cb28-7"><a href="confidence-interval-for-the-mean.html#cb28-7"></a><span class="kw">t.test</span>(mh2<span class="op">$</span>price)</span></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 

@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>12.2 Natural Logarithm | Data Analysis for Public Affairs with R</title>
-  <meta name="description" content="12.2 Natural Logarithm | Data Analysis for Public Affairs with R" />
+  <title>12.3 Natural Logarithm | Data Analysis for Public Affairs with R</title>
+  <meta name="description" content="12.3 Natural Logarithm | Data Analysis for Public Affairs with R" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="12.2 Natural Logarithm | Data Analysis for Public Affairs with R" />
+  <meta property="og:title" content="12.3 Natural Logarithm | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="12.2 Natural Logarithm | Data Analysis for Public Affairs with R" />
+  <meta name="twitter:title" content="12.3 Natural Logarithm | Data Analysis for Public Affairs with R" />
   
   
   
@@ -24,7 +24,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2021-10-25" />
+<meta name="date" content="2021-11-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="dummy-variables.html"/>
-<link rel="next" href="exercises-8.html"/>
+<link rel="next" href="functional-form.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -243,9 +243,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.5" data-path="exercises-7.html"><a href="exercises-7.html"><i class="fa fa-check"></i><b>11.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="basic-multivariate-regression.html"><a href="basic-multivariate-regression.html"><i class="fa fa-check"></i><b>12</b> Basic Multivariate Regression</a><ul>
-<li class="chapter" data-level="12.1" data-path="dummy-variables.html"><a href="dummy-variables.html"><i class="fa fa-check"></i><b>12.1</b> Dummy Variables</a></li>
-<li class="chapter" data-level="12.2" data-path="natural-logarithm.html"><a href="natural-logarithm.html"><i class="fa fa-check"></i><b>12.2</b> Natural Logarithm</a></li>
-<li class="chapter" data-level="12.3" data-path="exercises-8.html"><a href="exercises-8.html"><i class="fa fa-check"></i><b>12.3</b> Exercises</a></li>
+<li class="chapter" data-level="12.1" data-path="introduction-1.html"><a href="introduction-1.html"><i class="fa fa-check"></i><b>12.1</b> Introduction</a></li>
+<li class="chapter" data-level="12.2" data-path="dummy-variables.html"><a href="dummy-variables.html"><i class="fa fa-check"></i><b>12.2</b> Dummy Variables</a></li>
+<li class="chapter" data-level="12.3" data-path="natural-logarithm.html"><a href="natural-logarithm.html"><i class="fa fa-check"></i><b>12.3</b> Natural Logarithm</a></li>
+<li class="chapter" data-level="12.4" data-path="functional-form.html"><a href="functional-form.html"><i class="fa fa-check"></i><b>12.4</b> Functional Form</a></li>
+<li class="chapter" data-level="12.5" data-path="interaction-effects.html"><a href="interaction-effects.html"><i class="fa fa-check"></i><b>12.5</b> Interaction Effects</a></li>
+<li class="chapter" data-level="12.6" data-path="exercises-8.html"><a href="exercises-8.html"><i class="fa fa-check"></i><b>12.6</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="anova.html"><a href="anova.html"><i class="fa fa-check"></i><b>13</b> ANOVA</a><ul>
 <li class="chapter" data-level="13.1" data-path="exercises-9.html"><a href="exercises-9.html"><i class="fa fa-check"></i><b>13.1</b> Exercises</a></li>
@@ -340,25 +343,69 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="natural-logarithm" class="section level2">
-<h2><span class="header-section-number">12.2</span> Natural Logarithm</h2>
-<p>Depending on the nature of the variables, it might be necessary to scale your variables for cosmetic purposes. This might be necessary if coefficients are very large or extremly small. A rescaling, e.g., dividing income by 1,000, does affect the coefficients and the standard errors but has no effect on the t-statistics.</p>
-<p>Earlier in this course, we have introduced the natural logarithm to transform variables. It turns out that the natural logarithm has some important and useful interpretations. Consider the following simple consumption equation in which both variables are in logarithmic form:
-<span class="math display">\[\begin{equation*}
-ln(consumption) = \beta_0 + \beta_1 \cdot \ln(income)  + \epsilon
-\end{equation*}\]</span>
-In this case, <span class="math inline">\(\beta_1\)</span> is the elasticity of consumption with respect to income, i.e., a 1% increase in income leads to a $_1 1% $ increase in consumption. For example, if <span class="math inline">\(\beta_1 = 0.4\)</span>, then a 1% increase in income will rise consumption by 0.4%. Note that the percentage increase is only an approximation for small changes.</p>
-
-<p>A third useful issue related to any regression analysis is the use of interaction effects. Interaction effects are used the influence of one independent variable depends on the level of another independent variable. Suppose that you want to measure time spent volunteering (<span class="math inline">\(y\)</span>) and you think that it depends on the marital status (<span class="math inline">\(x_1\)</span>), the number of children (<span class="math inline">\(x_2\)</span>), and some other independent variables (<span class="math inline">\(X\)</span>). So you could have the following regression equation
-<span class="math display">\[\begin{equation*}
-y = \beta_1 \cdot x_1 \cdot  x_2 + \beta \cdot X + \epsilon
-\end{equation*}\]</span></p>
-<p><span class="math display">\[\begin{equation*} 
-\frac{dy}{dx}=\beta_1 x_2 + \beta_2
-\end{equation*}\]</span></p>
-<p>&lt;&lt;MVR_nfl,echo=FALSE,message=FALSE,warning=FALSE,error=FALSE,include=TRUE,fig.keep=“none”&gt;&gt;=
-bhat = lm(log(total)~yards+att+exp+exp2+draft1+draft2+veteran+changeteam+pbowlever+symm,data=nfl)
-summary(bhat)
-@</p>
+<h2><span class="header-section-number">12.3</span> Natural Logarithm</h2>
+<p>Transforming the dependent and/or independent variables using the natural logarithm has some important and useful interpretations. Consider the following simple consumption equation in which both variables are in logarithmic form:
+<span class="math display">\[ln(consumption)=\beta_0+\beta_1 \cdot \ln(income)+\epsilon\]</span>
+In this case, <span class="math inline">\(\beta_1\)</span> is the elasticity of consumption with respect to income, i.e., a 1% increase in income leads to a $_1 1% $ increase in consumption. For example, if <span class="math inline">\(\beta_1=0.4\)</span>, then a 1% increase in income will rise consumption by 0.4%. Note that the percentage increase is only an approximation for small changes.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Dep. Var.</th>
+<th align="center">Indep. Var</th>
+<th align="left">Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(y\)</span></td>
+<td align="center"><span class="math inline">\(x\)</span></td>
+<td align="left">1 dollar change in <span class="math inline">\(x\)</span> changes y by <span class="math inline">\(\hat{\beta}\)</span> dollars</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(\ln(y)\)</span></td>
+<td align="center"><span class="math inline">\(x\)</span></td>
+<td align="left">1 dollar change in <span class="math inline">\(x\)</span> changes y by 100 <span class="math inline">\(\times \hat{\beta}\)</span> percent</td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(\ln(y)\)</span></td>
+<td align="center"><span class="math inline">\(\ln(x)\)</span></td>
+<td align="left">1 percent change in <span class="math inline">\(x\)</span> changes y by <span class="math inline">\(\hat{\beta}\)</span> percent</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(y\)</span></td>
+<td align="center"><span class="math inline">\(\ln(x)\)</span></td>
+<td align="left">1 percent change in <span class="math inline">\(x\)</span> changes y by <span class="math inline">\(\hat{\beta}/100\)</span> dollars</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="natural-logarithm.html#cb63-1"></a>bhat =<span class="st"> </span><span class="kw">lm</span>(<span class="kw">log</span>(total)<span class="op">~</span>yards<span class="op">+</span>att<span class="op">+</span>exp<span class="op">+</span>draft1<span class="op">+</span>veteran<span class="op">+</span>changeteam<span class="op">+</span>pbowlever,<span class="dt">data=</span>nfl)</span>
+<span id="cb63-2"><a href="natural-logarithm.html#cb63-2"></a><span class="kw">summary</span>(bhat)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = log(total) ~ yards + att + exp + draft1 + veteran + 
+##     changeteam + pbowlever, data = nfl)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -2.4899 -0.4998 -0.0801  0.4554  3.1959 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -0.9289322  0.0767846 -12.098  &lt; 2e-16 ***
+## yards        0.0003566  0.0001411   2.527 0.011783 *  
+## att          0.0003927  0.0009657   0.407 0.684408    
+## exp          0.0108812  0.0160213   0.679 0.497312    
+## draft1       0.8876564  0.1132374   7.839 2.30e-14 ***
+## veteran      0.6735244  0.1144567   5.885 6.88e-09 ***
+## changeteam  -0.3095919  0.0893125  -3.466 0.000568 ***
+## pbowlever    0.4093324  0.0936078   4.373 1.46e-05 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.7909 on 560 degrees of freedom
+##   (441 observations deleted due to missingness)
+## Multiple R-squared:   0.55,  Adjusted R-squared:  0.5444 
+## F-statistic:  97.8 on 7 and 560 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
             </section>
 
@@ -366,7 +413,7 @@ summary(bhat)
         </div>
       </div>
 <a href="dummy-variables.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="exercises-8.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="functional-form.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

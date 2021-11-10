@@ -24,7 +24,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2021-10-25" />
+<meta name="date" content="2021-11-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -243,9 +243,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.5" data-path="exercises-7.html"><a href="exercises-7.html"><i class="fa fa-check"></i><b>11.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="basic-multivariate-regression.html"><a href="basic-multivariate-regression.html"><i class="fa fa-check"></i><b>12</b> Basic Multivariate Regression</a><ul>
-<li class="chapter" data-level="12.1" data-path="dummy-variables.html"><a href="dummy-variables.html"><i class="fa fa-check"></i><b>12.1</b> Dummy Variables</a></li>
-<li class="chapter" data-level="12.2" data-path="natural-logarithm.html"><a href="natural-logarithm.html"><i class="fa fa-check"></i><b>12.2</b> Natural Logarithm</a></li>
-<li class="chapter" data-level="12.3" data-path="exercises-8.html"><a href="exercises-8.html"><i class="fa fa-check"></i><b>12.3</b> Exercises</a></li>
+<li class="chapter" data-level="12.1" data-path="introduction-1.html"><a href="introduction-1.html"><i class="fa fa-check"></i><b>12.1</b> Introduction</a></li>
+<li class="chapter" data-level="12.2" data-path="dummy-variables.html"><a href="dummy-variables.html"><i class="fa fa-check"></i><b>12.2</b> Dummy Variables</a></li>
+<li class="chapter" data-level="12.3" data-path="natural-logarithm.html"><a href="natural-logarithm.html"><i class="fa fa-check"></i><b>12.3</b> Natural Logarithm</a></li>
+<li class="chapter" data-level="12.4" data-path="functional-form.html"><a href="functional-form.html"><i class="fa fa-check"></i><b>12.4</b> Functional Form</a></li>
+<li class="chapter" data-level="12.5" data-path="interaction-effects.html"><a href="interaction-effects.html"><i class="fa fa-check"></i><b>12.5</b> Interaction Effects</a></li>
+<li class="chapter" data-level="12.6" data-path="exercises-8.html"><a href="exercises-8.html"><i class="fa fa-check"></i><b>12.6</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="anova.html"><a href="anova.html"><i class="fa fa-check"></i><b>13</b> ANOVA</a><ul>
 <li class="chapter" data-level="13.1" data-path="exercises-9.html"><a href="exercises-9.html"><i class="fa fa-check"></i><b>13.1</b> Exercises</a></li>
@@ -368,7 +371,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="using-r-as-a-calculator" class="section level3">
 <h3><span class="header-section-number">3.4.1</span> Using R as a Calculator</h3>
 <p>Entering heights of people and storing it in a vector named <code>height</code>:</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="data-in-r.html#cb46-1"></a>height =<span class="st"> </span><span class="kw">c</span>(<span class="dv">71</span>,<span class="dv">77</span>,<span class="dv">70</span>,<span class="dv">73</span>,<span class="dv">66</span>,<span class="dv">69</span>,<span class="dv">73</span>,<span class="dv">73</span>,<span class="dv">75</span>,<span class="dv">76</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="data-in-r.html#cb2-1"></a>height =<span class="st"> </span><span class="kw">c</span>(<span class="dv">71</span>,<span class="dv">77</span>,<span class="dv">70</span>,<span class="dv">73</span>,<span class="dv">66</span>,<span class="dv">69</span>,<span class="dv">73</span>,<span class="dv">73</span>,<span class="dv">75</span>,<span class="dv">76</span>)</span></code></pre></div>
 <p>Calculating the sum, product, natural log, mean, and (element-wise) squaring is done with the following commands:</p>
 <ul>
 <li><code>sum(height)</code></li>
@@ -387,11 +390,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Column names must be unique and without spaces.</li>
 </ul>
 <p>Suggestion: Use only lower-case variable names and objects.</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="data-in-r.html#cb47-1"></a>studentid       =<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></span>
-<span id="cb47-2"><a href="data-in-r.html#cb47-2"></a>studentnames    =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Andrew&quot;</span>,<span class="st">&quot;Linda&quot;</span>,<span class="st">&quot;William&quot;</span>,<span class="st">&quot;Daniel&quot;</span>,<span class="st">&quot;Gina&quot;</span>,</span>
-<span id="cb47-3"><a href="data-in-r.html#cb47-3"></a>                    <span class="st">&quot;Mick&quot;</span>,<span class="st">&quot;Sonny&quot;</span>,<span class="st">&quot;Wilbur&quot;</span>,<span class="st">&quot;Elisabeth&quot;</span>,<span class="st">&quot;James&quot;</span>)</span>
-<span id="cb47-4"><a href="data-in-r.html#cb47-4"></a>students        =<span class="st"> </span><span class="kw">data.frame</span>(studentid,studentnames,height)</span>
-<span id="cb47-5"><a href="data-in-r.html#cb47-5"></a><span class="kw">rm</span>(studentid,height,studentnames)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="data-in-r.html#cb3-1"></a>studentid       =<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></span>
+<span id="cb3-2"><a href="data-in-r.html#cb3-2"></a>studentnames    =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Andrew&quot;</span>,<span class="st">&quot;Linda&quot;</span>,<span class="st">&quot;William&quot;</span>,<span class="st">&quot;Daniel&quot;</span>,<span class="st">&quot;Gina&quot;</span>,</span>
+<span id="cb3-3"><a href="data-in-r.html#cb3-3"></a>                    <span class="st">&quot;Mick&quot;</span>,<span class="st">&quot;Sonny&quot;</span>,<span class="st">&quot;Wilbur&quot;</span>,<span class="st">&quot;Elisabeth&quot;</span>,<span class="st">&quot;James&quot;</span>)</span>
+<span id="cb3-4"><a href="data-in-r.html#cb3-4"></a>students        =<span class="st"> </span><span class="kw">data.frame</span>(studentid,studentnames,height)</span>
+<span id="cb3-5"><a href="data-in-r.html#cb3-5"></a><span class="kw">rm</span>(studentid,height,studentnames)</span></code></pre></div>
 </div>
 <div id="in-class-exercise-2" class="section level3">
 <h3><span class="header-section-number">3.4.3</span> In-class Exercise 2</h3>
@@ -484,9 +487,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>cars2015 = subset(vehicles,year==2015,select=c("ghgScore","VClass"))</code></li>
 </ul>
 <p>Suppose you are only interested in “Compact Cars” and “Large Cars” in the column <span class="math inline">\(VClass\)</span> for the year 2015. There the notation is a bit odd (note that the many line breaks are not necessary to include in R):</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="data-in-r.html#cb48-1"></a>cars =<span class="st"> </span><span class="kw">subset</span>(vehicles,</span>
-<span id="cb48-2"><a href="data-in-r.html#cb48-2"></a>              year<span class="op">==</span><span class="dv">2015</span> <span class="op">&amp;</span><span class="st"> </span>VClass <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Compact Cars&quot;</span>, <span class="st">&quot;Large Cars&quot;</span>),</span>
-<span id="cb48-3"><a href="data-in-r.html#cb48-3"></a>              <span class="dt">select=</span><span class="kw">c</span>(<span class="st">&quot;make&quot;</span>,<span class="st">&quot;ghgScore&quot;</span>,<span class="st">&quot;VClass&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="data-in-r.html#cb4-1"></a>cars =<span class="st"> </span><span class="kw">subset</span>(vehicles,</span>
+<span id="cb4-2"><a href="data-in-r.html#cb4-2"></a>              year<span class="op">==</span><span class="dv">2015</span> <span class="op">&amp;</span><span class="st"> </span>VClass <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Compact Cars&quot;</span>, <span class="st">&quot;Large Cars&quot;</span>),</span>
+<span id="cb4-3"><a href="data-in-r.html#cb4-3"></a>              <span class="dt">select=</span><span class="kw">c</span>(<span class="st">&quot;make&quot;</span>,<span class="st">&quot;ghgScore&quot;</span>,<span class="st">&quot;VClass&quot;</span>))</span></code></pre></div>
 </div>
 <div id="in-class-exercises-3" class="section level3">
 <h3><span class="header-section-number">3.4.7</span> In-class Exercises 3</h3>
@@ -495,7 +498,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="aggregating-data" class="section level3">
 <h3><span class="header-section-number">3.4.8</span> Aggregating Data</h3>
 <p>To aggregate data based on a function, e.g., sum or mean:</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="data-in-r.html#cb49-1"></a>cars =<span class="st"> </span><span class="kw">aggregate</span>(cars<span class="op">$</span>ghgScore,<span class="dt">FUN=</span>mean,<span class="dt">by=</span><span class="kw">list</span>(cars<span class="op">$</span>make,cars<span class="op">$</span>VClass))</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="data-in-r.html#cb5-1"></a>cars =<span class="st"> </span><span class="kw">aggregate</span>(cars<span class="op">$</span>ghgScore,<span class="dt">FUN=</span>mean,<span class="dt">by=</span><span class="kw">list</span>(cars<span class="op">$</span>make,cars<span class="op">$</span>VClass))</span></code></pre></div>
 </div>
 <div id="writing-data-frame-to-.csv-file" class="section level3">
 <h3><span class="header-section-number">3.4.9</span> Writing Data Frame to .csv-File</h3>
@@ -508,7 +511,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="reshaping-data-from-long-to-wide-and-viceversa" class="section level3">
 <h3><span class="header-section-number">3.4.10</span> Reshaping Data from Long to Wide and Viceversa</h3>
 <p>R has the ability to reshape data from long to wide format and back. For this demonstration, we use the data in <code>compactcars</code> and the command <code>reshape()</code> from the package <a href="https://cran.r-project.org/web/packages/reshape2/index.html">reshape2</a>:</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="data-in-r.html#cb50-1"></a>cars =<span class="st"> </span><span class="kw">melt</span>(compactcars,<span class="dt">id=</span><span class="kw">c</span>(<span class="st">&quot;year&quot;</span>,<span class="st">&quot;make&quot;</span>,<span class="st">&quot;model&quot;</span>,<span class="st">&quot;displ&quot;</span>,<span class="st">&quot;drive&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="data-in-r.html#cb6-1"></a>cars =<span class="st"> </span><span class="kw">melt</span>(compactcars,<span class="dt">id=</span><span class="kw">c</span>(<span class="st">&quot;year&quot;</span>,<span class="st">&quot;make&quot;</span>,<span class="st">&quot;model&quot;</span>,<span class="st">&quot;displ&quot;</span>,<span class="st">&quot;drive&quot;</span>))</span></code></pre></div>
 <p>Reshaping the data is generally very useful but also tricky. For detailed information see the section <a href="https://stats.idre.ucla.edu/r/faq/how-can-i-reshape-my-data-in-r/">How can I reshape my data in R</a>.</p>
 </div>
 <div id="extending-the-basic-table-function" class="section level3">
@@ -518,7 +521,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Standard <code>table()</code> function.</li>
 <li>The function <code>CrossTable()</code> includes the proportions along the two dimensions of gun ownership and gender. Note that a description of the cell content is at the top of the results page.</li>
 </ul>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="data-in-r.html#cb51-1"></a><span class="kw">table</span>(gssgun<span class="op">$</span>owngun,gssgun<span class="op">$</span>sex)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="data-in-r.html#cb7-1"></a><span class="kw">table</span>(gssgun<span class="op">$</span>owngun,gssgun<span class="op">$</span>sex)</span></code></pre></div>
 <pre><code>##          
 ##           male female
 ##   yes      232    208
@@ -527,7 +530,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   DK         0      0
 ##   IAP        0      0
 ##   NA         0      0</code></pre>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="data-in-r.html#cb53-1"></a><span class="kw">CrossTable</span>(gssgun<span class="op">$</span>owngun,gssgun<span class="op">$</span>sex,<span class="dt">prop.chisq=</span><span class="ot">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="data-in-r.html#cb9-1"></a><span class="kw">CrossTable</span>(gssgun<span class="op">$</span>owngun,gssgun<span class="op">$</span>sex,<span class="dt">prop.chisq=</span><span class="ot">FALSE</span>)</span></code></pre></div>
 <pre><code>## 
 ##  
 ##    Cell Contents
@@ -578,7 +581,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>ohioincome</code> contains the same identifier than the previous sheet in addition to median household income and enrollment.</li>
 </ul>
 <p>To merge the two data frames based on the column <span class="math inline">\(IRN\)</span>, the function <code>merge()</code> must be used:</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="data-in-r.html#cb55-1"></a>ohioschool =<span class="st"> </span><span class="kw">merge</span>(ohioscore,ohioincome,<span class="dt">by=</span><span class="kw">c</span>(<span class="st">&quot;IRN&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="data-in-r.html#cb11-1"></a>ohioschool =<span class="st"> </span><span class="kw">merge</span>(ohioscore,ohioincome,<span class="dt">by=</span><span class="kw">c</span>(<span class="st">&quot;IRN&quot;</span>))</span></code></pre></div>
 
 </div>
 </div>

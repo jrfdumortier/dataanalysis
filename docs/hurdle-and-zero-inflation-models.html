@@ -24,7 +24,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2021-10-25" />
+<meta name="date" content="2021-11-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -243,9 +243,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.5" data-path="exercises-7.html"><a href="exercises-7.html"><i class="fa fa-check"></i><b>11.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="basic-multivariate-regression.html"><a href="basic-multivariate-regression.html"><i class="fa fa-check"></i><b>12</b> Basic Multivariate Regression</a><ul>
-<li class="chapter" data-level="12.1" data-path="dummy-variables.html"><a href="dummy-variables.html"><i class="fa fa-check"></i><b>12.1</b> Dummy Variables</a></li>
-<li class="chapter" data-level="12.2" data-path="natural-logarithm.html"><a href="natural-logarithm.html"><i class="fa fa-check"></i><b>12.2</b> Natural Logarithm</a></li>
-<li class="chapter" data-level="12.3" data-path="exercises-8.html"><a href="exercises-8.html"><i class="fa fa-check"></i><b>12.3</b> Exercises</a></li>
+<li class="chapter" data-level="12.1" data-path="introduction-1.html"><a href="introduction-1.html"><i class="fa fa-check"></i><b>12.1</b> Introduction</a></li>
+<li class="chapter" data-level="12.2" data-path="dummy-variables.html"><a href="dummy-variables.html"><i class="fa fa-check"></i><b>12.2</b> Dummy Variables</a></li>
+<li class="chapter" data-level="12.3" data-path="natural-logarithm.html"><a href="natural-logarithm.html"><i class="fa fa-check"></i><b>12.3</b> Natural Logarithm</a></li>
+<li class="chapter" data-level="12.4" data-path="functional-form.html"><a href="functional-form.html"><i class="fa fa-check"></i><b>12.4</b> Functional Form</a></li>
+<li class="chapter" data-level="12.5" data-path="interaction-effects.html"><a href="interaction-effects.html"><i class="fa fa-check"></i><b>12.5</b> Interaction Effects</a></li>
+<li class="chapter" data-level="12.6" data-path="exercises-8.html"><a href="exercises-8.html"><i class="fa fa-check"></i><b>12.6</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="anova.html"><a href="anova.html"><i class="fa fa-check"></i><b>13</b> ANOVA</a><ul>
 <li class="chapter" data-level="13.1" data-path="exercises-9.html"><a href="exercises-9.html"><i class="fa fa-check"></i><b>13.1</b> Exercises</a></li>
@@ -343,10 +346,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">17.4</span> Hurdle and Zero-Inflation Models</h2>
 <p>Count data often includes many observations at 0 which can lead to problems using a Poisson or a Negative-Binomial Regression Model. The application of both models is first illustrated with the <code>NMES1988</code> data from the package <a href="https://cran.r-project.org/web/packages/AER/index.html">AER</a> and then with the BLM protest data.</p>
 <p>The data <code>NMES1988</code> contains 4406 observations of people on Medicare who are 66 years or older. The outcome of interest is the number of doctor <span class="math inline">\(visits\)</span> as a function of <span class="math inline">\(hospital\)</span> (number of hospital visits), <span class="math inline">\(health\)</span> (self-indicated health status), <span class="math inline">\(chronic\)</span> (number of chronic conditions), <span class="math inline">\(gender\)</span>, <span class="math inline">\(school\)</span>, and <span class="math inline">\(insurance\)</span>.</p>
-<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="hurdle-and-zero-inflation-models.html#cb205-1"></a><span class="kw">data</span>(<span class="st">&quot;NMES1988&quot;</span>,<span class="dt">package=</span><span class="st">&quot;AER&quot;</span>)</span>
-<span id="cb205-2"><a href="hurdle-and-zero-inflation-models.html#cb205-2"></a>eq =<span class="st"> </span>visits<span class="op">~</span>hospital<span class="op">+</span>health<span class="op">+</span>chronic<span class="op">+</span>gender<span class="op">+</span>school<span class="op">+</span>insurance</span>
-<span id="cb205-3"><a href="hurdle-and-zero-inflation-models.html#cb205-3"></a>bhat_pois =<span class="st"> </span><span class="kw">glm</span>(eq,<span class="dt">data=</span>NMES1988,<span class="dt">family=</span>poisson)</span>
-<span id="cb205-4"><a href="hurdle-and-zero-inflation-models.html#cb205-4"></a><span class="kw">summary</span>(bhat_pois)</span></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="hurdle-and-zero-inflation-models.html#cb166-1"></a><span class="kw">data</span>(<span class="st">&quot;NMES1988&quot;</span>,<span class="dt">package=</span><span class="st">&quot;AER&quot;</span>)</span>
+<span id="cb166-2"><a href="hurdle-and-zero-inflation-models.html#cb166-2"></a>eq =<span class="st"> </span>visits<span class="op">~</span>hospital<span class="op">+</span>health<span class="op">+</span>chronic<span class="op">+</span>gender<span class="op">+</span>school<span class="op">+</span>insurance</span>
+<span id="cb166-3"><a href="hurdle-and-zero-inflation-models.html#cb166-3"></a>bhat_pois =<span class="st"> </span><span class="kw">glm</span>(eq,<span class="dt">data=</span>NMES1988,<span class="dt">family=</span>poisson)</span>
+<span id="cb166-4"><a href="hurdle-and-zero-inflation-models.html#cb166-4"></a><span class="kw">summary</span>(bhat_pois)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = eq, family = poisson, data = NMES1988)
@@ -375,8 +378,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## AIC: 35959
 ## 
 ## Number of Fisher Scoring iterations: 5</code></pre>
-<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="hurdle-and-zero-inflation-models.html#cb207-1"></a>bhat_nb =<span class="st"> </span><span class="kw">glm</span>(eq,<span class="dt">data=</span>NMES1988)</span>
-<span id="cb207-2"><a href="hurdle-and-zero-inflation-models.html#cb207-2"></a><span class="kw">summary</span>(bhat_nb)</span></code></pre></div>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="hurdle-and-zero-inflation-models.html#cb168-1"></a>bhat_nb =<span class="st"> </span><span class="kw">glm</span>(eq,<span class="dt">data=</span>NMES1988)</span>
+<span id="cb168-2"><a href="hurdle-and-zero-inflation-models.html#cb168-2"></a><span class="kw">summary</span>(bhat_nb)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = eq, data = NMES1988)
@@ -405,8 +408,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## AIC: 28769
 ## 
 ## Number of Fisher Scoring iterations: 2</code></pre>
-<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="hurdle-and-zero-inflation-models.html#cb209-1"></a>bhat_hurdle =<span class="st"> </span><span class="kw">hurdle</span>(eq,<span class="dt">data=</span>NMES1988,<span class="dt">dist=</span><span class="st">&quot;negbin&quot;</span>)</span>
-<span id="cb209-2"><a href="hurdle-and-zero-inflation-models.html#cb209-2"></a><span class="kw">summary</span>(bhat_hurdle)</span></code></pre></div>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="hurdle-and-zero-inflation-models.html#cb170-1"></a>bhat_hurdle =<span class="st"> </span><span class="kw">hurdle</span>(eq,<span class="dt">data=</span>NMES1988,<span class="dt">dist=</span><span class="st">&quot;negbin&quot;</span>)</span>
+<span id="cb170-2"><a href="hurdle-and-zero-inflation-models.html#cb170-2"></a><span class="kw">summary</span>(bhat_hurdle)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## hurdle(formula = eq, data = NMES1988, dist = &quot;negbin&quot;)

@@ -24,7 +24,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2021-10-25" />
+<meta name="date" content="2021-11-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -243,9 +243,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.5" data-path="exercises-7.html"><a href="exercises-7.html"><i class="fa fa-check"></i><b>11.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="basic-multivariate-regression.html"><a href="basic-multivariate-regression.html"><i class="fa fa-check"></i><b>12</b> Basic Multivariate Regression</a><ul>
-<li class="chapter" data-level="12.1" data-path="dummy-variables.html"><a href="dummy-variables.html"><i class="fa fa-check"></i><b>12.1</b> Dummy Variables</a></li>
-<li class="chapter" data-level="12.2" data-path="natural-logarithm.html"><a href="natural-logarithm.html"><i class="fa fa-check"></i><b>12.2</b> Natural Logarithm</a></li>
-<li class="chapter" data-level="12.3" data-path="exercises-8.html"><a href="exercises-8.html"><i class="fa fa-check"></i><b>12.3</b> Exercises</a></li>
+<li class="chapter" data-level="12.1" data-path="introduction-1.html"><a href="introduction-1.html"><i class="fa fa-check"></i><b>12.1</b> Introduction</a></li>
+<li class="chapter" data-level="12.2" data-path="dummy-variables.html"><a href="dummy-variables.html"><i class="fa fa-check"></i><b>12.2</b> Dummy Variables</a></li>
+<li class="chapter" data-level="12.3" data-path="natural-logarithm.html"><a href="natural-logarithm.html"><i class="fa fa-check"></i><b>12.3</b> Natural Logarithm</a></li>
+<li class="chapter" data-level="12.4" data-path="functional-form.html"><a href="functional-form.html"><i class="fa fa-check"></i><b>12.4</b> Functional Form</a></li>
+<li class="chapter" data-level="12.5" data-path="interaction-effects.html"><a href="interaction-effects.html"><i class="fa fa-check"></i><b>12.5</b> Interaction Effects</a></li>
+<li class="chapter" data-level="12.6" data-path="exercises-8.html"><a href="exercises-8.html"><i class="fa fa-check"></i><b>12.6</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="anova.html"><a href="anova.html"><i class="fa fa-check"></i><b>13</b> ANOVA</a><ul>
 <li class="chapter" data-level="13.1" data-path="exercises-9.html"><a href="exercises-9.html"><i class="fa fa-check"></i><b>13.1</b> Exercises</a></li>
@@ -342,10 +345,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="two-groups-mean" class="section level2">
 <h2><span class="header-section-number">9.4</span> Two-Groups: Mean</h2>
 <p>To conduct a hypothesis test about the difference between two means in R, the command <code>t.test()</code> must be used. Consider the schools in the data set <code>ohioschool</code> and <code>ohioscore</code>. Suppose you are interested in whether large schools perform as well as small schools. The school enrollment cut-off values chosen are 1000 and 3000 for small and large schools:</p>
-<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="two-groups-mean.html#cb82-1"></a>ohio        =<span class="st"> </span><span class="kw">merge</span>(ohioincome,ohioscore,<span class="dt">by=</span><span class="kw">c</span>(<span class="st">&quot;IRN&quot;</span>))</span>
-<span id="cb82-2"><a href="two-groups-mean.html#cb82-2"></a>ohio_small  =<span class="st"> </span><span class="kw">subset</span>(ohio,enrollment<span class="op">&lt;</span><span class="dv">1000</span>)</span>
-<span id="cb82-3"><a href="two-groups-mean.html#cb82-3"></a>ohio_large  =<span class="st"> </span><span class="kw">subset</span>(ohio,enrollment<span class="op">&gt;=</span><span class="dv">3000</span>)</span>
-<span id="cb82-4"><a href="two-groups-mean.html#cb82-4"></a><span class="kw">t.test</span>(ohio_small<span class="op">$</span>score,ohio_large<span class="op">$</span>score)</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="two-groups-mean.html#cb38-1"></a>ohio        =<span class="st"> </span><span class="kw">merge</span>(ohioincome,ohioscore,<span class="dt">by=</span><span class="kw">c</span>(<span class="st">&quot;IRN&quot;</span>))</span>
+<span id="cb38-2"><a href="two-groups-mean.html#cb38-2"></a>ohio_small  =<span class="st"> </span><span class="kw">subset</span>(ohio,enrollment<span class="op">&lt;</span><span class="dv">1000</span>)</span>
+<span id="cb38-3"><a href="two-groups-mean.html#cb38-3"></a>ohio_large  =<span class="st"> </span><span class="kw">subset</span>(ohio,enrollment<span class="op">&gt;=</span><span class="dv">3000</span>)</span>
+<span id="cb38-4"><a href="two-groups-mean.html#cb38-4"></a><span class="kw">t.test</span>(ohio_small<span class="op">$</span>score,ohio_large<span class="op">$</span>score)</span></code></pre></div>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 

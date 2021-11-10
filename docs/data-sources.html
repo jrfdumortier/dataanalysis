@@ -24,7 +24,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2021-10-25" />
+<meta name="date" content="2021-11-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -243,9 +243,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.5" data-path="exercises-7.html"><a href="exercises-7.html"><i class="fa fa-check"></i><b>11.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="basic-multivariate-regression.html"><a href="basic-multivariate-regression.html"><i class="fa fa-check"></i><b>12</b> Basic Multivariate Regression</a><ul>
-<li class="chapter" data-level="12.1" data-path="dummy-variables.html"><a href="dummy-variables.html"><i class="fa fa-check"></i><b>12.1</b> Dummy Variables</a></li>
-<li class="chapter" data-level="12.2" data-path="natural-logarithm.html"><a href="natural-logarithm.html"><i class="fa fa-check"></i><b>12.2</b> Natural Logarithm</a></li>
-<li class="chapter" data-level="12.3" data-path="exercises-8.html"><a href="exercises-8.html"><i class="fa fa-check"></i><b>12.3</b> Exercises</a></li>
+<li class="chapter" data-level="12.1" data-path="introduction-1.html"><a href="introduction-1.html"><i class="fa fa-check"></i><b>12.1</b> Introduction</a></li>
+<li class="chapter" data-level="12.2" data-path="dummy-variables.html"><a href="dummy-variables.html"><i class="fa fa-check"></i><b>12.2</b> Dummy Variables</a></li>
+<li class="chapter" data-level="12.3" data-path="natural-logarithm.html"><a href="natural-logarithm.html"><i class="fa fa-check"></i><b>12.3</b> Natural Logarithm</a></li>
+<li class="chapter" data-level="12.4" data-path="functional-form.html"><a href="functional-form.html"><i class="fa fa-check"></i><b>12.4</b> Functional Form</a></li>
+<li class="chapter" data-level="12.5" data-path="interaction-effects.html"><a href="interaction-effects.html"><i class="fa fa-check"></i><b>12.5</b> Interaction Effects</a></li>
+<li class="chapter" data-level="12.6" data-path="exercises-8.html"><a href="exercises-8.html"><i class="fa fa-check"></i><b>12.6</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="anova.html"><a href="anova.html"><i class="fa fa-check"></i><b>13</b> ANOVA</a><ul>
 <li class="chapter" data-level="13.1" data-path="exercises-9.html"><a href="exercises-9.html"><i class="fa fa-check"></i><b>13.1</b> Exercises</a></li>
@@ -341,7 +344,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="data-sources" class="section level1">
 <h1><span class="header-section-number">20</span> Data Sources</h1>
-<p>This chapter describes the data sets associated with the lecture notes. Some data sets are generic, i.e., randomly generated, to highlight a particular concept while other are either based on public sources or are taken from academic papers. In any case, the sources are clearly indicated. Sometimes modifications were made to the data for ease of use, e.g., removing missing values or unnecessary variables. All the data is contained in the file <a href="https://github.com/jrfdumortier/dataanalysis/blob/master/DataAnalysisPAData.RData">DataAnalysisPAData.RData</a>. Some of the data sets are also associated with specific R packages which is indicated.</p>
+<p>This chapter describes the functions and data sets associated with the lecture notes which are contained in the file <a href="https://github.com/jrfdumortier/dataanalysis/blob/master/DataAnalysisPAData.RData">DataAnalysisPAData.RData</a>.</p>
+<p>The following functions are included:</p>
+<ul>
+<li><code>bday(k)</code>: This function calculates the probability of two people having the same birthday in a group of <span class="math inline">\(k\)</span> people.</li>
+<li><code>samplesize(me,p=0.5,pop)</code>: This function requires the desired margin of error as the input, e.g., <span class="math inline">\(me=0.03\)</span> for <span class="math inline">\(\pm 3\%\)</span>. By default, the function calculates the sample size assuming a variance maximizing probability of <span class="math inline">\(p=0.5\)</span> and infinite population. Both parameters can be adjusted.</li>
+</ul>
+<p>Some data sets are generic, i.e., randomly generated, to highlight a particular concept while other are either based on public sources or are taken from academic papers. In any case, the sources are clearly indicated. Sometimes modifications were made to the data for ease of use, e.g., removing missing values or unnecessary variables. All the data is contained in the file . Some of the data sets are also associated with specific R packages which is indicated. The aforementioned file also contains the following functions:</p>
+<p>The following data sets are included:</p>
 <ul>
 <li><p><code>accidents</code> (<span class="math inline">\(N=30\)</span>): Generic data on the number of <span class="math inline">\(accidents\)</span> and the <span class="math inline">\(temperature\)</span> in Fahrenheit.</p></li>
 <li><p><code>airlines</code> (<span class="math inline">\(N=189496\)</span>): Data on airline on-time statistics and delay causes from the Bureau of Transportation Statistics from January 2004 to May 2020. The variable names are mostly self-explanatory. The variables <span class="math inline">\(arr\_flights\)</span> and <span class="math inline">\(arr\_del15\)</span> are the total number of arriving flights and the number of flight delayed at least 15 minutes. The original data is available <a href="https://www.transtats.bts.gov/ot_delay/ot_delaycause1.asp">here</a>.</p></li>

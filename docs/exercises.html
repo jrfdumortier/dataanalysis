@@ -24,7 +24,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2021-10-25" />
+<meta name="date" content="2021-11-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -243,9 +243,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.5" data-path="exercises-7.html"><a href="exercises-7.html"><i class="fa fa-check"></i><b>11.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="basic-multivariate-regression.html"><a href="basic-multivariate-regression.html"><i class="fa fa-check"></i><b>12</b> Basic Multivariate Regression</a><ul>
-<li class="chapter" data-level="12.1" data-path="dummy-variables.html"><a href="dummy-variables.html"><i class="fa fa-check"></i><b>12.1</b> Dummy Variables</a></li>
-<li class="chapter" data-level="12.2" data-path="natural-logarithm.html"><a href="natural-logarithm.html"><i class="fa fa-check"></i><b>12.2</b> Natural Logarithm</a></li>
-<li class="chapter" data-level="12.3" data-path="exercises-8.html"><a href="exercises-8.html"><i class="fa fa-check"></i><b>12.3</b> Exercises</a></li>
+<li class="chapter" data-level="12.1" data-path="introduction-1.html"><a href="introduction-1.html"><i class="fa fa-check"></i><b>12.1</b> Introduction</a></li>
+<li class="chapter" data-level="12.2" data-path="dummy-variables.html"><a href="dummy-variables.html"><i class="fa fa-check"></i><b>12.2</b> Dummy Variables</a></li>
+<li class="chapter" data-level="12.3" data-path="natural-logarithm.html"><a href="natural-logarithm.html"><i class="fa fa-check"></i><b>12.3</b> Natural Logarithm</a></li>
+<li class="chapter" data-level="12.4" data-path="functional-form.html"><a href="functional-form.html"><i class="fa fa-check"></i><b>12.4</b> Functional Form</a></li>
+<li class="chapter" data-level="12.5" data-path="interaction-effects.html"><a href="interaction-effects.html"><i class="fa fa-check"></i><b>12.5</b> Interaction Effects</a></li>
+<li class="chapter" data-level="12.6" data-path="exercises-8.html"><a href="exercises-8.html"><i class="fa fa-check"></i><b>12.6</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="anova.html"><a href="anova.html"><i class="fa fa-check"></i><b>13</b> ANOVA</a><ul>
 <li class="chapter" data-level="13.1" data-path="exercises-9.html"><a href="exercises-9.html"><i class="fa fa-check"></i><b>13.1</b> Exercises</a></li>
@@ -382,9 +385,9 @@ Figure 4.7: Evolution of the All Transaction House Price Index for the U.S. and 
 <li><p><em>GSS Trends</em>: The General Social Survey is an annual survey tracking societal trends in the United States. For a more detailed description, you can go to <a href="https://gss.norc.org/About-The-GSS">here</a>. In this exercise, I want you pick a particular issue and one breakdown (e.g., age, sex, political affiliation) and plot a graph with R/RStudio on how attitudes about the issue have evolved over time. I suggest, you go to <a href="https://gssdataexplorer.norc.org/trends/">trends</a> and pick a topic you are interested in. You will see that the website already provides you with a trend graph but I want you to use R/RStudio for this exercise and re-create the graph (i.e., you get zero points if you simply copy the graph provided on the website). For example, suppose you are interested in the variable  which asks the respondent ``Do you feel that the income from your job alone is enough to meet your family’s usual monthly expenses and bills?’’ One of many possibility to plot this with R/RStudio would look like Panel (b) in Figure . Make sure to label the <span class="math inline">\(x\)</span>,<span class="math inline">\(y\)</span>-axis correctly as well as provide a legend for the graph.</p>
 <p><img src="bookdownproj_files/figure-html/SUMEXenoughincome-1.png" width="672" /></p></li>
 <li><p><em>WDI Boxplot</em>: The World Bank data <code>wdi</code> contains development indicators and also information how the World Bank classifies those countries by region and income. Focus on the years 1975, 1985, 1995, 2005, and 2015 for this question. Use the command <code>subset()</code> to extract those years. Next, you have to install and load the package <code>gglpot2</code>. The package <code>ggplot2</code> allows you to do some great data visualization. Execute the commands below. The result is a boxplot by region and by year. Based on the resulting plot, explain differences between regions in terms of life expectancy and also in terms of evolution over time.</p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="exercises.html#cb65-1"></a>wdiofinterest =<span class="st"> </span><span class="kw">subset</span>(wdi,year <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">1975</span>,<span class="dv">1985</span>,<span class="dv">1995</span>,<span class="dv">2005</span>,<span class="dv">2015</span>))</span>
-<span id="cb65-2"><a href="exercises.html#cb65-2"></a><span class="kw">ggplot</span>(wdiofinterest,<span class="kw">aes</span>(<span class="dt">x=</span>region,<span class="dt">y=</span>lifeexp,<span class="dt">fill=</span><span class="kw">as.character</span>(year)))<span class="op">+</span></span>
-<span id="cb65-3"><a href="exercises.html#cb65-3"></a><span class="kw">geom_boxplot</span>(<span class="dt">position=</span><span class="kw">position_dodge</span>(<span class="dv">1</span>))</span></code></pre></div></li>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="exercises.html#cb21-1"></a>wdiofinterest =<span class="st"> </span><span class="kw">subset</span>(wdi,year <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">1975</span>,<span class="dv">1985</span>,<span class="dv">1995</span>,<span class="dv">2005</span>,<span class="dv">2015</span>))</span>
+<span id="cb21-2"><a href="exercises.html#cb21-2"></a><span class="kw">ggplot</span>(wdiofinterest,<span class="kw">aes</span>(<span class="dt">x=</span>region,<span class="dt">y=</span>lifeexp,<span class="dt">fill=</span><span class="kw">as.character</span>(year)))<span class="op">+</span></span>
+<span id="cb21-3"><a href="exercises.html#cb21-3"></a><span class="kw">geom_boxplot</span>(<span class="dt">position=</span><span class="kw">position_dodge</span>(<span class="dv">1</span>))</span></code></pre></div></li>
 <li><p><em>Faithful</em>: The data set <code>faithful</code> which is included with R contains data about the eruption and waiting times in minutes between eruptions from Old Faithful geyser in Yellowstone National Park. Use a scatter plot to visualize the relationship between eruption and waiting time. That is, generate graph with <span class="math inline">\(eruption\)</span> on the vertical axis and <span class="math inline">\(waiting\)</span> on the horizontal axis. What do you observe? What is the correlation coefficient? Is there anything odd in the resulting scatter plot? Next, use R to construct a empirical cumulative distribution function.</p></li>
 </ol>
 
