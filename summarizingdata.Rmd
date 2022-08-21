@@ -231,7 +231,7 @@ ggplot(rincblls,aes(x=years,y=value,group=Class))+geom_line(aes(linetype=Class))
 
 9. *WDI Boxplot*: The World Bank data `wdi` contains development indicators and also information how the World Bank classifies those countries by region and income. Focus on the years 1975, 1985, 1995, 2005, and 2015 for this question. Use the command `subset()` to extract those years. Next, you have to install and load the package `gglpot2`. The package `ggplot2` allows you to do some great data visualization. Execute the commands below. The result is a boxplot by region and by year. Based on the resulting plot, explain differences between regions in terms of life expectancy and also in terms of evolution over time. 
 
-    ```{r SUMEXboxplotwdi,warning=FALSE,results=FALSE,fig.show='hide'}
+```{r SUMEXboxplotwdi,warning=FALSE,results=FALSE,fig.show='hide',eval=FALSE}
 wdiofinterest = subset(wdi,year %in% c(1975,1985,1995,2005,2015))
 ggplot(wdiofinterest,aes(x=region,y=lifeexp,fill=as.character(year)))+
     geom_boxplot(position=position_dodge(1))

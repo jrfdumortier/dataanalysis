@@ -33,7 +33,7 @@ Besides many online resources, there are also two useful textbooks:
 - [Introductory Statistics with R](https://link.springer.com/book/10.1007/978-0-387-79054-1) by Peter Dalgaard
 - [An Introduction to Statistical Learning with Applications in R](https://link.springer.com/book/10.1007/978-1-4614-7138-7) by Gareth James, Daniela Witten, Trevor Hastie, and Robert Tibshirani
 
-An additional online tutorial is [Using R for Introductory Statistics](https://cran.r-project.org/doc/contrib/Verzani-SimpleR.pdf) by John Verzani.
+An additional online tutorial is [Using R for Introductory Statistics](https://cran.r-project.org/doc/contrib/Verzani-SimpleR.pdf) by John Verzani. If you prefer a video, the following [Introduction to R and RStudio](https://www.youtube.com/watch?v=lL0s1coNtRk) has been proven useful for people learning R/RStudio. 
 
 ## Opening RStudio
 Work in RStudio is done in four windows:

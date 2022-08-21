@@ -33,6 +33,13 @@ The purpose of this chapter is to provide an introduction and overview about the
 - Usefulness of learning about probability, statistics, and regression models
 - Installing R and RStudio
 
+There is also a YouTube video and slides associated with this chapter:
+
+- [Introduction to Probability and Statistics - Video](https://youtu.be/-nySM9cmYwo)
+- [Introduction to Probability and Statistics - Slides](https://github.com/jrfdumortier/slidesstatistics/blob/main/IntroductionStatistics.pdf)
+
+You are also encouraged to review a video on some [Basic Mathematical Tools](https://youtu.be/9FYr_QRdF44).
+
 ## Overview
 We are surrounded by probability and statistics on a daily basis because the world around us is uncertain. The purpose of probability theory and statistics is to explain and model stochastic processes such that predictions can be made. Probability and the application of statistics occur basically everywhere. For example, if you order something online, other products are suggested to you. Those suggestions are not random but are based on how you compare to other shoppers interested in similar items. Consider the following examples:
 
@@ -111,6 +118,6 @@ You must first install R on your computer by doing the following:
 Note that we will only be using RStudio which runs R in the background. You cannot use RStudio without having R installed first. Throughout the lecture, I will be referring to R/RStudio.  
 
 ### Locating Files on your Computer
-To import data into R/RStudio, you must know (1) where files are located on your computer and (2) what the current working directory of R/RStudio is. On a windows computer, the directory where files are stored is like `C:\Users\Jerome\Documents\R Lecture` and for Mac OS it is similar to `/Users/Jerome/R Lecture`
+To import data into R/RStudio, you must know (1) where files are located on your computer and (2) what the current working directory of R/RStudio is. On a windows computer, the directory where files are stored is like `C:\Users\Jerome\Documents\R Lecture` and for Mac OS it is similar to `/Users/Jerome/R Lecture`. 
 
-Think of the working directory as the folder on your computer in which R/RStudio is looking for files by default. After opening R/RStudio, you can type `getwd()` in the console window and R/RStudio will return the current working directory. Usually, you have project specific working directories. For this class, create a directory on your computer in which you are going to store all the files associated with this class. You should download the dataset `honda.csv` into the directory you have created for this class. You can use the command `setwd()` to change the R/RStudio to the new working directory. Note - and this is an oddity with R/RStudio - you have to replace the backslash with a forward slash if you are a Windows user, i.e., use `setwd("C:/Users/Jerome/Documents/R Lecture")`. Assuming the `honda.csv` file is in the directory you have set above, use `honda= read.csv("honda.csv")` to load the file into R/RStudio. The data should appear in the Environment tab on the right side in R/RStudio. It is important that you can do the steps described above before the lecture to alleviate any issues at the beginning.
+Think of the working directory as the folder on your computer in which R/RStudio is looking for files by default. After opening R/RStudio, you can type `getwd()` in the console window and R/RStudio will return the current working directory. Usually, you have project specific working directories. For this class, create a directory on your computer in which you are going to store all the files associated with this class. You should download the dataset `honda.csv` into the directory you have created for this class. You can use the command `setwd()` to change the R/RStudio to the new working directory. Note - and this is an oddity with R/RStudio - you have to replace the backslash with a forward slash if you are a Windows user, i.e., use `setwd("C:/Users/Jerome/Documents/R Lecture")`. Assuming the `honda.csv` file is in the directory you have set above, use `honda= read.csv("honda.csv")` to load the file into R/RStudio. The data should appear in the Environment tab on the right side in R/RStudio. It is important that you can do the steps described above before the lecture to alleviate any issues at the beginning. A good video explaining the concept of file path can be found [here](https://youtu.be/NG7Y0kkGR8g).
