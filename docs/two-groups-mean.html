@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>9.4 Two-Groups: Mean | Data Analysis for Public Affairs with R</title>
   <meta name="description" content="9.4 Two-Groups: Mean | Data Analysis for Public Affairs with R" />
-  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
   <meta property="og:title" content="9.4 Two-Groups: Mean | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2022-08-21" />
+<meta name="date" content="2022-09-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -379,10 +379,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="two-groups-mean" class="section level2 hasAnchor" number="9.4">
 <h2><span class="header-section-number">9.4</span> Two-Groups: Mean<a href="two-groups-mean.html#two-groups-mean" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>To conduct a hypothesis test about the difference between two means in R, the command <code>t.test()</code> must be used. Consider the schools in the data set <code>ohioschool</code> and <code>ohioscore</code>. Suppose you are interested in whether large schools perform as well as small schools. The school enrollment cut-off values chosen are 1000 and 3000 for small and large schools:</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="two-groups-mean.html#cb38-1" aria-hidden="true" tabindex="-1"></a>ohio        <span class="ot">=</span> <span class="fu">merge</span>(ohioincome,ohioscore,<span class="at">by=</span><span class="fu">c</span>(<span class="st">&quot;IRN&quot;</span>))</span>
-<span id="cb38-2"><a href="two-groups-mean.html#cb38-2" aria-hidden="true" tabindex="-1"></a>ohio_small  <span class="ot">=</span> <span class="fu">subset</span>(ohio,enrollment<span class="sc">&lt;</span><span class="dv">1000</span>)</span>
-<span id="cb38-3"><a href="two-groups-mean.html#cb38-3" aria-hidden="true" tabindex="-1"></a>ohio_large  <span class="ot">=</span> <span class="fu">subset</span>(ohio,enrollment<span class="sc">&gt;=</span><span class="dv">3000</span>)</span>
-<span id="cb38-4"><a href="two-groups-mean.html#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(ohio_small<span class="sc">$</span>score,ohio_large<span class="sc">$</span>score)</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="two-groups-mean.html#cb52-1" aria-hidden="true" tabindex="-1"></a>ohio        <span class="ot">=</span> <span class="fu">merge</span>(ohioincome,ohioscore,<span class="at">by=</span><span class="fu">c</span>(<span class="st">&quot;IRN&quot;</span>))</span>
+<span id="cb52-2"><a href="two-groups-mean.html#cb52-2" aria-hidden="true" tabindex="-1"></a>ohio_small  <span class="ot">=</span> <span class="fu">subset</span>(ohio,enrollment<span class="sc">&lt;</span><span class="dv">1000</span>)</span>
+<span id="cb52-3"><a href="two-groups-mean.html#cb52-3" aria-hidden="true" tabindex="-1"></a>ohio_large  <span class="ot">=</span> <span class="fu">subset</span>(ohio,enrollment<span class="sc">&gt;=</span><span class="dv">3000</span>)</span>
+<span id="cb52-4"><a href="two-groups-mean.html#cb52-4" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(ohio_small<span class="sc">$</span>score,ohio_large<span class="sc">$</span>score)</span></code></pre></div>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>13 ANOVA | Data Analysis for Public Affairs with R</title>
   <meta name="description" content="13 ANOVA | Data Analysis for Public Affairs with R" />
-  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
   <meta property="og:title" content="13 ANOVA | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2022-08-21" />
+<meta name="date" content="2022-09-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -383,8 +383,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 where <span class="math inline">\(d_1\)</span> and <span class="math inline">\(d_2\)</span> are dummy variables. Consider the following model using the <code>gss2018</code> data:
 <span class="math display">\[income = \beta_0 + \beta_1 \cdot fulltime + \beta_2 \cdot government\]</span>
 where <em>fulltime</em> and <em>government</em> are dummy variables. That is, if <span class="math inline">\(fulltime=1\)</span>, then the person has a fulltime job. If <span class="math inline">\(government=1\)</span>, then the respondent works for the government. To distinguish <em>j</em> categories only <em>j-1</em> dummy variables are needed. Otherwise, we have perfect multicollinearity. The category without a dummy variable is the base category.</p>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="anova.html#cb67-1" aria-hidden="true" tabindex="-1"></a>bhat <span class="ot">=</span> <span class="fu">lm</span>(income<span class="sc">~</span>fulltime<span class="sc">+</span>government,<span class="at">data=</span>gss2018)</span>
-<span id="cb67-2"><a href="anova.html#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat)</span></code></pre></div>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="anova.html#cb81-1" aria-hidden="true" tabindex="-1"></a>bhat <span class="ot">=</span> <span class="fu">lm</span>(income<span class="sc">~</span>fulltime<span class="sc">+</span>government,<span class="at">data=</span>gss2018)</span>
+<span id="cb81-2"><a href="anova.html#cb81-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = income ~ fulltime + government, data = gss2018)

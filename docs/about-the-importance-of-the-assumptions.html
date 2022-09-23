@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>11.4 About the Importance of the Assumptions | Data Analysis for Public Affairs with R</title>
   <meta name="description" content="11.4 About the Importance of the Assumptions | Data Analysis for Public Affairs with R" />
-  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
   <meta property="og:title" content="11.4 About the Importance of the Assumptions | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2022-08-21" />
+<meta name="date" content="2022-09-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -379,8 +379,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="about-the-importance-of-the-assumptions" class="section level2 hasAnchor" number="11.4">
 <h2><span class="header-section-number">11.4</span> About the Importance of the Assumptions<a href="about-the-importance-of-the-assumptions.html#about-the-importance-of-the-assumptions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The data in <code>anscombe</code> illustrates the danger of simply relying on the regression output. The so-called <a href="https://en.wikipedia.org/wiki/Anscombe%27s_quartet">Anscombe’s Quartet</a> includes <span class="math inline">\(i=1,\dots,4\)</span> data series denoted <span class="math inline">\(y_i\)</span> (dependent variable) and <span class="math inline">\(x_i\)</span> (independent variable). Estimate the four regression models and compare the results and the conclusions you draw from the output. Next, plot the observations and include the fitted line. The regression output for the first set:</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="about-the-importance-of-the-assumptions.html#cb57-1" aria-hidden="true" tabindex="-1"></a>bhat1 <span class="ot">=</span> <span class="fu">lm</span>(y1<span class="sc">~</span>x1,<span class="at">data=</span>anscombe)</span>
-<span id="cb57-2"><a href="about-the-importance-of-the-assumptions.html#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat1)</span></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="about-the-importance-of-the-assumptions.html#cb71-1" aria-hidden="true" tabindex="-1"></a>bhat1 <span class="ot">=</span> <span class="fu">lm</span>(y1<span class="sc">~</span>x1,<span class="at">data=</span>anscombe)</span>
+<span id="cb71-2"><a href="about-the-importance-of-the-assumptions.html#cb71-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat1)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = y1 ~ x1, data = anscombe)
@@ -400,9 +400,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Multiple R-squared:  0.6665, Adjusted R-squared:  0.6295 
 ## F-statistic: 17.99 on 1 and 9 DF,  p-value: 0.00217</code></pre>
 <p>And the associated scatter plot with the regression equation:</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="about-the-importance-of-the-assumptions.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(anscombe<span class="sc">$</span>x1,anscombe<span class="sc">$</span>y1)</span>
-<span id="cb59-2"><a href="about-the-importance-of-the-assumptions.html#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(bhat1,<span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="about-the-importance-of-the-assumptions.html#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(anscombe<span class="sc">$</span>x1,anscombe<span class="sc">$</span>y1)</span>
+<span id="cb73-2"><a href="about-the-importance-of-the-assumptions.html#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(bhat1,<span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
 </div>
             </section>
 

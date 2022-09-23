@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>17.1 Truncation | Data Analysis for Public Affairs with R</title>
   <meta name="description" content="17.1 Truncation | Data Analysis for Public Affairs with R" />
-  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
   <meta property="og:title" content="17.1 Truncation | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2022-08-21" />
+<meta name="date" content="2022-09-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -381,68 +381,68 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In the case of truncation, a certain part of the data is not observed. In the graph below, the true parameters are <span class="math inline">\(\beta_0=-2\)</span> and <span class="math inline">\(\beta_1=0.5\)</span>. Values <span class="math inline">\(y&lt;0\)</span> are not reported in the data. The green regression line is “correct” whereas the “red” is the line obtained from a regression model which ignores the truncation.</p>
 <p><img src="bookdownproj_files/figure-html/truncationplot-1.png" width="672" />
 If all the data was observed, the correct regression model would give the following results:</p>
-<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="truncation.html#cb131-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat_real)</span></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="truncation.html#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat_real)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = y_real ~ x, data = truncation)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -3.3679 -0.6004 -0.0081  0.7393  2.0573 
+## -1.6899 -0.7141 -0.1481  0.9212  2.3015 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) -1.85131    0.28165  -6.573 3.32e-08 ***
-## x            0.41096    0.05053   8.132 1.39e-10 ***
+## (Intercept) -2.68327    0.26910  -9.971 2.78e-13 ***
+## x            0.54851    0.04708  11.651 1.35e-15 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 1.087 on 48 degrees of freedom
-## Multiple R-squared:  0.5794, Adjusted R-squared:  0.5707 
-## F-statistic: 66.13 on 1 and 48 DF,  p-value: 1.391e-10</code></pre>
+## Residual standard error: 0.9849 on 48 degrees of freedom
+## Multiple R-squared:  0.7388, Adjusted R-squared:  0.7333 
+## F-statistic: 135.7 on 1 and 48 DF,  p-value: 1.352e-15</code></pre>
 <p>The estimates are biased if truncation is ignored:</p>
-<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="truncation.html#cb133-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat_truncated)</span></code></pre></div>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="truncation.html#cb147-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat_truncated)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = y_obs ~ x, data = truncation)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -1.4305 -0.6119 -0.1071  0.6081  1.8499 
+## -1.5360 -0.5125 -0.1217  0.3381  1.7730 
 ## 
 ## Coefficients:
-##             Estimate Std. Error t value Pr(&gt;|t|)  
-## (Intercept) -0.09118    0.55497  -0.164   0.8709  
-## x            0.21601    0.07783   2.775   0.0105 *
+##             Estimate Std. Error t value Pr(&gt;|t|)   
+## (Intercept) -0.32647    0.60271  -0.542  0.59325   
+## x            0.27163    0.08076   3.363  0.00269 **
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 0.8649 on 24 degrees of freedom
-##   (24 observations deleted due to missingness)
-## Multiple R-squared:  0.243,  Adjusted R-squared:  0.2114 
-## F-statistic: 7.702 on 1 and 24 DF,  p-value: 0.01051</code></pre>
+## Residual standard error: 0.8034 on 23 degrees of freedom
+##   (25 observations deleted due to missingness)
+## Multiple R-squared:  0.3297, Adjusted R-squared:  0.3005 
+## F-statistic: 11.31 on 1 and 23 DF,  p-value: 0.002687</code></pre>
 <p>To correct for the truncation, use the functions from the package <a href="https://cran.r-project.org/web/packages/truncreg/index.html">truncreg</a> which allows to reduce the bias of the coefficients:</p>
-<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="truncation.html#cb135-1" aria-hidden="true" tabindex="-1"></a>bhat_correct <span class="ot">=</span> <span class="fu">truncreg</span>(y_obs<span class="sc">~</span>x,<span class="at">data=</span>truncation)</span>
-<span id="cb135-2"><a href="truncation.html#cb135-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat_correct)</span></code></pre></div>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="truncation.html#cb149-1" aria-hidden="true" tabindex="-1"></a>bhat_correct <span class="ot">=</span> <span class="fu">truncreg</span>(y_obs<span class="sc">~</span>x,<span class="at">data=</span>truncation)</span>
+<span id="cb149-2"><a href="truncation.html#cb149-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat_correct)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## truncreg(formula = y_obs ~ x, data = truncation)
 ## 
 ## BFGS maximization method
-## 34 iterations, 0h:0m:0s 
-## g&#39;(-H)^-1g = 5.37E-11 
+## 21 iterations, 0h:0m:0s 
+## g&#39;(-H)^-1g = 2.48E-08 
 ##  
 ## 
 ## 
 ## Coefficients :
-##             Estimate Std. Error t-value  Pr(&gt;|t|)    
-## (Intercept) -1.84056    1.51680 -1.2135   0.22496    
-## x            0.40456    0.17673  2.2891   0.02207 *  
-## sigma        1.06895    0.25391  4.2099 2.555e-05 ***
+##             Estimate Std. Error t-value Pr(&gt;|t|)    
+## (Intercept) -1.46348    1.04830 -1.3961 0.162698    
+## x            0.40621    0.13040  3.1152 0.001838 ** 
+## sigma        0.85093    0.15561  5.4684 4.54e-08 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Log-Likelihood: -28.167 on 3 Df</code></pre>
+## Log-Likelihood: -26.634 on 3 Df</code></pre>
 </div>
             </section>
 

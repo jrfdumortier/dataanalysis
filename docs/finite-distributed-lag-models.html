@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>19.2 Finite Distributed Lag Models | Data Analysis for Public Affairs with R</title>
   <meta name="description" content="19.2 Finite Distributed Lag Models | Data Analysis for Public Affairs with R" />
-  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
   <meta property="og:title" content="19.2 Finite Distributed Lag Models | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2022-08-21" />
+<meta name="date" content="2022-09-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -404,32 +404,32 @@ Characteristics of this assumption:</p>
 <p>The reformulated equation to be estimated is
 <span class="math display">\[y_t = \alpha \cdot (1-\lambda) + \beta_0 \cdot x_t + \lambda \cdot y_{t-1} + \upsilon_t\]</span>
 The notation of the error term has changed from <span class="math inline">\(\epsilon_t\)</span> to <span class="math inline">\(\upsilon_t\)</span> in order to highlight that the terms will be different.</p>
-<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="finite-distributed-lag-models.html#cb202-1" aria-hidden="true" tabindex="-1"></a>koyck <span class="ot">=</span> usdata</span>
-<span id="cb202-2"><a href="finite-distributed-lag-models.html#cb202-2" aria-hidden="true" tabindex="-1"></a>koyck<span class="sc">$</span>year <span class="ot">=</span> <span class="fu">substr</span>(koyck<span class="sc">$</span>date,<span class="dv">1</span>,<span class="dv">4</span>)</span>
-<span id="cb202-3"><a href="finite-distributed-lag-models.html#cb202-3" aria-hidden="true" tabindex="-1"></a>koyck <span class="ot">=</span> <span class="fu">aggregate</span>(koyck[<span class="fu">c</span>(<span class="st">&quot;income&quot;</span>,<span class="st">&quot;consumption&quot;</span>)],<span class="at">FUN=</span>sum,<span class="at">by=</span><span class="fu">list</span>(koyck<span class="sc">$</span>year))</span>
-<span id="cb202-4"><a href="finite-distributed-lag-models.html#cb202-4" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(koyck) <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;year&quot;</span>,<span class="st">&quot;income&quot;</span>,<span class="st">&quot;consumption&quot;</span>)</span>
-<span id="cb202-5"><a href="finite-distributed-lag-models.html#cb202-5" aria-hidden="true" tabindex="-1"></a>bhat <span class="ot">=</span> <span class="fu">lm</span>(<span class="at">formula =</span> consumption <span class="sc">~</span> income <span class="sc">+</span> <span class="fu">Lag</span>(consumption), <span class="at">data =</span> koyck)</span>
-<span id="cb202-6"><a href="finite-distributed-lag-models.html#cb202-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat)</span></code></pre></div>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="finite-distributed-lag-models.html#cb216-1" aria-hidden="true" tabindex="-1"></a>koyck <span class="ot">=</span> usdata</span>
+<span id="cb216-2"><a href="finite-distributed-lag-models.html#cb216-2" aria-hidden="true" tabindex="-1"></a>koyck<span class="sc">$</span>year <span class="ot">=</span> <span class="fu">substr</span>(koyck<span class="sc">$</span>date,<span class="dv">1</span>,<span class="dv">4</span>)</span>
+<span id="cb216-3"><a href="finite-distributed-lag-models.html#cb216-3" aria-hidden="true" tabindex="-1"></a>koyck <span class="ot">=</span> <span class="fu">aggregate</span>(koyck[<span class="fu">c</span>(<span class="st">&quot;income&quot;</span>,<span class="st">&quot;consumption&quot;</span>)],<span class="at">FUN=</span>sum,<span class="at">by=</span><span class="fu">list</span>(koyck<span class="sc">$</span>year))</span>
+<span id="cb216-4"><a href="finite-distributed-lag-models.html#cb216-4" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(koyck) <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;year&quot;</span>,<span class="st">&quot;income&quot;</span>,<span class="st">&quot;consumption&quot;</span>)</span>
+<span id="cb216-5"><a href="finite-distributed-lag-models.html#cb216-5" aria-hidden="true" tabindex="-1"></a>bhat <span class="ot">=</span> <span class="fu">lm</span>(<span class="at">formula =</span> consumption <span class="sc">~</span> income <span class="sc">+</span> <span class="fu">Lag</span>(consumption), <span class="at">data =</span> koyck)</span>
+<span id="cb216-6"><a href="finite-distributed-lag-models.html#cb216-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = consumption ~ income + Lag(consumption), data = koyck)
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
-## -15753.3   -814.0    195.7   1216.6   5858.3 
+## -15749.3   -812.3    195.0   1215.5   5855.3 
 ## 
 ## Coefficients:
 ##                    Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)      -1702.4244   819.3698  -2.078  0.04130 *  
-## income               0.8116     0.0285  28.480  &lt; 2e-16 ***
-## Lag(consumption)     0.1029     0.0311   3.308  0.00147 ** 
+## (Intercept)      -1.701e+03  8.189e+02  -2.077  0.04136 *  
+## income            8.111e-01  2.848e-02  28.481  &lt; 2e-16 ***
+## Lag(consumption)  1.034e-01  3.108e-02   3.328  0.00138 ** 
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 2774 on 72 degrees of freedom
+## Residual standard error: 2772 on 72 degrees of freedom
 ##   (1 observation deleted due to missingness)
 ## Multiple R-squared:  0.9952, Adjusted R-squared:  0.995 
-## F-statistic:  7425 on 2 and 72 DF,  p-value: &lt; 2.2e-16</code></pre>
+## F-statistic:  7433 on 2 and 72 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
             </section>
 

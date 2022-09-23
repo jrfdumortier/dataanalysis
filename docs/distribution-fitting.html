@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>6.4 Distribution Fitting | Data Analysis for Public Affairs with R</title>
   <meta name="description" content="6.4 Distribution Fitting | Data Analysis for Public Affairs with R" />
-  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
   <meta property="og:title" content="6.4 Distribution Fitting | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2022-08-21" />
+<meta name="date" content="2022-09-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -378,14 +378,94 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="distribution-fitting" class="section level2 hasAnchor" number="6.4">
 <h2><span class="header-section-number">6.4</span> Distribution Fitting<a href="distribution-fitting.html#distribution-fitting" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-Bins of a histogram:
-<p>For example, consider the multiple choice questionnaire with three questions and five possible answers. What is the probability of having all three correct? What is the probability of having at most 2 correct?</p>
-<pre><code> &lt;&lt;DIS_Binomial,echo=TRUE,message=FALSE,warning=FALSE,error=FALSE,include=TRUE,fig.keep=&quot;none&quot;&gt;&gt;=
- dbinom(3,3,1/5)  </code></pre>
-<p>pbinom(2,3,1/5)
-pbinom(4,14,0.3)
-qnorm(0.8,21.1,5.1)
-@</p>
+<p>To do empirical work, it is often necessary to determine the distribution of your data. For example, you have individual observations of corn yields in a particular county and would like to know the probability to get a yield below a certain threshold. The same would apply if you are interested in constructing a wind farm in a county knowing that electricity production is not possible below and above a certain wind speed. Thus, you need to know the probability distribution of wind speeds in that county. Distribution fitting not only involves parameter estimation but also determination which distribution fits best. In a first step, let us assume that you know the distribution which fits the data, then you can use the function <code>fitdistr()</code> from the package <a href="https://cran.r-project.org/web/packages/MASS/index.html">MASS</a>.</p>
+<p>In a first step, we randomly generate data (N=10000) that follows a Weibull distribution with known shape (<span class="math inline">\(k\)</span>) and scale (<span class="math inline">\(\lambda\)</span>) parameters, i.e., <span class="math inline">\(k=2\)</span> and <span class="math inline">\(\lambda=1.5\)</span>.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="distribution-fitting.html#cb23-1" aria-hidden="true" tabindex="-1"></a>weibulldata    <span class="ot">=</span> <span class="fu">rweibull</span>(<span class="dv">10000</span>,<span class="dv">2</span>,<span class="fl">1.5</span>)</span>
+<span id="cb23-2"><a href="distribution-fitting.html#cb23-2" aria-hidden="true" tabindex="-1"></a>weibullpara    <span class="ot">=</span> <span class="fu">fitdistr</span>(weibulldata,<span class="at">densfun=</span><span class="st">&quot;weibull&quot;</span>,<span class="at">lower=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>))</span>
+<span id="cb23-3"><a href="distribution-fitting.html#cb23-3" aria-hidden="true" tabindex="-1"></a>shape          <span class="ot">=</span> weibullpara<span class="sc">$</span>estimate[<span class="dv">1</span>]</span>
+<span id="cb23-4"><a href="distribution-fitting.html#cb23-4" aria-hidden="true" tabindex="-1"></a>scale          <span class="ot">=</span> weibullpara<span class="sc">$</span>estimate[<span class="dv">2</span>]</span>
+<span id="cb23-5"><a href="distribution-fitting.html#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(weibulldata,<span class="at">freq=</span><span class="cn">FALSE</span>,<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.6</span>),<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">6</span>))</span>
+<span id="cb23-6"><a href="distribution-fitting.html#cb23-6" aria-hidden="true" tabindex="-1"></a>range          <span class="ot">=</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">6</span>,<span class="fl">0.1</span>)</span>
+<span id="cb23-7"><a href="distribution-fitting.html#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(range,<span class="fu">dweibull</span>(range,shape,scale))</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/DISfitweibull1-1.png" width="672" /></p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="distribution-fitting.html#cb24-1" aria-hidden="true" tabindex="-1"></a>bhat1 <span class="ot">=</span> <span class="fu">fitDist</span>(weibulldata,<span class="at">k=</span><span class="dv">2</span>,<span class="at">type=</span><span class="st">&quot;realplus&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+  |                                                                                                                          
+  |                                                                                                                    |   0%
+  |                                                                                                                          
+  |=====                                                                                                               |   4%
+  |                                                                                                                          
+  |==========                                                                                                          |   9%
+  |                                                                                                                          
+  |===============                                                                                                     |  13%
+  |                                                                                                                          
+  |====================                                                                                                |  17%</code></pre>
+<pre><code>## Warning in MLE(ll2, start = list(eta.mu = eta.mu, eta.sigma = eta.sigma), : possible convergence problem: optim gave code=1
+## false convergence (8)</code></pre>
+<pre><code>## 
+  |                                                                                                                          
+  |=========================                                                                                           |  22%
+  |                                                                                                                          
+  |==============================                                                                                      |  26%
+  |                                                                                                                          
+  |===================================                                                                                 |  30%
+  |                                                                                                                          
+  |========================================                                                                            |  35%
+  |                                                                                                                          
+  |=============================================                                                                       |  39%
+  |                                                                                                                          
+  |==================================================                                                                  |  43%</code></pre>
+<pre><code>## Warning in MLE(ll2, start = list(eta.mu = eta.mu, eta.sigma = eta.sigma), : possible convergence problem: optim gave code=1
+## false convergence (8)</code></pre>
+<pre><code>## 
+  |                                                                                                                          
+  |=======================================================                                                             |  48%</code></pre>
+<pre><code>## Warning in MLE(ll2, start = list(eta.mu = eta.mu, eta.sigma = eta.sigma), : possible convergence problem: optim gave code=1
+## false convergence (8)</code></pre>
+<pre><code>## 
+  |                                                                                                                          
+  |=============================================================                                                       |  52%</code></pre>
+<pre><code>## Warning in MLE(ll2, start = list(eta.mu = eta.mu, eta.sigma = eta.sigma), : possible convergence problem: optim gave code=1
+## false convergence (8)</code></pre>
+<pre><code>## 
+  |                                                                                                                          
+  |==================================================================                                                  |  57%
+  |                                                                                                                          
+  |=======================================================================                                             |  61%
+  |                                                                                                                          
+  |============================================================================                                        |  65%
+  |                                                                                                                          
+  |=================================================================================                                   |  70%
+  |                                                                                                                          
+  |======================================================================================                              |  74%
+  |                                                                                                                          
+  |===========================================================================================                         |  78%
+  |                                                                                                                          
+  |================================================================================================                    |  83%
+  |                                                                                                                          
+  |=====================================================================================================               |  87%</code></pre>
+<pre><code>## Warning in MLE(ll4, start = list(eta.mu = eta.mu, eta.sigma = eta.sigma, : possible convergence problem: optim gave code=1
+## function evaluation limit reached without convergence (9)</code></pre>
+<pre><code>## 
+  |                                                                                                                          
+  |==========================================================================================================          |  91%
+  |                                                                                                                          
+  |===============================================================================================================     |  96%
+  |                                                                                                                          
+  |====================================================================================================================| 100%</code></pre>
+<p>In a second example, we fit a Gamma distribution to the Meridian Hills housing data. For simplicity, we divide the housing price by 1000 meaning that prices are now measured in $1,000.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="distribution-fitting.html#cb36-1" aria-hidden="true" tabindex="-1"></a>mhprice   <span class="ot">=</span> mh1<span class="sc">$</span>price<span class="sc">/</span><span class="dv">1000</span></span>
+<span id="cb36-2"><a href="distribution-fitting.html#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(mhprice,<span class="at">freq=</span><span class="cn">FALSE</span>,<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">2000</span>))</span>
+<span id="cb36-3"><a href="distribution-fitting.html#cb36-3" aria-hidden="true" tabindex="-1"></a>fit_mhp <span class="ot">=</span> <span class="fu">fitdistr</span>(mhprice,<span class="at">densfun=</span><span class="st">&quot;gamma&quot;</span>)</span>
+<span id="cb36-4"><a href="distribution-fitting.html#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">dgamma</span>(<span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">2000</span>,<span class="dv">1</span>),<span class="at">shape=</span>fit_mhp<span class="sc">$</span>estimate[<span class="dv">1</span>],</span>
+<span id="cb36-5"><a href="distribution-fitting.html#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="at">rate=</span>fit_mhp<span class="sc">$</span>estimate[<span class="dv">2</span>]))</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/DISfitmh1-1.png" width="672" />
+In the last example, we fir a Poisson distrubtion to the car ownership data</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="distribution-fitting.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(evdata<span class="sc">$</span>numcars,<span class="at">freq=</span><span class="cn">FALSE</span>)</span>
+<span id="cb37-2"><a href="distribution-fitting.html#cb37-2" aria-hidden="true" tabindex="-1"></a>range <span class="ot">=</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">10</span>)</span>
+<span id="cb37-3"><a href="distribution-fitting.html#cb37-3" aria-hidden="true" tabindex="-1"></a>cardata_poisson <span class="ot">=</span> <span class="fu">fitdistr</span>(evdata<span class="sc">$</span>numcars,<span class="at">densfun=</span><span class="st">&quot;poisson&quot;</span>)</span>
+<span id="cb37-4"><a href="distribution-fitting.html#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(range,<span class="fu">dpois</span>(range,<span class="at">lambda=</span>cardata_poisson<span class="sc">$</span>estimate[<span class="dv">1</span>]))</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 </div>
             </section>
 

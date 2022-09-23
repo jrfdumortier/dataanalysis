@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>8.2 Confidence Interval for the Mean | Data Analysis for Public Affairs with R</title>
   <meta name="description" content="8.2 Confidence Interval for the Mean | Data Analysis for Public Affairs with R" />
-  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
   <meta property="og:title" content="8.2 Confidence Interval for the Mean | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2022-08-21" />
+<meta name="date" content="2022-09-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -384,13 +384,13 @@ In most cases, <span class="math inline">\(\sigma^2\)</span> is unknown. If <spa
 <p>Consider the data in <code>eggweights</code>. To construct the confidence interval, the sample mean and sample standard deviation are required. Calculating those values leads to <span class="math inline">\(\bar{x}=61.05\)</span> and <span class="math inline">\(s=4.46\)</span>. So the standard error is
 <span class="math display">\[S.E. = \frac{4.46}{\sqrt{61}}=0.57\]</span>
 For <span class="math inline">\(n=61\)</span> and <span class="math inline">\(df=n-1=60\)</span>, we find the confidence interval of <span class="math inline">\(61.05 \pm 2.0003 \cdot 0.57\)</span>.</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="confidence-interval-for-the-mean.html#cb28-1" aria-hidden="true" tabindex="-1"></a>nobs           <span class="ot">=</span> <span class="fu">nrow</span>(mh2)</span>
-<span id="cb28-2"><a href="confidence-interval-for-the-mean.html#cb28-2" aria-hidden="true" tabindex="-1"></a>meandata       <span class="ot">=</span> <span class="fu">mean</span>(mh2<span class="sc">$</span>price)</span>
-<span id="cb28-3"><a href="confidence-interval-for-the-mean.html#cb28-3" aria-hidden="true" tabindex="-1"></a>stdev          <span class="ot">=</span> <span class="fu">sd</span>(mh2<span class="sc">$</span>price)</span>
-<span id="cb28-4"><a href="confidence-interval-for-the-mean.html#cb28-4" aria-hidden="true" tabindex="-1"></a>t_alpha_df     <span class="ot">=</span> <span class="fu">qt</span>(<span class="fl">0.975</span>,nobs<span class="dv">-1</span>)</span>
-<span id="cb28-5"><a href="confidence-interval-for-the-mean.html#cb28-5" aria-hidden="true" tabindex="-1"></a>CI_lower       <span class="ot">=</span> meandata<span class="sc">-</span>t_alpha_df<span class="sc">*</span>stdev<span class="sc">/</span><span class="fu">sqrt</span>(nobs)</span>
-<span id="cb28-6"><a href="confidence-interval-for-the-mean.html#cb28-6" aria-hidden="true" tabindex="-1"></a>CI_upper       <span class="ot">=</span> meandata<span class="sc">+</span>t_alpha_df<span class="sc">*</span>stdev<span class="sc">/</span><span class="fu">sqrt</span>(nobs)</span>
-<span id="cb28-7"><a href="confidence-interval-for-the-mean.html#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(mh2<span class="sc">$</span>price)</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="confidence-interval-for-the-mean.html#cb42-1" aria-hidden="true" tabindex="-1"></a>nobs           <span class="ot">=</span> <span class="fu">nrow</span>(mh2)</span>
+<span id="cb42-2"><a href="confidence-interval-for-the-mean.html#cb42-2" aria-hidden="true" tabindex="-1"></a>meandata       <span class="ot">=</span> <span class="fu">mean</span>(mh2<span class="sc">$</span>price)</span>
+<span id="cb42-3"><a href="confidence-interval-for-the-mean.html#cb42-3" aria-hidden="true" tabindex="-1"></a>stdev          <span class="ot">=</span> <span class="fu">sd</span>(mh2<span class="sc">$</span>price)</span>
+<span id="cb42-4"><a href="confidence-interval-for-the-mean.html#cb42-4" aria-hidden="true" tabindex="-1"></a>t_alpha_df     <span class="ot">=</span> <span class="fu">qt</span>(<span class="fl">0.975</span>,nobs<span class="dv">-1</span>)</span>
+<span id="cb42-5"><a href="confidence-interval-for-the-mean.html#cb42-5" aria-hidden="true" tabindex="-1"></a>CI_lower       <span class="ot">=</span> meandata<span class="sc">-</span>t_alpha_df<span class="sc">*</span>stdev<span class="sc">/</span><span class="fu">sqrt</span>(nobs)</span>
+<span id="cb42-6"><a href="confidence-interval-for-the-mean.html#cb42-6" aria-hidden="true" tabindex="-1"></a>CI_upper       <span class="ot">=</span> meandata<span class="sc">+</span>t_alpha_df<span class="sc">*</span>stdev<span class="sc">/</span><span class="fu">sqrt</span>(nobs)</span>
+<span id="cb42-7"><a href="confidence-interval-for-the-mean.html#cb42-7" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(mh2<span class="sc">$</span>price)</span></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>19.6 Random Walk | Data Analysis for Public Affairs with R</title>
   <meta name="description" content="19.6 Random Walk | Data Analysis for Public Affairs with R" />
-  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
   <meta property="og:title" content="19.6 Random Walk | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2022-08-21" />
+<meta name="date" content="2022-09-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -379,8 +379,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="random-walk" class="section level2 hasAnchor" number="19.6">
 <h2><span class="header-section-number">19.6</span> Random Walk<a href="random-walk.html#random-walk" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>A time series with no autocorrelation is called White Noise. Consider the following plot of White Noise:</p>
-<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="random-walk.html#cb213-1" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(<span class="fu">ts</span>(<span class="fu">rnorm</span>(<span class="dv">100</span>)))<span class="sc">+</span><span class="fu">ggtitle</span>(<span class="st">&quot;White Noise&quot;</span>)<span class="sc">+</span><span class="fu">theme_bw</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-88-1.png" width="672" /></p>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="random-walk.html#cb227-1" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(<span class="fu">ts</span>(<span class="fu">rnorm</span>(<span class="dv">100</span>)))<span class="sc">+</span><span class="fu">ggtitle</span>(<span class="st">&quot;White Noise&quot;</span>)<span class="sc">+</span><span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-89-1.png" width="672" /></p>
 <p>Let <span class="math inline">\(\epsilon_t\)</span> be white noise then the random walk without drift is
 <span class="math display">\[y_t = y_{t-1} + \epsilon_t\]</span></p>
 <p>This is called an autoregressive model of order 1 or AR(1). Example:

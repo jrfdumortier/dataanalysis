@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>17.4 Hurdle and Zero-Inflation Models | Data Analysis for Public Affairs with R</title>
   <meta name="description" content="17.4 Hurdle and Zero-Inflation Models | Data Analysis for Public Affairs with R" />
-  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
   <meta property="og:title" content="17.4 Hurdle and Zero-Inflation Models | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2022-08-21" />
+<meta name="date" content="2022-09-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -380,10 +380,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">17.4</span> Hurdle and Zero-Inflation Models<a href="hurdle-and-zero-inflation-models.html#hurdle-and-zero-inflation-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Count data often includes many observations at 0 which can lead to problems using a Poisson or a Negative-Binomial Regression Model. The application of both models is first illustrated with the <code>NMES1988</code> data from the package <a href="https://cran.r-project.org/web/packages/AER/index.html">AER</a> and then with the BLM protest data.</p>
 <p>The data <code>NMES1988</code> contains 4406 observations of people on Medicare who are 66 years or older. The outcome of interest is the number of doctor <span class="math inline">\(visits\)</span> as a function of <span class="math inline">\(hospital\)</span> (number of hospital visits), <span class="math inline">\(health\)</span> (self-indicated health status), <span class="math inline">\(chronic\)</span> (number of chronic conditions), <span class="math inline">\(gender\)</span>, <span class="math inline">\(school\)</span>, and <span class="math inline">\(insurance\)</span>.</p>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="hurdle-and-zero-inflation-models.html#cb166-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;NMES1988&quot;</span>,<span class="at">package=</span><span class="st">&quot;AER&quot;</span>)</span>
-<span id="cb166-2"><a href="hurdle-and-zero-inflation-models.html#cb166-2" aria-hidden="true" tabindex="-1"></a>eq <span class="ot">=</span> visits<span class="sc">~</span>hospital<span class="sc">+</span>health<span class="sc">+</span>chronic<span class="sc">+</span>gender<span class="sc">+</span>school<span class="sc">+</span>insurance</span>
-<span id="cb166-3"><a href="hurdle-and-zero-inflation-models.html#cb166-3" aria-hidden="true" tabindex="-1"></a>bhat_pois <span class="ot">=</span> <span class="fu">glm</span>(eq,<span class="at">data=</span>NMES1988,<span class="at">family=</span>poisson)</span>
-<span id="cb166-4"><a href="hurdle-and-zero-inflation-models.html#cb166-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat_pois)</span></code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="hurdle-and-zero-inflation-models.html#cb180-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;NMES1988&quot;</span>,<span class="at">package=</span><span class="st">&quot;AER&quot;</span>)</span>
+<span id="cb180-2"><a href="hurdle-and-zero-inflation-models.html#cb180-2" aria-hidden="true" tabindex="-1"></a>eq <span class="ot">=</span> visits<span class="sc">~</span>hospital<span class="sc">+</span>health<span class="sc">+</span>chronic<span class="sc">+</span>gender<span class="sc">+</span>school<span class="sc">+</span>insurance</span>
+<span id="cb180-3"><a href="hurdle-and-zero-inflation-models.html#cb180-3" aria-hidden="true" tabindex="-1"></a>bhat_pois <span class="ot">=</span> <span class="fu">glm</span>(eq,<span class="at">data=</span>NMES1988,<span class="at">family=</span>poisson)</span>
+<span id="cb180-4"><a href="hurdle-and-zero-inflation-models.html#cb180-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat_pois)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = eq, family = poisson, data = NMES1988)
@@ -412,8 +412,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## AIC: 35959
 ## 
 ## Number of Fisher Scoring iterations: 5</code></pre>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="hurdle-and-zero-inflation-models.html#cb168-1" aria-hidden="true" tabindex="-1"></a>bhat_nb <span class="ot">=</span> <span class="fu">glm</span>(eq,<span class="at">data=</span>NMES1988)</span>
-<span id="cb168-2"><a href="hurdle-and-zero-inflation-models.html#cb168-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat_nb)</span></code></pre></div>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="hurdle-and-zero-inflation-models.html#cb182-1" aria-hidden="true" tabindex="-1"></a>bhat_nb <span class="ot">=</span> <span class="fu">glm</span>(eq,<span class="at">data=</span>NMES1988)</span>
+<span id="cb182-2"><a href="hurdle-and-zero-inflation-models.html#cb182-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat_nb)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = eq, data = NMES1988)
@@ -442,8 +442,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## AIC: 28769
 ## 
 ## Number of Fisher Scoring iterations: 2</code></pre>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="hurdle-and-zero-inflation-models.html#cb170-1" aria-hidden="true" tabindex="-1"></a>bhat_hurdle <span class="ot">=</span> <span class="fu">hurdle</span>(eq,<span class="at">data=</span>NMES1988,<span class="at">dist=</span><span class="st">&quot;negbin&quot;</span>)</span>
-<span id="cb170-2"><a href="hurdle-and-zero-inflation-models.html#cb170-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat_hurdle)</span></code></pre></div>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="hurdle-and-zero-inflation-models.html#cb184-1" aria-hidden="true" tabindex="-1"></a>bhat_hurdle <span class="ot">=</span> <span class="fu">hurdle</span>(eq,<span class="at">data=</span>NMES1988,<span class="at">dist=</span><span class="st">&quot;negbin&quot;</span>)</span>
+<span id="cb184-2"><a href="hurdle-and-zero-inflation-models.html#cb184-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat_hurdle)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## hurdle(formula = eq, data = NMES1988, dist = &quot;negbin&quot;)

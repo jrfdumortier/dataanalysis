@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>4.7 Exercises | Data Analysis for Public Affairs with R</title>
   <meta name="description" content="4.7 Exercises | Data Analysis for Public Affairs with R" />
-  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
   <meta property="og:title" content="4.7 Exercises | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2022-08-21" />
+<meta name="date" content="2022-09-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -397,28 +397,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>What do the two data series describe?</li>
 <li>Plot the two data series over time. Your result should look similar to Panel (b) in Figure <span class="math inline">\(\ref{fig:SUM_exercises}\)</span>.</li>
 <li>How do the housing prices evolve in your state compared to the United States. Do homes in your state get more expensive than the general trend? Less? How has the housing market evolved during and after the 2008 recession?</li>
-</ul>
+</ul></li>
+</ol>
 <div class="figure"><span style="display:block;" id="fig:SUMexhousing"></span>
 <img src="bookdownproj_files/figure-html/SUMexhousing-1.png" alt="Evolution of the All Transaction House Price Index for the U.S. and Indiana (Source: FRED St. Louis)" width="672" />
 <p class="caption">
 Figure 4.7: Evolution of the All Transaction House Price Index for the U.S. and Indiana (Source: FRED St. Louis)
 </p>
-</div></li>
-<li><p><em>BMW Data and Boxplot</em>: Consider the used car data set <code>bmw</code> for this exercise which contains the prices and miles of a particular BMW model in the Indianapolis area. The column <span class="math inline">\(allwheeldrive\)</span> indicates whether the car has all wheel drive (1) or not (0). You must use the R/RStudio commands and not just look at the data. Answer the following questions:</p>
+</div>
+<ol start="6" style="list-style-type: decimal">
+<li><em>BMW Data and Boxplot</em>: Consider the used car data set <code>bmw</code> for this exercise which contains the prices and miles of a particular BMW model in the Indianapolis area. The column <span class="math inline">\(allwheeldrive\)</span> indicates whether the car has all wheel drive (1) or not (0). You must use the R/RStudio commands and not just look at the data. Answer the following questions:
 <ol style="list-style-type: lower-alpha">
 <li>Calculate the following statistics for price and miles: Minimum, maximum, median, and mean.</li>
 <li>Calculate the same statistics as in the previous part but separate the data into two groups: (1) with all-wheel drive and (2) without all-wheel drive.</li>
 <li>Use the data on prices only. Create a box-and-whisker plot grouped by all-wheel drive. This must be one graph.</li>
 </ol></li>
-<li><p><em>EPA Fuel Economy</em>: Use the 2018 data contained in <code>vehicles</code> for this problem.</p>
+<li><em>EPA Fuel Economy</em>: Use the 2018 data contained in <code>vehicles</code> for this problem.
 <ol style="list-style-type: lower-alpha">
 <li>Generate a scatter plot of the variables <code>displ</code> and <code>comb08U</code>. What can you say about the shape of the scatter plot and the relationship between engine displacement and fuel economy.</li>
 <li>Transform both variables into their natural logarithm and plot the scatter plot. What changes?</li>
 <li>Create a table summarizing the average fuel economy by vehicle class (VClass) for the following four manufacturers: (1) Ford, (2) Chevrolet, (3) Toyota and (4) Honda. You will have to use the function <code>aggregate()</code> for this.</li>
 </ol></li>
-<li><p><em>GSS Trends</em>: The General Social Survey is an annual survey tracking societal trends in the United States. For a more detailed description, you can go to <a href="https://gss.norc.org/About-The-GSS">here</a>. In this exercise, I want you pick a particular issue and one breakdown (e.g., age, sex, political affiliation) and plot a graph with R/RStudio on how attitudes about the issue have evolved over time. I suggest, you go to <a href="https://gssdataexplorer.norc.org/trends/">trends</a> and pick a topic you are interested in. You will see that the website already provides you with a trend graph but I want you to use R/RStudio for this exercise and re-create the graph (i.e., you get zero points if you simply copy the graph provided on the website). For example, suppose you are interested in the variable which asks the respondent ``Do you feel that the income from your job alone is enough to meet your family’s usual monthly expenses and bills?’’ One of many possibility to plot this with R/RStudio would look like Panel (b) in Figure <span class="math inline">\(\ref{fig:SUM_exercises}\)</span>. Make sure to label the <span class="math inline">\(x\)</span>,<span class="math inline">\(y\)</span>-axis correctly as well as provide a legend for the graph.</p>
-<p><img src="bookdownproj_files/figure-html/SUMEXenoughincome-1.png" width="672" /></p></li>
-<li><p><em>WDI Boxplot</em>: The World Bank data <code>wdi</code> contains development indicators and also information how the World Bank classifies those countries by region and income. Focus on the years 1975, 1985, 1995, 2005, and 2015 for this question. Use the command <code>subset()</code> to extract those years. Next, you have to install and load the package <code>gglpot2</code>. The package <code>ggplot2</code> allows you to do some great data visualization. Execute the commands below. The result is a boxplot by region and by year. Based on the resulting plot, explain differences between regions in terms of life expectancy and also in terms of evolution over time.</p></li>
+<li><em>GSS Trends</em>: The General Social Survey is an annual survey tracking societal trends in the United States. For a more detailed description, you can go to <a href="https://gss.norc.org/About-The-GSS">here</a>. In this exercise, I want you pick a particular issue and one breakdown (e.g., age, sex, political affiliation) and plot a graph with R/RStudio on how attitudes about the issue have evolved over time. I suggest, you go to <a href="https://gssdataexplorer.norc.org/trends/">trends</a> and pick a topic you are interested in. You will see that the website already provides you with a trend graph but I want you to use R/RStudio for this exercise and re-create the graph (i.e., you get zero points if you simply copy the graph provided on the website). For example, suppose you are interested in the variable which asks the respondent ``Do you feel that the income from your job alone is enough to meet your family’s usual monthly expenses and bills?’’ One of many possibility to plot this with R/RStudio would look like Panel (b) in Figure <span class="math inline">\(\ref{fig:SUM_exercises}\)</span>. Make sure to label the <span class="math inline">\(x\)</span>,<span class="math inline">\(y\)</span>-axis correctly as well as provide a legend for the graph.</li>
+</ol>
+<p><img src="bookdownproj_files/figure-html/SUMEXenoughincome-1.png" width="672" /></p>
+<ol start="9" style="list-style-type: decimal">
+<li><em>WDI Boxplot</em>: The World Bank data <code>wdi</code> contains development indicators and also information how the World Bank classifies those countries by region and income. Focus on the years 1975, 1985, 1995, 2005, and 2015 for this question. Use the command <code>subset()</code> to extract those years. Next, you have to install and load the package <code>gglpot2</code>. The package <code>ggplot2</code> allows you to do some great data visualization. Execute the commands below. The result is a boxplot by region and by year. Based on the resulting plot, explain differences between regions in terms of life expectancy and also in terms of evolution over time.</li>
 </ol>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="exercises.html#cb21-1" aria-hidden="true" tabindex="-1"></a>wdiofinterest <span class="ot">=</span> <span class="fu">subset</span>(wdi,year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1975</span>,<span class="dv">1985</span>,<span class="dv">1995</span>,<span class="dv">2005</span>,<span class="dv">2015</span>))</span>
 <span id="cb21-2"><a href="exercises.html#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(wdiofinterest,<span class="fu">aes</span>(<span class="at">x=</span>region,<span class="at">y=</span>lifeexp,<span class="at">fill=</span><span class="fu">as.character</span>(year)))<span class="sc">+</span></span>

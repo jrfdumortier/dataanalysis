@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>19.4 Autoregressive Model | Data Analysis for Public Affairs with R</title>
   <meta name="description" content="19.4 Autoregressive Model | Data Analysis for Public Affairs with R" />
-  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
   <meta property="og:title" content="19.4 Autoregressive Model | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2022-08-21" />
+<meta name="date" content="2022-09-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -381,12 +381,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>An autoregressive model includes lagged dependent variables. One of the simplest model is an autoregressive model of order 1, i.e., an AR(1) Model
 <span class="math display">\[y_t = \alpha + \beta \cdot y_{t-1} + \epsilon_t\]</span>
 where <span class="math inline">\(\epsilon_t \sim N(0,\sigma^2)\)</span>. Consider the data of earthquakes over magnitude 7 in the data set <code>quakes</code>:
-<img src="bookdownproj_files/figure-html/unnamed-chunk-81-1.png" width="672" /></p>
-<p>In a first step, a scatter plot is constructed of <span class="math inline">\(Y_{t-1}\)</span> and <span class="math inline">\(y_t\)</span>. The easiest way is to use the function <code>acf</code>:
 <img src="bookdownproj_files/figure-html/unnamed-chunk-82-1.png" width="672" /></p>
+<p>In a first step, a scatter plot is constructed of <span class="math inline">\(Y_{t-1}\)</span> and <span class="math inline">\(y_t\)</span>. The easiest way is to use the function <code>acf</code>:
+<img src="bookdownproj_files/figure-html/unnamed-chunk-83-1.png" width="672" /></p>
 <pre><code>## [1] 0.2486712</code></pre>
 <p>The correlation coefficicent of 0.25 indicates a weak positive correlation between the number of earthquakes in periods <span class="math inline">\(t\)</span> and <span class="math inline">\(t-1\)</span>. Remember that correlation is not causation. The AR(1) model can be estimated with the <code>lm()</code> function used previously:</p>
-<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="autoregressive-model.html#cb208-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(quakes<span class="sc">~</span><span class="fu">Lag</span>(quakes),<span class="at">data=</span>quakes))</span></code></pre></div>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="autoregressive-model.html#cb222-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(quakes<span class="sc">~</span><span class="fu">Lag</span>(quakes),<span class="at">data=</span>quakes))</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = quakes ~ Lag(quakes), data = quakes)
@@ -409,13 +409,13 @@ where <span class="math inline">\(\epsilon_t \sim N(0,\sigma^2)\)</span>. Consid
 <p>Note that although the slope coefficient associated with the lagged term is statistically significant, the R-squared value is very low.
 The third examples uses data on Japanese car production (<code>jcars</code>) to illustrate the concept of autocorrelation. The focus is on car production after 1963.</p>
 <p>In a first step, the data is visualized using <code>ggplot</code>:</p>
-<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="autoregressive-model.html#cb210-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(jcars,<span class="fu">aes</span>(<span class="at">x=</span>year,<span class="at">y=</span>cars))<span class="sc">+</span><span class="fu">geom_line</span>()<span class="sc">+</span><span class="fu">theme_bw</span>()<span class="sc">+</span><span class="fu">theme</span>(<span class="at">axis.title.x=</span><span class="fu">element_blank</span>())</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-85-1.png" width="672" /></p>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="autoregressive-model.html#cb224-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(jcars,<span class="fu">aes</span>(<span class="at">x=</span>year,<span class="at">y=</span>cars))<span class="sc">+</span><span class="fu">geom_line</span>()<span class="sc">+</span><span class="fu">theme_bw</span>()<span class="sc">+</span><span class="fu">theme</span>(<span class="at">axis.title.x=</span><span class="fu">element_blank</span>())</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-86-1.png" width="672" /></p>
 <p>The sample autocorrelation function (ACF) is the correlation between <span class="math inline">\(y_t\)</span> and <span class="math inline">\(y_{t-1}\)</span>, <span class="math inline">\(y_{t-2}\)</span>, <span class="math inline">\(y_{t-3}\)</span>, and so on. It can be written as follows:
 <span class="math display">\[\rho_j = \frac{Cov(y_t,y_{t-j})}{\sqrt{Var(y_t)\cdot Var(y_{t-j})}}\]</span></p>
 <p>The ACF can be used to identify a possible structure of time series either of the actual time series or the residuals of the regression. The autocorrelation function (ACF) is plotted using the function <code>acf()</code> in R.</p>
-<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="autoregressive-model.html#cb211-1" aria-hidden="true" tabindex="-1"></a><span class="fu">acf</span>(jcars<span class="sc">$</span>cars)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-86-1.png" width="672" /></p>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="autoregressive-model.html#cb225-1" aria-hidden="true" tabindex="-1"></a><span class="fu">acf</span>(jcars<span class="sc">$</span>cars)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-87-1.png" width="672" /></p>
 </div>
             </section>
 

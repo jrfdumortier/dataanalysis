@@ -1,6 +1,12 @@
 # Summarizing Data
 The purpose of this section is the description of data using numerical and graphical methods. Numerical methods include measures of central tendency and dispersion. Graphical methods presented are histograms, box plots, and empirical cumulative distribution functions. The last part presents the concepts of correlation and covariance. 
 
+There is also a YouTube video and slides associated with this chapter:
+
+[Summarizing Data - Video](https://youtu.be/70zOMfx2z_s)
+[Summarizing Data - Slides](https://github.com/jrfdumortier/slidesstatistics/blob/main/SummarizingData.pdf)
+
+
 ## Measures of Central Tendency
 The three main measures of central tendency are mean, median, and mode. The mean reports the average value of a data set. Sometimes, it is also called arithmetic mean or average and can be expressed as follows:
 $$\bar{x} = \frac{1}{n} \sum_{i=1}^{N} x_i$$
@@ -192,7 +198,7 @@ hps[["prop.row"]]
     - Plot the two data series over time. Your result should look similar to Panel (b) in Figure \ref{fig:SUM_exercises}.
     - How do the housing prices evolve in your state compared to the United States. Do homes in your state get more expensive than the general trend? Less? How has the housing market evolved during and after the 2008 recession?
     
-    ```{r SUMexhousing,fig.cap="Evolution of the All Transaction House Price Index for the U.S. and Indiana (Source: FRED St. Louis)",echo=FALSE,warning=FALSE}
+```{r SUMexhousing,fig.cap="Evolution of the All Transaction House Price Index for the U.S. and Indiana (Source: FRED St. Louis)",echo=FALSE,warning=FALSE}
 ggplot(housing,aes(x=date,y=value,color=Region))+
         geom_line(aes(color=Region))+theme_bw()+ylim(0,500)+
         ylab("Index 1980:Q1=100")+scale_color_brewer(palette="Paired")+
@@ -212,7 +218,7 @@ rm(housing)
 
 8. *GSS Trends*: The General Social Survey is an annual survey tracking societal trends in the United States. For a more detailed description, you can go to [here](https://gss.norc.org/About-The-GSS). In this exercise, I want you pick a particular issue and one breakdown (e.g., age, sex, political affiliation) and plot a graph with R/RStudio on how attitudes about the issue have evolved over time. I suggest, you go to [trends](https://gssdataexplorer.norc.org/trends/) and pick a topic you are interested in. You will see that the website already provides you with a trend graph but I want you to use R/RStudio for this exercise and re-create the graph (i.e., you get zero points if you simply copy the graph provided on the website). For example, suppose you are interested in the variable \emph{rincblls} which asks the respondent ``Do you feel that the income from your job alone is enough to meet your family's usual monthly expenses and bills?'' One of many possibility to plot this with R/RStudio would look like Panel (b) in Figure \ref{fig:SUM_exercises}. Make sure to label the $x$,$y$-axis correctly as well as provide a legend for the graph. 
 
-    ```{r SUMEXenoughincome,echo=FALSE}
+```{r SUMEXenoughincome,echo=FALSE}
 years             = seq(2002,2018,4)
 LC                = c(21,35.3,28.4,19.6,39.1)   # Question response: YES (for all)
 LC                = data.frame(years,Class="Lower Class",value=LC)

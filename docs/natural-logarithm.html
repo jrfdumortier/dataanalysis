@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>12.3 Natural Logarithm | Data Analysis for Public Affairs with R</title>
   <meta name="description" content="12.3 Natural Logarithm | Data Analysis for Public Affairs with R" />
-  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
   <meta property="og:title" content="12.3 Natural Logarithm | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2022-08-21" />
+<meta name="date" content="2022-09-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -417,8 +417,8 @@ In this case, <span class="math inline">\(\beta_1\)</span> is the elasticity of 
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="natural-logarithm.html#cb63-1" aria-hidden="true" tabindex="-1"></a>bhat <span class="ot">=</span> <span class="fu">lm</span>(<span class="fu">log</span>(total)<span class="sc">~</span>yards<span class="sc">+</span>att<span class="sc">+</span>exp<span class="sc">+</span>draft1<span class="sc">+</span>veteran<span class="sc">+</span>changeteam<span class="sc">+</span>pbowlever,<span class="at">data=</span>nfl)</span>
-<span id="cb63-2"><a href="natural-logarithm.html#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat)</span></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="natural-logarithm.html#cb77-1" aria-hidden="true" tabindex="-1"></a>bhat <span class="ot">=</span> <span class="fu">lm</span>(<span class="fu">log</span>(total)<span class="sc">~</span>yards<span class="sc">+</span>att<span class="sc">+</span>exp<span class="sc">+</span>draft1<span class="sc">+</span>veteran<span class="sc">+</span>changeteam<span class="sc">+</span>pbowlever,<span class="at">data=</span>nfl)</span>
+<span id="cb77-2"><a href="natural-logarithm.html#cb77-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = log(total) ~ yards + att + exp + draft1 + veteran + 

@@ -186,18 +186,18 @@ The equation for a combination with repetition is as follows:
 $${n+k-1 \choose k} = \frac{(n+k-1)!}{k! \cdot (n-1)!}=\frac{(n+k-1)!}{k! \cdot (n-k)!}$$
  
 ## Exercises
-1. *Simple Probabilities*: Calculate the following probabilities:
+1. ***Simple Probabilities***: Calculate the following probabilities:
     a. Drawing an ace from a deck of cards? 
     b. Getting a number divisible by 3 after rolling a die? 
     c. Sum of two dice being equal to 7? 
     d. Getting at least one head after flipping a coin twice?
 
-2. *Probability of a Union I*: Consider the two events *A* and *B* which are mutually exclusive. The probabilities associated with those two events are *Pr(A)=0.23* and *Pr(B)=0.47*. What is the probability of *A* or *B* occurring? What is the probability that neither occurs?
+2. ***Probability of a Union I***: Consider the two events *A* and *B* which are mutually exclusive. The probabilities associated with those two events are *Pr(A)=0.23* and *Pr(B)=0.47*. What is the probability of *A* or *B* occurring? What is the probability that neither occurs?
 
-3. *Probability of a Union II*: Consider the probability associated with the two events *A* and *B*, i.e., *Pr(A)=0.45* and *Pr(B)=0.3*. The probability that both of those events occur at the same time, i.e., $Pr(A\cap B)$ is 0.2. What is the probability of the union?
+3. ***Probability of a Union II***: Consider the probability associated with the two events *A* and *B*, i.e., *Pr(A)=0.45* and *Pr(B)=0.3*. The probability that both of those events occur at the same time, i.e., $Pr(A\cap B)$ is 0.2. What is the probability of the union?
 
-4. *Party*: Assume that 52\% of the population are Republicans and 48\% of the population are Democrats. On a particular issue, 64\% of Republicans are in favor and 52\% of Democrats are in favor. If you randomly pick a person who is in favor of the issue, what is the probability that the person is a Democrat?
+4. ***Party***: Assume that 52\% of the population are Republicans and 48\% of the population are Democrats. On a particular issue, 64\% of Republicans are in favor and 52\% of Democrats are in favor. If you randomly pick a person who is in favor of the issue, what is the probability that the person is a Democrat?
 
-5. *Smoke Detector*: Smoke and fire detectors are essential to save lives. Unfortunately, there are many false fire alarms. Suppose that the probability of an actual fire happening is very low at 5\%. Smoke detectors are extremely good at detecting an actual fire, i.e., given a fire, there is a 99\% probability that the smoke alarm detects it. If there is no fire, there is a 10\% probability that the fire alarm sounds. Suppose that you hear a fire alarm, what is the probability that there is a fire? 
+5. ***Smoke Detector***: Smoke and fire detectors are essential to save lives. Unfortunately, there are many false fire alarms. Suppose that the probability of an actual fire happening is very low at 5\%. Smoke detectors are extremely good at detecting an actual fire, i.e., given a fire, there is a 99\% probability that the smoke alarm detects it. If there is no fire, there is a 10\% probability that the fire alarm sounds. Suppose that you hear a fire alarm, what is the probability that there is a fire? 
 
-6. *Independence*: Suppose you are rolling a die. Consider the events *A* ("rolling an even number") and *B* ("rolling a number less than four"). Are *A* and *B* independent?
+6. ***Independence***: Suppose you are rolling a die. Consider the events *A* ("rolling an even number") and *B* ("rolling a number less than four"). Are *A* and *B* independent?
