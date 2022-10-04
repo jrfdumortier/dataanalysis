@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2022-09-23" />
+<meta name="date" content="2022-10-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -382,7 +382,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span class="math display">\[y_t = \beta_0 + \beta_1 t + \epsilon_t\]</span>
 Model 2: Autoregressive Model
 <span class="math display">\[ y_t = \beta_0 + \beta_1 t + n_t \quad \text{where} \quad n_t = \phi_1 n_{t-1} + \epsilon_t\]</span></p>
-<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="forecasting-japanense-car-production.html#cb228-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(cars<span class="sc">~</span>year,<span class="at">data=</span>jcars))</span></code></pre></div>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="forecasting-japanense-car-production.html#cb212-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(cars<span class="sc">~</span>year,<span class="at">data=</span>jcars))</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = cars ~ year, data = jcars)
@@ -401,7 +401,7 @@ Model 2: Autoregressive Model
 ## Residual standard error: 583.2 on 24 degrees of freedom
 ## Multiple R-squared:  0.9755, Adjusted R-squared:  0.9745 
 ## F-statistic: 957.1 on 1 and 24 DF,  p-value: &lt; 2.2e-16</code></pre>
-<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="forecasting-japanense-car-production.html#cb230-1" aria-hidden="true" tabindex="-1"></a><span class="fu">auto.arima</span>(jcars<span class="sc">$</span>cars)</span></code></pre></div>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="forecasting-japanense-car-production.html#cb214-1" aria-hidden="true" tabindex="-1"></a><span class="fu">auto.arima</span>(jcars<span class="sc">$</span>cars)</span></code></pre></div>
 <pre><code>## Series: jcars$cars 
 ## ARIMA(0,1,0) with drift 
 ## 
@@ -412,8 +412,8 @@ Model 2: Autoregressive Model
 ## 
 ## sigma^2 = 182188:  log likelihood = -186.37
 ## AIC=376.75   AICc=377.29   BIC=379.18</code></pre>
-<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="forecasting-japanense-car-production.html#cb232-1" aria-hidden="true" tabindex="-1"></a>bhat <span class="ot">=</span> <span class="fu">Arima</span>(jcars<span class="sc">$</span>cars,<span class="at">order=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>),<span class="at">include.constant=</span><span class="cn">TRUE</span>,<span class="at">include.drift =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb232-2"><a href="forecasting-japanense-car-production.html#cb232-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat)</span></code></pre></div>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="forecasting-japanense-car-production.html#cb216-1" aria-hidden="true" tabindex="-1"></a>bhat <span class="ot">=</span> <span class="fu">Arima</span>(jcars<span class="sc">$</span>cars,<span class="at">order=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>),<span class="at">include.constant=</span><span class="cn">TRUE</span>,<span class="at">include.drift =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb216-2"><a href="forecasting-japanense-car-production.html#cb216-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat)</span></code></pre></div>
 <pre><code>## Series: jcars$cars 
 ## ARIMA(1,0,0) with drift 
 ## 
@@ -428,8 +428,8 @@ Model 2: Autoregressive Model
 ## Training set error measures:
 ##                    ME     RMSE      MAE        MPE     MAPE      MASE      ACF1
 ## Training set 17.28081 389.7285 311.2957 -0.7522648 5.354775 0.5840007 0.1564618</code></pre>
-<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="forecasting-japanense-car-production.html#cb234-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">forecast</span>(bhat))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-93-1.png" width="672" /></p>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="forecasting-japanense-car-production.html#cb218-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">forecast</span>(bhat))</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-92-1.png" width="672" /></p>
 </div>
             </section>
 

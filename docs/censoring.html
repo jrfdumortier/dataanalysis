@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2022-09-23" />
+<meta name="date" content="2022-10-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -379,9 +379,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="censoring" class="section level2 hasAnchor" number="17.2">
 <h2><span class="header-section-number">17.2</span> Censoring<a href="censoring.html#censoring" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In the case of censoring, the values of the dependent variable are reported at a certain point if they are above or below a certain value.</p>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-46-1.png" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-45-1.png" width="672" /></p>
 <p>If all data was reported at the correct value, the following following regression model could be executed:</p>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="censoring.html#cb151-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat_real)</span></code></pre></div>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="censoring.html#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat_real)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = y_real ~ x, data = censoring)
@@ -401,7 +401,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Multiple R-squared:  0.7618, Adjusted R-squared:  0.7568 
 ## F-statistic: 153.5 on 1 and 48 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>Ignoring censoring leads to biased results:</p>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="censoring.html#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat_censored)</span></code></pre></div>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="censoring.html#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat_censored)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = y_obs ~ x, data = censoring)
@@ -421,8 +421,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Multiple R-squared:  0.6799, Adjusted R-squared:  0.6733 
 ## F-statistic:   102 on 1 and 48 DF,  p-value: 1.84e-13</code></pre>
 <p>Using the R package <a href="https://cran.r-project.org/web/packages/censReg/index.html">censReg</a>) allows for the reduction of the bias:</p>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="censoring.html#cb155-1" aria-hidden="true" tabindex="-1"></a>b_correct <span class="ot">=</span> <span class="fu">censReg</span>(y_obs<span class="sc">~</span>x,<span class="at">data=</span>censoring)</span>
-<span id="cb155-2"><a href="censoring.html#cb155-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(b_correct)</span></code></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="censoring.html#cb139-1" aria-hidden="true" tabindex="-1"></a>b_correct <span class="ot">=</span> <span class="fu">censReg</span>(y_obs<span class="sc">~</span>x,<span class="at">data=</span>censoring)</span>
+<span id="cb139-2"><a href="censoring.html#cb139-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(b_correct)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## censReg(formula = y_obs ~ x, data = censoring)

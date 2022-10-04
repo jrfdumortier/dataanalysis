@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2022-09-23" />
+<meta name="date" content="2022-10-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -385,14 +385,14 @@ Thus, the 95% confidence interval is constructed as follows:
 Consider the voting data in <code>gss2018</code>. The mean is 0.67 and the standard error is
 <span class="math display">\[\sigma_{\bar{x}}=\sqrt{\frac{0.67 \cdot (1-0.67)}{772}}=0.0169\]</span></p>
 <p>In this case, the margin of error is <span class="math inline">\(1.96 \cdot 0.0169=0.033\)</span>. To calculate a confidence interval for a proportion in R, the function <code>t.test()</code> is used. Before using the function, the manual calculations are presented.</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="confidence-interval-for-a-proportion.html#cb39-1" aria-hidden="true" tabindex="-1"></a>nobs           <span class="ot">=</span> <span class="fu">nrow</span>(gss2018)</span>
-<span id="cb39-2"><a href="confidence-interval-for-a-proportion.html#cb39-2" aria-hidden="true" tabindex="-1"></a>meandata       <span class="ot">=</span> <span class="fu">mean</span>(gss2018<span class="sc">$</span>vote)</span>
-<span id="cb39-3"><a href="confidence-interval-for-a-proportion.html#cb39-3" aria-hidden="true" tabindex="-1"></a>z              <span class="ot">=</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>)</span>
-<span id="cb39-4"><a href="confidence-interval-for-a-proportion.html#cb39-4" aria-hidden="true" tabindex="-1"></a>stderror       <span class="ot">=</span> <span class="fu">sqrt</span>(meandata<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>meandata)<span class="sc">/</span>nobs)</span>
-<span id="cb39-5"><a href="confidence-interval-for-a-proportion.html#cb39-5" aria-hidden="true" tabindex="-1"></a>CI_lower       <span class="ot">=</span> meandata<span class="sc">-</span>z<span class="sc">*</span>stderror</span>
-<span id="cb39-6"><a href="confidence-interval-for-a-proportion.html#cb39-6" aria-hidden="true" tabindex="-1"></a>CI_upper       <span class="ot">=</span> meandata<span class="sc">+</span>z<span class="sc">*</span>stderror</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="confidence-interval-for-a-proportion.html#cb23-1" aria-hidden="true" tabindex="-1"></a>nobs           <span class="ot">=</span> <span class="fu">nrow</span>(gss2018)</span>
+<span id="cb23-2"><a href="confidence-interval-for-a-proportion.html#cb23-2" aria-hidden="true" tabindex="-1"></a>meandata       <span class="ot">=</span> <span class="fu">mean</span>(gss2018<span class="sc">$</span>vote)</span>
+<span id="cb23-3"><a href="confidence-interval-for-a-proportion.html#cb23-3" aria-hidden="true" tabindex="-1"></a>z              <span class="ot">=</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>)</span>
+<span id="cb23-4"><a href="confidence-interval-for-a-proportion.html#cb23-4" aria-hidden="true" tabindex="-1"></a>stderror       <span class="ot">=</span> <span class="fu">sqrt</span>(meandata<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>meandata)<span class="sc">/</span>nobs)</span>
+<span id="cb23-5"><a href="confidence-interval-for-a-proportion.html#cb23-5" aria-hidden="true" tabindex="-1"></a>CI_lower       <span class="ot">=</span> meandata<span class="sc">-</span>z<span class="sc">*</span>stderror</span>
+<span id="cb23-6"><a href="confidence-interval-for-a-proportion.html#cb23-6" aria-hidden="true" tabindex="-1"></a>CI_upper       <span class="ot">=</span> meandata<span class="sc">+</span>z<span class="sc">*</span>stderror</span></code></pre></div>
 <p>Using the function <code>t.test()</code> is simpler:</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="confidence-interval-for-a-proportion.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(gss2018<span class="sc">$</span>vote)</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="confidence-interval-for-a-proportion.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(gss2018<span class="sc">$</span>vote)</span></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 

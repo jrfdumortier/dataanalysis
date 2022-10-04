@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2022-09-23" />
+<meta name="date" content="2022-10-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -413,15 +413,15 @@ That is, GLS minimizes the weighted sum of the residual squares. Since in realit
 <li><span class="math inline">\(\lambda\)</span> follows an F-distribution.</li>
 </ol>
 <p>The Goldfeld-Quandt Test can be illustrated with <code>gqtestdata</code>. In a first step, the data is separated into two groups with <span class="math inline">\(C=6\)</span>. In a second step, both groups are used to run a regression. And lastly, <span class="math inline">\(\lambda\)</span> is calculated.</p>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="heteroscedasticity.html#cb83-1" aria-hidden="true" tabindex="-1"></a>gqtestdata1         <span class="ot">=</span> gqtestdata[<span class="dv">1</span><span class="sc">:</span><span class="dv">22</span>,]</span>
-<span id="cb83-2"><a href="heteroscedasticity.html#cb83-2" aria-hidden="true" tabindex="-1"></a>gqtestdata2         <span class="ot">=</span> gqtestdata[<span class="dv">29</span><span class="sc">:</span><span class="dv">50</span>,]</span>
-<span id="cb83-3"><a href="heteroscedasticity.html#cb83-3" aria-hidden="true" tabindex="-1"></a>bhat1               <span class="ot">=</span> <span class="fu">lm</span>(price<span class="sc">~</span>sqft,<span class="at">data=</span>gqtestdata1)</span>
-<span id="cb83-4"><a href="heteroscedasticity.html#cb83-4" aria-hidden="true" tabindex="-1"></a>bhat2               <span class="ot">=</span> <span class="fu">lm</span>(price<span class="sc">~</span>sqft,<span class="at">data=</span>gqtestdata2)</span>
-<span id="cb83-5"><a href="heteroscedasticity.html#cb83-5" aria-hidden="true" tabindex="-1"></a>lambda              <span class="ot">=</span> <span class="fu">sum</span>(bhat2<span class="sc">$</span>residuals<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span><span class="fu">sum</span>(bhat1<span class="sc">$</span>residuals<span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="heteroscedasticity.html#cb67-1" aria-hidden="true" tabindex="-1"></a>gqtestdata1         <span class="ot">=</span> gqtestdata[<span class="dv">1</span><span class="sc">:</span><span class="dv">22</span>,]</span>
+<span id="cb67-2"><a href="heteroscedasticity.html#cb67-2" aria-hidden="true" tabindex="-1"></a>gqtestdata2         <span class="ot">=</span> gqtestdata[<span class="dv">29</span><span class="sc">:</span><span class="dv">50</span>,]</span>
+<span id="cb67-3"><a href="heteroscedasticity.html#cb67-3" aria-hidden="true" tabindex="-1"></a>bhat1               <span class="ot">=</span> <span class="fu">lm</span>(price<span class="sc">~</span>sqft,<span class="at">data=</span>gqtestdata1)</span>
+<span id="cb67-4"><a href="heteroscedasticity.html#cb67-4" aria-hidden="true" tabindex="-1"></a>bhat2               <span class="ot">=</span> <span class="fu">lm</span>(price<span class="sc">~</span>sqft,<span class="at">data=</span>gqtestdata2)</span>
+<span id="cb67-5"><a href="heteroscedasticity.html#cb67-5" aria-hidden="true" tabindex="-1"></a>lambda              <span class="ot">=</span> <span class="fu">sum</span>(bhat2<span class="sc">$</span>residuals<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span><span class="fu">sum</span>(bhat1<span class="sc">$</span>residuals<span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
 <p>Of course, there is also a function in R called gqtest which simplifies the procedure.</p>
-<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="heteroscedasticity.html#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmtest)</span>
-<span id="cb84-2"><a href="heteroscedasticity.html#cb84-2" aria-hidden="true" tabindex="-1"></a>bhat                <span class="ot">=</span> <span class="fu">lm</span>(price<span class="sc">~</span>sqft,<span class="at">data=</span>gqtestdata)</span>
-<span id="cb84-3"><a href="heteroscedasticity.html#cb84-3" aria-hidden="true" tabindex="-1"></a><span class="fu">gqtest</span>(bhat,<span class="at">fraction =</span> <span class="dv">6</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="heteroscedasticity.html#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmtest)</span>
+<span id="cb68-2"><a href="heteroscedasticity.html#cb68-2" aria-hidden="true" tabindex="-1"></a>bhat                <span class="ot">=</span> <span class="fu">lm</span>(price<span class="sc">~</span>sqft,<span class="at">data=</span>gqtestdata)</span>
+<span id="cb68-3"><a href="heteroscedasticity.html#cb68-3" aria-hidden="true" tabindex="-1"></a><span class="fu">gqtest</span>(bhat,<span class="at">fraction =</span> <span class="dv">6</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Goldfeld-Quandt test
 ## 
@@ -440,9 +440,9 @@ That is, GLS minimizes the weighted sum of the residual squares. Since in realit
 <li>Obtain the explained sum of squares (ESS) and define <span class="math inline">\(\Theta = 0.5 \cdot ESS\)</span>. Then <span class="math inline">\(\Theta \sim \chi^2_{m-1}\)</span>.</li>
 </ol>
 <p>The much simpler procedure is to use the function <code>bptest()</code> in R.</p>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="heteroscedasticity.html#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmtest)</span>
-<span id="cb86-2"><a href="heteroscedasticity.html#cb86-2" aria-hidden="true" tabindex="-1"></a>bhat                <span class="ot">=</span> <span class="fu">lm</span>(price<span class="sc">~</span>sqft,<span class="at">data=</span>gqtestdata)</span>
-<span id="cb86-3"><a href="heteroscedasticity.html#cb86-3" aria-hidden="true" tabindex="-1"></a><span class="fu">bptest</span>(bhat)</span></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="heteroscedasticity.html#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmtest)</span>
+<span id="cb70-2"><a href="heteroscedasticity.html#cb70-2" aria-hidden="true" tabindex="-1"></a>bhat                <span class="ot">=</span> <span class="fu">lm</span>(price<span class="sc">~</span>sqft,<span class="at">data=</span>gqtestdata)</span>
+<span id="cb70-3"><a href="heteroscedasticity.html#cb70-3" aria-hidden="true" tabindex="-1"></a><span class="fu">bptest</span>(bhat)</span></code></pre></div>
 <pre><code>## 
 ##  studentized Breusch-Pagan test
 ## 
@@ -452,11 +452,11 @@ That is, GLS minimizes the weighted sum of the residual squares. Since in realit
 <div id="correcting-heteroscedasticity" class="section level3 hasAnchor" number="14.1.2">
 <h3><span class="header-section-number">14.1.2</span> Correcting Heteroscedasticity<a href="heteroscedasticity.html#correcting-heteroscedasticity" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>To correct for heteroscedasticity, robust standard errors must be obtained.</p>
-<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="heteroscedasticity.html#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sandwich)</span>
-<span id="cb88-2"><a href="heteroscedasticity.html#cb88-2" aria-hidden="true" tabindex="-1"></a>bhat <span class="ot">=</span> <span class="fu">lm</span>(price<span class="sc">~</span>sqft,<span class="at">data=</span>gqtestdata)</span>
-<span id="cb88-3"><a href="heteroscedasticity.html#cb88-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat)</span>
-<span id="cb88-4"><a href="heteroscedasticity.html#cb88-4" aria-hidden="true" tabindex="-1"></a>vcov <span class="ot">=</span> <span class="fu">vcovHC</span>(bhat)</span>
-<span id="cb88-5"><a href="heteroscedasticity.html#cb88-5" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(bhat,<span class="at">vcov.=</span>vcov)</span></code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="heteroscedasticity.html#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sandwich)</span>
+<span id="cb72-2"><a href="heteroscedasticity.html#cb72-2" aria-hidden="true" tabindex="-1"></a>bhat <span class="ot">=</span> <span class="fu">lm</span>(price<span class="sc">~</span>sqft,<span class="at">data=</span>gqtestdata)</span>
+<span id="cb72-3"><a href="heteroscedasticity.html#cb72-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat)</span>
+<span id="cb72-4"><a href="heteroscedasticity.html#cb72-4" aria-hidden="true" tabindex="-1"></a>vcov <span class="ot">=</span> <span class="fu">vcovHC</span>(bhat)</span>
+<span id="cb72-5"><a href="heteroscedasticity.html#cb72-5" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(bhat,<span class="at">vcov.=</span>vcov)</span></code></pre></div>
 <p>Note that there are multiple variations to calculate the standard error and thus, it is possible for slight variations among the results from different packages.
 <span class="math display">\[Var(\hat{\beta}_1) = \frac{\sum_{i=1}^N (x_i-\bar{x})^2 e_i^2}{\sum_{i=1}^N (x_i-\bar{x})^2}\]</span>
 The square root of the following equation is called heteroscedastic robust standard error:

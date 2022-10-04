@@ -85,7 +85,7 @@ Summing up both probabilities gives us $P(X \ge 2) = 0.104$.
 
 The binomial  distribution can be used to analyze the issue of overbooking. Assume that an airline as a plane with a seating capacity of 115. The ticket price for each traveler is \$400. The airline can overbook the flight, i.e., selling more than 115 tickets, but has to pay \$700 in case a person has a valid ticket but needs to be re-booked to another flight. There is a probability of 10\% that a booked passenger does not show up. The results for overbooking between 1 and 31 seats are shown in the figure below.
 
-```{r DISoverbooking,echo=FALSE,fig.cap="Example of using the binomial distribution to determine how many seats to sell over capacity."}
+```{r DISoverbooking,echo=FALSE,fig.cap="Example of using the binomial distribution to determine how many seats to sell over capacity.",warning=FALSE}
 seats               = 115
 seatssold           = 0:30
 airfare             = 400
@@ -110,7 +110,7 @@ The Poisson distribution is used for count data (i.e., $0,1,2,...$). The probabi
 $$P(X=k)=\frac{\lambda^k \cdot e^{-\lambda}}{k!}$$
 An example of the Poisson distribution (named after Simeon Denis Poisson, 1781-1840) for different parameter values is shown below.
 
-```{r DISPoissonDistribution,echo=FALSE,fig.cap="Poisson Distribution"}
+```{r DISPoissonDistribution,echo=FALSE,fig.cap="Poisson Distribution",warning=FALSE}
 par(mfrow=c(3,2),mar=c(1,1,2,1),oma=c(4,4,2,0))
 for (i in c(1,2,3,5,7,9)){
     curve(dpois(x,lambda=i),from=0,to=18,n=19,type="p",pch=15,cex=1.5,xlim=c(0,19),ylim=c(0,0.4),xlab="",ylab="")

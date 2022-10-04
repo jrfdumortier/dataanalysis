@@ -50,7 +50,7 @@ bhat           = lm(price~sqft)
       for(i in 1:nobs){
            segments(sqft[i],price[i],sqft[i],bhat$fitted.values[i],lty=2,col="red")}
       hist(bhat$residuals,main="(b) Histogram of Residuals",xlab="Error Term",
-           xlim=c(-150,150),ylim=c(0,30),breaks= seq(-125,125,25))
+           xlim=c(-175,175),ylim=c(0,30),breaks= seq(-175,175,25))
 rm(bhat,i,nobs,price,sqft)
 ```
 
