@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>19.3 Basic Theoretical Aspects of Time Series | Data Analysis for Public Affairs with R</title>
   <meta name="description" content="19.3 Basic Theoretical Aspects of Time Series | Data Analysis for Public Affairs with R" />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
 
   <meta property="og:title" content="19.3 Basic Theoretical Aspects of Time Series | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2022-10-04" />
+<meta name="date" content="2023-01-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -296,12 +296,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="15" data-path="binary-choice.html"><a href="binary-choice.html"><i class="fa fa-check"></i><b>15</b> Binary Choice</a>
 <ul>
 <li class="chapter" data-level="15.1" data-path="binary-choice-estimation-in-r.html"><a href="binary-choice-estimation-in-r.html"><i class="fa fa-check"></i><b>15.1</b> Binary Choice Estimation in R</a></li>
-<li class="chapter" data-level="15.2" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html"><i class="fa fa-check"></i><b>15.2</b> Additional Examples and Probit Model</a>
-<ul>
-<li class="chapter" data-level="15.2.1" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html#full-time-work"><i class="fa fa-check"></i><b>15.2.1</b> Full-Time Work</a></li>
-<li class="chapter" data-level="15.2.2" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html#voting-behavior"><i class="fa fa-check"></i><b>15.2.2</b> Voting Behavior</a></li>
-</ul></li>
-<li class="chapter" data-level="15.3" data-path="exercises-11.html"><a href="exercises-11.html"><i class="fa fa-check"></i><b>15.3</b> Exercises</a></li>
+<li class="chapter" data-level="15.2" data-path="exercises-11.html"><a href="exercises-11.html"><i class="fa fa-check"></i><b>15.2</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="16" data-path="qualitative-choice-models.html"><a href="qualitative-choice-models.html"><i class="fa fa-check"></i><b>16</b> Qualitative Choice Models</a>
 <ul>
@@ -385,33 +380,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Constant covariance: <span class="math inline">\(Cov(y_t,y_{t-h})\)</span> depends on <span class="math inline">\(h\)</span> but not on <span class="math inline">\(t\)</span>.</li>
 </ul>
 <p>A time series with a trend is usually not stationary (or nonstationary). The concepts behind are explained latter but the issue can be illustrated with a simple simulation.</p>
-<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="basic-theoretical-aspects-of-time-series.html#cb202-1" aria-hidden="true" tabindex="-1"></a>spurious            <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">x=</span><span class="fu">matrix</span>(<span class="dv">0</span>,<span class="dv">500</span>,<span class="dv">1</span>),<span class="at">y=</span><span class="fu">matrix</span>(<span class="dv">0</span>,<span class="dv">500</span>,<span class="dv">1</span>))</span>
-<span id="cb202-2"><a href="basic-theoretical-aspects-of-time-series.html#cb202-2" aria-hidden="true" tabindex="-1"></a>spurious[<span class="dv">1</span>,<span class="dv">1</span>]       <span class="ot">=</span> <span class="dv">1</span></span>
-<span id="cb202-3"><a href="basic-theoretical-aspects-of-time-series.html#cb202-3" aria-hidden="true" tabindex="-1"></a>spurious[<span class="dv">1</span>,<span class="dv">2</span>]       <span class="ot">=</span> <span class="dv">2</span></span>
-<span id="cb202-4"><a href="basic-theoretical-aspects-of-time-series.html#cb202-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">500</span>){</span>
-<span id="cb202-5"><a href="basic-theoretical-aspects-of-time-series.html#cb202-5" aria-hidden="true" tabindex="-1"></a>     spurious[i,<span class="dv">1</span>] <span class="ot">=</span> spurious[i<span class="dv">-1</span>,<span class="dv">1</span>]<span class="sc">+</span><span class="fu">rnorm</span>(<span class="dv">1</span>)</span>
-<span id="cb202-6"><a href="basic-theoretical-aspects-of-time-series.html#cb202-6" aria-hidden="true" tabindex="-1"></a>     spurious[i,<span class="dv">2</span>] <span class="ot">=</span> spurious[i<span class="dv">-1</span>,<span class="dv">2</span>]<span class="sc">+</span><span class="fu">rnorm</span>(<span class="dv">1</span>)}</span>
-<span id="cb202-7"><a href="basic-theoretical-aspects-of-time-series.html#cb202-7" aria-hidden="true" tabindex="-1"></a>bhat <span class="ot">=</span> <span class="fu">lm</span>(y<span class="sc">~</span>x,<span class="at">data=</span>spurious)</span>
-<span id="cb202-8"><a href="basic-theoretical-aspects-of-time-series.html#cb202-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat)</span></code></pre></div>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="basic-theoretical-aspects-of-time-series.html#cb190-1" aria-hidden="true" tabindex="-1"></a>spurious            <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">x=</span><span class="fu">matrix</span>(<span class="dv">0</span>,<span class="dv">500</span>,<span class="dv">1</span>),<span class="at">y=</span><span class="fu">matrix</span>(<span class="dv">0</span>,<span class="dv">500</span>,<span class="dv">1</span>))</span>
+<span id="cb190-2"><a href="basic-theoretical-aspects-of-time-series.html#cb190-2" aria-hidden="true" tabindex="-1"></a>spurious[<span class="dv">1</span>,<span class="dv">1</span>]       <span class="ot">=</span> <span class="dv">1</span></span>
+<span id="cb190-3"><a href="basic-theoretical-aspects-of-time-series.html#cb190-3" aria-hidden="true" tabindex="-1"></a>spurious[<span class="dv">1</span>,<span class="dv">2</span>]       <span class="ot">=</span> <span class="dv">2</span></span>
+<span id="cb190-4"><a href="basic-theoretical-aspects-of-time-series.html#cb190-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">500</span>){</span>
+<span id="cb190-5"><a href="basic-theoretical-aspects-of-time-series.html#cb190-5" aria-hidden="true" tabindex="-1"></a>     spurious[i,<span class="dv">1</span>] <span class="ot">=</span> spurious[i<span class="dv">-1</span>,<span class="dv">1</span>]<span class="sc">+</span><span class="fu">rnorm</span>(<span class="dv">1</span>)</span>
+<span id="cb190-6"><a href="basic-theoretical-aspects-of-time-series.html#cb190-6" aria-hidden="true" tabindex="-1"></a>     spurious[i,<span class="dv">2</span>] <span class="ot">=</span> spurious[i<span class="dv">-1</span>,<span class="dv">2</span>]<span class="sc">+</span><span class="fu">rnorm</span>(<span class="dv">1</span>)}</span>
+<span id="cb190-7"><a href="basic-theoretical-aspects-of-time-series.html#cb190-7" aria-hidden="true" tabindex="-1"></a>bhat <span class="ot">=</span> <span class="fu">lm</span>(y<span class="sc">~</span>x,<span class="at">data=</span>spurious)</span>
+<span id="cb190-8"><a href="basic-theoretical-aspects-of-time-series.html#cb190-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = y ~ x, data = spurious)
 ## 
 ## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -8.0980 -2.3447 -0.2466  2.2196  9.4651 
+##      Min       1Q   Median       3Q      Max 
+## -13.1536  -4.4728  -0.2366   3.7218  16.8475 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  2.75937    0.41903   6.585 1.16e-10 ***
-## x            0.40890    0.01597  25.607  &lt; 2e-16 ***
+## (Intercept) -8.71670    0.38422 -22.687   &lt;2e-16 ***
+## x           -0.01085    0.02997  -0.362    0.717    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 3.342 on 498 degrees of freedom
-## Multiple R-squared:  0.5684, Adjusted R-squared:  0.5675 
-## F-statistic: 655.7 on 1 and 498 DF,  p-value: &lt; 2.2e-16</code></pre>
-<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="basic-theoretical-aspects-of-time-series.html#cb204-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(spurious,bhat)</span></code></pre></div>
+## Residual standard error: 6.535 on 498 degrees of freedom
+## Multiple R-squared:  0.0002632,  Adjusted R-squared:  -0.001744 
+## F-statistic: 0.1311 on 1 and 498 DF,  p-value: 0.7174</code></pre>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="basic-theoretical-aspects-of-time-series.html#cb192-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(spurious,bhat)</span></code></pre></div>
 <p>There is no relationship between <span class="math inline">\(y\)</span> and <span class="math inline">\(x\)</span> yet the regression results indicate statistical significance.</p>
 <p>Consider the following so-called autoregressive model. The model depends on lagged terms of the dependent variable:
 <span class="math display">\[y_t=\alpha+\phi_1 \cdot y_{t-1}+\epsilon_t\]</span>

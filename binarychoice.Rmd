@@ -78,51 +78,6 @@ datablock = data.frame(income=c(25,50,75))
 predict(bhat_glm_logit,newdata=datablock,type="response")
 ```
 
-## Additional Examples and Probit Model
-Here are two additional examples on working full-time and voting behavior. Both examples use the `gss2018` data. Note that the previous chapter have introduced the logit model. To estimate a Probit model, the term "logit" has to be replaced with "probit." The results are almost identical. The variables are defined as follows:
-
-- $fulltime$: Does the respondent work full time.
-- $government$: Does the respondent work for the government
-- $education$: Less than high school (0), high school (1), associate/junior college (2), bachelor (3), and graduate (4)
-- $vote$: Voted in the 2016 election
-- $married$, $age$, $childs$, and $income$ are self-explanatory. Income is for 2016.
-
-### Full-Time Work
-
-```{r}
-equation = c("fulltime~age+childs+government+education+married")
-bhat_glm = glm(equation,family=binomial(link="logit"),data=gss2018)
-summary(bhat_glm)
-```
-
-```{r}
-bhat = logitmfx(equation,data=gss2018)
-summary(bhat$fit)
-```
-
-```{r}
-bhat_glm = glm(equation,family=binomial(link="probit"),data=gss2018)
-summary(bhat_glm)
-```
-
-### Voting Behavior
-
-```{r}
-equation = c("vote~age+childs+government+education+married+income")
-bhat_glm = glm(equation,family=binomial(link="logit"),data=gss2018)
-summary(bhat_glm)
-```
-
-```{r}
-bhat = logitmfx(equation,data=gss2018)
-summary(bhat$fit)
-```
-
-```{r}
-bhat_glm = glm(equation,family=binomial(link="probit"),data=gss2018)
-summary(bhat_glm)
-```
-
 ## Exercises
 
 1. ***Hybrid Cars*** (***): Consider the problem of choosing whether or not to purchase a hybrid vehicle (e.g., the Toyota Prius, Honda Civic Hybrid, Ford Escape). As an analyst, you assume that whether or not an individual purchases a hybrid depends upon the current price of gasoline ($gas$), the difference in purchase price of a hybrid vehicle compared to a comparably equipped vehicle ($increment$), college education which is represented by a dummy variable that equals 1 if individual has completed college and equals 0 otherwise ($college$), and a dummy variable that equals 1 if the individual is a member of an environmental organization, e.g., Nature Conservancy, National Audubon Society, ($env$). Answer the following questions contained in `hybrid`:
@@ -139,4 +94,4 @@ summary(bhat_glm)
 
 2. ***EV Data*** (**): Using the `evdata`, estimate a logit model which calculates the probability that a consumer would purchase a hybrid (choice=2), plug-in hybrid (choice=3), or electric vehicle (choice=4) as opposed to a gasoline car (choice=1). In a first step, you should create a new variable that is equal to 0 if the person purchases a gasoline vehicle and is equal to 1 for everything else. Include the following independent variables in your model: $age$, $numcars$, $politics$, $female$, $edu$, and $income$. 
 
-3. ***Voting Behavior*** (**): We are interested in the determinants of voting based on data from the General Social Survey (GSS). The following variables are hypothesized to be a determinant of voting behavior: $age$, $income$, $gun ownership$ (yes=1), $stance on death penalty$ (in favor=1), and $education level$ (higher number is associated with a higher education level). Run a probit and logit model and report the results. Calculate the marginal probabilities.   
+3. ***Voting Behavior*** (\*\*): We are interested in the determinants of voting based on data from the General Social Survey (GSS). The following variables are hypothesized to be a determinant of voting behavior: $age$, $gun ownership$ (yes=1), $stance on death penalty$ (in favor=1), and $education level$ (higher number is associated with a higher education level). Run a probit and logit model and report the results. Calculate the marginal probabilities.   

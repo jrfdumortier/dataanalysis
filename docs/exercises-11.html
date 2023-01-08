@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>15.3 Exercises | Data Analysis for Public Affairs with R</title>
-  <meta name="description" content="15.3 Exercises | Data Analysis for Public Affairs with R" />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <title>15.2 Exercises | Data Analysis for Public Affairs with R</title>
+  <meta name="description" content="15.2 Exercises | Data Analysis for Public Affairs with R" />
+  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="15.3 Exercises | Data Analysis for Public Affairs with R" />
+  <meta property="og:title" content="15.2 Exercises | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="15.3 Exercises | Data Analysis for Public Affairs with R" />
+  <meta name="twitter:title" content="15.2 Exercises | Data Analysis for Public Affairs with R" />
   
   
   
@@ -23,14 +23,14 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2022-10-04" />
+<meta name="date" content="2023-01-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="additional-examples-and-probit-model.html"/>
+<link rel="prev" href="binary-choice-estimation-in-r.html"/>
 <link rel="next" href="qualitative-choice-models.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -296,12 +296,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="15" data-path="binary-choice.html"><a href="binary-choice.html"><i class="fa fa-check"></i><b>15</b> Binary Choice</a>
 <ul>
 <li class="chapter" data-level="15.1" data-path="binary-choice-estimation-in-r.html"><a href="binary-choice-estimation-in-r.html"><i class="fa fa-check"></i><b>15.1</b> Binary Choice Estimation in R</a></li>
-<li class="chapter" data-level="15.2" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html"><i class="fa fa-check"></i><b>15.2</b> Additional Examples and Probit Model</a>
-<ul>
-<li class="chapter" data-level="15.2.1" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html#full-time-work"><i class="fa fa-check"></i><b>15.2.1</b> Full-Time Work</a></li>
-<li class="chapter" data-level="15.2.2" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html#voting-behavior"><i class="fa fa-check"></i><b>15.2.2</b> Voting Behavior</a></li>
-</ul></li>
-<li class="chapter" data-level="15.3" data-path="exercises-11.html"><a href="exercises-11.html"><i class="fa fa-check"></i><b>15.3</b> Exercises</a></li>
+<li class="chapter" data-level="15.2" data-path="exercises-11.html"><a href="exercises-11.html"><i class="fa fa-check"></i><b>15.2</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="16" data-path="qualitative-choice-models.html"><a href="qualitative-choice-models.html"><i class="fa fa-check"></i><b>16</b> Qualitative Choice Models</a>
 <ul>
@@ -376,8 +371,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="exercises-11" class="section level2 hasAnchor" number="15.3">
-<h2><span class="header-section-number">15.3</span> Exercises<a href="exercises-11.html#exercises-11" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="exercises-11" class="section level2 hasAnchor" number="15.2">
+<h2><span class="header-section-number">15.2</span> Exercises<a href="exercises-11.html#exercises-11" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ol style="list-style-type: decimal">
 <li><p><strong><em>Hybrid Cars</em></strong> (***): Consider the problem of choosing whether or not to purchase a hybrid vehicle (e.g., the Toyota Prius, Honda Civic Hybrid, Ford Escape). As an analyst, you assume that whether or not an individual purchases a hybrid depends upon the current price of gasoline (<span class="math inline">\(gas\)</span>), the difference in purchase price of a hybrid vehicle compared to a comparably equipped vehicle (<span class="math inline">\(increment\)</span>), college education which is represented by a dummy variable that equals 1 if individual has completed college and equals 0 otherwise (<span class="math inline">\(college\)</span>), and a dummy variable that equals 1 if the individual is a member of an environmental organization, e.g., Nature Conservancy, National Audubon Society, (<span class="math inline">\(env\)</span>). Answer the following questions contained in <code>hybrid</code>:</p>
 <ol style="list-style-type: lower-alpha">
@@ -392,7 +387,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Given the above probabilities, calculate the marginal effect that gasoline prices have on the probability that each of the three ``types’’ of individuals will purchase a hybrid vehicle.</p></li>
 </ol></li>
 <li><p><strong><em>EV Data</em></strong> (**): Using the <code>evdata</code>, estimate a logit model which calculates the probability that a consumer would purchase a hybrid (choice=2), plug-in hybrid (choice=3), or electric vehicle (choice=4) as opposed to a gasoline car (choice=1). In a first step, you should create a new variable that is equal to 0 if the person purchases a gasoline vehicle and is equal to 1 for everything else. Include the following independent variables in your model: <span class="math inline">\(age\)</span>, <span class="math inline">\(numcars\)</span>, <span class="math inline">\(politics\)</span>, <span class="math inline">\(female\)</span>, <span class="math inline">\(edu\)</span>, and <span class="math inline">\(income\)</span>.</p></li>
-<li><p><strong><em>Voting Behavior</em></strong> (**): We are interested in the determinants of voting based on data from the General Social Survey (GSS). The following variables are hypothesized to be a determinant of voting behavior: <span class="math inline">\(age\)</span>, <span class="math inline">\(income\)</span>, <span class="math inline">\(gun ownership\)</span> (yes=1), <span class="math inline">\(stance on death penalty\)</span> (in favor=1), and <span class="math inline">\(education level\)</span> (higher number is associated with a higher education level). Run a probit and logit model and report the results. Calculate the marginal probabilities.</p></li>
+<li><p><strong><em>Voting Behavior</em></strong> (**): We are interested in the determinants of voting based on data from the General Social Survey (GSS). The following variables are hypothesized to be a determinant of voting behavior: <span class="math inline">\(age\)</span>, <span class="math inline">\(gun ownership\)</span> (yes=1), <span class="math inline">\(stance on death penalty\)</span> (in favor=1), and <span class="math inline">\(education level\)</span> (higher number is associated with a higher education level). Run a probit and logit model and report the results. Calculate the marginal probabilities.</p></li>
 </ol>
 
 </div>
@@ -402,7 +397,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="additional-examples-and-probit-model.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="binary-choice-estimation-in-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="qualitative-choice-models.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

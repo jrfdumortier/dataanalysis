@@ -59,8 +59,9 @@ Coefficient of $y82$ (-0.41) indicates that women had on average 0.41 less child
 The next example uses `cps7885` and interacts year dummy with key explanatory variables to see if the effect of that variable has changed over time. That is, the following model is estimated:
 $$\ln(wage)=\beta_0+\gamma_0 \cdot y85+\beta_1 \cdot educ+\gamma_1 \cdot y85 \cdot educ+\beta_2 \cdot exper+ \beta_3 \cdot exper^2+\beta_4 \cdot union+\beta_5 \cdot female+\gamma_5 \cdot y85 \cdot female$$
 
-```{r,echo=FALSE}
-summary(lm(formula=lwage~y85+educ+y85*educ+exper+expersq+union+female+y85fem,data=cps7885))
+```{r}
+cps7885$y85    = ifelse(cps7885$year==85,1,0)
+summary(lm(formula=log(wage)~y85+educ+y85*educ+exper+I(exper^2)+union+female+y85:female,data=cps7885))
 ```
 
 This model can be interpreted as follows:

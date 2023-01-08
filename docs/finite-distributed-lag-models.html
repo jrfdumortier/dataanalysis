@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>19.2 Finite Distributed Lag Models | Data Analysis for Public Affairs with R</title>
   <meta name="description" content="19.2 Finite Distributed Lag Models | Data Analysis for Public Affairs with R" />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
 
   <meta property="og:title" content="19.2 Finite Distributed Lag Models | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2022-10-04" />
+<meta name="date" content="2023-01-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -296,12 +296,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="15" data-path="binary-choice.html"><a href="binary-choice.html"><i class="fa fa-check"></i><b>15</b> Binary Choice</a>
 <ul>
 <li class="chapter" data-level="15.1" data-path="binary-choice-estimation-in-r.html"><a href="binary-choice-estimation-in-r.html"><i class="fa fa-check"></i><b>15.1</b> Binary Choice Estimation in R</a></li>
-<li class="chapter" data-level="15.2" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html"><i class="fa fa-check"></i><b>15.2</b> Additional Examples and Probit Model</a>
-<ul>
-<li class="chapter" data-level="15.2.1" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html#full-time-work"><i class="fa fa-check"></i><b>15.2.1</b> Full-Time Work</a></li>
-<li class="chapter" data-level="15.2.2" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html#voting-behavior"><i class="fa fa-check"></i><b>15.2.2</b> Voting Behavior</a></li>
-</ul></li>
-<li class="chapter" data-level="15.3" data-path="exercises-11.html"><a href="exercises-11.html"><i class="fa fa-check"></i><b>15.3</b> Exercises</a></li>
+<li class="chapter" data-level="15.2" data-path="exercises-11.html"><a href="exercises-11.html"><i class="fa fa-check"></i><b>15.2</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="16" data-path="qualitative-choice-models.html"><a href="qualitative-choice-models.html"><i class="fa fa-check"></i><b>16</b> Qualitative Choice Models</a>
 <ul>
@@ -404,32 +399,32 @@ Characteristics of this assumption:</p>
 <p>The reformulated equation to be estimated is
 <span class="math display">\[y_t = \alpha \cdot (1-\lambda) + \beta_0 \cdot x_t + \lambda \cdot y_{t-1} + \upsilon_t\]</span>
 The notation of the error term has changed from <span class="math inline">\(\epsilon_t\)</span> to <span class="math inline">\(\upsilon_t\)</span> in order to highlight that the terms will be different.</p>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="finite-distributed-lag-models.html#cb200-1" aria-hidden="true" tabindex="-1"></a>koyck <span class="ot">=</span> usdata</span>
-<span id="cb200-2"><a href="finite-distributed-lag-models.html#cb200-2" aria-hidden="true" tabindex="-1"></a>koyck<span class="sc">$</span>year <span class="ot">=</span> <span class="fu">substr</span>(koyck<span class="sc">$</span>date,<span class="dv">1</span>,<span class="dv">4</span>)</span>
-<span id="cb200-3"><a href="finite-distributed-lag-models.html#cb200-3" aria-hidden="true" tabindex="-1"></a>koyck <span class="ot">=</span> <span class="fu">aggregate</span>(koyck[<span class="fu">c</span>(<span class="st">&quot;income&quot;</span>,<span class="st">&quot;consumption&quot;</span>)],<span class="at">FUN=</span>sum,<span class="at">by=</span><span class="fu">list</span>(koyck<span class="sc">$</span>year))</span>
-<span id="cb200-4"><a href="finite-distributed-lag-models.html#cb200-4" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(koyck) <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;year&quot;</span>,<span class="st">&quot;income&quot;</span>,<span class="st">&quot;consumption&quot;</span>)</span>
-<span id="cb200-5"><a href="finite-distributed-lag-models.html#cb200-5" aria-hidden="true" tabindex="-1"></a>bhat <span class="ot">=</span> <span class="fu">lm</span>(<span class="at">formula =</span> consumption <span class="sc">~</span> income <span class="sc">+</span> <span class="fu">Lag</span>(consumption), <span class="at">data =</span> koyck)</span>
-<span id="cb200-6"><a href="finite-distributed-lag-models.html#cb200-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat)</span></code></pre></div>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="finite-distributed-lag-models.html#cb188-1" aria-hidden="true" tabindex="-1"></a>koyck <span class="ot">=</span> usdata</span>
+<span id="cb188-2"><a href="finite-distributed-lag-models.html#cb188-2" aria-hidden="true" tabindex="-1"></a>koyck<span class="sc">$</span>year <span class="ot">=</span> <span class="fu">substr</span>(koyck<span class="sc">$</span>date,<span class="dv">1</span>,<span class="dv">4</span>)</span>
+<span id="cb188-3"><a href="finite-distributed-lag-models.html#cb188-3" aria-hidden="true" tabindex="-1"></a>koyck <span class="ot">=</span> <span class="fu">aggregate</span>(koyck[<span class="fu">c</span>(<span class="st">&quot;income&quot;</span>,<span class="st">&quot;consumption&quot;</span>)],<span class="at">FUN=</span>sum,<span class="at">by=</span><span class="fu">list</span>(koyck<span class="sc">$</span>year))</span>
+<span id="cb188-4"><a href="finite-distributed-lag-models.html#cb188-4" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(koyck) <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;year&quot;</span>,<span class="st">&quot;income&quot;</span>,<span class="st">&quot;consumption&quot;</span>)</span>
+<span id="cb188-5"><a href="finite-distributed-lag-models.html#cb188-5" aria-hidden="true" tabindex="-1"></a>bhat <span class="ot">=</span> <span class="fu">lm</span>(<span class="at">formula =</span> consumption <span class="sc">~</span> income <span class="sc">+</span> <span class="fu">Lag</span>(consumption), <span class="at">data =</span> koyck)</span>
+<span id="cb188-6"><a href="finite-distributed-lag-models.html#cb188-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = consumption ~ income + Lag(consumption), data = koyck)
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
-## -15749.3   -812.3    195.0   1215.5   5855.3 
+## -14295.8   -529.5     99.6   1075.9   5042.5 
 ## 
 ## Coefficients:
 ##                    Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)      -1.701e+03  8.189e+02  -2.077  0.04136 *  
-## income            8.111e-01  2.848e-02  28.481  &lt; 2e-16 ***
-## Lag(consumption)  1.034e-01  3.108e-02   3.328  0.00138 ** 
+## (Intercept)      -971.49577  734.64201  -1.322     0.19    
+## income              0.63631    0.04084  15.580  &lt; 2e-16 ***
+## Lag(consumption)    0.29608    0.04481   6.608 5.79e-09 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 2772 on 72 degrees of freedom
+## Residual standard error: 2454 on 72 degrees of freedom
 ##   (1 observation deleted due to missingness)
-## Multiple R-squared:  0.9952, Adjusted R-squared:  0.995 
-## F-statistic:  7433 on 2 and 72 DF,  p-value: &lt; 2.2e-16</code></pre>
+## Multiple R-squared:  0.9963, Adjusted R-squared:  0.9962 
+## F-statistic:  9627 on 2 and 72 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
             </section>
 

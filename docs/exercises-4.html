@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>8.4 Exercises | Data Analysis for Public Affairs with R</title>
   <meta name="description" content="8.4 Exercises | Data Analysis for Public Affairs with R" />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
 
   <meta property="og:title" content="8.4 Exercises | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2022-10-04" />
+<meta name="date" content="2023-01-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -296,12 +296,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="15" data-path="binary-choice.html"><a href="binary-choice.html"><i class="fa fa-check"></i><b>15</b> Binary Choice</a>
 <ul>
 <li class="chapter" data-level="15.1" data-path="binary-choice-estimation-in-r.html"><a href="binary-choice-estimation-in-r.html"><i class="fa fa-check"></i><b>15.1</b> Binary Choice Estimation in R</a></li>
-<li class="chapter" data-level="15.2" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html"><i class="fa fa-check"></i><b>15.2</b> Additional Examples and Probit Model</a>
-<ul>
-<li class="chapter" data-level="15.2.1" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html#full-time-work"><i class="fa fa-check"></i><b>15.2.1</b> Full-Time Work</a></li>
-<li class="chapter" data-level="15.2.2" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html#voting-behavior"><i class="fa fa-check"></i><b>15.2.2</b> Voting Behavior</a></li>
-</ul></li>
-<li class="chapter" data-level="15.3" data-path="exercises-11.html"><a href="exercises-11.html"><i class="fa fa-check"></i><b>15.3</b> Exercises</a></li>
+<li class="chapter" data-level="15.2" data-path="exercises-11.html"><a href="exercises-11.html"><i class="fa fa-check"></i><b>15.2</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="16" data-path="qualitative-choice-models.html"><a href="qualitative-choice-models.html"><i class="fa fa-check"></i><b>16</b> Qualitative Choice Models</a>
 <ul>
@@ -379,14 +374,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="exercises-4" class="section level2 hasAnchor" number="8.4">
 <h2><span class="header-section-number">8.4</span> Exercises<a href="exercises-4.html#exercises-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ol style="list-style-type: decimal">
-<li><p><em>Meridian Hills I</em>: The data set <code>mh1</code> contains home values for homes in the Meridian Hills area in Indianapolis. Construct a 90%, 95%, and 99% confidence interval around the mean using R.</p></li>
-<li><p><em>GSS Guns</em>: Consider the data in <code>gss2018</code>. The data is taken from the 2018 General Social Survey. Note that only observation which have complete responses for all variables are included in the data. The question associated with the variable <code>gun</code> is “Do you happen to have in your home (IF HOUSE: or garage) any guns or revolvers?” and the question associated with the variable <code>deathpenalty</code> is “Do you favor or oppose the death penalty for persons convicted of murder?” Construct a 90% confidence interval around the proportion for both variables.</p></li>
-<li><p><em>Soda Cans I</em>: Consider a machine filling soda cans with a reported average of 360 milliliters (mL). The amounts filled into the cans follow a normal distribution with (unknown) mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span>. You take a sample of soda cans and measure the volume. Your data (in mL) is found in file <code>soda</code>. Construct a 99% confidence interval around the mean.</p></li>
-<li><p><em>Paper Mill</em>: The local paper mill claims that it does not discharge more than 1000 gallons of waste water into the White River. An environmental interest group measures the discharge over one week and the data is reported to you in file <code>discharge</code>. Construct a 95% confidence interval around the mean discharge.</p></li>
-<li><p><em>Sanders vs. Biden</em>: A 2020 article about the race of Sanders vs. Biden in Florida states that <em>“Biden is lapping Sanders in voter support, with support from 66 percent of likely Democratic primary voters to 22 percent for Sanders, according to a University of North Florida poll taken March 5-10.”</em>
+<li><p><strong><em>Meridian Hills I</em></strong>: The data set <code>mh1</code> contains home values for homes in the Meridian Hills area in Indianapolis. Construct a 90%, 95%, and 99% confidence interval around the mean using R.</p></li>
+<li><p><strong><em>GSS Guns</em></strong>: Consider the data in <code>gss2018</code>. The data is taken from the 2018 General Social Survey. Note that only observation which have complete responses for all variables are included in the data. The question associated with the variable <code>gun</code> is “Do you happen to have in your home (IF HOUSE: or garage) any guns or revolvers?” and the question associated with the variable <code>deathpenalty</code> is “Do you favor or oppose the death penalty for persons convicted of murder?” Construct a 90% confidence interval around the proportion for both variables.</p></li>
+<li><p><strong><em>Soda Cans I</em></strong>: Consider a machine filling soda cans with a reported average of 360 milliliters (mL). The amounts filled into the cans follow a normal distribution with (unknown) mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span>. You take a sample of soda cans and measure the volume. Your data (in mL) is found in file <code>soda</code>. Construct a 99% confidence interval around the mean.</p></li>
+<li><p><strong><em>Paper Mill</em></strong>: The local paper mill claims that it does not discharge more than 1000 gallons of waste water into the White River. An environmental interest group measures the discharge over one week and the data is reported to you in file <code>discharge</code>. Construct a 95% confidence interval around the mean discharge.</p></li>
+<li><p><strong><em>Sanders vs. Biden</em></strong>: A 2020 article about the race of Sanders vs. Biden in Florida states that <em>“Biden is lapping Sanders in voter support, with support from 66 percent of likely Democratic primary voters to 22 percent for Sanders, according to a University of North Florida poll taken March 5-10.”</em>
 The article mentions a margin of error <span class="math inline">\(\pm 2.5\%\)</span>. For this exercise, use the number of 66% and calculate the sample size that was used to conduct the poll.</p></li>
-<li><p><em>Privatizing Parking</em>: You are interested in how many students at IUPUI are supporting privatizing parking services. You have information from a different university who found that 20% of students support privatization. In fall 2018, IUPUI had an enrollment of 29,579 students. Calculate the necessary sample size based on the (1) information you have from the other university and (2) the worst-case scenario in terms of variance You want the margin of error to be with <span class="math inline">\(\pm\)</span> 3%.</p></li>
-<li><p><em>VMT by State</em>: Consider the data in <code>vehpub</code>. Pick any state other than Indiana and construct a 95% confidence interval around the average annual miles traveled based on the odometer reading and the age of the vehicles. Keep in mind that the survey was conducted in 2017. Pay attention to eliminate missing or otherwise irrelevant values.</p></li>
+<li><p><strong><em>Privatizing Parking</em></strong>: You are interested in how many students at IUPUI are supporting privatizing parking services. You have information from a different university who found that 20% of students support privatization. In fall 2018, IUPUI had an enrollment of 29,579 students. Calculate the necessary sample size based on the (1) information you have from the other university and (2) the worst-case scenario in terms of variance You want the margin of error to be with <span class="math inline">\(\pm\)</span> 3%.</p></li>
+<li><p><strong><em>VMT by State</em></strong>: Consider the data in <code>vehpub</code>. Pick any state other than Indiana and construct a 95% confidence interval around the average annual miles traveled based on the odometer reading and the age of the vehicles. Keep in mind that the survey was conducted in 2017. Pay attention to eliminate missing or otherwise irrelevant values.</p></li>
 </ol>
 
 </div>

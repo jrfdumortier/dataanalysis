@@ -11,7 +11,7 @@ This book serves as an introduction to data analysis for public affairs with R a
 
 - $variablename$: Variable names which represent the columns in a data frame
 - `dataset`: Name of the data set in the file [DataAnalysisPAData.RData](https://github.com/jrfdumortier/dataanalysis/blob/master/DataAnalysisPAData.RData)
-- *Exercise Name*: Title of the exercise in the various chapters
+- ***Exercise Name***: Title of the exercise in the various chapters
 - [package](https://cran.r-project.org/web/packages/plm/index.html): Link to the package documentation. The example link is associated with "Linear Models for Panel Data."
 
 The variable definitions and the data sets in [DataAnalysisPAData.RData](https://github.com/jrfdumortier/dataanalysis/blob/master/DataAnalysisPAData.RData) are described in the section [Data Sources](https://jrfdumortier.github.io/dataanalysis/data-sources.html).

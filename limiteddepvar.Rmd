@@ -45,8 +45,8 @@ summary(bhat_correct)
 In the case of censoring, the values of the dependent variable are reported at a certain point if they are above or below a certain value.
 
 ```{r, echo=FALSE}
-bhat_real = lm(y_real~x,data=censoring)
-bhat_censored = lm(y_obs~x,data=censoring)
+bhat_real = lm(yreal~x,data=censoring)
+bhat_censored = lm(y~x,data=censoring)
 plot(censoring$x,censoring$y_real)
      points(censoring$x,censoring$y_obs,pch=19)
      abline(bhat_real,col=c("darkgreen"))
@@ -65,7 +65,7 @@ summary(bhat_censored)
 
 Using the R package [censReg](https://cran.r-project.org/web/packages/censReg/index.html)) allows for the reduction of the bias:
 ```{r}
-b_correct = censReg(y_obs~x,data=censoring)
+b_correct = censReg(y~x,data=censoring)
 summary(b_correct)
 ```
 
@@ -193,8 +193,6 @@ summary(bhat_hurdle)
 ```
 
 ## Survival Analysis
-
-
 
 ## Exercises
 

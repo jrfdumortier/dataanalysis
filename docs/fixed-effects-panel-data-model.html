@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>18.3 Fixed Effects Panel Data Model | Data Analysis for Public Affairs with R</title>
   <meta name="description" content="18.3 Fixed Effects Panel Data Model | Data Analysis for Public Affairs with R" />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
 
   <meta property="og:title" content="18.3 Fixed Effects Panel Data Model | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2022-10-04" />
+<meta name="date" content="2023-01-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -296,12 +296,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="15" data-path="binary-choice.html"><a href="binary-choice.html"><i class="fa fa-check"></i><b>15</b> Binary Choice</a>
 <ul>
 <li class="chapter" data-level="15.1" data-path="binary-choice-estimation-in-r.html"><a href="binary-choice-estimation-in-r.html"><i class="fa fa-check"></i><b>15.1</b> Binary Choice Estimation in R</a></li>
-<li class="chapter" data-level="15.2" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html"><i class="fa fa-check"></i><b>15.2</b> Additional Examples and Probit Model</a>
-<ul>
-<li class="chapter" data-level="15.2.1" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html#full-time-work"><i class="fa fa-check"></i><b>15.2.1</b> Full-Time Work</a></li>
-<li class="chapter" data-level="15.2.2" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html#voting-behavior"><i class="fa fa-check"></i><b>15.2.2</b> Voting Behavior</a></li>
-</ul></li>
-<li class="chapter" data-level="15.3" data-path="exercises-11.html"><a href="exercises-11.html"><i class="fa fa-check"></i><b>15.3</b> Exercises</a></li>
+<li class="chapter" data-level="15.2" data-path="exercises-11.html"><a href="exercises-11.html"><i class="fa fa-check"></i><b>15.2</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="16" data-path="qualitative-choice-models.html"><a href="qualitative-choice-models.html"><i class="fa fa-check"></i><b>16</b> Qualitative Choice Models</a>
 <ul>
@@ -391,7 +386,7 @@ where <span class="math inline">\(i\)</span> and <span class="math inline">\(t\)
 Individual specific effects:
 <span class="math display">\[y_{it} = \alpha_i + \beta_i \cdot x_{it} + \epsilon_{it}\]</span>
 where <span class="math inline">\(\alpha_i\)</span> can be fixed or random. The companies of interest for this chapter are GM (firm 1), U.S. Steel (firm 2), GE (firm 3), and Westinghouse (firm 8).</p>
-<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="fixed-effects-panel-data-model.html#cb183-1" aria-hidden="true" tabindex="-1"></a>grunfeld <span class="ot">=</span> <span class="fu">subset</span>(grunfeld,grunfeld<span class="sc">$</span>firm <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">8</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="fixed-effects-panel-data-model.html#cb171-1" aria-hidden="true" tabindex="-1"></a>grunfeld <span class="ot">=</span> <span class="fu">subset</span>(grunfeld,grunfeld<span class="sc">$</span>firm <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">8</span>))</span></code></pre></div>
 <p>In a first step, a pooled model is executed, i.e., all cross-sectional and time series observations are combined into a single data set.
 <span class="math display">\[inv_i = \beta_0 + \beta_1 \cdot value_i + \beta_2 \cdot capital_i\]</span>
 The general formulation of the pooled model:
@@ -403,10 +398,10 @@ There are multiple issues associated with a pooled OLS model:</p>
 <span class="math inline">\(\Rightarrow\)</span> Autocorrelation between error terms. Fix: Random effects model</li>
 </ul>
 <p>To use the functions from <a href="https://cran.r-project.org/web/packages/plm/index.html">plm</a>, define the data as a panel data set:</p>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="fixed-effects-panel-data-model.html#cb184-1" aria-hidden="true" tabindex="-1"></a>grunfeld <span class="ot">=</span> <span class="fu">pdata.frame</span>(grunfeld,<span class="at">index=</span><span class="fu">c</span>(<span class="st">&quot;firm&quot;</span>,<span class="st">&quot;year&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="fixed-effects-panel-data-model.html#cb172-1" aria-hidden="true" tabindex="-1"></a>grunfeld <span class="ot">=</span> <span class="fu">pdata.frame</span>(grunfeld,<span class="at">index=</span><span class="fu">c</span>(<span class="st">&quot;firm&quot;</span>,<span class="st">&quot;year&quot;</span>))</span></code></pre></div>
 <p>There are two possibilities to execute a pooled OLS Model. Use the regular <code>lm()</code> function or use <code>plm()</code> specifying the model as “pooling”. The outputs will be names <code>grunwald.ols</code> and <code>grunwald.pooling</code>.</p>
-<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="fixed-effects-panel-data-model.html#cb185-1" aria-hidden="true" tabindex="-1"></a>grunfeld.pooling <span class="ot">=</span> <span class="fu">plm</span>(inv<span class="sc">~</span>value<span class="sc">+</span>capital,<span class="at">data=</span>grunfeld,<span class="at">model=</span><span class="st">&quot;pooling&quot;</span>)</span>
-<span id="cb185-2"><a href="fixed-effects-panel-data-model.html#cb185-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(grunfeld.pooling)</span></code></pre></div>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="fixed-effects-panel-data-model.html#cb173-1" aria-hidden="true" tabindex="-1"></a>grunfeld.pooling <span class="ot">=</span> <span class="fu">plm</span>(inv<span class="sc">~</span>value<span class="sc">+</span>capital,<span class="at">data=</span>grunfeld,<span class="at">model=</span><span class="st">&quot;pooling&quot;</span>)</span>
+<span id="cb173-2"><a href="fixed-effects-panel-data-model.html#cb173-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(grunfeld.pooling)</span></code></pre></div>
 <pre><code>## Pooling Model
 ## 
 ## Call:
@@ -463,7 +458,7 @@ There are multiple issues associated with a pooled OLS model:</p>
 ## Adj. R-Squared: 0.79242
 ## F-statistic: 153.291 on 2 and 74 DF, p-value: &lt; 2.22e-16</code></pre>
 <p>Use <code>fixef(grunfeld.fixed)</code> to get the firm specific intercepts. The function <code>pFtest()</code> can be used to test whether a fixed effects or OLS is appropriate (H<span class="math inline">\(_0\)</span>: OLS better). If the significance level is set to <span class="math inline">\(\alpha=0.05\)</span> then the fixed effects model is a better choice if the p-value is below 0.05:</p>
-<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="fixed-effects-panel-data-model.html#cb188-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pFtest</span>(grunfeld.fixed,grunfeld.pooling)</span></code></pre></div>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="fixed-effects-panel-data-model.html#cb176-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pFtest</span>(grunfeld.fixed,grunfeld.pooling)</span></code></pre></div>
 <pre><code>## 
 ##  F test for individual effects
 ## 
@@ -471,7 +466,7 @@ There are multiple issues associated with a pooled OLS model:</p>
 ## F = 67.215, df1 = 3, df2 = 74, p-value &lt; 2.2e-16
 ## alternative hypothesis: significant effects</code></pre>
 <p>The fixed effects model can also be implemented using the function <code>lm()</code>:</p>
-<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="fixed-effects-panel-data-model.html#cb190-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(<span class="at">formula=</span>inv<span class="sc">~</span>value<span class="sc">+</span>capital<span class="sc">+</span><span class="fu">factor</span>(firm),<span class="at">data=</span>grunfeld)</span></code></pre></div>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="fixed-effects-panel-data-model.html#cb178-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(<span class="at">formula=</span>inv<span class="sc">~</span>value<span class="sc">+</span>capital<span class="sc">+</span><span class="fu">factor</span>(firm),<span class="at">data=</span>grunfeld)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = inv ~ value + capital + factor(firm), data = grunfeld)

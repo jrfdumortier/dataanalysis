@@ -1,14 +1,14 @@
 # ANOVA
 Analysis of Variance (ANOVA) models (also know as Dummy Variable Regression models) are regressions with only dummy variables. An ANOVA model with two independent variables can be written as follows:
 $$y_i = \beta_0 + \beta_1 \cdot d_1 + \beta_2 \cdot d_2$$
-where $d_1$ and $d_2$ are dummy variables. Consider the following model using the `gss2018` data:
-$$income = \beta_0 + \beta_1 \cdot fulltime + \beta_2 \cdot government$$
-where *fulltime* and *government* are dummy variables. That is, if $fulltime=1$, then the person has a fulltime job. If $government=1$, then the respondent works for the government. To distinguish *j* categories only *j-1* dummy variables are needed. Otherwise, we have perfect multicollinearity. The category without a dummy variable is the base category.
+where $d_1$ and $d_2$ are dummy variables. Consider the following model using the `nfl` data for the year 2005:
+$$total = \beta_0 + \beta_1 \cdot draft1 + \beta_2 \cdot veteran$$
+where *draft1* and *veteran* are dummy variables. That is, if $draft1=1$, then the player was selected in the first draft round. If $veteran=1$, then the player has played multiple seasons in the NFL. To distinguish *j* categories only *j-1* dummy variables are needed. Otherwise, we have perfect multicollinearity. The category without a dummy variable is the base category.
 ```{r}
-bhat = lm(income~fulltime+government,data=gss2018)
+bhat = lm(total~draft1+veteran,data=subset(nfl,year=2005))
 summary(bhat)
 ```
-The income for a person who is working neither for the government nor has a full time job makes on average \$17,521. A person not working for the government but with a full time job is earning \$17,521+\$33,553=\$51,074. Note that both dummy variables are statistically significant. Note that the R-squared is very low.  
+For a player who was not drafted in the first round and is not a veteran, the income is close to $1 million. Note that both dummy variables are statistically significant. Note that the R-squared is very low.  
 
 ## Exercises
 1. Consider the data in `indyhomes`. A real estate agent once mentioned that homes built in the eighties are of lower quality and thus, are cheaper. One possibility to asses this claim is with an ANOVA model. Add three new dummy variables to the data frame: eighties (equal to 1 if the home was built in any year between 1980 to 1989), northwest (equal to 1 if the home is in the 46268 ZIP code), and singlestory (equal to 1 if the home has one story). Estimate the following ANOVA model:

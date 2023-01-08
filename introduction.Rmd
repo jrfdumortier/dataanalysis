@@ -1,6 +1,6 @@
 # Introduction
 
-```{r INTloadingpackages,echo=FALSE,results=FALSE,warning=FALSE}
+```{r INTloadingpackages,echo=FALSE,results=FALSE,warning=FALSE,message=FALSE}
 load("DataAnalysisPAData.RData")
 library(AER)
 library(censReg)

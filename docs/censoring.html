@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>17.2 Censoring | Data Analysis for Public Affairs with R</title>
   <meta name="description" content="17.2 Censoring | Data Analysis for Public Affairs with R" />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
 
   <meta property="og:title" content="17.2 Censoring | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2022-10-04" />
+<meta name="date" content="2023-01-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -296,12 +296,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="15" data-path="binary-choice.html"><a href="binary-choice.html"><i class="fa fa-check"></i><b>15</b> Binary Choice</a>
 <ul>
 <li class="chapter" data-level="15.1" data-path="binary-choice-estimation-in-r.html"><a href="binary-choice-estimation-in-r.html"><i class="fa fa-check"></i><b>15.1</b> Binary Choice Estimation in R</a></li>
-<li class="chapter" data-level="15.2" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html"><i class="fa fa-check"></i><b>15.2</b> Additional Examples and Probit Model</a>
-<ul>
-<li class="chapter" data-level="15.2.1" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html#full-time-work"><i class="fa fa-check"></i><b>15.2.1</b> Full-Time Work</a></li>
-<li class="chapter" data-level="15.2.2" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html#voting-behavior"><i class="fa fa-check"></i><b>15.2.2</b> Voting Behavior</a></li>
-</ul></li>
-<li class="chapter" data-level="15.3" data-path="exercises-11.html"><a href="exercises-11.html"><i class="fa fa-check"></i><b>15.3</b> Exercises</a></li>
+<li class="chapter" data-level="15.2" data-path="exercises-11.html"><a href="exercises-11.html"><i class="fa fa-check"></i><b>15.2</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="16" data-path="qualitative-choice-models.html"><a href="qualitative-choice-models.html"><i class="fa fa-check"></i><b>16</b> Qualitative Choice Models</a>
 <ul>
@@ -379,69 +374,69 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="censoring" class="section level2 hasAnchor" number="17.2">
 <h2><span class="header-section-number">17.2</span> Censoring<a href="censoring.html#censoring" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In the case of censoring, the values of the dependent variable are reported at a certain point if they are above or below a certain value.</p>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-45-1.png" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-166-1.png" width="672" /></p>
 <p>If all data was reported at the correct value, the following following regression model could be executed:</p>
-<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="censoring.html#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat_real)</span></code></pre></div>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="censoring.html#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat_real)</span></code></pre></div>
 <pre><code>## 
 ## Call:
-## lm(formula = y_real ~ x, data = censoring)
+## lm(formula = yreal ~ x, data = censoring)
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
-## -2.88112 -0.74833  0.08099  0.65510  2.23233 
+## -1.70302 -0.48412 -0.04855  0.64817  1.66146 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) -2.55665    0.28227  -9.057 5.84e-12 ***
-## x            0.59319    0.04788  12.390  &lt; 2e-16 ***
+## (Intercept) -1.38575    0.21570  -6.424 5.62e-08 ***
+## x            0.41467    0.04023  10.307 9.32e-14 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 1.052 on 48 degrees of freedom
-## Multiple R-squared:  0.7618, Adjusted R-squared:  0.7568 
-## F-statistic: 153.5 on 1 and 48 DF,  p-value: &lt; 2.2e-16</code></pre>
+## Residual standard error: 0.8261 on 48 degrees of freedom
+## Multiple R-squared:  0.6888, Adjusted R-squared:  0.6823 
+## F-statistic: 106.2 on 1 and 48 DF,  p-value: 9.32e-14</code></pre>
 <p>Ignoring censoring leads to biased results:</p>
-<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="censoring.html#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat_censored)</span></code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="censoring.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat_censored)</span></code></pre></div>
 <pre><code>## 
 ## Call:
-## lm(formula = y_obs ~ x, data = censoring)
+## lm(formula = y ~ x, data = censoring)
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
-## -1.49532 -0.39152 -0.03373  0.38850  2.65938 
+## -1.66272 -0.48996  0.01698  0.39792  1.23709 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) -0.59518    0.19958  -2.982  0.00449 ** 
-## x            0.34181    0.03385  10.098 1.84e-13 ***
+## (Intercept) -0.42725    0.17841  -2.395   0.0206 *  
+## x            0.28362    0.03328   8.523 3.61e-11 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 0.7439 on 48 degrees of freedom
-## Multiple R-squared:  0.6799, Adjusted R-squared:  0.6733 
-## F-statistic:   102 on 1 and 48 DF,  p-value: 1.84e-13</code></pre>
+## Residual standard error: 0.6833 on 48 degrees of freedom
+## Multiple R-squared:  0.6021, Adjusted R-squared:  0.5938 
+## F-statistic: 72.64 on 1 and 48 DF,  p-value: 3.608e-11</code></pre>
 <p>Using the R package <a href="https://cran.r-project.org/web/packages/censReg/index.html">censReg</a>) allows for the reduction of the bias:</p>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="censoring.html#cb139-1" aria-hidden="true" tabindex="-1"></a>b_correct <span class="ot">=</span> <span class="fu">censReg</span>(y_obs<span class="sc">~</span>x,<span class="at">data=</span>censoring)</span>
-<span id="cb139-2"><a href="censoring.html#cb139-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(b_correct)</span></code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="censoring.html#cb126-1" aria-hidden="true" tabindex="-1"></a>b_correct <span class="ot">=</span> <span class="fu">censReg</span>(y<span class="sc">~</span>x,<span class="at">data=</span>censoring)</span>
+<span id="cb126-2"><a href="censoring.html#cb126-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(b_correct)</span></code></pre></div>
 <pre><code>## 
 ## Call:
-## censReg(formula = y_obs ~ x, data = censoring)
+## censReg(formula = y ~ x, data = censoring)
 ## 
 ## Observations:
 ##          Total  Left-censored     Uncensored Right-censored 
-##             50             19             31              0 
+##             50             23             27              0 
 ## 
 ## Coefficients:
 ##             Estimate Std. error t value  Pr(&gt; t)    
-## (Intercept) -1.90991    0.38782  -4.925 8.45e-07 ***
-## x            0.51043    0.05677   8.991  &lt; 2e-16 ***
-## logSigma    -0.10790    0.12755  -0.846    0.398    
+## (Intercept) -1.68965    0.39362  -4.293 1.77e-05 ***
+## x            0.44895    0.06209   7.231 4.79e-13 ***
+## logSigma    -0.04553    0.14237  -0.320    0.749    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## Newton-Raphson maximisation, 6 iterations
 ## Return code 1: gradient close to zero (gradtol)
-## Log-likelihood: -47.14197 on 3 Df</code></pre>
+## Log-likelihood: -47.38111 on 3 Df</code></pre>
 </div>
             </section>
 

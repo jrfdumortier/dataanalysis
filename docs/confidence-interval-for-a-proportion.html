@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>8.1 Confidence Interval for a Proportion | Data Analysis for Public Affairs with R</title>
   <meta name="description" content="8.1 Confidence Interval for a Proportion | Data Analysis for Public Affairs with R" />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
 
   <meta property="og:title" content="8.1 Confidence Interval for a Proportion | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2022-10-04" />
+<meta name="date" content="2023-01-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -296,12 +296,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="15" data-path="binary-choice.html"><a href="binary-choice.html"><i class="fa fa-check"></i><b>15</b> Binary Choice</a>
 <ul>
 <li class="chapter" data-level="15.1" data-path="binary-choice-estimation-in-r.html"><a href="binary-choice-estimation-in-r.html"><i class="fa fa-check"></i><b>15.1</b> Binary Choice Estimation in R</a></li>
-<li class="chapter" data-level="15.2" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html"><i class="fa fa-check"></i><b>15.2</b> Additional Examples and Probit Model</a>
-<ul>
-<li class="chapter" data-level="15.2.1" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html#full-time-work"><i class="fa fa-check"></i><b>15.2.1</b> Full-Time Work</a></li>
-<li class="chapter" data-level="15.2.2" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html#voting-behavior"><i class="fa fa-check"></i><b>15.2.2</b> Voting Behavior</a></li>
-</ul></li>
-<li class="chapter" data-level="15.3" data-path="exercises-11.html"><a href="exercises-11.html"><i class="fa fa-check"></i><b>15.3</b> Exercises</a></li>
+<li class="chapter" data-level="15.2" data-path="exercises-11.html"><a href="exercises-11.html"><i class="fa fa-check"></i><b>15.2</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="16" data-path="qualitative-choice-models.html"><a href="qualitative-choice-models.html"><i class="fa fa-check"></i><b>16</b> Qualitative Choice Models</a>
 <ul>
@@ -385,25 +380,27 @@ Thus, the 95% confidence interval is constructed as follows:
 Consider the voting data in <code>gss2018</code>. The mean is 0.67 and the standard error is
 <span class="math display">\[\sigma_{\bar{x}}=\sqrt{\frac{0.67 \cdot (1-0.67)}{772}}=0.0169\]</span></p>
 <p>In this case, the margin of error is <span class="math inline">\(1.96 \cdot 0.0169=0.033\)</span>. To calculate a confidence interval for a proportion in R, the function <code>t.test()</code> is used. Before using the function, the manual calculations are presented.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="confidence-interval-for-a-proportion.html#cb23-1" aria-hidden="true" tabindex="-1"></a>nobs           <span class="ot">=</span> <span class="fu">nrow</span>(gss2018)</span>
-<span id="cb23-2"><a href="confidence-interval-for-a-proportion.html#cb23-2" aria-hidden="true" tabindex="-1"></a>meandata       <span class="ot">=</span> <span class="fu">mean</span>(gss2018<span class="sc">$</span>vote)</span>
-<span id="cb23-3"><a href="confidence-interval-for-a-proportion.html#cb23-3" aria-hidden="true" tabindex="-1"></a>z              <span class="ot">=</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>)</span>
-<span id="cb23-4"><a href="confidence-interval-for-a-proportion.html#cb23-4" aria-hidden="true" tabindex="-1"></a>stderror       <span class="ot">=</span> <span class="fu">sqrt</span>(meandata<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>meandata)<span class="sc">/</span>nobs)</span>
-<span id="cb23-5"><a href="confidence-interval-for-a-proportion.html#cb23-5" aria-hidden="true" tabindex="-1"></a>CI_lower       <span class="ot">=</span> meandata<span class="sc">-</span>z<span class="sc">*</span>stderror</span>
-<span id="cb23-6"><a href="confidence-interval-for-a-proportion.html#cb23-6" aria-hidden="true" tabindex="-1"></a>CI_upper       <span class="ot">=</span> meandata<span class="sc">+</span>z<span class="sc">*</span>stderror</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="confidence-interval-for-a-proportion.html#cb23-1" aria-hidden="true" tabindex="-1"></a>voting         <span class="ot">=</span> <span class="fu">subset</span>(gss,vote12 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;voted&quot;</span>,<span class="st">&quot;did not vote&quot;</span>))</span>
+<span id="cb23-2"><a href="confidence-interval-for-a-proportion.html#cb23-2" aria-hidden="true" tabindex="-1"></a>voting         <span class="ot">=</span> <span class="fu">ifelse</span>(voting<span class="sc">$</span>vote12<span class="sc">==</span><span class="st">&quot;voted&quot;</span>,<span class="dv">1</span>,<span class="dv">0</span>)</span>
+<span id="cb23-3"><a href="confidence-interval-for-a-proportion.html#cb23-3" aria-hidden="true" tabindex="-1"></a>nobs           <span class="ot">=</span> <span class="fu">nrow</span>(voting)</span>
+<span id="cb23-4"><a href="confidence-interval-for-a-proportion.html#cb23-4" aria-hidden="true" tabindex="-1"></a>meandata       <span class="ot">=</span> <span class="fu">mean</span>(voting)</span>
+<span id="cb23-5"><a href="confidence-interval-for-a-proportion.html#cb23-5" aria-hidden="true" tabindex="-1"></a>z              <span class="ot">=</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>)</span>
+<span id="cb23-6"><a href="confidence-interval-for-a-proportion.html#cb23-6" aria-hidden="true" tabindex="-1"></a>stderror       <span class="ot">=</span> <span class="fu">sqrt</span>(meandata<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>meandata)<span class="sc">/</span>nobs)</span>
+<span id="cb23-7"><a href="confidence-interval-for-a-proportion.html#cb23-7" aria-hidden="true" tabindex="-1"></a>CI_lower       <span class="ot">=</span> meandata<span class="sc">-</span>z<span class="sc">*</span>stderror</span>
+<span id="cb23-8"><a href="confidence-interval-for-a-proportion.html#cb23-8" aria-hidden="true" tabindex="-1"></a>CI_upper       <span class="ot">=</span> meandata<span class="sc">+</span>z<span class="sc">*</span>stderror</span></code></pre></div>
 <p>Using the function <code>t.test()</code> is simpler:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="confidence-interval-for-a-proportion.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(gss2018<span class="sc">$</span>vote)</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="confidence-interval-for-a-proportion.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(voting)</span></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 
-## data:  gss2018$vote
-## t = 39.653, df = 771, p-value &lt; 2.2e-16
+## data:  voting
+## t = 76.794, df = 2608, p-value &lt; 2.2e-16
 ## alternative hypothesis: true mean is not equal to 0
 ## 95 percent confidence interval:
-##  0.6377669 0.7042020
+##  0.6756645 0.7110737
 ## sample estimates:
 ## mean of x 
-## 0.6709845</code></pre>
+## 0.6933691</code></pre>
 </div>
             </section>
 

@@ -61,7 +61,10 @@ For a two-sided hypothesis test at the $\alpha=0.05$ level, we fail to reject th
 Consider the data in `gsssocialmedia`. Suppose that Instagram claims that 1/3 of Americans use their service. This can be verified with a two-sided hypothesis test:
 
 ```{r HYPsocialmedia1}
-t.test(gsssocialmedia$instagram,mu=1/3,alternative=c("two.sided"))
+socialmedia              = gss[c("instagrm")]
+socialmedia              = na.omit(socialmedia)
+socialmedia$instagrm     = ifelse(socialmedia$instagrm=="yes",1,0)
+t.test(socialmedia$instagrm,mu=1/3,alternative=c("two.sided"))
 ```
 The *p*-value is above 5\% and thus, we fail to reject the hypothesis. Now suppose that Instagram claims that more than 1/3 of Americans use their service. The term "more than" suggests a one-sided hypothesis. The hypothesis is formulated as follows: 
 $$ H_0: p \geq 1/3\\
@@ -69,7 +72,7 @@ H_a: p < 1/3$$
 
 It is very important to correctly **state the alternative hypothesis in R**.
 ```{r HYPsocialmedia12}
-t.test(gsssocialmedia$instagram,mu=1/3,alternative=c("less"))
+t.test(socialmedia$instagrm,mu=1/3,alternative=c("less"))
 ```
 In this case, the *p*-value is below 5\% and thus, the hypothesis is rejected. 
 

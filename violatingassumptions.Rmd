@@ -46,7 +46,7 @@ bhat2               = lm(price~sqft,data=gqtestdata2)
 lambda              = sum(bhat2$residuals^2)/sum(bhat1$residuals^2)
 ```
 Of course, there is also a function in R called gqtest which simplifies the procedure.
-```{r gqtest2}
+```{r gqtest2,warning=FALSE}
 library(lmtest)
 bhat                = lm(price~sqft,data=gqtestdata)
 gqtest(bhat,fraction = 6)
@@ -117,7 +117,7 @@ bhat = lm(log(total)~yards+att+exp+exp2+draft1+draft2+veteran+changeteam+pbowlev
 summary(bhat)
 ```
 After estimating the results, the function `vif()` from the package `car` is used:
-```{r}
+```{r,warning=FALSE,error=FALSE,message=FALSE}
 library(car)
 vif(bhat)
 ```

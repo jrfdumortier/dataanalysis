@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>20 Data Sources | Data Analysis for Public Affairs with R</title>
   <meta name="description" content="20 Data Sources | Data Analysis for Public Affairs with R" />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
 
   <meta property="og:title" content="20 Data Sources | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2022-10-04" />
+<meta name="date" content="2023-01-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -296,12 +296,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="15" data-path="binary-choice.html"><a href="binary-choice.html"><i class="fa fa-check"></i><b>15</b> Binary Choice</a>
 <ul>
 <li class="chapter" data-level="15.1" data-path="binary-choice-estimation-in-r.html"><a href="binary-choice-estimation-in-r.html"><i class="fa fa-check"></i><b>15.1</b> Binary Choice Estimation in R</a></li>
-<li class="chapter" data-level="15.2" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html"><i class="fa fa-check"></i><b>15.2</b> Additional Examples and Probit Model</a>
-<ul>
-<li class="chapter" data-level="15.2.1" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html#full-time-work"><i class="fa fa-check"></i><b>15.2.1</b> Full-Time Work</a></li>
-<li class="chapter" data-level="15.2.2" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html#voting-behavior"><i class="fa fa-check"></i><b>15.2.2</b> Voting Behavior</a></li>
-</ul></li>
-<li class="chapter" data-level="15.3" data-path="exercises-11.html"><a href="exercises-11.html"><i class="fa fa-check"></i><b>15.3</b> Exercises</a></li>
+<li class="chapter" data-level="15.2" data-path="exercises-11.html"><a href="exercises-11.html"><i class="fa fa-check"></i><b>15.2</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="16" data-path="qualitative-choice-models.html"><a href="qualitative-choice-models.html"><i class="fa fa-check"></i><b>16</b> Qualitative Choice Models</a>
 <ul>
@@ -384,15 +379,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>bday(k)</code>: This function calculates the probability of two people having the same birthday in a group of <span class="math inline">\(k\)</span> people.</li>
 <li><code>samplesize(me,p=0.5,pop)</code>: This function requires the desired margin of error as the input, e.g., <span class="math inline">\(me=0.03\)</span> for <span class="math inline">\(\pm 3\%\)</span>. By default, the function calculates the sample size assuming a variance maximizing probability of <span class="math inline">\(p=0.5\)</span> and infinite population. Both parameters can be adjusted.</li>
 </ul>
-<p>Some data sets are generic, i.e., randomly generated, to highlight a particular concept while other are either based on public sources or are taken from academic papers. In any case, the sources are clearly indicated. Sometimes modifications were made to the data for ease of use, e.g., removing missing values or unnecessary variables. Some of the data sets are also associated with specific R packages which is indicated. The following data sets are included:</p>
+<p>Some data sets are generic, i.e., randomly generated, to highlight a particular concept while other are either based on public sources or are taken from academic papers. In any case, the sources are clearly indicated. Sometimes modifications were made to the data for ease of use, e.g., removing missing values or unnecessary variables. Some of the data sets are also associated with specific R packages which is indicated. For some data sets, the total number of observations is not included since the data is updated over time. The following data sets are included:</p>
 <ul>
-<li><p><code>accidents</code> (N=30): Generic data on the number of <span class="math inline">\(accidents\)</span> and the <span class="math inline">\(temperature\)</span> in Fahrenheit.</p></li>
+<li><p><code>accidents</code> (N=30): Generic data on the number of <span class="math inline">\(accidents\)</span>, <span class="math inline">\(temperature\)</span> in Fahrenheit, and <span class="math inline">\(precipitation\)</span> in inches.</p></li>
 <li><p><code>airlines</code> (N=211918): On-time and delay statistics for the 100 largest airports (by number of 2019 arrivals) by airline January 2004 to May 2022. The variable names are mostly self-explanatory. The variables <span class="math inline">\(arrflights\)</span> and <span class="math inline">\(arrdel15\)</span> are the total number of arriving flights and the number of flight delayed at least 15 minutes. The original data is available <a href="https://www.transtats.bts.gov/ot_delay/ot_delaycause1.asp">here</a>.</p></li>
 <li><p><code>anscombe</code> (N=11): Anscombe’s Quartet where <span class="math inline">\(yi\)</span> and <span class="math inline">\(xi\)</span> represent dependent and independent variable of set <span class="math inline">\(i\)</span>, respectively. This data set is widely available and is also included in R.</p></li>
 <li><p><code>aptitude</code> (N=200): Aptitude (<span class="math inline">\(apt\)</span>), reading (<span class="math inline">\(read\)</span>), and <span class="math inline">\(math\)</span> test scores for students (<span class="math inline">\(id\)</span>). The program type is indicated by <span class="math inline">\(prog\)</span>. The data set is taken from the <a href="https://stats.oarc.ucla.edu/r/dae/tobit-models/">UCLA Advanced Research Computing website on Tobit Models</a>.</p></li>
-<li><p><code>blm</code> (<span class="math inline">\(N=1359\)</span>): The data is associated with the paper <a href="https://doi.org/10.1017/S1537592717004273">Black Lives Matter: Evidence that Police-Caused Deaths Predict Protest Activity</a>. The variables include city (<span class="math inline">\(geography\)</span>), total protests (<span class="math inline">\(totprotests\)</span>), population (<span class="math inline">\(pop\)</span>), population density (<span class="math inline">\(popdensity\)</span>), percent black (<span class="math inline">\(percentblack\)</span>), black poverty rate (<span class="math inline">\(blackpovertyrate\)</span>), percent college-educated (<span class="math inline">\(percentbachelor\)</span>), college students as a percent of the population (<span class="math inline">\(collegeenrollpc\)</span>), Democratic vote share (<span class="math inline">\(demshare\)</span>), police-caused deaths per 10,000 (<span class="math inline">\(deathspc\)</span>), and black police-caused deaths per 10,000 (<span class="math inline">\(deathsblackpc\)</span>).</p></li>
-<li><p><code>bmw</code> (<span class="math inline">\(N=30\)</span>): Data on the prices and miles of a particular BMW 5-series model in the Indianapolis area. Some of the models have rear-wheel drive (<span class="math inline">\(allwheeldrive=0\)</span>) whereas some have all-wheel drive (<span class="math inline">\(allwheeldrive=1\)</span>).</p></li>
-<li><p><code>chicagogrocery</code>: The data set was represents the information from <a href="https://github.com/Chicago/food-deserts">2013 grocery stores</a> and [Community Data Snapshots Raw Data from March 2014](<a href="https://datahub.cmap.illinois.gov/dataset/community-data-snapshots-raw-data" class="uri">https://datahub.cmap.illinois.gov/dataset/community-data-snapshots-raw-data</a>]. It includes the following variables:</p>
+<li><p><code>beer</code> (N=92)</p></li>
+<li><p><code>blm</code> (N=1359): The data is associated with the paper <a href="https://doi.org/10.1017/S1537592717004273">Black Lives Matter: Evidence that Police-Caused Deaths Predict Protest Activity</a>. The variables include city (<span class="math inline">\(geography\)</span>), total protests (<span class="math inline">\(totprotests\)</span>), population (<span class="math inline">\(pop\)</span>), population density (<span class="math inline">\(popdensity\)</span>), percent black (<span class="math inline">\(percentblack\)</span>), black poverty rate (<span class="math inline">\(blackpovertyrate\)</span>), percent college-educated (<span class="math inline">\(percentbachelor\)</span>), college students as a percent of the population (<span class="math inline">\(collegeenrollpc\)</span>), Democratic vote share (<span class="math inline">\(demshare\)</span>), police-caused deaths per 10,000 (<span class="math inline">\(deathspc\)</span>), and black police-caused deaths per 10,000 (<span class="math inline">\(deathsblackpc\)</span>).</p></li>
+<li><p><code>bmw</code> (N=30): Data on the prices and miles of a particular BMW 5-series model in the Indianapolis area. Some of the models have rear-wheel drive (<span class="math inline">\(allwheeldrive=0\)</span>) whereas some have all-wheel drive (<span class="math inline">\(allwheeldrive=1\)</span>).</p></li>
+<li><p><code>censoring</code> (N=50): Generic data in which values of the response variable below 0 are reported as 0. The researcher observes <span class="math inline">\(y\)</span> and <span class="math inline">\(x\)</span> but not <span class="math inline">\(yreal\)</span>.</p></li>
+<li><p><code>chicagogrocery</code> (N=77): The data set was represents the information from <a href="https://github.com/Chicago/food-deserts">2013 grocery stores</a> and [Community Data Snapshots Raw Data from March 2014](<a href="https://datahub.cmap.illinois.gov/dataset/community-data-snapshots-raw-data" class="uri">https://datahub.cmap.illinois.gov/dataset/community-data-snapshots-raw-data</a>]. It includes the following variables:</p>
 <ul>
 <li><span class="math inline">\(cca\)</span>: Name of the Chicago Community Area</li>
 <li><span class="math inline">\(stores\)</span>: Number of grocery stores</li>
@@ -406,16 +403,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><span class="math inline">\(black\)</span>: Black population</li>
 <li><span class="math inline">\(acres\)</span>: Area of the CCA</li>
 </ul></li>
-<li><p><code>coffee</code> (<span class="math inline">\(N=29\)</span>): Historical data about the coffee consumption in the United States. The variable <span class="math inline">\(consumption\)</span> is measured in thousand 60-kg bags. The variable <span class="math inline">\(price\)</span> represents the retail price of roasted coffee in US Dollars per pound. Both time series are obtained from the International Coffee Association. The variables <span class="math inline">\(rdi\)</span> and <span class="math inline">\(cpi\)</span>} represent real disposable income and the consumer price index, respectively. Those data series are obtained from the St. Louis FRED date base. The same is true for the varible <span class="math inline">\(population\)</span>. The variables <span class="math inline">\(rprice\)</span> and <span class="math inline">\(pcconsumption\)</span> represent the real coffee prices and the per-capita consumption of coffee.</p></li>
-<li><p><code>compactcars</code> (<span class="math inline">\(N=78\)</span>): Fuel efficiency of compact cars in 1995 and 2015. The fuel efficiency is expressed in miles per gallon in the columns and , respectively.</p></li>
-<li><p><code>discharge</code> (<span class="math inline">\(N=7\)</span>): Generic data set of pollutant discharge into a river measured in gallons.</p></li>
-<li><p><code>eggweights</code> (<span class="math inline">\(N=37\)</span>): Weight in grams of Large Grade A Brown Eggs from Whole Foods.</p></li>
-<li><p><code>eucrime</code> (<span class="math inline">\(N=387\)</span>): Intentional homicide data in Europe. Data series from Eurostat.</p></li>
-<li><p><code>evdata</code> (<span class="math inline">\(N=579\)</span>): Data about the choice of consumers with respect to alternative fuel vehicles. The
-variable represents the choice by the consumer for gasoline vehicles (<span class="math inline">\(choice = 1\)</span>), conventional
-hybrids (<span class="math inline">\(choice = 2\)</span>), plug-in hybrids (<span class="math inline">\(choice = 3\)</span>), and electric vehicles (<span class="math inline">\(choice = 4\)</span>). For each consumer,
-you have the following variables: , (indicating whether people have a fast charger for electric cars in their community), , and (number of cars). The variable is coded as follows: Under $15,000 (1), $15,000 to $24,999 (2), $25,000 to $34, 999 (3), $35,000 to $49,999 (4), $50,000 to $74,999 (5), $75,000 to $99,999 (6), $100,000 to $149,999 (7), $150,000 to $199,999 (8), $200,000 to $249,000 (9), above $250,000 (10). The variable is coded as follows: Less than High School (1), High School / GED (2), Some College (3), 2-year College Degree (4), 4-year College Degree (5), Masters Degree (6), Doctoral Degree (7). The variable politics is coded as follows: Extremely Liberal (1), Liberal (2), Slightly liberal (3), Moderate (4), Slightly conservative (5), Conservative (6), Extremely conservative (7), Other (8), None (9). See for more details.</p></li>
-<li><p><code>faithful</code> (<span class="math inline">\(N=272\)</span>): Eruption and waiting in time minutes of Old Faithful Geyser. This data is also included in R.</p></li>
+<li><p><code>coffee</code> (N=29): Historical data about the coffee consumption in the United States. The variable <span class="math inline">\(consumption\)</span> is measured in thousand 60-kg bags. The variable <span class="math inline">\(price\)</span> represents the retail price of roasted coffee in US Dollars per pound. Both time series are obtained from the International Coffee Association. The variables <span class="math inline">\(rdi\)</span> and <span class="math inline">\(cpi\)</span>} represent real disposable income and the consumer price index, respectively. Those data series are obtained from the St. Louis FRED date base. The same is true for the varible <span class="math inline">\(population\)</span>. The variables <span class="math inline">\(rprice\)</span> and <span class="math inline">\(pcconsumption\)</span> represent the real coffee prices and the per-capita consumption of coffee.</p></li>
+<li><p><code>compactcars</code> (N=78): Fuel efficiency of compact cars in 1995 and 2015. The fuel efficiency is expressed in miles per gallon in the columns <span class="math inline">\(Automatic\)</span> and <span class="math inline">\(Manual\)</span>, respectively. The variable <span class="math inline">\(displ\)</span> represents the displacement in liters.</p></li>
+<li><p><code>covid</code>: Daily time series of COVID-19 <span class="math inline">\(cases\)</span> and <span class="math inline">\(death\)</span> (cumulative count). The variables <span class="math inline">\(newcases\)</span> and <span class="math inline">\(newdeaths\)</span> correspond to the additional cases each day. The number of observations is variable since it is updated on a daily basis. The data can be obtained from a <a href="https://raw.githubusercontent.com/nytimes/covid-19-data/master/us.csv">New York Times GitHub</a> account.</p></li>
+<li><p><code>cps7885</code> (N=1084):</p></li>
+<li><p><code>discharge</code> (N=7): Generic data set of pollutant discharge into a river measured in gallons.</p></li>
+<li><p><code>eggweights</code> (N=37): Weight in grams of Large Grade A Brown Eggs from Whole Foods.</p></li>
+<li><p><code>eucrime</code>: Intentional homicide data in Europe. Data series from Eurostat.</p></li>
+<li><p><code>evdata</code> (N=579): Data about the choice of consumers with respect to alternative fuel vehicles. The
+variable <span class="math inline">\(choice\)</span> represents the choice by the consumer for gasoline vehicles (1), conventional
+hybrids (2), plug-in hybrids (3), and electric vehicles (4). For each consumer, you have the following variables: , (indicating whether people have a fast charger for electric cars in their community), , and (number of cars). The variable is coded as follows: Under $15,000 (1), $15,000 to $24,999 (2), $25,000 to $34, 999 (3), $35,000 to $49,999 (4), $50,000 to $74,999 (5), $75,000 to $99,999 (6), $100,000 to $149,999 (7), $150,000 to $199,999 (8), $200,000 to $249,000 (9), above $250,000 (10). The variable is coded as follows: Less than High School (1), High School / GED (2), Some College (3), 2-year College Degree (4), 4-year College Degree (5), Masters Degree (6), Doctoral Degree (7). The variable politics is coded as follows: Extremely Liberal (1), Liberal (2), Slightly liberal (3), Moderate (4), Slightly conservative (5), Conservative (6), Extremely conservative (7), Other (8), None (9). See for more details.</p></li>
+<li><p><code>faithful</code> (<span class="math inline">\(N=272\)</span>): Eruption and waiting in time minutes of Old Faithful Geyser. This data is included in R.</p></li>
 <li><p><code>fertil1</code> (<span class="math inline">\(N=1129\)</span>): Data from the General Social Survey. The data set is accompanying the book <em>Introductory Econometrics: A Modern Approach</em> by Jeffrey Wooldridge. The variables are as follows:</p>
 <ul>
 <li>year: 72 to 84, even</li>
@@ -428,11 +426,11 @@ you have the following variables: , (indicating whether people have a fast charg
 <li>town: 1 if lived in town at 16</li>
 <li>smallcity: 1 if in small city at 16</li>
 </ul></li>
-<li><p><code>fpdata</code> (<span class="math inline">\(N=176\)</span>):</p></li>
-<li><p><code>gss2018</code> (<span class="math inline">\(N=772\)</span>): 2018 data from the General Social Survey with the followin variables:</p></li>
-<li><p><code>gssgun</code> (<span class="math inline">\(N=1300\)</span>):</p></li>
-<li><p><code>gsssocialmedia</code> (<span class="math inline">\(N=1366\)</span>):</p></li>
-<li><p><code>happy</code> (<span class="math inline">\(N=631\)</span>): Data from the 2018 General Social Survey about happiness which includes the following variables:</p>
+<li><p><code>fpdata</code> (N=176):</p></li>
+<li><p><code>gqtestdata</code> (N=50): Generic (hetroscedastic) home value data of <span class="math inline">\(price\)</span> and living area (<span class="math inline">\(sqft\)</span>).</p></li>
+<li><p><code>grunfeld</code> (N=200):</p></li>
+<li><p><code>gss</code> (N=2867): 2016 data from the General Social Survey with the variables that are mostly self-explanatory. The variables <span class="math inline">\(wrkstat\)</span> and <span class="math inline">\(cappun\)</span> refer to the Work status and the stance on the death penalty, respectively. The variables <span class="math inline">\(facebook\)</span> and <span class="math inline">\(instagrm\)</span> indicates if the respondent uses the respective social media platform.</p></li>
+<li><p><code>happy</code> (N=631): Data from the 2018 General Social Survey about happiness which includes the following variables:</p>
 <ul>
 <li><span class="math inline">\(sexfreq\)</span>: Frequency of sex during last year</li>
 <li><span class="math inline">\(gun\)</span>: Have gun in home</li>
@@ -443,21 +441,39 @@ you have the following variables: , (indicating whether people have a fast charg
 <li><span class="math inline">\(education\)</span>: Highest year of school completed</li>
 <li><span class="math inline">\(age\)</span>: Age of respondent</li>
 </ul></li>
-<li><p><code>hdr</code> (<span class="math inline">\(N=189\)</span>): Human Development Indicator from 2019.</p></li>
+<li><p><code>hdi</code> (<span class="math inline">\(N=189\)</span>): Human Development Indicator from 2019.</p></li>
 <li><p><code>heating</code> (<span class="math inline">\(N=24\)</span>): Contains 24 observations of natural gas usage (in hundreds of cubic feet) and the average outside temperature (in Fahrenheit).</p></li>
 <li><p><code>hhpub</code> (<span class="math inline">\(N=129696\)</span>):</p></li>
 <li><p><code>honda</code> (<span class="math inline">\(N=81\)</span>):</p></li>
+<li><p><code>housing</code>: Data from FRED</p></li>
+<li><p><code>hps</code>: Household Pulse Survey</p></li>
 <li><p><code>hybrid</code> (<span class="math inline">\(N=1000\)</span>):</p></li>
 <li><p><code>indyhomes</code> (<span class="math inline">\(N=102\)</span>):</p></li>
+<li><p><code>jcars</code></p></li>
+<li><p><code>kiel</code></p></li>
 <li><p><code>meatdemand</code> (<span class="math inline">\(N=39\)</span>): Meet demand quantity (<span class="math inline">\(q\)</span>) and real price (<span class="math inline">\(p\)</span>) data from the U.S. Department of Agriculture. Prices and real disposable income (<span class="math inline">\(rdi\)</span>) are in real terms.</p></li>
 <li><p><code>mh1</code> (<span class="math inline">\(N=101\)</span>): Home values in the Meridian Hills area in Indianapolis.</p></li>
 <li><p><code>mh2</code> (<span class="math inline">\(N=18\)</span>): Prices and characteristics of homes in the Meridian Hills area in Indianapolis.</p></li>
 <li><p><code>milk</code> (<span class="math inline">\(N=50\)</span>): Randomly generated milk container fillings in ounces.</p></li>
 <li><p><code>mpa</code> (<span class="math inline">\(N=18\)</span>): Randomly generated exam scores in a class of MPA students.</p></li>
-<li><p><code>nfl</code> (<span class="math inline">\(N=1009\)</span>): Data from which includes the following variables:</p></li>
-<li><p><code>ohioincome</code> (<span class="math inline">\(N=607\)</span>): Enrollment and median income in Ohio School districts for 2018/2019. identifies the school district.</p></li>
-<li><p><code>ohioscore</code> (<span class="math inline">\(N=608\)</span>): Performance and achievement scores of Ohio schools for 2018/2019. The data is obtained from the . identifies the school district.</p></li>
+<li><p><code>nfl</code> (<span class="math inline">\(N=1009\)</span>): Data from which includes the following variables:</p>
+<ul>
+<li><span class="math inline">\(total\)</span>: Total salary</li>
+<li><span class="math inline">\(yards\)</span>: Passing yards from the prior season</li>
+<li><span class="math inline">\(att\)</span>: Pass attempts</li>
+<li><span class="math inline">\(exp\)</span>: Total years of experience in the league.</li>
+<li><span class="math inline">\(exp2\)</span>: Total years of experience in the league squared.</li>
+<li><span class="math inline">\(draft1\)</span>: First round draft pick.</li>
+<li><span class="math inline">\(draft2\)</span>: Second round draft pick.</li>
+<li><span class="math inline">\(veteran\)</span>: Bargaining status changes after a player has completed three years in the NFL.</li>
+<li><span class="math inline">\(changeteam\)</span>: Player has changed team.</li>
+<li><span class="math inline">\(pbowlever\)</span>: Player appeared in the Pro Bowl.</li>
+<li><span class="math inline">\(symm\)</span>: Facial symmetry.</li>
+</ul></li>
+<li><p><code>ohioincome</code> (<span class="math inline">\(N=607\)</span>): Enrollment and median income in Ohio School districts for 2018/2019. <span class="math inline">\(IRN\)</span> identifies the school district.</p></li>
+<li><p><code>ohioscore</code> (<span class="math inline">\(N=608\)</span>): Performance and achievement scores of Ohio schools for 2018/2019. The data is obtained from the . <span class="math inline">\(IRN\)</span> identifies the school district.</p></li>
 <li><p><code>organic</code> (<span class="math inline">\(N=100\)</span>): Randomly generated data on the purchase behavior of organic food (binary choice) as a function of income.</p></li>
+<li><p><code>quakes</code>:</p></li>
 <li><p><code>quillayute</code> (N=20116): Weather data from Quillayute Airport in Washington State. Weather station USW00094240.</p>
 <ul>
 <li><span class="math inline">\(date\)</span>: Date</li>
@@ -481,8 +497,13 @@ emp1 – emp52: factors coded yes if the individual was employed in the correspo
 <ul>
 <li><p><code>skewness</code> (<span class="math inline">\(N=500\)</span>): Randomly generated data from a beta distribution:</p></li>
 <li><p><code>soda</code> (<span class="math inline">\(N=25\)</span>): Randomly generated data of for soda cans (in milliliters).</p></li>
+<li><p><code>souvenirs</code></p></li>
 <li><p><code>states</code> (<span class="math inline">\(N=10\)</span>): Generated income data for three states.</p></li>
-<li><p><code>usdata</code> (<span class="math inline">\(N=296\)</span>): Data from the St. Louis FRED data base.</p></li>
+<li><p><code>usdata</code>: Data from the St. Louis FRED data base.</p>
+<ul>
+<li><span class="math inline">\(income\)</span>: Real Disposable Personal Income: Per Capita</li>
+<li><span class="math inline">\(consumption\)</span>: Real personal consumption expenditures per capita</li>
+</ul></li>
 <li><p><code>vehicles</code> (<span class="math inline">\(N=42702\)</span>): The data set contains data about the fuel efficiency of vehicles from model year 1984 to 2021 (<span class="math inline">\(year\)</span>). It also includes <span class="math inline">\(make\)</span> and <span class="math inline">\(model\)</span> for the various manufacturers. The variable <span class="math inline">\(displ\)</span> refers to engine displacement in liters, <span class="math inline">\(VClass\)</span> is the vehicle class, <span class="math inline">\(ghgScore\)</span> indicates the greenhouse gas (GHG) emissions, and <span class="math inline">\(comb08U\)</span> is unrounded combined MPG. The data is obtained from the U.S. Environmental Protection Agency’ (EPA) webpage. The full dataset contains many more variables which are well <a href="https://www.fueleconomy.gov/feg/ws/index.shtml#vehicle">documented</a>.</p></li>
 <li><p><code>vehpub</code> (<span class="math inline">\(N=256115\)</span>): The data contains vehicle data from the 2017 National Household Travel Survey (NHTS). Some columns were deleted but the detailed code book can be found <a href="https://nhts.ornl.gov/tables09/CodebookBrowser.aspx">here</a>. The variables included are:</p>
 <ul>

@@ -242,8 +242,8 @@ The required package to extend the basic `table()` function is called [gmodels](
 - The function `CrossTable()` includes the proportions along the two dimensions of gun ownership and gender. Note that a description of the cell content is at the top of the results page. 
 
 ```{r INRCrossTable}
-table(gssgun$owngun,gssgun$sex)
-CrossTable(gssgun$owngun,gssgun$sex,prop.chisq=FALSE)
+table(gss$owngun,gss$sex)
+CrossTable(gss$owngun,gss$sex,prop.chisq=FALSE)
 ```
 Note that for almost any R command, you can store the output by assigning it to an object:
 

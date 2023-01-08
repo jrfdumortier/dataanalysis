@@ -15,7 +15,7 @@ fig:DIStdistribution
 fig:BSSlln
 fig:BSSriskpooling
 fig:BSSclt
-fig:unnamed-chunk-14
+fig:unnamed-chunk-141
 fig:BVRhomoheteroscedasticity
 fig:BVRhonda
 preface
@@ -127,9 +127,6 @@ breusch-godfrey-test
 exercises-10
 binary-choice
 binary-choice-estimation-in-r
-additional-examples-and-probit-model
-full-time-work
-voting-behavior
 exercises-11
 qualitative-choice-models
 ordered-logit-model

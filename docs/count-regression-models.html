@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>17.3 Count Regression Models | Data Analysis for Public Affairs with R</title>
   <meta name="description" content="17.3 Count Regression Models | Data Analysis for Public Affairs with R" />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
 
   <meta property="og:title" content="17.3 Count Regression Models | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2022-10-04" />
+<meta name="date" content="2023-01-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -296,12 +296,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="15" data-path="binary-choice.html"><a href="binary-choice.html"><i class="fa fa-check"></i><b>15</b> Binary Choice</a>
 <ul>
 <li class="chapter" data-level="15.1" data-path="binary-choice-estimation-in-r.html"><a href="binary-choice-estimation-in-r.html"><i class="fa fa-check"></i><b>15.1</b> Binary Choice Estimation in R</a></li>
-<li class="chapter" data-level="15.2" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html"><i class="fa fa-check"></i><b>15.2</b> Additional Examples and Probit Model</a>
-<ul>
-<li class="chapter" data-level="15.2.1" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html#full-time-work"><i class="fa fa-check"></i><b>15.2.1</b> Full-Time Work</a></li>
-<li class="chapter" data-level="15.2.2" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html#voting-behavior"><i class="fa fa-check"></i><b>15.2.2</b> Voting Behavior</a></li>
-</ul></li>
-<li class="chapter" data-level="15.3" data-path="exercises-11.html"><a href="exercises-11.html"><i class="fa fa-check"></i><b>15.3</b> Exercises</a></li>
+<li class="chapter" data-level="15.2" data-path="exercises-11.html"><a href="exercises-11.html"><i class="fa fa-check"></i><b>15.2</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="16" data-path="qualitative-choice-models.html"><a href="qualitative-choice-models.html"><i class="fa fa-check"></i><b>16</b> Qualitative Choice Models</a>
 <ul>
@@ -396,19 +391,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span class="math display">\[Pr(Y=k)=\frac{e^{-\lambda} \cdot \lambda^k}{k!}\]</span>
 The important characteristics of the distribution is that the mean and variance are equal to <span class="math inline">\(\lambda\)</span>, i.e., <span class="math inline">\(E(Y)=\lambda\)</span> and <span class="math inline">\(Var(Y)=\lambda\)</span>, this is also known as the equidispersion property. The mean parameter is written as <span class="math inline">\(\lambda=exp(\beta_0+\beta_1 \cdot x_1+ \dots + \beta_k \cdot x_k)\)</span>.</p>
 <p>The first examples uses the 2017 <a href="https://nhts.ornl.gov/">NHTS</a> data contained in <code>hhpub</code>. In a first step, the data is prepared for the regression model, i.e., missing or unknown values are eliminated and income is measured in (thousand) dollar terms:</p>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="count-regression-models.html#cb141-1" aria-hidden="true" tabindex="-1"></a>hhpubdata <span class="ot">=</span> <span class="fu">subset</span>(hhpub,HHFAMINC <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">11</span>) <span class="sc">&amp;</span> HOMEOWN <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>) <span class="sc">&amp;</span> URBRUR <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>) <span class="sc">&amp;</span> HHVEHCNT <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">12</span>))</span>
-<span id="cb141-2"><a href="count-regression-models.html#cb141-2" aria-hidden="true" tabindex="-1"></a>HHFAMINC <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">11</span>)</span>
-<span id="cb141-3"><a href="count-regression-models.html#cb141-3" aria-hidden="true" tabindex="-1"></a>INCOME <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">10</span>,<span class="fl">12.5</span>,<span class="dv">20</span>,<span class="dv">30</span>,<span class="fl">42.5</span>,<span class="fl">57.5</span>,<span class="fl">82.5</span>,<span class="fl">112.5</span>,<span class="fl">137.5</span>,<span class="dv">175</span>,<span class="dv">200</span>)</span>
-<span id="cb141-4"><a href="count-regression-models.html#cb141-4" aria-hidden="true" tabindex="-1"></a>INCOME <span class="ot">=</span> <span class="fu">data.frame</span>(HHFAMINC,INCOME)</span>
-<span id="cb141-5"><a href="count-regression-models.html#cb141-5" aria-hidden="true" tabindex="-1"></a>hhpubdata <span class="ot">=</span> <span class="fu">merge</span>(hhpubdata,INCOME)</span>
-<span id="cb141-6"><a href="count-regression-models.html#cb141-6" aria-hidden="true" tabindex="-1"></a>hhpubdata<span class="sc">$</span>RURAL <span class="ot">=</span> hhpubdata<span class="sc">$</span>URBRUR<span class="dv">-1</span></span>
-<span id="cb141-7"><a href="count-regression-models.html#cb141-7" aria-hidden="true" tabindex="-1"></a>hhpubdata<span class="sc">$</span>RENT <span class="ot">=</span> hhpubdata<span class="sc">$</span>HOMEOWN<span class="dv">-1</span></span></code></pre></div>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="count-regression-models.html#cb128-1" aria-hidden="true" tabindex="-1"></a>hhpubdata <span class="ot">=</span> <span class="fu">subset</span>(hhpub,HHFAMINC <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">11</span>) <span class="sc">&amp;</span> HOMEOWN <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>) <span class="sc">&amp;</span> URBRUR <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>) <span class="sc">&amp;</span> HHVEHCNT <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">12</span>))</span>
+<span id="cb128-2"><a href="count-regression-models.html#cb128-2" aria-hidden="true" tabindex="-1"></a>HHFAMINC <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">11</span>)</span>
+<span id="cb128-3"><a href="count-regression-models.html#cb128-3" aria-hidden="true" tabindex="-1"></a>INCOME <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">10</span>,<span class="fl">12.5</span>,<span class="dv">20</span>,<span class="dv">30</span>,<span class="fl">42.5</span>,<span class="fl">57.5</span>,<span class="fl">82.5</span>,<span class="fl">112.5</span>,<span class="fl">137.5</span>,<span class="dv">175</span>,<span class="dv">200</span>)</span>
+<span id="cb128-4"><a href="count-regression-models.html#cb128-4" aria-hidden="true" tabindex="-1"></a>INCOME <span class="ot">=</span> <span class="fu">data.frame</span>(HHFAMINC,INCOME)</span>
+<span id="cb128-5"><a href="count-regression-models.html#cb128-5" aria-hidden="true" tabindex="-1"></a>hhpubdata <span class="ot">=</span> <span class="fu">merge</span>(hhpubdata,INCOME)</span>
+<span id="cb128-6"><a href="count-regression-models.html#cb128-6" aria-hidden="true" tabindex="-1"></a>hhpubdata<span class="sc">$</span>RURAL <span class="ot">=</span> hhpubdata<span class="sc">$</span>URBRUR<span class="dv">-1</span></span>
+<span id="cb128-7"><a href="count-regression-models.html#cb128-7" aria-hidden="true" tabindex="-1"></a>hhpubdata<span class="sc">$</span>RENT <span class="ot">=</span> hhpubdata<span class="sc">$</span>HOMEOWN<span class="dv">-1</span></span></code></pre></div>
 <p>The outcome of interest is the number of vehicles based on household income, home ownership, and urban/rural household location. Before executing the Poisson regression model, calculate the mean and variance of the outcome variable.</p>
 <pre><code>## [1] 1.981142</code></pre>
 <pre><code>## [1] 1.386027</code></pre>
 <p>The mean and the variance are similar and thus, estimating a Poisson Regression Model is an appropriate first step. The package <a href="https://cran.r-project.org/web/packages/AER/index.html">AER</a> also contains the function <code>dispersiontest()</code> which conducts a hypothesis test assuming no overdispersion. This test will be used after execution of the main regression. To estimate the model, the <code>glm()</code> function can be used by specifying <code>family=poisson</code>.</p>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="count-regression-models.html#cb144-1" aria-hidden="true" tabindex="-1"></a>bhat_pois <span class="ot">=</span> <span class="fu">glm</span>(HHVEHCNT<span class="sc">~</span>INCOME<span class="sc">+</span>RENT<span class="sc">+</span>RURAL,<span class="at">data=</span>hhpubdata,<span class="at">family=</span>poisson)</span>
-<span id="cb144-2"><a href="count-regression-models.html#cb144-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat_pois)</span></code></pre></div>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="count-regression-models.html#cb131-1" aria-hidden="true" tabindex="-1"></a>bhat_pois <span class="ot">=</span> <span class="fu">glm</span>(HHVEHCNT<span class="sc">~</span>INCOME<span class="sc">+</span>RENT<span class="sc">+</span>RURAL,<span class="at">data=</span>hhpubdata,<span class="at">family=</span>poisson)</span>
+<span id="cb131-2"><a href="count-regression-models.html#cb131-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat_pois)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = HHVEHCNT ~ INCOME + RENT + RURAL, family = poisson, 
@@ -441,7 +436,7 @@ The important characteristics of the distribution is that the mean and variance 
 <li>If <span class="math inline">\(\beta&lt;0\)</span>, then <span class="math inline">\(\exp(\beta) &lt; 1\)</span>, and the expected count <span class="math inline">\(E(y)\)</span> is <span class="math inline">\(\exp(\beta)\)</span> times smaller than when <span class="math inline">\(X = 0\)</span></li>
 </ul>
 <p>The function <code>overdispersion</code> tests the null hypothesis of equidispersion:</p>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="count-regression-models.html#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dispersiontest</span>(bhat_pois)</span></code></pre></div>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="count-regression-models.html#cb133-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dispersiontest</span>(bhat_pois)</span></code></pre></div>
 <pre><code>## 
 ##  Overdispersion test
 ## 
@@ -457,14 +452,14 @@ The important characteristics of the distribution is that the mean and variance 
 <h3><span class="header-section-number">17.3.2</span> Quasi-Poisson Regression Model<a href="count-regression-models.html#quasi-poisson-regression-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The dataset <code>blm</code> used in this section as well as the one describing the negative binomial model is associated with the article <a href="https://doi.org/10.1017/S1537592717004273">Black Lives Matter: Evidence that Police-Caused Deaths Predict Protest Activity</a>. Note that the paper includes a significant number of supplementary materials which allows for the replication of the results and much more.</p>
 <p>The dependent variable is the total number of protests in a city. In a first step, the mean and variance of the variable <span class="math inline">\(totalprotests\)</span> are calclated:</p>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="count-regression-models.html#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(blm<span class="sc">$</span>totprotests)</span></code></pre></div>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="count-regression-models.html#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(blm<span class="sc">$</span>totprotests)</span></code></pre></div>
 <pre><code>## [1] 0.4959529</code></pre>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="count-regression-models.html#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(blm<span class="sc">$</span>totprotests)</span></code></pre></div>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="count-regression-models.html#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(blm<span class="sc">$</span>totprotests)</span></code></pre></div>
 <pre><code>## [1] 6.35326</code></pre>
 <p>The variance is significantly higher than the mean which suggests overdispersion. In a first step, a regular Poisson model is estimated.</p>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="count-regression-models.html#cb152-1" aria-hidden="true" tabindex="-1"></a>eq1 <span class="ot">=</span> <span class="st">&quot;totprotests~log(pop)+log(popdensity)+percentblack+blackpovertyrate+I(blackpovertyrate^2)+percentbachelor+collegeenrollpc+demshare&quot;</span></span>
-<span id="cb152-2"><a href="count-regression-models.html#cb152-2" aria-hidden="true" tabindex="-1"></a>bhat1 <span class="ot">=</span> <span class="fu">glm</span>(eq1,<span class="at">data=</span>blm,<span class="at">family=</span>poisson)</span>
-<span id="cb152-3"><a href="count-regression-models.html#cb152-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat1)</span></code></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="count-regression-models.html#cb139-1" aria-hidden="true" tabindex="-1"></a>eq1 <span class="ot">=</span> <span class="st">&quot;totprotests~log(pop)+log(popdensity)+percentblack+blackpovertyrate+I(blackpovertyrate^2)+percentbachelor+collegeenrollpc+demshare&quot;</span></span>
+<span id="cb139-2"><a href="count-regression-models.html#cb139-2" aria-hidden="true" tabindex="-1"></a>bhat1 <span class="ot">=</span> <span class="fu">glm</span>(eq1,<span class="at">data=</span>blm,<span class="at">family=</span>poisson)</span>
+<span id="cb139-3"><a href="count-regression-models.html#cb139-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat1)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = eq1, family = poisson, data = blm)
@@ -496,7 +491,7 @@ The important characteristics of the distribution is that the mean and variance 
 ## 
 ## Number of Fisher Scoring iterations: 6</code></pre>
 <p>Note that the signs and statistical significance correspond to Model 1 (Table 3) in the original paper. The coefficients are different because the paper only include negative binomial regression models. The reason for not using a Poisson regression model is the presence of overdispersion:</p>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="count-regression-models.html#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dispersiontest</span>(bhat1)</span></code></pre></div>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="count-regression-models.html#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dispersiontest</span>(bhat1)</span></code></pre></div>
 <pre><code>## 
 ##  Overdispersion test
 ## 
@@ -507,8 +502,8 @@ The important characteristics of the distribution is that the mean and variance 
 ## dispersion 
 ##   2.212733</code></pre>
 <p>Note that the null hypothesis is rejected at the 10% but not the 5% significance level. The Quasi-Poisson Regression Model handles overdispersion by adjusting the stand-errors but leaving the coefficicent estimates the same.</p>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="count-regression-models.html#cb156-1" aria-hidden="true" tabindex="-1"></a>bhat2 <span class="ot">=</span> <span class="fu">glm</span>(eq1,<span class="at">data=</span>blm,<span class="at">family=</span>quasipoisson)</span>
-<span id="cb156-2"><a href="count-regression-models.html#cb156-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat2)</span></code></pre></div>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="count-regression-models.html#cb143-1" aria-hidden="true" tabindex="-1"></a>bhat2 <span class="ot">=</span> <span class="fu">glm</span>(eq1,<span class="at">data=</span>blm,<span class="at">family=</span>quasipoisson)</span>
+<span id="cb143-2"><a href="count-regression-models.html#cb143-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat2)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = eq1, family = quasipoisson, data = blm)
@@ -545,8 +540,8 @@ The important characteristics of the distribution is that the mean and variance 
 <h3><span class="header-section-number">17.3.3</span> Negative Binomial Regression Model<a href="count-regression-models.html#negative-binomial-regression-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The Negative Binomial Regression Model can be used in the presence of count data and overdispersion. Below, the results from the article <a href="https://doi.org/10.1017/S1537592717004273">Black Lives Matter: Evidence that Police-Caused Deaths Predict Protest Activity</a> are recreated using the negative binomial models presented in the paper. The required package is <a href="https://cran.r-project.org/web/packages/MASS/index.html">MASS</a></p>
 <p>The first model is a basic model of resource mobilization and opportunity structure.</p>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="count-regression-models.html#cb158-1" aria-hidden="true" tabindex="-1"></a>bhat3 <span class="ot">=</span> <span class="fu">glm.nb</span>(eq1,<span class="at">data=</span>blm,<span class="at">link=</span>log)</span>
-<span id="cb158-2"><a href="count-regression-models.html#cb158-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat3) </span></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="count-regression-models.html#cb145-1" aria-hidden="true" tabindex="-1"></a>bhat3 <span class="ot">=</span> <span class="fu">glm.nb</span>(eq1,<span class="at">data=</span>blm,<span class="at">link=</span>log)</span>
+<span id="cb145-2"><a href="count-regression-models.html#cb145-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat3) </span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm.nb(formula = eq1, data = blm, link = log, init.theta = 1.559078735)
@@ -584,8 +579,8 @@ The important characteristics of the distribution is that the mean and variance 
 ## 
 ##  2 x log-likelihood:  -1100.187</code></pre>
 <p>In a second model, black deaths are added:</p>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="count-regression-models.html#cb160-1" aria-hidden="true" tabindex="-1"></a>bhat4 <span class="ot">=</span> <span class="fu">glm.nb</span>(totprotests<span class="sc">~</span><span class="fu">log</span>(pop)<span class="sc">+</span><span class="fu">log</span>(popdensity)<span class="sc">+</span>percentblack<span class="sc">+</span>blackpovertyrate<span class="sc">+</span><span class="fu">I</span>(blackpovertyrate<span class="sc">^</span><span class="dv">2</span>)<span class="sc">+</span>percentbachelor<span class="sc">+</span>collegeenrollpc<span class="sc">+</span>demshare<span class="sc">+</span>deathsblackpc,<span class="at">data=</span>blm,<span class="at">link=</span>log)</span>
-<span id="cb160-2"><a href="count-regression-models.html#cb160-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat4) </span></code></pre></div>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="count-regression-models.html#cb147-1" aria-hidden="true" tabindex="-1"></a>bhat4 <span class="ot">=</span> <span class="fu">glm.nb</span>(totprotests<span class="sc">~</span><span class="fu">log</span>(pop)<span class="sc">+</span><span class="fu">log</span>(popdensity)<span class="sc">+</span>percentblack<span class="sc">+</span>blackpovertyrate<span class="sc">+</span><span class="fu">I</span>(blackpovertyrate<span class="sc">^</span><span class="dv">2</span>)<span class="sc">+</span>percentbachelor<span class="sc">+</span>collegeenrollpc<span class="sc">+</span>demshare<span class="sc">+</span>deathsblackpc,<span class="at">data=</span>blm,<span class="at">link=</span>log)</span>
+<span id="cb147-2"><a href="count-regression-models.html#cb147-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat4) </span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm.nb(formula = totprotests ~ log(pop) + log(popdensity) + percentblack + 
@@ -627,8 +622,8 @@ The important characteristics of the distribution is that the mean and variance 
 ## 
 ##  2 x log-likelihood:  -1091.353</code></pre>
 <p>And in the third model, the authors use all police-caused deaths instead (victims of any race):</p>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="count-regression-models.html#cb162-1" aria-hidden="true" tabindex="-1"></a>bhat5 <span class="ot">=</span> <span class="fu">glm.nb</span>(totprotests<span class="sc">~</span><span class="fu">log</span>(pop)<span class="sc">+</span><span class="fu">log</span>(popdensity)<span class="sc">+</span>percentblack<span class="sc">+</span>blackpovertyrate<span class="sc">+</span><span class="fu">I</span>(blackpovertyrate<span class="sc">^</span><span class="dv">2</span>)<span class="sc">+</span>percentbachelor<span class="sc">+</span>collegeenrollpc<span class="sc">+</span>demshare<span class="sc">+</span>deathspc,<span class="at">data=</span>blm,<span class="at">link=</span>log)</span>
-<span id="cb162-2"><a href="count-regression-models.html#cb162-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat5) </span></code></pre></div>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="count-regression-models.html#cb149-1" aria-hidden="true" tabindex="-1"></a>bhat5 <span class="ot">=</span> <span class="fu">glm.nb</span>(totprotests<span class="sc">~</span><span class="fu">log</span>(pop)<span class="sc">+</span><span class="fu">log</span>(popdensity)<span class="sc">+</span>percentblack<span class="sc">+</span>blackpovertyrate<span class="sc">+</span><span class="fu">I</span>(blackpovertyrate<span class="sc">^</span><span class="dv">2</span>)<span class="sc">+</span>percentbachelor<span class="sc">+</span>collegeenrollpc<span class="sc">+</span>demshare<span class="sc">+</span>deathspc,<span class="at">data=</span>blm,<span class="at">link=</span>log)</span>
+<span id="cb149-2"><a href="count-regression-models.html#cb149-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat5) </span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm.nb(formula = totprotests ~ log(pop) + log(popdensity) + percentblack + 

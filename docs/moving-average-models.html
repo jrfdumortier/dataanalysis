@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>19.5 Moving Average Models | Data Analysis for Public Affairs with R</title>
   <meta name="description" content="19.5 Moving Average Models | Data Analysis for Public Affairs with R" />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
 
   <meta property="og:title" content="19.5 Moving Average Models | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2022-10-04" />
+<meta name="date" content="2023-01-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -296,12 +296,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="15" data-path="binary-choice.html"><a href="binary-choice.html"><i class="fa fa-check"></i><b>15</b> Binary Choice</a>
 <ul>
 <li class="chapter" data-level="15.1" data-path="binary-choice-estimation-in-r.html"><a href="binary-choice-estimation-in-r.html"><i class="fa fa-check"></i><b>15.1</b> Binary Choice Estimation in R</a></li>
-<li class="chapter" data-level="15.2" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html"><i class="fa fa-check"></i><b>15.2</b> Additional Examples and Probit Model</a>
-<ul>
-<li class="chapter" data-level="15.2.1" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html#full-time-work"><i class="fa fa-check"></i><b>15.2.1</b> Full-Time Work</a></li>
-<li class="chapter" data-level="15.2.2" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html#voting-behavior"><i class="fa fa-check"></i><b>15.2.2</b> Voting Behavior</a></li>
-</ul></li>
-<li class="chapter" data-level="15.3" data-path="exercises-11.html"><a href="exercises-11.html"><i class="fa fa-check"></i><b>15.3</b> Exercises</a></li>
+<li class="chapter" data-level="15.2" data-path="exercises-11.html"><a href="exercises-11.html"><i class="fa fa-check"></i><b>15.2</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="16" data-path="qualitative-choice-models.html"><a href="qualitative-choice-models.html"><i class="fa fa-check"></i><b>16</b> Qualitative Choice Models</a>
 <ul>
@@ -379,11 +374,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="moving-average-models" class="section level2 hasAnchor" number="19.5">
 <h2><span class="header-section-number">19.5</span> Moving Average Models<a href="moving-average-models.html#moving-average-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The moving average model presented in this chapter should not be confused with the concept of moving average (also known as rolling mean) which is familiar to many people. To avoid confusion, the term rolling mean is used for the latter. An example of a rolling mean is plotted below:</p>
-<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="moving-average-models.html#cb210-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(covid,<span class="fu">aes</span>(<span class="at">x=</span>date))<span class="sc">+</span></span>
-<span id="cb210-2"><a href="moving-average-models.html#cb210-2" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>newcases<span class="sc">/</span><span class="dv">1000</span>))<span class="sc">+</span></span>
-<span id="cb210-3"><a href="moving-average-models.html#cb210-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span><span class="fu">rollmean</span>(newcases<span class="sc">/</span><span class="dv">1000</span>,<span class="dv">7</span>,<span class="at">na.pad=</span><span class="cn">TRUE</span>,<span class="at">align=</span><span class="st">&quot;right&quot;</span>)),</span>
-<span id="cb210-4"><a href="moving-average-models.html#cb210-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">color=</span><span class="st">&quot;red&quot;</span>)<span class="sc">+</span><span class="fu">ylab</span>(<span class="st">&quot;New Cases in Thousand&quot;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-87-1.png" width="672" /></p>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="moving-average-models.html#cb198-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(covid,<span class="fu">aes</span>(<span class="at">x=</span>date))<span class="sc">+</span></span>
+<span id="cb198-2"><a href="moving-average-models.html#cb198-2" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>newcases<span class="sc">/</span><span class="dv">1000</span>))<span class="sc">+</span></span>
+<span id="cb198-3"><a href="moving-average-models.html#cb198-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span><span class="fu">rollmean</span>(newcases<span class="sc">/</span><span class="dv">1000</span>,<span class="dv">7</span>,<span class="at">na.pad=</span><span class="cn">TRUE</span>,<span class="at">align=</span><span class="st">&quot;right&quot;</span>)),</span>
+<span id="cb198-4"><a href="moving-average-models.html#cb198-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">color=</span><span class="st">&quot;red&quot;</span>)<span class="sc">+</span><span class="fu">ylab</span>(<span class="st">&quot;New Cases in Thousand&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-208-1.png" width="672" /></p>
 <p>A moving average term in a time series model is a past error (multiplied by a coefficient), e.g., MA(1):
 <span class="math display">\[x_t = \mu + w_t + \theta_1 \cdot w_{t-1}\]</span>
 where <span class="math inline">\(w_t \sim N(0,\sigma_w^2)\)</span>. The MA(1) model is written as:

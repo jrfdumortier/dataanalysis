@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>13 ANOVA | Data Analysis for Public Affairs with R</title>
   <meta name="description" content="13 ANOVA | Data Analysis for Public Affairs with R" />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
 
   <meta property="og:title" content="13 ANOVA | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2022-10-04" />
+<meta name="date" content="2023-01-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -296,12 +296,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="15" data-path="binary-choice.html"><a href="binary-choice.html"><i class="fa fa-check"></i><b>15</b> Binary Choice</a>
 <ul>
 <li class="chapter" data-level="15.1" data-path="binary-choice-estimation-in-r.html"><a href="binary-choice-estimation-in-r.html"><i class="fa fa-check"></i><b>15.1</b> Binary Choice Estimation in R</a></li>
-<li class="chapter" data-level="15.2" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html"><i class="fa fa-check"></i><b>15.2</b> Additional Examples and Probit Model</a>
-<ul>
-<li class="chapter" data-level="15.2.1" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html#full-time-work"><i class="fa fa-check"></i><b>15.2.1</b> Full-Time Work</a></li>
-<li class="chapter" data-level="15.2.2" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html#voting-behavior"><i class="fa fa-check"></i><b>15.2.2</b> Voting Behavior</a></li>
-</ul></li>
-<li class="chapter" data-level="15.3" data-path="exercises-11.html"><a href="exercises-11.html"><i class="fa fa-check"></i><b>15.3</b> Exercises</a></li>
+<li class="chapter" data-level="15.2" data-path="exercises-11.html"><a href="exercises-11.html"><i class="fa fa-check"></i><b>15.2</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="16" data-path="qualitative-choice-models.html"><a href="qualitative-choice-models.html"><i class="fa fa-check"></i><b>16</b> Qualitative Choice Models</a>
 <ul>
@@ -380,31 +375,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">13</span> ANOVA<a href="anova.html#anova" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Analysis of Variance (ANOVA) models (also know as Dummy Variable Regression models) are regressions with only dummy variables. An ANOVA model with two independent variables can be written as follows:
 <span class="math display">\[y_i = \beta_0 + \beta_1 \cdot d_1 + \beta_2 \cdot d_2\]</span>
-where <span class="math inline">\(d_1\)</span> and <span class="math inline">\(d_2\)</span> are dummy variables. Consider the following model using the <code>gss2018</code> data:
-<span class="math display">\[income = \beta_0 + \beta_1 \cdot fulltime + \beta_2 \cdot government\]</span>
-where <em>fulltime</em> and <em>government</em> are dummy variables. That is, if <span class="math inline">\(fulltime=1\)</span>, then the person has a fulltime job. If <span class="math inline">\(government=1\)</span>, then the respondent works for the government. To distinguish <em>j</em> categories only <em>j-1</em> dummy variables are needed. Otherwise, we have perfect multicollinearity. The category without a dummy variable is the base category.</p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="anova.html#cb65-1" aria-hidden="true" tabindex="-1"></a>bhat <span class="ot">=</span> <span class="fu">lm</span>(income<span class="sc">~</span>fulltime<span class="sc">+</span>government,<span class="at">data=</span>gss2018)</span>
-<span id="cb65-2"><a href="anova.html#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat)</span></code></pre></div>
+where <span class="math inline">\(d_1\)</span> and <span class="math inline">\(d_2\)</span> are dummy variables. Consider the following model using the <code>nfl</code> data for the year 2005:
+<span class="math display">\[total = \beta_0 + \beta_1 \cdot draft1 + \beta_2 \cdot veteran\]</span>
+where <em>draft1</em> and <em>veteran</em> are dummy variables. That is, if <span class="math inline">\(draft1=1\)</span>, then the player was selected in the first draft round. If <span class="math inline">\(veteran=1\)</span>, then the player has played multiple seasons in the NFL. To distinguish <em>j</em> categories only <em>j-1</em> dummy variables are needed. Otherwise, we have perfect multicollinearity. The category without a dummy variable is the base category.</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="anova.html#cb64-1" aria-hidden="true" tabindex="-1"></a>bhat <span class="ot">=</span> <span class="fu">lm</span>(total<span class="sc">~</span>draft1<span class="sc">+</span>veteran,<span class="at">data=</span><span class="fu">subset</span>(nfl,<span class="at">year=</span><span class="dv">2005</span>))</span>
+<span id="cb64-2"><a href="anova.html#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat)</span></code></pre></div>
 <pre><code>## 
 ## Call:
-## lm(formula = income ~ fulltime + government, data = gss2018)
+## lm(formula = total ~ draft1 + veteran, data = subset(nfl, year = 2005))
 ## 
 ## Residuals:
 ##    Min     1Q Median     3Q    Max 
-## -51074 -23574  -6074  16426 152479 
+## -3.340 -1.865 -0.702  0.792 32.429 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)    17521       3377   5.189 2.71e-07 ***
-## fulltime       33553       3691   9.091  &lt; 2e-16 ***
-## government     -6840       3640  -1.879   0.0606 .  
+## (Intercept)   0.9999     0.2534   3.945 8.63e-05 ***
+## draft1        2.6422     0.4262   6.200 8.81e-10 ***
+## veteran       1.6083     0.2820   5.703 1.62e-08 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 39230 on 769 degrees of freedom
-## Multiple R-squared:  0.099,  Adjusted R-squared:  0.09665 
-## F-statistic: 42.25 on 2 and 769 DF,  p-value: &lt; 2.2e-16</code></pre>
-<p>The income for a person who is working neither for the government nor has a full time job makes on average $17,521. A person not working for the government but with a full time job is earning $17,521+$33,553=$51,074. Note that both dummy variables are statistically significant. Note that the R-squared is very low.</p>
+## Residual standard error: 3.083 on 848 degrees of freedom
+##   (158 observations deleted due to missingness)
+## Multiple R-squared:  0.05191,    Adjusted R-squared:  0.04968 
+## F-statistic: 23.22 on 2 and 848 DF,  p-value: 1.526e-10</code></pre>
+<p>For a player who was not drafted in the first round and is not a veteran, the income is close to $1 million. Note that both dummy variables are statistically significant. Note that the R-squared is very low.</p>
 </div>
             </section>
 

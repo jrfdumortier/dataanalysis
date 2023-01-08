@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>9.1 One-Group: Proportions | Data Analysis for Public Affairs with R</title>
   <meta name="description" content="9.1 One-Group: Proportions | Data Analysis for Public Affairs with R" />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
 
   <meta property="og:title" content="9.1 One-Group: Proportions | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2022-10-04" />
+<meta name="date" content="2023-01-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -296,12 +296,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="15" data-path="binary-choice.html"><a href="binary-choice.html"><i class="fa fa-check"></i><b>15</b> Binary Choice</a>
 <ul>
 <li class="chapter" data-level="15.1" data-path="binary-choice-estimation-in-r.html"><a href="binary-choice-estimation-in-r.html"><i class="fa fa-check"></i><b>15.1</b> Binary Choice Estimation in R</a></li>
-<li class="chapter" data-level="15.2" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html"><i class="fa fa-check"></i><b>15.2</b> Additional Examples and Probit Model</a>
-<ul>
-<li class="chapter" data-level="15.2.1" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html#full-time-work"><i class="fa fa-check"></i><b>15.2.1</b> Full-Time Work</a></li>
-<li class="chapter" data-level="15.2.2" data-path="additional-examples-and-probit-model.html"><a href="additional-examples-and-probit-model.html#voting-behavior"><i class="fa fa-check"></i><b>15.2.2</b> Voting Behavior</a></li>
-</ul></li>
-<li class="chapter" data-level="15.3" data-path="exercises-11.html"><a href="exercises-11.html"><i class="fa fa-check"></i><b>15.3</b> Exercises</a></li>
+<li class="chapter" data-level="15.2" data-path="exercises-11.html"><a href="exercises-11.html"><i class="fa fa-check"></i><b>15.2</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="16" data-path="qualitative-choice-models.html"><a href="qualitative-choice-models.html"><i class="fa fa-check"></i><b>16</b> Qualitative Choice Models</a>
 <ul>
@@ -386,34 +381,37 @@ Thus, the <em>z</em>-score is
 <span class="math display">\[z=\frac{0.48-0.5}{0.05}=\frac{0.02}{0.05}=-0.4\]</span>
 For a two-sided hypothesis test at the <span class="math inline">\(\alpha=0.05\)</span> level, we fail to reject the hypothesis because <span class="math inline">\(-0.4&gt;-1.96\)</span>.</p>
 <p>Consider the data in <code>gsssocialmedia</code>. Suppose that Instagram claims that 1/3 of Americans use their service. This can be verified with a two-sided hypothesis test:</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="one-group-proportions.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(gsssocialmedia<span class="sc">$</span>instagram,<span class="at">mu=</span><span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>,<span class="at">alternative=</span><span class="fu">c</span>(<span class="st">&quot;two.sided&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="one-group-proportions.html#cb28-1" aria-hidden="true" tabindex="-1"></a>socialmedia              <span class="ot">=</span> gss[<span class="fu">c</span>(<span class="st">&quot;instagrm&quot;</span>)]</span>
+<span id="cb28-2"><a href="one-group-proportions.html#cb28-2" aria-hidden="true" tabindex="-1"></a>socialmedia              <span class="ot">=</span> <span class="fu">na.omit</span>(socialmedia)</span>
+<span id="cb28-3"><a href="one-group-proportions.html#cb28-3" aria-hidden="true" tabindex="-1"></a>socialmedia<span class="sc">$</span>instagrm     <span class="ot">=</span> <span class="fu">ifelse</span>(socialmedia<span class="sc">$</span>instagrm<span class="sc">==</span><span class="st">&quot;yes&quot;</span>,<span class="dv">1</span>,<span class="dv">0</span>)</span>
+<span id="cb28-4"><a href="one-group-proportions.html#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(socialmedia<span class="sc">$</span>instagrm,<span class="at">mu=</span><span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>,<span class="at">alternative=</span><span class="fu">c</span>(<span class="st">&quot;two.sided&quot;</span>))</span></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 
-## data:  gsssocialmedia$instagram
-## t = -1.8914, df = 1365, p-value = 0.05878
+## data:  socialmedia$instagrm
+## t = -2.0065, df = 1371, p-value = 0.045
 ## alternative hypothesis: true mean is not equal to 0.3333333
 ## 95 percent confidence interval:
-##  0.2851138 0.3342127
+##  0.2838431 0.3327750
 ## sample estimates:
 ## mean of x 
-## 0.3096633</code></pre>
+##  0.308309</code></pre>
 <p>The <em>p</em>-value is above 5% and thus, we fail to reject the hypothesis. Now suppose that Instagram claims that more than 1/3 of Americans use their service. The term “more than” suggests a one-sided hypothesis. The hypothesis is formulated as follows:
 <span class="math display">\[ H_0: p \geq 1/3\\
 H_a: p &lt; 1/3\]</span></p>
 <p>It is very important to correctly <strong>state the alternative hypothesis in R</strong>.</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="one-group-proportions.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(gsssocialmedia<span class="sc">$</span>instagram,<span class="at">mu=</span><span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>,<span class="at">alternative=</span><span class="fu">c</span>(<span class="st">&quot;less&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="one-group-proportions.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(socialmedia<span class="sc">$</span>instagrm,<span class="at">mu=</span><span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>,<span class="at">alternative=</span><span class="fu">c</span>(<span class="st">&quot;less&quot;</span>))</span></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 
-## data:  gsssocialmedia$instagram
-## t = -1.8914, df = 1365, p-value = 0.02939
+## data:  socialmedia$instagrm
+## t = -2.0065, df = 1371, p-value = 0.0225
 ## alternative hypothesis: true mean is less than 0.3333333
 ## 95 percent confidence interval:
-##       -Inf 0.3302615
+##       -Inf 0.3288373
 ## sample estimates:
 ## mean of x 
-## 0.3096633</code></pre>
+##  0.308309</code></pre>
 <p>In this case, the <em>p</em>-value is below 5% and thus, the hypothesis is rejected.</p>
 </div>
             </section>

@@ -6,9 +6,9 @@ The following functions are included:
 - `bday(k)`: This function calculates the probability of two people having the same birthday in a group of $k$ people.
 - `samplesize(me,p=0.5,pop)`: This function requires the desired margin of error as the input, e.g., $me=0.03$ for $\pm 3\%$. By default, the function calculates the sample size assuming a variance maximizing probability of $p=0.5$ and infinite population. Both parameters can be adjusted.
 
-Some data sets are generic, i.e., randomly generated, to highlight a particular concept while other are either based on public sources or are taken from academic papers. In any case, the sources are clearly indicated. Sometimes modifications were made to the data for ease of use, e.g., removing missing values or unnecessary variables. Some of the data sets are also associated with specific R packages which is indicated. The following data sets are included:
+Some data sets are generic, i.e., randomly generated, to highlight a particular concept while other are either based on public sources or are taken from academic papers. In any case, the sources are clearly indicated. Sometimes modifications were made to the data for ease of use, e.g., removing missing values or unnecessary variables. Some of the data sets are also associated with specific R packages which is indicated. For some data sets, the total number of observations is not included since the data is updated over time. The following data sets are included:
 
-- `accidents` (N=30): Generic data on the number of $accidents$ and the $temperature$ in Fahrenheit.
+- `accidents` (N=30): Generic data on the number of $accidents$, $temperature$ in Fahrenheit, and $precipitation$ in inches.
 
 - `airlines` (N=211918): On-time and delay statistics for the 100 largest airports (by number of 2019 arrivals) by airline January 2004 to May 2022. The variable names are mostly self-explanatory. The variables $arrflights$ and $arrdel15$ are the total number of arriving flights and the number of flight delayed at least 15 minutes. The original data is available [here](https://www.transtats.bts.gov/ot_delay/ot_delaycause1.asp).   
 
@@ -16,11 +16,15 @@ Some data sets are generic, i.e., randomly generated, to highlight a particular 
 
 - `aptitude` (N=200): Aptitude ($apt$), reading ($read$), and $math$ test scores for students ($id$). The program type is indicated by $prog$. The data set is taken from the [UCLA Advanced Research Computing website on Tobit Models](https://stats.oarc.ucla.edu/r/dae/tobit-models/).
 
-- `blm` ($N=1359$): The data is associated with the paper [Black Lives Matter: Evidence that Police-Caused Deaths Predict Protest Activity](https://doi.org/10.1017/S1537592717004273). The variables include city ($geography$), total protests ($totprotests$), population ($pop$), population density ($popdensity$), percent black ($percentblack$), black poverty rate ($blackpovertyrate$), percent college-educated ($percentbachelor$), college students as a percent of the population ($collegeenrollpc$), Democratic vote share ($demshare$), police-caused deaths per 10,000 ($deathspc$), and black police-caused deaths per 10,000 ($deathsblackpc$).
+- `beer` (N=92)
 
-- `bmw` ($N=30$): Data on the prices and miles of a particular BMW 5-series model in the Indianapolis area. Some of the models have rear-wheel drive ($allwheeldrive=0$) whereas some have all-wheel drive ($allwheeldrive=1$).
+- `blm` (N=1359): The data is associated with the paper [Black Lives Matter: Evidence that Police-Caused Deaths Predict Protest Activity](https://doi.org/10.1017/S1537592717004273). The variables include city ($geography$), total protests ($totprotests$), population ($pop$), population density ($popdensity$), percent black ($percentblack$), black poverty rate ($blackpovertyrate$), percent college-educated ($percentbachelor$), college students as a percent of the population ($collegeenrollpc$), Democratic vote share ($demshare$), police-caused deaths per 10,000 ($deathspc$), and black police-caused deaths per 10,000 ($deathsblackpc$).
 
-- `chicagogrocery`: The data set was represents the information from [2013 grocery stores](https://github.com/Chicago/food-deserts) and [Community Data Snapshots Raw Data from March 2014](https://datahub.cmap.illinois.gov/dataset/community-data-snapshots-raw-data]. It includes the following variables:
+- `bmw` (N=30): Data on the prices and miles of a particular BMW 5-series model in the Indianapolis area. Some of the models have rear-wheel drive ($allwheeldrive=0$) whereas some have all-wheel drive ($allwheeldrive=1$).
+
+- `censoring` (N=50): Generic data in which values of the response variable below 0 are reported as 0. The researcher observes $y$ and $x$ but not $yreal$.
+
+- `chicagogrocery` (N=77): The data set was represents the information from [2013 grocery stores](https://github.com/Chicago/food-deserts) and [Community Data Snapshots Raw Data from March 2014](https://datahub.cmap.illinois.gov/dataset/community-data-snapshots-raw-data]. It includes the following variables:
     - $cca$: Name of the Chicago Community Area
     - $stores$: Number of grocery stores
     - $sqft$: Sum of store square footage
@@ -33,25 +37,27 @@ Some data sets are generic, i.e., randomly generated, to highlight a particular 
     - $black$: Black population
     - $acres$: Area of the CCA
 
-- `coffee` ($N=29$): Historical data about the coffee consumption in the United States. The variable $consumption$ is measured in thousand 60-kg bags. The variable $price$ represents the retail price of roasted coffee in US Dollars per pound. Both time series are obtained from the International Coffee Association. The variables $rdi$ and $cpi$} represent real disposable income and the consumer price index, respectively. Those data series are obtained from the St. Louis FRED date base. The same is true for the varible $population$. The variables $rprice$ and $pcconsumption$ represent the real coffee prices and the per-capita consumption of coffee. 
+- `coffee` (N=29): Historical data about the coffee consumption in the United States. The variable $consumption$ is measured in thousand 60-kg bags. The variable $price$ represents the retail price of roasted coffee in US Dollars per pound. Both time series are obtained from the International Coffee Association. The variables $rdi$ and $cpi$} represent real disposable income and the consumer price index, respectively. Those data series are obtained from the St. Louis FRED date base. The same is true for the varible $population$. The variables $rprice$ and $pcconsumption$ represent the real coffee prices and the per-capita consumption of coffee. 
 
-- `compactcars` ($N=78$): Fuel efficiency of compact cars in 1995 and 2015. The fuel efficiency is expressed in miles per gallon in the columns \emph{Automatic} and \emph{Manual}, respectively. 
+- `compactcars` (N=78): Fuel efficiency of compact cars in 1995 and 2015. The fuel efficiency is expressed in miles per gallon in the columns $Automatic$ and $Manual$, respectively. The variable $displ$ represents the displacement in liters. 
 
-- `discharge` ($N=7$): Generic data set of pollutant discharge into a river measured in gallons.
+- `covid`: Daily time series of COVID-19 $cases$ and $death$ (cumulative count). The variables $newcases$ and $newdeaths$ correspond to the additional cases each day. The number of observations is variable since it is updated on a daily basis. The data can be obtained from a [New York Times GitHub](https://raw.githubusercontent.com/nytimes/covid-19-data/master/us.csv) account.
 
-- `eggweights` ($N=37$): Weight in grams of Large Grade A Brown Eggs from Whole Foods. 
+- `cps7885` (N=1084): 
 
-- `eucrime` ($N=387$): Intentional homicide data in Europe. Data series \texttt{crim\_hom\_soff} from Eurostat.
+- `discharge` (N=7): Generic data set of pollutant discharge into a river measured in gallons.
 
-- `evdata` ($N=579$): Data about the choice of consumers with respect to alternative fuel vehicles. The
-variable \emph{choice} represents the choice by the consumer for gasoline vehicles ($choice = 1$), conventional
-hybrids ($choice = 2$), plug-in hybrids ($choice = 3$), and electric vehicles ($choice = 4$). For each consumer,
-you have the following variables: \emph{age}, \emph{level2} (indicating whether people have a fast charger for electric cars in their community), \emph{female}, and \emph{numcars} (number of cars). The variable \emph{politics} is coded as follows: Under \$15,000 (1), \$15,000 to \$24,999 (2), \$25,000 to \$34, 999 (3), \$35,000 to \$49,999 (4), \$50,000 to \$74,999 (5), \$75,000 to \$99,999 (6), \$100,000 to \$149,999 (7), \$150,000 to \$199,999 (8), \$200,000 to \$249,000 (9), above \$250,000 (10). The variable \emph{edu} is coded as follows:  Less than High School (1), High School / GED (2), Some College (3), 2-year College Degree (4), 4-year College Degree (5), Masters Degree (6), Doctoral Degree (7). The variable politics is coded as follows: Extremely Liberal (1), Liberal (2), Slightly liberal (3), Moderate (4), Slightly conservative (5), Conservative (6), Extremely conservative (7), Other (8), None (9). See \citet{Dumortier:2014} for more details. 
+- `eggweights` (N=37): Weight in grams of Large Grade A Brown Eggs from Whole Foods. 
 
-- `faithful` ($N=272$): Eruption and waiting in time minutes of Old Faithful Geyser. This data is also included in R. 
+- `eucrime`: Intentional homicide data in Europe. Data series \texttt{crim\_hom\_soff} from Eurostat.
+
+- `evdata` (N=579): Data about the choice of consumers with respect to alternative fuel vehicles. The
+variable $choice$ represents the choice by the consumer for gasoline vehicles (1), conventional
+hybrids (2), plug-in hybrids (3), and electric vehicles (4). For each consumer, you have the following variables: \emph{age}, \emph{level2} (indicating whether people have a fast charger for electric cars in their community), \emph{female}, and \emph{numcars} (number of cars). The variable \emph{politics} is coded as follows: Under \$15,000 (1), \$15,000 to \$24,999 (2), \$25,000 to \$34, 999 (3), \$35,000 to \$49,999 (4), \$50,000 to \$74,999 (5), \$75,000 to \$99,999 (6), \$100,000 to \$149,999 (7), \$150,000 to \$199,999 (8), \$200,000 to \$249,000 (9), above \$250,000 (10). The variable \emph{edu} is coded as follows:  Less than High School (1), High School / GED (2), Some College (3), 2-year College Degree (4), 4-year College Degree (5), Masters Degree (6), Doctoral Degree (7). The variable politics is coded as follows: Extremely Liberal (1), Liberal (2), Slightly liberal (3), Moderate (4), Slightly conservative (5), Conservative (6), Extremely conservative (7), Other (8), None (9). See \citet{Dumortier:2014} for more details. 
+
+- `faithful` ($N=272$): Eruption and waiting in time minutes of Old Faithful Geyser. This data is included in R. 
 
 - `fertil1` ($N=1129$): Data from the General Social Survey. The data set is accompanying the book *Introductory Econometrics: A Modern Approach* by Jeffrey Wooldridge. The variables are as follows:  
-
     - year: 72 to 84, even
     - educ:  years of schooling
     - meduc and feduc}: mother's and father's education
@@ -62,28 +68,15 @@ you have the following variables: \emph{age}, \emph{level2} (indicating whether 
     - town: 1 if lived in town at 16
     - smallcity: 1 if in small city at 16
 
-- `fpdata` ($N=176$):
+- `fpdata` (N=176):
 
-- `gss2018` ($N=772$): 2018 data from the General Social Survey with the followin variables:
-     \begin{itemize}
-          \item \emph{fulltime}: Working full time (dummy variable $yes=1$)
-          \item \emph{government}: Working for the government ($yes=1$)
-          \item \emph{married}: Being married ($yes=1$) 
-          \item \emph{education}: Highest degree from high school (1), junior college (2),  bachelor (3), graduate (4). 
-          \item \emph{age}: Age of the respondent.
-          \item \emph{childs}:
-          \item \emph{vote}: Voted in the 2016 election ($yes=1$).
-          \item \emph{income}: Income of the respondent taking as the average over the range from the GSS.
-          \item \emph{gun}: Gun ownership ($yes=1$). Original GSS name: `owngun`.
-          \item \emph{deathpenalty}: Favoring the death penalty ($yes=1$). Original GSS name: `cappun`.
-          \item \emph{totalwealth}: Total wealth of the respondent taking as the average over the range from the GSS.
-     \end{itemize}
+- `gqtestdata` (N=50): Generic (hetroscedastic) home value data of $price$ and living area ($sqft$).
 
-- `gssgun` ($N=1300$):
+- `grunfeld` (N=200): 
 
-- `gsssocialmedia` ($N=1366$):
-
-- `happy` ($N=631$): Data from the 2018 General Social Survey about happiness which includes the following variables:
+- `gss` (N=2867): 2016 data from the General Social Survey with the variables that are mostly self-explanatory. The variables $wrkstat$ and $cappun$ refer to the Work status and the stance on the death penalty, respectively. The variables $facebook$ and $instagrm$ indicates if the respondent uses the respective social media platform. 
+     
+- `happy` (N=631): Data from the 2018 General Social Survey about happiness which includes the following variables:
     - $sexfreq$: Frequency of sex during last year
     - $gun$: Have gun in home
     - $sclass$: Subjective class identification
@@ -93,8 +86,7 @@ you have the following variables: \emph{age}, \emph{level2} (indicating whether 
     - $education$: Highest year of school completed
     - $age$: Age of respondent
 
-
-- `hdr` ($N=189$): Human Development Indicator from 2019.
+- `hdi` ($N=189$): Human Development Indicator from 2019.
 
 - `heating` ($N=24$): Contains 24 observations of natural gas usage (in hundreds of cubic feet) and the average outside temperature (in Fahrenheit).  
 
@@ -102,9 +94,17 @@ you have the following variables: \emph{age}, \emph{level2} (indicating whether 
 
 - `honda` ($N=81$): 
 
+- `housing`: Data from FRED 
+
+- `hps`: Household Pulse Survey
+
 - `hybrid` ($N=1000$): 
 
 - `indyhomes` ($N=102$): 
+
+- `jcars`
+
+- `kiel`
 
 - `meatdemand` ($N=39$): Meet demand quantity ($q$) and real price ($p$) data from the U.S. Department of Agriculture. Prices and real disposable income ($rdi$) are in real terms.  
 
@@ -117,25 +117,25 @@ you have the following variables: \emph{age}, \emph{level2} (indicating whether 
 - `mpa` ($N=18$): Randomly generated exam scores in a class of MPA students.
 
 - `nfl` ($N=1009$): Data from \citet{Berri:2011} which includes the following variables:
-\begin{itemize}
-\item \emph{total}: Total salary
-\item \emph{yards}: Passing yards from the prior season
-\item \emph{att}: Pass attempts
-\item \emph{exp}: Total years of experience in the league.
-\item \emph{esp2}: Total years of experience in the league squared.
-\item \emph{draft1}: First round draft pick.
-\item \emph{draft2}: Second round draft pick.
-\item \emph{veteran}: Bargaining status changes after a player has completed three years in the NFL.
-\item \emph{changeteam}: Player has changed team.
-\item \emph{pbowlever}: Player appeared in the Pro Bowl.
-\item \emph{symm}: Facial symmetry.
-\end{itemize}
+     - $total$: Total salary
+     - $yards$: Passing yards from the prior season
+     - $att$: Pass attempts
+     - $exp$: Total years of experience in the league.
+     - $exp2$: Total years of experience in the league squared.
+     - $draft1$: First round draft pick.
+     - $draft2$: Second round draft pick.
+     - $veteran$: Bargaining status changes after a player has completed three years in the NFL.
+     - $changeteam$: Player has changed team.
+     - $pbowlever$: Player appeared in the Pro Bowl.
+     - $symm$: Facial symmetry.
 
-- `ohioincome` ($N=607$): Enrollment and median income in Ohio School districts for 2018/2019. \emph{IRN} identifies the school district.
+- `ohioincome` ($N=607$): Enrollment and median income in Ohio School districts for 2018/2019. $IRN$ identifies the school district.
 
-- `ohioscore` ($N=608$): Performance and achievement scores of Ohio schools for 2018/2019. The data is obtained from the \href{https://reportcard.education.ohio.gov/}{Ohio Department of Education}. \emph{IRN} identifies the school district.
+- `ohioscore` ($N=608$): Performance and achievement scores of Ohio schools for 2018/2019. The data is obtained from the \href{https://reportcard.education.ohio.gov/}{Ohio Department of Education}. $IRN$ identifies the school district.
 
 - `organic` ($N=100$): Randomly generated data on the purchase behavior of organic food (binary choice) as a function of income.
+
+- `quakes`:
 
 - `quillayute` (N=20116): Weather data from Quillayute Airport in Washington State. Weather station USW00094240.
     - $date$: Date
@@ -168,13 +168,13 @@ emp1 – emp52: factors coded yes if the individual was employed in the correspo
 
 - `soda` ($N=25$): Randomly generated data of for soda cans (in milliliters).
 
+- `souvenirs`
+
 - `states` ($N=10$): Generated income data for three states.
 
-- `usdata` ($N=296$): Data from the St. Louis FRED data base.
-\begin{itemize}
-\item \emph{income}: Real Disposable Personal Income: Per Capita
-\item \emph{consumption}: Real personal consumption expenditures per capita
-\end{itemize}
+- `usdata`: Data from the St. Louis FRED data base.
+     - $income$: Real Disposable Personal Income: Per Capita
+     - $consumption$: Real personal consumption expenditures per capita
 
 - `vehicles` ($N=42702$): The data set contains data about the fuel efficiency of vehicles from model year 1984 to 2021 ($year$). It also includes $make$ and $model$ for the various manufacturers. The variable $displ$ refers to engine displacement in liters\footnote{\url{https://en.wikipedia.org/wiki/Engine_displacement}}, $VClass$ is the vehicle class, $ghgScore$ indicates the greenhouse gas (GHG) emissions, and $comb08U$ is unrounded combined MPG. The data is obtained from the U.S. Environmental Protection Agency' (EPA) \href{https://www.fueleconomy.gov/feg/download.shtml}{Fuel Economy Data} webpage. The full dataset contains many more variables which are well [documented](https://www.fueleconomy.gov/feg/ws/index.shtml#vehicle).
 
