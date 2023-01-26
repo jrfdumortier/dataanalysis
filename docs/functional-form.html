@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2023-01-08" />
+<meta name="date" content="2023-01-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -242,7 +242,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.4" data-path="two-groups-mean.html"><a href="two-groups-mean.html"><i class="fa fa-check"></i><b>9.4</b> Two-Groups: Mean</a></li>
 <li class="chapter" data-level="9.5" data-path="exercises-5.html"><a href="exercises-5.html"><i class="fa fa-check"></i><b>9.5</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="additional-topics-in-probability-and-statistics.html"><a href="additional-topics-in-probability-and-statistics.html"><i class="fa fa-check"></i><b>10</b> Additional Topics in Probability and Statistics</a>
+<li class="chapter" data-level="10" data-path="additional-topics-in-statistics.html"><a href="additional-topics-in-statistics.html"><i class="fa fa-check"></i><b>10</b> Additional Topics in Statistics</a>
 <ul>
 <li class="chapter" data-level="10.1" data-path="chi-square-test-chi2-test.html"><a href="chi-square-test-chi2-test.html"><i class="fa fa-check"></i><b>10.1</b> Chi-Square Test (<span class="math inline">\(\chi^2\)</span>-Test)</a></li>
 <li class="chapter" data-level="10.2" data-path="binomial-test.html"><a href="binomial-test.html"><i class="fa fa-check"></i><b>10.2</b> Binomial Test</a></li>
@@ -374,8 +374,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="functional-form" class="section level2 hasAnchor" number="12.4">
 <h2><span class="header-section-number">12.4</span> Functional Form<a href="functional-form.html#functional-form" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>To model non-linear relationships, an independent variable can be transformed by squaring it. For example, consider the relationship between income and food expenditure. The regular OLS assumes a linear relationship in the sense that an increase in income always leads to a proportional increase in food expenditure. In realty, there is likely a flattening out of food expenditure for high incomes because only so much money can be spent on food.</p>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="functional-form.html#cb62-1" aria-hidden="true" tabindex="-1"></a>bhat <span class="ot">=</span> <span class="fu">lm</span>(<span class="fu">log</span>(total)<span class="sc">~</span>yards<span class="sc">+</span>att<span class="sc">+</span>exp<span class="sc">+</span>exp2<span class="sc">+</span>draft1<span class="sc">+</span>veteran<span class="sc">+</span>changeteam<span class="sc">+</span>pbowlever,<span class="at">data=</span>nfl)</span>
-<span id="cb62-2"><a href="functional-form.html#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat)</span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="functional-form.html#cb63-1" aria-hidden="true" tabindex="-1"></a>bhat <span class="ot">=</span> <span class="fu">lm</span>(<span class="fu">log</span>(total)<span class="sc">~</span>yards<span class="sc">+</span>att<span class="sc">+</span>exp<span class="sc">+</span>exp2<span class="sc">+</span>draft1<span class="sc">+</span>veteran<span class="sc">+</span>changeteam<span class="sc">+</span>pbowlever,<span class="at">data=</span>nfl)</span>
+<span id="cb63-2"><a href="functional-form.html#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = log(total) ~ yards + att + exp + exp2 + draft1 + 

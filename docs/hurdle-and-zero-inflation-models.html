@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2023-01-08" />
+<meta name="date" content="2023-01-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -242,7 +242,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.4" data-path="two-groups-mean.html"><a href="two-groups-mean.html"><i class="fa fa-check"></i><b>9.4</b> Two-Groups: Mean</a></li>
 <li class="chapter" data-level="9.5" data-path="exercises-5.html"><a href="exercises-5.html"><i class="fa fa-check"></i><b>9.5</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="additional-topics-in-probability-and-statistics.html"><a href="additional-topics-in-probability-and-statistics.html"><i class="fa fa-check"></i><b>10</b> Additional Topics in Probability and Statistics</a>
+<li class="chapter" data-level="10" data-path="additional-topics-in-statistics.html"><a href="additional-topics-in-statistics.html"><i class="fa fa-check"></i><b>10</b> Additional Topics in Statistics</a>
 <ul>
 <li class="chapter" data-level="10.1" data-path="chi-square-test-chi2-test.html"><a href="chi-square-test-chi2-test.html"><i class="fa fa-check"></i><b>10.1</b> Chi-Square Test (<span class="math inline">\(\chi^2\)</span>-Test)</a></li>
 <li class="chapter" data-level="10.2" data-path="binomial-test.html"><a href="binomial-test.html"><i class="fa fa-check"></i><b>10.2</b> Binomial Test</a></li>
@@ -375,10 +375,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">17.4</span> Hurdle and Zero-Inflation Models<a href="hurdle-and-zero-inflation-models.html#hurdle-and-zero-inflation-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Count data often includes many observations at 0 which can lead to problems using a Poisson or a Negative-Binomial Regression Model. The application of both models is first illustrated with the <code>NMES1988</code> data from the package <a href="https://cran.r-project.org/web/packages/AER/index.html">AER</a> and then with the BLM protest data.</p>
 <p>The data <code>NMES1988</code> contains 4406 observations of people on Medicare who are 66 years or older. The outcome of interest is the number of doctor <span class="math inline">\(visits\)</span> as a function of <span class="math inline">\(hospital\)</span> (number of hospital visits), <span class="math inline">\(health\)</span> (self-indicated health status), <span class="math inline">\(chronic\)</span> (number of chronic conditions), <span class="math inline">\(gender\)</span>, <span class="math inline">\(school\)</span>, and <span class="math inline">\(insurance\)</span>.</p>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="hurdle-and-zero-inflation-models.html#cb151-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;NMES1988&quot;</span>,<span class="at">package=</span><span class="st">&quot;AER&quot;</span>)</span>
-<span id="cb151-2"><a href="hurdle-and-zero-inflation-models.html#cb151-2" aria-hidden="true" tabindex="-1"></a>eq <span class="ot">=</span> visits<span class="sc">~</span>hospital<span class="sc">+</span>health<span class="sc">+</span>chronic<span class="sc">+</span>gender<span class="sc">+</span>school<span class="sc">+</span>insurance</span>
-<span id="cb151-3"><a href="hurdle-and-zero-inflation-models.html#cb151-3" aria-hidden="true" tabindex="-1"></a>bhat_pois <span class="ot">=</span> <span class="fu">glm</span>(eq,<span class="at">data=</span>NMES1988,<span class="at">family=</span>poisson)</span>
-<span id="cb151-4"><a href="hurdle-and-zero-inflation-models.html#cb151-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat_pois)</span></code></pre></div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="hurdle-and-zero-inflation-models.html#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;NMES1988&quot;</span>,<span class="at">package=</span><span class="st">&quot;AER&quot;</span>)</span>
+<span id="cb152-2"><a href="hurdle-and-zero-inflation-models.html#cb152-2" aria-hidden="true" tabindex="-1"></a>eq <span class="ot">=</span> visits<span class="sc">~</span>hospital<span class="sc">+</span>health<span class="sc">+</span>chronic<span class="sc">+</span>gender<span class="sc">+</span>school<span class="sc">+</span>insurance</span>
+<span id="cb152-3"><a href="hurdle-and-zero-inflation-models.html#cb152-3" aria-hidden="true" tabindex="-1"></a>bhat_pois <span class="ot">=</span> <span class="fu">glm</span>(eq,<span class="at">data=</span>NMES1988,<span class="at">family=</span>poisson)</span>
+<span id="cb152-4"><a href="hurdle-and-zero-inflation-models.html#cb152-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat_pois)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = eq, family = poisson, data = NMES1988)
@@ -407,8 +407,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## AIC: 35959
 ## 
 ## Number of Fisher Scoring iterations: 5</code></pre>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="hurdle-and-zero-inflation-models.html#cb153-1" aria-hidden="true" tabindex="-1"></a>bhat_nb <span class="ot">=</span> <span class="fu">glm</span>(eq,<span class="at">data=</span>NMES1988)</span>
-<span id="cb153-2"><a href="hurdle-and-zero-inflation-models.html#cb153-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat_nb)</span></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="hurdle-and-zero-inflation-models.html#cb154-1" aria-hidden="true" tabindex="-1"></a>bhat_nb <span class="ot">=</span> <span class="fu">glm</span>(eq,<span class="at">data=</span>NMES1988)</span>
+<span id="cb154-2"><a href="hurdle-and-zero-inflation-models.html#cb154-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat_nb)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = eq, data = NMES1988)
@@ -437,8 +437,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## AIC: 28769
 ## 
 ## Number of Fisher Scoring iterations: 2</code></pre>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="hurdle-and-zero-inflation-models.html#cb155-1" aria-hidden="true" tabindex="-1"></a>bhat_hurdle <span class="ot">=</span> <span class="fu">hurdle</span>(eq,<span class="at">data=</span>NMES1988,<span class="at">dist=</span><span class="st">&quot;negbin&quot;</span>)</span>
-<span id="cb155-2"><a href="hurdle-and-zero-inflation-models.html#cb155-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat_hurdle)</span></code></pre></div>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="hurdle-and-zero-inflation-models.html#cb156-1" aria-hidden="true" tabindex="-1"></a>bhat_hurdle <span class="ot">=</span> <span class="fu">hurdle</span>(eq,<span class="at">data=</span>NMES1988,<span class="at">dist=</span><span class="st">&quot;negbin&quot;</span>)</span>
+<span id="cb156-2"><a href="hurdle-and-zero-inflation-models.html#cb156-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat_hurdle)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## hurdle(formula = eq, data = NMES1988, dist = &quot;negbin&quot;)

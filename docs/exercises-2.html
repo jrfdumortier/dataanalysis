@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2023-01-08" />
+<meta name="date" content="2023-01-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -242,7 +242,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.4" data-path="two-groups-mean.html"><a href="two-groups-mean.html"><i class="fa fa-check"></i><b>9.4</b> Two-Groups: Mean</a></li>
 <li class="chapter" data-level="9.5" data-path="exercises-5.html"><a href="exercises-5.html"><i class="fa fa-check"></i><b>9.5</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="additional-topics-in-probability-and-statistics.html"><a href="additional-topics-in-probability-and-statistics.html"><i class="fa fa-check"></i><b>10</b> Additional Topics in Probability and Statistics</a>
+<li class="chapter" data-level="10" data-path="additional-topics-in-statistics.html"><a href="additional-topics-in-statistics.html"><i class="fa fa-check"></i><b>10</b> Additional Topics in Statistics</a>
 <ul>
 <li class="chapter" data-level="10.1" data-path="chi-square-test-chi2-test.html"><a href="chi-square-test-chi2-test.html"><i class="fa fa-check"></i><b>10.1</b> Chi-Square Test (<span class="math inline">\(\chi^2\)</span>-Test)</a></li>
 <li class="chapter" data-level="10.2" data-path="binomial-test.html"><a href="binomial-test.html"><i class="fa fa-check"></i><b>10.2</b> Binomial Test</a></li>
@@ -374,23 +374,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="exercises-2" class="section level2 hasAnchor" number="6.5">
 <h2><span class="header-section-number">6.5</span> Exercises<a href="exercises-2.html#exercises-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ol style="list-style-type: decimal">
-<li><p><strong><em>Fair Game</em></strong>: A friend of yours has a coin and proposes the following game. You toss the coin 10 times and count the number of heads. The amount you win or lose on <span class="math inline">\(k\)</span> heads is given by <span class="math inline">\(4 \cdot \sqrt{k}-2\cdot k\)</span>.</p>
+<li><p><strong><em>Fair Game</em></strong> (***): A friend of yours has a coin and proposes the following game. You toss the coin 10 times and count the number of heads. The amount you win or lose on <span class="math inline">\(k\)</span> heads is given by <span class="math inline">\(4 \cdot \sqrt{k}-2\cdot k\)</span>.</p>
 <ol style="list-style-type: lower-alpha">
 <li>Plot the payoff function.</li>
 <li>Make an exact computation using R to decide if this is a good bet.</li>
 <li>Use the function <code>rbinom()</code> and generate 100,000 random outcomes of the game. Calculated the expected winning and compare it to your calculation in part (b).</li>
 </ol></li>
-<li><p><strong><em>O’Neill Air</em></strong>: The probability of any O’Neill Air flight being delayed more than 15 minutes is 0.1. We randomly select four different O’Neill Air flights.</p>
+<li><p><strong><em>O’Neill Air</em></strong> (**): The probability of any O’Neill Air flight being delayed more than 15 minutes is 0.1. We randomly select four different O’Neill Air flights.</p>
 <ol style="list-style-type: lower-alpha">
 <li>Calculate the probability that all four flights arrived within 15 minutes of the scheduled time?</li>
 <li>Calculate the probability that none of the selected flights arrived within 15 minutes of the scheduled time?</li>
 <li>Calculate the probability that at least one of the selected flights arrived within 15 minutes of the scheduled time?</li>
 </ol></li>
-<li><p><strong><em>Apple Juice Machine</em></strong>: An apple juice company wants to purchase a new bottling machines to fill 16 ounce cans. Two manufactures indicate the following performances for their machines. The first machine fills the cans with 16.5 ounces and a standard deviation of 0.3. The second machine fills the cans with 16.2 ounces and standard deviation 0.1. The filling quantities for both machines are normally distributed. Anything below 16 ounces cannot be sold since it does not meet the advertised 16 ounces. Which machine does the apple juice producer need to buy in order the minimize the quantity of cans which cannot be sold.</p></li>
-<li><p><strong><em>ACT</em></strong>: Assume ACT scores are normally distributes with mean 19 and standard deviation of 4. A university accepts applicants which score in the top 20%. What is the minimum ACT score that gets you accepted? Calculate the probability of 0, 1, , 10 students meetings the requirements out of 10 students.</p></li>
-<li><p><strong><em>LED Light Bulbs</em></strong>: On average, a LED light bulb manufacturer produces 250 defective light bulbs out of 5,000. You randomly pick 8 light bulbs. What is the probability of finding more than 1 defective bulbs?</p></li>
-<li><p><strong><em>Vaccine Trials</em></strong>: A pharmaceutical company estimates that a new vaccine that is undergoing test trials has a 1/10000 chance of causing a serious side effect in a human being. If the company administers the vaccine to 10,000 volunteers, what is the probability that at least 1 volunteers develops those serious side effects? The company wants to make sure that the probability of at least one person developing the side effect is 95%. How many volunteers do they need?</p></li>
-<li><p><strong><em>Quillayute</em></strong>: Airline magazines are often not very interesting. However, a magazine once covered an interesting story. A hotel in Washington state charges the temperature in Dollars per night. For example, if it is 72F then a room costs $72. Of course, this is too boost demand in the Winter months. The closest weather station to the hotel is at Quillayute Airport. You find the temperature data associated with that location in <code>quillayute</code> and for this exercise, you only consider the data for January (i.e., month equals 01). The hotel makes a financial loss if the temperature drops below 30F. a. Using the function <code>fitdist()</code> from the package fitdistrplus, fit three probability distributions to the data: Gamma, Weibull, and Log-normal</p>
+<li><p><strong><em>Apple Juice Machine</em></strong> (**): An apple juice company wants to purchase a new bottling machines to fill 16 ounce cans. Two manufactures indicate the following performances for their machines. The first machine fills the cans with 16.5 ounces and a standard deviation of 0.3. The second machine fills the cans with 16.2 ounces and standard deviation 0.1. The filling quantities for both machines are normally distributed. Anything below 16 ounces cannot be sold since it does not meet the advertised 16 ounces. Which machine does the apple juice producer need to buy in order the minimize the quantity of cans which cannot be sold.</p></li>
+<li><p><strong><em>ACT</em></strong> (**): Assume ACT scores are normally distributes with mean 19 and standard deviation of 4. A university accepts applicants which score in the top 20%. What is the minimum ACT score that gets you accepted? Calculate the probability of 0, 1, , 10 students meetings the requirements out of 10 students.</p></li>
+<li><p><strong><em>LED Light Bulbs</em></strong> (**): On average, a LED light bulb manufacturer produces 250 defective light bulbs out of 5,000. You randomly pick 8 light bulbs. What is the probability of finding more than 1 defective bulbs?</p></li>
+<li><p><strong><em>Vaccine Trials</em></strong> (**): A pharmaceutical company estimates that a new vaccine that is undergoing test trials has a 1/10000 chance of causing a serious side effect in a human being. If the company administers the vaccine to 10,000 volunteers, what is the probability that at least 1 volunteers develops those serious side effects? The company wants to make sure that the probability of at least one person developing the side effect is 95%. How many volunteers do they need?</p></li>
+<li><p><strong><em>Quillayute</em></strong> (***): Airline magazines are often not very interesting. However, a magazine once covered an interesting story. A hotel in Washington state charges the temperature in Dollars per night. For example, if it is 72F then a room costs $72. Of course, this is too boost demand in the Winter months. The closest weather station to the hotel is at Quillayute Airport. You find the temperature data associated with that location in <code>quillayute</code> and for this exercise, you only consider the data for January (i.e., month equals 01). The hotel makes a financial loss if the temperature drops below 30F. a. Using the function <code>fitdist()</code> from the package fitdistrplus, fit three probability distributions to the data: Gamma, Weibull, and Log-normal</p>
 <ol start="2" style="list-style-type: lower-alpha">
 <li>In your answers, include three plots comparing (1) the histogram to the theoretical densities, (2) the Q-Q plots of the estimates, and (3) empirical and theoretical cumulative distribution functions. Based on those plots, which probability distribution fits best.</li>
 <li>Based on the probability distribution you identified in part (b), what is the probability that the average temperature drops below 30F?</li>

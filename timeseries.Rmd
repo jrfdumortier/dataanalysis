@@ -258,27 +258,27 @@ plot(forecast(bhat))
 
 ## Exercises
 
-1. The data in `souvenirs` represents the sales of a souvenir beach shop in Australia. The sales volume in the shop fluctuates with the number of tourists which are in town. A larger number of tourists is observed in December for the holiday season and for the local surfing festival in March. Over the years, the shop has expanded in terms of items offered and also in store area. 
+1. ***Souvenir Shop*** (\*\*\*): The data in `souvenirs` represents the sales of a souvenir beach shop in Australia. The sales volume in the shop fluctuates with the number of tourists which are in town. A larger number of tourists is observed in December for the holiday season and for the local surfing festival in March. Over the years, the shop has expanded in terms of items offered and also in store area. 
     a. Plot the data. What do you observe in terms of trend, seasonality, and magnitude of fluctuations?
     b. Estimate a regular OLS Model with $sales$ as the dependent variable and a trend as well as monthly dummy variables as independent variables. 
     c. Plot the observed sales and predicted sales over time.
     d. Repeat the estimation and the plot from (b) and (c) but use the natural log of $sales$, i.e., $\ln(sales), as the dependent variable instead.
     e. Compare the two graphs you have generated. What is the difference and what is the reason for the difference? Which form of the dependent variable is more appropriate.
   
-2. Consider the data `retail` and the following model:
+2. ***Retail Time Series*** (\*\*\*): Consider the data `retail` and the following model:
      $$\ln(retail_t)=\beta_0+\beta_1 \cdot t +\delta_1 \cdot Q1_t+\delta_2 \cdot Q2_t+\delta_3 \cdot Q3_t+\epsilon_t$$
     a. Estimate the above regression equation, report, and interpret the results. 
     b. How is using $\ln(retail)$ different from $retail$ as the dependent variable? How does it change the interpretation of the coefficients? 
     c. Re-estimate the model but this time using $retail$ as the dependent variable. 
     d. Plot (in the same graph) the observed values and both modeled series. What do you observe? Does one model fit better than the other? If yes, which one? 
   
-3. The data `wdi` includes per-capita income ($gdp$), overall household consumption ($consumption$), and $population$. For a country of your choice, do the following:
+3. ***WDI Per-Capita Consumption*** (\*\*\*): The data `wdi` includes per-capita income ($gdp$), overall household consumption ($consumption$), and $population$. For a country of your choice, do the following:
     a. Subset the data such that you are only left with the country of your choice. 
     b. Create a new column which contains the consumption per capita, i.e., consumption divided by population.
     c. Make sure that there are at least 10 years of observations for the country of your choice. 
     d. Estimate a Koyck-Model with consumption as the dependent variable and per-capita consumption as the dependent variable.
 
-4. Consider the data in `cmort` which represents weekly data of cardiovascular mortality in Los Angeles over the period 1970 to 1979. 
+4. ***Cardiovascular Mortality*** (\*\*\*): Consider the data in `cmort` which represents weekly data of cardiovascular mortality in Los Angeles over the period 1970 to 1979. 
     a. Estimate an AR(2) model of the following form to the data:
       $$y_t = \alpha + \beta_1 \cdot y_{t-1} + \beta_2 \cdot y_{t-2} + \epsilon_t$$
       Make sure to use the function `ar.ols()` with the options `deman=FALSE` and `intercept=TRUE`.

@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2023-01-08" />
+<meta name="date" content="2023-01-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -242,7 +242,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.4" data-path="two-groups-mean.html"><a href="two-groups-mean.html"><i class="fa fa-check"></i><b>9.4</b> Two-Groups: Mean</a></li>
 <li class="chapter" data-level="9.5" data-path="exercises-5.html"><a href="exercises-5.html"><i class="fa fa-check"></i><b>9.5</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="additional-topics-in-probability-and-statistics.html"><a href="additional-topics-in-probability-and-statistics.html"><i class="fa fa-check"></i><b>10</b> Additional Topics in Probability and Statistics</a>
+<li class="chapter" data-level="10" data-path="additional-topics-in-statistics.html"><a href="additional-topics-in-statistics.html"><i class="fa fa-check"></i><b>10</b> Additional Topics in Statistics</a>
 <ul>
 <li class="chapter" data-level="10.1" data-path="chi-square-test-chi2-test.html"><a href="chi-square-test-chi2-test.html"><i class="fa fa-check"></i><b>10.1</b> Chi-Square Test (<span class="math inline">\(\chi^2\)</span>-Test)</a></li>
 <li class="chapter" data-level="10.2" data-path="binomial-test.html"><a href="binomial-test.html"><i class="fa fa-check"></i><b>10.2</b> Binomial Test</a></li>
@@ -377,7 +377,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span class="math display">\[y_t = \beta_0 + \beta_1 t + \epsilon_t\]</span>
 Model 2: Autoregressive Model
 <span class="math display">\[ y_t = \beta_0 + \beta_1 t + n_t \quad \text{where} \quad n_t = \phi_1 n_{t-1} + \epsilon_t\]</span></p>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="forecasting-japanense-car-production.html#cb200-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(cars<span class="sc">~</span>year,<span class="at">data=</span>jcars))</span></code></pre></div>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="forecasting-japanense-car-production.html#cb201-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(cars<span class="sc">~</span>year,<span class="at">data=</span>jcars))</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = cars ~ year, data = jcars)
@@ -396,7 +396,7 @@ Model 2: Autoregressive Model
 ## Residual standard error: 583.2 on 24 degrees of freedom
 ## Multiple R-squared:  0.9755, Adjusted R-squared:  0.9745 
 ## F-statistic: 957.1 on 1 and 24 DF,  p-value: &lt; 2.2e-16</code></pre>
-<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="forecasting-japanense-car-production.html#cb202-1" aria-hidden="true" tabindex="-1"></a><span class="fu">auto.arima</span>(jcars<span class="sc">$</span>cars)</span></code></pre></div>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="forecasting-japanense-car-production.html#cb203-1" aria-hidden="true" tabindex="-1"></a><span class="fu">auto.arima</span>(jcars<span class="sc">$</span>cars)</span></code></pre></div>
 <pre><code>## Series: jcars$cars 
 ## ARIMA(0,1,0) with drift 
 ## 
@@ -407,8 +407,8 @@ Model 2: Autoregressive Model
 ## 
 ## sigma^2 = 182188:  log likelihood = -186.37
 ## AIC=376.75   AICc=377.29   BIC=379.18</code></pre>
-<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="forecasting-japanense-car-production.html#cb204-1" aria-hidden="true" tabindex="-1"></a>bhat <span class="ot">=</span> <span class="fu">Arima</span>(jcars<span class="sc">$</span>cars,<span class="at">order=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>),<span class="at">include.constant=</span><span class="cn">TRUE</span>,<span class="at">include.drift =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb204-2"><a href="forecasting-japanense-car-production.html#cb204-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat)</span></code></pre></div>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="forecasting-japanense-car-production.html#cb205-1" aria-hidden="true" tabindex="-1"></a>bhat <span class="ot">=</span> <span class="fu">Arima</span>(jcars<span class="sc">$</span>cars,<span class="at">order=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>),<span class="at">include.constant=</span><span class="cn">TRUE</span>,<span class="at">include.drift =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb205-2"><a href="forecasting-japanense-car-production.html#cb205-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat)</span></code></pre></div>
 <pre><code>## Series: jcars$cars 
 ## ARIMA(1,0,0) with drift 
 ## 
@@ -423,8 +423,8 @@ Model 2: Autoregressive Model
 ## Training set error measures:
 ##                    ME     RMSE      MAE        MPE     MAPE      MASE      ACF1
 ## Training set 17.28081 389.7285 311.2957 -0.7522648 5.354775 0.5840007 0.1564618</code></pre>
-<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="forecasting-japanense-car-production.html#cb206-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">forecast</span>(bhat))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-213-1.png" width="672" /></p>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="forecasting-japanense-car-production.html#cb207-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">forecast</span>(bhat))</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-86-1.png" width="672" /></p>
 </div>
             </section>
 

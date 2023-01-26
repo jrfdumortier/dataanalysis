@@ -296,24 +296,18 @@ If p-value is below 0.05 then use fixed effects.
 
 ## Exercises
 
-1. *NFL II*: Consider the data set `nfl` which includes the performance, salary, and facial symmetry of NFL quarterbacks. The data includes the name and the year and thus, it can be estimated as a panel data model. In a first step, convert the data into a panel data set using the function `pdata.frame()`. Next, estimate three models: (a) Regular pooled OLS model, (2) fixed-effects model, and (3) random effects model. The regression equation is the same for each model:
+1. ***NFL II*** (\*\*\*): Consider the data set `nfl` which includes the performance, salary, and facial symmetry of NFL quarterbacks. The data includes the name and the year and thus, it can be estimated as a panel data model. In a first step, convert the data into a panel data set using the function `pdata.frame()`. Next, estimate three models: (a) Regular pooled OLS model, (2) fixed-effects model, and (3) random effects model. The regression equation is the same for each model:
 $$\ln(total) =\beta_0 + \beta_1 \cdot yards+ \beta_2 \cdot att+ \beta_3 \cdot exp+ \beta_4 \cdot exp^2 + \beta_5 \cdot draft1+beta_6 \cdot draft2\\ + \beta_7 \cdot veteran +\beta_8 \cdot changeteam+ \beta_9 \cdot pbowlever+ \beta_{10} \cdot symm$$
-Report and interpret the output for all three models. What happens to the variable $symm$ in the fixed effects model and why? How does the panel data model compare to the original model which does not incorportate the panel strucutre?
+Report and interpret the output for all three models. What happens to the variable $symm$ in the fixed effects model and why? How does the panel data model compare to the original model which does not incorporate the panel structure?
 
-2. *Renewable Energy*: This question is based on the paper [The effect of the feed-in-system policy on renewable energy investments: Evidence from the EU countries](https://doi.org/10.1016/j.eneco.2020.104998) by Alolo et al. (2020). +
+2. ***Renewable Energy*** (\*\*\*): This question is based on the paper [The effect of the feed-in-system policy on renewable energy investments: Evidence from the EU countries](https://doi.org/10.1016/j.eneco.2020.104998) by Alolo et al. (2020). +
 
-3. *Guns and Crime*: There is a fierce debate on the relationship between gun ownership and crime. On the one hand, there is the argument that more guns prevent crime due to a deterrence effect. On the other hand, more guns trickling into society increase the likelihood of crime being committed. This data set is one example on how the issue at hand can be analyzed. The data set which is used for this question is part of the [AER](https://cran.r-project.org/web/packages/AER/index.html) and can be imported with the command `data("Guns",package="AER")`. Please read the description of the data set which is available as part of the package. The first regression model to be estimated is written as:
+3. ***Guns and Crime*** (\*\*\*): There is a fierce debate on the relationship between gun ownership and crime. On the one hand, there is the argument that more guns prevent crime due to a deterrence effect. On the other hand, more guns trickling into society increase the likelihood of crime being committed. This data set is one example on how the issue at hand can be analyzed. The data set which is used for this question is part of the [AER](https://cran.r-project.org/web/packages/AER/index.html) and can be imported with the command `data("Guns",package="AER")`. Please read the description of the data set which is available as part of the package. The first regression model to be estimated is written as:
 $$\ln(violent)=\beta_0+\beta_1 \cdot law+\epsilon$$
 Estimate a fixed effects panel model using the equation above and report the R output. Interpret the results. The second model include year and state fixed effects and is written as follows:
 $$\ln(violent)=\beta_0+\beta_1 \cdot law + \alpha_i + \lambda_t+\epsilon$$
 In a third and last model, include the variables $prisoners$, $density$, $income$, $population$ $afam$, $cauc$, and $male$. What does the model suggest about the opposing views mentioned at the beginning of the question?
 
-4. *WDI*: Previous questions used the `wdi` data set without incorporating the potential panel structure of the information. Create a panel data frame using the command `pdata.frame()`. Estimate the following panel model:
+4. ***WDI Panel Data*** (\*\*\*): Previous questions used the `wdi` data set without incorporating the potential panel structure of the information. Create a panel data frame using the command `pdata.frame()`. Estimate the following panel model:
 $$\ln(mortrate)=\beta_0+ \beta_1 \cdot gdp+ \beta_2 \cdot litrate +\epsilon$$
 First, estimate the equation as a regular OLS model for the years 1980 and 2015 (separately for the two years). 
-
-5. *Rent in College Towns*: This 
-
-
-
-

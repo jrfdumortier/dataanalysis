@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2023-01-08" />
+<meta name="date" content="2023-01-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -242,7 +242,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.4" data-path="two-groups-mean.html"><a href="two-groups-mean.html"><i class="fa fa-check"></i><b>9.4</b> Two-Groups: Mean</a></li>
 <li class="chapter" data-level="9.5" data-path="exercises-5.html"><a href="exercises-5.html"><i class="fa fa-check"></i><b>9.5</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="additional-topics-in-probability-and-statistics.html"><a href="additional-topics-in-probability-and-statistics.html"><i class="fa fa-check"></i><b>10</b> Additional Topics in Probability and Statistics</a>
+<li class="chapter" data-level="10" data-path="additional-topics-in-statistics.html"><a href="additional-topics-in-statistics.html"><i class="fa fa-check"></i><b>10</b> Additional Topics in Statistics</a>
 <ul>
 <li class="chapter" data-level="10.1" data-path="chi-square-test-chi2-test.html"><a href="chi-square-test-chi2-test.html"><i class="fa fa-check"></i><b>10.1</b> Chi-Square Test (<span class="math inline">\(\chi^2\)</span>-Test)</a></li>
 <li class="chapter" data-level="10.2" data-path="binomial-test.html"><a href="binomial-test.html"><i class="fa fa-check"></i><b>10.2</b> Binomial Test</a></li>
@@ -381,19 +381,19 @@ H_a: \mu \neq 80\]</span>
 The <span class="math inline">\(t\)</span>-statistic can be calculated as follows:
 <span class="math display">\[t = \frac{69-80}{21.15/ \sqrt{18}} = -2.207\]</span>
 The critical value for this two-sided test is -2.11 and thus, the hypothesis is rejected. The hypothesis can aslo be implemented manually in R:</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="one-group-mean.html#cb32-1" aria-hidden="true" tabindex="-1"></a>n                   <span class="ot">=</span> <span class="fu">nrow</span>(mpa)</span>
-<span id="cb32-2"><a href="one-group-mean.html#cb32-2" aria-hidden="true" tabindex="-1"></a>xbar                <span class="ot">=</span> <span class="fu">mean</span>(mpa<span class="sc">$</span>scores)</span>
-<span id="cb32-3"><a href="one-group-mean.html#cb32-3" aria-hidden="true" tabindex="-1"></a>stdev               <span class="ot">=</span> <span class="fu">sd</span>(mpa<span class="sc">$</span>scores)</span>
-<span id="cb32-4"><a href="one-group-mean.html#cb32-4" aria-hidden="true" tabindex="-1"></a>tstatistic          <span class="ot">=</span> (xbar<span class="dv">-80</span>)<span class="sc">/</span>(stdev<span class="sc">/</span><span class="fu">sqrt</span>(n))</span>
-<span id="cb32-5"><a href="one-group-mean.html#cb32-5" aria-hidden="true" tabindex="-1"></a>criticalvalue       <span class="ot">=</span> <span class="fu">qt</span>(<span class="fl">0.025</span>,<span class="at">df=</span>n<span class="dv">-1</span>)</span>
-<span id="cb32-6"><a href="one-group-mean.html#cb32-6" aria-hidden="true" tabindex="-1"></a>pvalue              <span class="ot">=</span> <span class="fu">pt</span>(tstatistic,n<span class="dv">-1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="one-group-mean.html#cb33-1" aria-hidden="true" tabindex="-1"></a>n                   <span class="ot">=</span> <span class="fu">nrow</span>(mpa)</span>
+<span id="cb33-2"><a href="one-group-mean.html#cb33-2" aria-hidden="true" tabindex="-1"></a>xbar                <span class="ot">=</span> <span class="fu">mean</span>(mpa<span class="sc">$</span>scores)</span>
+<span id="cb33-3"><a href="one-group-mean.html#cb33-3" aria-hidden="true" tabindex="-1"></a>stdev               <span class="ot">=</span> <span class="fu">sd</span>(mpa<span class="sc">$</span>scores)</span>
+<span id="cb33-4"><a href="one-group-mean.html#cb33-4" aria-hidden="true" tabindex="-1"></a>tstatistic          <span class="ot">=</span> (xbar<span class="dv">-80</span>)<span class="sc">/</span>(stdev<span class="sc">/</span><span class="fu">sqrt</span>(n))</span>
+<span id="cb33-5"><a href="one-group-mean.html#cb33-5" aria-hidden="true" tabindex="-1"></a>criticalvalue       <span class="ot">=</span> <span class="fu">qt</span>(<span class="fl">0.025</span>,<span class="at">df=</span>n<span class="dv">-1</span>)</span>
+<span id="cb33-6"><a href="one-group-mean.html#cb33-6" aria-hidden="true" tabindex="-1"></a>pvalue              <span class="ot">=</span> <span class="fu">pt</span>(tstatistic,n<span class="dv">-1</span>)</span></code></pre></div>
 <p>Or the function <code>t.test()</code> can be used.</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="one-group-mean.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(mpa<span class="sc">$</span>scores,<span class="at">mu=</span><span class="dv">80</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="one-group-mean.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(mpa<span class="sc">$</span>scores,<span class="at">mu=</span><span class="dv">80</span>)</span></code></pre></div>
 <p>Similar to the hypothesis tests on proportions, a one-sided test can be implemented with the function <code>t.test()</code> as well. Consider the data in <code>eggweights</code>. Consider the following one-sided hypothesis test:
 <span class="math display">\[ H_0: \mu \geq 63\\
 H_a: \mu &lt; 63\]</span>
 This hypothesis test is implemented as follows:</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="one-group-mean.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(eggweights<span class="sc">$</span>weight,<span class="at">mu=</span><span class="dv">63</span>,<span class="at">alternative=</span><span class="st">&quot;less&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="one-group-mean.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(eggweights<span class="sc">$</span>weight,<span class="at">mu=</span><span class="dv">63</span>,<span class="at">alternative=</span><span class="st">&quot;less&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 

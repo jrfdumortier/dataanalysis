@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2023-01-08" />
+<meta name="date" content="2023-01-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -242,7 +242,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.4" data-path="two-groups-mean.html"><a href="two-groups-mean.html"><i class="fa fa-check"></i><b>9.4</b> Two-Groups: Mean</a></li>
 <li class="chapter" data-level="9.5" data-path="exercises-5.html"><a href="exercises-5.html"><i class="fa fa-check"></i><b>9.5</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="additional-topics-in-probability-and-statistics.html"><a href="additional-topics-in-probability-and-statistics.html"><i class="fa fa-check"></i><b>10</b> Additional Topics in Probability and Statistics</a>
+<li class="chapter" data-level="10" data-path="additional-topics-in-statistics.html"><a href="additional-topics-in-statistics.html"><i class="fa fa-check"></i><b>10</b> Additional Topics in Statistics</a>
 <ul>
 <li class="chapter" data-level="10.1" data-path="chi-square-test-chi2-test.html"><a href="chi-square-test-chi2-test.html"><i class="fa fa-check"></i><b>10.1</b> Chi-Square Test (<span class="math inline">\(\chi^2\)</span>-Test)</a></li>
 <li class="chapter" data-level="10.2" data-path="binomial-test.html"><a href="binomial-test.html"><i class="fa fa-check"></i><b>10.2</b> Binomial Test</a></li>
@@ -374,19 +374,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="exercises-14" class="section level2 hasAnchor" number="18.5">
 <h2><span class="header-section-number">18.5</span> Exercises<a href="exercises-14.html#exercises-14" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ol style="list-style-type: decimal">
-<li><p><em>NFL II</em>: Consider the data set <code>nfl</code> which includes the performance, salary, and facial symmetry of NFL quarterbacks. The data includes the name and the year and thus, it can be estimated as a panel data model. In a first step, convert the data into a panel data set using the function <code>pdata.frame()</code>. Next, estimate three models: (a) Regular pooled OLS model, (2) fixed-effects model, and (3) random effects model. The regression equation is the same for each model:
+<li><p><strong><em>NFL II</em></strong> (***): Consider the data set <code>nfl</code> which includes the performance, salary, and facial symmetry of NFL quarterbacks. The data includes the name and the year and thus, it can be estimated as a panel data model. In a first step, convert the data into a panel data set using the function <code>pdata.frame()</code>. Next, estimate three models: (a) Regular pooled OLS model, (2) fixed-effects model, and (3) random effects model. The regression equation is the same for each model:
 <span class="math display">\[\ln(total) =\beta_0 + \beta_1 \cdot yards+ \beta_2 \cdot att+ \beta_3 \cdot exp+ \beta_4 \cdot exp^2 + \beta_5 \cdot draft1+beta_6 \cdot draft2\\ + \beta_7 \cdot veteran +\beta_8 \cdot changeteam+ \beta_9 \cdot pbowlever+ \beta_{10} \cdot symm\]</span>
-Report and interpret the output for all three models. What happens to the variable <span class="math inline">\(symm\)</span> in the fixed effects model and why? How does the panel data model compare to the original model which does not incorportate the panel strucutre?</p></li>
-<li><p><em>Renewable Energy</em>: This question is based on the paper <a href="https://doi.org/10.1016/j.eneco.2020.104998">The effect of the feed-in-system policy on renewable energy investments: Evidence from the EU countries</a> by Alolo et al. (2020). +</p></li>
-<li><p><em>Guns and Crime</em>: There is a fierce debate on the relationship between gun ownership and crime. On the one hand, there is the argument that more guns prevent crime due to a deterrence effect. On the other hand, more guns trickling into society increase the likelihood of crime being committed. This data set is one example on how the issue at hand can be analyzed. The data set which is used for this question is part of the <a href="https://cran.r-project.org/web/packages/AER/index.html">AER</a> and can be imported with the command <code>data("Guns",package="AER")</code>. Please read the description of the data set which is available as part of the package. The first regression model to be estimated is written as:
+Report and interpret the output for all three models. What happens to the variable <span class="math inline">\(symm\)</span> in the fixed effects model and why? How does the panel data model compare to the original model which does not incorporate the panel structure?</p></li>
+<li><p><strong><em>Renewable Energy</em></strong> (***): This question is based on the paper <a href="https://doi.org/10.1016/j.eneco.2020.104998">The effect of the feed-in-system policy on renewable energy investments: Evidence from the EU countries</a> by Alolo et al. (2020). +</p></li>
+<li><p><strong><em>Guns and Crime</em></strong> (***): There is a fierce debate on the relationship between gun ownership and crime. On the one hand, there is the argument that more guns prevent crime due to a deterrence effect. On the other hand, more guns trickling into society increase the likelihood of crime being committed. This data set is one example on how the issue at hand can be analyzed. The data set which is used for this question is part of the <a href="https://cran.r-project.org/web/packages/AER/index.html">AER</a> and can be imported with the command <code>data("Guns",package="AER")</code>. Please read the description of the data set which is available as part of the package. The first regression model to be estimated is written as:
 <span class="math display">\[\ln(violent)=\beta_0+\beta_1 \cdot law+\epsilon\]</span>
 Estimate a fixed effects panel model using the equation above and report the R output. Interpret the results. The second model include year and state fixed effects and is written as follows:
 <span class="math display">\[\ln(violent)=\beta_0+\beta_1 \cdot law + \alpha_i + \lambda_t+\epsilon\]</span>
 In a third and last model, include the variables <span class="math inline">\(prisoners\)</span>, <span class="math inline">\(density\)</span>, <span class="math inline">\(income\)</span>, <span class="math inline">\(population\)</span> <span class="math inline">\(afam\)</span>, <span class="math inline">\(cauc\)</span>, and <span class="math inline">\(male\)</span>. What does the model suggest about the opposing views mentioned at the beginning of the question?</p></li>
-<li><p><em>WDI</em>: Previous questions used the <code>wdi</code> data set without incorporating the potential panel structure of the information. Create a panel data frame using the command <code>pdata.frame()</code>. Estimate the following panel model:
+<li><p><strong><em>WDI Panel Data</em></strong> (***): Previous questions used the <code>wdi</code> data set without incorporating the potential panel structure of the information. Create a panel data frame using the command <code>pdata.frame()</code>. Estimate the following panel model:
 <span class="math display">\[\ln(mortrate)=\beta_0+ \beta_1 \cdot gdp+ \beta_2 \cdot litrate +\epsilon\]</span>
 First, estimate the equation as a regular OLS model for the years 1980 and 2015 (separately for the two years).</p></li>
-<li><p><em>Rent in College Towns</em>: This</p></li>
 </ol>
 
 </div>

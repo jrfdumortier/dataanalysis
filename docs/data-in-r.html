@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2023-01-08" />
+<meta name="date" content="2023-01-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -242,7 +242,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.4" data-path="two-groups-mean.html"><a href="two-groups-mean.html"><i class="fa fa-check"></i><b>9.4</b> Two-Groups: Mean</a></li>
 <li class="chapter" data-level="9.5" data-path="exercises-5.html"><a href="exercises-5.html"><i class="fa fa-check"></i><b>9.5</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="additional-topics-in-probability-and-statistics.html"><a href="additional-topics-in-probability-and-statistics.html"><i class="fa fa-check"></i><b>10</b> Additional Topics in Probability and Statistics</a>
+<li class="chapter" data-level="10" data-path="additional-topics-in-statistics.html"><a href="additional-topics-in-statistics.html"><i class="fa fa-check"></i><b>10</b> Additional Topics in Statistics</a>
 <ul>
 <li class="chapter" data-level="10.1" data-path="chi-square-test-chi2-test.html"><a href="chi-square-test-chi2-test.html"><i class="fa fa-check"></i><b>10.1</b> Chi-Square Test (<span class="math inline">\(\chi^2\)</span>-Test)</a></li>
 <li class="chapter" data-level="10.2" data-path="binomial-test.html"><a href="binomial-test.html"><i class="fa fa-check"></i><b>10.2</b> Binomial Test</a></li>
@@ -517,8 +517,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>Suppose you are only interested in “Compact Cars” and “Large Cars” in the column <span class="math inline">\(VClass\)</span> for the year 2015. There the notation is a bit odd (note that the many line breaks are not necessary to include in R):</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="data-in-r.html#cb4-1" aria-hidden="true" tabindex="-1"></a>cars <span class="ot">=</span> <span class="fu">subset</span>(vehicles,</span>
-<span id="cb4-2"><a href="data-in-r.html#cb4-2" aria-hidden="true" tabindex="-1"></a>              year<span class="sc">==</span><span class="dv">2015</span> <span class="sc">&amp;</span> VClass <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Compact Cars&quot;</span>, <span class="st">&quot;Large Cars&quot;</span>),</span>
-<span id="cb4-3"><a href="data-in-r.html#cb4-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">select=</span><span class="fu">c</span>(<span class="st">&quot;make&quot;</span>,<span class="st">&quot;ghgScore&quot;</span>,<span class="st">&quot;VClass&quot;</span>))</span></code></pre></div>
+<span id="cb4-2"><a href="data-in-r.html#cb4-2" aria-hidden="true" tabindex="-1"></a>              year<span class="sc">==</span><span class="dv">2015</span> <span class="sc">&amp;</span> vclass <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Compact Cars&quot;</span>, <span class="st">&quot;Large Cars&quot;</span>),</span>
+<span id="cb4-3"><a href="data-in-r.html#cb4-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">select=</span><span class="fu">c</span>(<span class="st">&quot;make&quot;</span>,<span class="st">&quot;co2tailpipegpm&quot;</span>,<span class="st">&quot;vclass&quot;</span>))</span></code></pre></div>
 </div>
 <div id="in-class-exercises-3" class="section level3 hasAnchor" number="3.4.7">
 <h3><span class="header-section-number">3.4.7</span> In-class Exercises 3<a href="data-in-r.html#in-class-exercises-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -527,7 +527,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="aggregating-data" class="section level3 hasAnchor" number="3.4.8">
 <h3><span class="header-section-number">3.4.8</span> Aggregating Data<a href="data-in-r.html#aggregating-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>To aggregate data based on a function, e.g., sum or mean:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="data-in-r.html#cb5-1" aria-hidden="true" tabindex="-1"></a>cars <span class="ot">=</span> <span class="fu">aggregate</span>(cars<span class="sc">$</span>ghgScore,<span class="at">FUN=</span>mean,<span class="at">by=</span><span class="fu">list</span>(cars<span class="sc">$</span>make,cars<span class="sc">$</span>VClass))</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="data-in-r.html#cb5-1" aria-hidden="true" tabindex="-1"></a>cars <span class="ot">=</span> <span class="fu">aggregate</span>(cars<span class="sc">$</span>co2tailpipegpm,<span class="at">FUN=</span>mean,<span class="at">by=</span><span class="fu">list</span>(cars<span class="sc">$</span>make,cars<span class="sc">$</span>vclass))</span></code></pre></div>
 </div>
 <div id="writing-data-frame-to-.csv-file" class="section level3 hasAnchor" number="3.4.9">
 <h3><span class="header-section-number">3.4.9</span> Writing Data Frame to .csv-File<a href="data-in-r.html#writing-data-frame-to-.csv-file" class="anchor-section" aria-label="Anchor link to header"></a></h3>

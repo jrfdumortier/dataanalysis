@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2023-01-08" />
+<meta name="date" content="2023-01-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -242,7 +242,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.4" data-path="two-groups-mean.html"><a href="two-groups-mean.html"><i class="fa fa-check"></i><b>9.4</b> Two-Groups: Mean</a></li>
 <li class="chapter" data-level="9.5" data-path="exercises-5.html"><a href="exercises-5.html"><i class="fa fa-check"></i><b>9.5</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="additional-topics-in-probability-and-statistics.html"><a href="additional-topics-in-probability-and-statistics.html"><i class="fa fa-check"></i><b>10</b> Additional Topics in Probability and Statistics</a>
+<li class="chapter" data-level="10" data-path="additional-topics-in-statistics.html"><a href="additional-topics-in-statistics.html"><i class="fa fa-check"></i><b>10</b> Additional Topics in Statistics</a>
 <ul>
 <li class="chapter" data-level="10.1" data-path="chi-square-test-chi2-test.html"><a href="chi-square-test-chi2-test.html"><i class="fa fa-check"></i><b>10.1</b> Chi-Square Test (<span class="math inline">\(\chi^2\)</span>-Test)</a></li>
 <li class="chapter" data-level="10.2" data-path="binomial-test.html"><a href="binomial-test.html"><i class="fa fa-check"></i><b>10.2</b> Binomial Test</a></li>
@@ -374,8 +374,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="about-the-importance-of-the-assumptions" class="section level2 hasAnchor" number="11.4">
 <h2><span class="header-section-number">11.4</span> About the Importance of the Assumptions<a href="about-the-importance-of-the-assumptions.html#about-the-importance-of-the-assumptions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The data in <code>anscombe</code> illustrates the danger of simply relying on the regression output. The so-called <a href="https://en.wikipedia.org/wiki/Anscombe%27s_quartet">Anscombe’s Quartet</a> includes <span class="math inline">\(i=1,\dots,4\)</span> data series denoted <span class="math inline">\(y_i\)</span> (dependent variable) and <span class="math inline">\(x_i\)</span> (independent variable). Estimate the four regression models and compare the results and the conclusions you draw from the output. Next, plot the observations and include the fitted line. The regression output for the first set:</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="about-the-importance-of-the-assumptions.html#cb54-1" aria-hidden="true" tabindex="-1"></a>bhat1 <span class="ot">=</span> <span class="fu">lm</span>(y1<span class="sc">~</span>x1,<span class="at">data=</span>anscombe)</span>
-<span id="cb54-2"><a href="about-the-importance-of-the-assumptions.html#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat1)</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="about-the-importance-of-the-assumptions.html#cb55-1" aria-hidden="true" tabindex="-1"></a>bhat1 <span class="ot">=</span> <span class="fu">lm</span>(y1<span class="sc">~</span>x1,<span class="at">data=</span>anscombe)</span>
+<span id="cb55-2"><a href="about-the-importance-of-the-assumptions.html#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat1)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = y1 ~ x1, data = anscombe)
@@ -395,9 +395,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Multiple R-squared:  0.6665, Adjusted R-squared:  0.6295 
 ## F-statistic: 17.99 on 1 and 9 DF,  p-value: 0.00217</code></pre>
 <p>And the associated scatter plot with the regression equation:</p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="about-the-importance-of-the-assumptions.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(anscombe<span class="sc">$</span>x1,anscombe<span class="sc">$</span>y1)</span>
-<span id="cb56-2"><a href="about-the-importance-of-the-assumptions.html#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(bhat1,<span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-143-1.png" width="672" /></p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="about-the-importance-of-the-assumptions.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(anscombe<span class="sc">$</span>x1,anscombe<span class="sc">$</span>y1)</span>
+<span id="cb57-2"><a href="about-the-importance-of-the-assumptions.html#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(bhat1,<span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 </div>
             </section>
 

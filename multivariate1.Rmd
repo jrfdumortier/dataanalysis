@@ -131,7 +131,7 @@ $$\frac{dy}{dx}=\beta_1 x_2 + \beta_2$$
     $$retail = \beta_0 + \beta_1 \cdot t + \sum_{m=1}^{11} \beta_m \cdot D_m$$
 where $t$ represents a simple time trend and $D_m$ are monthly dummy variables. Make sure to only include 11(!) monthly dummy variables. Is there seasonality in the data? Interpret. 
 
-5. ***Indy Homes*** (***): The data `indyhomes` contains home values of two ZIP codes in Indianapolis. In this exercise, you will estimate the value of homes (dependent variable) based on a set of independent variables. The variables are mostly self-explanatory. The variables $levels$ and garage refers to the number of $stories$ and the garage parking spots, respectively. 
+5. ***Indy Homes I*** (***): The data `indyhomes` contains home values of two ZIP codes in Indianapolis. In this exercise, you will estimate the value of homes (dependent variable) based on a set of independent variables. The variables are mostly self-explanatory. The variables $levels$ and garage refers to the number of $stories$ and the garage parking spots, respectively. 
     a. Create a dummy variable called $northwest$ for the 46268 ZIP code.
     b. Report the results of the following regression equation
         $$\ln(price)=\beta_0+\beta_1 \cdot \ln(sqft)+\beta_2 \cdot northwest+\beta_3 \cdot \ln(lot)+\beta_4 \cdot bed+\beta_5 \cdot garage\\
@@ -141,20 +141,22 @@ where $t$ represents a simple time trend and $D_m$ are monthly dummy variables. 
 
 6. ***Pork Demand*** (**): In this exercise, you will estimate the per-capita pork demand as a function of pork prices and the prices of substitutes (beef and chicken) as well as real disposable income. Use the date `meatdemand` for this exercise. Estimate the following equation and interpret the coefficients. Are the signs of the coefficients what you would expect?
 $$\ln(q_{pork}) = \beta_0 + \beta_1 \cdot \ln(p_{pork}) + \beta_2 \cdot \ln(p_{chicken}) + \beta_3 \cdot \ln(p_{beef}) + \beta_4 \cdot \ln(rdi)$$
-7. ***NFL*** (***): This question will have you create a similar analysis to the one found in [Berri et al. (2011)](https://doi.org/10.1016/j.econlet.2011.02.018). The corresponding data is in `nfl`:
+7. ***NFL I*** (***): This question will have you create a similar analysis to the one found in [Berri et al. (2011)](https://doi.org/10.1016/j.econlet.2011.02.018). The corresponding data is in `nfl`:
 $$\ln(total)=\beta_0+\beta_1 \cdot yards+\beta_2 \cdot att+\beta_3 \cdot exp+\beta_4 \cdot exp^2 \\ +\beta_5 \cdot draft1+\beta_6 \cdot draft2+\beta_7 \cdot veteran+\beta_8 \cdot changeteam \\+\beta_9 \cdot pbowlever+\beta_{10} \cdot symm$$
 Report the output and interpret the coefficients in terms of statistical significance and direction (i.e., sign).
 
 8. ***Boston*** (***): For this exercise, use the data set `Boston` which is part of the R package [MASS](https://cran.r-project.org/web/packages/plm/index.html). An explanation of the various variables can be found [here](https://stat.ethz.ch/R-manual/R-devel/library/MASS/html/Boston.html). In a first step, execute the following code:
-```{r,echo=FALSE,results=FALSE,eval=FALSE}
+```{r,echo=FALSE,results=FALSE}
 library(corrplot)
 corr_matrix = cor(boston)
 corrplot(corr_matrix,type="upper")
 ```
 
-    What does the resulting plot represent? In a second step, estimate the following model:
-        $$medv = \beta_0 + \beta_1 \cdot lstat+ \beta_2 \cdot crim + \beta_3 \cdot age$$
+What does the resulting plot represent? In a second step, estimate the following model:
+$$medv = \beta_0 + \beta_1 \cdot lstat+ \beta_2 \cdot crim + \beta_3 \cdot age$$
 
-    Explain what exactly you estimated and what hypotheses are underlying the model. Lastly, estimate the model including all remaining independent variables. Are any of the results surprising?
+Explain what exactly you estimated and what hypotheses are underlying the model. Lastly, estimate the model including all remaining independent variables. Are any of the results surprising?
     
-9. ***BLM I*** (***): The following question is based on the article [Black Lives Matter: Evidence that Police-Caused Deaths Predict Protest Activity](https://doi.org/10.1017/S1537592717004273). Note that we use a simplified version of the data set for this question. The dependent variable for this exercise is protest frequency ($tot.protests$) and the independent variables are city population ($TotalPop$), population density ($pop.density$), percent Black ($Per\_Black$), black poverty rate ($BlackPovertyRate$), percent of population with at least a bachelor ($per_ba$), college enrollment ($collegeenrollpc$), share of democrats ($dem\_share$), and Black police-caused deaths per 10,000 people ($deaths_black_pc$). Interpret the output.
+9. ***BLM I*** (\*\*\*): The following question is based on the article [Black Lives Matter: Evidence that Police-Caused Deaths Predict Protest Activity](https://doi.org/10.1017/S1537592717004273). Note that we use a simplified version of the data set for this question. The dependent variable for this exercise is protest frequency ($totprotests$) and the independent variables are city population ($TotalPop$), population density ($popdensity$), percent Black ($PerBlack$), black poverty rate ($BlackPovertyRate$), percent of population with at least a bachelor ($perba$), college enrollment ($collegeenrollpc$), share of democrats ($demshare$), and Black police-caused deaths per 10,000 people ($deathsblackpc$). Interpret the output.
+
+10. ***Furnished Apartments*** (\*\*): Long-term furnished apartments are usually managed by companies. Some of those companies are more expensive than others. The data set in `apartments` contains data on the $rent$, $rooms$, $area$ (in square meters), managing $company$, and $location$ (Southwest Berlin). The dependent variable is $rent$. Estimate a regression model using all other columns as independent variables. Which companies are more expensive than others and by how much? Is there a difference between living in Berlin (city) or one of its close suburbs (Potsdam). On a side note, people in Potsdam prefer the city not to be called a suburb since it is fairly sizable state capital. 

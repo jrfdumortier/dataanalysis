@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2023-01-08" />
+<meta name="date" content="2023-01-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -242,7 +242,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.4" data-path="two-groups-mean.html"><a href="two-groups-mean.html"><i class="fa fa-check"></i><b>9.4</b> Two-Groups: Mean</a></li>
 <li class="chapter" data-level="9.5" data-path="exercises-5.html"><a href="exercises-5.html"><i class="fa fa-check"></i><b>9.5</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="additional-topics-in-probability-and-statistics.html"><a href="additional-topics-in-probability-and-statistics.html"><i class="fa fa-check"></i><b>10</b> Additional Topics in Probability and Statistics</a>
+<li class="chapter" data-level="10" data-path="additional-topics-in-statistics.html"><a href="additional-topics-in-statistics.html"><i class="fa fa-check"></i><b>10</b> Additional Topics in Statistics</a>
 <ul>
 <li class="chapter" data-level="10.1" data-path="chi-square-test-chi2-test.html"><a href="chi-square-test-chi2-test.html"><i class="fa fa-check"></i><b>10.1</b> Chi-Square Test (<span class="math inline">\(\chi^2\)</span>-Test)</a></li>
 <li class="chapter" data-level="10.2" data-path="binomial-test.html"><a href="binomial-test.html"><i class="fa fa-check"></i><b>10.2</b> Binomial Test</a></li>
@@ -374,12 +374,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="exercises-7" class="section level2 hasAnchor" number="11.5">
 <h2><span class="header-section-number">11.5</span> Exercises<a href="exercises-7.html#exercises-7" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ol style="list-style-type: decimal">
-<li><em>Accidents</em>: Researchers at IUPUI attempt to predict the number of auto accidents in the city depending on temperature. They randomly select 30 days during the year and run a regression to determine if temperature significantly affected the number of accidents. Using the data <code>accidents</code>, I want you to manually re-create the table we have seen in class to calculate the slope and intercept coefficient and then use R to confirm your result. Note that it is best to copy the <code>accident</code> data and convert it into a regular Excel file for the first part of the exercise.
+<li><strong><em>Accidents</em></strong> (***): Researchers at IUPUI attempt to predict the number of auto accidents in the city depending on temperature. They randomly select 30 days during the year and run a regression to determine if temperature significantly affected the number of accidents. Using the data <code>accidents</code>, I want you to manually re-create the table we have seen in class to calculate the slope and intercept coefficient and then use R to confirm your result. Note that it is best to copy the <code>accident</code> data and convert it into a regular Excel file for the first part of the exercise.
 <ol style="list-style-type: lower-alpha">
 <li>With temperature as the independent variable and accidents as the dependent variable, create four new columns in Excel: (1) <span class="math inline">\(x_i-\bar{x}\)</span>, (2) <span class="math inline">\(y_i-\bar{y}\)</span>, (3) <span class="math inline">\((x_i-\bar{x})(y_i-\bar{y})\)</span>, and (4) <span class="math inline">\((x_i-\bar{x})^2\)</span>. From there, use the OLS equations provided in the slides to calculate slope and intercept.</li>
 <li>Run a simple bivariate regression using the command <code>lm()</code> in R and report the results. The results from the calculation with Excel and R must match.</li>
 </ol></li>
-<li><em>Ohio Schools 1</em>: Consider the data sets <code>ohioincome</code> and <code>ohioscore</code>. In the section on hypothesis testing, the school districts were divided by median income into the top 25% and bottom 25%. In this exercise, two linear regression models are fitted to the data.
+<li><strong><em>Ohio Schools II</em></strong> (***): Consider the data sets <code>ohioincome</code> and <code>ohioscore</code>. In the section on hypothesis testing, the school districts were divided by median income into the top 25% and bottom 25%. In this exercise, two linear regression models are fitted to the data.
 <ol style="list-style-type: lower-alpha">
 <li>In a first step, merge the data sets <code>ohioincome</code> and <code>ohioscore</code> by IRN.</li>
 <li>The first regression model is written as follows:
@@ -391,7 +391,7 @@ Estimate the above equation using R and report the output. Interpret the coeffic
 For this model, make sure to include the squared term by using the function <code>I()</code> in R. If you do not include it, R simply drops the last term. Report and interpret the output.</li>
 <li>Do a scatter plot and include the (nonlinear) regression line estimated above in the plot. Is the model a good fit for the data. Compare your answer to the previous parts.</li>
 </ol></li>
-<li><em>Indy Home Heating</em>: Consider the data set <code>heating</code> which shows the consumption of natural gas and average temperature. Run a regression with <span class="math inline">\(usage\)</span> as the dependent variable and <span class="math inline">\(temperature\)</span> as the independent variable. Interpret the coefficients. Is the variable <span class="math inline">\(usage\)</span> indicative of your total energy consumption over the time period covered in the data set?</li>
+<li><strong><em>Indy Home Heating</em></strong> (***): Consider the data set <code>heating</code> which shows the consumption of natural gas and average temperature. Run a regression with <span class="math inline">\(usage\)</span> as the dependent variable and <span class="math inline">\(temperature\)</span> as the independent variable. Interpret the coefficients. Is the variable <span class="math inline">\(usage\)</span> indicative of your total energy consumption over the time period covered in the data set?</li>
 </ol>
 
 </div>

@@ -40,7 +40,13 @@ There is also a YouTube video and slides associated with this chapter:
 - [Introduction to Probability and Statistics - Video](https://youtu.be/-nySM9cmYwo)
 - [Introduction to Probability and Statistics - Slides](https://github.com/jrfdumortier/slidesstatistics/blob/main/IntroductionStatistics.pdf)
 
-You are also encouraged to review a video on some [Basic Mathematical Tools](https://youtu.be/9FYr_QRdF44).
+You are also encouraged to review a video on some [Basic Mathematical Tools](https://youtu.be/9FYr_QRdF44). 
+
+There are a few books that may serve as a reference: 
+
+- *A Modern Introduction to Probability and Statistics - Understanding Why and How* by Frederik Michel Dekking, Cornelis Kraaikamp, Hendrik Paul Lopuhaä, and Ludolf Erwin Meester.    
+- *Introductory Econometrics - A Modern Approach* by Jeffrey M. Wooldridge. This book is the standard literature in many regression classes. 
+- *Basic Econometrics* by Damodar N. Gujarati. An excellent book that can serve as a reference for many years. 
 
 ## Overview
 We are surrounded by probability and statistics on a daily basis because the world around us is uncertain. The purpose of probability theory and statistics is to explain and model stochastic processes such that predictions can be made. Probability and the application of statistics occur basically everywhere. For example, if you order something online, other products are suggested to you. Those suggestions are not random but are based on how you compare to other shoppers interested in similar items. Consider the following examples:

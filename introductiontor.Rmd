@@ -205,8 +205,8 @@ Suppose you are only interested in "Compact Cars" and "Large Cars" in the column
 
 ```{r INRsubsetcars2015}
 cars = subset(vehicles,
-              year==2015 & VClass %in% c("Compact Cars", "Large Cars"),
-              select=c("make","ghgScore","VClass"))
+              year==2015 & vclass %in% c("Compact Cars", "Large Cars"),
+              select=c("make","co2tailpipegpm","vclass"))
 ```
 
 ### In-class Exercises 3
@@ -216,7 +216,7 @@ From the vehicles data set, extract the GHG Score and the vehicle class from the
 To aggregate data based on a function, e.g., sum or mean:
 
 ```{r INRaggregate,results=FALSE}
-cars = aggregate(cars$ghgScore,FUN=mean,by=list(cars$make,cars$VClass))
+cars = aggregate(cars$co2tailpipegpm,FUN=mean,by=list(cars$make,cars$vclass))
 ```
 
 ### Writing Data Frame to .csv-File

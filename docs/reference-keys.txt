@@ -15,7 +15,7 @@ fig:DIStdistribution
 fig:BSSlln
 fig:BSSriskpooling
 fig:BSSclt
-fig:unnamed-chunk-141
+fig:unnamed-chunk-14
 fig:BVRhomoheteroscedasticity
 fig:BVRhonda
 preface
@@ -92,7 +92,7 @@ one-group-mean
 two-groups-proportion
 two-groups-mean
 exercises-5
-additional-topics-in-probability-and-statistics
+additional-topics-in-statistics
 chi-square-test-chi2-test
 binomial-test
 wilcoxon-signed-rank-test

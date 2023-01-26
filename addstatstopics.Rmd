@@ -1,4 +1,4 @@
-# Additional Topics in Probability and Statistics
+# Additional Topics in Statistics
 
 ## Chi-Square Test ($\chi^2$-Test)
 The $\chi^2$-test is used to conduct a hypothesis test on qualitative variables. Before introducing the procedure, a presentation of the $\chi^2$-distribution is necessary.
@@ -80,4 +80,4 @@ wilcox.test(irs,mu=12)
 ```
 
 ## Exercises
-1. *Chi-Squared Test: Education*: Use the `gss2018` data for this exercise. Select one of the following variables: $fulltime$, $government$, $married$, $gun$, or $deathpenalty$. Conduct a Chi-Squared hypothesis test between the variable chosen and education. Remember that the null hypothesis is independence between the variables. Report your results and interpret them as well. 
+1. ***Chi-Squared Test*** (\*\*\): Use the `gss` data for this exercise. Select one of the following variables: $fulltime$, $government$, $married$, $gun$, or $deathpenalty$. Conduct a Chi-Squared hypothesis test between the variable chosen and education. Remember that the null hypothesis is independence between the variables. Report your results and interpret them as well. 

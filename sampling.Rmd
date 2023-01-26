@@ -106,7 +106,7 @@ Imagine that you have two estimation methods for the estimator $\hat{\theta}$. W
     
 ## Exercises
 
-1. *Random Numbers*: R allows you to generate random numbers from a variety of distributions. For example, you can generate 100 normally distributed random numbers with $\mu=70$ and $\sigma = 10$ using the following command: `rnorm(100,70,10)`. Generate three datasets ($\mu=70$ and $\sigma = 10$) with the command `rnorm()` and name them $x1$, $x2$, and $x3$. The data sets $x1$ and $x$ have 50 random numbers each and $x3$ has 1000 random numbers. Calculate and report the mean of $x1$, $x2$, and $x3$. Plot a histogram of all three datasets.
+1. ***Random Numbers*** (\*\*): R allows you to generate random numbers from a variety of distributions. For example, you can generate 100 normally distributed random numbers with $\mu=70$ and $\sigma = 10$ using the following command: `rnorm(100,70,10)`. Generate three datasets ($\mu=70$ and $\sigma = 10$) with the command `rnorm()` and name them $x1$, $x2$, and $x3$. The data sets $x1$ and $x$ have 50 random numbers each and $x3$ has 1000 random numbers. Calculate and report the mean of $x1$, $x2$, and $x3$. Plot a histogram of all three datasets.
     a. Why do the histograms of $x1$ and $x2$ look different despite the fact that they were generated using the same command? Do they look normally distributed?
     b. The histogram of $x3$ will look much more like a normal distribution. Why is that the case?
     c. Compare the three means and explain which statistical law should make the mean of $x3$ always closer to 70 than for $x1$ and $x2$.

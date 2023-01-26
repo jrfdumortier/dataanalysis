@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2023-01-08" />
+<meta name="date" content="2023-01-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -242,7 +242,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.4" data-path="two-groups-mean.html"><a href="two-groups-mean.html"><i class="fa fa-check"></i><b>9.4</b> Two-Groups: Mean</a></li>
 <li class="chapter" data-level="9.5" data-path="exercises-5.html"><a href="exercises-5.html"><i class="fa fa-check"></i><b>9.5</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="additional-topics-in-probability-and-statistics.html"><a href="additional-topics-in-probability-and-statistics.html"><i class="fa fa-check"></i><b>10</b> Additional Topics in Probability and Statistics</a>
+<li class="chapter" data-level="10" data-path="additional-topics-in-statistics.html"><a href="additional-topics-in-statistics.html"><i class="fa fa-check"></i><b>10</b> Additional Topics in Statistics</a>
 <ul>
 <li class="chapter" data-level="10.1" data-path="chi-square-test-chi2-test.html"><a href="chi-square-test-chi2-test.html"><i class="fa fa-check"></i><b>10.1</b> Chi-Square Test (<span class="math inline">\(\chi^2\)</span>-Test)</a></li>
 <li class="chapter" data-level="10.2" data-path="binomial-test.html"><a href="binomial-test.html"><i class="fa fa-check"></i><b>10.2</b> Binomial Test</a></li>
@@ -374,7 +374,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="exercises-15" class="section level2 hasAnchor" number="19.8">
 <h2><span class="header-section-number">19.8</span> Exercises<a href="exercises-15.html#exercises-15" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ol style="list-style-type: decimal">
-<li>The data in <code>souvenirs</code> represents the sales of a souvenir beach shop in Australia. The sales volume in the shop fluctuates with the number of tourists which are in town. A larger number of tourists is observed in December for the holiday season and for the local surfing festival in March. Over the years, the shop has expanded in terms of items offered and also in store area.
+<li><strong><em>Souvenir Shop</em></strong> (***): The data in <code>souvenirs</code> represents the sales of a souvenir beach shop in Australia. The sales volume in the shop fluctuates with the number of tourists which are in town. A larger number of tourists is observed in December for the holiday season and for the local surfing festival in March. Over the years, the shop has expanded in terms of items offered and also in store area.
 <ol style="list-style-type: lower-alpha">
 <li>Plot the data. What do you observe in terms of trend, seasonality, and magnitude of fluctuations?</li>
 <li>Estimate a regular OLS Model with <span class="math inline">\(sales\)</span> as the dependent variable and a trend as well as monthly dummy variables as independent variables.</li>
@@ -382,7 +382,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Repeat the estimation and the plot from (b) and (c) but use the natural log of <span class="math inline">\(sales\)</span>, i.e., $(sales), as the dependent variable instead.</li>
 <li>Compare the two graphs you have generated. What is the difference and what is the reason for the difference? Which form of the dependent variable is more appropriate.</li>
 </ol></li>
-<li>Consider the data <code>retail</code> and the following model:
+<li><strong><em>Retail Time Series</em></strong> (***): Consider the data <code>retail</code> and the following model:
 <span class="math display">\[\ln(retail_t)=\beta_0+\beta_1 \cdot t +\delta_1 \cdot Q1_t+\delta_2 \cdot Q2_t+\delta_3 \cdot Q3_t+\epsilon_t\]</span>
 <ol style="list-style-type: lower-alpha">
 <li>Estimate the above regression equation, report, and interpret the results.</li>
@@ -390,14 +390,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Re-estimate the model but this time using <span class="math inline">\(retail\)</span> as the dependent variable.</li>
 <li>Plot (in the same graph) the observed values and both modeled series. What do you observe? Does one model fit better than the other? If yes, which one?</li>
 </ol></li>
-<li>The data <code>wdi</code> includes per-capita income (<span class="math inline">\(gdp\)</span>), overall household consumption (<span class="math inline">\(consumption\)</span>), and <span class="math inline">\(population\)</span>. For a country of your choice, do the following:
+<li><strong><em>WDI Per-Capita Consumption</em></strong> (***): The data <code>wdi</code> includes per-capita income (<span class="math inline">\(gdp\)</span>), overall household consumption (<span class="math inline">\(consumption\)</span>), and <span class="math inline">\(population\)</span>. For a country of your choice, do the following:
 <ol style="list-style-type: lower-alpha">
 <li>Subset the data such that you are only left with the country of your choice.</li>
 <li>Create a new column which contains the consumption per capita, i.e., consumption divided by population.</li>
 <li>Make sure that there are at least 10 years of observations for the country of your choice.</li>
 <li>Estimate a Koyck-Model with consumption as the dependent variable and per-capita consumption as the dependent variable.</li>
 </ol></li>
-<li>Consider the data in <code>cmort</code> which represents weekly data of cardiovascular mortality in Los Angeles over the period 1970 to 1979.
+<li><strong><em>Cardiovascular Mortality</em></strong> (***): Consider the data in <code>cmort</code> which represents weekly data of cardiovascular mortality in Los Angeles over the period 1970 to 1979.
 <ol style="list-style-type: lower-alpha">
 <li>Estimate an AR(2) model of the following form to the data:
 <span class="math display">\[y_t = \alpha + \beta_1 \cdot y_{t-1} + \beta_2 \cdot y_{t-2} + \epsilon_t\]</span>

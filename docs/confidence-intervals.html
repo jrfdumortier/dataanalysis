@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2023-01-08" />
+<meta name="date" content="2023-01-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -242,7 +242,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.4" data-path="two-groups-mean.html"><a href="two-groups-mean.html"><i class="fa fa-check"></i><b>9.4</b> Two-Groups: Mean</a></li>
 <li class="chapter" data-level="9.5" data-path="exercises-5.html"><a href="exercises-5.html"><i class="fa fa-check"></i><b>9.5</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="additional-topics-in-probability-and-statistics.html"><a href="additional-topics-in-probability-and-statistics.html"><i class="fa fa-check"></i><b>10</b> Additional Topics in Probability and Statistics</a>
+<li class="chapter" data-level="10" data-path="additional-topics-in-statistics.html"><a href="additional-topics-in-statistics.html"><i class="fa fa-check"></i><b>10</b> Additional Topics in Statistics</a>
 <ul>
 <li class="chapter" data-level="10.1" data-path="chi-square-test-chi2-test.html"><a href="chi-square-test-chi2-test.html"><i class="fa fa-check"></i><b>10.1</b> Chi-Square Test (<span class="math inline">\(\chi^2\)</span>-Test)</a></li>
 <li class="chapter" data-level="10.2" data-path="binomial-test.html"><a href="binomial-test.html"><i class="fa fa-check"></i><b>10.2</b> Binomial Test</a></li>
@@ -386,17 +386,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </blockquote>
 <p>Note that there is no way of knowing if the confidence interval actually covers the true parameter. Remember that we have <span class="math inline">\(E(\bar{x})=\mu\)</span> and <span class="math inline">\(Var(\bar{x})=\sigma^2/n\)</span>. The mean <span class="math inline">\(\pm 1.96\)</span> standard deviations includes 95% of the normal distribution. Because the sampling distribution is approximately normal (recall this fact from the Central Limit Theorem and the law of large numbers), the distance of 1.96 standard deviations is the margin of error. The margin of error measures how accurate the point estimate is likely to be in estimating a parameter.</p>
 <p>This section is designed to illustrate the concept of confidence interval with R. A population of 1 million voters is generated with 55% of those voters favoring candidate <em>A</em> in an upcoming election. For this exercise, a 95% confidence interval is simulated. The script below proceeds as follows:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="confidence-intervals.html#cb22-1" aria-hidden="true" tabindex="-1"></a>voters <span class="ot">=</span> <span class="fu">rbinom</span>(<span class="dv">1000000</span>,<span class="dv">1</span>,<span class="fl">0.55</span>)</span>
-<span id="cb22-2"><a href="confidence-intervals.html#cb22-2" aria-hidden="true" tabindex="-1"></a>output <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">lb=</span><span class="fu">numeric</span>(),<span class="at">ub=</span><span class="fu">numeric</span>(),<span class="at">inside=</span><span class="fu">numeric</span>())</span>
-<span id="cb22-3"><a href="confidence-intervals.html#cb22-3" aria-hidden="true" tabindex="-1"></a>meanA  <span class="ot">=</span> <span class="fu">mean</span>(voters)</span>
-<span id="cb22-4"><a href="confidence-intervals.html#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>){</span>
-<span id="cb22-5"><a href="confidence-intervals.html#cb22-5" aria-hidden="true" tabindex="-1"></a>     poll <span class="ot">=</span> <span class="fu">sample</span>(voters,<span class="dv">1000</span>,<span class="at">replace=</span><span class="cn">FALSE</span>)</span>
-<span id="cb22-6"><a href="confidence-intervals.html#cb22-6" aria-hidden="true" tabindex="-1"></a>     CI   <span class="ot">=</span> <span class="fu">t.test</span>(poll)</span>
-<span id="cb22-7"><a href="confidence-intervals.html#cb22-7" aria-hidden="true" tabindex="-1"></a>     temp <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">ub=</span>CI<span class="sc">$</span>conf.int[<span class="dv">1</span>],<span class="at">lb=</span>CI<span class="sc">$</span>conf.int[<span class="dv">2</span>],<span class="at">inside=</span><span class="dv">0</span>)</span>
-<span id="cb22-8"><a href="confidence-intervals.html#cb22-8" aria-hidden="true" tabindex="-1"></a>     <span class="cf">if</span>(CI<span class="sc">$</span>conf.int[<span class="dv">1</span>]<span class="sc">&lt;=</span>meanA <span class="sc">&amp;</span> CI<span class="sc">$</span>conf.int[<span class="dv">2</span>]<span class="sc">&gt;=</span>meanA){temp<span class="sc">$</span>inside<span class="ot">=</span><span class="dv">1</span>}</span>
-<span id="cb22-9"><a href="confidence-intervals.html#cb22-9" aria-hidden="true" tabindex="-1"></a>     output <span class="ot">=</span> <span class="fu">rbind</span>(output,temp)}</span>
-<span id="cb22-10"><a href="confidence-intervals.html#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(output<span class="sc">$</span>inside)</span>
-<span id="cb22-11"><a href="confidence-intervals.html#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(voters,output,meanA,poll,CI,temp)</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="confidence-intervals.html#cb23-1" aria-hidden="true" tabindex="-1"></a>voters <span class="ot">=</span> <span class="fu">rbinom</span>(<span class="dv">1000000</span>,<span class="dv">1</span>,<span class="fl">0.55</span>)</span>
+<span id="cb23-2"><a href="confidence-intervals.html#cb23-2" aria-hidden="true" tabindex="-1"></a>output <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">lb=</span><span class="fu">numeric</span>(),<span class="at">ub=</span><span class="fu">numeric</span>(),<span class="at">inside=</span><span class="fu">numeric</span>())</span>
+<span id="cb23-3"><a href="confidence-intervals.html#cb23-3" aria-hidden="true" tabindex="-1"></a>meanA  <span class="ot">=</span> <span class="fu">mean</span>(voters)</span>
+<span id="cb23-4"><a href="confidence-intervals.html#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>){</span>
+<span id="cb23-5"><a href="confidence-intervals.html#cb23-5" aria-hidden="true" tabindex="-1"></a>     poll <span class="ot">=</span> <span class="fu">sample</span>(voters,<span class="dv">1000</span>,<span class="at">replace=</span><span class="cn">FALSE</span>)</span>
+<span id="cb23-6"><a href="confidence-intervals.html#cb23-6" aria-hidden="true" tabindex="-1"></a>     CI   <span class="ot">=</span> <span class="fu">t.test</span>(poll)</span>
+<span id="cb23-7"><a href="confidence-intervals.html#cb23-7" aria-hidden="true" tabindex="-1"></a>     temp <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">ub=</span>CI<span class="sc">$</span>conf.int[<span class="dv">1</span>],<span class="at">lb=</span>CI<span class="sc">$</span>conf.int[<span class="dv">2</span>],<span class="at">inside=</span><span class="dv">0</span>)</span>
+<span id="cb23-8"><a href="confidence-intervals.html#cb23-8" aria-hidden="true" tabindex="-1"></a>     <span class="cf">if</span>(CI<span class="sc">$</span>conf.int[<span class="dv">1</span>]<span class="sc">&lt;=</span>meanA <span class="sc">&amp;</span> CI<span class="sc">$</span>conf.int[<span class="dv">2</span>]<span class="sc">&gt;=</span>meanA){temp<span class="sc">$</span>inside<span class="ot">=</span><span class="dv">1</span>}</span>
+<span id="cb23-9"><a href="confidence-intervals.html#cb23-9" aria-hidden="true" tabindex="-1"></a>     output <span class="ot">=</span> <span class="fu">rbind</span>(output,temp)}</span>
+<span id="cb23-10"><a href="confidence-intervals.html#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(output<span class="sc">$</span>inside)</span>
+<span id="cb23-11"><a href="confidence-intervals.html#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(voters,output,meanA,poll,CI,temp)</span></code></pre></div>
 <p>In a first step, a population of 1 million voters is created. The subsequent steps take 100 samples of 1,000 voters. For each sample, the confidence interval (i.e., lower and upper bounds denoted as <em>lb</em> and <em>ub</em>, respectively) is calculated. The next step checks whether the true mean is contained in the confidence interval. If the above code is executed, the output of <code>mean()</code> should be around 0.95.</p>
 </div>
             </section>

@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2023-01-08" />
+<meta name="date" content="2023-01-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -242,7 +242,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.4" data-path="two-groups-mean.html"><a href="two-groups-mean.html"><i class="fa fa-check"></i><b>9.4</b> Two-Groups: Mean</a></li>
 <li class="chapter" data-level="9.5" data-path="exercises-5.html"><a href="exercises-5.html"><i class="fa fa-check"></i><b>9.5</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="additional-topics-in-probability-and-statistics.html"><a href="additional-topics-in-probability-and-statistics.html"><i class="fa fa-check"></i><b>10</b> Additional Topics in Probability and Statistics</a>
+<li class="chapter" data-level="10" data-path="additional-topics-in-statistics.html"><a href="additional-topics-in-statistics.html"><i class="fa fa-check"></i><b>10</b> Additional Topics in Statistics</a>
 <ul>
 <li class="chapter" data-level="10.1" data-path="chi-square-test-chi2-test.html"><a href="chi-square-test-chi2-test.html"><i class="fa fa-check"></i><b>10.1</b> Chi-Square Test (<span class="math inline">\(\chi^2\)</span>-Test)</a></li>
 <li class="chapter" data-level="10.2" data-path="binomial-test.html"><a href="binomial-test.html"><i class="fa fa-check"></i><b>10.2</b> Binomial Test</a></li>
@@ -399,32 +399,32 @@ Characteristics of this assumption:</p>
 <p>The reformulated equation to be estimated is
 <span class="math display">\[y_t = \alpha \cdot (1-\lambda) + \beta_0 \cdot x_t + \lambda \cdot y_{t-1} + \upsilon_t\]</span>
 The notation of the error term has changed from <span class="math inline">\(\epsilon_t\)</span> to <span class="math inline">\(\upsilon_t\)</span> in order to highlight that the terms will be different.</p>
-<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="finite-distributed-lag-models.html#cb188-1" aria-hidden="true" tabindex="-1"></a>koyck <span class="ot">=</span> usdata</span>
-<span id="cb188-2"><a href="finite-distributed-lag-models.html#cb188-2" aria-hidden="true" tabindex="-1"></a>koyck<span class="sc">$</span>year <span class="ot">=</span> <span class="fu">substr</span>(koyck<span class="sc">$</span>date,<span class="dv">1</span>,<span class="dv">4</span>)</span>
-<span id="cb188-3"><a href="finite-distributed-lag-models.html#cb188-3" aria-hidden="true" tabindex="-1"></a>koyck <span class="ot">=</span> <span class="fu">aggregate</span>(koyck[<span class="fu">c</span>(<span class="st">&quot;income&quot;</span>,<span class="st">&quot;consumption&quot;</span>)],<span class="at">FUN=</span>sum,<span class="at">by=</span><span class="fu">list</span>(koyck<span class="sc">$</span>year))</span>
-<span id="cb188-4"><a href="finite-distributed-lag-models.html#cb188-4" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(koyck) <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;year&quot;</span>,<span class="st">&quot;income&quot;</span>,<span class="st">&quot;consumption&quot;</span>)</span>
-<span id="cb188-5"><a href="finite-distributed-lag-models.html#cb188-5" aria-hidden="true" tabindex="-1"></a>bhat <span class="ot">=</span> <span class="fu">lm</span>(<span class="at">formula =</span> consumption <span class="sc">~</span> income <span class="sc">+</span> <span class="fu">Lag</span>(consumption), <span class="at">data =</span> koyck)</span>
-<span id="cb188-6"><a href="finite-distributed-lag-models.html#cb188-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat)</span></code></pre></div>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="finite-distributed-lag-models.html#cb189-1" aria-hidden="true" tabindex="-1"></a>koyck <span class="ot">=</span> usdata</span>
+<span id="cb189-2"><a href="finite-distributed-lag-models.html#cb189-2" aria-hidden="true" tabindex="-1"></a>koyck<span class="sc">$</span>year <span class="ot">=</span> <span class="fu">substr</span>(koyck<span class="sc">$</span>date,<span class="dv">1</span>,<span class="dv">4</span>)</span>
+<span id="cb189-3"><a href="finite-distributed-lag-models.html#cb189-3" aria-hidden="true" tabindex="-1"></a>koyck <span class="ot">=</span> <span class="fu">aggregate</span>(koyck[<span class="fu">c</span>(<span class="st">&quot;income&quot;</span>,<span class="st">&quot;consumption&quot;</span>)],<span class="at">FUN=</span>sum,<span class="at">by=</span><span class="fu">list</span>(koyck<span class="sc">$</span>year))</span>
+<span id="cb189-4"><a href="finite-distributed-lag-models.html#cb189-4" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(koyck) <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;year&quot;</span>,<span class="st">&quot;income&quot;</span>,<span class="st">&quot;consumption&quot;</span>)</span>
+<span id="cb189-5"><a href="finite-distributed-lag-models.html#cb189-5" aria-hidden="true" tabindex="-1"></a>bhat <span class="ot">=</span> <span class="fu">lm</span>(<span class="at">formula =</span> consumption <span class="sc">~</span> income <span class="sc">+</span> <span class="fu">Lag</span>(consumption), <span class="at">data =</span> koyck)</span>
+<span id="cb189-6"><a href="finite-distributed-lag-models.html#cb189-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = consumption ~ income + Lag(consumption), data = koyck)
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
-## -14295.8   -529.5     99.6   1075.9   5042.5 
+## -10681.2   -543.9    208.0    755.5   4917.8 
 ## 
 ## Coefficients:
 ##                    Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)      -971.49577  734.64201  -1.322     0.19    
-## income              0.63631    0.04084  15.580  &lt; 2e-16 ***
-## Lag(consumption)    0.29608    0.04481   6.608 5.79e-09 ***
+## (Intercept)      -198.10387  556.02490  -0.356    0.723    
+## income              0.24162    0.05569   4.339 4.59e-05 ***
+## Lag(consumption)    0.74392    0.06217  11.967  &lt; 2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 2454 on 72 degrees of freedom
+## Residual standard error: 1827 on 72 degrees of freedom
 ##   (1 observation deleted due to missingness)
-## Multiple R-squared:  0.9963, Adjusted R-squared:  0.9962 
-## F-statistic:  9627 on 2 and 72 DF,  p-value: &lt; 2.2e-16</code></pre>
+## Multiple R-squared:  0.998,  Adjusted R-squared:  0.998 
+## F-statistic: 1.812e+04 on 2 and 72 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
             </section>
 

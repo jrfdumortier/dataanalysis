@@ -234,13 +234,11 @@ $$(n-p) \cdot R^2 \sim \chi^2_p$$
 
 ## Exercises
 
-1. *WDI and Heteroscedasticity*: Using the data in `wdi`, estimate the following equation for the year 2018 and report the results:
-\begin{equation*}
-fertrate = \beta_0 + \beta_1 \cdot gdp+ \beta_2 \cdot litrate
-\end{equation*}
-The variable \emph{fertrate} represents fertility rate (birth per woman), \emph{gdp} represents the GDP per capita in in real terms, and \emph{litrate} is the literacy rate.  
+1. ***WDI and Heteroscedasticity*** (\*\*\*): Using the data in `wdi`, estimate the following equation for the year 2018 and report the results:
+$$fertrate = \beta_0 + \beta_1 \cdot gdp+ \beta_2 \cdot litrate$$ 
+Conduct a test for heteroscedasticity of your choice. Is there heteroscedasticity present in the model? If yes, execute additional calculations to correct for it and report the results. 
 
-2. *Indy Homes*: The data `indyhomes` contains home values of two ZIP codes in Indianapolis. The model estimates the home value (dependent variable) based on a set of independent variables. The variables *levels* and *garage* refers to the number of stories and garage spots, respectively. The remaining variables are self-explanatory.
+2. ***Indy Homes III*** (\*\*\*): The data `indyhomes` contains home values of two ZIP codes in Indianapolis. The model estimates the home value (dependent variable) based on a set of independent variables. The variables *levels* and *garage* refers to the number of stories and garage spots, respectively. The remaining variables are self-explanatory.
 
     a. Create a dummy variable called *northwest* for the 46268 ZIP code.
     b. Report and interpret the results of the following regression equation:
@@ -249,12 +247,7 @@ $$\ln(price)=\beta_0+\beta_1 \cdot \ln(sqft)+\beta_2 \cdot northwest+\beta_3 \cd
     d. Conduct a Breusch-Pagan-Godfrey test for heteroscedasticity. What do you conclude?
     e. Estimate the above model with heteroscedasticity-consistent (HC) standard errors. What changes compared to the model from Part b? 
 
-3. *WDI and Multicollinearity*: Use the command `subset()` on the WDI data and to select the variables *fertrate*, *gdp*, *litrate*, *lifeexp*, and *mortrate* for the year 2015. Estimate the following model
+3. ***WDI and Multicollinearity*** (\*\*\*): Use the command `subset()` on the WDI data and to select the variables *fertrate*, *gdp*, *litrate*, *lifeexp*, and *mortrate* for the year 2015. Estimate the following model
 $$fertrate=\beta_0+\beta_1 \cdot gdp+\beta_2 \cdot litrate+\beta_3 \cdot lifeexp+\beta_4 \cdot mortrate$$
 Interpret the results. What do you conclude in terms of statistical significance and the value of $R^2$? Use the function `vif` from the package `car`. What can you say about the issue of multicollinearity in this case? Correct the issue of multicollinearity by adjusting your model.
-
-\item \emph{Pork Demand:} In this exercise, you will estimate the per-capita pork demand as a function of pork prices and the prices of substitutes (beef and chicken) as well as real disposable income. Estimate the following equation and interpret the coefficients. Are the signs of the coefficients what you would expect?
-\begin{equation*}
-\ln(q_{pork}) = \beta_0 + \beta_1 \cdot \ln(p_{pork}) + \beta_2 \cdot \ln(p_{chicken}) + \beta_3 \cdot \ln(p_{beef}) + \beta_4 \cdot \ln(rdi)
-\end{equation*}
 

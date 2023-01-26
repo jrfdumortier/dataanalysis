@@ -196,6 +196,6 @@ summary(bhat_hurdle)
 
 ## Exercises
 
-1. `Aptitude Tobit Model`: Consider the censored data set in `tobit`. The aptitude score is limited at 800. Estimate an appropriate model with $apt$ as the dependent variable and $read$, $math$, and program as the independent variables. Make sure to convert $prog$ into dummy variables first.
+1. ***Aptitude Tobit Model*** (\*\*): Consider the censored data set in `tobit`. The aptitude score is limited at 800. Estimate an appropriate model with $apt$ as the dependent variable and $read$, $math$, and program as the independent variables. Make sure to convert $prog$ into dummy variables first.
 
-2. `Chicago Grocery Stores`: One subdivision of Chicago are so-called Chicago Community Areas (CCA). The data in `chicagogrocery` includes data about the number of grocery stores ($stores$) in each CCA as well as demographic information. Estimate a Poisson and Negative Binomial Regression Model with $stores$ as the dependent variable and the following independent variables: $income$, $pop$, unemployment rate ($unemployed/laborforce$) and percentage of blacks ($black/pop$). What do you conclude? Are the results what you would expect?
+2. ***Chicago Grocery Stores*** (\*\*\*): One subdivision of Chicago are so-called Chicago Community Areas (CCA). The data in `chicagogrocery` includes data about the number of grocery stores ($stores$) in each CCA as well as demographic information. Estimate a Poisson and Negative Binomial Regression Model with $stores$ as the dependent variable and the following independent variables: $income$, $pop$, unemployment rate ($unemployed/laborforce$) and percentage of blacks ($black/pop$). What do you conclude? Are the results what you would expect?

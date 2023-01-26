@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2023-01-08" />
+<meta name="date" content="2023-01-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -242,7 +242,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.4" data-path="two-groups-mean.html"><a href="two-groups-mean.html"><i class="fa fa-check"></i><b>9.4</b> Two-Groups: Mean</a></li>
 <li class="chapter" data-level="9.5" data-path="exercises-5.html"><a href="exercises-5.html"><i class="fa fa-check"></i><b>9.5</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="additional-topics-in-probability-and-statistics.html"><a href="additional-topics-in-probability-and-statistics.html"><i class="fa fa-check"></i><b>10</b> Additional Topics in Probability and Statistics</a>
+<li class="chapter" data-level="10" data-path="additional-topics-in-statistics.html"><a href="additional-topics-in-statistics.html"><i class="fa fa-check"></i><b>10</b> Additional Topics in Statistics</a>
 <ul>
 <li class="chapter" data-level="10.1" data-path="chi-square-test-chi2-test.html"><a href="chi-square-test-chi2-test.html"><i class="fa fa-check"></i><b>10.1</b> Chi-Square Test (<span class="math inline">\(\chi^2\)</span>-Test)</a></li>
 <li class="chapter" data-level="10.2" data-path="binomial-test.html"><a href="binomial-test.html"><i class="fa fa-check"></i><b>10.2</b> Binomial Test</a></li>
@@ -380,12 +380,12 @@ The multivariate linear regression model includes more than one independent vari
 Whether we consider the bivariate or multivariate model, the objective is always to minimize the sum of squared errors which has led to the name ordinary least square (OLS) model. The equation of a line can be determined using slope (<span class="math inline">\(\beta_0\)</span>) and the intercept (<span class="math inline">\(\beta1\)</span>), i.e.:
 <span class="math display">\[E(y|x_1)=\beta_0+\beta_1 \cdot x_1\]</span>
 The case of a regression model with two independent variable can still be represented in a 3-dimensional graph as depicted below</p>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-144-1.png" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
 <p>The purpose of the multivariate regression model is to measure the effect of independent variables on the dependent variable. It is crucial to control for everything else that could influence the dependent variable. For example, measuring the weekly grocery bill as a function of years of education might give you a statistically significant effect for education but if income is included, the effect for education might (most likely) disappear.</p>
 <p>The first example involves estimating home values based on square footage and number of garage spots of a house in the 46268 ZIP code in Indianapolis. The data is contained in <code>indyhomes</code>.</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="introduction-1.html#cb57-1" aria-hidden="true" tabindex="-1"></a>indyhomes46268 <span class="ot">=</span> <span class="fu">subset</span>(indyhomes,zip<span class="sc">==</span><span class="dv">46268</span>)</span>
-<span id="cb57-2"><a href="introduction-1.html#cb57-2" aria-hidden="true" tabindex="-1"></a>bhat <span class="ot">=</span> <span class="fu">lm</span>(price<span class="sc">~</span>sqft<span class="sc">+</span>garage,<span class="at">data=</span>indyhomes46268)</span>
-<span id="cb57-3"><a href="introduction-1.html#cb57-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat)</span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="introduction-1.html#cb58-1" aria-hidden="true" tabindex="-1"></a>indyhomes46268 <span class="ot">=</span> <span class="fu">subset</span>(indyhomes,zip<span class="sc">==</span><span class="dv">46268</span>)</span>
+<span id="cb58-2"><a href="introduction-1.html#cb58-2" aria-hidden="true" tabindex="-1"></a>bhat <span class="ot">=</span> <span class="fu">lm</span>(price<span class="sc">~</span>sqft<span class="sc">+</span>garage,<span class="at">data=</span>indyhomes46268)</span>
+<span id="cb58-3"><a href="introduction-1.html#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = price ~ sqft + garage, data = indyhomes46268)

@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2023-01-08" />
+<meta name="date" content="2023-01-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -242,7 +242,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.4" data-path="two-groups-mean.html"><a href="two-groups-mean.html"><i class="fa fa-check"></i><b>9.4</b> Two-Groups: Mean</a></li>
 <li class="chapter" data-level="9.5" data-path="exercises-5.html"><a href="exercises-5.html"><i class="fa fa-check"></i><b>9.5</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="additional-topics-in-probability-and-statistics.html"><a href="additional-topics-in-probability-and-statistics.html"><i class="fa fa-check"></i><b>10</b> Additional Topics in Probability and Statistics</a>
+<li class="chapter" data-level="10" data-path="additional-topics-in-statistics.html"><a href="additional-topics-in-statistics.html"><i class="fa fa-check"></i><b>10</b> Additional Topics in Statistics</a>
 <ul>
 <li class="chapter" data-level="10.1" data-path="chi-square-test-chi2-test.html"><a href="chi-square-test-chi2-test.html"><i class="fa fa-check"></i><b>10.1</b> Chi-Square Test (<span class="math inline">\(\chi^2\)</span>-Test)</a></li>
 <li class="chapter" data-level="10.2" data-path="binomial-test.html"><a href="binomial-test.html"><i class="fa fa-check"></i><b>10.2</b> Binomial Test</a></li>
@@ -374,8 +374,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="random-walk" class="section level2 hasAnchor" number="19.6">
 <h2><span class="header-section-number">19.6</span> Random Walk<a href="random-walk.html#random-walk" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>A time series with no autocorrelation is called White Noise. Consider the following plot of White Noise:</p>
-<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="random-walk.html#cb199-1" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(<span class="fu">ts</span>(<span class="fu">rnorm</span>(<span class="dv">100</span>)))<span class="sc">+</span><span class="fu">ggtitle</span>(<span class="st">&quot;White Noise&quot;</span>)<span class="sc">+</span><span class="fu">theme_bw</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-209-1.png" width="672" /></p>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="random-walk.html#cb200-1" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(<span class="fu">ts</span>(<span class="fu">rnorm</span>(<span class="dv">100</span>)))<span class="sc">+</span><span class="fu">ggtitle</span>(<span class="st">&quot;White Noise&quot;</span>)<span class="sc">+</span><span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-82-1.png" width="672" /></p>
 <p>Let <span class="math inline">\(\epsilon_t\)</span> be white noise then the random walk without drift is
 <span class="math display">\[y_t = y_{t-1} + \epsilon_t\]</span></p>
 <p>This is called an autoregressive model of order 1 or AR(1). Example:

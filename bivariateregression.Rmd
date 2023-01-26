@@ -192,11 +192,11 @@ abline(bhat1,col="red")
 
 ## Exercises
 
-1. *Accidents*: Researchers at IUPUI attempt to predict the number of auto accidents in the city depending on temperature. They randomly select 30 days during the year and run a regression to determine if temperature significantly affected the number of accidents. Using the data `accidents`, I want you to manually re-create the table we have seen in class to calculate the slope and intercept coefficient and then use R to confirm your result. Note that it is best to copy the `accident` data and convert it into a regular Excel file for the first part of the exercise.
+1. ***Accidents*** (\*\*\*): Researchers at IUPUI attempt to predict the number of auto accidents in the city depending on temperature. They randomly select 30 days during the year and run a regression to determine if temperature significantly affected the number of accidents. Using the data `accidents`, I want you to manually re-create the table we have seen in class to calculate the slope and intercept coefficient and then use R to confirm your result. Note that it is best to copy the `accident` data and convert it into a regular Excel file for the first part of the exercise.
     a. With temperature as the independent variable and accidents as the dependent variable, create four new columns in Excel: (1) $x_i-\bar{x}$, (2) $y_i-\bar{y}$, (3) $(x_i-\bar{x})(y_i-\bar{y})$, and (4) $(x_i-\bar{x})^2$. From there, use the OLS equations provided in the slides to calculate slope and intercept.
     b. Run a simple bivariate regression using the command `lm()` in R and report the results. The results from the calculation with Excel and R must match.
 
-2. *Ohio Schools 1*: Consider the data sets `ohioincome` and `ohioscore`. In the section on hypothesis testing, the school districts were divided by median income into the top 25\% and bottom 25\%. In this exercise, two linear regression models are fitted to the data.
+2. ***Ohio Schools II*** (\*\*\*): Consider the data sets `ohioincome` and `ohioscore`. In the section on hypothesis testing, the school districts were divided by median income into the top 25\% and bottom 25\%. In this exercise, two linear regression models are fitted to the data.
     a. In a first step, merge the data sets `ohioincome` and `ohioscore` by IRN.
     b. The first regression model is written as follows:
         $$score = \beta_0 + \beta_1 \cdot medianincome$$
@@ -207,4 +207,4 @@ abline(bhat1,col="red")
     For this model, make sure to include the squared term by using the function `I()` in R. If you do not include it, R simply drops the last term. Report and interpret the output. 
     e. Do a scatter plot and include the (nonlinear) regression line estimated above in the plot. Is the model a good fit for the data. Compare your answer to the previous parts.
     
-3. *Indy Home Heating*: Consider the data set `heating` which shows the consumption of natural gas and average temperature. Run a regression with $usage$ as the dependent variable and $temperature$ as the independent variable. Interpret the coefficients. Is the variable $usage$ indicative of your total energy consumption over the time period covered in the data set?
+3. ***Indy Home Heating*** (\*\*\*): Consider the data set `heating` which shows the consumption of natural gas and average temperature. Run a regression with $usage$ as the dependent variable and $temperature$ as the independent variable. Interpret the coefficients. Is the variable $usage$ indicative of your total energy consumption over the time period covered in the data set?
