@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2023-01-26" />
+<meta name="date" content="2023-02-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -381,7 +381,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Forecasting</li>
 </ul>
 <p>The static regression model is presented before moving into proper time series analysis. The model is used if the data represents various time periods but the independent variables <span class="math inline">\(x_{i,t}\)</span> have an immediate effect on the dependent variable <span class="math inline">\(y_t\)</span>. For example, if the per-capita chicken consumption is a function of the chicken price and real disposable income, then the following model can be estimated using the data in <code>meatdemand</code>.</p>
-<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="time-series.html#cb181-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(qchicken<span class="sc">~</span>rdi<span class="sc">+</span>pchicken,<span class="at">data=</span>meatdemand))</span></code></pre></div>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="time-series.html#cb184-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(qchicken<span class="sc">~</span>rdi<span class="sc">+</span>pchicken,<span class="at">data=</span>meatdemand))</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = qchicken ~ rdi + pchicken, data = meatdemand)

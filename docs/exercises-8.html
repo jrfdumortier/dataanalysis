@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2023-01-26" />
+<meta name="date" content="2023-02-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -405,9 +405,10 @@ where <span class="math inline">\(t\)</span> represents a simple time trend and 
 <li><p><strong><em>NFL I</em></strong> (***): This question will have you create a similar analysis to the one found in <a href="https://doi.org/10.1016/j.econlet.2011.02.018">Berri et al. (2011)</a>. The corresponding data is in <code>nfl</code>:
 <span class="math display">\[\ln(total)=\beta_0+\beta_1 \cdot yards+\beta_2 \cdot att+\beta_3 \cdot exp+\beta_4 \cdot exp^2 \\ +\beta_5 \cdot draft1+\beta_6 \cdot draft2+\beta_7 \cdot veteran+\beta_8 \cdot changeteam \\+\beta_9 \cdot pbowlever+\beta_{10} \cdot symm\]</span>
 Report the output and interpret the coefficients in terms of statistical significance and direction (i.e., sign).</p></li>
-<li><p><strong><em>Boston</em></strong> (***): For this exercise, use the data set <code>Boston</code> which is part of the R package <a href="https://cran.r-project.org/web/packages/plm/index.html">MASS</a>. An explanation of the various variables can be found <a href="https://stat.ethz.ch/R-manual/R-devel/library/MASS/html/Boston.html">here</a>. In a first step, execute the following code:
-<img src="bookdownproj_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p></li>
+<li><p><strong><em>Boston</em></strong> (***): For this exercise, use the data set <code>Boston</code> which is part of the R package <a href="https://cran.r-project.org/web/packages/plm/index.html">MASS</a>. An explanation of the various variables can be found <a href="https://stat.ethz.ch/R-manual/R-devel/library/MASS/html/Boston.html">here</a>. In a first step, execute the following code:</p></li>
 </ol>
+<pre><code>## corrplot 0.92 loaded</code></pre>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
 <p>What does the resulting plot represent? In a second step, estimate the following model:
 <span class="math display">\[medv = \beta_0 + \beta_1 \cdot lstat+ \beta_2 \cdot crim + \beta_3 \cdot age\]</span></p>
 <p>Explain what exactly you estimated and what hypotheses are underlying the model. Lastly, estimate the model including all remaining independent variables. Are any of the results surprising?</p>

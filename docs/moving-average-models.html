@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2023-01-26" />
+<meta name="date" content="2023-02-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -374,10 +374,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="moving-average-models" class="section level2 hasAnchor" number="19.5">
 <h2><span class="header-section-number">19.5</span> Moving Average Models<a href="moving-average-models.html#moving-average-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The moving average model presented in this chapter should not be confused with the concept of moving average (also known as rolling mean) which is familiar to many people. To avoid confusion, the term rolling mean is used for the latter. An example of a rolling mean is plotted below:</p>
-<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="moving-average-models.html#cb199-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(covid,<span class="fu">aes</span>(<span class="at">x=</span>date))<span class="sc">+</span></span>
-<span id="cb199-2"><a href="moving-average-models.html#cb199-2" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>newcases<span class="sc">/</span><span class="dv">1000</span>))<span class="sc">+</span></span>
-<span id="cb199-3"><a href="moving-average-models.html#cb199-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span><span class="fu">rollmean</span>(newcases<span class="sc">/</span><span class="dv">1000</span>,<span class="dv">7</span>,<span class="at">na.pad=</span><span class="cn">TRUE</span>,<span class="at">align=</span><span class="st">&quot;right&quot;</span>)),</span>
-<span id="cb199-4"><a href="moving-average-models.html#cb199-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">color=</span><span class="st">&quot;red&quot;</span>)<span class="sc">+</span><span class="fu">ylab</span>(<span class="st">&quot;New Cases in Thousand&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="moving-average-models.html#cb202-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(covid,<span class="fu">aes</span>(<span class="at">x=</span>date))<span class="sc">+</span></span>
+<span id="cb202-2"><a href="moving-average-models.html#cb202-2" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>newcases<span class="sc">/</span><span class="dv">1000</span>))<span class="sc">+</span></span>
+<span id="cb202-3"><a href="moving-average-models.html#cb202-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span><span class="fu">rollmean</span>(newcases<span class="sc">/</span><span class="dv">1000</span>,<span class="dv">7</span>,<span class="at">na.pad=</span><span class="cn">TRUE</span>,<span class="at">align=</span><span class="st">&quot;right&quot;</span>)),</span>
+<span id="cb202-4"><a href="moving-average-models.html#cb202-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">color=</span><span class="st">&quot;red&quot;</span>)<span class="sc">+</span><span class="fu">ylab</span>(<span class="st">&quot;New Cases in Thousand&quot;</span>)</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-81-1.png" width="672" /></p>
 <p>A moving average term in a time series model is a past error (multiplied by a coefficient), e.g., MA(1):
 <span class="math display">\[x_t = \mu + w_t + \theta_1 \cdot w_{t-1}\]</span>

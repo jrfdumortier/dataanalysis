@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2023-01-26" />
+<meta name="date" content="2023-02-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -376,67 +376,67 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In the case of censoring, the values of the dependent variable are reported at a certain point if they are above or below a certain value.</p>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
 <p>If all data was reported at the correct value, the following following regression model could be executed:</p>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="censoring.html#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat_real)</span></code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="censoring.html#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat_real)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = yreal ~ x, data = censoring)
 ## 
 ## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -2.4694 -0.8268  0.1259  0.9087  2.1891 
+##      Min       1Q   Median       3Q      Max 
+## -2.17145 -0.60765 -0.06216  0.62508  2.07485 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) -1.86988    0.29725  -6.291 9.01e-08 ***
-## x            0.47393    0.05216   9.085 5.31e-12 ***
+## (Intercept)  -2.2653     0.2794  -8.108 1.51e-10 ***
+## x             0.5558     0.0453  12.272  &lt; 2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 1.074 on 48 degrees of freedom
-## Multiple R-squared:  0.6323, Adjusted R-squared:  0.6246 
-## F-statistic: 82.54 on 1 and 48 DF,  p-value: 5.315e-12</code></pre>
+## Residual standard error: 0.9717 on 48 degrees of freedom
+## Multiple R-squared:  0.7583, Adjusted R-squared:  0.7533 
+## F-statistic: 150.6 on 1 and 48 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>Ignoring censoring leads to biased results:</p>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="censoring.html#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat_censored)</span></code></pre></div>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="censoring.html#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat_censored)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = y ~ x, data = censoring)
 ## 
 ## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -1.70705 -0.52525  0.03829  0.38938  2.06476 
+##     Min      1Q  Median      3Q     Max 
+## -1.7301 -0.5821  0.1328  0.5125  1.8874 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) -0.56615    0.21058  -2.689  0.00984 ** 
-## x            0.31053    0.03695   8.403 5.46e-11 ***
+## (Intercept) -0.54151    0.23800  -2.275   0.0274 *  
+## x            0.33168    0.03859   8.596 2.81e-11 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 0.7606 on 48 degrees of freedom
-## Multiple R-squared:  0.5953, Adjusted R-squared:  0.5869 
-## F-statistic: 70.61 on 1 and 48 DF,  p-value: 5.456e-11</code></pre>
+## Residual standard error: 0.8277 on 48 degrees of freedom
+## Multiple R-squared:  0.6062, Adjusted R-squared:  0.598 
+## F-statistic: 73.89 on 1 and 48 DF,  p-value: 2.81e-11</code></pre>
 <p>Using the R package <a href="https://cran.r-project.org/web/packages/censReg/index.html">censReg</a>) allows for the reduction of the bias:</p>
-<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="censoring.html#cb127-1" aria-hidden="true" tabindex="-1"></a>b_correct <span class="ot">=</span> <span class="fu">censReg</span>(y<span class="sc">~</span>x,<span class="at">data=</span>censoring)</span>
-<span id="cb127-2"><a href="censoring.html#cb127-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(b_correct)</span></code></pre></div>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="censoring.html#cb130-1" aria-hidden="true" tabindex="-1"></a>b_correct <span class="ot">=</span> <span class="fu">censReg</span>(y<span class="sc">~</span>x,<span class="at">data=</span>censoring)</span>
+<span id="cb130-2"><a href="censoring.html#cb130-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(b_correct)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## censReg(formula = y ~ x, data = censoring)
 ## 
 ## Observations:
 ##          Total  Left-censored     Uncensored Right-censored 
-##             50             22             28              0 
+##             50             19             31              0 
 ## 
 ## Coefficients:
 ##             Estimate Std. error t value  Pr(&gt; t)    
-## (Intercept) -2.03788    0.45202  -4.508 6.53e-06 ***
-## x            0.49912    0.06804   7.336 2.20e-13 ***
-## logSigma     0.01965    0.13867   0.142    0.887    
+## (Intercept) -2.51076    0.55992  -4.484 7.32e-06 ***
+## x            0.58897    0.07918   7.438 1.02e-13 ***
+## logSigma    -0.01585    0.13037  -0.122    0.903    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## Newton-Raphson maximisation, 6 iterations
 ## Return code 1: gradient close to zero (gradtol)
-## Log-likelihood: -50.06349 on 3 Df</code></pre>
+## Log-likelihood: -51.13753 on 3 Df</code></pre>
 </div>
             </section>
 

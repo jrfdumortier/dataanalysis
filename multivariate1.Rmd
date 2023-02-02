@@ -1,7 +1,8 @@
 # Basic Multivariate Regression
 This chapter extends the bivariate model to a multivariate model, i.e., the case with more than one independent variable. There is also a YouTube Video associated with this section:
 
-- [Multivariate Regression with R](https://youtu.be/pUwaaBwRk2w)
+- [Multivariate Regression with R - Video](https://youtu.be/pUwaaBwRk2w)
+- [Multivariate Regression with R - Slides](https://github.com/jrfdumortier/slidesstatistics/blob/main/MultivariateRegression.pdf)
 
 The following topics associated with multivariate regression models are covered in this chapter:
 

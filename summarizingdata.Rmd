@@ -3,8 +3,8 @@ The purpose of this section is the description of data using numerical and graph
 
 There is also a YouTube video and slides associated with this chapter:
 
-[Summarizing Data - Video](https://youtu.be/70zOMfx2z_s)
-[Summarizing Data - Slides](https://github.com/jrfdumortier/slidesstatistics/blob/main/SummarizingData.pdf)
+- [Summarizing Data - Video](https://youtu.be/70zOMfx2z_s)
+- [Summarizing Data - Slides](https://github.com/jrfdumortier/slidesstatistics/blob/main/SummarizingData.pdf)
 
 ## Measures of Central Tendency
 The three main measures of central tendency are mean, median, and mode. The mean reports the average value of a data set. Sometimes, it is also called arithmetic mean or average and can be expressed as follows:
