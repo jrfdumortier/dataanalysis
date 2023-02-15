@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2023-02-02" />
+<meta name="date" content="2023-02-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -393,19 +393,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## lm(formula = y ~ x, data = spurious)
 ## 
 ## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -12.3161  -4.9522   0.3435   4.4347  11.5143 
+##     Min      1Q  Median      3Q     Max 
+## -15.984  -1.771   1.352   3.610   9.915 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  6.70001    0.39590  16.923  &lt; 2e-16 ***
-## x           -0.11859    0.02295  -5.166 3.46e-07 ***
+## (Intercept) -4.36217    0.26453 -16.490  &lt; 2e-16 ***
+## x            0.14141    0.04501   3.142  0.00178 ** 
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 5.519 on 498 degrees of freedom
-## Multiple R-squared:  0.05087,    Adjusted R-squared:  0.04896 
-## F-statistic: 26.69 on 1 and 498 DF,  p-value: 3.462e-07</code></pre>
+## Residual standard error: 5.514 on 498 degrees of freedom
+## Multiple R-squared:  0.01943,    Adjusted R-squared:  0.01746 
+## F-statistic:  9.87 on 1 and 498 DF,  p-value: 0.00178</code></pre>
 <div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="basic-theoretical-aspects-of-time-series.html#cb196-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(spurious,bhat)</span></code></pre></div>
 <p>There is no relationship between <span class="math inline">\(y\)</span> and <span class="math inline">\(x\)</span> yet the regression results indicate statistical significance.</p>
 <p>Consider the following so-called autoregressive model. The model depends on lagged terms of the dependent variable:

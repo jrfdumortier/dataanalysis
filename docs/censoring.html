@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2023-02-02" />
+<meta name="date" content="2023-02-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -383,18 +383,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
-## -2.17145 -0.60765 -0.06216  0.62508  2.07485 
+## -1.93851 -0.70002  0.02278  0.54425  2.25204 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  -2.2653     0.2794  -8.108 1.51e-10 ***
-## x             0.5558     0.0453  12.272  &lt; 2e-16 ***
+## (Intercept) -2.09514    0.29893  -7.009 7.13e-09 ***
+## x            0.48807    0.05125   9.523 1.22e-12 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 0.9717 on 48 degrees of freedom
-## Multiple R-squared:  0.7583, Adjusted R-squared:  0.7533 
-## F-statistic: 150.6 on 1 and 48 DF,  p-value: &lt; 2.2e-16</code></pre>
+## Residual standard error: 1.031 on 48 degrees of freedom
+## Multiple R-squared:  0.6539, Adjusted R-squared:  0.6467 
+## F-statistic: 90.68 on 1 and 48 DF,  p-value: 1.225e-12</code></pre>
 <p>Ignoring censoring leads to biased results:</p>
 <div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="censoring.html#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat_censored)</span></code></pre></div>
 <pre><code>## 
@@ -402,19 +402,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## lm(formula = y ~ x, data = censoring)
 ## 
 ## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -1.7301 -0.5821  0.1328  0.5125  1.8874 
+##      Min       1Q   Median       3Q      Max 
+## -1.47244 -0.54581 -0.05867  0.49199  2.31070 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) -0.54151    0.23800  -2.275   0.0274 *  
-## x            0.33168    0.03859   8.596 2.81e-11 ***
+## (Intercept) -0.50960    0.22022  -2.314    0.025 *  
+## x            0.28266    0.03776   7.486 1.33e-09 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 0.8277 on 48 degrees of freedom
-## Multiple R-squared:  0.6062, Adjusted R-squared:  0.598 
-## F-statistic: 73.89 on 1 and 48 DF,  p-value: 2.81e-11</code></pre>
+## Residual standard error: 0.7594 on 48 degrees of freedom
+## Multiple R-squared:  0.5386, Adjusted R-squared:  0.529 
+## F-statistic: 56.04 on 1 and 48 DF,  p-value: 1.328e-09</code></pre>
 <p>Using the R package <a href="https://cran.r-project.org/web/packages/censReg/index.html">censReg</a>) allows for the reduction of the bias:</p>
 <div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="censoring.html#cb130-1" aria-hidden="true" tabindex="-1"></a>b_correct <span class="ot">=</span> <span class="fu">censReg</span>(y<span class="sc">~</span>x,<span class="at">data=</span>censoring)</span>
 <span id="cb130-2"><a href="censoring.html#cb130-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(b_correct)</span></code></pre></div>
@@ -428,15 +428,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Coefficients:
 ##             Estimate Std. error t value  Pr(&gt; t)    
-## (Intercept) -2.51076    0.55992  -4.484 7.32e-06 ***
-## x            0.58897    0.07918   7.438 1.02e-13 ***
-## logSigma    -0.01585    0.13037  -0.122    0.903    
+## (Intercept) -1.64423    0.40055  -4.105 4.04e-05 ***
+## x            0.42665    0.06126   6.965 3.29e-12 ***
+## logSigma    -0.01845    0.13143  -0.140    0.888    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## Newton-Raphson maximisation, 6 iterations
 ## Return code 1: gradient close to zero (gradtol)
-## Log-likelihood: -51.13753 on 3 Df</code></pre>
+## Log-likelihood: -53.03888 on 3 Df</code></pre>
 </div>
             </section>
 
