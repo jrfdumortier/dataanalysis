@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>14.2 Multicollinearity | Data Analysis for Public Affairs with R</title>
   <meta name="description" content="14.2 Multicollinearity | Data Analysis for Public Affairs with R" />
-  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
 
   <meta property="og:title" content="14.2 Multicollinearity | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2023-02-15" />
+<meta name="date" content="2023-02-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -406,8 +406,10 @@ If <span class="math inline">\(VIF=1\)</span>, then there is no relationship bet
 <p>After estimating the results, the function <code>vif()</code> from the package <code>car</code> is used:</p>
 <div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="multicollinearity.html#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
 <span id="cb75-2"><a href="multicollinearity.html#cb75-2" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(bhat)</span></code></pre></div>
-<pre><code>##      yards        att        exp       exp2     draft1     draft2    veteran changeteam  pbowlever       symm 
-##  32.547700  30.920282  39.889877  26.715342   1.621048   1.228091   5.253525   1.194254   1.581753   1.056661</code></pre>
+<pre><code>##      yards        att        exp       exp2     draft1     draft2    veteran changeteam  pbowlever 
+##  32.547700  30.920282  39.889877  26.715342   1.621048   1.228091   5.253525   1.194254   1.581753 
+##       symm 
+##   1.056661</code></pre>
 <p>The results indicate multicollinearity for <em>yards</em>, <em>att</em>, and experience. Passings yards and attempts may be correlated and thus, one of them (<em>att</em>) is dropped.</p>
 <div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="multicollinearity.html#cb77-1" aria-hidden="true" tabindex="-1"></a>bhat <span class="ot">=</span> <span class="fu">lm</span>(<span class="fu">log</span>(total)<span class="sc">~</span>yards<span class="sc">+</span>exp<span class="sc">+</span>exp2<span class="sc">+</span>draft1<span class="sc">+</span>draft2<span class="sc">+</span>veteran<span class="sc">+</span>changeteam<span class="sc">+</span>pbowlever<span class="sc">+</span>symm,<span class="at">data=</span>nfl)</span>
 <span id="cb77-2"><a href="multicollinearity.html#cb77-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat)</span></code></pre></div>

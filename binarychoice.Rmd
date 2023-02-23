@@ -1,4 +1,8 @@
 # Binary Choice
+There are slides and a YouTube Video associated with this chapter:
+
+- [Binary Choice - Slides](https://github.com/jrfdumortier/slidesstatistics/raw/main/BinaryChoice.pdf)
+- [Binary Choice - Video](https://youtu.be/6--cCcD2Tts)
 
 Binary choice models are part of a large class of so-called qualitative choice models which are used for qualitative dependent variables. Consider the following outcomes of interest:
 
@@ -94,4 +98,6 @@ predict(bhat_glm_logit,newdata=datablock,type="response")
 
 2. ***EV Data*** (\*\*): Using the `evdata`, estimate a logit model which calculates the probability that a consumer would purchase a hybrid (choice=2), plug-in hybrid (choice=3), or electric vehicle (choice=4) as opposed to a gasoline car (choice=1). In a first step, you should create a new variable that is equal to 0 if the person purchases a gasoline vehicle and is equal to 1 for everything else. Include the following independent variables in your model: $age$, $numcars$, $politics$, $female$, $edu$, and $income$. 
 
-3. ***Voting Behavior*** (\*\*): We are interested in the determinants of voting based on data from the General Social Survey (GSS). The following variables are hypothesized to be a determinant of voting behavior: $age$, $gun ownership$ (yes=1), $stance on death penalty$ (in favor=1), and $education level$ (higher number is associated with a higher education level). Run a probit and logit model and report the results. Calculate the marginal probabilities.   
+3. ***Voting Behavior*** (\*\*): We are interested in the determinants of voting based on data from the General Social Survey (GSS). The following variables are hypothesized to be a determinant of voting behavior: $age$, $gun ownership$ (yes=1), $stance on death penalty$ (in favor=1), and $education level$ (higher number is associated with a higher education level). Run a probit and logit model and report the results. Calculate the marginal probabilities.
+
+4. ***Fatal Car Accidents*** (\*\*\*): Research suggests that black motorists are driving slower during the day than at night because police officers could engage in racial profiling more easily during the day than at night [(Kalinowki et al., 2021)](https://doi.org/10.3386/w28789). Assuming that lower speeds lead to fewer accidents, the aforementioned hypothesis can be tested via data from the Fatality Analysis Reporting System (FARS). Use the data in `fatalcity` and `fatalstate` to run a logit model with $black$ as the dependent variable and $rain$, $daylight$, $year$, and $state$ as the independent variables. Based on the two separate regression models, what do you conclude?

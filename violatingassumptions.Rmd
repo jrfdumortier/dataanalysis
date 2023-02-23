@@ -3,7 +3,7 @@ This chapter introduces the detection and correction of problems with the estima
 
 There are also slides associated with this chapter:
 
-- [Violating Assumptions - Slides](https://github.com/jrfdumortier/slidesstatistics/blob/main/Violating Assumptions.pdf)
+- [Violating Assumptions - Slides](https://github.com/jrfdumortier/slidesstatistics/blob/main/ViolatingAssumptions.pdf)
 
 
 ## Heteroscedasticity
