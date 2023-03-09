@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2023-02-23" />
+<meta name="date" content="2023-03-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -380,8 +380,7 @@ Conduct a test for heteroscedasticity of your choice. Is there heteroscedasticit
 <li><p><strong><em>Indy Homes III</em></strong> (***): The data <code>indyhomes</code> contains home values of two ZIP codes in Indianapolis. The model estimates the home value (dependent variable) based on a set of independent variables. The variables <em>levels</em> and <em>garage</em> refers to the number of stories and garage spots, respectively. The remaining variables are self-explanatory.</p>
 <ol style="list-style-type: lower-alpha">
 <li>Create a dummy variable called <em>northwest</em> for the 46268 ZIP code.</li>
-<li>Report and interpret the results of the following regression equation:
-<span class="math display">\[\ln(price)=\beta_0+\beta_1 \cdot \ln(sqft)+\beta_2 \cdot northwest+\beta_3 \cdot \ln(lot)+\beta_4 \cdot bed+\beta_5 \cdot garage+\beta_6 \cdot levels+\beta_7 \cdot northwest \cdot levels\]</span></li>
+<li>Report and interpret the results of the regression equation that uses <span class="math inline">\(\ln(price)\)</span> as the dependent variables and the folloing as independent variables: <span class="math inline">\(\ln(sqft)\)</span>, <span class="math inline">\(northwest\)</span>, <span class="math inline">\(\ln(lot)\)</span>, <span class="math inline">\(bed\)</span>, <span class="math inline">\(garage\)</span>, and <span class="math inline">\(levels\)</span>. In addtion, include an interaction between northwest and levels.</li>
 <li>What is the expected home value of a house in the 46228 ZIP code area with the following characteristics: 1900 sqft, 0.65 acres lot, 3 bedrooms, 3 bathrooms, 2 garage spots, and 2 story.</li>
 <li>Conduct a Breusch-Pagan-Godfrey test for heteroscedasticity. What do you conclude?</li>
 <li>Estimate the above model with heteroscedasticity-consistent (HC) standard errors. What changes compared to the model from Part b?</li>
