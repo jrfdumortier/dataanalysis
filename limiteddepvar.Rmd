@@ -1,4 +1,7 @@
 # Limited Dependent Variable Models
+There are slides associated with this chapter:
+
+- [Limited Dependent Variable Models - Slides](https://github.com/jrfdumortier/slidesstatistics/raw/main/LimitedDependentVariables.pdf)
 
 This chapter covers three regression models in which the dependent variable is somehow limited:
 
@@ -11,6 +14,8 @@ This chapter covers three regression models in which the dependent variable is s
 The following packages are necessary for this section: [AER](https://cran.r-project.org/web/packages/AER/index.html) [truncreg](https://cran.r-project.org/web/packages/truncreg/index.html), [censReg](https://cran.r-project.org/web/packages/censReg/index.html), and [pscl](https://cran.r-project.org/web/packages/pscl/index.html).
 
 Truncation and censoring lead to a bias in the estimates. It is not always clear why or if the data is limited in its range. 
+
+
 
 ## Truncation
 In the case of truncation, a certain part of the data is not observed. In the graph below, the true parameters are $\beta_0=-2$ and $\beta_1=0.5$. Values $y<0$ are not reported in the data. The green regression line is "correct" whereas the "red" is the line obtained from a regression model which ignores the truncation.  
@@ -47,8 +52,8 @@ In the case of censoring, the values of the dependent variable are reported at a
 ```{r, echo=FALSE}
 bhat_real = lm(yreal~x,data=censoring)
 bhat_censored = lm(y~x,data=censoring)
-plot(censoring$x,censoring$y_real)
-     points(censoring$x,censoring$y_obs,pch=19)
+plot(censoring$x,censoring$yreal)
+     points(censoring$x,censoring$y,pch=19)
      abline(bhat_real,col=c("darkgreen"))
      abline(bhat_censored,col=c("red"))
 ```
