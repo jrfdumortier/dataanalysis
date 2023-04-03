@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2023-03-23" />
+<meta name="date" content="2023-04-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -394,18 +394,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
-## -13.7178  -2.6571   0.9506   3.6287   8.7954 
+## -10.3993  -4.3781  -0.6208   4.0241  11.0886 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) -2.24558    0.28489  -7.882 2.04e-14 ***
-## x           -0.48968    0.02363 -20.722  &lt; 2e-16 ***
+## (Intercept)  4.27296    0.36814  11.607   &lt;2e-16 ***
+## x           -0.20933    0.02332  -8.976   &lt;2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 5.043 on 498 degrees of freedom
-## Multiple R-squared:  0.463,  Adjusted R-squared:  0.4619 
-## F-statistic: 429.4 on 1 and 498 DF,  p-value: &lt; 2.2e-16</code></pre>
+## Residual standard error: 5.434 on 498 degrees of freedom
+## Multiple R-squared:  0.1393, Adjusted R-squared:  0.1375 
+## F-statistic: 80.57 on 1 and 498 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="basic-theoretical-aspects-of-time-series.html#cb196-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(spurious,bhat)</span></code></pre></div>
 <p>There is no relationship between <span class="math inline">\(y\)</span> and <span class="math inline">\(x\)</span> yet the regression results indicate statistical significance.</p>
 <p>Consider the following so-called autoregressive model. The model depends on lagged terms of the dependent variable:
