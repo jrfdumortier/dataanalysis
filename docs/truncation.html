@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2023-04-03" />
+<meta name="date" content="2023-04-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -383,18 +383,18 @@ If all the data was observed, the correct regression model would give the follow
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -2.7961 -0.5545 -0.0618  0.8038  1.9604 
+## -2.0564 -0.4941  0.1107  0.5249  1.9186 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  -1.9943     0.2880  -6.924 9.63e-09 ***
-## x             0.5361     0.0457  11.730 1.06e-15 ***
+## (Intercept) -2.63238    0.22495  -11.70 1.15e-15 ***
+## x            0.59431    0.04168   14.26  &lt; 2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 1.014 on 48 degrees of freedom
-## Multiple R-squared:  0.7414, Adjusted R-squared:  0.736 
-## F-statistic: 137.6 on 1 and 48 DF,  p-value: 1.06e-15</code></pre>
+## Residual standard error: 0.9009 on 48 degrees of freedom
+## Multiple R-squared:  0.809,  Adjusted R-squared:  0.805 
+## F-statistic: 203.3 on 1 and 48 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>The estimates are biased if truncation is ignored:</p>
 <div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="truncation.html#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat_truncated)</span></code></pre></div>
 <pre><code>## 
@@ -403,19 +403,19 @@ If all the data was observed, the correct regression model would give the follow
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
-## -1.80286 -0.57269  0.06739  0.62356  1.69304 
+## -1.77041 -0.71925 -0.09546  0.62499  1.42380 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) -0.42794    0.54222  -0.789    0.436    
-## x            0.34578    0.07316   4.726 4.12e-05 ***
+## (Intercept)  -1.0574     0.7562  -1.398  0.17596    
+## x             0.3986     0.1019   3.911  0.00075 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 0.8791 on 33 degrees of freedom
-##   (15 observations deleted due to missingness)
-## Multiple R-squared:  0.4037, Adjusted R-squared:  0.3856 
-## F-statistic: 22.34 on 1 and 33 DF,  p-value: 4.123e-05</code></pre>
+## Residual standard error: 0.8653 on 22 degrees of freedom
+##   (26 observations deleted due to missingness)
+## Multiple R-squared:  0.4101, Adjusted R-squared:  0.3833 
+## F-statistic: 15.29 on 1 and 22 DF,  p-value: 0.0007496</code></pre>
 <p>To correct for the truncation, use the functions from the package <a href="https://cran.r-project.org/web/packages/truncreg/index.html">truncreg</a> which allows to reduce the bias of the coefficients:</p>
 <div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="truncation.html#cb124-1" aria-hidden="true" tabindex="-1"></a>bhat_correct <span class="ot">=</span> <span class="fu">truncreg</span>(y_obs<span class="sc">~</span>x,<span class="at">data=</span>truncation)</span>
 <span id="cb124-2"><a href="truncation.html#cb124-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat_correct)</span></code></pre></div>
@@ -424,20 +424,20 @@ If all the data was observed, the correct regression model would give the follow
 ## truncreg(formula = y_obs ~ x, data = truncation)
 ## 
 ## BFGS maximization method
-## 23 iterations, 0h:0m:0s 
-## g&#39;(-H)^-1g = 3.33E-11 
+## 22 iterations, 0h:0m:0s 
+## g&#39;(-H)^-1g = 3.79E-09 
 ##  
 ## 
 ## 
 ## Coefficients :
 ##             Estimate Std. Error t-value  Pr(&gt;|t|)    
-## (Intercept) -1.23999    0.81444 -1.5225    0.1279    
-## x            0.44186    0.10316  4.2832 1.842e-05 ***
-## sigma        0.92235    0.13310  6.9299 4.212e-12 ***
+## (Intercept) -2.20355    1.19497 -1.8440 0.0651803 .  
+## x            0.53321    0.14981  3.5592 0.0003719 ***
+## sigma        0.91808    0.16981  5.4067 6.421e-08 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Log-Likelihood: -41.871 on 3 Df</code></pre>
+## Log-Likelihood: -27.434 on 3 Df</code></pre>
 </div>
             </section>
 
