@@ -3,7 +3,7 @@
 This chapter introduces panel data which are observations of the same unit of analysis over time, e.g., people, cities, or countries. So far, only cross-sectional data was analyzed. This chapter on panel data starts to incorporate time aspects into the estimation procedure. There are also a YouTube Video and slides associated with this chapter:
 
 - [Panel Data - Video](https://youtu.be/fkwYDi0Mc68)
-- [Panel Data - Slides](https://github.com/jrfdumortier/slidesstatistics/blob/main/paneldata.pdf)
+- [Panel Data - Slides](https://github.com/jrfdumortier/slidesstatistics/blob/main/PanelData.pdf)
 
 The required packages are [plm](https://cran.r-project.org/web/packages/plm/index.html) and [lmtest](https://cran.r-project.org/web/packages/lmtest/index.html). The [plm](https://cran.r-project.org/web/packages/plm/index.html) also contains some excellent documentation on the theoretical aspects of panel data as well as on the use of the package. 
 

@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>18 Panel Data | Data Analysis for Public Affairs with R</title>
-  <meta name="description" content="18 Panel Data | Data Analysis for Public Affairs with R" />
+  <title>11.3 Functional Forms | Data Analysis for Public Affairs with R</title>
+  <meta name="description" content="11.3 Functional Forms | Data Analysis for Public Affairs with R" />
   <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="18 Panel Data | Data Analysis for Public Affairs with R" />
+  <meta property="og:title" content="11.3 Functional Forms | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="18 Panel Data | Data Analysis for Public Affairs with R" />
+  <meta name="twitter:title" content="11.3 Functional Forms | Data Analysis for Public Affairs with R" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="exercises-13.html"/>
-<link rel="next" href="overview-1.html"/>
+<link rel="prev" href="hypothesis-testing-1.html"/>
+<link rel="next" href="about-the-importance-of-the-assumptions.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -371,22 +371,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="panel-data" class="section level1 hasAnchor" number="18">
-<h1><span class="header-section-number">18</span> Panel Data<a href="panel-data.html#panel-data" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>This chapter introduces panel data which are observations of the same unit of analysis over time, e.g., people, cities, or countries. So far, only cross-sectional data was analyzed. This chapter on panel data starts to incorporate time aspects into the estimation procedure. There are also a YouTube Video and slides associated with this chapter:</p>
-<ul>
-<li><a href="https://youtu.be/fkwYDi0Mc68">Panel Data - Video</a></li>
-<li><a href="https://github.com/jrfdumortier/slidesstatistics/blob/main/PanelData.pdf">Panel Data - Slides</a></li>
-</ul>
-<p>The required packages are <a href="https://cran.r-project.org/web/packages/plm/index.html">plm</a> and <a href="https://cran.r-project.org/web/packages/lmtest/index.html">lmtest</a>. The <a href="https://cran.r-project.org/web/packages/plm/index.html">plm</a> also contains some excellent documentation on the theoretical aspects of panel data as well as on the use of the package.</p>
+<div id="functional-forms" class="section level2 hasAnchor" number="11.3">
+<h2><span class="header-section-number">11.3</span> Functional Forms<a href="functional-forms.html#functional-forms" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Despite the fact that the regression model is linear, non-linear relationships can be measured. For example, the relation between consumption and income might be non linear since a change in consumption due to extra income may decrease with income. Or the relationship between income and education can exhibit a non-linear form because a change in income due to more education may decrease with more education. Consider the following relationship between <span class="math inline">\(y\)</span> and <span class="math inline">\(x\)</span>:
+<span class="math display">\[y = \beta_0 + \beta_1 x + \beta_2 x^2\]</span>
+If a nonlinear relation can be expressed as a linear relation by re-defining variables we can estimate that relation using ordinary least square. For the aforementioned equation, we can define new variables <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span>: <span class="math inline">\(x_1 = x\)</span> and <span class="math inline">\(x_2 = x^2\)</span>. Note that this will lead to a multivariate relationship.</p>
+<p><img src="bookdownproj_files/figure-html/BVRfunctionalforms-1.png" width="672" /></p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="exercises-13.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="overview-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="hypothesis-testing-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="about-the-importance-of-the-assumptions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -417,7 +415,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/jrfdumortier/dataanalysis/edit/master/paneldata.rmd",
+"link": "https://github.com/jrfdumortier/dataanalysis/edit/master/bivariateregression.rmd",
 "text": "Edit"
 },
 "history": {
@@ -425,7 +423,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/jrfdumortier/dataanalysis/blob/master/paneldata.rmd",
+"link": "https://github.com/jrfdumortier/dataanalysis/blob/master/bivariateregression.rmd",
 "text": null
 },
 "download": ["bookdownproj.pdf"],
