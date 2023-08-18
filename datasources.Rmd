@@ -6,7 +6,7 @@ The following functions are included:
 - `bday(k)`: This function calculates the probability of two people having the same birthday in a group of $k$ people.
 - `samplesize(me,p=0.5,pop)`: This function requires the desired margin of error as the input, e.g., $me=0.03$ for $\pm 3\%$. By default, the function calculates the sample size assuming a variance maximizing probability of $p=0.5$ and infinite population. Both parameters can be adjusted.
 
-Some data sets are generic, i.e., randomly generated, to highlight a particular concept while other are either based on public sources or are taken from academic papers. In any case, the sources are clearly indicated. Sometimes modifications were made to the data for ease of use, e.g., removing missing values or unnecessary variables. Some of the data sets are also associated with specific R packages which is indicated. For some data sets, the total number of observations is not included since the data is updated over time. The following data sets are included:
+Some data sets are generic, i.e., randomly generated, to highlight a particular concept while other are either based on public sources or are taken from academic papers. In any case, the sources are clearly indicated. Sometimes modifications were made to the data for ease of use, e.g., removing missing values or unnecessary variables. Some of the data sets are also associated with specific R packages which is indicated. All variable names are lowercase. The following data sets are included:
 
 - `accidents` (N=30): Generic data on the number of $accidents$, $temperature$ in Fahrenheit, and $precipitation$ in inches.
 
@@ -14,13 +14,21 @@ Some data sets are generic, i.e., randomly generated, to highlight a particular 
 
 - `anscombe` (N=11): Anscombe's Quartet where $yi$ and $xi$ represent dependent and independent variable of set $i$, respectively. This data set is widely available and is also included in R.
 
+- `apartments` (N=147): The data set contains data on furnished apartments for rent. The variables are $rent$, $rooms$, $area$ (in square meters), managing $company$, and $location$ (Southwest Berlin and Potsdam).
+
 - `aptitude` (N=200): Aptitude ($apt$), reading ($read$), and $math$ test scores for students ($id$). The program type is indicated by $prog$. The data set is taken from the [UCLA Advanced Research Computing website on Tobit Models](https://stats.oarc.ucla.edu/r/dae/tobit-models/).
 
-- `beer` (N=92)
+- `beer` (N=92): Quarterly beer production in Australia. The data is obtained from the lecture notes for [STAT 510: Applied Time Series Analysis](https://online.stat.psu.edu/stat510/) at Penn State.
+
+- `biochemistry` (N=915): The data set is based on the article [The Origins of Sex Differences in Science](https://doi.org/10.1093/sf/68.4.1297) and assesses the number of articles written by graduate students three years before receiving their Ph.D. in biochemistry.
 
 - `blm` (N=1359): The data is associated with the paper [Black Lives Matter: Evidence that Police-Caused Deaths Predict Protest Activity](https://doi.org/10.1017/S1537592717004273). The variables include city ($geography$), total protests ($totprotests$), population ($pop$), population density ($popdensity$), percent black ($percentblack$), black poverty rate ($blackpovertyrate$), percent college-educated ($percentbachelor$), college students as a percent of the population ($collegeenrollpc$), Democratic vote share ($demshare$), police-caused deaths per 10,000 ($deathspc$), and black police-caused deaths per 10,000 ($deathsblackpc$).
 
+- `bloodpressure` (N=20): The data is taken from [STAT 501 Regression Methods](https://online.stat.psu.edu/stat501/lesson/12/12.1) at Penn State. It contains blood pressure data for 20 individuals on $bp$ (in mm Hg), $age$, $weight$ (in kilograms), $bsa$ (body surface area in square meters), $dur$ (duration of hypertension in years), $pulse$ (basal pulse in beats per minutes), and $stress$ (index number).
+
 - `bmw` (N=30): Data on the prices and miles of a particular BMW 5-series model in the Indianapolis area. Some of the models have rear-wheel drive ($allwheeldrive=0$) whereas some have all-wheel drive ($allwheeldrive=1$).
+
+- `boston` (N=506):  Housing values in suburbs of Boston. The data set is part of the R package [MASS](https://cran.r-project.org/web/packages/plm/index.html). An explanation of the various variables can be found [here](https://stat.ethz.ch/R-manual/R-devel/library/MASS/html/Boston.html).
 
 - `censoring` (N=50): Generic data in which values of the response variable below 0 are reported as 0. The researcher observes $y$ and $x$ but not $yreal$.
 
@@ -37,36 +45,50 @@ Some data sets are generic, i.e., randomly generated, to highlight a particular 
     - $black$: Black population
     - $acres$: Area of the CCA
 
-- `coffee` (N=29): Historical data about the coffee consumption in the United States. The variable $consumption$ is measured in thousand 60-kg bags. The variable $price$ represents the retail price of roasted coffee in US Dollars per pound. Both time series are obtained from the International Coffee Association. The variables $rdi$ and $cpi$} represent real disposable income and the consumer price index, respectively. Those data series are obtained from the St. Louis FRED date base. The same is true for the varible $population$. The variables $rprice$ and $pcconsumption$ represent the real coffee prices and the per-capita consumption of coffee. 
+- `childmortality` (N=64): Data on child mortality ($cm$, number of deaths of children under age 5 in a year per 1000 live births), female literacy rate ($flfp$, percent), per-capita GNP in 1980 ($pgnp$), and total fertility rate ($tfr$ 1980–1985, the average number of children born to a woman, using age-specific fertility rates for a given year). The data was taken from Table 6.4 in Basic Econometrics (4th edition) by Damodar N. Gujarati.
 
-- `compactcars` (N=78): Fuel efficiency of compact cars in 1995 and 2015. The fuel efficiency is expressed in miles per gallon in the columns $Automatic$ and $Manual$, respectively. The variable $displ$ represents the displacement in liters. 
+- `coffee` (N=29): Historical data about the coffee consumption in the United States. The variable $consumption$ is measured in thousand 60-kg bags. The variable $price$ represents the retail price of roasted coffee in US Dollars per pound. Both time series are obtained from the International Coffee Association. The variables $rdi$ and $cpi$ represent real disposable income and the consumer price index, respectively. Those data series are obtained from the St. Louis FRED database. The same is true for the variable $population$. The variables $rprice$ and $pcconsumption$ represent the real coffee prices and the per-capita consumption of coffee. 
+
+- `compactcars` (N=78): Fuel efficiency of compact cars in 1995 and 2015. The fuel efficiency is expressed in miles per gallon in the columns $automatic$ and $manual$, respectively. The variable $displ$ represents the displacement in liters. 
 
 - `covid`: Daily time series of COVID-19 $cases$ and $death$ (cumulative count). The variables $newcases$ and $newdeaths$ correspond to the additional cases each day. The number of observations is variable since it is updated on a daily basis. The data can be obtained from a [New York Times GitHub](https://raw.githubusercontent.com/nytimes/covid-19-data/master/us.csv) account.
 
-- `cps7885` (N=1084): 
+- `cps7885` (N=1084): Data from the Current Population Survey (CPS) for the year 1978 and 1985. The data accompanies the book *Introductory Econometrics: A Modern Approach* by Jeffrey M. Wooldridge. It contains the following variables: $educ$ (years of schooling), $south$ (1 if live in south), $nonwhite$ (1 if nonwhite), $female$ (1 if female), $married$ (1 if married), $exper$, $age$, $union$ (1 if belong to union), $wage$, and $year$ (78 or 85).
+
+- `crime` (N=99): Crime rates in North Carolina counties
 
 - `discharge` (N=7): Generic data set of pollutant discharge into a river measured in gallons.
 
-- `eggweights` (N=37): Weight in grams of Large Grade A Brown Eggs from Whole Foods. 
+- `eggweights` (N=61): Weight in grams of Large Grade A Brown Eggs from Whole Foods. 
 
 - `eucrime`: Intentional homicide data in Europe. Data series \texttt{crim\_hom\_soff} from Eurostat.
 
-- `evdata` (N=579): Data about the choice of consumers with respect to alternative fuel vehicles. The
-variable $choice$ represents the choice by the consumer for gasoline vehicles (1), conventional
-hybrids (2), plug-in hybrids (3), and electric vehicles (4). For each consumer, you have the following variables: \emph{age}, \emph{level2} (indicating whether people have a fast charger for electric cars in their community), \emph{female}, and \emph{numcars} (number of cars). The variable \emph{politics} is coded as follows: Under \$15,000 (1), \$15,000 to \$24,999 (2), \$25,000 to \$34, 999 (3), \$35,000 to \$49,999 (4), \$50,000 to \$74,999 (5), \$75,000 to \$99,999 (6), \$100,000 to \$149,999 (7), \$150,000 to \$199,999 (8), \$200,000 to \$249,000 (9), above \$250,000 (10). The variable \emph{edu} is coded as follows:  Less than High School (1), High School / GED (2), Some College (3), 2-year College Degree (4), 4-year College Degree (5), Masters Degree (6), Doctoral Degree (7). The variable politics is coded as follows: Extremely Liberal (1), Liberal (2), Slightly liberal (3), Moderate (4), Slightly conservative (5), Conservative (6), Extremely conservative (7), Other (8), None (9). See \citet{Dumortier:2014} for more details. 
+- `evdata` (N=579): Data about the choice of consumers with respect to alternative fuel vehicles. The variable $choice$ represents the choice by the consumer for gasoline vehicles (1), conventional hybrids (2), plug-in hybrids (3), and electric vehicles (4). For each consumer, you have the following variables: $age$, $level2$ (indicating whether people have a fast charger for electric cars in their community), $female$, and $numcars$ (number of cars). The variable $income$ is coded as follows: Under \$15,000 (1), \$15,000 to \$24,999 (2), \$25,000 to \$34, 999 (3), \$35,000 to \$49,999 (4), \$50,000 to \$74,999 (5), \$75,000 to \$99,999 (6), \$100,000 to \$149,999 (7), \$150,000 to \$199,999 (8), \$200,000 to \$249,000 (9), above \$250,000 (10). The variable $edu$ is coded as follows: Less than High School (1), High School / GED (2), Some College (3), 2-year College Degree (4), 4-year College Degree (5), Masters Degree (6), Doctoral Degree (7). The variable $politics$ is coded as follows: Extremely Liberal (1), Liberal (2), Slightly liberal (3), Moderate (4), Slightly conservative (5), Conservative (6), Extremely conservative (7), Other (8), None (9). See [Dumortier et al. (2014)](https://doi.org/10.1016/j.tra.2014.12.005) for more details. 
 
-- `faithful` ($N=272$): Eruption and waiting in time minutes of Old Faithful Geyser. This data is included in R. 
+- `ez` (N=107):
+
+- `factor` (N=3199):
+
+- `fair` (N=601):
+
+- `faithful` (N=272): Eruption and waiting in time minutes of Old Faithful Geyser. This data is included in R. 
+
+- `fatalcity` (N=8131):
+
+- `fatalstate` (N=26893):
 
 - `fertil1` ($N=1129$): Data from the General Social Survey. The data set is accompanying the book *Introductory Econometrics: A Modern Approach* by Jeffrey Wooldridge. The variables are as follows:  
-    - year: 72 to 84, even
-    - educ:  years of schooling
-    - meduc and feduc}: mother's and father's education
-    - kids: number children ever born
-    - east, \texttt{northcentral}, and \texttt{west}: 1 if lived in at 16
-    - farm: 1 if on farm at 16
-    - otherrural: 1 if other rural at 16
-    - town: 1 if lived in town at 16
-    - smallcity: 1 if in small city at 16
+    - $year$: 72 to 84, even
+    - $educ$:  years of schooling
+    - $meduc$ and $feduc$: mother's and father's education
+    - $kids$: number children ever born
+    - $east$, $northcentral$, and $west$: 1 if lived in at 16
+    - $farm$: 1 if on farm at 16
+    - $otherrural$: 1 if other rural at 16
+    - $town$: 1 if lived in town at 16
+    - $smallcity$: 1 if in small city at 16
+
+- `fetransmission` (N=9297):
 
 - `fpdata` (N=176):
 
@@ -88,23 +110,41 @@ hybrids (2), plug-in hybrids (3), and electric vehicles (4). For each consumer, 
 
 - `hdi` ($N=189$): Human Development Indicator from 2019.
 
-- `heating` ($N=24$): Contains 24 observations of natural gas usage (in hundreds of cubic feet) and the average outside temperature (in Fahrenheit).  
+- `heating` (N=900): R package [mlogit](https://cran.r-project.org/web/packages/mlogit/index.html). There are five types of heating systems: gas central ($gc$), gas room ($gr$), electric central ($ec$), electric room ($er$), and heat pump ($hp$). There are also the following variables: 
+    - $idcase$ gives the observation number (1-900),
+    - $depvar$ identifies the chosen alternative (gc, gr, ec, er, hp),
+    - $ic.alt$ is the installation cost for the 5 alternatives,
+    - $oc.alt$ is the annual operating cost for the 5 alternatives,
+    - $income$ is the annual income of the household,
+    - $agehed$ is the age of the household head,
+    - $rooms$ is the number of rooms in the house,
+    - $region$ a factor with levels $ncostl$ (northern coastal region), $scostl$ (southern coastal region), $mountn$ (mountain region), $valley$ (central valley region).
 
-- `hhpub` ($N=129696$):
+- `henning` (N=194):
 
-- `honda` ($N=81$): 
+- `hhpub` (N=129696):
+
+- `honda` (N=81): 
 
 - `housing`: Data from FRED 
+
+- `housing1` (N=88): 
+
+- `hprice2` (N=506):
 
 - `hps`: Household Pulse Survey
 
 - `hybrid` ($N=1000$): 
+
+- `indyheating` ($N=24$): Contains 24 observations of natural gas usage (in hundreds of cubic feet) and the average outside temperature (in Fahrenheit).
 
 - `indyhomes` ($N=102$): 
 
 - `jcars`
 
 - `kiel`
+
+- `lung` (N=228):
 
 - `meatdemand` ($N=39$): Meet demand quantity ($q$) and real price ($p$) data from the U.S. Department of Agriculture. Prices and real disposable income ($rdi$) are in real terms.  
 

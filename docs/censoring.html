@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>17.2 Censoring | Data Analysis for Public Affairs with R</title>
   <meta name="description" content="17.2 Censoring | Data Analysis for Public Affairs with R" />
-  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
   <meta property="og:title" content="17.2 Censoring | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2023-04-11" />
+<meta name="date" content="2023-08-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -92,7 +92,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -105,7 +105,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -119,6 +119,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -374,69 +378,69 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="censoring" class="section level2 hasAnchor" number="17.2">
 <h2><span class="header-section-number">17.2</span> Censoring<a href="censoring.html#censoring" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In the case of censoring, the values of the dependent variable are reported at a certain point if they are above or below a certain value.</p>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
 <p>If all data was reported at the correct value, the following following regression model could be executed:</p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="censoring.html#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat_real)</span></code></pre></div>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="censoring.html#cb123-1" tabindex="-1"></a><span class="fu">summary</span>(bhat_real)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = yreal ~ x, data = censoring)
 ## 
 ## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -1.93166 -0.50672 -0.08514  0.71733  1.77892 
+##     Min      1Q  Median      3Q     Max 
+## -2.5462 -0.6744  0.1595  0.7562  1.7768 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  -1.6078     0.2583  -6.224 1.14e-07 ***
-## x             0.4488     0.0434  10.342 8.32e-14 ***
+## (Intercept)  -1.9769     0.2647  -7.467 1.42e-09 ***
+## x             0.4723     0.0469  10.069 2.02e-13 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 0.8753 on 48 degrees of freedom
-## Multiple R-squared:  0.6902, Adjusted R-squared:  0.6838 
-## F-statistic:   107 on 1 and 48 DF,  p-value: 8.322e-14</code></pre>
+## Residual standard error: 0.9335 on 48 degrees of freedom
+## Multiple R-squared:  0.6787, Adjusted R-squared:  0.672 
+## F-statistic: 101.4 on 1 and 48 DF,  p-value: 2.02e-13</code></pre>
 <p>Ignoring censoring leads to biased results:</p>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="censoring.html#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat_censored)</span></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="censoring.html#cb125-1" tabindex="-1"></a><span class="fu">summary</span>(bhat_censored)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = y ~ x, data = censoring)
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
-## -1.36357 -0.46496 -0.01411  0.34047  1.59254 
+## -1.50457 -0.47200 -0.00554  0.35916  1.85065 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) -0.48463    0.21296  -2.276   0.0274 *  
-## x            0.30230    0.03577   8.450 4.64e-11 ***
+## (Intercept) -0.64787    0.19608  -3.304  0.00181 ** 
+## x            0.30373    0.03474   8.743  1.7e-11 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 0.7215 on 48 degrees of freedom
-## Multiple R-squared:  0.598,  Adjusted R-squared:  0.5896 
-## F-statistic: 71.41 on 1 and 48 DF,  p-value: 4.636e-11</code></pre>
+## Residual standard error: 0.6914 on 48 degrees of freedom
+## Multiple R-squared:  0.6143, Adjusted R-squared:  0.6063 
+## F-statistic: 76.45 on 1 and 48 DF,  p-value: 1.697e-11</code></pre>
 <p>Using the R package <a href="https://cran.r-project.org/web/packages/censReg/index.html">censReg</a>) allows for the reduction of the bias:</p>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="censoring.html#cb130-1" aria-hidden="true" tabindex="-1"></a>b_correct <span class="ot">=</span> <span class="fu">censReg</span>(y<span class="sc">~</span>x,<span class="at">data=</span>censoring)</span>
-<span id="cb130-2"><a href="censoring.html#cb130-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(b_correct)</span></code></pre></div>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="censoring.html#cb127-1" tabindex="-1"></a>b_correct <span class="ot">=</span> <span class="fu">censReg</span>(y<span class="sc">~</span>x,<span class="at">data=</span>censoring)</span>
+<span id="cb127-2"><a href="censoring.html#cb127-2" tabindex="-1"></a><span class="fu">summary</span>(b_correct)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## censReg(formula = y ~ x, data = censoring)
 ## 
 ## Observations:
 ##          Total  Left-censored     Uncensored Right-censored 
-##             50             18             32              0 
+##             50             21             29              0 
 ## 
 ## Coefficients:
 ##             Estimate Std. error t value  Pr(&gt; t)    
-## (Intercept) -1.71137    0.40971  -4.177 2.95e-05 ***
-## x            0.46386    0.06146   7.547 4.45e-14 ***
-## logSigma    -0.10258    0.12920  -0.794    0.427    
+## (Intercept) -2.09957    0.40890  -5.135 2.83e-07 ***
+## x            0.49649    0.06185   8.027 1.00e-15 ***
+## logSigma    -0.15977    0.13234  -1.207    0.227    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## Newton-Raphson maximisation, 6 iterations
 ## Return code 1: gradient close to zero (gradtol)
-## Log-likelihood: -50.91476 on 3 Df</code></pre>
+## Log-likelihood: -43.94718 on 3 Df</code></pre>
 </div>
             </section>
 

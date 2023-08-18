@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>10.1 Chi-Square Test (\(\chi^2\)-Test) | Data Analysis for Public Affairs with R</title>
   <meta name="description" content="10.1 Chi-Square Test (\(\chi^2\)-Test) | Data Analysis for Public Affairs with R" />
-  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
   <meta property="og:title" content="10.1 Chi-Square Test (\(\chi^2\)-Test) | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2023-04-11" />
+<meta name="date" content="2023-08-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -92,7 +92,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -105,7 +105,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -119,6 +119,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -379,7 +383,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 where <span class="math inline">\(k\)</span> specifies the degrees of freedom.
 <img src="bookdownproj_files/figure-html/unnamed-chunk-4-1.png" width="672" />
 To conduct the hypothesis test, consider the data on voting and education in <code>gss</code>. Using the function <code>CrossTable</code> associated with the package <a href="https://cran.r-project.org/web/packages/gmodels/index.html">gmodels</a>, the following table can be constructed.</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="chi-square-test-chi2-test.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">CrossTable</span>(gss<span class="sc">$</span>degree,gss<span class="sc">$</span>vote12,<span class="at">prop.r =</span> <span class="cn">FALSE</span>,<span class="at">prop.c =</span> <span class="cn">FALSE</span>,<span class="at">prop.chisq =</span> <span class="cn">FALSE</span>,<span class="at">prop.t=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="chi-square-test-chi2-test.html#cb39-1" tabindex="-1"></a><span class="fu">CrossTable</span>(gss<span class="sc">$</span>degree,gss<span class="sc">$</span>vote12,<span class="at">prop.r =</span> <span class="cn">FALSE</span>,<span class="at">prop.c =</span> <span class="cn">FALSE</span>,<span class="at">prop.chisq =</span> <span class="cn">FALSE</span>,<span class="at">prop.t=</span><span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## 
 ##  
 ##    Cell Contents
@@ -415,7 +419,7 @@ For example, consider the cell “high school” and “voting” which contains
 Those calculations can be conducted for each cell. Then, then the <span class="math inline">\(\chi^2\)</span>-test statistic is calcualted as follows:
 <span class="math display">\[\chi^2 = \sum_{i=1}^{r \cdot c} \frac{(O_i-E_i)^2}{E_i}\]</span>
 where <span class="math inline">\(r \cdot c\)</span> is number of rows multiplied by the number of colunms, <span class="math inline">\(O_i\)</span> and <span class="math inline">\(E_i\)</span> are the observed and exepected count in a cell, respectively. The degrees of freedom are calcualted as <span class="math inline">\((r-1)\cdot(c-1)\)</span>. Of course, instead of doing it manually, the following command can be used:</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="chi-square-test-chi2-test.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(gss<span class="sc">$</span>degree,gss<span class="sc">$</span>vote12)</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="chi-square-test-chi2-test.html#cb41-1" tabindex="-1"></a><span class="fu">chisq.test</span>(gss<span class="sc">$</span>degree,gss<span class="sc">$</span>vote12)</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test
 ## 
@@ -423,31 +427,31 @@ where <span class="math inline">\(r \cdot c\)</span> is number of rows multiplie
 ## X-squared = 256.2, df = 8, p-value &lt; 2.2e-16</code></pre>
 <p>Due to the <em>p</em>-value being very small, we reject the hypothesis of independence. The <span class="math inline">\(\chi^2\)</span> hypothesis test should only be used for qualitative data. For example, do not categorize income into quartiles to conduct a hypothesis test on whether voting depends on income.</p>
 <p>The example of a 2-by-2 table is a special case</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="chi-square-test-chi2-test.html#cb43-1" aria-hidden="true" tabindex="-1"></a>votegun   <span class="ot">=</span> <span class="fu">subset</span>(gss,</span>
-<span id="cb43-2"><a href="chi-square-test-chi2-test.html#cb43-2" aria-hidden="true" tabindex="-1"></a>                   vote12 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;voted&quot;</span>,<span class="st">&quot;did not vote&quot;</span>) <span class="sc">&amp;</span></span>
-<span id="cb43-3"><a href="chi-square-test-chi2-test.html#cb43-3" aria-hidden="true" tabindex="-1"></a>                        owngun <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;yes&quot;</span>,<span class="st">&quot;no&quot;</span>),</span>
-<span id="cb43-4"><a href="chi-square-test-chi2-test.html#cb43-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">select =</span> <span class="fu">c</span>(<span class="st">&quot;vote12&quot;</span>,<span class="st">&quot;owngun&quot;</span>))</span>
-<span id="cb43-5"><a href="chi-square-test-chi2-test.html#cb43-5" aria-hidden="true" tabindex="-1"></a>votegun<span class="sc">$</span>vote12 <span class="ot">=</span> <span class="fu">ifelse</span>(votegun<span class="sc">$</span>vote12<span class="sc">==</span><span class="st">&quot;voted&quot;</span>,<span class="dv">1</span>,<span class="dv">0</span>)</span>
-<span id="cb43-6"><a href="chi-square-test-chi2-test.html#cb43-6" aria-hidden="true" tabindex="-1"></a>votegun<span class="sc">$</span>owngun <span class="ot">=</span> <span class="fu">ifelse</span>(votegun<span class="sc">$</span>owngun<span class="sc">==</span><span class="st">&quot;yes&quot;</span>,<span class="dv">1</span>,<span class="dv">0</span>)</span>
-<span id="cb43-7"><a href="chi-square-test-chi2-test.html#cb43-7" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(votegun<span class="sc">$</span>vote12<span class="sc">~</span>votegun<span class="sc">$</span>owngun)</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="chi-square-test-chi2-test.html#cb43-1" tabindex="-1"></a>votegun   <span class="ot">=</span> <span class="fu">subset</span>(gss,</span>
+<span id="cb43-2"><a href="chi-square-test-chi2-test.html#cb43-2" tabindex="-1"></a>                   vote12 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;voted&quot;</span>,<span class="st">&quot;did not vote&quot;</span>) <span class="sc">&amp;</span></span>
+<span id="cb43-3"><a href="chi-square-test-chi2-test.html#cb43-3" tabindex="-1"></a>                        owngun <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;yes&quot;</span>,<span class="st">&quot;no&quot;</span>),</span>
+<span id="cb43-4"><a href="chi-square-test-chi2-test.html#cb43-4" tabindex="-1"></a>                   <span class="at">select =</span> <span class="fu">c</span>(<span class="st">&quot;vote12&quot;</span>,<span class="st">&quot;owngun&quot;</span>))</span>
+<span id="cb43-5"><a href="chi-square-test-chi2-test.html#cb43-5" tabindex="-1"></a>votegun<span class="sc">$</span>vote12 <span class="ot">=</span> <span class="fu">ifelse</span>(votegun<span class="sc">$</span>vote12<span class="sc">==</span><span class="st">&quot;voted&quot;</span>,<span class="dv">1</span>,<span class="dv">0</span>)</span>
+<span id="cb43-6"><a href="chi-square-test-chi2-test.html#cb43-6" tabindex="-1"></a>votegun<span class="sc">$</span>owngun <span class="ot">=</span> <span class="fu">ifelse</span>(votegun<span class="sc">$</span>owngun<span class="sc">==</span><span class="st">&quot;yes&quot;</span>,<span class="dv">1</span>,<span class="dv">0</span>)</span>
+<span id="cb43-7"><a href="chi-square-test-chi2-test.html#cb43-7" tabindex="-1"></a><span class="fu">t.test</span>(votegun<span class="sc">$</span>vote12<span class="sc">~</span>votegun<span class="sc">$</span>owngun)</span></code></pre></div>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
 ## data:  votegun$vote12 by votegun$owngun
 ## t = -2.583, df = 1187.1, p-value = 0.009913
-## alternative hypothesis: true difference in means is not equal to 0
+## alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
 ## 95 percent confidence interval:
 ##  -0.10556727 -0.01442532
 ## sample estimates:
 ## mean in group 0 mean in group 1 
 ##       0.6758193       0.7358156</code></pre>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="chi-square-test-chi2-test.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(votegun<span class="sc">$</span>vote12,votegun<span class="sc">$</span>owngun)</span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="chi-square-test-chi2-test.html#cb45-1" tabindex="-1"></a><span class="fu">chisq.test</span>(votegun<span class="sc">$</span>vote12,votegun<span class="sc">$</span>owngun)</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test with Yates&#39; continuity correction
 ## 
 ## data:  votegun$vote12 and votegun$owngun
 ## X-squared = 6.1159, df = 1, p-value = 0.0134</code></pre>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="chi-square-test-chi2-test.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">CrossTable</span>(votegun<span class="sc">$</span>vote12,votegun<span class="sc">$</span>owngun,<span class="at">prop.r =</span> <span class="cn">FALSE</span>,<span class="at">prop.c =</span> <span class="cn">FALSE</span>,<span class="at">prop.chisq =</span> <span class="cn">FALSE</span>,<span class="at">prop.t=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="chi-square-test-chi2-test.html#cb47-1" tabindex="-1"></a><span class="fu">CrossTable</span>(votegun<span class="sc">$</span>vote12,votegun<span class="sc">$</span>owngun,<span class="at">prop.r =</span> <span class="cn">FALSE</span>,<span class="at">prop.c =</span> <span class="cn">FALSE</span>,<span class="at">prop.chisq =</span> <span class="cn">FALSE</span>,<span class="at">prop.t=</span><span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## 
 ##  
 ##    Cell Contents

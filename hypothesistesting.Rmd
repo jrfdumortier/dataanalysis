@@ -140,7 +140,7 @@ Thus, we reject the hypothesis that the proportion of gun owners among males and
 To conduct a hypothesis test about the difference between two means in R, the command `t.test()` must be used. Consider the schools in the data set `ohioschool` and `ohioscore`. Suppose you are interested in whether large schools perform as well as small schools. The school enrollment cut-off values chosen are 1000 and 3000 for small and large schools:
 
 ```{r HYPohio}
-ohio        = merge(ohioincome,ohioscore,by=c("IRN"))
+ohio        = merge(ohioincome,ohioscore,by=c("irn"))
 ohio_small  = subset(ohio,enrollment<1000)
 ohio_large  = subset(ohio,enrollment>=3000)
 t.test(ohio_small$score,ohio_large$score)
@@ -172,7 +172,7 @@ Since the *p*-value is above 5\%, we fail to reject the null hypothesis.
 
 7. ***Compact Cars*** (\*\*): Consider the data in `compactcars`. For a long time, cars with a manual transmission were more fuel efficient than cars with an automatic transmission. This has changed in recent years due to improvements for automatic transmissions. In this exercise, you will conduct two  paired hypothesis tests: one for compact cars of the 1995 model year and one for the 2015 model year. The data set contains only vehicles and models of the EPA category *Compact Cars* for which the identical model was available with either automatic or manual transmission. Conduct a paired hypothesis test for 1995 and 2015 with the null hypothesis that there is no difference in fuel efficiency. Based on your calculations, what do you conclude? Note that you are not conducting a hypothesis test to compare the 1995 and 2015 fuel efficiency. It is fairly intuitive and clear that the fuel efficiency has improved over that time period.  
 
-8. ***Automatic vs. Manual Transmission*** (\*\*\*): This question is based on the same motivation than the question "Compact Cars". Consider the data in `fetransmission`. Pick a vehicle class of your choice as well as one year in the 1980s and one year in the 2010s. Conduct a paired hypothesis test (individually for each year) with the null hypothesis that there is no difference in fuel economy. Based on your calculations, what do you conclude?  
+8. ***Automatic vs. Manual Transmission*** (\*\*): This question is based on the same motivation than the question "Compact Cars". Consider the data in `fetransmission`. Pick a vehicle class of your choice as well as one year in the 1980s and one year in the 2010s. Conduct a paired hypothesis test (individually for each year) with the null hypothesis that there is no difference in fuel economy. Based on your calculations, what do you conclude?  
 
 9. ***Green Laws*** (\*\*): Go to the [data repository of the General Social Survey (GSS)](http://www3.norc.org/GSS+Website/). Read through page to familiarize you with the GSS. This data goes beyond the homework but could be useful to you in the future either for work or if you are interested in a particular question about public opinions. If you are interested in a particular topic, go to *Browse Variables*. For this question, search for the variable `GRNLAWS`.
      - What is the question associated with this variable and which years are covered?

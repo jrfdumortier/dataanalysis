@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>20 Data Sources | Data Analysis for Public Affairs with R</title>
   <meta name="description" content="20 Data Sources | Data Analysis for Public Affairs with R" />
-  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
   <meta property="og:title" content="20 Data Sources | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2023-04-11" />
+<meta name="date" content="2023-08-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -92,7 +92,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -105,7 +105,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -119,6 +119,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -379,15 +383,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>bday(k)</code>: This function calculates the probability of two people having the same birthday in a group of <span class="math inline">\(k\)</span> people.</li>
 <li><code>samplesize(me,p=0.5,pop)</code>: This function requires the desired margin of error as the input, e.g., <span class="math inline">\(me=0.03\)</span> for <span class="math inline">\(\pm 3\%\)</span>. By default, the function calculates the sample size assuming a variance maximizing probability of <span class="math inline">\(p=0.5\)</span> and infinite population. Both parameters can be adjusted.</li>
 </ul>
-<p>Some data sets are generic, i.e., randomly generated, to highlight a particular concept while other are either based on public sources or are taken from academic papers. In any case, the sources are clearly indicated. Sometimes modifications were made to the data for ease of use, e.g., removing missing values or unnecessary variables. Some of the data sets are also associated with specific R packages which is indicated. For some data sets, the total number of observations is not included since the data is updated over time. The following data sets are included:</p>
+<p>Some data sets are generic, i.e., randomly generated, to highlight a particular concept while other are either based on public sources or are taken from academic papers. In any case, the sources are clearly indicated. Sometimes modifications were made to the data for ease of use, e.g., removing missing values or unnecessary variables. Some of the data sets are also associated with specific R packages which is indicated. All variable names are lowercase. The following data sets are included:</p>
 <ul>
 <li><p><code>accidents</code> (N=30): Generic data on the number of <span class="math inline">\(accidents\)</span>, <span class="math inline">\(temperature\)</span> in Fahrenheit, and <span class="math inline">\(precipitation\)</span> in inches.</p></li>
 <li><p><code>airlines</code> (N=211918): On-time and delay statistics for the 100 largest airports (by number of 2019 arrivals) by airline January 2004 to May 2022. The variable names are mostly self-explanatory. The variables <span class="math inline">\(arrflights\)</span> and <span class="math inline">\(arrdel15\)</span> are the total number of arriving flights and the number of flight delayed at least 15 minutes. The original data is available <a href="https://www.transtats.bts.gov/ot_delay/ot_delaycause1.asp">here</a>.</p></li>
 <li><p><code>anscombe</code> (N=11): Anscombe’s Quartet where <span class="math inline">\(yi\)</span> and <span class="math inline">\(xi\)</span> represent dependent and independent variable of set <span class="math inline">\(i\)</span>, respectively. This data set is widely available and is also included in R.</p></li>
+<li><p><code>apartments</code> (N=147): The data set contains data on furnished apartments for rent. The variables are <span class="math inline">\(rent\)</span>, <span class="math inline">\(rooms\)</span>, <span class="math inline">\(area\)</span> (in square meters), managing <span class="math inline">\(company\)</span>, and <span class="math inline">\(location\)</span> (Southwest Berlin and Potsdam).</p></li>
 <li><p><code>aptitude</code> (N=200): Aptitude (<span class="math inline">\(apt\)</span>), reading (<span class="math inline">\(read\)</span>), and <span class="math inline">\(math\)</span> test scores for students (<span class="math inline">\(id\)</span>). The program type is indicated by <span class="math inline">\(prog\)</span>. The data set is taken from the <a href="https://stats.oarc.ucla.edu/r/dae/tobit-models/">UCLA Advanced Research Computing website on Tobit Models</a>.</p></li>
-<li><p><code>beer</code> (N=92)</p></li>
+<li><p><code>beer</code> (N=92): Quarterly beer production in Australia. The data is obtained from the lecture notes for <a href="https://online.stat.psu.edu/stat510/">STAT 510: Applied Time Series Analysis</a> at Penn State.</p></li>
+<li><p><code>biochemistry</code> (N=915): The data set is based on the article <a href="https://doi.org/10.1093/sf/68.4.1297">The Origins of Sex Differences in Science</a> and assesses the number of articles written by graduate students three years before receiving their Ph.D. in biochemistry.</p></li>
 <li><p><code>blm</code> (N=1359): The data is associated with the paper <a href="https://doi.org/10.1017/S1537592717004273">Black Lives Matter: Evidence that Police-Caused Deaths Predict Protest Activity</a>. The variables include city (<span class="math inline">\(geography\)</span>), total protests (<span class="math inline">\(totprotests\)</span>), population (<span class="math inline">\(pop\)</span>), population density (<span class="math inline">\(popdensity\)</span>), percent black (<span class="math inline">\(percentblack\)</span>), black poverty rate (<span class="math inline">\(blackpovertyrate\)</span>), percent college-educated (<span class="math inline">\(percentbachelor\)</span>), college students as a percent of the population (<span class="math inline">\(collegeenrollpc\)</span>), Democratic vote share (<span class="math inline">\(demshare\)</span>), police-caused deaths per 10,000 (<span class="math inline">\(deathspc\)</span>), and black police-caused deaths per 10,000 (<span class="math inline">\(deathsblackpc\)</span>).</p></li>
+<li><p><code>bloodpressure</code> (N=20): The data is taken from <a href="https://online.stat.psu.edu/stat501/lesson/12/12.1">STAT 501 Regression Methods</a> at Penn State. It contains blood pressure data for 20 individuals on <span class="math inline">\(bp\)</span> (in mm Hg), <span class="math inline">\(age\)</span>, <span class="math inline">\(weight\)</span> (in kilograms), <span class="math inline">\(bsa\)</span> (body surface area in square meters), <span class="math inline">\(dur\)</span> (duration of hypertension in years), <span class="math inline">\(pulse\)</span> (basal pulse in beats per minutes), and <span class="math inline">\(stress\)</span> (index number).</p></li>
 <li><p><code>bmw</code> (N=30): Data on the prices and miles of a particular BMW 5-series model in the Indianapolis area. Some of the models have rear-wheel drive (<span class="math inline">\(allwheeldrive=0\)</span>) whereas some have all-wheel drive (<span class="math inline">\(allwheeldrive=1\)</span>).</p></li>
+<li><p><code>boston</code> (N=506): Housing values in suburbs of Boston. The data set is part of the R package <a href="https://cran.r-project.org/web/packages/plm/index.html">MASS</a>. An explanation of the various variables can be found <a href="https://stat.ethz.ch/R-manual/R-devel/library/MASS/html/Boston.html">here</a>.</p></li>
 <li><p><code>censoring</code> (N=50): Generic data in which values of the response variable below 0 are reported as 0. The researcher observes <span class="math inline">\(y\)</span> and <span class="math inline">\(x\)</span> but not <span class="math inline">\(yreal\)</span>.</p></li>
 <li><p><code>chicagogrocery</code> (N=77): The data set was represents the information from <a href="https://github.com/Chicago/food-deserts">2013 grocery stores</a> and [Community Data Snapshots Raw Data from March 2014](<a href="https://datahub.cmap.illinois.gov/dataset/community-data-snapshots-raw-data" class="uri">https://datahub.cmap.illinois.gov/dataset/community-data-snapshots-raw-data</a>]. It includes the following variables:</p>
 <ul>
@@ -403,29 +411,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><span class="math inline">\(black\)</span>: Black population</li>
 <li><span class="math inline">\(acres\)</span>: Area of the CCA</li>
 </ul></li>
-<li><p><code>coffee</code> (N=29): Historical data about the coffee consumption in the United States. The variable <span class="math inline">\(consumption\)</span> is measured in thousand 60-kg bags. The variable <span class="math inline">\(price\)</span> represents the retail price of roasted coffee in US Dollars per pound. Both time series are obtained from the International Coffee Association. The variables <span class="math inline">\(rdi\)</span> and <span class="math inline">\(cpi\)</span>} represent real disposable income and the consumer price index, respectively. Those data series are obtained from the St. Louis FRED date base. The same is true for the varible <span class="math inline">\(population\)</span>. The variables <span class="math inline">\(rprice\)</span> and <span class="math inline">\(pcconsumption\)</span> represent the real coffee prices and the per-capita consumption of coffee.</p></li>
-<li><p><code>compactcars</code> (N=78): Fuel efficiency of compact cars in 1995 and 2015. The fuel efficiency is expressed in miles per gallon in the columns <span class="math inline">\(Automatic\)</span> and <span class="math inline">\(Manual\)</span>, respectively. The variable <span class="math inline">\(displ\)</span> represents the displacement in liters.</p></li>
+<li><p><code>childmortality</code> (N=64): Data on child mortality (<span class="math inline">\(cm\)</span>, number of deaths of children under age 5 in a year per 1000 live births), female literacy rate (<span class="math inline">\(flfp\)</span>, percent), per-capita GNP in 1980 (<span class="math inline">\(pgnp\)</span>), and total fertility rate (<span class="math inline">\(tfr\)</span> 1980–1985, the average number of children born to a woman, using age-specific fertility rates for a given year). The data was taken from Table 6.4 in Basic Econometrics (4th edition) by Damodar N. Gujarati.</p></li>
+<li><p><code>coffee</code> (N=29): Historical data about the coffee consumption in the United States. The variable <span class="math inline">\(consumption\)</span> is measured in thousand 60-kg bags. The variable <span class="math inline">\(price\)</span> represents the retail price of roasted coffee in US Dollars per pound. Both time series are obtained from the International Coffee Association. The variables <span class="math inline">\(rdi\)</span> and <span class="math inline">\(cpi\)</span> represent real disposable income and the consumer price index, respectively. Those data series are obtained from the St. Louis FRED database. The same is true for the variable <span class="math inline">\(population\)</span>. The variables <span class="math inline">\(rprice\)</span> and <span class="math inline">\(pcconsumption\)</span> represent the real coffee prices and the per-capita consumption of coffee.</p></li>
+<li><p><code>compactcars</code> (N=78): Fuel efficiency of compact cars in 1995 and 2015. The fuel efficiency is expressed in miles per gallon in the columns <span class="math inline">\(automatic\)</span> and <span class="math inline">\(manual\)</span>, respectively. The variable <span class="math inline">\(displ\)</span> represents the displacement in liters.</p></li>
 <li><p><code>covid</code>: Daily time series of COVID-19 <span class="math inline">\(cases\)</span> and <span class="math inline">\(death\)</span> (cumulative count). The variables <span class="math inline">\(newcases\)</span> and <span class="math inline">\(newdeaths\)</span> correspond to the additional cases each day. The number of observations is variable since it is updated on a daily basis. The data can be obtained from a <a href="https://raw.githubusercontent.com/nytimes/covid-19-data/master/us.csv">New York Times GitHub</a> account.</p></li>
-<li><p><code>cps7885</code> (N=1084):</p></li>
+<li><p><code>cps7885</code> (N=1084): Data from the Current Population Survey (CPS) for the year 1978 and 1985. The data accompanies the book <em>Introductory Econometrics: A Modern Approach</em> by Jeffrey M. Wooldridge. It contains the following variables: <span class="math inline">\(educ\)</span> (years of schooling), <span class="math inline">\(south\)</span> (1 if live in south), <span class="math inline">\(nonwhite\)</span> (1 if nonwhite), <span class="math inline">\(female\)</span> (1 if female), <span class="math inline">\(married\)</span> (1 if married), <span class="math inline">\(exper\)</span>, <span class="math inline">\(age\)</span>, <span class="math inline">\(union\)</span> (1 if belong to union), <span class="math inline">\(wage\)</span>, and <span class="math inline">\(year\)</span> (78 or 85).</p></li>
+<li><p><code>crime</code> (N=99): Crime rates in North Carolina counties</p></li>
 <li><p><code>discharge</code> (N=7): Generic data set of pollutant discharge into a river measured in gallons.</p></li>
-<li><p><code>eggweights</code> (N=37): Weight in grams of Large Grade A Brown Eggs from Whole Foods.</p></li>
+<li><p><code>eggweights</code> (N=61): Weight in grams of Large Grade A Brown Eggs from Whole Foods.</p></li>
 <li><p><code>eucrime</code>: Intentional homicide data in Europe. Data series from Eurostat.</p></li>
-<li><p><code>evdata</code> (N=579): Data about the choice of consumers with respect to alternative fuel vehicles. The
-variable <span class="math inline">\(choice\)</span> represents the choice by the consumer for gasoline vehicles (1), conventional
-hybrids (2), plug-in hybrids (3), and electric vehicles (4). For each consumer, you have the following variables: , (indicating whether people have a fast charger for electric cars in their community), , and (number of cars). The variable is coded as follows: Under $15,000 (1), $15,000 to $24,999 (2), $25,000 to $34, 999 (3), $35,000 to $49,999 (4), $50,000 to $74,999 (5), $75,000 to $99,999 (6), $100,000 to $149,999 (7), $150,000 to $199,999 (8), $200,000 to $249,000 (9), above $250,000 (10). The variable is coded as follows: Less than High School (1), High School / GED (2), Some College (3), 2-year College Degree (4), 4-year College Degree (5), Masters Degree (6), Doctoral Degree (7). The variable politics is coded as follows: Extremely Liberal (1), Liberal (2), Slightly liberal (3), Moderate (4), Slightly conservative (5), Conservative (6), Extremely conservative (7), Other (8), None (9). See for more details.</p></li>
-<li><p><code>faithful</code> (<span class="math inline">\(N=272\)</span>): Eruption and waiting in time minutes of Old Faithful Geyser. This data is included in R.</p></li>
+<li><p><code>evdata</code> (N=579): Data about the choice of consumers with respect to alternative fuel vehicles. The variable <span class="math inline">\(choice\)</span> represents the choice by the consumer for gasoline vehicles (1), conventional hybrids (2), plug-in hybrids (3), and electric vehicles (4). For each consumer, you have the following variables: <span class="math inline">\(age\)</span>, <span class="math inline">\(level2\)</span> (indicating whether people have a fast charger for electric cars in their community), <span class="math inline">\(female\)</span>, and <span class="math inline">\(numcars\)</span> (number of cars). The variable <span class="math inline">\(income\)</span> is coded as follows: Under $15,000 (1), $15,000 to $24,999 (2), $25,000 to $34, 999 (3), $35,000 to $49,999 (4), $50,000 to $74,999 (5), $75,000 to $99,999 (6), $100,000 to $149,999 (7), $150,000 to $199,999 (8), $200,000 to $249,000 (9), above $250,000 (10). The variable <span class="math inline">\(edu\)</span> is coded as follows: Less than High School (1), High School / GED (2), Some College (3), 2-year College Degree (4), 4-year College Degree (5), Masters Degree (6), Doctoral Degree (7). The variable <span class="math inline">\(politics\)</span> is coded as follows: Extremely Liberal (1), Liberal (2), Slightly liberal (3), Moderate (4), Slightly conservative (5), Conservative (6), Extremely conservative (7), Other (8), None (9). See <a href="https://doi.org/10.1016/j.tra.2014.12.005">Dumortier et al. (2014)</a> for more details.</p></li>
+<li><p><code>ez</code> (N=107):</p></li>
+<li><p><code>factor</code> (N=3199):</p></li>
+<li><p><code>fair</code> (N=601):</p></li>
+<li><p><code>faithful</code> (N=272): Eruption and waiting in time minutes of Old Faithful Geyser. This data is included in R.</p></li>
+<li><p><code>fatalcity</code> (N=8131):</p></li>
+<li><p><code>fatalstate</code> (N=26893):</p></li>
 <li><p><code>fertil1</code> (<span class="math inline">\(N=1129\)</span>): Data from the General Social Survey. The data set is accompanying the book <em>Introductory Econometrics: A Modern Approach</em> by Jeffrey Wooldridge. The variables are as follows:</p>
 <ul>
-<li>year: 72 to 84, even</li>
-<li>educ: years of schooling</li>
-<li>meduc and feduc}: mother’s and father’s education</li>
-<li>kids: number children ever born</li>
-<li>east, , and : 1 if lived in at 16</li>
-<li>farm: 1 if on farm at 16</li>
-<li>otherrural: 1 if other rural at 16</li>
-<li>town: 1 if lived in town at 16</li>
-<li>smallcity: 1 if in small city at 16</li>
+<li><span class="math inline">\(year\)</span>: 72 to 84, even</li>
+<li><span class="math inline">\(educ\)</span>: years of schooling</li>
+<li><span class="math inline">\(meduc\)</span> and <span class="math inline">\(feduc\)</span>: mother’s and father’s education</li>
+<li><span class="math inline">\(kids\)</span>: number children ever born</li>
+<li><span class="math inline">\(east\)</span>, <span class="math inline">\(northcentral\)</span>, and <span class="math inline">\(west\)</span>: 1 if lived in at 16</li>
+<li><span class="math inline">\(farm\)</span>: 1 if on farm at 16</li>
+<li><span class="math inline">\(otherrural\)</span>: 1 if other rural at 16</li>
+<li><span class="math inline">\(town\)</span>: 1 if lived in town at 16</li>
+<li><span class="math inline">\(smallcity\)</span>: 1 if in small city at 16</li>
 </ul></li>
+<li><p><code>fetransmission</code> (N=9297):</p></li>
 <li><p><code>fpdata</code> (N=176):</p></li>
 <li><p><code>gqtestdata</code> (N=50): Generic (hetroscedastic) home value data of <span class="math inline">\(price\)</span> and living area (<span class="math inline">\(sqft\)</span>).</p></li>
 <li><p><code>grunfeld</code> (N=200):</p></li>
@@ -442,15 +456,30 @@ hybrids (2), plug-in hybrids (3), and electric vehicles (4). For each consumer, 
 <li><span class="math inline">\(age\)</span>: Age of respondent</li>
 </ul></li>
 <li><p><code>hdi</code> (<span class="math inline">\(N=189\)</span>): Human Development Indicator from 2019.</p></li>
-<li><p><code>heating</code> (<span class="math inline">\(N=24\)</span>): Contains 24 observations of natural gas usage (in hundreds of cubic feet) and the average outside temperature (in Fahrenheit).</p></li>
-<li><p><code>hhpub</code> (<span class="math inline">\(N=129696\)</span>):</p></li>
-<li><p><code>honda</code> (<span class="math inline">\(N=81\)</span>):</p></li>
+<li><p><code>heating</code> (N=900): R package <a href="https://cran.r-project.org/web/packages/mlogit/index.html">mlogit</a>. There are five types of heating systems: gas central (<span class="math inline">\(gc\)</span>), gas room (<span class="math inline">\(gr\)</span>), electric central (<span class="math inline">\(ec\)</span>), electric room (<span class="math inline">\(er\)</span>), and heat pump (<span class="math inline">\(hp\)</span>). There are also the following variables:</p>
+<ul>
+<li><span class="math inline">\(idcase\)</span> gives the observation number (1-900),</li>
+<li><span class="math inline">\(depvar\)</span> identifies the chosen alternative (gc, gr, ec, er, hp),</li>
+<li><span class="math inline">\(ic.alt\)</span> is the installation cost for the 5 alternatives,</li>
+<li><span class="math inline">\(oc.alt\)</span> is the annual operating cost for the 5 alternatives,</li>
+<li><span class="math inline">\(income\)</span> is the annual income of the household,</li>
+<li><span class="math inline">\(agehed\)</span> is the age of the household head,</li>
+<li><span class="math inline">\(rooms\)</span> is the number of rooms in the house,</li>
+<li><span class="math inline">\(region\)</span> a factor with levels <span class="math inline">\(ncostl\)</span> (northern coastal region), <span class="math inline">\(scostl\)</span> (southern coastal region), <span class="math inline">\(mountn\)</span> (mountain region), <span class="math inline">\(valley\)</span> (central valley region).</li>
+</ul></li>
+<li><p><code>henning</code> (N=194):</p></li>
+<li><p><code>hhpub</code> (N=129696):</p></li>
+<li><p><code>honda</code> (N=81):</p></li>
 <li><p><code>housing</code>: Data from FRED</p></li>
+<li><p><code>housing1</code> (N=88):</p></li>
+<li><p><code>hprice2</code> (N=506):</p></li>
 <li><p><code>hps</code>: Household Pulse Survey</p></li>
 <li><p><code>hybrid</code> (<span class="math inline">\(N=1000\)</span>):</p></li>
+<li><p><code>indyheating</code> (<span class="math inline">\(N=24\)</span>): Contains 24 observations of natural gas usage (in hundreds of cubic feet) and the average outside temperature (in Fahrenheit).</p></li>
 <li><p><code>indyhomes</code> (<span class="math inline">\(N=102\)</span>):</p></li>
 <li><p><code>jcars</code></p></li>
 <li><p><code>kiel</code></p></li>
+<li><p><code>lung</code> (N=228):</p></li>
 <li><p><code>meatdemand</code> (<span class="math inline">\(N=39\)</span>): Meet demand quantity (<span class="math inline">\(q\)</span>) and real price (<span class="math inline">\(p\)</span>) data from the U.S. Department of Agriculture. Prices and real disposable income (<span class="math inline">\(rdi\)</span>) are in real terms.</p></li>
 <li><p><code>mh1</code> (<span class="math inline">\(N=101\)</span>): Home values in the Meridian Hills area in Indianapolis.</p></li>
 <li><p><code>mh2</code> (<span class="math inline">\(N=18\)</span>): Prices and characteristics of homes in the Meridian Hills area in Indianapolis.</p></li>

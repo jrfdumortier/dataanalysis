@@ -15,7 +15,7 @@ fig:DIStdistribution
 fig:BSSlln
 fig:BSSriskpooling
 fig:BSSclt
-fig:unnamed-chunk-14
+fig:unnamed-chunk-11
 fig:BVRhomoheteroscedasticity
 fig:BVRhonda
 preface

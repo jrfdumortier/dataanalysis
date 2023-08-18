@@ -44,7 +44,7 @@ ggplot(retail)+
 A second example considers quarterly `beer` production in Australia. In a first step, the data is converted into a time series:
 
 ```{r}
-beer = ts(beer$sales,start=c(1992,1),end=c(2014,4),frequency=4)
+beer = ts(beer$production,start=c(1992,1),end=c(2014,4),frequency=4)
 ```
 
 Next, the data is plotted using a function from the package [ggfortify](https://cran.r-project.org/web/packages/ggfortify/index.html). Additional documentation using the package is found under [Plotting ts objects](https://cran.r-project.org/web/packages/ggfortify/vignettes/plot_ts.html).
@@ -272,7 +272,7 @@ plot(forecast(bhat))
     c. Re-estimate the model but this time using $retail$ as the dependent variable. 
     d. Plot (in the same graph) the observed values and both modeled series. What do you observe? Does one model fit better than the other? If yes, which one? 
   
-3. ***WDI Per-Capita Consumption*** (\*\*\*): The data `wdi` includes per-capita income ($gdp$), overall household consumption ($consumption$), and $population$. For a country of your choice, do the following:
+3. ***WDI Per-Capita Consumption*** (\*\*): The data `wdi` includes per-capita income ($gdp$), overall household consumption ($consumption$), and $population$. For a country of your choice, do the following:
     a. Subset the data such that you are only left with the country of your choice. 
     b. Create a new column which contains the consumption per capita, i.e., consumption divided by population.
     c. Make sure that there are at least 10 years of observations for the country of your choice. 

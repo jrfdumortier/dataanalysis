@@ -98,7 +98,7 @@ $$\hat{\delta}_1 = (price_{81,near}-price_{81,far})-(price_{78,near}-price_{78,f
 where $\hat{\delta}_1$ represents the difference over time in average differences in housing prices in the two locations. To determine statistical significance, the following model must be estimated:
 $$price = \beta_0 + \gamma_0 \cdot y81 + \beta_1 \cdot nearinc + \delta_1 \cdot y81 \cdot nearinc$$
 ```{r}
-summary(lm(rprice~y81+nearinc+I(y81*nearinc),data=kiel))
+summary(lm(rprice~y81+nearinc+y81:nearinc,data=kiel))
 ```
 The interpretation of the coefficients is as follows:
 
@@ -110,13 +110,13 @@ The interpretation of the coefficients is as follows:
 Include $age$ and $age^2$ in the above equation to take advantage of the information provided in the data leads to the following result:
 
 ```{r}
-summary(lm(rprice~y81+nearinc+I(y81*nearinc)+age+I(age^2),data=kiel))
+summary(lm(rprice~y81+nearinc+y81:nearinc+age+I(age^2),data=kiel))
 ```
 
 Other variables such as $cbd$, $rooms$, $area$, $land$, and $baths$ can be added as well.
 
 ```{r}
-summary(lm(rprice~y81+nearinc+I(y81*nearinc)+age+I(age^2)+intst+land+area+rooms+baths,data=kiel))
+summary(lm(rprice~y81+nearinc+y81:nearinc+age+I(age^2)+intst+land+area+rooms+baths,data=kiel))
 ```
 
 In general, the results show that homes have lost 9.3% in values when including additional independent variables and using the natural logarithm of price. 

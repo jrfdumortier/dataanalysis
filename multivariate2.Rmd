@@ -79,7 +79,6 @@ bptest(bhat)
 ### Correcting Heteroscedasticity
 To correct for heteroscedasticity, robust standard errors must be obtained. 
 ```{r robusterrors,results=FALSE}
-library(sandwich)
 bhat = lm(price~sqft,data=gqtestdata)
 summary(bhat)
 vcov = vcovHC(bhat)

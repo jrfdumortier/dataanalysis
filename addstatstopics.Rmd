@@ -59,13 +59,8 @@ Hypothesis test about the probability of success.
 
 Many government forms indicate the estimated time to fill out a form. This information can be used to calculate the (financial) burden associated with providing information to government agencies. For example, the instructions of the 2020 IRS Form 1040 state that *the estimated average time burden for all taxpayers filing a Form 1040 or 1040-SR is 12 hours.* Consider the data in `irs` which contains 40 observations of taxpayers filling out the form. Conducting a regular *t*-test leads to the rejection of the hypothesis:
 
-```{r,echo=FALSE}
-t.test(irs,mean=12)
-```
 The hypothesis is also rejected 
-```{r,echo=FALSE}
-t.test(irs,mean=12,alternative="greater")
-```
+
 In the sample, 16 observations are below the estimated 12 hours and 24 observations are above 12 hours.
 
 ```{r}
@@ -75,9 +70,6 @@ checkout = c(3.8,5.3,3.5,4.5,7.2,5.1)
 t.test(checkout,mu=4,alternative=c("greater"))
 
 ## Wilcoxon Signed-Rank Test
-```{r,warning=FALSE,error=FALSE}
-wilcox.test(irs,mu=12)
-```
 
 ## Exercises
-1. ***Chi-Squared Test*** (\*\*\): Use the `gss` data for this exercise. Select one of the following variables: $fulltime$, $government$, $married$, $gun$, or $deathpenalty$. Conduct a Chi-Squared hypothesis test between the variable chosen and education. Remember that the null hypothesis is independence between the variables. Report your results and interpret them as well. 
+1. ***Chi-Squared Test*** (\*\*): Use the `gss` data for this exercise. Select one of the following variables: $fulltime$, $government$, $married$, $gun$, or $deathpenalty$. Conduct a Chi-Squared hypothesis test between the variable chosen and education. Remember that the null hypothesis is independence between the variables. Report your results and interpret them as well. 

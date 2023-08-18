@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>14.1 Heteroscedasticity | Data Analysis for Public Affairs with R</title>
   <meta name="description" content="14.1 Heteroscedasticity | Data Analysis for Public Affairs with R" />
-  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
   <meta property="og:title" content="14.1 Heteroscedasticity | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2023-04-11" />
+<meta name="date" content="2023-08-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -92,7 +92,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -105,7 +105,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -119,6 +119,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -408,20 +412,20 @@ That is, GLS minimizes the weighted sum of the residual squares. Since in realit
 <li><span class="math inline">\(\lambda\)</span> follows an F-distribution.</li>
 </ol>
 <p>The Goldfeld-Quandt Test can be illustrated with <code>gqtestdata</code>. In a first step, the data is separated into two groups with <span class="math inline">\(C=6\)</span>. In a second step, both groups are used to run a regression. And lastly, <span class="math inline">\(\lambda\)</span> is calculated.</p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="heteroscedasticity.html#cb68-1" aria-hidden="true" tabindex="-1"></a>gqtestdata1         <span class="ot">=</span> gqtestdata[<span class="dv">1</span><span class="sc">:</span><span class="dv">22</span>,]</span>
-<span id="cb68-2"><a href="heteroscedasticity.html#cb68-2" aria-hidden="true" tabindex="-1"></a>gqtestdata2         <span class="ot">=</span> gqtestdata[<span class="dv">29</span><span class="sc">:</span><span class="dv">50</span>,]</span>
-<span id="cb68-3"><a href="heteroscedasticity.html#cb68-3" aria-hidden="true" tabindex="-1"></a>bhat1               <span class="ot">=</span> <span class="fu">lm</span>(price<span class="sc">~</span>sqft,<span class="at">data=</span>gqtestdata1)</span>
-<span id="cb68-4"><a href="heteroscedasticity.html#cb68-4" aria-hidden="true" tabindex="-1"></a>bhat2               <span class="ot">=</span> <span class="fu">lm</span>(price<span class="sc">~</span>sqft,<span class="at">data=</span>gqtestdata2)</span>
-<span id="cb68-5"><a href="heteroscedasticity.html#cb68-5" aria-hidden="true" tabindex="-1"></a>lambda              <span class="ot">=</span> <span class="fu">sum</span>(bhat2<span class="sc">$</span>residuals<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span><span class="fu">sum</span>(bhat1<span class="sc">$</span>residuals<span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="heteroscedasticity.html#cb67-1" tabindex="-1"></a>gqtestdata1         <span class="ot">=</span> gqtestdata[<span class="dv">1</span><span class="sc">:</span><span class="dv">22</span>,]</span>
+<span id="cb67-2"><a href="heteroscedasticity.html#cb67-2" tabindex="-1"></a>gqtestdata2         <span class="ot">=</span> gqtestdata[<span class="dv">29</span><span class="sc">:</span><span class="dv">50</span>,]</span>
+<span id="cb67-3"><a href="heteroscedasticity.html#cb67-3" tabindex="-1"></a>bhat1               <span class="ot">=</span> <span class="fu">lm</span>(price<span class="sc">~</span>sqft,<span class="at">data=</span>gqtestdata1)</span>
+<span id="cb67-4"><a href="heteroscedasticity.html#cb67-4" tabindex="-1"></a>bhat2               <span class="ot">=</span> <span class="fu">lm</span>(price<span class="sc">~</span>sqft,<span class="at">data=</span>gqtestdata2)</span>
+<span id="cb67-5"><a href="heteroscedasticity.html#cb67-5" tabindex="-1"></a>lambda              <span class="ot">=</span> <span class="fu">sum</span>(bhat2<span class="sc">$</span>residuals<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span><span class="fu">sum</span>(bhat1<span class="sc">$</span>residuals<span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
 <p>Of course, there is also a function in R called gqtest which simplifies the procedure.</p>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="heteroscedasticity.html#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmtest)</span>
-<span id="cb69-2"><a href="heteroscedasticity.html#cb69-2" aria-hidden="true" tabindex="-1"></a>bhat                <span class="ot">=</span> <span class="fu">lm</span>(price<span class="sc">~</span>sqft,<span class="at">data=</span>gqtestdata)</span>
-<span id="cb69-3"><a href="heteroscedasticity.html#cb69-3" aria-hidden="true" tabindex="-1"></a><span class="fu">gqtest</span>(bhat,<span class="at">fraction =</span> <span class="dv">6</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="heteroscedasticity.html#cb68-1" tabindex="-1"></a><span class="fu">library</span>(lmtest)</span>
+<span id="cb68-2"><a href="heteroscedasticity.html#cb68-2" tabindex="-1"></a>bhat                <span class="ot">=</span> <span class="fu">lm</span>(price<span class="sc">~</span>sqft,<span class="at">data=</span>gqtestdata)</span>
+<span id="cb68-3"><a href="heteroscedasticity.html#cb68-3" tabindex="-1"></a><span class="fu">gqtest</span>(bhat,<span class="at">fraction =</span> <span class="dv">6</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Goldfeld-Quandt test
 ## 
 ## data:  bhat
-## GQ = 1.601, df1 = 20, df2 = 20, p-value = 0.1504
+## GQ = 3.0686, df1 = 20, df2 = 20, p-value = 0.007844
 ## alternative hypothesis: variance increases from segment 1 to 2</code></pre>
 <p>In any case, the hypothesis of homoscedasticity is rejected for <code>gqtestdata</code>.</p>
 <p>The <strong>Breusch-Pagan-Godfrey Test</strong> is an alternative and does not rely on choosing <em>C</em> as the number of central observations to be dropped. The steps include the following:</p>
@@ -435,23 +439,22 @@ That is, GLS minimizes the weighted sum of the residual squares. Since in realit
 <li>Obtain the explained sum of squares (ESS) and define <span class="math inline">\(\Theta = 0.5 \cdot ESS\)</span>. Then <span class="math inline">\(\Theta \sim \chi^2_{m-1}\)</span>.</li>
 </ol>
 <p>The much simpler procedure is to use the function <code>bptest()</code> in R.</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="heteroscedasticity.html#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmtest)</span>
-<span id="cb71-2"><a href="heteroscedasticity.html#cb71-2" aria-hidden="true" tabindex="-1"></a>bhat                <span class="ot">=</span> <span class="fu">lm</span>(price<span class="sc">~</span>sqft,<span class="at">data=</span>gqtestdata)</span>
-<span id="cb71-3"><a href="heteroscedasticity.html#cb71-3" aria-hidden="true" tabindex="-1"></a><span class="fu">bptest</span>(bhat)</span></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="heteroscedasticity.html#cb70-1" tabindex="-1"></a><span class="fu">library</span>(lmtest)</span>
+<span id="cb70-2"><a href="heteroscedasticity.html#cb70-2" tabindex="-1"></a>bhat                <span class="ot">=</span> <span class="fu">lm</span>(price<span class="sc">~</span>sqft,<span class="at">data=</span>gqtestdata)</span>
+<span id="cb70-3"><a href="heteroscedasticity.html#cb70-3" tabindex="-1"></a><span class="fu">bptest</span>(bhat)</span></code></pre></div>
 <pre><code>## 
 ##  studentized Breusch-Pagan test
 ## 
 ## data:  bhat
-## BP = 7.2817, df = 1, p-value = 0.006966</code></pre>
+## BP = 7.9195, df = 1, p-value = 0.00489</code></pre>
 </div>
 <div id="correcting-heteroscedasticity" class="section level3 hasAnchor" number="14.1.2">
 <h3><span class="header-section-number">14.1.2</span> Correcting Heteroscedasticity<a href="heteroscedasticity.html#correcting-heteroscedasticity" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>To correct for heteroscedasticity, robust standard errors must be obtained.</p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="heteroscedasticity.html#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sandwich)</span>
-<span id="cb73-2"><a href="heteroscedasticity.html#cb73-2" aria-hidden="true" tabindex="-1"></a>bhat <span class="ot">=</span> <span class="fu">lm</span>(price<span class="sc">~</span>sqft,<span class="at">data=</span>gqtestdata)</span>
-<span id="cb73-3"><a href="heteroscedasticity.html#cb73-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat)</span>
-<span id="cb73-4"><a href="heteroscedasticity.html#cb73-4" aria-hidden="true" tabindex="-1"></a>vcov <span class="ot">=</span> <span class="fu">vcovHC</span>(bhat)</span>
-<span id="cb73-5"><a href="heteroscedasticity.html#cb73-5" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(bhat,<span class="at">vcov.=</span>vcov)</span></code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="heteroscedasticity.html#cb72-1" tabindex="-1"></a>bhat <span class="ot">=</span> <span class="fu">lm</span>(price<span class="sc">~</span>sqft,<span class="at">data=</span>gqtestdata)</span>
+<span id="cb72-2"><a href="heteroscedasticity.html#cb72-2" tabindex="-1"></a><span class="fu">summary</span>(bhat)</span>
+<span id="cb72-3"><a href="heteroscedasticity.html#cb72-3" tabindex="-1"></a>vcov <span class="ot">=</span> <span class="fu">vcovHC</span>(bhat)</span>
+<span id="cb72-4"><a href="heteroscedasticity.html#cb72-4" tabindex="-1"></a><span class="fu">coeftest</span>(bhat,<span class="at">vcov.=</span>vcov)</span></code></pre></div>
 <p>Note that there are multiple variations to calculate the standard error and thus, it is possible for slight variations among the results from different packages.
 <span class="math display">\[Var(\hat{\beta}_1) = \frac{\sum_{i=1}^N (x_i-\bar{x})^2 e_i^2}{\sum_{i=1}^N (x_i-\bar{x})^2}\]</span>
 The square root of the following equation is called heteroscedastic robust standard error:
@@ -496,7 +499,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/jrfdumortier/dataanalysis/edit/master/violatingassumptions.rmd",
+"link": "https://github.com/jrfdumortier/dataanalysis/edit/master/multivariate2.rmd",
 "text": "Edit"
 },
 "history": {
@@ -504,7 +507,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/jrfdumortier/dataanalysis/blob/master/violatingassumptions.rmd",
+"link": "https://github.com/jrfdumortier/dataanalysis/blob/master/multivariate2.rmd",
 "text": null
 },
 "download": ["bookdownproj.pdf"],

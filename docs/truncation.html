@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>17.1 Truncation | Data Analysis for Public Affairs with R</title>
   <meta name="description" content="17.1 Truncation | Data Analysis for Public Affairs with R" />
-  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
   <meta property="og:title" content="17.1 Truncation | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2023-04-11" />
+<meta name="date" content="2023-08-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -92,7 +92,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -105,7 +105,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -119,6 +119,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -376,68 +380,68 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In the case of truncation, a certain part of the data is not observed. In the graph below, the true parameters are <span class="math inline">\(\beta_0=-2\)</span> and <span class="math inline">\(\beta_1=0.5\)</span>. Values <span class="math inline">\(y&lt;0\)</span> are not reported in the data. The green regression line is “correct” whereas the “red” is the line obtained from a regression model which ignores the truncation.</p>
 <p><img src="bookdownproj_files/figure-html/truncationplot-1.png" width="672" />
 If all the data was observed, the correct regression model would give the following results:</p>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="truncation.html#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat_real)</span></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="truncation.html#cb117-1" tabindex="-1"></a><span class="fu">summary</span>(bhat_real)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = y_real ~ x, data = truncation)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -2.0564 -0.4941  0.1107  0.5249  1.9186 
+## -2.1581 -0.7018  0.0036  0.8028  3.3719 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) -2.63238    0.22495  -11.70 1.15e-15 ***
-## x            0.59431    0.04168   14.26  &lt; 2e-16 ***
+## (Intercept) -2.28550    0.31846  -7.177 3.94e-09 ***
+## x            0.51589    0.05946   8.677 2.13e-11 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 0.9009 on 48 degrees of freedom
-## Multiple R-squared:  0.809,  Adjusted R-squared:  0.805 
-## F-statistic: 203.3 on 1 and 48 DF,  p-value: &lt; 2.2e-16</code></pre>
+## Residual standard error: 1.123 on 48 degrees of freedom
+## Multiple R-squared:  0.6106, Adjusted R-squared:  0.6025 
+## F-statistic: 75.28 on 1 and 48 DF,  p-value: 2.133e-11</code></pre>
 <p>The estimates are biased if truncation is ignored:</p>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="truncation.html#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat_truncated)</span></code></pre></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="truncation.html#cb119-1" tabindex="-1"></a><span class="fu">summary</span>(bhat_truncated)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = y_obs ~ x, data = truncation)
 ## 
 ## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -1.77041 -0.71925 -0.09546  0.62499  1.42380 
+##     Min      1Q  Median      3Q     Max 
+## -1.6016 -1.0309  0.1446  0.5344  2.7342 
 ## 
 ## Coefficients:
-##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  -1.0574     0.7562  -1.398  0.17596    
-## x             0.3986     0.1019   3.911  0.00075 ***
+##             Estimate Std. Error t value Pr(&gt;|t|)   
+## (Intercept)  -0.7072     0.7194  -0.983  0.33632   
+## x             0.3458     0.1042   3.320  0.00311 **
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 0.8653 on 22 degrees of freedom
+## Residual standard error: 1.124 on 22 degrees of freedom
 ##   (26 observations deleted due to missingness)
-## Multiple R-squared:  0.4101, Adjusted R-squared:  0.3833 
-## F-statistic: 15.29 on 1 and 22 DF,  p-value: 0.0007496</code></pre>
+## Multiple R-squared:  0.3337, Adjusted R-squared:  0.3034 
+## F-statistic: 11.02 on 1 and 22 DF,  p-value: 0.003114</code></pre>
 <p>To correct for the truncation, use the functions from the package <a href="https://cran.r-project.org/web/packages/truncreg/index.html">truncreg</a> which allows to reduce the bias of the coefficients:</p>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="truncation.html#cb124-1" aria-hidden="true" tabindex="-1"></a>bhat_correct <span class="ot">=</span> <span class="fu">truncreg</span>(y_obs<span class="sc">~</span>x,<span class="at">data=</span>truncation)</span>
-<span id="cb124-2"><a href="truncation.html#cb124-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat_correct)</span></code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="truncation.html#cb121-1" tabindex="-1"></a>bhat_correct <span class="ot">=</span> <span class="fu">truncreg</span>(y_obs<span class="sc">~</span>x,<span class="at">data=</span>truncation)</span>
+<span id="cb121-2"><a href="truncation.html#cb121-2" tabindex="-1"></a><span class="fu">summary</span>(bhat_correct)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## truncreg(formula = y_obs ~ x, data = truncation)
 ## 
 ## BFGS maximization method
-## 22 iterations, 0h:0m:0s 
-## g&#39;(-H)^-1g = 3.79E-09 
+## 40 iterations, 0h:0m:0s 
+## g&#39;(-H)^-1g = 1.11E-06 
 ##  
 ## 
 ## 
 ## Coefficients :
 ##             Estimate Std. Error t-value  Pr(&gt;|t|)    
-## (Intercept) -2.20355    1.19497 -1.8440 0.0651803 .  
-## x            0.53321    0.14981  3.5592 0.0003719 ***
-## sigma        0.91808    0.16981  5.4067 6.421e-08 ***
+## (Intercept) -5.88777    3.92901 -1.4985 0.1339932    
+## x            0.91321    0.43028  2.1224 0.0338067 *  
+## sigma        1.57729    0.47442  3.3247 0.0008853 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Log-Likelihood: -27.434 on 3 Df</code></pre>
+## Log-Likelihood: -28.632 on 3 Df</code></pre>
 </div>
             </section>
 

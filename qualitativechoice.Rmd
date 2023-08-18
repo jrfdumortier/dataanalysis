@@ -62,10 +62,10 @@ The independent variables included in the model are
 - Education: High school (1), some college (2), bachelor (3), master (4), technical school diploma (5), doctorate (6)
 
 ```{r}
-fpdata$strawberries_org = as.factor(fpdata$strawberries_org)
-strawdata = fpdata[c("strawberries_org","age","education","female","kidsunder12")]
+fpdata$strawberriesorg = as.factor(fpdata$strawberriesorg)
+strawdata = fpdata[c("strawberriesorg","age","education","female","kidsunder12")]
 strawdata = na.omit(strawdata)
-bhat = polr(strawberries_org~age+education+female+kidsunder12,data=strawdata,Hess=TRUE)
+bhat = polr(strawberriesorg~age+education+female+kidsunder12,data=strawdata,Hess=TRUE)
 summary(bhat)
 ```
 For the organic purchases data, the cut-off points are under "Intercepts" and thus, we have (rounded coefficients):
@@ -206,23 +206,6 @@ that are not complete (i.e., all the negative values). Once you have final data 
 an ordered logit model with $BIKE$ as the dependent variable and the other variables as the
 independent variables. What do you conclude from the model?
 
-4. ***Home heating*** (\*\*\*): Consider the dataset `Heating` from the R package [mlogit](https://cran.r-project.org/web/packages/mlogit/index.html). You can load the data set into R by typing: `data("Heating",package="mlogit")`. The data contains the choice of heating systems in California homes. There are five types of heating systems:
-
-    - gas central ($gc$)
-    - gas room ($gr$)
-    - electric central ($ec$)
-    - electric room ($er$)
-    - heat pump ($hp$)
-
-    There are 900 observations with the following variables:
-
-    - $idcase$ gives the observation number (1-900),
-    - $depvar$ identifies the chosen alternative (gc, gr, ec, er, hp),
-    - $ic.alt$ is the installation cost for the 5 alternatives,
-    - $oc.alt$ is the annual operating cost for the 5 alternatives,
-    - $income$ is the annual income of the household,
-    - $agehed$ is the age of the household head,
-    - $rooms$ is the number of rooms in the house,
-    - $region$ a factor with levels $ncostl$ (northern coastal region), $scostl$ (southern coastal region), $mountn$ (mountain region), $valley$ (central valley region).
+4. ***Home Heating*** (\*\*\*): Consider the dataset `Heating` from the  You can load the data set into R by typing: `data("Heating",package="mlogit")`. The data contains the choice of heating systems in California homes. 
     
     Estimate a multinomial logit model with installation and operating cost as the alternative-specific variables and income, age, and number of rooms as the individual-specific variables.

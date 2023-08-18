@@ -59,10 +59,6 @@ summary(bhat_glm_logit)
        
 Note that interpretation of the coefficients is slightly different from the regular linear model. The sign of the coefficient estimate for income is interpreted as the direction in which the probability changes. In this case, the coefficient is positive and thus, an increase (decrease) in income leads to an increase (decrease) in the probability of purchasing organic food. In addition, the coefficients are statistically significant. As aforementioned, the coefficients do not indicate the marginal effects though. To calculate the marginal effects, a slightly different approach is necessary. Let us first look at the second approach of obtaining the coefficient estimates and the R package [mfx](https://cran.r-project.org/web/packages/mfx/index.html) is required to do so. 
 
-```{r, echo=FALSE, results=FALSE}
-library(mfx)
-```
-
 
 ```{r organic_mfx_logit}
 bhat = logitmfx(buying~income,data=organic)
@@ -96,8 +92,12 @@ predict(bhat_glm_logit,newdata=datablock,type="response")
 
      d. Given the above probabilities, calculate the marginal effect that gasoline prices have on the probability that each of the three ``types'' of individuals will purchase a hybrid vehicle.
 
-2. ***EV Data*** (\*\*): Using the `evdata`, estimate a logit model which calculates the probability that a consumer would purchase a hybrid (choice=2), plug-in hybrid (choice=3), or electric vehicle (choice=4) as opposed to a gasoline car (choice=1). In a first step, you should create a new variable that is equal to 0 if the person purchases a gasoline vehicle and is equal to 1 for everything else. Include the following independent variables in your model: $age$, $numcars$, $politics$, $female$, $edu$, and $income$. 
+2. ***EV Data*** (\*\*\*): Using the `evdata`, estimate a logit model which calculates the probability that a consumer would purchase a hybrid (choice=2), plug-in hybrid (choice=3), or electric vehicle (choice=4) as opposed to a gasoline car (choice=1). In a first step, you should create a new variable that is equal to 0 if the person purchases a gasoline vehicle and is equal to 1 for everything else. Include the following independent variables in your model: $age$, $numcars$, $politics$, $female$, $edu$, and $income$. 
 
-3. ***Voting Behavior*** (\*\*): We are interested in the determinants of voting based on data from the General Social Survey (GSS). The following variables are hypothesized to be a determinant of voting behavior: $age$, $gun ownership$ (yes=1), $stance on death penalty$ (in favor=1), and $education level$ (higher number is associated with a higher education level). Run a probit and logit model and report the results. Calculate the marginal probabilities.
+3. ***Voting Behavior*** (\*\*\*): We are interested in the determinants of voting based on data from the General Social Survey (GSS). The following variables are hypothesized to be a determinant of voting behavior: $age$, $gun ownership$ (yes=1), $stance on death penalty$ (in favor=1), and $education level$ (higher number is associated with a higher education level). Run a probit and logit model and report the results. Calculate the marginal probabilities.
 
 4. ***Fatal Car Accidents*** (\*\*\*): Research suggests that black motorists are driving slower during the day than at night because police officers could engage in racial profiling more easily during the day than at night [(Kalinowki et al., 2021)](https://doi.org/10.3386/w28789). Assuming that lower speeds lead to fewer accidents, the aforementioned hypothesis can be tested via data from the Fatality Analysis Reporting System (FARS). Use the data in `fatalcity` and `fatalstate` to run a logit model with $black$ as the dependent variable and $rain$, $daylight$, and $year$ as the independent variables. In addition, use $fips$ and $state$ as independent variables as well but use the function `factor()` to include them, e.g., `+factor(state)`. Based on the two separate regression models, what do you conclude?
+
+5. ***Biking*** (\*\*\*): Consider the data in `hhpub`. Your dependent variable will be called $biking$ and indicated whether respondents in the survey use a bike or never at all. 
+
+6. ***Organic Fruit Purchases*** (\*\*\*): The data in `fpdata` contains survey results on how many organic tomoatoes and organic strawberries a household purchases. For the 

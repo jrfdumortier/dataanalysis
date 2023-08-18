@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>16.1 Ordered Logit Model | Data Analysis for Public Affairs with R</title>
   <meta name="description" content="16.1 Ordered Logit Model | Data Analysis for Public Affairs with R" />
-  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
   <meta property="og:title" content="16.1 Ordered Logit Model | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2023-04-11" />
+<meta name="date" content="2023-08-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -92,7 +92,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -105,7 +105,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -119,6 +119,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -404,14 +408,14 @@ For the ordered logit: <span class="math inline">\(F(z)=exp(z)/(1+exp(z))\)</spa
 <li>Age and female</li>
 <li>Education: High school (1), some college (2), bachelor (3), master (4), technical school diploma (5), doctorate (6)</li>
 </ul>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="ordered-logit-model.html#cb93-1" aria-hidden="true" tabindex="-1"></a>fpdata<span class="sc">$</span>strawberries_org <span class="ot">=</span> <span class="fu">as.factor</span>(fpdata<span class="sc">$</span>strawberries_org)</span>
-<span id="cb93-2"><a href="ordered-logit-model.html#cb93-2" aria-hidden="true" tabindex="-1"></a>strawdata <span class="ot">=</span> fpdata[<span class="fu">c</span>(<span class="st">&quot;strawberries_org&quot;</span>,<span class="st">&quot;age&quot;</span>,<span class="st">&quot;education&quot;</span>,<span class="st">&quot;female&quot;</span>,<span class="st">&quot;kidsunder12&quot;</span>)]</span>
-<span id="cb93-3"><a href="ordered-logit-model.html#cb93-3" aria-hidden="true" tabindex="-1"></a>strawdata <span class="ot">=</span> <span class="fu">na.omit</span>(strawdata)</span>
-<span id="cb93-4"><a href="ordered-logit-model.html#cb93-4" aria-hidden="true" tabindex="-1"></a>bhat <span class="ot">=</span> <span class="fu">polr</span>(strawberries_org<span class="sc">~</span>age<span class="sc">+</span>education<span class="sc">+</span>female<span class="sc">+</span>kidsunder12,<span class="at">data=</span>strawdata,<span class="at">Hess=</span><span class="cn">TRUE</span>)</span>
-<span id="cb93-5"><a href="ordered-logit-model.html#cb93-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bhat)</span></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="ordered-logit-model.html#cb90-1" tabindex="-1"></a>fpdata<span class="sc">$</span>strawberriesorg <span class="ot">=</span> <span class="fu">as.factor</span>(fpdata<span class="sc">$</span>strawberriesorg)</span>
+<span id="cb90-2"><a href="ordered-logit-model.html#cb90-2" tabindex="-1"></a>strawdata <span class="ot">=</span> fpdata[<span class="fu">c</span>(<span class="st">&quot;strawberriesorg&quot;</span>,<span class="st">&quot;age&quot;</span>,<span class="st">&quot;education&quot;</span>,<span class="st">&quot;female&quot;</span>,<span class="st">&quot;kidsunder12&quot;</span>)]</span>
+<span id="cb90-3"><a href="ordered-logit-model.html#cb90-3" tabindex="-1"></a>strawdata <span class="ot">=</span> <span class="fu">na.omit</span>(strawdata)</span>
+<span id="cb90-4"><a href="ordered-logit-model.html#cb90-4" tabindex="-1"></a>bhat <span class="ot">=</span> <span class="fu">polr</span>(strawberriesorg<span class="sc">~</span>age<span class="sc">+</span>education<span class="sc">+</span>female<span class="sc">+</span>kidsunder12,<span class="at">data=</span>strawdata,<span class="at">Hess=</span><span class="cn">TRUE</span>)</span>
+<span id="cb90-5"><a href="ordered-logit-model.html#cb90-5" tabindex="-1"></a><span class="fu">summary</span>(bhat)</span></code></pre></div>
 <pre><code>## Call:
-## polr(formula = strawberries_org ~ age + education + female + 
-##     kidsunder12, data = strawdata, Hess = TRUE)
+## polr(formula = strawberriesorg ~ age + education + female + kidsunder12, 
+##     data = strawdata, Hess = TRUE)
 ## 
 ## Coefficients:
 ##                Value Std. Error t value
@@ -442,9 +446,9 @@ The cut-off points can be interpreted as follows:
     Pr(y=6) &amp;= P(1.6314 \leq z+\epsilon_i )
 \end{align*}\]</span>
 In order to get the <span class="math inline">\(p\)</span>-values displayed in the output, you have to execute two additional steps:</p>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="ordered-logit-model.html#cb95-1" aria-hidden="true" tabindex="-1"></a>bhat.coef <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="fu">coef</span>(<span class="fu">summary</span>(bhat)))</span>
-<span id="cb95-2"><a href="ordered-logit-model.html#cb95-2" aria-hidden="true" tabindex="-1"></a>bhat.coef<span class="sc">$</span>pval <span class="ot">=</span> <span class="fu">round</span>((<span class="fu">pnorm</span>(<span class="fu">abs</span>(bhat.coef<span class="sc">$</span>t.value),<span class="at">lower.tail=</span><span class="cn">FALSE</span>)<span class="sc">*</span><span class="dv">2</span>),<span class="dv">2</span>)</span>
-<span id="cb95-3"><a href="ordered-logit-model.html#cb95-3" aria-hidden="true" tabindex="-1"></a>bhat.coef</span></code></pre></div>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="ordered-logit-model.html#cb92-1" tabindex="-1"></a>bhat.coef <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="fu">coef</span>(<span class="fu">summary</span>(bhat)))</span>
+<span id="cb92-2"><a href="ordered-logit-model.html#cb92-2" tabindex="-1"></a>bhat.coef<span class="sc">$</span>pval <span class="ot">=</span> <span class="fu">round</span>((<span class="fu">pnorm</span>(<span class="fu">abs</span>(bhat.coef<span class="sc">$</span>t.value),<span class="at">lower.tail=</span><span class="cn">FALSE</span>)<span class="sc">*</span><span class="dv">2</span>),<span class="dv">2</span>)</span>
+<span id="cb92-3"><a href="ordered-logit-model.html#cb92-3" tabindex="-1"></a>bhat.coef</span></code></pre></div>
 <pre><code>##                   Value  Std..Error    t.value pval
 ## age         -0.02034185 0.009838336 -2.0676110 0.04
 ## education    0.01595914 0.112027882  0.1424569 0.89
@@ -459,9 +463,9 @@ In order to get the <span class="math inline">\(p\)</span>-values displayed in t
 <div id="predicted-probability-and-marginal-effects" class="section level3 hasAnchor" number="16.1.2">
 <h3><span class="header-section-number">16.1.2</span> Predicted Probability and Marginal Effects<a href="ordered-logit-model.html#predicted-probability-and-marginal-effects" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The predicted probability for each observation can be obtained as well assuming that the output of the <code>polr</code> command is stored in <span class="math inline">\(bhat\)</span>.</p>
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="ordered-logit-model.html#cb97-1" aria-hidden="true" tabindex="-1"></a>bhat.pred <span class="ot">=</span> <span class="fu">predict</span>(bhat,<span class="at">type=</span><span class="st">&quot;probs&quot;</span>)</span>
-<span id="cb97-2"><a href="ordered-logit-model.html#cb97-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">ocME</span>(bhat)</span>
-<span id="cb97-3"><a href="ordered-logit-model.html#cb97-3" aria-hidden="true" tabindex="-1"></a>x<span class="sc">$</span>out<span class="sc">$</span>ME.all</span></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="ordered-logit-model.html#cb94-1" tabindex="-1"></a>bhat.pred <span class="ot">=</span> <span class="fu">predict</span>(bhat,<span class="at">type=</span><span class="st">&quot;probs&quot;</span>)</span>
+<span id="cb94-2"><a href="ordered-logit-model.html#cb94-2" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">ocME</span>(bhat)</span>
+<span id="cb94-3"><a href="ordered-logit-model.html#cb94-3" tabindex="-1"></a>x<span class="sc">$</span>out<span class="sc">$</span>ME.all</span></code></pre></div>
 <pre><code>##             effect.0 effect.1 effect.2 effect.3 effect.4 effect.5
 ## age            0.005    0.000   -0.001   -0.001   -0.001   -0.001
 ## education     -0.004    0.000    0.001    0.001    0.001    0.001

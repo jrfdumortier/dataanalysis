@@ -258,5 +258,5 @@ Consider two data sets from school districts in Ohio:
 To merge the two data frames based on the column $IRN$, the function `merge()` must be used:
 
 ```{r INRmerge}
-ohioschool = merge(ohioscore,ohioincome,by=c("IRN"))
+ohioschool = merge(ohioscore,ohioincome,by=c("irn"))
 ```
