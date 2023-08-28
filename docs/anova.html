@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2023-08-18" />
+<meta name="date" content="2023-08-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -382,10 +382,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 where <span class="math inline">\(d_1\)</span> and <span class="math inline">\(d_2\)</span> are dummy variables. Consider the following model using the <code>nfl</code> data for the year 2005:
 <span class="math display">\[total = \beta_0 + \beta_1 \cdot draft1 + \beta_2 \cdot veteran\]</span>
 where <em>draft1</em> and <em>veteran</em> are dummy variables. That is, if <span class="math inline">\(draft1=1\)</span>, then the player was selected in the first draft round. If <span class="math inline">\(veteran=1\)</span>, then the player has played multiple seasons in the NFL. To distinguish <em>j</em> categories only <em>j-1</em> dummy variables are needed. Otherwise, we have perfect multicollinearity. The category without a dummy variable is the base category.</p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="anova.html#cb63-1" tabindex="-1"></a>bhat <span class="ot">=</span> <span class="fu">lm</span>(total<span class="sc">~</span>draft1<span class="sc">+</span>veteran,<span class="at">data=</span><span class="fu">subset</span>(nfl,<span class="at">year=</span><span class="dv">2005</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="anova.html#cb62-1" tabindex="-1"></a>bhat <span class="ot">=</span> <span class="fu">lm</span>(total<span class="sc">~</span>draft1<span class="sc">+</span>veteran,<span class="at">data=</span><span class="fu">subset</span>(nfl,<span class="at">year=</span><span class="dv">2005</span>))</span></code></pre></div>
 <pre><code>## Warning: In subset.data.frame(nfl, year = 2005) :
 ##  extra argument &#39;year&#39; will be disregarded</code></pre>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="anova.html#cb65-1" tabindex="-1"></a><span class="fu">summary</span>(bhat)</span></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="anova.html#cb64-1" tabindex="-1"></a><span class="fu">summary</span>(bhat)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = total ~ draft1 + veteran, data = subset(nfl, year = 2005))

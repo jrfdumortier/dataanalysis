@@ -6,7 +6,11 @@ Topics covered in this lecture
 - Plotting and Graphs with R
 - Basic Statistics
 
-In-class exercises will be conducted throughout the lecture.
+There is also a YouTube video and slides associated with this chapter:
+
+- [Introduction to R and RStudio - Video](https://youtu.be/p6aFs2E_4hg?si=hoRzgivlq75Nk0dA)
+- [Introduction to R and RStudio - Slides](https://github.com/jrfdumortier/slidesstatistics/blob/main/IntroductionR.pdf)
+
 
 ## R Resources and Help
 Very large user community for R. Google search for "Some topic R" usually leads quickly to the desired help. Here are the links to a few online tutorials

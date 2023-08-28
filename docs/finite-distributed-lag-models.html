@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2023-08-18" />
+<meta name="date" content="2023-08-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -403,12 +403,12 @@ Characteristics of this assumption:</p>
 <p>The reformulated equation to be estimated is
 <span class="math display">\[y_t = \alpha \cdot (1-\lambda) + \beta_0 \cdot x_t + \lambda \cdot y_{t-1} + \upsilon_t\]</span>
 The notation of the error term has changed from <span class="math inline">\(\epsilon_t\)</span> to <span class="math inline">\(\upsilon_t\)</span> in order to highlight that the terms will be different.</p>
-<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="finite-distributed-lag-models.html#cb189-1" tabindex="-1"></a>koyck <span class="ot">=</span> usdata</span>
-<span id="cb189-2"><a href="finite-distributed-lag-models.html#cb189-2" tabindex="-1"></a>koyck<span class="sc">$</span>year <span class="ot">=</span> <span class="fu">substr</span>(koyck<span class="sc">$</span>date,<span class="dv">1</span>,<span class="dv">4</span>)</span>
-<span id="cb189-3"><a href="finite-distributed-lag-models.html#cb189-3" tabindex="-1"></a>koyck <span class="ot">=</span> <span class="fu">aggregate</span>(koyck[<span class="fu">c</span>(<span class="st">&quot;income&quot;</span>,<span class="st">&quot;consumption&quot;</span>)],<span class="at">FUN=</span>sum,<span class="at">by=</span><span class="fu">list</span>(koyck<span class="sc">$</span>year))</span>
-<span id="cb189-4"><a href="finite-distributed-lag-models.html#cb189-4" tabindex="-1"></a><span class="fu">colnames</span>(koyck) <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;year&quot;</span>,<span class="st">&quot;income&quot;</span>,<span class="st">&quot;consumption&quot;</span>)</span>
-<span id="cb189-5"><a href="finite-distributed-lag-models.html#cb189-5" tabindex="-1"></a>bhat <span class="ot">=</span> <span class="fu">lm</span>(<span class="at">formula =</span> consumption <span class="sc">~</span> income <span class="sc">+</span> <span class="fu">Lag</span>(consumption), <span class="at">data =</span> koyck)</span>
-<span id="cb189-6"><a href="finite-distributed-lag-models.html#cb189-6" tabindex="-1"></a><span class="fu">summary</span>(bhat)</span></code></pre></div>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="finite-distributed-lag-models.html#cb188-1" tabindex="-1"></a>koyck <span class="ot">=</span> usdata</span>
+<span id="cb188-2"><a href="finite-distributed-lag-models.html#cb188-2" tabindex="-1"></a>koyck<span class="sc">$</span>year <span class="ot">=</span> <span class="fu">substr</span>(koyck<span class="sc">$</span>date,<span class="dv">1</span>,<span class="dv">4</span>)</span>
+<span id="cb188-3"><a href="finite-distributed-lag-models.html#cb188-3" tabindex="-1"></a>koyck <span class="ot">=</span> <span class="fu">aggregate</span>(koyck[<span class="fu">c</span>(<span class="st">&quot;income&quot;</span>,<span class="st">&quot;consumption&quot;</span>)],<span class="at">FUN=</span>sum,<span class="at">by=</span><span class="fu">list</span>(koyck<span class="sc">$</span>year))</span>
+<span id="cb188-4"><a href="finite-distributed-lag-models.html#cb188-4" tabindex="-1"></a><span class="fu">colnames</span>(koyck) <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;year&quot;</span>,<span class="st">&quot;income&quot;</span>,<span class="st">&quot;consumption&quot;</span>)</span>
+<span id="cb188-5"><a href="finite-distributed-lag-models.html#cb188-5" tabindex="-1"></a>bhat <span class="ot">=</span> <span class="fu">lm</span>(<span class="at">formula =</span> consumption <span class="sc">~</span> income <span class="sc">+</span> <span class="fu">Lag</span>(consumption), <span class="at">data =</span> koyck)</span>
+<span id="cb188-6"><a href="finite-distributed-lag-models.html#cb188-6" tabindex="-1"></a><span class="fu">summary</span>(bhat)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = consumption ~ income + Lag(consumption), data = koyck)

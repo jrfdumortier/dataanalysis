@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2023-08-18" />
+<meta name="date" content="2023-08-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -380,7 +380,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In the case of censoring, the values of the dependent variable are reported at a certain point if they are above or below a certain value.</p>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
 <p>If all data was reported at the correct value, the following following regression model could be executed:</p>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="censoring.html#cb123-1" tabindex="-1"></a><span class="fu">summary</span>(bhat_real)</span></code></pre></div>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="censoring.html#cb122-1" tabindex="-1"></a><span class="fu">summary</span>(bhat_real)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = yreal ~ x, data = censoring)
@@ -400,7 +400,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Multiple R-squared:  0.6787, Adjusted R-squared:  0.672 
 ## F-statistic: 101.4 on 1 and 48 DF,  p-value: 2.02e-13</code></pre>
 <p>Ignoring censoring leads to biased results:</p>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="censoring.html#cb125-1" tabindex="-1"></a><span class="fu">summary</span>(bhat_censored)</span></code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="censoring.html#cb124-1" tabindex="-1"></a><span class="fu">summary</span>(bhat_censored)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = y ~ x, data = censoring)
@@ -420,8 +420,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Multiple R-squared:  0.6143, Adjusted R-squared:  0.6063 
 ## F-statistic: 76.45 on 1 and 48 DF,  p-value: 1.697e-11</code></pre>
 <p>Using the R package <a href="https://cran.r-project.org/web/packages/censReg/index.html">censReg</a>) allows for the reduction of the bias:</p>
-<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="censoring.html#cb127-1" tabindex="-1"></a>b_correct <span class="ot">=</span> <span class="fu">censReg</span>(y<span class="sc">~</span>x,<span class="at">data=</span>censoring)</span>
-<span id="cb127-2"><a href="censoring.html#cb127-2" tabindex="-1"></a><span class="fu">summary</span>(b_correct)</span></code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="censoring.html#cb126-1" tabindex="-1"></a>b_correct <span class="ot">=</span> <span class="fu">censReg</span>(y<span class="sc">~</span>x,<span class="at">data=</span>censoring)</span>
+<span id="cb126-2"><a href="censoring.html#cb126-2" tabindex="-1"></a><span class="fu">summary</span>(b_correct)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## censReg(formula = y ~ x, data = censoring)
