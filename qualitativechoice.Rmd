@@ -34,12 +34,14 @@ $$y_i^* = \beta_0+\beta_1 \cdot x_i + \epsilon_i$$
 In the case of the vaccine model, this may be a measure of trust in vaccines. What the researcher does measure is an $m$-alternative ordered model:
 $$y_i = j \quad \text{if} \quad \alpha_{j-1} < y_i^* \leq \alpha_j \quad \text{for} \quad  j=1, \dots,m$$
 where $\alpha_0 = - \infty$ and $\alpha_m=\infty$. In this case, we have
-$$ \begin{align*}
+$$
+\begin{aligned}
     Pr(y = j) &=Pr(\alpha_{j-1} < y_i^* \leq \alpha_j)\\
                 &=Pr(\alpha_{j-1} < \beta_0+\beta_1 \cdot x_i + \epsilon_i \leq \alpha_j)\\
                 &=Pr(\alpha_{j-1}- \beta_0-\beta_1 \cdot x_i < \epsilon_i \leq \alpha_j - \beta_0-\beta_1 \cdot x_i)\\
                         &=F(\alpha_j - \beta_0-\beta_1 \cdot x_i)-F(\alpha_{j-1} - \beta_0-\beta_1 \cdot x_i)
-    \end{align*}$$
+\end{aligned}
+$$
 For the ordered logit: $F(z)=exp(z)/(1+exp(z))$. The cut-off example points for the graph below are $\alpha_0 = -\infty$, $\alpha_2 = -1.5$, $\alpha_3 = 2$, and $\alpha_4 = \infty$
 
 ```{r ordered_logit_plot, echo=FALSE}
@@ -71,14 +73,16 @@ summary(bhat)
 For the organic purchases data, the cut-off points are under "Intercepts" and thus, we have (rounded coefficients):
 $$z =  -0.020 \cdot age  +0.0160 \cdot education -0.415 \cdot female +0.286 \cdot kidsunder12$$
 The cut-off points can be interpreted as follows:
-$$\begin{align*}
+$$
+\begin{aligned}
     Pr(y=1) &= P(z+\epsilon_i \leq -1.4958)\\
     Pr(y=2) &= P(-1.4958 < z+\epsilon_i \leq -0.4381)\\
     Pr(y=3) &= P(-0.4381 < z+\epsilon_i \leq  0.2084)\\
     Pr(y=4) &= P(0.2084 < z+\epsilon_i \leq 0.8352)\\
     Pr(y=4) &= P(0.8352 < z+\epsilon_i \leq 1.6314)\\
     Pr(y=6) &= P(1.6314 \leq z+\epsilon_i )
-\end{align*}$$
+\end{aligned}
+$$
 In order to get the $p$-values displayed in the output, you have to execute two additional steps:
 
 ```{r}
@@ -113,11 +117,14 @@ Economists' modeling of choice
 Travel choice model dependent on cost ($x$) and time ($z$):
 $$V_j = \alpha_j + \beta_1 \cdot x_j + \beta_2 \cdot z_j$$
 Probability of choosing alternative $j$ (assuming three choices):
-$$\begin{align*}
+$$
+\begin{aligned}
     P(1) &= \frac{e^{V_1}}{e^{V_1}+e^{V_2}+e^{V_3}}\\
     P(2) &= \frac{e^{V_2}}{e^{V_1}+e^{V_2}+e^{V_3}}\\
     P(3) &= \frac{e^{V_3}}{e^{V_1}+e^{V_2}+e^{V_3}}
-\end{align*}$$
+\end{aligned}
+$$
+
 Note that $P(1)+P(2)+P(3) = 1$
 
 ### Data Managment

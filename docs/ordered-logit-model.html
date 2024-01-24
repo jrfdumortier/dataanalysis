@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>16.1 Ordered Logit Model | Data Analysis for Public Affairs with R</title>
   <meta name="description" content="16.1 Ordered Logit Model | Data Analysis for Public Affairs with R" />
-  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
   <meta property="og:title" content="16.1 Ordered Logit Model | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2023-08-28" />
+<meta name="date" content="2024-01-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -389,12 +389,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 In the case of the vaccine model, this may be a measure of trust in vaccines. What the researcher does measure is an <span class="math inline">\(m\)</span>-alternative ordered model:
 <span class="math display">\[y_i = j \quad \text{if} \quad \alpha_{j-1} &lt; y_i^* \leq \alpha_j \quad \text{for} \quad  j=1, \dots,m\]</span>
 where <span class="math inline">\(\alpha_0 = - \infty\)</span> and <span class="math inline">\(\alpha_m=\infty\)</span>. In this case, we have
-<span class="math display">\[ \begin{align*}
+<span class="math display">\[
+\begin{aligned}
     Pr(y = j) &amp;=Pr(\alpha_{j-1} &lt; y_i^* \leq \alpha_j)\\
                 &amp;=Pr(\alpha_{j-1} &lt; \beta_0+\beta_1 \cdot x_i + \epsilon_i \leq \alpha_j)\\
                 &amp;=Pr(\alpha_{j-1}- \beta_0-\beta_1 \cdot x_i &lt; \epsilon_i \leq \alpha_j - \beta_0-\beta_1 \cdot x_i)\\
                         &amp;=F(\alpha_j - \beta_0-\beta_1 \cdot x_i)-F(\alpha_{j-1} - \beta_0-\beta_1 \cdot x_i)
-    \end{align*}\]</span>
+\end{aligned}
+\]</span>
 For the ordered logit: <span class="math inline">\(F(z)=exp(z)/(1+exp(z))\)</span>. The cut-off example points for the graph below are <span class="math inline">\(\alpha_0 = -\infty\)</span>, <span class="math inline">\(\alpha_2 = -1.5\)</span>, <span class="math inline">\(\alpha_3 = 2\)</span>, and <span class="math inline">\(\alpha_4 = \infty\)</span></p>
 <p><img src="bookdownproj_files/figure-html/ordered_logit_plot-1.png" width="672" /></p>
 <div id="ordered-logit-example-organic-food-purchase" class="section level3 hasAnchor" number="16.1.1">
@@ -437,14 +439,16 @@ For the ordered logit: <span class="math inline">\(F(z)=exp(z)/(1+exp(z))\)</spa
 <p>For the organic purchases data, the cut-off points are under “Intercepts” and thus, we have (rounded coefficients):
 <span class="math display">\[z =  -0.020 \cdot age  +0.0160 \cdot education -0.415 \cdot female +0.286 \cdot kidsunder12\]</span>
 The cut-off points can be interpreted as follows:
-<span class="math display">\[\begin{align*}
+<span class="math display">\[
+\begin{aligned}
     Pr(y=1) &amp;= P(z+\epsilon_i \leq -1.4958)\\
     Pr(y=2) &amp;= P(-1.4958 &lt; z+\epsilon_i \leq -0.4381)\\
     Pr(y=3) &amp;= P(-0.4381 &lt; z+\epsilon_i \leq  0.2084)\\
     Pr(y=4) &amp;= P(0.2084 &lt; z+\epsilon_i \leq 0.8352)\\
     Pr(y=4) &amp;= P(0.8352 &lt; z+\epsilon_i \leq 1.6314)\\
     Pr(y=6) &amp;= P(1.6314 \leq z+\epsilon_i )
-\end{align*}\]</span>
+\end{aligned}
+\]</span>
 In order to get the <span class="math inline">\(p\)</span>-values displayed in the output, you have to execute two additional steps:</p>
 <div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="ordered-logit-model.html#cb91-1" tabindex="-1"></a>bhat.coef <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="fu">coef</span>(<span class="fu">summary</span>(bhat)))</span>
 <span id="cb91-2"><a href="ordered-logit-model.html#cb91-2" tabindex="-1"></a>bhat.coef<span class="sc">$</span>pval <span class="ot">=</span> <span class="fu">round</span>((<span class="fu">pnorm</span>(<span class="fu">abs</span>(bhat.coef<span class="sc">$</span>t.value),<span class="at">lower.tail=</span><span class="cn">FALSE</span>)<span class="sc">*</span><span class="dv">2</span>),<span class="dv">2</span>)</span>

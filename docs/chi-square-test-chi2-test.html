@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>10.1 Chi-Square Test (\(\chi^2\)-Test) | Data Analysis for Public Affairs with R</title>
   <meta name="description" content="10.1 Chi-Square Test (\(\chi^2\)-Test) | Data Analysis for Public Affairs with R" />
-  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
   <meta property="og:title" content="10.1 Chi-Square Test (\(\chi^2\)-Test) | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2023-08-28" />
+<meta name="date" content="2024-01-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -380,9 +380,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The <span class="math inline">\(\chi^2\)</span>-test is used to conduct a hypothesis test on qualitative variables. Before introducing the procedure, a presentation of the <span class="math inline">\(\chi^2\)</span>-distribution is necessary.</p>
 <p>Given the values <span class="math inline">\(Z_1, Z_2, \dots , Z_k\)</span> independently drawn from standard normal distribution, then the squared sum of those values follows a <span class="math inline">\(\chi^2\)</span>-distribution:
 <span class="math display">\[\sum_{i=1}^k Z_i^2 = Z \sim \chi^2_k\]</span>
-where <span class="math inline">\(k\)</span> specifies the degrees of freedom.
-<img src="bookdownproj_files/figure-html/unnamed-chunk-4-1.png" width="672" />
-To conduct the hypothesis test, consider the data on voting and education in <code>gss</code>. Using the function <code>CrossTable</code> associated with the package <a href="https://cran.r-project.org/web/packages/gmodels/index.html">gmodels</a>, the following table can be constructed.</p>
+where <span class="math inline">\(k\)</span> specifies the degrees of freedom.</p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>To conduct the hypothesis test, consider the data on voting and education in <code>gss</code>. Using the function <code>CrossTable</code> associated with the package <a href="https://cran.r-project.org/web/packages/gmodels/index.html">gmodels</a>, the following table can be constructed.</p>
 <div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="chi-square-test-chi2-test.html#cb39-1" tabindex="-1"></a><span class="fu">CrossTable</span>(gss<span class="sc">$</span>degree,gss<span class="sc">$</span>vote12,<span class="at">prop.r =</span> <span class="cn">FALSE</span>,<span class="at">prop.c =</span> <span class="cn">FALSE</span>,<span class="at">prop.chisq =</span> <span class="cn">FALSE</span>,<span class="at">prop.t=</span><span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## 
 ##  

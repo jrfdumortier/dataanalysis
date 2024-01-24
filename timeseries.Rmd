@@ -155,7 +155,7 @@ An autoregressive model includes lagged dependent variables. One of the simplest
 $$y_t = \alpha + \beta \cdot y_{t-1} + \epsilon_t$$
 where $\epsilon_t \sim N(0,\sigma^2)$. Consider the data of earthquakes over magnitude 7 in the data set `quakes`: 
 ```{r, echo=FALSE}
-ggplot(quakes,aes(x=year,y=quakes))+geom_line()+theme_bw()+theme(axis.title.x=element_blank())
+ggplot(quakes,aes(x=time,y=quakes))+geom_line()+theme_bw()+theme(axis.title.x=element_blank())
 ```
 
 In a first step, a scatter plot is constructed of $Y_{t-1}$ and $y_t$. The easiest way is to use the function `acf`:
@@ -262,7 +262,7 @@ plot(forecast(bhat))
     a. Plot the data. What do you observe in terms of trend, seasonality, and magnitude of fluctuations?
     b. Estimate a regular OLS Model with $sales$ as the dependent variable and a trend as well as monthly dummy variables as independent variables. 
     c. Plot the observed sales and predicted sales over time.
-    d. Repeat the estimation and the plot from (b) and (c) but use the natural log of $sales$, i.e., $\ln(sales), as the dependent variable instead.
+    d. Repeat the estimation and the plot from (b) and (c) but use the natural log of $sales$, i.e., $\ln(sales)$, as the dependent variable instead.
     e. Compare the two graphs you have generated. What is the difference and what is the reason for the difference? Which form of the dependent variable is more appropriate.
   
 2. ***Retail Time Series*** (\*\*\*): Consider the data `retail` and the following model:

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>18.5 Exercises | Data Analysis for Public Affairs with R</title>
   <meta name="description" content="18.5 Exercises | Data Analysis for Public Affairs with R" />
-  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
   <meta property="og:title" content="18.5 Exercises | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2023-08-28" />
+<meta name="date" content="2024-01-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -378,10 +378,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="exercises-14" class="section level2 hasAnchor" number="18.5">
 <h2><span class="header-section-number">18.5</span> Exercises<a href="exercises-14.html#exercises-14" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ol style="list-style-type: decimal">
-<li><p><strong><em>NFL II</em></strong> (***): Consider the data set <code>nfl</code> which includes the performance, salary, and facial symmetry of NFL quarterbacks. The data includes the name and the year and thus, it can be estimated as a panel data model. In a first step, convert the data into a panel data set using the function <code>pdata.frame()</code>. Next, estimate three models: (a) Regular pooled OLS model, (2) fixed-effects model, and (3) random effects model. The regression equation is the same for each model:
-<span class="math display">\[\ln(total) =\beta_0 + \beta_1 \cdot yards+ \beta_2 \cdot att+ \beta_3 \cdot exp+ \beta_4 \cdot exp^2 + \beta_5 \cdot draft1+\beta_6 \cdot draft2\\ + \beta_7 \cdot veteran +\beta_8 \cdot changeteam+ \beta_9 \cdot pbowlever+ \beta_{10} \cdot symm\]</span>
-Report and interpret the output for all three models. What happens to the variable <span class="math inline">\(symm\)</span> in the fixed effects model and why? How does the panel data model compare to the original model which does not incorporate the panel structure?</p></li>
-<li><p><strong><em>Renewable Energy</em></strong> (***): This question is based on the paper <a href="https://doi.org/10.1016/j.eneco.2020.104998">The effect of the feed-in-system policy on renewable energy investments: Evidence from the EU countries</a> by Alolo et al. (2020).</p></li>
+<li><p><strong><em>NFL II</em></strong> (***): Consider the data set <code>nfl</code> which includes the performance, salary, and facial symmetry of NFL quarterbacks. The data includes the name and the year and thus, it can be estimated as a panel data model. In a first step, convert the data into a panel data set using the function <code>pdata.frame()</code>. Next, estimate three models: (a) Regular pooled OLS model, (2) fixed-effects model, and (3) random effects model. The regression equation is the same for each model with the natural log of total compensation, i.e., <span class="math inline">\(\ln(total)\)</span>, as the dependent variable with the following independent variables: <span class="math inline">\(yards\)</span>, <span class="math inline">\(att\)</span>, <span class="math inline">\(exp\)</span>, <span class="math inline">\(exp^2\)</span>, <span class="math inline">\(draft1\)</span>, <span class="math inline">\(draft2\)</span>, <span class="math inline">\(veteran\)</span>, <span class="math inline">\(changeteam\)</span>, <span class="math inline">\(pbowlever\)</span>, and <span class="math inline">\(symm\)</span>. Report and interpret the output for all three models. What happens to the variable <span class="math inline">\(symm\)</span> in the fixed effects model and why? How does the panel data model compare to the original model which does not incorporate the panel structure?</p></li>
+<li><p><strong><em>Renewable Energy</em></strong> (***): This question is based on the paper <a href="https://doi.org/10.1016/j.eneco.2020.104998">The effect of the feed-in-system policy on renewable energy investments: Evidence from the EU countries</a> by Alolo et al. (2020). The dependent variable will be the natural log of <span class="math inline">\(agwind\)</span>. The independent variables are: fiswind+fitwind+fipwind+quota+tax+tender+cap+gdp+electricityconsumption+
+popgrowth+co2+oilprice+naturalgasprice+coalprice+energyimport</p></li>
 <li><p><strong><em>Guns and Crime</em></strong> (***): There is a fierce debate on the relationship between gun ownership and crime. On the one hand, there is the argument that more guns prevent crime due to a deterrence effect. On the other hand, more guns trickling into society increase the likelihood of crime being committed. This data set is one example on how the issue at hand can be analyzed. The data set which is used for this question is part of the <a href="https://cran.r-project.org/web/packages/AER/index.html">AER</a> and can be imported with the command <code>data("Guns",package="AER")</code>. Please read the description of the data set which is available as part of the package. The first regression model to be estimated is written as:
 <span class="math display">\[\ln(violent)=\beta_0+\beta_1 \cdot law+\epsilon\]</span>
 Estimate a fixed effects panel model using the equation above and report the R output. Interpret the results. The second model include year and state fixed effects and is written as follows:

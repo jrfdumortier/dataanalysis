@@ -22,7 +22,7 @@ An event is a subset of the sample space. Examples are
 There are several set operations and we can use Venn diagrams to illustrate them:
 
 - **Intersection**: The intersection $W$ of two sets $X$ and $Y$ is the set of elements that are in both $X$ and $Y$. We write $W=X\cap Y$. 
-- **Empty or Null Sets**: The empty set or the null set ($\emptyset$) is the set with no elements. For example, if the sets $A$ and $B$ contain no common elements then these two sets are said to be disjoint, e.g., odd and even numbers: $ A\cap B=\emptyset$.
+- **Empty or Null Sets**: The empty set or the null set ($\emptyset$) is the set with no elements. For example, if the sets $A$ and $B$ contain no common elements then these two sets are said to be disjoint, e.g., odd and even numbers: $A\cap B=\emptyset$.
 - **Unions**: The union of two sets $A$ and $B$ is the set of all elements in one or the other of the sets. We write $C=A \cup B$.
 - **Complements**: The complement of a set $X$ is the set of elements of the universal set $U$ that are not elements of $X$, and is written $X^{c}$. 
 

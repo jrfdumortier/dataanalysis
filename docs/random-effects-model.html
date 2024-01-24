@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>18.4 Random Effects Model | Data Analysis for Public Affairs with R</title>
   <meta name="description" content="18.4 Random Effects Model | Data Analysis for Public Affairs with R" />
-  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
   <meta property="og:title" content="18.4 Random Effects Model | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2023-08-28" />
+<meta name="date" content="2024-01-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -377,46 +377,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="random-effects-model" class="section level2 hasAnchor" number="18.4">
 <h2><span class="header-section-number">18.4</span> Random Effects Model<a href="random-effects-model.html#random-effects-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-%========================================================================================================================================
-%========================================================================================================================================
-%========================================================================================================================================
-<p>%========================================================================================================================================
-%\begin{frame}[fragile]{Testing for Heteroscedasticity}
-%\begin{verbatim}
-%bptest(inv~value+capital+factor(firm),data=grunfeld)
-%
-% studentized Breusch-Pagan test
-%
-%data: inv ~ value + capital + factor(firm)
-%BP = 25.375, df = 5, p-value = 0.0001179
-%\end{verbatim}
-%If the p-value is below 0.05, then we face heteroscedasticity.
-%\end{frame}
-%========================================================================================================================================
-%\begin{frame}[fragile]{Heteroscedasticity Consistent Coefficients and Standard Errors}
-%\begin{verbatim}
-%coeftest(grunfeld.fixed,vcovHC)
-%
-%t test of coefficients:
-%
-% Estimate Std. Error t value Pr(&gt;|t|)
-%value 0.108400 0.014293 7.5839 7.902e-11 <strong><em>
-%capital 0.345058 0.031152 11.0765 &lt; 2.2e-16 </em></strong>
-%—
-%Signif. codes: 0 ‘<em><strong>’ 0.001 ‘</strong>’ 0.01 ‘</em>’ 0.05 ‘.’ 0.1 ‘ ’ 1
-%
-%coeftest(grunfeld.random,vcovHC)
-%
-%t test of coefficients:
-%
-% Estimate Std. Error t value Pr(&gt;|t|)
-%(Intercept) -73.084676 47.566742 -1.5365 0.1285
-%value 0.108056 0.012149 8.8945 1.915e-13 <strong><em>
-%capital 0.344543 0.032276 10.6750 &lt; 2.2e-16 </em></strong>
-%—
-%Signif. codes: 0 ‘<em><strong>’ 0.001 ‘</strong>’ 0.01 ‘</em>’ 0.05 ‘.’ 0.1 ‘ ’ 1
-%\end{verbatim}
-%\end{frame}</p>
 </div>
             </section>
 

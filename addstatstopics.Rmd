@@ -6,6 +6,7 @@ The $\chi^2$-test is used to conduct a hypothesis test on qualitative variables.
 Given the values $Z_1, Z_2, \dots , Z_k$ independently drawn from standard normal distribution, then the squared sum of those values follows a $\chi^2$-distribution:
 $$\sum_{i=1}^k Z_i^2 = Z \sim \chi^2_k$$
 where $k$ specifies the degrees of freedom. 
+
 ```{r, echo=FALSE}
 draws = 1000
 k = 10
@@ -16,7 +17,9 @@ ylim = range(0,h$density,0.10)
 hist(x,freq=F,ylim=ylim)
 curve(dchisq(x,df=k),add=TRUE)
 ```
+
 To conduct the hypothesis test, consider the data on voting and education in `gss`. Using the function `CrossTable` associated with the package [gmodels](https://cran.r-project.org/web/packages/gmodels/index.html), the following table can be constructed. 
+
 ```{r}
 CrossTable(gss$degree,gss$vote12,prop.r = FALSE,prop.c = FALSE,prop.chisq = FALSE,prop.t=FALSE)
 ```

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>17.3 Count Regression Models | Data Analysis for Public Affairs with R</title>
   <meta name="description" content="17.3 Count Regression Models | Data Analysis for Public Affairs with R" />
-  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
   <meta property="og:title" content="17.3 Count Regression Models | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2023-08-28" />
+<meta name="date" content="2024-01-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -395,30 +395,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span class="math display">\[Pr(Y=k)=\frac{e^{-\lambda} \cdot \lambda^k}{k!}\]</span>
 The important characteristics of the distribution is that the mean and variance are equal to <span class="math inline">\(\lambda\)</span>, i.e., <span class="math inline">\(E(Y)=\lambda\)</span> and <span class="math inline">\(Var(Y)=\lambda\)</span>, this is also known as the equidispersion property. The mean parameter is written as <span class="math inline">\(\lambda=exp(\beta_0+\beta_1 \cdot x_1+ \dots + \beta_k \cdot x_k)\)</span>.</p>
 <p>The first examples uses the 2017 <a href="https://nhts.ornl.gov/">NHTS</a> data contained in <code>hhpub</code>. In a first step, the data is prepared for the regression model, i.e., missing or unknown values are eliminated and income is measured in (thousand) dollar terms:</p>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="count-regression-models.html#cb128-1" tabindex="-1"></a>hhpubdata <span class="ot">=</span> <span class="fu">subset</span>(hhpub,HHFAMINC <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">11</span>) <span class="sc">&amp;</span> HOMEOWN <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>) <span class="sc">&amp;</span> URBRUR <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>) <span class="sc">&amp;</span> HHVEHCNT <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">12</span>))</span>
-<span id="cb128-2"><a href="count-regression-models.html#cb128-2" tabindex="-1"></a>HHFAMINC <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">11</span>)</span>
-<span id="cb128-3"><a href="count-regression-models.html#cb128-3" tabindex="-1"></a>INCOME <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">10</span>,<span class="fl">12.5</span>,<span class="dv">20</span>,<span class="dv">30</span>,<span class="fl">42.5</span>,<span class="fl">57.5</span>,<span class="fl">82.5</span>,<span class="fl">112.5</span>,<span class="fl">137.5</span>,<span class="dv">175</span>,<span class="dv">200</span>)</span>
-<span id="cb128-4"><a href="count-regression-models.html#cb128-4" tabindex="-1"></a>INCOME <span class="ot">=</span> <span class="fu">data.frame</span>(HHFAMINC,INCOME)</span>
-<span id="cb128-5"><a href="count-regression-models.html#cb128-5" tabindex="-1"></a>hhpubdata <span class="ot">=</span> <span class="fu">merge</span>(hhpubdata,INCOME)</span>
-<span id="cb128-6"><a href="count-regression-models.html#cb128-6" tabindex="-1"></a>hhpubdata<span class="sc">$</span>RURAL <span class="ot">=</span> hhpubdata<span class="sc">$</span>URBRUR<span class="dv">-1</span></span>
-<span id="cb128-7"><a href="count-regression-models.html#cb128-7" tabindex="-1"></a>hhpubdata<span class="sc">$</span>RENT <span class="ot">=</span> hhpubdata<span class="sc">$</span>HOMEOWN<span class="dv">-1</span></span></code></pre></div>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="count-regression-models.html#cb128-1" tabindex="-1"></a>hhpubdata <span class="ot">=</span> <span class="fu">subset</span>(hhpub,hhfaminc <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">11</span>) <span class="sc">&amp;</span> homeown <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>) <span class="sc">&amp;</span> urbrur <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>) <span class="sc">&amp;</span> hhvehcnt <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">12</span>))</span>
+<span id="cb128-2"><a href="count-regression-models.html#cb128-2" tabindex="-1"></a>hhfaminc  <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">11</span>)</span>
+<span id="cb128-3"><a href="count-regression-models.html#cb128-3" tabindex="-1"></a>income    <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">10</span>,<span class="fl">12.5</span>,<span class="dv">20</span>,<span class="dv">30</span>,<span class="fl">42.5</span>,<span class="fl">57.5</span>,<span class="fl">82.5</span>,<span class="fl">112.5</span>,<span class="fl">137.5</span>,<span class="dv">175</span>,<span class="dv">200</span>)</span>
+<span id="cb128-4"><a href="count-regression-models.html#cb128-4" tabindex="-1"></a>income    <span class="ot">=</span> <span class="fu">data.frame</span>(hhfaminc,income)</span>
+<span id="cb128-5"><a href="count-regression-models.html#cb128-5" tabindex="-1"></a>hhpubdata <span class="ot">=</span> <span class="fu">merge</span>(hhpubdata,income)</span>
+<span id="cb128-6"><a href="count-regression-models.html#cb128-6" tabindex="-1"></a>hhpubdata<span class="sc">$</span>rural <span class="ot">=</span> hhpubdata<span class="sc">$</span>urbrur<span class="dv">-1</span></span>
+<span id="cb128-7"><a href="count-regression-models.html#cb128-7" tabindex="-1"></a>hhpubdata<span class="sc">$</span>rent <span class="ot">=</span> hhpubdata<span class="sc">$</span>homeown<span class="dv">-1</span></span></code></pre></div>
 <p>The outcome of interest is the number of vehicles based on household income, home ownership, and urban/rural household location. Before executing the Poisson regression model, calculate the mean and variance of the outcome variable.</p>
 <pre><code>## [1] 1.981142</code></pre>
 <pre><code>## [1] 1.386027</code></pre>
 <p>The mean and the variance are similar and thus, estimating a Poisson Regression Model is an appropriate first step. The package <a href="https://cran.r-project.org/web/packages/AER/index.html">AER</a> also contains the function <code>dispersiontest()</code> which conducts a hypothesis test assuming no overdispersion. This test will be used after execution of the main regression. To estimate the model, the <code>glm()</code> function can be used by specifying <code>family=poisson</code>.</p>
-<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="count-regression-models.html#cb131-1" tabindex="-1"></a>bhat_pois <span class="ot">=</span> <span class="fu">glm</span>(HHVEHCNT<span class="sc">~</span>INCOME<span class="sc">+</span>RENT<span class="sc">+</span>RURAL,<span class="at">data=</span>hhpubdata,<span class="at">family=</span>poisson)</span>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="count-regression-models.html#cb131-1" tabindex="-1"></a>bhat_pois <span class="ot">=</span> <span class="fu">glm</span>(hhvehcnt<span class="sc">~</span>income<span class="sc">+</span>rent<span class="sc">+</span>rural,<span class="at">data=</span>hhpubdata,<span class="at">family=</span>poisson)</span>
 <span id="cb131-2"><a href="count-regression-models.html#cb131-2" tabindex="-1"></a><span class="fu">summary</span>(bhat_pois)</span></code></pre></div>
 <pre><code>## 
 ## Call:
-## glm(formula = HHVEHCNT ~ INCOME + RENT + RURAL, family = poisson, 
+## glm(formula = hhvehcnt ~ income + rent + rural, family = poisson, 
 ##     data = hhpubdata)
 ## 
 ## Coefficients:
 ##               Estimate Std. Error z value Pr(&gt;|z|)    
 ## (Intercept)  4.654e-01  4.292e-03  108.43   &lt;2e-16 ***
-## INCOME       2.986e-03  3.601e-05   82.93   &lt;2e-16 ***
-## RENT        -3.733e-01  5.797e-03  -64.39   &lt;2e-16 ***
-## RURAL        2.224e-01  4.616e-03   48.19   &lt;2e-16 ***
+## income       2.986e-03  3.601e-05   82.93   &lt;2e-16 ***
+## rent        -3.733e-01  5.797e-03  -64.39   &lt;2e-16 ***
+## rural        2.224e-01  4.616e-03   48.19   &lt;2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 

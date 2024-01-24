@@ -83,7 +83,7 @@ rm(funAWD,funRWD,bhat)
 ## Natural Logarithm
 Transforming the dependent and/or independent variables using the natural logarithm has some important and useful interpretations. Consider the following simple consumption equation in which both variables are in logarithmic form:
 $$ln(consumption)=\beta_0+\beta_1 \cdot \ln(income)+\epsilon$$
-In this case, $\beta_1$ is the elasticity of consumption with respect to income, i.e., a 1\% increase in income leads to a $\beta_1 \cdot 1\% $ increase in consumption. For example, if $\beta_1=0.4$, then a 1\% increase in income will rise consumption by 0.4\%. Note that the percentage increase is only an approximation for small changes.
+In this case, $\beta_1$ is the elasticity of consumption with respect to income, i.e., a 1\% increase in income leads to a $\beta_1 \cdot 1\%$ increase in consumption. For example, if $\beta_1=0.4$, then a 1\% increase in income will rise consumption by 0.4\%. Note that the percentage increase is only an approximation for small changes.
 
 | Dep. Var. | Indep. Var | Interpretation                                                       |
 |:---------:|:----------:|:---------------------------------------------------------------------|
@@ -147,7 +147,7 @@ $$\ln(total)=\beta_0+\beta_1 \cdot yards+\beta_2 \cdot att+\beta_3 \cdot exp+\be
 Report the output and interpret the coefficients in terms of statistical significance and direction (i.e., sign).
 
 8. ***Boston*** (\*\*\*): For this exercise, use the data set `boston`. In a first step, execute the following code:
-```{r,echo=FALSE,results=FALSE}
+```{r,results=FALSE}
 library(corrplot)
 corr_matrix = cor(boston)
 corrplot(corr_matrix,type="upper")

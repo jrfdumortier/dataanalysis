@@ -10,7 +10,7 @@ Some data sets are generic, i.e., randomly generated, to highlight a particular 
 
 - `accidents` (N=30): Generic data on the number of $accidents$, $temperature$ in Fahrenheit, and $precipitation$ in inches.
 
-- `airlines` (N=211918): On-time and delay statistics for the 100 largest airports (by number of 2019 arrivals) by airline January 2004 to May 2022. The variable names are mostly self-explanatory. The variables $arrflights$ and $arrdel15$ are the total number of arriving flights and the number of flight delayed at least 15 minutes. The original data is available [here](https://www.transtats.bts.gov/ot_delay/ot_delaycause1.asp).   
+- `airlines` (N=211918): On-time and delay statistics for the 100 largest airports (by number of 2019 arrivals) by airline January 2004 to May 2022. The variable names are mostly self-explanatory. The variables $arrflights$ and $arrdel15$ are the total number of arriving flights and the number of flight delayed at least 15 minutes. The original data is available [here](https://www.transtats.bts.gov/ot_delay/ot_delaycause1.asp).
 
 - `anscombe` (N=11): Anscombe's Quartet where $yi$ and $xi$ represent dependent and independent variable of set $i$, respectively. This data set is widely available and is also included in R.
 
@@ -32,217 +32,136 @@ Some data sets are generic, i.e., randomly generated, to highlight a particular 
 
 - `censoring` (N=50): Generic data in which values of the response variable below 0 are reported as 0. The researcher observes $y$ and $x$ but not $yreal$.
 
-- `chicagogrocery` (N=77): The data set was represents the information from [2013 grocery stores](https://github.com/Chicago/food-deserts) and [Community Data Snapshots Raw Data from March 2014](https://datahub.cmap.illinois.gov/dataset/community-data-snapshots-raw-data]. It includes the following variables:
-    - $cca$: Name of the Chicago Community Area
-    - $stores$: Number of grocery stores
-    - $sqft$: Sum of store square footage
-    - $income$: Median income
-    - $homevalue$: Median home value
-    - $pop$: Population
-    - $whitepop$: White population
-    - $laborforce$: Labor Force
-    - $unemployed$: Unemployed people
-    - $black$: Black population
-    - $acres$: Area of the CCA
+- `chicagogrocery` (N=77): The data set was represents the information from [2013 grocery stores](https://github.com/Chicago/food-deserts) and [Community Data Snapshots Raw Data from March 2014](https://datahub.cmap.illinois.gov/dataset/community-data-snapshots-raw-data]. It includes the following variables: $cca$ (Name of the Chicago Community Area), $stores$ (number of grocery stores), $sqft$ (sum of store square footage), $income$ (median income), $homevalue$ (median home value), $pop$ (population), $whitepop$ (white population), $laborforce$ (labor force), $unemployed$ (unemployed people), $black$ (black population), and $acres$ (area of the CCA).
 
 - `childmortality` (N=64): Data on child mortality ($cm$, number of deaths of children under age 5 in a year per 1000 live births), female literacy rate ($flfp$, percent), per-capita GNP in 1980 ($pgnp$), and total fertility rate ($tfr$ 1980–1985, the average number of children born to a woman, using age-specific fertility rates for a given year). The data was taken from Table 6.4 in Basic Econometrics (4th edition) by Damodar N. Gujarati.
 
-- `coffee` (N=29): Historical data about the coffee consumption in the United States. The variable $consumption$ is measured in thousand 60-kg bags. The variable $price$ represents the retail price of roasted coffee in US Dollars per pound. Both time series are obtained from the International Coffee Association. The variables $rdi$ and $cpi$ represent real disposable income and the consumer price index, respectively. Those data series are obtained from the St. Louis FRED database. The same is true for the variable $population$. The variables $rprice$ and $pcconsumption$ represent the real coffee prices and the per-capita consumption of coffee. 
+- `coffee` (N=29): Historical data about the coffee consumption in the United States. The variable $consumption$ is measured in thousand 60-kg bags. The variable $price$ represents the retail price of roasted coffee in US Dollars per pound. Both time series are obtained from the International Coffee Association. The variables $rdi$ and $cpi$ represent real disposable income and the consumer price index, respectively. Those data series are obtained from the St. Louis FRED database. The same is true for the variable $population$. The variables $rprice$ and $pcconsumption$ represent the real coffee prices and the per capita consumption of coffee.
 
 - `compactcars` (N=78): Fuel efficiency of compact cars in 1995 and 2015. The fuel efficiency is expressed in miles per gallon in the columns $automatic$ and $manual$, respectively. The variable $displ$ represents the displacement in liters. 
-
 - `covid`: Daily time series of COVID-19 $cases$ and $death$ (cumulative count). The variables $newcases$ and $newdeaths$ correspond to the additional cases each day. The number of observations is variable since it is updated on a daily basis. The data can be obtained from a [New York Times GitHub](https://raw.githubusercontent.com/nytimes/covid-19-data/master/us.csv) account.
 
 - `cps7885` (N=1084): Data from the Current Population Survey (CPS) for the year 1978 and 1985. The data accompanies the book *Introductory Econometrics: A Modern Approach* by Jeffrey M. Wooldridge. It contains the following variables: $educ$ (years of schooling), $south$ (1 if live in south), $nonwhite$ (1 if nonwhite), $female$ (1 if female), $married$ (1 if married), $exper$, $age$, $union$ (1 if belong to union), $wage$, and $year$ (78 or 85).
 
-- `crime` (N=99): Crime rates in North Carolina counties
+- `crime` (N=99): Crime rates in North Carolina counties.
 
 - `discharge` (N=7): Generic data set of pollutant discharge into a river measured in gallons.
 
 - `eggweights` (N=61): Weight in grams of Large Grade A Brown Eggs from Whole Foods. 
 
-- `eucrime`: Intentional homicide data in Europe. Data series \texttt{crim\_hom\_soff} from Eurostat.
+- `eucrime`: Intentional homicide data in Europe from Eurostat.
 
 - `evdata` (N=579): Data about the choice of consumers with respect to alternative fuel vehicles. The variable $choice$ represents the choice by the consumer for gasoline vehicles (1), conventional hybrids (2), plug-in hybrids (3), and electric vehicles (4). For each consumer, you have the following variables: $age$, $level2$ (indicating whether people have a fast charger for electric cars in their community), $female$, and $numcars$ (number of cars). The variable $income$ is coded as follows: Under \$15,000 (1), \$15,000 to \$24,999 (2), \$25,000 to \$34, 999 (3), \$35,000 to \$49,999 (4), \$50,000 to \$74,999 (5), \$75,000 to \$99,999 (6), \$100,000 to \$149,999 (7), \$150,000 to \$199,999 (8), \$200,000 to \$249,000 (9), above \$250,000 (10). The variable $edu$ is coded as follows: Less than High School (1), High School / GED (2), Some College (3), 2-year College Degree (4), 4-year College Degree (5), Masters Degree (6), Doctoral Degree (7). The variable $politics$ is coded as follows: Extremely Liberal (1), Liberal (2), Slightly liberal (3), Moderate (4), Slightly conservative (5), Conservative (6), Extremely conservative (7), Other (8), None (9). See [Dumortier et al. (2014)](https://doi.org/10.1016/j.tra.2014.12.005) for more details. 
 
-- `ez` (N=107):
+- `exemptorgs` (N=42135): Tax exempt organizations in Indiana (Source: [IRS Exempt Organizations Business Master File Extract (EO BMF)](https://www.irs.gov/charities-non-profits/exempt-organizations-business-master-file-extract-eo-bmf)) updated on 11 December 2023. The variables are $name$, $state$, $deductability$ (1 meaning contributions are deductible, 2 meaning contributions are not deductible, and 4 meaning contributions are deductible by treaty, which may refer to foreign organizations), $organization$ (1-Corporation, 2-Trust, 3-Cooperative, 4-Partnership, 5-Association). The variables $assets$, $income$, and $revenue$ are measured in USD. The variable $ntee$ refers to the National Taxonomy of Exempt Entities and may be missing for some older organizations. A full list is available [here](https://urbaninstitute.github.io/nccs-legacy/ntee/ntee.html).
 
-- `factor` (N=3199):
+- `ez` (N=107): This data is taken from *Introductory Econometrics: A Modern Approach* by Jeffrey M. Wooldridge. The variable $uclms$ represents the unemployment claims in Anderson (Indiana). The variable $ez$ indicates the presence of the enterprise zone in the city. An enterprise zone benefits from tax breaks and other public support to spur economic activity. 
 
-- `fair` (N=601):
+- `factor` (N=3199): The data is associated with the analysis in [Lane et al. (2018)](https://doi.org/10.1016/j.trd.2018.07.019). On a scale from 1--5, respondents had to rank the importance of various vehicle attributes. 
 
-- `faithful` (N=272): Eruption and waiting in time minutes of Old Faithful Geyser. This data is included in R. 
+- `fair` (N=601): The data comes from the analysis presented in the 1978 paper [A Theory of Extramarital Affairs](https://doi.org/10.1086/260646) by Ray C. Fair. The variable $affairs$ representing the number of extramarital affairs in the past year. Everything of seven and above is coded as 7. The other variables are $male$, $yearsmarried$ (number of years married), $children$, $religious$ (religiousness on a scale of 1-5 with 1 being basically an atheist), and $marriagehappiness$ (self-rating of marriage with 1=very unhappy to 5=very happy).
 
-- `fatalcity` (N=8131):
+- `faithful` (N=272): Eruption and waiting in time minutes of Old Faithful Geyser. This data is also included in R. 
 
-- `fatalstate` (N=26893):
+- `fatalcity` (N=8131): Each row represents a car accident with at least one fatality according to the Fatality Analysis Reporting System (FARS). The accidents occurred in counties (identified by their $fips$ code) comprising a city. Except $year$, all other variables are dummy variables indicating characteristics associated with the accident.
 
-- `fertil1` ($N=1129$): Data from the General Social Survey. The data set is accompanying the book *Introductory Econometrics: A Modern Approach* by Jeffrey Wooldridge. The variables are as follows:  
-    - $year$: 72 to 84, even
-    - $educ$:  years of schooling
-    - $meduc$ and $feduc$: mother's and father's education
-    - $kids$: number children ever born
-    - $east$, $northcentral$, and $west$: 1 if lived in at 16
-    - $farm$: 1 if on farm at 16
-    - $otherrural$: 1 if other rural at 16
-    - $town$: 1 if lived in town at 16
-    - $smallcity$: 1 if in small city at 16
+- `fatalstate` (N=26893): Each row represents a car accident with at least one fatality according to the Fatality Analysis Reporting System (FARS). The accidents occurred in counties (identified by their $fips$ code) in various states. The variable $state$ identifies the FIPS code of the state. 
 
-- `fetransmission` (N=9297):
+- `fertil1` (N=1129): Data from the General Social Survey. The data set is accompanying the book *Introductory Econometrics: A Modern Approach* by Jeffrey Wooldridge. The variables are as follows: $year$ (72 to 84, even), $educ$ (years of schooling), $meduc$ and $feduc$ (mother's and father's education), $kids$ (number children ever born), $east$, $northcentral$, and $west$ (equal to 1 if lived in at 16), $farm$ (equal to 1 if on farm at 16), $otherrural$ (equal to 1 if other rural at 16), $town$ (equal to 1 if lived in town at 16), and $smallcity$ (equal to 1 if in small city at 16).
+
+- `fetransmission` (N=9297): Fuel efficiency of cars from 1984 and 2023. This data is similar to `compactcars` except for all years and all vehicle classes. The fuel efficiency is expressed in miles per gallon in the columns $automatic$ and $manual$, respectively. The variable $displ$ represents the displacement in liters.
 
 - `fpdata` (N=176):
 
-- `gqtestdata` (N=50): Generic (hetroscedastic) home value data of $price$ and living area ($sqft$).
+- `gqtestdata` (N=50): Generic (heteroscedastic) home value data of $price$ and living area ($sqft$).
 
-- `grunfeld` (N=200): 
+- `grunfeld` (N=200): This is a standard data set to introduce panel data models. It represents investment data from ten firms over the years from 1935 to 1954. The variables are $firm$, $year$, $inv$ (gross investment), $value$ (value of the firm), and $capital$ (stock of plant and equipment). 
 
 - `gss` (N=2867): 2016 data from the General Social Survey with the variables that are mostly self-explanatory. The variables $wrkstat$ and $cappun$ refer to the Work status and the stance on the death penalty, respectively. The variables $facebook$ and $instagrm$ indicates if the respondent uses the respective social media platform. 
      
-- `happy` (N=631): Data from the 2018 General Social Survey about happiness which includes the following variables:
-    - $sexfreq$: Frequency of sex during last year
-    - $gun$: Have gun in home
-    - $sclass$: Subjective class identification
-    - $health1$: Condition of health
-    - $happiness$: General happiness
-    - $party$: Political party affiliation. You may want to combine the ``Ind, near democrat'' and ``Not str democrat'' into the same category, e.g., ``lean democrat''. Do the same for republicans.
-    - $education$: Highest year of school completed
-    - $age$: Age of respondent
+- `happy` (N=631): Data from the 2018 General Social Survey about happiness which includes the following variables:  $sexfreq$: Frequency of sex during last year, $gun$: Have gun in home, $sclass$: Subjective class identification, $health1$: Condition of health, $happiness$: General happiness, $party$: Political party affiliation. You may want to combine the "Ind, near democrat" and "Not str democrat" into the same category, e.g., "lean democrat." Do the same for Republicans., $education$: Highest year of school completed, $age$: Age of respondent
 
-- `hdi` ($N=189$): Human Development Indicator from 2019.
+- `hdi` (N=189): Human Development Indicator from 2019.
 
-- `heating` (N=900): R package [mlogit](https://cran.r-project.org/web/packages/mlogit/index.html). There are five types of heating systems: gas central ($gc$), gas room ($gr$), electric central ($ec$), electric room ($er$), and heat pump ($hp$). There are also the following variables: 
-    - $idcase$ gives the observation number (1-900),
-    - $depvar$ identifies the chosen alternative (gc, gr, ec, er, hp),
-    - $ic.alt$ is the installation cost for the 5 alternatives,
-    - $oc.alt$ is the annual operating cost for the 5 alternatives,
-    - $income$ is the annual income of the household,
-    - $agehed$ is the age of the household head,
-    - $rooms$ is the number of rooms in the house,
-    - $region$ a factor with levels $ncostl$ (northern coastal region), $scostl$ (southern coastal region), $mountn$ (mountain region), $valley$ (central valley region).
+- `heating` (N=900): R package [mlogit](https://cran.r-project.org/web/packages/mlogit/index.html). There are five types of heating systems: gas central ($gc$), gas room ($gr$), electric central ($ec$), electric room ($er$), and heat pump ($hp$). There are also the following variables: $idcase$ gives the observation number (1-900), $depvar$ identifies the chosen alternative (gc, gr, ec, er, hp), $ic.alt$ is the installation cost for the 5 alternatives, $oc.alt$ is the annual operating cost for the 5 alternatives, $income$ is the annual income of the household, $agehed$ is the age of the household head, $rooms$ is the number of rooms in the house, $region$ a factor with levels $ncostl$ (northern coastal region), $scostl$ (southern coastal region), $mountn$ (mountain region), $valley$ (central valley region).
 
-- `henning` (N=194):
+- `henning` (N=194): The data set `henning` is similar to `rossi` and comes from the paper [Cognitive-behavioral treatment of incarcerated offenders: An evaluation of the Vermont Department of Corrections' Cognitive Self-Change Program](https://doi.org/10.1177/0093854896023004001) by Henning and Frueh (1996). The following variables will be used in this analysis: $months$ (day of re-arrest measured in months), censor (dummy variable ), personal (offense against a person), property (offense against property), and cage (centered age at time of release, i.e., age minus average age).
 
-- `hhpub` (N=129696):
+- `hhpub` (N=129696): The data contains household data from the 2017 National Household Travel Survey (NHTS). Some columns were deleted but the detailed code book can be found [here](https://nhts.ornl.gov/tables09/CodebookBrowser.aspx). The variables included are: $homeown$ (home ownership), $hhsize$ (count of household members), $hhvehcnt$ (count of household vehicles), $hhfaminc$ (household income), $bike$ (frequency of bicycle use for travel), $price$ (price of gasoline affects travel), $place$ (travel is financial burden), $ptrans$ (public transporation to reduce financial burden of travel), $hhstate$ (household state), $urbrur$ (household in urban/rural area), and $hbppopdn$ (category of population density (persons per square mile) in the census block group of the household's home location.
 
-- `honda` (N=81): 
+- `honda` (N=81): Prices and miles of used Honda Accords in the Indianapolis area.
 
 - `housing`: Data from FRED 
 
-- `housing1` (N=88): 
+- `housing1` (N=88): This data is taken from *Introductory Econometrics: A Modern Approach* by Jeffrey M. Wooldridge. The variables are the following: $price$ (house price in USD 1000), $assess$ (assessed value in USD 1000), $bdrms$ (number of bedrooms), $lotsize$ (in square feet), $sqrft$ (home size in square feet), and $colonial$ (equal to 1 if house is in colonial style).
 
-- `hprice2` (N=506):
+- `hprice2` (N=506): This data is taken from *Introductory Econometrics: A Modern Approach* by Jeffrey M. Wooldridge. The variables are the following: $price$ (median housing price in USD), $crime$ (crimes committed per capita), $nox$ (nitrogen oxide concentration), $rooms$ (number of rooms), $dist$ (weighted distance to five employment centers), $radial$ (accessibility index highways), $proptax$ (property tax per USD 1000), $stratio$ (average student-teacher ratio), and $lowstat$ (percent of people of lower socioeconomic status).
 
-- `hps`: Household Pulse Survey
+- `hybrid` (N=1000): This is a generic data set with the following variables: $y$ (equal to 1 if person purchased a hybrid car), $gas$ price of gasoline at the time of purchase, $increment$ (price difference compared to gasoline car), $college$ as dummy variable indicating if person has a college degree, and $env$ as a dummy variable indicating whether person is associated with an environmental group.
 
-- `hybrid` ($N=1000$): 
+- `indyheating` (N=24): Contains 24 observations of natural gas usage (in hundreds of cubic feet) and the average outside temperature (in Fahrenheit).
 
-- `indyheating` ($N=24$): Contains 24 observations of natural gas usage (in hundreds of cubic feet) and the average outside temperature (in Fahrenheit).
+- `indyhomes` (N=102): This data set contains home characteristics from two ZIP codes in Indianapolis.
 
-- `indyhomes` ($N=102$): 
+- `jcars` (N=43): The data is taken from *Forecasting: Methods and Applications* by Makridakis, Wheelwright, and Hyndman (1998). It contains Japanese motor vehicle production in thousand (1947–1989). 
 
-- `jcars`
+- `kiel` (N=321): This data is taken from *Introductory Econometrics: A Modern Approach* by Jeffrey M. Wooldridge. It includes the following variables: $year$ (1978 or 1981), $age$ (age of house), $nbh$ (neighborhood, 1-6), $cbd$ (distance to central business district in feet), $intst$ (distance to interstate in feet), $price$ (selling price), $rooms$ (number of rooms in house), $area$ (square footage of house), $land$ (square footage lot), $baths$ (number of bathrooms), $dist$ (distance from house to incinerator in feet), $wind$ (percent time wind from incinerator to house), $y81$ (equal to 1 if year is 1981), $nearinc$ (equal 1 if distance is less than 15840 feet), $rprice$ (real price in 1978 dollars).
 
-- `kiel`
+- `lung` (N=228): The data is associated with the R package [survival](https://cran.r-project.org/web/packages/survival/index.html) and includes the survival of patients with lung cancer. The variables included are the following: $inst$ (institution code), $time$ (survival time in days), $phecog$ (ECOG performance score as rated by the physician: 0=asymptomatic, 1=symptomatic but completely ambulatory, 2=in bed less than 50% of the day, 3=in bed more than 50% of the day but not bed bound, 4 = bed bound), $phkarno$ (Karnofsky performance score from 0=bad to 100=good as rated by physician), $patkarno$ (Karnofsky performance score as rated by the patient), $mealcal$ (calories consumed at meals) and $wtloss$ (weight loss in last six months in pounds).
 
-- `lung` (N=228):
+- `meatdemand` (N=39): Meet demand quantity ($q$) and real price ($p$) data from the U.S. Department of Agriculture. Prices and real disposable income ($rdi$) are in real terms.  
 
-- `meatdemand` ($N=39$): Meet demand quantity ($q$) and real price ($p$) data from the U.S. Department of Agriculture. Prices and real disposable income ($rdi$) are in real terms.  
+- `mh1` (N=101): Home values in the Meridian Hills area in Indianapolis.
 
-- `mh1` ($N=101$): Home values in the Meridian Hills area in Indianapolis.
+- `mh2` (N=18): Prices and characteristics of homes in the Meridian Hills area in Indianapolis.
 
-- `mh2` ($N=18$): Prices and characteristics of homes in the Meridian Hills area in Indianapolis.
+- `milk` (N=50): Randomly generated milk container fillings in ounces.
 
-- `milk` ($N=50$): Randomly generated milk container fillings in ounces.
+- `mpa` (N=18): Randomly generated exam scores in a class of MPA students.
 
-- `mpa` ($N=18$): Randomly generated exam scores in a class of MPA students.
+- `nfl` (N=1009): Data from [Berri et al. (2011)](https://doi.org/10.1016/j.econlet.2011.02.018) which includes the following variables: $total$ (total salary), $yards$ (passing yards from the prior season), $att$ (pass attempts), $exp$ (total years of experience in the league), $exp2$ (total years of experience in the league squared), $draft1$ (first round draft pick), $draft2$ (second round draft pick), $veteran$ (bargaining status changes after a player has completed three years in the NFL), $changeteam$ (player has changed team), $pbowlever$ (player appeared in the Pro Bowl), and $symm$ (facial symmetry).
 
-- `nfl` ($N=1009$): Data from \citet{Berri:2011} which includes the following variables:
-     - $total$: Total salary
-     - $yards$: Passing yards from the prior season
-     - $att$: Pass attempts
-     - $exp$: Total years of experience in the league.
-     - $exp2$: Total years of experience in the league squared.
-     - $draft1$: First round draft pick.
-     - $draft2$: Second round draft pick.
-     - $veteran$: Bargaining status changes after a player has completed three years in the NFL.
-     - $changeteam$: Player has changed team.
-     - $pbowlever$: Player appeared in the Pro Bowl.
-     - $symm$: Facial symmetry.
+- `ohioincome` (N=607): Enrollment and median income in Ohio School districts for 2018/2019. $IRN$ identifies the school district.
 
-- `ohioincome` ($N=607$): Enrollment and median income in Ohio School districts for 2018/2019. $IRN$ identifies the school district.
+- `ohioscore` (N=608): Performance and achievement scores of Ohio schools for 2018/2019. The data is obtained from the [Ohio Department of Education](https://reportcard.education.ohio.gov/). $IRN$ identifies the school district.
 
-- `ohioscore` ($N=608$): Performance and achievement scores of Ohio schools for 2018/2019. The data is obtained from the \href{https://reportcard.education.ohio.gov/}{Ohio Department of Education}. $IRN$ identifies the school district.
+- `organic` (N=100): Randomly generated data on the purchase behavior of organic food (binary choice) as a function of income.
 
-- `organic` ($N=100$): Randomly generated data on the purchase behavior of organic food (binary choice) as a function of income.
+- `quakes` (N=99): Time series of the annual number of earthquakes in the world with seismic magnitude over 7.0, for 99 consecutive years. The data is taken from [Penn State STAT 510 Applied Time Series Analysis](https://online.stat.psu.edu/stat510/).
 
-- `quakes`:
+- `quillayute` (N=20116): Weather data from Quillayute Airport in Washington State. Weather station USW00094240. The variables are $date$, $temperature$ (average between maximum and minimum temperature in degree Fahrenheit), and $month$ (month of the year).
 
-- `quillayute` (N=20116): Weather data from Quillayute Airport in Washington State. Weather station USW00094240.
-    - $date$: Date
-    - $temperature$: Average between maximum and minimum temperature in degree Fahrenheit
-    - $month$: Month of the year
+- `retail` (N=348): [Advance Retail Sales: Retail (Excluding Food Services)](https://fred.stlouisfed.org/series/RSXFSN) obtained from the St. Louis FRED.
 
-- `retail` ($N=348$): \href{https://fred.stlouisfed.org/series/RSXFSN}{Advance Retail Sales: Retail (Excluding Food Services)} obtained from the St. Louis FRED.
+- `rossi` (N=432): Experimental recidivism study on 432 male prisoners over a period of one year after
+release from prison ([Rossi et al., 1980](https://doi.org/10.1016/C2013-0-11412-2)). The following variables are included: $week$ (week of first arrest after release, or censoring time), $arrest$ (the event indicator, equal to 1 for those arrested during the period of the study and 0 for those who were not arrested), $fin$ (a factor, with levels yes if the individual received financial aid after release from prison, and no if he did not; financial aid was a randomly assigned factor manipulated by the researchers), $age$ (in years at the time of release), $race$ (a factor with levels black and other), $wexp$ (a factor with levels yes if the individual had full-time work experience prior to incarceration and no if he did not), $mar$ (a factor with levels married if the individual was married at the time of release and not married if he was not), $paro$ (a factor coded yes if the individual was released on parole and no if he was not), $prio$ (number of prior convictions), $educ$ (education, a categorical variable coded numerically, with codes 2 (grade 6 or less), 3 (grades 6 through 9), 4 (grades 10 and 11), 5 (grade 12), or 6 (some post-secondary)), and $emp1$ to $emp52$ (factors coded yes if the individual was employed in the corresponding week of the study and no otherwise).
 
-- `rossi` ($N=432$):
+- `skewness` (N=500): Randomly generated data from a beta distribution with various parameters. $beta55$ ($a=5$ and $b=5$), $beta28$ ($a=2$ and $b=8$), and $beta82$ ($a=8$ and $b=2$).
 
-week: week of first arrest after release, or censoring time.
-arrest: the event indicator, equal to 1 for those arrested during the period of the study and 0 for those who were not arrested.
-fin: a factor, with levels yes if the individual received financial aid after release from prison, and no if he did not; financial aid was a randomly assigned factor manipulated by the researchers.
-age: in years at the time of release.
-race: a factor with levels black and other.
-wexp: a factor with levels yes if the individual had full-time work experience prior to incarceration and no if he did not.
-mar: a factor with levels married if the individual was married at the time of release and not married if he was not.
-paro: a factor coded yes if the individual was released on parole and no if he was not.
-prio: number of prior convictions.
-educ: education, a categorical variable coded numerically, with codes 2 (grade 6 or less), 3 (grades 6 through 9), 4 (grades 10 and 11), 5 (grade 12), or 6 (some post-secondary).
-emp1 – emp52: factors coded yes if the individual was employed in the corresponding week of the study and no otherwise.
+- `soda` (N=25): Randomly generated data of for soda cans (in milliliters).
 
+- `souvenirs` (N=84): The data is taken from *Forecasting: Methods and Applications* by Makridakis, Wheelwright, and Hyndman (1998). It contains monthly sales for a souvenir shop on the wharf at a beach resort town in Queensland, Australia. The data is also contained in the R package [fma](https://cran.r-project.org/web/packages/fma/index.html) as `fancy`.
 
-- `skewness` ($N=500$): Randomly generated data from a beta distribution:
-\begin{itemize}
-\item \emph{beta55}: $a=5$ and $b=5$.
-\item \emph{beta28}: $a=2$ and $b=8$.
-\item \emph{beta82}: $a=8$ and $b=2$.
-\end{itemize}
+- `statefinhealth` (N=51): Data taken from the Urban Institute's Financial Health and Wealth Dashboard 2022. The data includes the following variables: $state$, $delinquentdebt$ (residents with delinquent debt), $emergencysavings$ (Households with at least USD 2000 in emergency savings), $mediancreditscore$, $mortgageforeclosure$ (mortgage holders in foreclosure), and $mediannetworth$.
 
-- `soda` ($N=25$): Randomly generated data of for soda cans (in milliliters).
+- `states` (N=10): Generic income data for three states.
 
-- `souvenirs`
+- `traffic` (N=108): This data is taken from *Introductory Econometrics: A Modern Approach* by Jeffrey M. Wooldridge. It contains the following variables: $year$, $month$, $totacc$ (statewide total accidents), $t$ (time trend), $unem$ (state unemployment rate), $spdlaw$ (equal to 1 after 65 mph in effect), $bltlaw$ (equal to 1 after seatbelt law), and $wkends$ (number of weekends in month).
 
-- `states` ($N=10$): Generated income data for three states.
+- `truncation` (n=50): Generic truncated data for which the researcher only observes $yobs$ as the independent variable and $x$ as the dependent variable. $yreal$ are the (partially unobserved) values of the dependent variable.
 
-- `usdata`: Data from the St. Louis FRED data base.
-     - $income$: Real Disposable Personal Income: Per Capita
-     - $consumption$: Real personal consumption expenditures per capita
+- `usdata` (N=307): Data from the St. Louis FRED data base of real disposable personal income per capita ($income$) and real personal consumption expenditures per capita ($consumption$).
 
-- `vehicles` ($N=42702$): The data set contains data about the fuel efficiency of vehicles from model year 1984 to 2021 ($year$). It also includes $make$ and $model$ for the various manufacturers. The variable $displ$ refers to engine displacement in liters\footnote{\url{https://en.wikipedia.org/wiki/Engine_displacement}}, $VClass$ is the vehicle class, $ghgScore$ indicates the greenhouse gas (GHG) emissions, and $comb08U$ is unrounded combined MPG. The data is obtained from the U.S. Environmental Protection Agency' (EPA) \href{https://www.fueleconomy.gov/feg/download.shtml}{Fuel Economy Data} webpage. The full dataset contains many more variables which are well [documented](https://www.fueleconomy.gov/feg/ws/index.shtml#vehicle).
+- `vehicles` (N=45885): The data set contains data about the fuel efficiency of vehicles from model year 1984 to 2021 ($year$). It also includes $make$ and $model$ of the various manufacturers. The variable $displ$ refers to [engine displacement](https://en.wikipedia.org/wiki/Engine_displacement) in liters, $vclass$ is the vehicle class, $co2tailpipegpm$ indicates the greenhouse gas (GHG) emissions, and $comb08$ is combined MPG. The other variables are self-explanatory. The data is obtained from the U.S. Environmental Protection Agency' (EPA) [Fuel Economy Data](https://www.fueleconomy.gov/feg/download.shtml) webpage. The full data set contains many more variables which are well documented [here](https://www.fueleconomy.gov/feg/ws/index.shtml#vehicle).
 
-- `vehpub` ($N=256115$): The data contains vehicle data from the 2017 National Household Travel Survey (NHTS). Some columns were deleted but the detailed code book can be found [here](https://nhts.ornl.gov/tables09/CodebookBrowser.aspx). The variables included are:
-    - $HOUSEID$: Household Identifier 
-    - $VEHID$: Vehicle Identifier
-    - $VEHYEAR$: Vehicle Year
-    - $MAKE$: Vehicle Make
-    - $FUELTYPE$: Fuel Type
-    - $VEHTYPE$: Vehicle Type
-    - $OD\_READ$: Odometer Reading
-    - $HFUEL$: Type of Hybrid Vehicle
-    - $HYBRID$: Hybrid vehicle
-    - $HOMEOWN$: Home Ownership
-    - $HHFAMINC$: Household income
-    - $HHSTATE$: Household state
-    - $URBRUR$: Household in urban/rural area
+- `vehpub` (N=256115): The data contains vehicle data from the 2017 National Household Travel Survey (NHTS). Some columns were deleted but the detailed code book can be found [here](https://nhts.ornl.gov/tables09/CodebookBrowser.aspx). The variables included are: $houseid$ (household identifier), $vehid$ (vehicle identifier), $vehyear$ (vehicle year), $make$ (vehicle make), $fueltype$ (fuel type), $vehtype$ (vehicle type), $odread$ (odometer reading), $hfuel$ (type of hybrid vehicle), $hybrid$ (hybrid vehicle), $homeown$ (home ownership), $hhfaminc$ (household income), $hhstate$ (household state), $urbrur$ (household in urban/rural area).
 
-- `waterpressure` ($N=30$): Randomly generated data on the water pressure in a city's water lines.
+- `wage` (N=526): This data is taken from *Introductory Econometrics: A Modern Approach* by Jeffrey M. Wooldridge. It contains the following variables: $income$ (average hourly earnings), $educ$ (years of education), and $exper$ (years potential experience).
 
-- `wdi` ($N=13237$): World Development Indicators (WDI) from the World Bank. The following variables are included in the data set. 
-    - $iso2c$: Country code
-    - $country$: Country name
-    - $year$: Year
-    - $gdp$: GDP per capita (constant 2010 US$)
-    - $lifeexp$: Life expectancy at birth, total (years)
-    - $litrate$: Literacy rate, adult total (\% of people ages 15 and above)
-    - $fertrate$: Fertility rate, total (births per woman)
-    - $mortrate$: Mortality rate, under 5 (per 1,000 live births)
-    - $region$: [Geographic region](https://datahelpdesk.worldbank.org/knowledgebase/articles/378834-how-does-the-world-bank-classify-countries)
-    - $incomeLevel$: Income groupings are based on Gross National Income per-capita
+- `wage2` (N=935): This data is taken from *Introductory Econometrics: A Modern Approach* by Jeffrey M. Wooldridge. It contains the following variables: $wage$ (monthly earnings), $hours$ (average weekly hours), $kww$ knowledge of world work score, $educ$ (years of education), $exper$ (years of work experience), $tenure$ (years with current employer), $age$ (age in years), $married$ (equal to 1 if married), $black$ (equal to 1 if black), $south$ (equal to 1 if live in south), $urban$ (equal to 1 if live in SMSA), $sibs$ (number of siblings), $brthord$ (birth order), $meduc$ (mother's education), $feduc$ (father's education).
+
+- `waterpressure` (N=30): Randomly generated data on the water pressure in a city's water lines.
+
+- `wdi` (N=13671): World Development Indicators (WDI) from the World Bank. The following variables are included in the data set: Country code ($iso2c$), $country$, $year$, gross domestic product per capita in constant 2010 USD ($gdp$), life expectancy at birth in years ($lifeexp$), adult literacy rate (percent of people ages 15 and above) ($litrate$), fertility rate (births per woman) ($fertrate$), mortality rate under age of five (per 1,000 live births) ($mortrate$), [geographic region](https://datahelpdesk.worldbank.org/knowledgebase/articles/378834-how-does-the-world-bank-classify-countries) ($region$), and income groupings based on gross national income per capita ($incomeLevel$).
+    
+- `windsolar` (N=648): The data is taken from the paper [The effect of the feed-in-system policy on renewable energy investments: Evidence from the EU countries](https://doi.org/10.1016/j.eneco.2020.104998) by Alolo et al. (2020). The data contains the following variables: $country$, $year$, added wind capacity in Megawatts ($agwind$), presence of either a feed-in-premium (FIP) or a feed-in-tariff (FIT) ($fiswind$), presence of a FIT ($fitwind$), presence of a FIP ($fipwind$), existence of a quota trade system ($quota$), existence of tax benefits ($tax$), existence of a $tender$ mechanism, existence of an electricity price $cap$, gross domestic product ($gdp$), per capita $electricityconsumption$, percent of electricity from various sources ($coalshare$, $renewableshare$, $oilshare$, $nuclearshare$, and $naturalgasshare$), population growth ($popgrowth$), per capita carbon emissions $co2$, prices of various energy sources ($oilprice$, $naturalgasprice$, and $coalprice$), energy dependence defined as energy imports divided by total energy consumption ($energyimport$).

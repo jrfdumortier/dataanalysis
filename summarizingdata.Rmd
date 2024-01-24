@@ -159,31 +159,10 @@ CrossTable(gss$owngun,gss$sex,prop.chisq=FALSE)
 
 1. ***Natural Gas Usage and Temperature*** (\*\*): Use the data `indyheating` for this exercise. Construct a scatter plot with temperature on the horizontal axis and natural gas usage on the vertical axis. What do you observe? How would you expect the graph to look like if electricity consumption was on the vertical axis?
 
-2. ***Household Pulse Survey*** (\*\*\*): The U.S. Census Bureau has created a weekly survey to *"quickly and efficiently deploy data collected on how people's lives have been impacted by the coronavirus pandemic."* You find three tools to explore the data on the survey's [webpage](https://www.census.gov/data/experimental-data-products/household-pulse-survey.html): (1) Interactive Tool, (2) Data Tables, and (3) Public Use Files (PUF). The PUF contains original data. For this exercise, download the PUF of the most recent week available in csv-format, which is denoted "HPS Week X PUF CSV". Extract the zip-file and keep the two necessary files for this exercise: `pulse2020_puf_X.csv` and `pulse2020_data.dictonary_CSV_X.csv`. Note that the file names may be slightly different depending on the year. Column $Variable$ in `pulse2020_data.dictonary_CSV_X.csv` describes the columns in `pulse2020_puf_X.csv`. 
-
-     a. Pick two variables which are of interest to you, e.g., "Educational attainment" and "Frequency of worry over previous 7 days," and construct a cross-table using the package [gmodels](https://cran.r-project.org/web/packages/gmodels/index.html). 
-     b. What is your interpretation of the results obtained in part (a)? Is it what you expected? What do you conclude from a policy perspective? 
-     
-     Here is a hint how the R-code would look like this for the relationship between worrying and education:
-
-```{r SUMhouseholdpulsesurvey,results=FALSE,eval=FALSE}
-hps   = subset(hps,WORRY %in% c(1:4) & EEDUC %in% c(1:7))
-EEDUC = data.frame(EEDUC=c(1:7),
-                   EDU=c("Less than high school",
-                         "Some high school",
-                         "High school graduate or equivalent",
-                         "Some college",
-                         "Associate's degree",
-                         "Bachelor's degree", 
-                         "Graduate degree"))
-WORRY = data.frame(WORRY=c(1:4),
-                   WORRIED=c("Not at all","Several days",
-                   "More than half the days","Nearly every day"))
-hps   = merge(hps,WORRY)
-hps   = merge(hps,EEDUC)
-hps   = CrossTable(hps$EDU,hps$WORRIED)
-hps[["prop.row"]]
-```
+2. ***Exempt Organizations*** (\*\*\*): Consider the data in `exemptorgs`. You are going to calculate the average revenue across the so-called NTEE codes. Proceed as follows:
+     a. Subset the data such that you are only left with the columns $revenue$ and $ntee$.
+     b. Use the function `na.omit()` on the data set you created in (a). What is the function used for?
+     c. Use the function `aggregate()` and calculate the mean assets, revenue, and income by NTEE code. The table created in your answer should contain the NTEE codes in plain English, that is, not the alphabetical codes.
 
 3. ***GSS Two-Way Table*** (\*\*): In the data set `gss`, pick two of the following variables: $fulltime$, $government$, $married$, $vote$, $gun$, $deathpenalty$. Construct a cross-table similar to the one about gender and guns in the section *Introduction to R*.  using the function `CrossTable()`. Ignore the Chi-square statistic but explain if you see any pattern that is of interest.
 
@@ -242,3 +221,11 @@ ggplot(wdiofinterest,aes(x=region,y=lifeexp,fill=as.character(year)))+
 ```
 
 11. ***Faithful*** (\*\*): The data set `faithful` which is included with R contains data about the eruption and waiting times in minutes between eruptions from Old Faithful geyser in Yellowstone National Park. Use a scatter plot to visualize the relationship between eruption and waiting time. That is, generate graph with $eruption$ on the vertical axis and $waiting$ on the horizontal axis. What do you observe? What is the correlation coefficient? Is there anything odd in the resulting scatter plot? Next, use R to construct a empirical cumulative distribution function.
+
+12. ***Financial Health*** (\*\*\*): Consider the data in `statefinhealth`. Execute the following commands requiring the package [corrplot](https://cran.r-project.org/web/packages/corrplot/index.html) and include the resulting figure in the homework. What does the plot display? Explain the relationship between the components. Are some of the results surprising?
+```{r,results="hide"}
+dffin     = statefinhealth[,c(2:6)]
+dffin     = cor(dffin)
+corrplot(dffin,type="upper")
+```
+

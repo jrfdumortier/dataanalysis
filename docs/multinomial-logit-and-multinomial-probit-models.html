@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>16.2 Multinomial Logit and Multinomial Probit Models | Data Analysis for Public Affairs with R</title>
   <meta name="description" content="16.2 Multinomial Logit and Multinomial Probit Models | Data Analysis for Public Affairs with R" />
-  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
   <meta property="og:title" content="16.2 Multinomial Logit and Multinomial Probit Models | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2023-08-28" />
+<meta name="date" content="2024-01-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -394,12 +394,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Travel choice model dependent on cost (<span class="math inline">\(x\)</span>) and time (<span class="math inline">\(z\)</span>):
 <span class="math display">\[V_j = \alpha_j + \beta_1 \cdot x_j + \beta_2 \cdot z_j\]</span>
 Probability of choosing alternative <span class="math inline">\(j\)</span> (assuming three choices):
-<span class="math display">\[\begin{align*}
+<span class="math display">\[
+\begin{aligned}
     P(1) &amp;= \frac{e^{V_1}}{e^{V_1}+e^{V_2}+e^{V_3}}\\
     P(2) &amp;= \frac{e^{V_2}}{e^{V_1}+e^{V_2}+e^{V_3}}\\
     P(3) &amp;= \frac{e^{V_3}}{e^{V_1}+e^{V_2}+e^{V_3}}
-\end{align*}\]</span>
-Note that <span class="math inline">\(P(1)+P(2)+P(3) = 1\)</span></p>
+\end{aligned}
+\]</span></p>
+<p>Note that <span class="math inline">\(P(1)+P(2)+P(3) = 1\)</span></p>
 </div>
 <div id="data-managment" class="section level3 hasAnchor" number="16.2.2">
 <h3><span class="header-section-number">16.2.2</span> Data Managment<a href="multinomial-logit-and-multinomial-probit-models.html#data-managment" class="anchor-section" aria-label="Anchor link to header"></a></h3>

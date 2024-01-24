@@ -15,35 +15,33 @@ The following packages are necessary for this section: [AER](https://cran.r-proj
 
 Truncation and censoring lead to a bias in the estimates. It is not always clear why or if the data is limited in its range. 
 
-
-
 ## Truncation
 In the case of truncation, a certain part of the data is not observed. In the graph below, the true parameters are $\beta_0=-2$ and $\beta_1=0.5$. Values $y<0$ are not reported in the data. The green regression line is "correct" whereas the "red" is the line obtained from a regression model which ignores the truncation.  
 
 ```{r truncationplot, echo=FALSE}
-bhat_real           = lm(y_real~x,data=truncation)
-bhat_truncated      = lm(y_obs~x,data=truncation)
-plot(truncation$x,truncation$y_obs,xlim=c(0,10),ylim=c(-3,5),pch=19,ylab="y",xlab="x")
-     points(truncation$x,truncation$y_real)
-     abline(bhat_real,col=c("darkgreen"))
-     abline(bhat_truncated,col=c("red"))
+bhatreal           = lm(yreal~x,data=truncation)
+bhattruncated      = lm(yobs~x,data=truncation)
+plot(truncation$x,truncation$yobs,xlim=c(0,10),ylim=c(-3,5),pch=19,ylab="y",xlab="x")
+     points(truncation$x,truncation$yreal)
+     abline(bhatreal,col=c("darkgreen"))
+     abline(bhattruncated,col=c("red"))
 ```
 If all the data was observed, the correct regression model would give the following results:
-```{r truncation_bhat_real}
-summary(bhat_real)
+```{r truncationbhatreal}
+summary(bhatreal)
 ```
 
 The estimates are biased if truncation is ignored:
-```{r truncation_bhat_incorrect}
-summary(bhat_truncated)
+```{r truncationbhatincorrect}
+summary(bhattruncated)
 
 ```
 
 To correct for the truncation, use the functions from the package [truncreg](https://cran.r-project.org/web/packages/truncreg/index.html) which allows to reduce the bias of the coefficients:
 
 ```{r truncation_bhat_correct}
-bhat_correct = truncreg(y_obs~x,data=truncation)
-summary(bhat_correct)
+bhatcorrect = truncreg(yobs~x,data=truncation)
+summary(bhatcorrect)
 ```
 
 ## Censoring
@@ -96,25 +94,25 @@ The important characteristics of the distribution is that the mean and variance 
 The first examples uses the 2017 [NHTS](https://nhts.ornl.gov/) data contained in `hhpub`. In a first step, the data is prepared for the regression model, i.e., missing or unknown values are eliminated and income is measured in (thousand) dollar terms:
 
 ```{r poissonregression_cleanhhpub,results=FALSE}
-hhpubdata = subset(hhpub,HHFAMINC %in% c(1:11) & HOMEOWN %in% c(1,2) & URBRUR %in% c(1,2) & HHVEHCNT %in% c(0:12))
-HHFAMINC = c(1:11)
-INCOME = c(10,12.5,20,30,42.5,57.5,82.5,112.5,137.5,175,200)
-INCOME = data.frame(HHFAMINC,INCOME)
-hhpubdata = merge(hhpubdata,INCOME)
-hhpubdata$RURAL = hhpubdata$URBRUR-1
-hhpubdata$RENT = hhpubdata$HOMEOWN-1
+hhpubdata = subset(hhpub,hhfaminc %in% c(1:11) & homeown %in% c(1,2) & urbrur %in% c(1,2) & hhvehcnt %in% c(0:12))
+hhfaminc  = c(1:11)
+income    = c(10,12.5,20,30,42.5,57.5,82.5,112.5,137.5,175,200)
+income    = data.frame(hhfaminc,income)
+hhpubdata = merge(hhpubdata,income)
+hhpubdata$rural = hhpubdata$urbrur-1
+hhpubdata$rent = hhpubdata$homeown-1
 ```
 
 The outcome of interest is the number of vehicles based on household income, home ownership, and urban/rural household location. Before executing the Poisson regression model, calculate the mean and variance of the outcome variable.
 
 ```{r, echo=FALSE}
-mean(hhpubdata$HHVEHCNT)
-var(hhpubdata$HHVEHCNT)
+mean(hhpubdata$hhvehcnt)
+var(hhpubdata$hhvehcnt)
 ```
 The mean and the variance are similar and thus, estimating a Poisson Regression Model is an appropriate first step. The package [AER](https://cran.r-project.org/web/packages/AER/index.html) also contains the function `dispersiontest()` which conducts a hypothesis test assuming no overdispersion. This test will be used after execution of the main regression. To estimate the model, the `glm()` function can be used by specifying `family=poisson`.
 
 ```{r }
-bhat_pois = glm(HHVEHCNT~INCOME+RENT+RURAL,data=hhpubdata,family=poisson)
+bhat_pois = glm(hhvehcnt~income+rent+rural,data=hhpubdata,family=poisson)
 summary(bhat_pois)
 ```
 
@@ -205,12 +203,12 @@ summary(bhat_hurdle)
 
 2. ***Chicago Grocery Stores*** (\*\*\*): Subdivision of Chicago are called Chicago Community Areas (CCA). The data in `chicagogrocery` includes data about the number of grocery stores ($stores$) in each CCA as well as demographic information. Estimate a Poisson and Negative Binomial Regression Model with $stores$ as the dependent variable and the following independent variables: $income$, $pop$, unemployment rate ($unemployed/laborforce$) and percentage of blacks ($black/pop$). What do you conclude? Are the results what you would expect?
 
-3. ***Extramarital Affairs*** (\*\*\*): Consider the data set in `fair`. The data comes from the analysis presented in the 1978 paper [A Theory of Extramarital Affairs](https://doi.org/10.1086/260646) by Ray C. Fair. The dependent variable is $affairs$ representing the number of extramarital affairs in the past year. Everything of seven and above is coded as 7. The independent variables, which we are going to use are $male$, $yearsmarried$ (number of years married), $children$, $religious$ (religiousness on a scale of 1-5 with 1 being basically an atheist), and $marriagehappiness$ (self-rating of marriage with 1=very unhappy to 5=very happy). You are going to execute five models: (1) regular OLS, (2) Probit, (3) Poisson, (4) Negative Binomial, and (5) Hurdle Model. For the Probit model, you are running a model with a binary variable of either 0 (no affair) or 1 (at least one affair). Compare the models in terms of statistical significance. What changes from one model to the next? What model is the most appropriate and why?
+3. ***Extramarital Affairs*** (\*\*\*): Consider the data set in `fair`. The independent variables, which we are going to use are $male$, $yearsmarried$ (number of years married), $children$, $religious$ (religiousness on a scale of 1-5 with 1 being basically an atheist), and $marriagehappiness$ (self-rating of marriage with 1=very unhappy to 5=very happy). You are going to execute five models: (1) regular OLS, (2) Probit, (3) Poisson, (4) Negative Binomial, and (5) Hurdle Model. For the Probit model, you are running a model with a binary variable of either 0 (no affair) or 1 (at least one affair). Compare the models in terms of statistical significance. What changes from one model to the next? What model is the most appropriate and why?
 
 4. ***Biochemistry Articles*** (\*\*\*): Publish or perish summarizes life in academia. The dependent variable of interest is $articles$ and the independent variables are $female$, $married$, $kidsbelow6$, and $mentorarticles$ (number of articles by Ph.D. mentor). Estimate a quasi-poisson and a hurdle model. According to the model, what matters in terms of graduate student productivity? Why do those findings matter?
 
 5. ***BLM II*** (\*\*\*): In a previous exercise, a regular OLS regression model was used to explain the positive number of protests. In this exercise, a zero-inflated and a hurdle model are estimated. The dependent variable for this exercise is protest frequency ($totprotests$) and the independent variables are city population ($pop$), population density ($popdensity$), percent Black ($percentblack$), black poverty rate ($blackpovertyrate$), percent of population with at least a bachelor ($percentbachelor$), college enrollment ($collegeenrollpc$), share of democrats ($demshare$), and Black police-caused deaths per 10,000 people ($deathsblackpc$). Interpret the output of the two models.
 
-6. ***Lung Cancer*** (\*\*): The data `lung` includes the following variables: $inst$ (institution code), $time$ (survival time in days), $phecog$ (ECOG performance score as rated by the physician: 0=asymptomatic, 1=symptomatic but completely ambulatory, 2=in bed less than 50% of the day, 3=in bed more than 50% of the day but not bed bound, 4 = bed bound), $phkarno$ (Karnofsky performance score from 0=bad to 100=good as rated by physician), $patkarno$ (Karnofsky performance score as rated by the patient), $mealcal$ (calories consumed at meals) and $wtloss$ (weight loss in last six months in pounds). Plot the survival curve differentiating by sex. Estimate a survival model with $age$ and $female$ as the independent variables.  
+6. ***Lung Cancer*** (\*\*): Consider the data in `lung`. Plot the survival curve differentiating by sex. Estimate a survival model with $age$ and $female$ as the independent variables.  
 
-7. ***Henning*** (\*\*\*): The data set `henning` is similar to `rossi` and comes from the paper [Cognitive-behavioral treatment of incarcerated offenders: An evaluation of the Vermont Department of Corrections' Cognitive Self-Change Program](https://doi.org/10.1177/0093854896023004001) by Henning and Frueh (1996). The following variables will be used in this analysis: $months$ (day of re-arrest measured in months), censor (dummy variable ), personal (offense against a person), property (offense against property), and cage (centered age at time of release, i.e., age minus average age).  Plot the survival curve differentiating by $personal$. Estimate three survival models with the following independent variables: (1) personal, (2) personal and property, and (3) personal, property, and cage. Interpret the output. Is there a big difference in coefficients? 
+7. ***Henning*** (\*\*\*):  Plot the survival curve differentiating by $personal$. Estimate three survival models with the following independent variables: (1) personal, (2) personal and property, and (3) personal, property, and cage. Interpret the output. Is there a big difference in coefficients? 
