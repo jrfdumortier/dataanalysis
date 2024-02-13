@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2024-01-23" />
+<meta name="date" content="2024-02-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -378,9 +378,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="exercises-9" class="section level2 hasAnchor" number="13.1">
 <h2><span class="header-section-number">13.1</span> Exercises<a href="exercises-9.html#exercises-9" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ol style="list-style-type: decimal">
-<li><strong><em>Indy Homes II</em></strong> (**)Consider the data in <code>indyhomes</code>. A real estate agent once mentioned that homes built in the eighties are of lower quality and thus, are cheaper. One possibility to asses this claim is with an ANOVA model. Add three new dummy variables to the data frame: eighties (equal to 1 if the home was built in any year between 1980 to 1989), northwest (equal to 1 if the home is in the 46268 ZIP code), and singlestory (equal to 1 if the home has one story). Estimate the following ANOVA model:
+<li><p><strong><em>Indy Homes II</em></strong> (***): Consider the data in <code>indyhomes</code>. A real estate agent once mentioned that homes built in the eighties are of lower quality and are thus cheaper. One possibility to asses this claim is with an ANOVA model. Add three new dummy variables to the data frame: eighties (equal to 1 if the home was built in any year between 1980 to 1989), northwest (equal to 1 if the home is in the 46268 ZIP code), and single story (equal to 1 if the home has one story). Estimate the following ANOVA model:
 <span class="math display">\[price = \beta_0+\beta_1 \cdot d_{80s}+\beta_2 \cdot d_{northwest} + \beta_3 \cdot d_{single}\]</span>
-What do you conclude? Next, add square footage to the model. What has changed in terms of coefficients? How do you interpret that change?</li>
+What do you conclude? Next, add square footage to the model. What has changed in terms of coefficients? How do you interpret that change?</p></li>
+<li><p><strong><em>State Capitals II</em></strong> (**): Consider the data in <code>apartments</code>, which contains information about furnished apartments in Berlin and Potsdam. You are going to estimate four models with either <span class="math inline">\(rent\)</span> or <span class="math inline">\(\ln(rent)\)</span> as the dependent variables and <span class="math inline">\(location\)</span> and <span class="math inline">\(company\)</span> as the independent variables. Model 1 can be written as follows
+<span class="math display">\[rent = \beta_0+\beta_1 \cdot location\]</span>
+Model 2 can be written as follows
+<span class="math display">\[rent = \beta_0+\beta_1 \cdot location + \beta_2 \cdot company\]</span>
+Model 3 can be written as follows
+<span class="math display">\[\ln(rent) = \beta_0+\beta_1 \cdot location\]</span>
+Model 4 can be written as follows
+<span class="math display">\[\ln(rent) = \beta_0+\beta_1 \cdot location+ \beta_2 \cdot company\]</span>
+Since there are multiple companies and R/RStudio will create factors for each of them, you will have more than just <span class="math inline">\(\beta_2\)</span> coefficients. Interpret the coefficients. How do the coefficients change?</p></li>
 </ol>
 
 </div>

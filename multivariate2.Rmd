@@ -5,7 +5,6 @@ There are also slides associated with this chapter:
 
 - [Violating Assumptions - Slides](https://github.com/jrfdumortier/slidesstatistics/blob/main/ViolatingAssumptions.pdf)
 
-
 ## Heteroscedasticity
 A key assumption of the OLS model is homoscedasticity error terms. That is, the error variance is constant:
 $$Var(\epsilon_i) = \sigma^2$$
@@ -225,16 +224,7 @@ $$\hat{\upsilon}_t = \alpha_0 + \alpha_1 \cdot x_t + \hat{\rho}_1 \cdot \hat{\up
 Then
 $$(n-p) \cdot R^2 \sim \chi^2_p$$
 
-\begin{frame}{Wages and Productivity in the United States 1959-1998}
-    Consider the data in \emph{business.csv} and do the following:
-        \begin{enumerate}
-            \item Plot the data in a scatter plot
-            \item Run the regression in level form as well as log format
-            \item Plot the diagnostic plots.
-            \item Run the Durbin-Watson test and the Breusch-Godfrey test. What do you conclude?
-            \item Run the regression by (1) including a trend variable and (2) a squared term but no trend.
-        \end{enumerate}
-\end{frame}
+
 
 ## Exercises
 
@@ -254,3 +244,16 @@ Conduct a test for heteroscedasticity of your choice. Is there heteroscedasticit
 $$fertrate=\beta_0+\beta_1 \cdot gdp+\beta_2 \cdot litrate+\beta_3 \cdot lifeexp+\beta_4 \cdot mortrate$$
 Interpret the results. What do you conclude in terms of statistical significance and the value of $R^2$? Use the function `vif` from the package `car`. What can you say about the issue of multicollinearity in this case? Correct the issue of multicollinearity by adjusting your model.
 
+4. 
+
+5. ***Wages, Productivity, and Autocorrelation*** (\*\*\*):
+\begin{frame}{Wages and Productivity in the United States 1959-1998}
+    Consider the data in \emph{business.csv} and do the following:
+        \begin{enumerate}
+            \item Plot the data in a scatter plot
+            \item Run the regression in level form as well as log format
+            \item Plot the diagnostic plots.
+            \item Run the Durbin-Watson test and the Breusch-Godfrey test. What do you conclude?
+            \item Run the regression by (1) including a trend variable and (2) a squared term but no trend.
+        \end{enumerate}
+\end{frame}
