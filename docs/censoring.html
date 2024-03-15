@@ -386,19 +386,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## lm(formula = yreal ~ x, data = censoring)
 ## 
 ## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -2.36087 -0.54654 -0.05193  0.68759  2.73136 
+##     Min      1Q  Median      3Q     Max 
+## -2.3707 -0.8230 -0.1525  0.7057  3.1032 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) -1.92076    0.29763  -6.453 5.07e-08 ***
-## x            0.44580    0.05482   8.132 1.39e-10 ***
+## (Intercept) -1.79575    0.31045  -5.784 5.35e-07 ***
+## x            0.44893    0.05551   8.088 1.62e-10 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 1.054 on 48 degrees of freedom
-## Multiple R-squared:  0.5794, Adjusted R-squared:  0.5706 
-## F-statistic: 66.12 on 1 and 48 DF,  p-value: 1.394e-10</code></pre>
+## Residual standard error: 1.176 on 48 degrees of freedom
+## Multiple R-squared:  0.5768, Adjusted R-squared:  0.568 
+## F-statistic: 65.42 on 1 and 48 DF,  p-value: 1.622e-10</code></pre>
 <p>Ignoring censoring leads to biased results:</p>
 <div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="censoring.html#cb124-1" tabindex="-1"></a><span class="fu">summary</span>(bhat_censored)</span></code></pre></div>
 <pre><code>## 
@@ -407,18 +407,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
-## -1.20830 -0.42404  0.08197  0.30730  1.58097 
+## -1.50895 -0.55421 -0.09853  0.28767  2.43058 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) -0.37803    0.17476  -2.163   0.0355 *  
-## x            0.24470    0.03219   7.602 8.85e-10 ***
+## (Intercept) -0.35947    0.23417  -1.535    0.131    
+## x            0.26499    0.04187   6.329 7.85e-08 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 0.6186 on 48 degrees of freedom
-## Multiple R-squared:  0.5463, Adjusted R-squared:  0.5368 
-## F-statistic: 57.79 on 1 and 48 DF,  p-value: 8.846e-10</code></pre>
+## Residual standard error: 0.8869 on 48 degrees of freedom
+## Multiple R-squared:  0.4549, Adjusted R-squared:  0.4436 
+## F-statistic: 40.06 on 1 and 48 DF,  p-value: 7.853e-08</code></pre>
 <p>Using the R package <a href="https://cran.r-project.org/web/packages/censReg/index.html">censReg</a>) allows for the reduction of the bias:</p>
 <div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="censoring.html#cb126-1" tabindex="-1"></a>b_correct <span class="ot">=</span> <span class="fu">censReg</span>(y<span class="sc">~</span>x,<span class="at">data=</span>censoring)</span>
 <span id="cb126-2"><a href="censoring.html#cb126-2" tabindex="-1"></a><span class="fu">summary</span>(b_correct)</span></code></pre></div>
@@ -428,19 +428,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Observations:
 ##          Total  Left-censored     Uncensored Right-censored 
-##             50             22             28              0 
+##             50             23             27              0 
 ## 
 ## Coefficients:
 ##             Estimate Std. error t value  Pr(&gt; t)    
-## (Intercept) -1.44613    0.36608  -3.950 7.80e-05 ***
-## x            0.38638    0.05924   6.522 6.92e-11 ***
-## logSigma    -0.14172    0.14238  -0.995     0.32    
+## (Intercept) -2.01919    0.53095  -3.803 0.000143 ***
+## x            0.47381    0.08049   5.887 3.94e-09 ***
+## logSigma     0.23227    0.14264   1.628 0.103432    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## Newton-Raphson maximisation, 6 iterations
-## Return code 8: successive function values within relative tolerance limit (reltol)
-## Log-likelihood: -48.15507 on 3 Df</code></pre>
+## Return code 1: gradient close to zero (gradtol)
+## Log-likelihood: -54.88586 on 3 Df</code></pre>
 </div>
             </section>
 

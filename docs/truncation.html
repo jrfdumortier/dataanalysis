@@ -386,19 +386,19 @@ If all the data was observed, the correct regression model would give the follow
 ## lm(formula = yreal ~ x, data = truncation)
 ## 
 ## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -2.03049 -0.74295  0.08173  0.74879  2.33519 
+##     Min      1Q  Median      3Q     Max 
+## -2.0300 -0.6778 -0.1484  0.7101  2.0034 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  -2.0842     0.2839  -7.341 2.21e-09 ***
-## x             0.5260     0.0545   9.652 7.98e-13 ***
+## (Intercept) -1.95643    0.27902  -7.012 7.05e-09 ***
+## x            0.51658    0.05071  10.188 1.37e-13 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 1.008 on 48 degrees of freedom
-## Multiple R-squared:  0.6599, Adjusted R-squared:  0.6529 
-## F-statistic: 93.15 on 1 and 48 DF,  p-value: 7.984e-13</code></pre>
+## Residual standard error: 1.048 on 48 degrees of freedom
+## Multiple R-squared:  0.6838, Adjusted R-squared:  0.6772 
+## F-statistic: 103.8 on 1 and 48 DF,  p-value: 1.372e-13</code></pre>
 <p>The estimates are biased if truncation is ignored:</p>
 <div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="truncation.html#cb118-1" tabindex="-1"></a><span class="fu">summary</span>(bhattruncated)</span></code></pre></div>
 <pre><code>## 
@@ -406,20 +406,20 @@ If all the data was observed, the correct regression model would give the follow
 ## lm(formula = yobs ~ x, data = truncation)
 ## 
 ## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -1.56809 -0.71414 -0.06843  0.58821  1.65911 
+##     Min      1Q  Median      3Q     Max 
+## -2.1092 -0.5793 -0.2110  0.5564  1.6747 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) -0.63071    0.59825  -1.054 0.301851    
-## x            0.34327    0.08946   3.837 0.000752 ***
+## (Intercept) -0.84279    0.62042  -1.358 0.185998    
+## x            0.38663    0.08905   4.342 0.000191 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 0.8949 on 25 degrees of freedom
-##   (23 observations deleted due to missingness)
-## Multiple R-squared:  0.3706, Adjusted R-squared:  0.3455 
-## F-statistic: 14.72 on 1 and 25 DF,  p-value: 0.000752</code></pre>
+## Residual standard error: 0.9732 on 26 degrees of freedom
+##   (22 observations deleted due to missingness)
+## Multiple R-squared:  0.4203, Adjusted R-squared:  0.398 
+## F-statistic: 18.85 on 1 and 26 DF,  p-value: 0.0001909</code></pre>
 <p>To correct for the truncation, use the functions from the package <a href="https://cran.r-project.org/web/packages/truncreg/index.html">truncreg</a> which allows to reduce the bias of the coefficients:</p>
 <div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="truncation.html#cb120-1" tabindex="-1"></a>bhatcorrect <span class="ot">=</span> <span class="fu">truncreg</span>(yobs<span class="sc">~</span>x,<span class="at">data=</span>truncation)</span>
 <span id="cb120-2"><a href="truncation.html#cb120-2" tabindex="-1"></a><span class="fu">summary</span>(bhatcorrect)</span></code></pre></div>
@@ -428,20 +428,20 @@ If all the data was observed, the correct regression model would give the follow
 ## truncreg(formula = yobs ~ x, data = truncation)
 ## 
 ## BFGS maximization method
-## 34 iterations, 0h:0m:0s 
-## g&#39;(-H)^-1g = 8.53E-11 
+## 31 iterations, 0h:0m:0s 
+## g&#39;(-H)^-1g = 2.7E-12 
 ##  
 ## 
 ## 
 ## Coefficients :
 ##             Estimate Std. Error t-value  Pr(&gt;|t|)    
-## (Intercept) -2.47203    1.35511 -1.8242  0.068117 .  
-## x            0.56968    0.17531  3.2496  0.001156 ** 
-## sigma        1.03294    0.21090  4.8978 9.691e-07 ***
+## (Intercept) -3.03940    1.51806 -2.0022  0.045267 *  
+## x            0.64446    0.18585  3.4676  0.000525 ***
+## sigma        1.13419    0.22654  5.0066 5.541e-07 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Log-Likelihood: -29.992 on 3 Df</code></pre>
+## Log-Likelihood: -32.986 on 3 Df</code></pre>
 </div>
             </section>
 
