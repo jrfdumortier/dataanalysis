@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>16.3 Exercises | Data Analysis for Public Affairs with R</title>
   <meta name="description" content="16.3 Exercises | Data Analysis for Public Affairs with R" />
-  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.38 and GitBook 2.6.7" />
 
   <meta property="og:title" content="16.3 Exercises | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2024-02-13" />
+<meta name="date" content="2024-03-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -380,12 +380,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol style="list-style-type: decimal">
 <li><p><strong><em>Happiness</em></strong> (***): Using the data set <code>happy</code>, generate an ordered logit regression model that regresses the dependent variable <span class="math inline">\(happiness\)</span> on those variables that have the strongest potential causal relationship. For your model, interpret the R output and indicate why each independent variable that is included in the model would contribute to higher or lower happiness. Speak to the possibility of multicollinearity in the independent variables.</p></li>
 <li><p><strong><em>AFV Choice</em></strong> (***): The data <code>evdata</code> contains data about the choice of consumers with respect to alternative fuel vehicles. For each consumer, you have the following variables: <span class="math inline">\(age\)</span>, <span class="math inline">\(suv\)</span> (whether they are interested in buying a SUV), <span class="math inline">\(level2\)</span> (indicating whether people have a fast charger for electric cars in their community), <span class="math inline">\(own \dots\)</span> (indicating whether the respondent currently has a gas, hybrid, plug- in hybrid, or battery electric vehicle), <span class="math inline">\(gender\)</span> (1=female) and <span class="math inline">\(numcars\)</span> (number of cars). Estimate a multinomial logit model that estimates the probability of a consumer to purchase a gasoline, hybrid, plug-in hybrid, or battery electric vehicle. Calculate the marginal probabilities as well.</p></li>
-<li><p><strong><em>NHTS</em></strong> (***): Consider the data set <code>hhpub</code> from the 2017 National Household Travel Survey (NHTS). The data contains information about household characteristics and some of their travel means. For this question, you will focus on the following variables: <span class="math inline">\(BIKE\)</span>, <span class="math inline">\(HBPPOPDN\)</span>, <span class="math inline">\(HHFAMINC\)</span>, <span class="math inline">\(HHVEHCNT\)</span>, <span class="math inline">\(HOMEOWN\)</span>, and <span class="math inline">\(URBRUR\)</span>. You must read the <a href="https://nhts.ornl.gov/tables09/CodebookBrowser.aspx">codebook</a> for this question and learn how the variables are coded. Go to the <a href="https://nhts.ornl.gov/tables09/CodebookBrowser.aspx">codebook</a> and pick “Household” as the dataset (drop down menu). Before conducting the analysis, delete all entries
+<li><p><strong><em>NHTS</em></strong> (***): Consider the data set <code>hhpub</code> from the 2017 National Household Travel Survey (NHTS). The data contains information about household characteristics and some of their travel means. For this question, you will focus on the following variables: <span class="math inline">\(bike\)</span>, <span class="math inline">\(hbppopdn\)</span>, <span class="math inline">\(hhfaminc\)</span>, <span class="math inline">\(hhvehcnt\)</span>, <span class="math inline">\(homeown\)</span>, and <span class="math inline">\(urbrur\)</span>. You must read the <a href="https://nhts.ornl.gov/tables09/CodebookBrowser.aspx">codebook</a> for this question and learn how the variables are coded. Go to the <a href="https://nhts.ornl.gov/tables09/CodebookBrowser.aspx">codebook</a> and pick “Household” as the dataset (drop down menu). Before conducting the analysis, delete all entries
 that are not complete (i.e., all the negative values). Once you have final data set, estimate
 an ordered logit model with <span class="math inline">\(BIKE\)</span> as the dependent variable and the other variables as the
 independent variables. What do you conclude from the model?</p></li>
-<li><p><strong><em>Home Heating</em></strong> (***): Consider the dataset <code>Heating</code> from the You can load the data set into R by typing: <code>data("Heating",package="mlogit")</code>. The data contains the choice of heating systems in California homes.</p>
-<p>Estimate a multinomial logit model with installation and operating cost as the alternative-specific variables and income, age, and number of rooms as the individual-specific variables.</p></li>
+<li><p><strong><em>Home Heating</em></strong> (***): Consider the dataset <code>Heating</code> from the You can load the data set into R by typing: <code>data("Heating",package="mlogit")</code>. The data contains the choice of heating systems in California homes. Estimate a multinomial logit model with installation and operating cost as the alternative-specific variables and income, age, and number of rooms as the individual-specific variables.</p></li>
 </ol>
 
 </div>
