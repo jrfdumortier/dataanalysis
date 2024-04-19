@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>18.5 Exercises | Data Analysis for Public Affairs with R</title>
-  <meta name="description" content="18.5 Exercises | Data Analysis for Public Affairs with R" />
+  <title>18.4 Exercises | Data Analysis for Public Affairs with R</title>
+  <meta name="description" content="18.4 Exercises | Data Analysis for Public Affairs with R" />
   <meta name="generator" content="bookdown 0.38 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="18.5 Exercises | Data Analysis for Public Affairs with R" />
+  <meta property="og:title" content="18.4 Exercises | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="18.5 Exercises | Data Analysis for Public Affairs with R" />
+  <meta name="twitter:title" content="18.4 Exercises | Data Analysis for Public Affairs with R" />
   
   
   
@@ -23,14 +23,14 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2024-03-15" />
+<meta name="date" content="2024-04-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="random-effects-model.html"/>
+<link rel="prev" href="fixed-effects-panel-data-model.html"/>
 <link rel="next" href="time-series.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -338,8 +338,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="18.1" data-path="overview-1.html"><a href="overview-1.html"><i class="fa fa-check"></i><b>18.1</b> Overview</a></li>
 <li class="chapter" data-level="18.2" data-path="pooled-ordinary-least-square-model.html"><a href="pooled-ordinary-least-square-model.html"><i class="fa fa-check"></i><b>18.2</b> Pooled Ordinary Least Square model</a></li>
 <li class="chapter" data-level="18.3" data-path="fixed-effects-panel-data-model.html"><a href="fixed-effects-panel-data-model.html"><i class="fa fa-check"></i><b>18.3</b> Fixed Effects Panel Data Model</a></li>
-<li class="chapter" data-level="18.4" data-path="random-effects-model.html"><a href="random-effects-model.html"><i class="fa fa-check"></i><b>18.4</b> Random Effects Model</a></li>
-<li class="chapter" data-level="18.5" data-path="exercises-14.html"><a href="exercises-14.html"><i class="fa fa-check"></i><b>18.5</b> Exercises</a></li>
+<li class="chapter" data-level="18.4" data-path="exercises-14.html"><a href="exercises-14.html"><i class="fa fa-check"></i><b>18.4</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="19" data-path="time-series.html"><a href="time-series.html"><i class="fa fa-check"></i><b>19</b> Time Series</a>
 <ul>
@@ -375,12 +374,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="exercises-14" class="section level2 hasAnchor" number="18.5">
-<h2><span class="header-section-number">18.5</span> Exercises<a href="exercises-14.html#exercises-14" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="exercises-14" class="section level2 hasAnchor" number="18.4">
+<h2><span class="header-section-number">18.4</span> Exercises<a href="exercises-14.html#exercises-14" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ol style="list-style-type: decimal">
 <li><p><strong><em>NFL II</em></strong> (***): Consider the data set <code>nfl</code> which includes the performance, salary, and facial symmetry of NFL quarterbacks. The data includes the name and the year and thus, it can be estimated as a panel data model. In a first step, convert the data into a panel data set using the function <code>pdata.frame()</code>. Next, estimate three models: (a) Regular pooled OLS model, (2) fixed-effects model, and (3) random effects model. The regression equation is the same for each model with the natural log of total compensation, i.e., <span class="math inline">\(\ln(total)\)</span>, as the dependent variable with the following independent variables: <span class="math inline">\(yards\)</span>, <span class="math inline">\(att\)</span>, <span class="math inline">\(exp\)</span>, <span class="math inline">\(exp^2\)</span>, <span class="math inline">\(draft1\)</span>, <span class="math inline">\(draft2\)</span>, <span class="math inline">\(veteran\)</span>, <span class="math inline">\(changeteam\)</span>, <span class="math inline">\(pbowlever\)</span>, and <span class="math inline">\(symm\)</span>. Report and interpret the output for all three models. What happens to the variable <span class="math inline">\(symm\)</span> in the fixed effects model and why? How does the panel data model compare to the original model which does not incorporate the panel structure?</p></li>
-<li><p><strong><em>Renewable Energy</em></strong> (***): This question is based on the paper <a href="https://doi.org/10.1016/j.eneco.2020.104998">The effect of the feed-in-system policy on renewable energy investments: Evidence from the EU countries</a> by Alolo et al. (2020). The dependent variable will be the natural log of <span class="math inline">\(agwind\)</span>. The independent variables are: fiswind+fitwind+fipwind+quota+tax+tender+cap+gdp+electricityconsumption+
-popgrowth+co2+oilprice+naturalgasprice+coalprice+energyimport</p></li>
+<li><p><strong><em>Renewable Energy</em></strong> (***): This question is based on the paper <a href="https://doi.org/10.1016/j.eneco.2020.104998">The effect of the feed-in-system policy on renewable energy investments: Evidence from the EU countries</a> by Alolo et al. (2020). The data is found in <code>windsolar</code>. The dependent variable will be the natural log of <span class="math inline">\(agwind\)</span>. The independent variables are: <span class="math inline">\(fiswind\)</span>, <span class="math inline">\(fitwind\)</span>, <span class="math inline">\(fipwind\)</span>, <span class="math inline">\(quota\)</span>, <span class="math inline">\(tax\)</span>, <span class="math inline">\(tender\)</span>, <span class="math inline">\(cap\)</span>, <span class="math inline">\(gdp\)</span>, <span class="math inline">\(electricityconsumption\)</span>, <span class="math inline">\(popgrowth\)</span>, <span class="math inline">\(co2\)</span>, <span class="math inline">\(oilprice\)</span>, <span class="math inline">\(naturalgasprice\)</span>, <span class="math inline">\(coalprice\)</span>, and <span class="math inline">\(energyimport\)</span>. Estimate a two models: (1) Pooled panel model and (2) fixed-effects panel model. Note that the pooled panel model is equivalent to a regular OLS. What are the differences in terms of coefficients between the two models.</p></li>
 <li><p><strong><em>Guns and Crime</em></strong> (***): There is a fierce debate on the relationship between gun ownership and crime. On the one hand, there is the argument that more guns prevent crime due to a deterrence effect. On the other hand, more guns trickling into society increase the likelihood of crime being committed. This data set is one example on how the issue at hand can be analyzed. The data set which is used for this question is part of the <a href="https://cran.r-project.org/web/packages/AER/index.html">AER</a> and can be imported with the command <code>data("Guns",package="AER")</code>. Please read the description of the data set which is available as part of the package. The first regression model to be estimated is written as:
 <span class="math display">\[\ln(violent)=\beta_0+\beta_1 \cdot law+\epsilon\]</span>
 Estimate a fixed effects panel model using the equation above and report the R output. Interpret the results. The second model include year and state fixed effects and is written as follows:
@@ -396,7 +394,7 @@ In a third and last model, include the variables <span class="math inline">\(pri
           </div>
         </div>
       </div>
-<a href="random-effects-model.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="fixed-effects-panel-data-model.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="time-series.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

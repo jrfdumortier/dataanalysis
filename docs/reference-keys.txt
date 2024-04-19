@@ -153,7 +153,6 @@ panel-data
 overview-1
 pooled-ordinary-least-square-model
 fixed-effects-panel-data-model
-random-effects-model
 exercises-14
 time-series
 trend-and-seasonality

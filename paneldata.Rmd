@@ -190,14 +190,11 @@ The fixed effects model can also be implemented using the function `lm()`:
 lm(formula=inv~value+capital+factor(firm),data=grunfeld)
 ```
 
-## Random Effects Model
-
 ## Exercises
 
 1. ***NFL II*** (\*\*\*): Consider the data set `nfl` which includes the performance, salary, and facial symmetry of NFL quarterbacks. The data includes the name and the year and thus, it can be estimated as a panel data model. In a first step, convert the data into a panel data set using the function `pdata.frame()`. Next, estimate three models: (a) Regular pooled OLS model, (2) fixed-effects model, and (3) random effects model. The regression equation is the same for each model with the natural log of total compensation, i.e., $\ln(total)$, as the dependent variable with the following independent variables: $yards$, $att$, $exp$, $exp^2$, $draft1$, $draft2$, $veteran$, $changeteam$, $pbowlever$, and $symm$. Report and interpret the output for all three models. What happens to the variable $symm$ in the fixed effects model and why? How does the panel data model compare to the original model which does not incorporate the panel structure?
 
-2. ***Renewable Energy*** (\*\*\*): This question is based on the paper [The effect of the feed-in-system policy on renewable energy investments: Evidence from the EU countries](https://doi.org/10.1016/j.eneco.2020.104998) by Alolo et al. (2020). The dependent variable will be the natural log of $agwind$. The independent variables are: fiswind+fitwind+fipwind+quota+tax+tender+cap+gdp+electricityconsumption+
-               popgrowth+co2+oilprice+naturalgasprice+coalprice+energyimport 
+2. ***Renewable Energy*** (\*\*\*): This question is based on the paper [The effect of the feed-in-system policy on renewable energy investments: Evidence from the EU countries](https://doi.org/10.1016/j.eneco.2020.104998) by Alolo et al. (2020). The data is found in `windsolar`. The dependent variable will be the natural log of $agwind$. The independent variables are: $fiswind$, $fitwind$, $fipwind$, $quota$, $tax$, $tender$, $cap$, $gdp$, $electricityconsumption$, $popgrowth$, $co2$, $oilprice$, $naturalgasprice$, $coalprice$, and $energyimport$. Estimate a two models: (1) Pooled panel model and (2) fixed-effects panel model. Note that the pooled panel model is equivalent to a regular OLS. What are the differences in terms of coefficients between the two models.
 
 3. ***Guns and Crime*** (\*\*\*): There is a fierce debate on the relationship between gun ownership and crime. On the one hand, there is the argument that more guns prevent crime due to a deterrence effect. On the other hand, more guns trickling into society increase the likelihood of crime being committed. This data set is one example on how the issue at hand can be analyzed. The data set which is used for this question is part of the [AER](https://cran.r-project.org/web/packages/AER/index.html) and can be imported with the command `data("Guns",package="AER")`. Please read the description of the data set which is available as part of the package. The first regression model to be estimated is written as:
 $$\ln(violent)=\beta_0+\beta_1 \cdot law+\epsilon$$
