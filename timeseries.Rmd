@@ -276,7 +276,7 @@ plot(forecast(bhat))
     a. Subset the data such that you are only left with the country of your choice. 
     b. Create a new column which contains the consumption per capita, i.e., consumption divided by population.
     c. Make sure that there are at least 10 years of observations for the country of your choice. 
-    d. Estimate a Koyck-Model with consumption as the dependent variable and per-capita consumption as the dependent variable.
+    d. Estimate a Koyck-Model with consumption as the dependent variable and per-capita income as the independent variable.
 
 4. ***Cardiovascular Mortality*** (\*\*\*): Consider the data in `cmort` which represents weekly data of cardiovascular mortality in Los Angeles over the period 1970 to 1979. 
     a. Estimate an AR(2) model of the following form to the data:
