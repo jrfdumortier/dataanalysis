@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>5.7 Combinatorial Methods | Data Analysis for Public Affairs with R</title>
   <meta name="description" content="5.7 Combinatorial Methods | Data Analysis for Public Affairs with R" />
-  <meta name="generator" content="bookdown 0.38 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
   <meta property="og:title" content="5.7 Combinatorial Methods | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2024-04-22" />
+<meta name="date" content="2024-10-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -56,7 +56,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -380,7 +380,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">5.7.1</span> Permutations<a href="combinatorial-methods.html#permutations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>An ordered arrangement of <em>k</em> distinct objects from a total of <em>n</em> objects is called a permutation. The number of ways of ordering <em>n</em> distinct objects taken <em>k</em> at a time is distinguished by the symbol <span class="math inline">\(P_{k}^{n}\)</span>:
 <span class="math display">\[P_k^n =n \cdot (n-1) \cdot (n-2) \cdot (n-3) \cdots (n-k+1)=\frac{n!}{(n-k)!}\]</span>
-where the factorial <span class="math inline">\(n!\)</span> is defined as <span class="math inline">\(n!=n \cdot (n - 1) \cdot (n - 2) \cdot (n - 3) \cdots (2) \cdot (1)\)</span> with <span class="math inline">\(0! = 1\)</span>. With replacement of the objects, the number of possibilities is <span class="math inline">\(n^k\)</span>.</p>
+where the factorial <span class="math inline">\(n!\)</span> is defined as <span class="math inline">\(n!=n \cdot (n - 1) \cdot (n - 2) \cdot (n - 3) \cdots  (2)  \cdot (1)\)</span> with <span class="math inline">\(0! = 1\)</span>. With replacement of the objects, the number of possibilities is <span class="math inline">\(n^k\)</span>.</p>
 <p>For example, consider a bowl containing six balls with the letters <em>A</em>, <em>B</em>, <em>C</em>, <em>D</em>,<em>E</em> , and <em>F</em> on the respective balls. Now consider an experiment where I draw one ball from the bowl and write down its letter and then draw a second ball and write down its letter. The outcome is then an ordered pair, i.e., <span class="math inline">\(BA \neq AB\)</span>. The number of distinct ways of doing this is given by
 <span class="math display">\[P_{2}^{6}=\frac{6!}{4!}=\frac{6 \cdot 5 \cdot 4 \cdot 3 \cdot 2 \cdot 1}{4\cdot 3 \cdot 2 \cdot 1} =6 \cdot 5=30\]</span>
 What is number of ways to arrange objects if <span class="math inline">\(n=4\)</span> and <span class="math inline">\(k=2\)</span>? Without replacement, we have to calculate <span class="math inline">\(P^4_2\)</span> and with replacement, we have to calculate <span class="math inline">\(n^k\)</span>.</p>
