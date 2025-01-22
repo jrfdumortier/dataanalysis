@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>17.1 Truncation | Data Analysis for Public Affairs with R</title>
   <meta name="description" content="17.1 Truncation | Data Analysis for Public Affairs with R" />
-  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
   <meta property="og:title" content="17.1 Truncation | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2024-10-28" />
+<meta name="date" content="2025-01-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -386,18 +386,18 @@ If all the data was observed, the correct regression model would give the follow
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -2.0300 -0.6778 -0.1484  0.7101  2.0034 
+## -2.6337 -0.7127  0.1125  0.5948  3.0526 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) -1.95643    0.27902  -7.012 7.05e-09 ***
-## x            0.51658    0.05071  10.188 1.37e-13 ***
+## (Intercept) -1.86635    0.35437  -5.267 3.23e-06 ***
+## x            0.49563    0.05856   8.463 4.44e-11 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 1.048 on 48 degrees of freedom
-## Multiple R-squared:  0.6838, Adjusted R-squared:  0.6772 
-## F-statistic: 103.8 on 1 and 48 DF,  p-value: 1.372e-13</code></pre>
+## Residual standard error: 1.164 on 48 degrees of freedom
+## Multiple R-squared:  0.5987, Adjusted R-squared:  0.5904 
+## F-statistic: 71.62 on 1 and 48 DF,  p-value: 4.437e-11</code></pre>
 <p>The estimates are biased if truncation is ignored:</p>
 <div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="truncation.html#cb118-1" tabindex="-1"></a><span class="fu">summary</span>(bhattruncated)</span></code></pre></div>
 <pre><code>## 
@@ -406,19 +406,19 @@ If all the data was observed, the correct regression model would give the follow
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -2.1092 -0.5793 -0.2110  0.5564  1.6747 
+## -1.9037 -0.4675 -0.1244  0.6728  1.7735 
 ## 
 ## Coefficients:
-##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) -0.84279    0.62042  -1.358 0.185998    
-## x            0.38663    0.08905   4.342 0.000191 ***
+##             Estimate Std. Error t value Pr(&gt;|t|)   
+## (Intercept)  0.38605    0.53676   0.719   0.4776   
+## x            0.22769    0.07476   3.046   0.0048 **
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 0.9732 on 26 degrees of freedom
-##   (22 observations deleted due to missingness)
-## Multiple R-squared:  0.4203, Adjusted R-squared:  0.398 
-## F-statistic: 18.85 on 1 and 26 DF,  p-value: 0.0001909</code></pre>
+## Residual standard error: 0.9418 on 30 degrees of freedom
+##   (18 observations deleted due to missingness)
+## Multiple R-squared:  0.2362, Adjusted R-squared:  0.2107 
+## F-statistic: 9.276 on 1 and 30 DF,  p-value: 0.004804</code></pre>
 <p>To correct for the truncation, use the functions from the package <a href="https://cran.r-project.org/web/packages/truncreg/index.html">truncreg</a> which allows to reduce the bias of the coefficients:</p>
 <div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="truncation.html#cb120-1" tabindex="-1"></a>bhatcorrect <span class="ot">=</span> <span class="fu">truncreg</span>(yobs<span class="sc">~</span>x,<span class="at">data=</span>truncation)</span>
 <span id="cb120-2"><a href="truncation.html#cb120-2" tabindex="-1"></a><span class="fu">summary</span>(bhatcorrect)</span></code></pre></div>
@@ -428,19 +428,19 @@ If all the data was observed, the correct regression model would give the follow
 ## 
 ## BFGS maximization method
 ## 31 iterations, 0h:0m:0s 
-## g&#39;(-H)^-1g = 2.7E-12 
+## g&#39;(-H)^-1g = 7.33E-09 
 ##  
 ## 
 ## 
 ## Coefficients :
-##             Estimate Std. Error t-value  Pr(&gt;|t|)    
-## (Intercept) -3.03940    1.51806 -2.0022  0.045267 *  
-## x            0.64446    0.18585  3.4676  0.000525 ***
-## sigma        1.13419    0.22654  5.0066 5.541e-07 ***
+##              Estimate Std. Error t-value  Pr(&gt;|t|)    
+## (Intercept) -0.139513   0.759356 -0.1837  0.854229    
+## x            0.286131   0.098648  2.9005  0.003725 ** 
+## sigma        1.005701   0.161811  6.2153 5.124e-10 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Log-Likelihood: -32.986 on 3 Df</code></pre>
+## Log-Likelihood: -40.917 on 3 Df</code></pre>
 </div>
             </section>
 
@@ -490,7 +490,7 @@ gitbook.start({
 "link": "https://github.com/jrfdumortier/dataanalysis/blob/master/limiteddepvar.rmd",
 "text": null
 },
-"download": ["bookdownproj.pdf"],
+"download": null,
 "search": {
 "engine": "fuse",
 "options": null

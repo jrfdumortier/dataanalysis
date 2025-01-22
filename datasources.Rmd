@@ -1,5 +1,7 @@
 # Data Sources
-This chapter describes the functions and data sets associated with the lecture notes which are contained in the file [DataAnalysisPAData.RData](https://github.com/jrfdumortier/dataanalysis/blob/master/DataAnalysisPAData.RData).
+This chapter describes the functions and data sets associated with the lecture notes which are contained in the file [DataAnalysisPAData.RData](https://github.com/jrfdumortier/dataanalysis/blob/master/DataAnalysisPAData.RData). Federal Highway Administration. (2022). 2022 NextGen National Household Travel Survey Core
+Data, U.S. Department of Transportation, Washington, DC. Available online:
+http://nhts.ornl.gov.
 
 The following functions are included:
 
@@ -17,6 +19,8 @@ Some data sets are generic, i.e., randomly generated, to highlight a particular 
 - `apartments` (N=147): The data set contains data on furnished apartments for rent. The variables are $rent$, $rooms$, $area$ (in square meters), managing $company$, and $location$ (Southwest Berlin and Potsdam).
 
 - `aptitude` (N=200): Aptitude ($apt$), reading ($read$), and $math$ test scores for students ($id$). The program type is indicated by $prog$. The data set is taken from the [UCLA Advanced Research Computing website on Tobit Models](https://stats.oarc.ucla.edu/r/dae/tobit-models/).
+
+- `basel` (N=27): Home values in the Swiss canton of Basel-Landschaft collected in January 2025. The variable $price$ is in Swiss Francs. The living and lot area are measured in square meters. Unlike postings in the U.S., all rooms are summed up in Swiss postings. The decimal indicates bathrooms, which do not have a shower. 
 
 - `beer` (N=92): Quarterly beer production in Australia. The data is obtained from the lecture notes for [STAT 510: Applied Time Series Analysis](https://online.stat.psu.edu/stat510/) at Penn State.
 
@@ -39,7 +43,8 @@ Some data sets are generic, i.e., randomly generated, to highlight a particular 
 - `coffee` (N=29): Historical data about the coffee consumption in the United States. The variable $consumption$ is measured in thousand 60-kg bags. The variable $price$ represents the retail price of roasted coffee in US Dollars per pound. Both time series are obtained from the International Coffee Association. The variables $rdi$ and $cpi$ represent real disposable income and the consumer price index, respectively. Those data series are obtained from the St. Louis FRED database. The same is true for the variable $population$. The variables $rprice$ and $pcconsumption$ represent the real coffee prices and the per capita consumption of coffee.
 
 - `compactcars` (N=78): Fuel efficiency of compact cars in 1995 and 2015. The fuel efficiency is expressed in miles per gallon in the columns $automatic$ and $manual$, respectively. The variable $displ$ represents the displacement in liters. 
-- `covid`: Daily time series of COVID-19 $cases$ and $death$ (cumulative count). The variables $newcases$ and $newdeaths$ correspond to the additional cases each day. The number of observations is variable since it is updated on a daily basis. The data can be obtained from a [New York Times GitHub](https://raw.githubusercontent.com/nytimes/covid-19-data/master/us.csv) account.
+
+- `covid` (N=1158): Daily time series of COVID-19 $cases$ and $death$ (cumulative count) from January 21, 2020 to March 23, 2023. The variables $newcases$ and $newdeaths$ correspond to the additional cases each day. The original data can be obtained from a [New York Times GitHub](https://raw.githubusercontent.com/nytimes/covid-19-data/master/us.csv) account.
 
 - `cps7885` (N=1084): Data from the Current Population Survey (CPS) for the year 1978 and 1985. The data accompanies the book *Introductory Econometrics: A Modern Approach* by Jeffrey M. Wooldridge. It contains the following variables: $educ$ (years of schooling), $south$ (1 if live in south), $nonwhite$ (1 if nonwhite), $female$ (1 if female), $married$ (1 if married), $exper$, $age$, $union$ (1 if belong to union), $wage$, and $year$ (78 or 85).
 
@@ -49,7 +54,7 @@ Some data sets are generic, i.e., randomly generated, to highlight a particular 
 
 - `eggweights` (N=61): Weight in grams of Large Grade A Brown Eggs from Whole Foods. 
 
-- `eucrime`: Intentional homicide data in Europe from Eurostat.
+- `eucrime` (N=31540): Annual data from Eurostat of intentional homicide and sexual offences by legal status and sex of the person involved.
 
 - `evdata` (N=579): Data about the choice of consumers with respect to alternative fuel vehicles. The variable $choice$ represents the choice by the consumer for gasoline vehicles (1), conventional hybrids (2), plug-in hybrids (3), and electric vehicles (4). For each consumer, you have the following variables: $age$, $level2$ (indicating whether people have a fast charger for electric cars in their community), $female$, and $numcars$ (number of cars). The variable $income$ is coded as follows: Under \$15,000 (1), \$15,000 to \$24,999 (2), \$25,000 to \$34, 999 (3), \$35,000 to \$49,999 (4), \$50,000 to \$74,999 (5), \$75,000 to \$99,999 (6), \$100,000 to \$149,999 (7), \$150,000 to \$199,999 (8), \$200,000 to \$249,000 (9), above \$250,000 (10). The variable $edu$ is coded as follows: Less than High School (1), High School / GED (2), Some College (3), 2-year College Degree (4), 4-year College Degree (5), Masters Degree (6), Doctoral Degree (7). The variable $politics$ is coded as follows: Extremely Liberal (1), Liberal (2), Slightly liberal (3), Moderate (4), Slightly conservative (5), Conservative (6), Extremely conservative (7), Other (8), None (9). See [Dumortier et al. (2014)](https://doi.org/10.1016/j.tra.2014.12.005) for more details. 
 

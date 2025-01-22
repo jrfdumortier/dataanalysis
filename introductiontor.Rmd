@@ -11,7 +11,6 @@ There is also a YouTube video and slides associated with this chapter:
 - [Introduction to R and RStudio - Video](https://youtu.be/p6aFs2E_4hg?si=hoRzgivlq75Nk0dA)
 - [Introduction to R and RStudio - Slides](https://github.com/jrfdumortier/slidesstatistics/blob/main/IntroductionR.pdf)
 
-
 ## R Resources and Help
 Very large user community for R. Google search for "Some topic R" usually leads quickly to the desired help. Here are the links to a few online tutorials
 
@@ -246,8 +245,10 @@ The required package to extend the basic `table()` function is called [gmodels](
 - The function `CrossTable()` includes the proportions along the two dimensions of gun ownership and gender. Note that a description of the cell content is at the top of the results page. 
 
 ```{r INRCrossTable}
-table(gss$owngun,gss$sex)
-CrossTable(gss$owngun,gss$sex,prop.chisq=FALSE)
+df        = subset(gss,year==2022,
+                   select=c("owngun","sex"))
+table(df$owngun,df$sex)
+CrossTable(df$owngun,df$sex,prop.chisq=FALSE)
 ```
 Note that for almost any R command, you can store the output by assigning it to an object:
 

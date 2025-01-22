@@ -1,5 +1,4 @@
 # Hypothesis Testing
-
 There are slides and a YouTube Video associated with this chapter:
 
 - [Hypothesis Testing - Slides](https://github.com/jrfdumortier/slidesstatistics/raw/main/HypothesisTesting.pdf)
@@ -60,11 +59,12 @@ For a two-sided hypothesis test at the $\alpha=0.05$ level, we fail to reject th
 
 Consider the data in `gsssocialmedia`. Suppose that Instagram claims that 1/3 of Americans use their service. This can be verified with a two-sided hypothesis test:
 
-```{r HYPsocialmedia1}
-socialmedia              = gss[c("instagrm")]
-socialmedia              = na.omit(socialmedia)
-socialmedia$instagrm     = ifelse(socialmedia$instagrm=="yes",1,0)
-t.test(socialmedia$instagrm,mu=1/3,alternative=c("two.sided"))
+```{r HYPgrass}
+legalgrass          = gss[c("year","grass")]
+legalgrass          = na.omit(legalgrass)
+legalgrass$grass    = ifelse(legalgrass$grass==1,1,0)
+df                  = subset(legalgrass,year==2022)
+t.test(df$grass,mu=1/3,alternative=c("two.sided"))
 ```
 The *p*-value is above 5\% and thus, we fail to reject the hypothesis. Now suppose that Instagram claims that more than 1/3 of Americans use their service. The term "more than" suggests a one-sided hypothesis. The hypothesis is formulated as follows: 
 $$ H_0: p \geq 1/3\\
@@ -72,7 +72,7 @@ H_a: p < 1/3$$
 
 It is very important to correctly **state the alternative hypothesis in R**.
 ```{r HYPsocialmedia12}
-t.test(socialmedia$instagrm,mu=1/3,alternative=c("less"))
+t.test(df$grass,mu=1/3,alternative=c("less"))
 ```
 In this case, the *p*-value is below 5\% and thus, the hypothesis is rejected. 
 
@@ -179,3 +179,9 @@ Since the *p*-value is above 5\%, we fail to reject the null hypothesis.
      - How has this variable evolved over the years? Make sure to report the share of of respondents in favor. Include a graph with time on the horizontal axis.
 
 9. ***Ohio Schools I*** (\*\*\*): The data set `ohioincome` and `ohioscore` contain information about the school districts in Ohio with regard to enrollment, overall school performance (think of that as a measure of how good a school is), and median income. First, merge the two data sets based on IRN (serving as an identifier in the two data sets) using the R command `merge()`. Test the hypothesis that there is no difference in performance for the top 25\% and bottom 25\% of schools in terms of median income. That is, you are testing the hypothesis that low median income and high median income school districts are performing equally well.
+
+10. ***Basel*** (\*\*\*): Consider the housing data in `basel`, which contains home values in some town in the Swiss canton of Basel-Landschaft. Calculate the cost per square meter of living area in a new column. Next, add a column that indicates the house being located in Liestal (canton's capital) with a 1 and 0 otherwise. Conduct a hypothesis test that the houses in the canton's capital are as expensive as in surrounding towns. 
+
+11. ***Fear and Guns*** (\*\*\*): Consider the variables $fear$ and $owngun$ in the dataset `gss`. For the year 2022, test the hypothesis that people who are afraid to walk within one mile of where they life alone at night are more likely to own a firearm.
+
+12. ***Domestic Vehicle Preferences*** (\*\*): Consider the data in `nhtsveh`, specifically the variables $census\_d$ and $make$. It is very important that you consult the codebook for the 2022 NHTS available [here](https://nhts.ornl.gov/documentation). Test the hypothesis that the share of domestic car manufacturers amongst households is identical in each state. Make sure to conduct those tests in a pairwise manner (but not a paired hypothesis test).

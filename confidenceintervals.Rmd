@@ -43,8 +43,9 @@ $$\sigma_{\bar{x}}=\sqrt{\frac{0.67 \cdot (1-0.67)}{772}}=0.0169$$
 In this case, the margin of error is $1.96 \cdot 0.0169=0.033$. To calculate a confidence interval for a proportion in R, the function `t.test()` is used. Before using the function, the manual calculations are presented. 
 
 ```{r COIproportionmanual,results=FALSE}
-voting         = subset(gss,vote12 %in% c("voted","did not vote"))
-voting         = ifelse(voting$vote12=="voted",1,0)
+voting         = subset(gss,vote20 %in% c(1,2),select=c("vote20"))
+voting$vote20  = ifelse(voting$vote20==1,1,0)
+voting         = as.numeric(voting$vote20)
 nobs           = nrow(voting)
 meandata       = mean(voting)
 z              = qnorm(0.975)

@@ -94,7 +94,7 @@ The important characteristics of the distribution is that the mean and variance 
 The first examples uses the 2017 [NHTS](https://nhts.ornl.gov/) data contained in `hhpub`. In a first step, the data is prepared for the regression model, i.e., missing or unknown values are eliminated and income is measured in (thousand) dollar terms:
 
 ```{r poissonregression_cleanhhpub,results=FALSE}
-hhpubdata = subset(hhpub,hhfaminc %in% c(1:11) & homeown %in% c(1,2) & urbrur %in% c(1,2) & hhvehcnt %in% c(0:12))
+hhpubdata = subset(nhtshh,hhfaminc %in% c(1:11) & homeown %in% c(1,2) & urbrur %in% c(1,2) & hhvehcnt %in% c(0:12))
 hhfaminc  = c(1:11)
 income    = c(10,12.5,20,30,42.5,57.5,82.5,112.5,137.5,175,200)
 income    = data.frame(hhfaminc,income)

@@ -79,9 +79,13 @@ par(mfrow=c(1,2))
 ## Boxplots
 Outliers are values that extremely deviate from the mean, i.e., extremely high or low values. Those values limit the explanatory power of the mean. Reasons for outliers can be error in measurement, error of judgement, miscalculation, typo in data matrix, real extraordinary values. To treat outliers, we must know whether they are true values or a mistake. Outliers can be neglected under certain conditions, but it is important to bear them in mind when interpreting results! 
 
-```{r SUMeucrime,echo=FALSE,fig.cap="2008-2018 Intentional homicides in select European countries, i.e., Albania (AL), Austria (AT), Switzerland (CH), Czech Republic (CZ), Denmark (DK), Estonia (EE), Norway (NO), Sweden (SE), and Slovakia (SK) Source: Eurostat"}
-eucrime = subset(eucrime,geo %in% c("AL","AT","NO","CZ","DK","EE","SK","SE","CH"))
-boxplot(eucrime$values~eucrime$geo,ylab="Number of Intentional Homicides",xlab="",ylim=c(0,200))
+```{r SUMeucrime,echo=FALSE,fig.cap="2008-2022 Intentional homicides in select European countries, i.e., Albania (AL), Austria (AT), Switzerland (CH), Czech Republic (CZ), Denmark (DK), Estonia (EE), Norway (NO), Sweden (SE), and Slovakia (SK) Source: Eurostat"}
+df = subset(eucrime,geo %in% c("Albania","Austria","Norway","Czechia","Denmark","Estonia","Slovakia","Sweden","Switzerland") &
+                      item=="Intentional homicide" & 
+                      legalstatus=="Victim" &
+                      sex=="Total" &
+                      unit=="Number")
+boxplot(df$value~df$geo,ylab="Number of Intentional Homicides",xlab="",ylim=c(0,200))
 ```
 
 ## Covariance and Correlation Coefficicent
@@ -152,7 +156,8 @@ Note that sometimes, we deal with qualitative data, i.e., data that is not expre
 Suppose you are only interested in people who answer *yes* or *no* for the questions concerning arrests and firearms ownership. You will have to subset the data.
 
 ```{r SUMgssgun,echo=TRUE}
-CrossTable(gss$owngun,gss$sex,prop.chisq=FALSE)
+df        = subset(gss,year==2022,select=c("owngun","sex"))
+CrossTable(df$owngun,df$sex,prop.chisq=FALSE)
 ```
 
 ## Exercises
@@ -229,3 +234,6 @@ dffin     = cor(dffin)
 corrplot(dffin,type="upper")
 ```
 
+13. ***Earnings*** (\*\*\*): Consider the data in `earnings`, which contains the real earnings by education level, sex, and race/ethnicity. Generate a line plot using the package `ggplot2` with year on the horizontal axis and the earnings ($value$) on the vertical axis. Consider "All Races" but differentiate by education level and sex. That is, differentiate the various education levels with colors and use the ggplot component "+facet_grid()" to plot three graphs side-by-side, i.e., both sexes, men, women. Repeat the exercise using the variable $growth$. 
+
+14. ***Power Generation*** (\*\*\*): Each year, the U.S. Energy Information Administration (EIA) publishes data about all electric generators in the United States. You will find selected variables for all observations of that data in `eia`. Use the function "unique()" from R to determine the technologies used in the EIA report. You will see that there are multiple technologies using wind and solar (e.g., offshore wind, onshore wind). The goal of this exercise is plotting the share of wind and solar from the total generation capacity in the state. For this exercise, you will have to use multiple functions, e.g., aggregate(), merge(), to arrive at the final result. Plot the resulting share using the function "ggplot()" from R. California is usually considered the leader in renewbale power generation. Is that still true when considering the share of installed power? 

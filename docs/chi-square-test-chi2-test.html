@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>10.1 Chi-Square Test (\(\chi^2\)-Test) | Data Analysis for Public Affairs with R</title>
   <meta name="description" content="10.1 Chi-Square Test (\(\chi^2\)-Test) | Data Analysis for Public Affairs with R" />
-  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
   <meta property="og:title" content="10.1 Chi-Square Test (\(\chi^2\)-Test) | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2024-10-28" />
+<meta name="date" content="2025-01-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -380,9 +380,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Given the values <span class="math inline">\(Z_1, Z_2, \dots , Z_k\)</span> independently drawn from standard normal distribution, then the squared sum of those values follows a <span class="math inline">\(\chi^2\)</span>-distribution:
 <span class="math display">\[\sum_{i=1}^k Z_i^2 = Z \sim \chi^2_k\]</span>
 where <span class="math inline">\(k\)</span> specifies the degrees of freedom.</p>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <p>To conduct the hypothesis test, consider the data on voting and education in <code>gss</code>. Using the function <code>CrossTable</code> associated with the package <a href="https://cran.r-project.org/web/packages/gmodels/index.html">gmodels</a>, the following table can be constructed.</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="chi-square-test-chi2-test.html#cb39-1" tabindex="-1"></a><span class="fu">CrossTable</span>(gss<span class="sc">$</span>degree,gss<span class="sc">$</span>vote12,<span class="at">prop.r =</span> <span class="cn">FALSE</span>,<span class="at">prop.c =</span> <span class="cn">FALSE</span>,<span class="at">prop.chisq =</span> <span class="cn">FALSE</span>,<span class="at">prop.t=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="chi-square-test-chi2-test.html#cb39-1" tabindex="-1"></a>df        <span class="ot">=</span> <span class="fu">subset</span>(gss,vote20 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>) <span class="sc">&amp;</span> degree <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">4</span>),<span class="at">select=</span><span class="fu">c</span>(<span class="st">&quot;vote20&quot;</span>,<span class="st">&quot;degree&quot;</span>))</span>
+<span id="cb39-2"><a href="chi-square-test-chi2-test.html#cb39-2" tabindex="-1"></a><span class="fu">CrossTable</span>(df<span class="sc">$</span>degree,df<span class="sc">$</span>vote20,<span class="at">prop.r =</span> <span class="cn">FALSE</span>,<span class="at">prop.c =</span> <span class="cn">FALSE</span>,<span class="at">prop.chisq =</span> <span class="cn">FALSE</span>,<span class="at">prop.t=</span><span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## 
 ##  
 ##    Cell Contents
@@ -391,24 +392,24 @@ where <span class="math inline">\(k\)</span> specifies the degrees of freedom.</
 ## |-------------------------|
 ## 
 ##  
-## Total Observations in Table:  2806 
+## Total Observations in Table:  3155 
 ## 
 ##  
-##                | gss$vote12 
-##     gss$degree | did not vote |   ineligible |        voted |    Row Total | 
-## ---------------|--------------|--------------|--------------|--------------|
-##       bachelor |           84 |           17 |          425 |          526 | 
-## ---------------|--------------|--------------|--------------|--------------|
-##       graduate |           32 |           17 |          266 |          315 | 
-## ---------------|--------------|--------------|--------------|--------------|
-##    high school |          447 |          122 |          870 |         1439 | 
-## ---------------|--------------|--------------|--------------|--------------|
-## junior college |           67 |            7 |          137 |          211 | 
-## ---------------|--------------|--------------|--------------|--------------|
-## lt high school |          168 |           37 |          110 |          315 | 
-## ---------------|--------------|--------------|--------------|--------------|
-##   Column Total |          798 |          200 |         1808 |         2806 | 
-## ---------------|--------------|--------------|--------------|--------------|
+##              | df$vote20 
+##    df$degree |         1 |         2 | Row Total | 
+## -------------|-----------|-----------|-----------|
+##            0 |       134 |       132 |       266 | 
+## -------------|-----------|-----------|-----------|
+##            1 |      1054 |       399 |      1453 | 
+## -------------|-----------|-----------|-----------|
+##            2 |       246 |        47 |       293 | 
+## -------------|-----------|-----------|-----------|
+##            3 |       635 |        63 |       698 | 
+## -------------|-----------|-----------|-----------|
+##            4 |       405 |        40 |       445 | 
+## -------------|-----------|-----------|-----------|
+## Column Total |      2474 |       681 |      3155 | 
+## -------------|-----------|-----------|-----------|
 ## 
 ## </code></pre>
 <p>This table is similar to what has been presented previously except that all proportions have been removed and only the counts are presented. This is a 5-by-2 contingency table (the total columns are not considered part of the table). The variable education is less than high school (0), high school (1), junior college (2), bachelor (3), and graduate (4). Assuming independence, the expected value <span class="math inline">\(E\)</span> for each cell is
@@ -418,39 +419,39 @@ For example, consider the cell “high school” and “voting” which contains
 Those calculations can be conducted for each cell. Then, then the <span class="math inline">\(\chi^2\)</span>-test statistic is calcualted as follows:
 <span class="math display">\[\chi^2 = \sum_{i=1}^{r \cdot c} \frac{(O_i-E_i)^2}{E_i}\]</span>
 where <span class="math inline">\(r \cdot c\)</span> is number of rows multiplied by the number of colunms, <span class="math inline">\(O_i\)</span> and <span class="math inline">\(E_i\)</span> are the observed and exepected count in a cell, respectively. The degrees of freedom are calcualted as <span class="math inline">\((r-1)\cdot(c-1)\)</span>. Of course, instead of doing it manually, the following command can be used:</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="chi-square-test-chi2-test.html#cb41-1" tabindex="-1"></a><span class="fu">chisq.test</span>(gss<span class="sc">$</span>degree,gss<span class="sc">$</span>vote12)</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="chi-square-test-chi2-test.html#cb41-1" tabindex="-1"></a><span class="fu">chisq.test</span>(df<span class="sc">$</span>degree,df<span class="sc">$</span>vote20)</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test
 ## 
-## data:  gss$degree and gss$vote12
-## X-squared = 256.2, df = 8, p-value &lt; 2.2e-16</code></pre>
+## data:  df$degree and df$vote20
+## X-squared = 265.27, df = 4, p-value &lt; 2.2e-16</code></pre>
 <p>Due to the <em>p</em>-value being very small, we reject the hypothesis of independence. The <span class="math inline">\(\chi^2\)</span> hypothesis test should only be used for qualitative data. For example, do not categorize income into quartiles to conduct a hypothesis test on whether voting depends on income.</p>
 <p>The example of a 2-by-2 table is a special case</p>
 <div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="chi-square-test-chi2-test.html#cb43-1" tabindex="-1"></a>votegun   <span class="ot">=</span> <span class="fu">subset</span>(gss,</span>
-<span id="cb43-2"><a href="chi-square-test-chi2-test.html#cb43-2" tabindex="-1"></a>                   vote12 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;voted&quot;</span>,<span class="st">&quot;did not vote&quot;</span>) <span class="sc">&amp;</span></span>
-<span id="cb43-3"><a href="chi-square-test-chi2-test.html#cb43-3" tabindex="-1"></a>                        owngun <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;yes&quot;</span>,<span class="st">&quot;no&quot;</span>),</span>
-<span id="cb43-4"><a href="chi-square-test-chi2-test.html#cb43-4" tabindex="-1"></a>                   <span class="at">select =</span> <span class="fu">c</span>(<span class="st">&quot;vote12&quot;</span>,<span class="st">&quot;owngun&quot;</span>))</span>
-<span id="cb43-5"><a href="chi-square-test-chi2-test.html#cb43-5" tabindex="-1"></a>votegun<span class="sc">$</span>vote12 <span class="ot">=</span> <span class="fu">ifelse</span>(votegun<span class="sc">$</span>vote12<span class="sc">==</span><span class="st">&quot;voted&quot;</span>,<span class="dv">1</span>,<span class="dv">0</span>)</span>
-<span id="cb43-6"><a href="chi-square-test-chi2-test.html#cb43-6" tabindex="-1"></a>votegun<span class="sc">$</span>owngun <span class="ot">=</span> <span class="fu">ifelse</span>(votegun<span class="sc">$</span>owngun<span class="sc">==</span><span class="st">&quot;yes&quot;</span>,<span class="dv">1</span>,<span class="dv">0</span>)</span>
-<span id="cb43-7"><a href="chi-square-test-chi2-test.html#cb43-7" tabindex="-1"></a><span class="fu">t.test</span>(votegun<span class="sc">$</span>vote12<span class="sc">~</span>votegun<span class="sc">$</span>owngun)</span></code></pre></div>
+<span id="cb43-2"><a href="chi-square-test-chi2-test.html#cb43-2" tabindex="-1"></a>                   vote20 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>) <span class="sc">&amp;</span></span>
+<span id="cb43-3"><a href="chi-square-test-chi2-test.html#cb43-3" tabindex="-1"></a>                   owngun <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),</span>
+<span id="cb43-4"><a href="chi-square-test-chi2-test.html#cb43-4" tabindex="-1"></a>                   <span class="at">select =</span> <span class="fu">c</span>(<span class="st">&quot;vote20&quot;</span>,<span class="st">&quot;owngun&quot;</span>))</span>
+<span id="cb43-5"><a href="chi-square-test-chi2-test.html#cb43-5" tabindex="-1"></a>votegun<span class="sc">$</span>vote20 <span class="ot">=</span> <span class="fu">ifelse</span>(votegun<span class="sc">$</span>vote20<span class="sc">==</span><span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>)</span>
+<span id="cb43-6"><a href="chi-square-test-chi2-test.html#cb43-6" tabindex="-1"></a>votegun<span class="sc">$</span>owngun <span class="ot">=</span> <span class="fu">ifelse</span>(votegun<span class="sc">$</span>owngun<span class="sc">==</span><span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>)</span>
+<span id="cb43-7"><a href="chi-square-test-chi2-test.html#cb43-7" tabindex="-1"></a><span class="fu">t.test</span>(votegun<span class="sc">$</span>vote20<span class="sc">~</span>votegun<span class="sc">$</span>owngun)</span></code></pre></div>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
-## data:  votegun$vote12 by votegun$owngun
-## t = -2.583, df = 1187.1, p-value = 0.009913
+## data:  votegun$vote20 by votegun$owngun
+## t = -4.2686, df = 1637.9, p-value = 2.08e-05
 ## alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
 ## 95 percent confidence interval:
-##  -0.10556727 -0.01442532
+##  -0.11603883 -0.04297346
 ## sample estimates:
 ## mean in group 0 mean in group 1 
-##       0.6758193       0.7358156</code></pre>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="chi-square-test-chi2-test.html#cb45-1" tabindex="-1"></a><span class="fu">chisq.test</span>(votegun<span class="sc">$</span>vote12,votegun<span class="sc">$</span>owngun)</span></code></pre></div>
+##       0.7474981       0.8270042</code></pre>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="chi-square-test-chi2-test.html#cb45-1" tabindex="-1"></a><span class="fu">chisq.test</span>(votegun<span class="sc">$</span>vote20,votegun<span class="sc">$</span>owngun)</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test with Yates&#39; continuity correction
 ## 
-## data:  votegun$vote12 and votegun$owngun
-## X-squared = 6.1159, df = 1, p-value = 0.0134</code></pre>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="chi-square-test-chi2-test.html#cb47-1" tabindex="-1"></a><span class="fu">CrossTable</span>(votegun<span class="sc">$</span>vote12,votegun<span class="sc">$</span>owngun,<span class="at">prop.r =</span> <span class="cn">FALSE</span>,<span class="at">prop.c =</span> <span class="cn">FALSE</span>,<span class="at">prop.chisq =</span> <span class="cn">FALSE</span>,<span class="at">prop.t=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+## data:  votegun$vote20 and votegun$owngun
+## X-squared = 16.236, df = 1, p-value = 5.592e-05</code></pre>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="chi-square-test-chi2-test.html#cb47-1" tabindex="-1"></a><span class="fu">CrossTable</span>(votegun<span class="sc">$</span>vote20,votegun<span class="sc">$</span>owngun,<span class="at">prop.r =</span> <span class="cn">FALSE</span>,<span class="at">prop.c =</span> <span class="cn">FALSE</span>,<span class="at">prop.chisq =</span> <span class="cn">FALSE</span>,<span class="at">prop.t=</span><span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## 
 ##  
 ##    Cell Contents
@@ -459,17 +460,17 @@ where <span class="math inline">\(r \cdot c\)</span> is number of rows multiplie
 ## |-------------------------|
 ## 
 ##  
-## Total Observations in Table:  1693 
+## Total Observations in Table:  2010 
 ## 
 ##  
 ##                | votegun$owngun 
-## votegun$vote12 |         0 |         1 | Row Total | 
+## votegun$vote20 |         0 |         1 | Row Total | 
 ## ---------------|-----------|-----------|-----------|
-##              0 |       366 |       149 |       515 | 
+##              0 |       328 |       123 |       451 | 
 ## ---------------|-----------|-----------|-----------|
-##              1 |       763 |       415 |      1178 | 
+##              1 |       971 |       588 |      1559 | 
 ## ---------------|-----------|-----------|-----------|
-##   Column Total |      1129 |       564 |      1693 | 
+##   Column Total |      1299 |       711 |      2010 | 
 ## ---------------|-----------|-----------|-----------|
 ## 
 ## </code></pre>
@@ -522,7 +523,7 @@ gitbook.start({
 "link": "https://github.com/jrfdumortier/dataanalysis/blob/master/addstatstopics.rmd",
 "text": null
 },
-"download": ["bookdownproj.pdf"],
+"download": null,
 "search": {
 "engine": "fuse",
 "options": null

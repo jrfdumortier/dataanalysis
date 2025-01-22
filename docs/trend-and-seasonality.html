@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>19.1 Trend and Seasonality | Data Analysis for Public Affairs with R</title>
   <meta name="description" content="19.1 Trend and Seasonality | Data Analysis for Public Affairs with R" />
-  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
   <meta property="og:title" content="19.1 Trend and Seasonality | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2024-10-28" />
+<meta name="date" content="2025-01-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -397,12 +397,12 @@ One seasonal dummy must be dropped. That is, quarterly and yearly data require t
 <span id="cb182-6"><a href="trend-and-seasonality.html#cb182-6" tabindex="-1"></a><span class="fu">ggplot</span>(retail)<span class="sc">+</span></span>
 <span id="cb182-7"><a href="trend-and-seasonality.html#cb182-7" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>date,<span class="at">y=</span>retail),<span class="at">color=</span><span class="st">&quot;red&quot;</span>)<span class="sc">+</span></span>
 <span id="cb182-8"><a href="trend-and-seasonality.html#cb182-8" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>date,<span class="at">y=</span>fit))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-65-1.png" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-66-1.png" width="672" /></p>
 <p>A second example considers quarterly <code>beer</code> production in Australia. In a first step, the data is converted into a time series:</p>
 <div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="trend-and-seasonality.html#cb183-1" tabindex="-1"></a>beer <span class="ot">=</span> <span class="fu">ts</span>(beer<span class="sc">$</span>production,<span class="at">start=</span><span class="fu">c</span>(<span class="dv">1992</span>,<span class="dv">1</span>),<span class="at">end=</span><span class="fu">c</span>(<span class="dv">2014</span>,<span class="dv">4</span>),<span class="at">frequency=</span><span class="dv">4</span>)</span></code></pre></div>
 <p>Next, the data is plotted using a function from the package <a href="https://cran.r-project.org/web/packages/ggfortify/index.html">ggfortify</a>. Additional documentation using the package is found under <a href="https://cran.r-project.org/web/packages/ggfortify/vignettes/plot_ts.html">Plotting ts objects</a>.</p>
 <div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="trend-and-seasonality.html#cb184-1" tabindex="-1"></a><span class="fu">autoplot</span>(beer)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-67-1.png" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-68-1.png" width="672" /></p>
 <p>Note that the <code>beer</code> now appears in a different category in the Global Environment, i.e., not under “Data” anymore. The function <code>tslm</code> from the package <a href="https://cran.r-project.org/web/packages/forecast/index.html">forecast</a> is used next. The function fits a linear model including seasonality and a trend component (and a trend-squared component if desired).</p>
 <div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="trend-and-seasonality.html#cb185-1" tabindex="-1"></a>bhat <span class="ot">=</span> <span class="fu">tslm</span>(beer<span class="sc">~</span>trend<span class="sc">+</span><span class="fu">I</span>(trend<span class="sc">^</span><span class="dv">2</span>)<span class="sc">+</span>season)</span>
 <span id="cb185-2"><a href="trend-and-seasonality.html#cb185-2" tabindex="-1"></a><span class="fu">summary</span>(bhat)</span></code></pre></div>
@@ -430,7 +430,7 @@ One seasonal dummy must be dropped. That is, quarterly and yearly data require t
 ## F-statistic:  1278 on 5 and 86 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>The package <a href="https://cran.r-project.org/web/packages/forecast/index.html">forecast</a> can be also be used to forcast:</p>
 <div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="trend-and-seasonality.html#cb187-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">forecast</span>(bhat,<span class="at">h=</span><span class="dv">20</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-69-1.png" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-70-1.png" width="672" /></p>
 <div id="practice-exercise" class="section level3 hasAnchor" number="19.1.1">
 <h3><span class="header-section-number">19.1.1</span> Practice Exercise<a href="trend-and-seasonality.html#practice-exercise" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ol style="list-style-type: decimal">
@@ -487,7 +487,7 @@ gitbook.start({
 "link": "https://github.com/jrfdumortier/dataanalysis/blob/master/timeseries.rmd",
 "text": null
 },
-"download": ["bookdownproj.pdf"],
+"download": null,
 "search": {
 "engine": "fuse",
 "options": null

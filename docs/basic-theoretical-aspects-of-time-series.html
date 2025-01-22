@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>19.3 Basic Theoretical Aspects of Time Series | Data Analysis for Public Affairs with R</title>
   <meta name="description" content="19.3 Basic Theoretical Aspects of Time Series | Data Analysis for Public Affairs with R" />
-  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
   <meta property="og:title" content="19.3 Basic Theoretical Aspects of Time Series | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2024-10-28" />
+<meta name="date" content="2025-01-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -397,18 +397,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -20.983  -4.103   1.663   5.609  15.353 
+## -16.842  -4.967   1.031   5.092  13.656 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) 19.54973    0.36613   53.40   &lt;2e-16 ***
-## x            1.38393    0.07835   17.66   &lt;2e-16 ***
+## (Intercept)  6.28438    0.48900   12.85   &lt;2e-16 ***
+## x            0.95316    0.02527   37.72   &lt;2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 8.08 on 498 degrees of freedom
-## Multiple R-squared:  0.3852, Adjusted R-squared:  0.384 
-## F-statistic:   312 on 1 and 498 DF,  p-value: &lt; 2.2e-16</code></pre>
+## Residual standard error: 6.599 on 498 degrees of freedom
+## Multiple R-squared:  0.7407, Adjusted R-squared:  0.7402 
+## F-statistic:  1423 on 1 and 498 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="basic-theoretical-aspects-of-time-series.html#cb192-1" tabindex="-1"></a><span class="fu">rm</span>(spurious,bhat)</span></code></pre></div>
 <p>There is no relationship between <span class="math inline">\(y\)</span> and <span class="math inline">\(x\)</span> yet the regression results indicate statistical significance.</p>
 <p>Consider the following so-called autoregressive model. The model depends on lagged terms of the dependent variable:
@@ -468,7 +468,7 @@ gitbook.start({
 "link": "https://github.com/jrfdumortier/dataanalysis/blob/master/timeseries.rmd",
 "text": null
 },
-"download": ["bookdownproj.pdf"],
+"download": null,
 "search": {
 "engine": "fuse",
 "options": null

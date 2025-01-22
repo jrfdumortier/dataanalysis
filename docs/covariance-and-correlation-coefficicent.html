@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>4.6 Covariance and Correlation Coefficicent | Data Analysis for Public Affairs with R</title>
   <meta name="description" content="4.6 Covariance and Correlation Coefficicent | Data Analysis for Public Affairs with R" />
-  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
   <meta property="og:title" content="4.6 Covariance and Correlation Coefficicent | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2024-10-28" />
+<meta name="date" content="2025-01-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -420,7 +420,8 @@ Figure 4.6: Correlation between the square footage of a home and the price of th
 <li><code>table(gss$owngun)</code></li>
 </ul>
 <p>Suppose you are only interested in people who answer <em>yes</em> or <em>no</em> for the questions concerning arrests and firearms ownership. You will have to subset the data.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="covariance-and-correlation-coefficicent.html#cb19-1" tabindex="-1"></a><span class="fu">CrossTable</span>(gss<span class="sc">$</span>owngun,gss<span class="sc">$</span>sex,<span class="at">prop.chisq=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="covariance-and-correlation-coefficicent.html#cb19-1" tabindex="-1"></a>df        <span class="ot">=</span> <span class="fu">subset</span>(gss,year<span class="sc">==</span><span class="dv">2022</span>,<span class="at">select=</span><span class="fu">c</span>(<span class="st">&quot;owngun&quot;</span>,<span class="st">&quot;sex&quot;</span>))</span>
+<span id="cb19-2"><a href="covariance-and-correlation-coefficicent.html#cb19-2" tabindex="-1"></a><span class="fu">CrossTable</span>(df<span class="sc">$</span>owngun,df<span class="sc">$</span>sex,<span class="at">prop.chisq=</span><span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## 
 ##  
 ##    Cell Contents
@@ -432,29 +433,29 @@ Figure 4.6: Correlation between the square footage of a home and the price of th
 ## |-------------------------|
 ## 
 ##  
-## Total Observations in Table:  1889 
+## Total Observations in Table:  2301 
 ## 
 ##  
-##              | gss$sex 
-##   gss$owngun |    female |      male | Row Total | 
+##              | df$sex 
+##    df$owngun |         1 |         2 | Row Total | 
 ## -------------|-----------|-----------|-----------|
-##           no |       741 |       505 |      1246 | 
-##              |     0.595 |     0.405 |     0.660 | 
-##              |     0.704 |     0.603 |           | 
-##              |     0.392 |     0.267 |           | 
+##            1 |       424 |       331 |       755 | 
+##              |     0.562 |     0.438 |     0.328 | 
+##              |     0.395 |     0.270 |           | 
+##              |     0.184 |     0.144 |           | 
 ## -------------|-----------|-----------|-----------|
-##      refused |        20 |        30 |        50 | 
-##              |     0.400 |     0.600 |     0.026 | 
-##              |     0.019 |     0.036 |           | 
-##              |     0.011 |     0.016 |           | 
+##            2 |       623 |       879 |      1502 | 
+##              |     0.415 |     0.585 |     0.653 | 
+##              |     0.580 |     0.716 |           | 
+##              |     0.271 |     0.382 |           | 
 ## -------------|-----------|-----------|-----------|
-##          yes |       291 |       302 |       593 | 
-##              |     0.491 |     0.509 |     0.314 | 
-##              |     0.277 |     0.361 |           | 
-##              |     0.154 |     0.160 |           | 
+##            3 |        27 |        17 |        44 | 
+##              |     0.614 |     0.386 |     0.019 | 
+##              |     0.025 |     0.014 |           | 
+##              |     0.012 |     0.007 |           | 
 ## -------------|-----------|-----------|-----------|
-## Column Total |      1052 |       837 |      1889 | 
-##              |     0.557 |     0.443 |           | 
+## Column Total |      1074 |      1227 |      2301 | 
+##              |     0.467 |     0.533 |           | 
 ## -------------|-----------|-----------|-----------|
 ## 
 ## </code></pre>
@@ -507,7 +508,7 @@ gitbook.start({
 "link": "https://github.com/jrfdumortier/dataanalysis/blob/master/summarizingdata.rmd",
 "text": null
 },
-"download": ["bookdownproj.pdf"],
+"download": null,
 "search": {
 "engine": "fuse",
 "options": null

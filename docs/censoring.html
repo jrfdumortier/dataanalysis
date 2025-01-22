@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>17.2 Censoring | Data Analysis for Public Affairs with R</title>
   <meta name="description" content="17.2 Censoring | Data Analysis for Public Affairs with R" />
-  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
   <meta property="og:title" content="17.2 Censoring | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2024-10-28" />
+<meta name="date" content="2025-01-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -377,7 +377,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="censoring" class="section level2 hasAnchor" number="17.2">
 <h2><span class="header-section-number">17.2</span> Censoring<a href="censoring.html#censoring" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In the case of censoring, the values of the dependent variable are reported at a certain point if they are above or below a certain value.</p>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
 <p>If all data was reported at the correct value, the following following regression model could be executed:</p>
 <div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="censoring.html#cb122-1" tabindex="-1"></a><span class="fu">summary</span>(bhat_real)</span></code></pre></div>
 <pre><code>## 
@@ -386,18 +386,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -2.3707 -0.8230 -0.1525  0.7057  3.1032 
+## -2.2959 -0.7400 -0.3396  0.5394  2.4274 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) -1.79575    0.31045  -5.784 5.35e-07 ***
-## x            0.44893    0.05551   8.088 1.62e-10 ***
+## (Intercept) -2.09074    0.31283  -6.683 2.25e-08 ***
+## x            0.50987    0.05614   9.082 5.38e-12 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 1.176 on 48 degrees of freedom
-## Multiple R-squared:  0.5768, Adjusted R-squared:  0.568 
-## F-statistic: 65.42 on 1 and 48 DF,  p-value: 1.622e-10</code></pre>
+## Residual standard error: 1.139 on 48 degrees of freedom
+## Multiple R-squared:  0.6321, Adjusted R-squared:  0.6245 
+## F-statistic: 82.48 on 1 and 48 DF,  p-value: 5.375e-12</code></pre>
 <p>Ignoring censoring leads to biased results:</p>
 <div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="censoring.html#cb124-1" tabindex="-1"></a><span class="fu">summary</span>(bhat_censored)</span></code></pre></div>
 <pre><code>## 
@@ -406,18 +406,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
-## -1.50895 -0.55421 -0.09853  0.28767  2.43058 
+## -1.74069 -0.52897 -0.07453  0.45831  2.07293 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) -0.35947    0.23417  -1.535    0.131    
-## x            0.26499    0.04187   6.329 7.85e-08 ***
+## (Intercept)  -0.5346     0.2413  -2.215   0.0315 *  
+## x             0.3090     0.0433   7.136 4.55e-09 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 0.8869 on 48 degrees of freedom
-## Multiple R-squared:  0.4549, Adjusted R-squared:  0.4436 
-## F-statistic: 40.06 on 1 and 48 DF,  p-value: 7.853e-08</code></pre>
+## Residual standard error: 0.8782 on 48 degrees of freedom
+## Multiple R-squared:  0.5148, Adjusted R-squared:  0.5047 
+## F-statistic: 50.92 on 1 and 48 DF,  p-value: 4.552e-09</code></pre>
 <p>Using the R package <a href="https://cran.r-project.org/web/packages/censReg/index.html">censReg</a>) allows for the reduction of the bias:</p>
 <div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="censoring.html#cb126-1" tabindex="-1"></a>b_correct <span class="ot">=</span> <span class="fu">censReg</span>(y<span class="sc">~</span>x,<span class="at">data=</span>censoring)</span>
 <span id="cb126-2"><a href="censoring.html#cb126-2" tabindex="-1"></a><span class="fu">summary</span>(b_correct)</span></code></pre></div>
@@ -431,15 +431,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Coefficients:
 ##             Estimate Std. error t value  Pr(&gt; t)    
-## (Intercept) -2.01919    0.53095  -3.803 0.000143 ***
-## x            0.47381    0.08049   5.887 3.94e-09 ***
-## logSigma     0.23227    0.14264   1.628 0.103432    
+## (Intercept) -2.22754    0.53483  -4.165 3.11e-05 ***
+## x            0.52449    0.08179   6.412 1.43e-10 ***
+## logSigma     0.20741    0.14219   1.459    0.145    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## Newton-Raphson maximisation, 6 iterations
 ## Return code 1: gradient close to zero (gradtol)
-## Log-likelihood: -54.88586 on 3 Df</code></pre>
+## Log-likelihood: -54.35225 on 3 Df</code></pre>
 </div>
             </section>
 
@@ -489,7 +489,7 @@ gitbook.start({
 "link": "https://github.com/jrfdumortier/dataanalysis/blob/master/limiteddepvar.rmd",
 "text": null
 },
-"download": ["bookdownproj.pdf"],
+"download": null,
 "search": {
 "engine": "fuse",
 "options": null

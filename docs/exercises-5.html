@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>9.5 Exercises | Data Analysis for Public Affairs with R</title>
   <meta name="description" content="9.5 Exercises | Data Analysis for Public Affairs with R" />
-  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
   <meta property="og:title" content="9.5 Exercises | Data Analysis for Public Affairs with R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2024-10-28" />
+<meta name="date" content="2025-01-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -406,6 +406,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>How has this variable evolved over the years? Make sure to report the share of of respondents in favor. Include a graph with time on the horizontal axis.</li>
 </ul></li>
 <li><p><strong><em>Ohio Schools I</em></strong> (***): The data set <code>ohioincome</code> and <code>ohioscore</code> contain information about the school districts in Ohio with regard to enrollment, overall school performance (think of that as a measure of how good a school is), and median income. First, merge the two data sets based on IRN (serving as an identifier in the two data sets) using the R command <code>merge()</code>. Test the hypothesis that there is no difference in performance for the top 25% and bottom 25% of schools in terms of median income. That is, you are testing the hypothesis that low median income and high median income school districts are performing equally well.</p></li>
+<li><p><strong><em>Basel</em></strong> (***): Consider the housing data in <code>basel</code>, which contains home values in some town in the Swiss canton of Basel-Landschaft. Calculate the cost per square meter of living area in a new column. Next, add a column that indicates the house being located in Liestal (canton’s capital) with a 1 and 0 otherwise. Conduct a hypothesis test that the houses in the canton’s capital are as expensive as in surrounding towns.</p></li>
+<li><p><strong><em>Fear and Guns</em></strong> (***): Consider the variables <span class="math inline">\(fear\)</span> and <span class="math inline">\(owngun\)</span> in the dataset <code>gss</code>. For the year 2022, test the hypothesis that people who are afraid to walk within one mile of where they life alone at night are more likely to own a firearm.</p></li>
+<li><p><strong><em>Domestic Vehicle Preferences</em></strong> (**): Consider the data in <code>nhtsveh</code>, specifically the variables <span class="math inline">\(census\_d\)</span> and <span class="math inline">\(make\)</span>. It is very important that you consult the codebook for the 2022 NHTS available <a href="https://nhts.ornl.gov/documentation">here</a>. Test the hypothesis that the share of domestic car manufacturers amongst households is identical in each state. Make sure to conduct those tests in a pairwise manner (but not a paired hypothesis test).</p></li>
 </ol>
 
 </div>
@@ -458,7 +461,7 @@ gitbook.start({
 "link": "https://github.com/jrfdumortier/dataanalysis/blob/master/hypothesistesting.rmd",
 "text": null
 },
-"download": ["bookdownproj.pdf"],
+"download": null,
 "search": {
 "engine": "fuse",
 "options": null

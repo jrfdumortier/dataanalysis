@@ -21,7 +21,8 @@ curve(dchisq(x,df=k),add=TRUE)
 To conduct the hypothesis test, consider the data on voting and education in `gss`. Using the function `CrossTable` associated with the package [gmodels](https://cran.r-project.org/web/packages/gmodels/index.html), the following table can be constructed. 
 
 ```{r}
-CrossTable(gss$degree,gss$vote12,prop.r = FALSE,prop.c = FALSE,prop.chisq = FALSE,prop.t=FALSE)
+df        = subset(gss,vote20 %in% c(1,2) & degree %in% c(0:4),select=c("vote20","degree"))
+CrossTable(df$degree,df$vote20,prop.r = FALSE,prop.c = FALSE,prop.chisq = FALSE,prop.t=FALSE)
 ```
 This table is similar to what has been presented previously except that all proportions have been removed and only the counts are presented. This is a 5-by-2 contingency table (the total columns are not considered part of the table). The variable education is less than high school (0), high school (1), junior college (2), bachelor (3), and graduate (4). Assuming independence, the expected value $E$ for each cell is 
 $$E=\frac{(\text{total of row})\cdot(\text{total of column})}{\text{total count}}$$
@@ -31,22 +32,22 @@ Those calculations can be conducted for each cell. Then, then the $\chi^2$-test 
 $$\chi^2 = \sum_{i=1}^{r \cdot c} \frac{(O_i-E_i)^2}{E_i}$$
 where $r \cdot c$ is number of rows multiplied by the number of colunms, $O_i$ and $E_i$ are the observed and exepected count in a cell, respectively. The degrees of freedom are calcualted as $(r-1)\cdot(c-1)$. Of course, instead of doing it manually, the following command can be used:
 ```{r}
-chisq.test(gss$degree,gss$vote12)
+chisq.test(df$degree,df$vote20)
 ```
 Due to the *p*-value being very small, we reject the hypothesis of independence. The $\chi^2$ hypothesis test should only be used for qualitative data. For example, do not categorize income into quartiles to conduct a hypothesis test on whether voting depends on income. 
 
 The example of a 2-by-2 table is a special case
 ```{r}
 votegun   = subset(gss,
-                   vote12 %in% c("voted","did not vote") &
-                        owngun %in% c("yes","no"),
-                   select = c("vote12","owngun"))
-votegun$vote12 = ifelse(votegun$vote12=="voted",1,0)
-votegun$owngun = ifelse(votegun$owngun=="yes",1,0)
-t.test(votegun$vote12~votegun$owngun)
+                   vote20 %in% c(1,2) &
+                   owngun %in% c(1,2),
+                   select = c("vote20","owngun"))
+votegun$vote20 = ifelse(votegun$vote20==1,1,0)
+votegun$owngun = ifelse(votegun$owngun==1,1,0)
+t.test(votegun$vote20~votegun$owngun)
 ```
 ```{r}
-chisq.test(votegun$vote12,votegun$owngun)
+chisq.test(votegun$vote20,votegun$owngun)
 ```
 
 
@@ -54,7 +55,7 @@ chisq.test(votegun$vote12,votegun$owngun)
 
 
 ```{r}
-CrossTable(votegun$vote12,votegun$owngun,prop.r = FALSE,prop.c = FALSE,prop.chisq = FALSE,prop.t=FALSE)
+CrossTable(votegun$vote20,votegun$owngun,prop.r = FALSE,prop.c = FALSE,prop.chisq = FALSE,prop.t=FALSE)
 ```
 
 ## Binomial Test
