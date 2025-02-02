@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2025-01-21" />
+<meta name="date" content="2025-02-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -381,7 +381,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb198-2"><a href="moving-average-models.html#cb198-2" tabindex="-1"></a>     <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>newcases<span class="sc">/</span><span class="dv">1000</span>))<span class="sc">+</span></span>
 <span id="cb198-3"><a href="moving-average-models.html#cb198-3" tabindex="-1"></a>     <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span><span class="fu">rollmean</span>(newcases<span class="sc">/</span><span class="dv">1000</span>,<span class="dv">7</span>,<span class="at">na.pad=</span><span class="cn">TRUE</span>,<span class="at">align=</span><span class="st">&quot;right&quot;</span>)),</span>
 <span id="cb198-4"><a href="moving-average-models.html#cb198-4" tabindex="-1"></a>               <span class="at">color=</span><span class="st">&quot;red&quot;</span>)<span class="sc">+</span><span class="fu">ylab</span>(<span class="st">&quot;New Cases in Thousand&quot;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-79-1.png" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-78-1.png" width="672" /></p>
 <p>A moving average term in a time series model is a past error (multiplied by a coefficient), e.g., MA(1):
 <span class="math display">\[x_t = \mu + w_t + \theta_1 \cdot w_{t-1}\]</span>
 where <span class="math inline">\(w_t \sim N(0,\sigma_w^2)\)</span>. The MA(1) model is written as:

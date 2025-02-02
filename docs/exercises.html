@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2025-01-21" />
+<meta name="date" content="2025-02-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -429,7 +429,7 @@ Figure 4.7: Evolution of the All Transaction House Price Index for the U.S. and 
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="exercises.html#cb22-1" tabindex="-1"></a>dffin     <span class="ot">=</span> statefinhealth[,<span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">6</span>)]</span>
 <span id="cb22-2"><a href="exercises.html#cb22-2" tabindex="-1"></a>dffin     <span class="ot">=</span> <span class="fu">cor</span>(dffin)</span>
 <span id="cb22-3"><a href="exercises.html#cb22-3" tabindex="-1"></a><span class="fu">corrplot</span>(dffin,<span class="at">type=</span><span class="st">&quot;upper&quot;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 <ol start="13" style="list-style-type: decimal">
 <li><p><strong><em>Earnings</em></strong> (***): Consider the data in <code>earnings</code>, which contains the real earnings by education level, sex, and race/ethnicity. Generate a line plot using the package <code>ggplot2</code> with year on the horizontal axis and the earnings (<span class="math inline">\(value\)</span>) on the vertical axis. Consider “All Races” but differentiate by education level and sex. That is, differentiate the various education levels with colors and use the ggplot component “+facet_grid()” to plot three graphs side-by-side, i.e., both sexes, men, women. Repeat the exercise using the variable <span class="math inline">\(growth\)</span>.</p></li>
 <li><p><strong><em>Power Generation</em></strong> (***): Each year, the U.S. Energy Information Administration (EIA) publishes data about all electric generators in the United States. You will find selected variables for all observations of that data in <code>eia</code>. Use the function “unique()” from R to determine the technologies used in the EIA report. You will see that there are multiple technologies using wind and solar (e.g., offshore wind, onshore wind). The goal of this exercise is plotting the share of wind and solar from the total generation capacity in the state. For this exercise, you will have to use multiple functions, e.g., aggregate(), merge(), to arrive at the final result. Plot the resulting share using the function “ggplot()” from R. California is usually considered the leader in renewbale power generation. Is that still true when considering the share of installed power?</p></li>

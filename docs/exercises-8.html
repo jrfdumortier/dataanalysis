@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2025-01-21" />
+<meta name="date" content="2025-02-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -413,13 +413,15 @@ Report the output and interpret the coefficients in terms of statistical signifi
 <div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="exercises-8.html#cb61-1" tabindex="-1"></a><span class="fu">library</span>(corrplot)</span>
 <span id="cb61-2"><a href="exercises-8.html#cb61-2" tabindex="-1"></a>corr_matrix <span class="ot">=</span> <span class="fu">cor</span>(boston)</span>
 <span id="cb61-3"><a href="exercises-8.html#cb61-3" tabindex="-1"></a><span class="fu">corrplot</span>(corr_matrix,<span class="at">type=</span><span class="st">&quot;upper&quot;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
 <p>What does the resulting plot represent? In a second step, estimate the following model:
 <span class="math display">\[medv = \beta_0 + \beta_1 \cdot lstat+ \beta_2 \cdot crim + \beta_3 \cdot age\]</span></p>
 <p>Explain what exactly you estimated and what hypotheses are underlying the model. Lastly, estimate the model including all remaining independent variables. Are any of the results surprising?</p>
 <ol start="9" style="list-style-type: decimal">
 <li><p><strong><em>BLM I</em></strong> (***): The following question is based on the article <a href="https://doi.org/10.1017/S1537592717004273">Black Lives Matter: Evidence that Police-Caused Deaths Predict Protest Activity</a>. Note that we use a simplified version of the data set for this question. The dependent variable for this exercise is protest frequency (<span class="math inline">\(totprotests\)</span>) and the independent variables are city population (<span class="math inline">\(pop\)</span>), population density (<span class="math inline">\(popdensity\)</span>), percent Black (<span class="math inline">\(percentblack\)</span>), black poverty rate (<span class="math inline">\(blackpovertyrate\)</span>), percent of population with at least a bachelor (<span class="math inline">\(percentbachelor\)</span>), college enrollment (<span class="math inline">\(collegeenrollpc\)</span>), share of democrats (<span class="math inline">\(demshare\)</span>), and black police-caused deaths per 10,000 people (<span class="math inline">\(deathsblackpc\)</span>). Interpret the output.</p></li>
 <li><p><strong><em>Furnished Apartments</em></strong> (***): Long-term furnished apartments are usually managed by companies. Some of those companies are more expensive than others. The dependent variable is <span class="math inline">\(rent\)</span>. Estimate a regression model using all other columns as independent variables. Which companies are more expensive than others and by how much? Is there a difference between living in Berlin (city) or one of its close suburbs (Potsdam). On a side note, people in Potsdam prefer the city not to be called a suburb since it is fairly sizable state capital.</p></li>
+<li><p><strong><em>U.S. Labor Market</em></strong> (***): Understanding wage determinants is essential for policymakers working on labor market policies. In this exercise, you will analyze the factors affecting individual wages, including education, experience, gender, and union membership using the data set <code>wages</code> from the <a href="https://cran.r-project.org/web/packages/Ecdat/index.html">Ecdat</a> package. Estimate a multiple linear regression model where the dependent variable is <span class="math inline">\(wage\)</span> (hourly wage), and the independent variables include <span class="math inline">\(education\)</span> (years of schooling), <span class="math inline">\(experience\)</span> (years of labor market experience), <span class="math inline">\(gender\)</span> (female dummy variable: 1 for female, 0 for male), and <span class="math inline">\(union\)</span> (union dummy variable: 1 for union member, 0 otherwise). Interpret the coefficient estimates regarding the effects of education and union membership on wages. Is there a significant gender wage gap after controlling for education and experience? Test for interaction effects between gender and education. Does the return to education differ between men and women?</p></li>
+<li><p><strong><em>Dry January</em></strong> (***): The data set <code>dj</code> contains the real per-capita retail sales of alcoholic beverages. Estimate a simple model including a time trend, dummy variables for the months, and a dummy variable indicating the beginning of the pandemic in the United States. For that date, I suggest to use April 2020. Interpret your results. Based on the data, how would you estimate the effects of Dry January? That is, the movement which started in 2014 to abstain from alcohol in January.</p></li>
 </ol>
 
 </div>

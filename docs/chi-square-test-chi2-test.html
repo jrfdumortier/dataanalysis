@@ -23,7 +23,7 @@
 <meta name="author" content="Jerome Dumortier" />
 
 
-<meta name="date" content="2025-01-21" />
+<meta name="date" content="2025-02-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -380,7 +380,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Given the values <span class="math inline">\(Z_1, Z_2, \dots , Z_k\)</span> independently drawn from standard normal distribution, then the squared sum of those values follows a <span class="math inline">\(\chi^2\)</span>-distribution:
 <span class="math display">\[\sum_{i=1}^k Z_i^2 = Z \sim \chi^2_k\]</span>
 where <span class="math inline">\(k\)</span> specifies the degrees of freedom.</p>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <p>To conduct the hypothesis test, consider the data on voting and education in <code>gss</code>. Using the function <code>CrossTable</code> associated with the package <a href="https://cran.r-project.org/web/packages/gmodels/index.html">gmodels</a>, the following table can be constructed.</p>
 <div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="chi-square-test-chi2-test.html#cb39-1" tabindex="-1"></a>df        <span class="ot">=</span> <span class="fu">subset</span>(gss,vote20 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>) <span class="sc">&amp;</span> degree <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">4</span>),<span class="at">select=</span><span class="fu">c</span>(<span class="st">&quot;vote20&quot;</span>,<span class="st">&quot;degree&quot;</span>))</span>
 <span id="cb39-2"><a href="chi-square-test-chi2-test.html#cb39-2" tabindex="-1"></a><span class="fu">CrossTable</span>(df<span class="sc">$</span>degree,df<span class="sc">$</span>vote20,<span class="at">prop.r =</span> <span class="cn">FALSE</span>,<span class="at">prop.c =</span> <span class="cn">FALSE</span>,<span class="at">prop.chisq =</span> <span class="cn">FALSE</span>,<span class="at">prop.t=</span><span class="cn">FALSE</span>)</span></code></pre></div>
